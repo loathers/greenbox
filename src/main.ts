@@ -1,21 +1,25 @@
-import { getPermedSkills, print, Skill } from "kolmafia";
-import { have } from "libram";
+import { getPermedSkills, print, toInt, toSkill } from "kolmafia";
 
 /**
  * Generates a string list of all skills the user has permed.
  * @returns large string list of skills, comma delimited
  */
 export function checkSkills(): string {
-  const skillsPermed = new Set<Skill>();
+  const skillsHCPermed = new Set<number>();
+  const skillsSCPermed = new Set<number>();
+
+  // Within getPermedSkills, the attached boolean represents HC/SC status.
+  //   If the boolean is true, it's HC permed. False, SC permed.
   const permedSkills = getPermedSkills();
 
-  // Checks list of all skills in KOLMafia against user's skills. Note that
-  //   C's script has a subset of this list, as we don't want all of them.
-  for (const skill of Skill.all()) {
-    if (have(skill) && skill.permable && permedSkills[String(skill)]) skillsPermed.add(skill);
+  // Checks permedSkills for HC/SC status and populates the two perm lists.
+  for (const skillName in permedSkills) {
+    permedSkills[skillName]
+      ? skillsHCPermed.add(toInt(toSkill(skillName)))
+      : skillsSCPermed.add(toInt(toSkill(skillName)));
   }
 
-  return Array.from(skillsPermed).join(",");
+  return Array.from(skillsHCPermed).join(",");
 }
 
 export function main(): void {

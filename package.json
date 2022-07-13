@@ -36,10 +36,7 @@
   },
   "author": "Captain Scotch",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Loathing-Associates-Scripting-Society/lass_greenbox.git"
-  },
+  "repository": "git+https://github.com/Loathing-Associates-Scripting-Society/lass_greenbox.git",
   "keywords": [
     "KoLMafia",
     "JS",
