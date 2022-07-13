@@ -1,13 +1,23 @@
-import { myMp, print } from "kolmafia";
+import { getPermedSkills, print, Skill } from "kolmafia";
+import { have } from "libram";
 
-export function checkMP(): string {
-  if (myMp() < 200) {
-    return "Your MP is less than 200.";
-  } else {
-    return "Your MP is greater than or equal to 200.";
+/**
+ * Generates a string list of all skills the user has permed.
+ * @returns large string list of skills, comma delimited
+ */
+export function checkSkills(): string {
+  const skillsPermed = new Set<Skill>();
+  const permedSkills = getPermedSkills();
+
+  // Checks list of all skills in KOLMafia against user's skills. Note that
+  //   C's script has a subset of this list, as we don't want all of them.
+  for (const skill of Skill.all()) {
+    if (have(skill) && skill.permable && permedSkills[String(skill)]) skillsPermed.add(skill);
   }
+
+  return Array.from(skillsPermed).join(",");
 }
 
 export function main(): void {
-  print(checkMP());
+  print(checkSkills());
 }
