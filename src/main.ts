@@ -1,10 +1,21 @@
-import { getPermedSkills, print, toInt, toSkill } from "kolmafia";
+import { Familiar, getPermedSkills, print, toInt, toSkill } from "kolmafia";
+import { have } from "libram";
 
 /**
- * Generates a string list of all skills the user has permed.
- * @returns large string list of skills, comma delimited
+ * Interface for the JSON output.
  */
-export function checkSkills(): string {
+
+export interface SnapshotOutput {
+  hardcore?: number[];
+  softcore?: number[];
+  familiars?: number[];
+}
+
+/**
+ * Generates an object with a list of HC & SC skill perms.
+ * @returns large numeric list of skills, comma delimited, in two sections
+ */
+export function checkSkills(): SnapshotOutput {
   const skillsHCPermed = new Set<number>();
   const skillsSCPermed = new Set<number>();
 
@@ -19,9 +30,51 @@ export function checkSkills(): string {
       : skillsSCPermed.add(toInt(toSkill(skillName)));
   }
 
-  return Array.from(skillsHCPermed).join(",");
+  // Place output in the desired interface format
+  const skillOutput = {
+    hardcore: Array.from(skillsHCPermed),
+    softcore: Array.from(skillsSCPermed),
+  };
+
+  return skillOutput;
+}
+
+/** Generates an object with a list of familiars.
+ * @returns large numeric list of familiars by fam ID
+ */
+
+export function checkFamiliars(): SnapshotOutput {
+  const familiarsInTerrarium = new Set<number>();
+  // const familiarHatchlings = new Set<number>();
+
+  for (const fam of Familiar.all()) {
+    if (have(fam)) familiarsInTerrarium.add(toInt(fam));
+  }
+
+  const famOutput = {
+    familiars: Array.from(familiarsInTerrarium),
+  };
+
+  return famOutput;
 }
 
 export function main(): void {
-  print(checkSkills());
+  /**
+   * Rev requested that the final data be staged as such:
+   *
+   * {
+   * softcore:[skillid,skillid],
+   * hardcore:[skillid,skillid],
+   * familiar:[familiarid,familiarid],
+   * }
+   *
+   */
+
+  const greenboxOutput = {
+    hardcore: checkSkills().hardcore,
+    softcore: checkSkills().softcore,
+    familiars: checkFamiliars().familiars,
+  };
+
+  print(JSON.stringify(greenboxOutput));
 }
