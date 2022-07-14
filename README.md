@@ -6,15 +6,15 @@ LASS_GreenBox is a script meant to examine a Kingdom of Loathing player's overal
 
 - [x] A prototype script that generates a JSON document of what an account has
   - [x] Lists out skills split by HC/SC
-  - [] Lists levels of skills like slime skills & PVP rewards
+  - [ ] Lists levels of skills like slime skills & PVP rewards
   - [x] Lists out owned familiars
-  - [] Lists out owned but unused familiar hatchlings
-  - [] Lists out IOTMs split by ownership & usage
-  - [] Lists out tattoos
-  - [] Lists out trophies
-  - [] Lists out ascension rewards
-- [] A function to compile the JSON to base64 and kmail to oaf in-game
-- [] A function within [oaf-js](https://github.com/Loathing-Associates-Scripting-Society/oaf-js) that takes this base64 snapshot and saves it to a database
-- [] A single page application in whatever we feel like writing it in becomes hosted on oaf
-- [] The single page learns to ingest this bas64 blob, converts it back to JSON and then uses it to create a user's greenbox
-- [] Add different sorting/filtering/display options to the JSON (show only what a user has, sort based on most recent tier list, only show standard iotm/skills, et cetera)
+  - [ ] Lists out owned but unused familiar hatchlings
+  - [ ] Lists out IOTMs split by ownership & usage
+  - [ ] Lists out tattoos
+  - [ ] Lists out trophies
+  - [ ] Lists out ascension rewards
+- [ ] A function to compile the JSON to base64 and kmail to oaf in-game
+- [ ] A function within [oaf-js](https://github.com/Loathing-Associates-Scripting-Society/oaf-js) that takes this base64 snapshot and saves it to a database
+- [ ] A single page application in whatever we feel like writing it in becomes hosted on oaf
+- [ ] The single page learns to ingest this bas64 blob, converts it back to JSON and then uses it to create a user's greenbox
+- [ ] Add different sorting/filtering/display options to the JSON (show only what a user has, sort based on most recent tier list, only show standard iotm/skills, et cetera)
