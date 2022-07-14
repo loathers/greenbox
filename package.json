@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "core-js": "^3.16.4",
-    "kolmafia": "^3.0.0",
+    "kolmafia": "2.1.3",
     "libram": "^0.6.19"
   },
   "author": "Captain Scotch",
