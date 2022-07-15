@@ -80,9 +80,8 @@ export function checkTrophies(): SnapshotOutput {
 export function checkTattoos(): SnapshotOutput {
   const tattoosUnlocked = new Set<string>();
   const page = visitUrl("account_tattoos.php");
-	const tats = page.split(`Tattoo: `).slice(1);
-	//const tats = page.match(`Tattoo: [a-z0-9_]*`);
-	for (let i = 0; i < tats.length; i = i+2){ //Tattoo page appears to have every tattoo listed twice, hence only doing evens
+	const tats = page.split(`Tattoo: `).slice(1); //gives an array where each item in the array starts with the tattoo name
+	for (let i = 0; i < tats.length; i = i+2){ //Tattoo page lists every tattoo twice, hence only doing evens
 		const tattoo = tats[i].match(`[a-z0-9_]*`);
 		if (tattoo !== null) {
 			tattoosUnlocked.add(tattoo[0]);
