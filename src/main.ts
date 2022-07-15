@@ -1,4 +1,4 @@
-import { Familiar, getPermedSkills, print, toInt, toSkill } from "kolmafia";
+import { Familiar, getPermedSkills, print, toInt, toSkill, visitUrl } from "kolmafia";
 import { have } from "libram";
 
 /**
@@ -9,6 +9,7 @@ export interface SnapshotOutput {
   hardcore?: number[];
   softcore?: number[];
   familiars?: number[];
+  trophies?: number[];
 }
 
 /**
@@ -58,6 +59,23 @@ export function checkFamiliars(): SnapshotOutput {
   return famOutput;
 }
 
+/** Generates an object with a list of trophy numbers.
+ * @returns large numeric list of trophies by trophy number
+ */
+
+export function checkTrophies(): SnapshotOutput {
+  const trophiesInCase = new Set<number>();
+  const page = visitUrl("trophies.php");
+
+  for (let x = 0; x <= 162; x++) {
+    if (page.match(`"trophy${x}"`)) trophiesInCase.add(x);
+  }
+  const trophyOutput = {
+    trophies: Array.from(trophiesInCase),
+  };
+  return trophyOutput;
+}
+
 export function main(): void {
   /**
    * Rev requested that the final data be staged as such:
@@ -74,6 +92,7 @@ export function main(): void {
     hardcore: checkSkills().hardcore,
     softcore: checkSkills().softcore,
     familiars: checkFamiliars().familiars,
+    trophies: checkTrophies().trophies,
   };
 
   print(JSON.stringify(greenboxOutput));
