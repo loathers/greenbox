@@ -1,4 +1,4 @@
-import { Familiar, getPermedSkills, print, toInt, toSkill, visitUrl } from "kolmafia";
+import { Familiar, getPermedSkills, print, stringModifier, toInt, toSkill, visitUrl } from "kolmafia";
 import { have } from "libram";
 
 /**
@@ -10,6 +10,7 @@ export interface SnapshotOutput {
   softcore?: number[];
   familiars?: number[];
   trophies?: number[];
+	tattoos?: string[];
 }
 
 /**
@@ -76,6 +77,23 @@ export function checkTrophies(): SnapshotOutput {
   return trophyOutput;
 }
 
+export function checkTattoos(): SnapshotOutput {
+  const tattoosUnlocked = new Set<string>();
+  const page = visitUrl("account_tattoos.php");
+	const tats = page.split(`Tattoo: `).slice(1);
+	//const tats = page.match(`Tattoo: [a-z0-9_]*`);
+	for (let i = 0; i < tats.length; i = i+2){ //Tattoo page appears to have every tattoo listed twice, hence only doing evens
+		const tattoo = tats[i].match(`[a-z0-9_]*`);
+		if (tattoo !== null) {
+			tattoosUnlocked.add(tattoo[0]);
+		}
+	}
+  const tattooOutput = {
+    tattoos: Array.from(tattoosUnlocked),
+  };
+  return tattooOutput;
+}
+
 export function main(): void {
   /**
    * Rev requested that the final data be staged as such:
@@ -93,6 +111,7 @@ export function main(): void {
     softcore: checkSkills().softcore,
     familiars: checkFamiliars().familiars,
     trophies: checkTrophies().trophies,
+		tattoos: checkTattoos().tattoos,
   };
 
   print(JSON.stringify(greenboxOutput));
