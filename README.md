@@ -10,7 +10,7 @@ LASS_GreenBox is a script meant to examine a Kingdom of Loathing player's overal
   - [x] Lists out owned familiars
   - [ ] Lists out owned but unused familiar hatchlings
   - [ ] Lists out IOTMs split by ownership & usage
-  - [ ] Lists out tattoos
+  - [x] Lists out tattoos
   - [x] Lists out trophies
   - [ ] Lists out ascension rewards
 - [ ] A function to compile the JSON to base64 and kmail to oaf in-game
