@@ -11,7 +11,7 @@ LASS_GreenBox is a script meant to examine a Kingdom of Loathing player's overal
   - [ ] Lists out owned but unused familiar hatchlings
   - [ ] Lists out IOTMs split by ownership & usage
   - [ ] Lists out tattoos
-  - [ ] Lists out trophies
+  - [x] Lists out trophies
   - [ ] Lists out ascension rewards
 - [ ] A function to compile the JSON to base64 and kmail to oaf in-game
 - [ ] A function within [oaf-js](https://github.com/Loathing-Associates-Scripting-Society/oaf-js) that takes this base64 snapshot and saves it to a database
