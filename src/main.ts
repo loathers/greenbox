@@ -1,4 +1,4 @@
-import { Familiar, getPermedSkills, print, stringModifier, toInt, toSkill, visitUrl } from "kolmafia";
+import { Familiar, getPermedSkills, print, toInt, toSkill, visitUrl } from "kolmafia";
 import { have } from "libram";
 
 /**
@@ -10,7 +10,7 @@ export interface SnapshotOutput {
   softcore?: number[];
   familiars?: number[];
   trophies?: number[];
-	tattoos?: string[];
+  tattoos?: string[];
 }
 
 /**
@@ -80,13 +80,14 @@ export function checkTrophies(): SnapshotOutput {
 export function checkTattoos(): SnapshotOutput {
   const tattoosUnlocked = new Set<string>();
   const page = visitUrl("account_tattoos.php");
-	const tats = page.split(`Tattoo: `).slice(1); //gives an array where each item in the array starts with the tattoo name
-	for (let i = 0; i < tats.length; i = i+2){ //Tattoo page lists every tattoo twice, hence only doing evens
-		const tattoo = tats[i].match(`[a-z0-9_]*`);
-		if (tattoo !== null) {
-			tattoosUnlocked.add(tattoo[0]);
-		}
-	}
+  const tats = page.split(`Tattoo: `).slice(1); //gives an array where each item in the array starts with the tattoo name
+  for (let i = 0; i < tats.length; i = i + 2) {
+    //Tattoo page lists every tattoo twice, hence only doing evens
+    const tattoo = tats[i].match(`[a-z0-9_]*`);
+    if (tattoo !== null) {
+      tattoosUnlocked.add(tattoo[0]);
+    }
+  }
   const tattooOutput = {
     tattoos: Array.from(tattoosUnlocked),
   };
@@ -110,7 +111,7 @@ export function main(): void {
     softcore: checkSkills().softcore,
     familiars: checkFamiliars().familiars,
     trophies: checkTrophies().trophies,
-		tattoos: checkTattoos().tattoos,
+    tattoos: checkTattoos().tattoos,
   };
 
   print(JSON.stringify(greenboxOutput));
