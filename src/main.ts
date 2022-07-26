@@ -9,6 +9,7 @@ export interface SnapshotOutput {
   hardcore?: number[];
   softcore?: number[];
   familiars?: number[];
+  hatchlings?: number[];
   trophies?: number[];
   tattoos?: string[];
 }
@@ -47,14 +48,16 @@ export function checkSkills(): SnapshotOutput {
 
 export function checkFamiliars(): SnapshotOutput {
   const familiarsInTerrarium = new Set<number>();
-  // const familiarHatchlings = new Set<number>();
+  const familiarHatchlings = new Set<number>();
 
   for (const fam of Familiar.all()) {
     if (have(fam)) familiarsInTerrarium.add(toInt(fam));
+    if (have(fam.hatchling)) familiarHatchlings.add(toInt(fam));
   }
 
   const famOutput = {
     familiars: Array.from(familiarsInTerrarium),
+    hatchlings: Array.from(familiarHatchlings),
   };
 
   return famOutput;
@@ -79,7 +82,7 @@ export function checkTrophies(): SnapshotOutput {
 
 export function checkTattoos(): SnapshotOutput {
   const tattoosUnlocked = new Set<string>();
-  const page = visitUrl("account_tattoos.php");
+  const page: string = visitUrl("account_tattoos.php");
   const tats = page.split(`Tattoo: `).slice(1); //gives an array where each item in the array starts with the tattoo name
   for (let i = 0; i < tats.length; i = i + 2) {
     //Tattoo page lists every tattoo twice, hence only doing evens
@@ -110,6 +113,7 @@ export function main(): void {
     hardcore: checkSkills().hardcore,
     softcore: checkSkills().softcore,
     familiars: checkFamiliars().familiars,
+    hatchlings: checkFamiliars().hatchlings,
     trophies: checkTrophies().trophies,
     tattoos: checkTattoos().tattoos,
   };
