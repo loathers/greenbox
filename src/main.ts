@@ -1,4 +1,4 @@
-import { Familiar, getPermedSkills, myId, print, toInt, toSkill, visitUrl } from "kolmafia";
+import { Familiar, getPermedSkills, myId, print, toFamiliar, toInt, toSkill, visitUrl } from "kolmafia";
 import { have } from "libram";
 
 /**
@@ -8,7 +8,7 @@ import { have } from "libram";
 export interface SnapshotOutput {
   hardcore?: number[];
   softcore?: number[];
-  familiars?: Map<number, number>; // of form Familiar ID, [Have Fam, Have Hatchling]
+  familiars?: number[];
   trophies?: number[];
   tattoos?: string[];
 }
@@ -43,10 +43,10 @@ export function checkSkills(): SnapshotOutput {
 
 enum FamiliarReport {
   NONE = 0,
-  HATCHLING = 1 << 0,
-  TERRARIUM = 1 << 1,
-  ONE_HUNDRED = 1 << 2,
-  NINETY = 1 << 3,
+  HATCHLING = 1,
+  TERRARIUM = 2,
+  NINETY = 4,
+  ONE_HUNDRED = 8,
 }
 
 /** Generates an object with a list of familiars.
@@ -54,26 +54,30 @@ enum FamiliarReport {
  */
 
 export function checkFamiliars(): SnapshotOutput {
-  const familiars = new Map<number, number>();
+  const familiars = new Set<number>();
   const ascensionHistory =
     visitUrl(`ascensionhistory.php?back=self&who=${myId()}`, false) +
     visitUrl(`ascensionhistory.php?back=self&prens13=1&who=${myId()}`);
+  
+  const lastFam = toInt(Familiar.all().reverse()[0]);
+  
 
-  for (const fam of Familiar.all()) {
+  for (let i = 0; i <= lastFam; i++) {
+    const fam = toFamiliar(i);
     const searchTerm = new RegExp(`alt="${fam.name} .([0-9.]+)..`);
     const matches = [...ascensionHistory.matchAll(searchTerm)];
     const maxPercentage = toInt(matches.sort(([, b], [, y]) => toInt(y) - toInt(b))[0][1]); //sorts list of fam percentages into descending order
 
     const familiarState =
-      (have(fam.hatchling) ? FamiliarReport.HATCHLING : FamiliarReport.NONE) |
-      (have(fam) ? FamiliarReport.TERRARIUM : 0) |
-      (maxPercentage >= 100 ? FamiliarReport.ONE_HUNDRED : 0) |
-      (maxPercentage >= 90 ? FamiliarReport.NINETY : 0);
-    if (familiarState > 0) familiars.set(toInt(fam), familiarState);
+      (have(fam.hatchling) ? FamiliarReport.HATCHLING : FamiliarReport.NONE) +
+      (have(fam) ? FamiliarReport.TERRARIUM : 0) +
+      (maxPercentage >= 90 ? FamiliarReport.NINETY : 0) +
+      (maxPercentage >= 100 ? FamiliarReport.ONE_HUNDRED : 0);
+    if (familiarState > 0) familiars.add(familiarState);
   }
 
   const famOutput = {
-    familiars: familiars,
+    familiars: Array.from(familiars),
   };
 
   return famOutput;
