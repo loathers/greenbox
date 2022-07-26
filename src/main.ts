@@ -1,4 +1,13 @@
-import { Familiar, getPermedSkills, myId, print, toFamiliar, toInt, toSkill, visitUrl } from "kolmafia";
+import {
+  Familiar,
+  getPermedSkills,
+  myId,
+  print,
+  toFamiliar,
+  toInt,
+  toSkill,
+  visitUrl,
+} from "kolmafia";
 import { have } from "libram";
 
 /**
@@ -58,12 +67,11 @@ export function checkFamiliars(): SnapshotOutput {
   const ascensionHistory =
     visitUrl(`ascensionhistory.php?back=self&who=${myId()}`, false) +
     visitUrl(`ascensionhistory.php?back=self&prens13=1&who=${myId()}`);
-  
-  const lastFam = toInt(Familiar.all().reverse()[0]);
-  
 
-  for (let i = 0; i <= lastFam; i++) {
-    const fam = toFamiliar(i);
+  const lastFam = toInt(Familiar.all().reverse()[0]);
+
+  for (let i = 0; i < lastFam; i++) {
+    const fam = toFamiliar(i + 1);
     const searchTerm = new RegExp(`alt="${fam.name} .([0-9.]+)..`);
     const matches = [...ascensionHistory.matchAll(searchTerm)];
     const maxPercentage = toInt(matches.sort(([, b], [, y]) => toInt(y) - toInt(b))[0][1]); //sorts list of fam percentages into descending order
