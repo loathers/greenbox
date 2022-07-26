@@ -81,7 +81,7 @@ export function checkFamiliars(): SnapshotOutput {
       (have(fam) ? FamiliarReport.TERRARIUM : 0) |
       (maxPercentage >= 90 ? FamiliarReport.NINETY : 0) |
       (maxPercentage >= 100 ? FamiliarReport.ONE_HUNDRED : 0);
-    if (familiarState > 0) familiars.add(familiarState);
+    familiars.add(familiarState);
   }
 
   const famOutput = {
