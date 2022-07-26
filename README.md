@@ -9,6 +9,7 @@ LASS_GreenBox is a script meant to examine a Kingdom of Loathing player's overal
   - [ ] Lists levels of skills like slime skills & PVP rewards
   - [x] Lists out owned familiars
   - [x] Lists out owned but unused familiar hatchlings
+  - [x] list out 90 & 100% Familiar Percentages
   - [ ] Lists out IOTMs split by ownership & usage
   - [x] Lists out tattoos
   - [x] Lists out trophies
