@@ -69,11 +69,11 @@ export function checkFamiliars(): SnapshotOutput {
     visitUrl(`ascensionhistory.php?back=self&prens13=1&who=${myId()}`);
   const famList = Familiar.all();
 
-  const lastFam = toInt(famList[famList.length-1]);
+  const lastFam = toInt(famList[famList.length - 1]);
 
   for (let i = 0; i < lastFam; i++) {
     const fam = toFamiliar(i + 1);
-    if (fam === $familiar`none`){
+    if (fam === $familiar`none`) {
       familiars.add(0);
       continue;
     }
