@@ -43,14 +43,14 @@ export function checkSkills(): SnapshotOutput {
 
 enum FamiliarReport {
   NONE = 0,
-  HATCHLING = 1,
-  TERRARIUM = 2,
-  NINETY = 4,
-  ONE_HUNDRED = 8,
+  HATCHLING = 1 << 0,
+  TERRARIUM = 1 << 1,
+  NINETY = 1 << 2,
+  ONE_HUNDRED = 1 << 3,
 }
 
 /** Generates an object with a list of familiars.
- * @returns large numeric list of familiars by fam ID
+ * @returns bitwise integer for every possible familiar indicating whether you own the hatching/the familiar in your terrarium and whether you have completed 90 or 100% runs with it.
  */
 
 export function checkFamiliars(): SnapshotOutput {
@@ -69,9 +69,9 @@ export function checkFamiliars(): SnapshotOutput {
     const maxPercentage = toInt(matches.sort(([, b], [, y]) => toInt(y) - toInt(b))[0][1]); //sorts list of fam percentages into descending order
 
     const familiarState =
-      (have(fam.hatchling) ? FamiliarReport.HATCHLING : FamiliarReport.NONE) +
-      (have(fam) ? FamiliarReport.TERRARIUM : 0) +
-      (maxPercentage >= 90 ? FamiliarReport.NINETY : 0) +
+      (have(fam.hatchling) ? FamiliarReport.HATCHLING : FamiliarReport.NONE) |
+      (have(fam) ? FamiliarReport.TERRARIUM : 0) |
+      (maxPercentage >= 90 ? FamiliarReport.NINETY : 0) |
       (maxPercentage >= 100 ? FamiliarReport.ONE_HUNDRED : 0);
     if (familiarState > 0) familiars.add(familiarState);
   }
