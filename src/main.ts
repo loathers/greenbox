@@ -8,7 +8,7 @@ import {
   toSkill,
   visitUrl,
 } from "kolmafia";
-import { have } from "libram";
+import { $familiar, have } from "libram";
 
 /**
  * Interface for the JSON output.
@@ -50,7 +50,7 @@ export function checkSkills(): SnapshotOutput {
   return skillOutput;
 }
 
-enum FamiliarReport {
+export enum FamiliarReport {
   NONE = 0,
   HATCHLING = 1 << 0,
   TERRARIUM = 1 << 1,
@@ -67,11 +67,16 @@ export function checkFamiliars(): SnapshotOutput {
   const ascensionHistory =
     visitUrl(`ascensionhistory.php?back=self&who=${myId()}`, false) +
     visitUrl(`ascensionhistory.php?back=self&prens13=1&who=${myId()}`);
+  const famList = Familiar.all();
 
-  const lastFam = toInt(Familiar.all().reverse()[0]);
+  const lastFam = toInt(famList[famList.length-1]);
 
   for (let i = 0; i < lastFam; i++) {
     const fam = toFamiliar(i + 1);
+    if (fam === $familiar`none`){
+      familiars.add(0);
+      continue;
+    }
     const searchTerm = new RegExp(`alt="${fam.name} .([0-9.]+)..`);
     const matches = [...ascensionHistory.matchAll(searchTerm)];
     const maxPercentage = toInt(matches.sort(([, b], [, y]) => toInt(y) - toInt(b))[0][1]); //sorts list of fam percentages into descending order
