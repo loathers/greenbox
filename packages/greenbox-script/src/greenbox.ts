@@ -1,10 +1,16 @@
-import { Familiar, getPermedSkills, print, toInt, toSkill, visitUrl } from "kolmafia";
+import {
+  Familiar,
+  getPermedSkills,
+  print,
+  toInt,
+  toSkill,
+  visitUrl,
+} from "kolmafia";
 import { have } from "libram";
 
 /**
  * Interface for the JSON output.
  */
-
 export interface SnapshotOutput {
   hardcore?: number[];
   softcore?: number[];
@@ -17,7 +23,7 @@ export interface SnapshotOutput {
  * Generates an object with a list of HC & SC skill perms.
  * @returns large numeric list of skills, comma delimited, in two sections
  */
-export function checkSkills(): SnapshotOutput {
+function checkSkills(): SnapshotOutput {
   const skillsHCPermed = new Set<number>();
   const skillsSCPermed = new Set<number>();
 
@@ -41,11 +47,11 @@ export function checkSkills(): SnapshotOutput {
   return skillOutput;
 }
 
-/** Generates an object with a list of familiars.
+/**
+ * Generates an object with a list of familiars.
  * @returns large numeric list of familiars by fam ID
  */
-
-export function checkFamiliars(): SnapshotOutput {
+function checkFamiliars(): SnapshotOutput {
   const familiarsInTerrarium = new Set<number>();
   // const familiarHatchlings = new Set<number>();
 
@@ -60,11 +66,11 @@ export function checkFamiliars(): SnapshotOutput {
   return famOutput;
 }
 
-/** Generates an object with a list of trophy numbers.
+/**
+ * Generates an object with a list of trophy numbers.
  * @returns large numeric list of trophies by trophy number
  */
-
-export function checkTrophies(): SnapshotOutput {
+function checkTrophies(): SnapshotOutput {
   const trophiesInCase = new Set<number>();
   const page = visitUrl("trophies.php");
 
@@ -77,7 +83,7 @@ export function checkTrophies(): SnapshotOutput {
   return trophyOutput;
 }
 
-export function checkTattoos(): SnapshotOutput {
+function checkTattoos(): SnapshotOutput {
   const tattoosUnlocked = new Set<string>();
   const page = visitUrl("account_tattoos.php");
   const tats = page.split(`Tattoo: `).slice(1); //gives an array where each item in the array starts with the tattoo name
@@ -94,7 +100,7 @@ export function checkTattoos(): SnapshotOutput {
   return tattooOutput;
 }
 
-export function main(): void {
+function main(): void {
   /**
    * Rev requested that the final data be staged as such:
    *
@@ -116,3 +122,5 @@ export function main(): void {
 
   print(JSON.stringify(greenboxOutput));
 }
+
+module.exports.main = main;

@@ -1,0 +1,26 @@
+{
+  "name": "greenbox-script",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Sam Gaus <sam@gaus.co.uk>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "dist/greenbox.ts",
+  "scripts": {
+    "build": "node build.mjs",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "dependencies": {
+    "kolmafia": "^3.1.0",
+    "libram": "^0.6.23"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/node": "^18.6.3",
+    "esbuild": "^0.14.51",
+    "esbuild-plugin-babel": "^0.2.3"
+  }
+}

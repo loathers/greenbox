@@ -1,0 +1,25 @@
+{
+  "name": "data",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Sam Gaus <sam@gaus.co.uk>",
+  "homepage": "https://github.com/Loathing-Associates-Scripting-Society/greenbox#readme",
+  "license": "ISC",
+  "main": "lib/data.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Loathing-Associates-Scripting-Society/greenbox.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/Loathing-Associates-Scripting-Society/greenbox/issues"
+  }
+}
