@@ -1,17 +1,19 @@
 import { Accordion, Container } from "@chakra-ui/react";
+import { loadTattoos } from "data";
 import { useState } from "react";
 
 import DataInput from "./DataInput";
 import Familiars from "./Familiars";
 import Skills from "./Skills";
+import Tattoos from "./Tattoos";
 
 export interface PlayerData {
   hardcore: number[];
   softcore: number[];
   familiars: number[];
   hatchlings: number[];
-  trophies: number[];
-  tattoos: number[];
+  trophies: string[];
+  tattoos: string[];
 }
 
 function generateRandom() {
@@ -31,6 +33,9 @@ function generateRandom() {
     .fill(1)
     .map((_, i) => i)
     .filter((i) => !familiars.includes(i) && Math.random() > 1 / 2);
+  const tattoos = loadTattoos()
+    .map((t) => t.image)
+    .filter((_) => Math.random() < 0.3);
 
   return {
     hardcore,
@@ -38,7 +43,7 @@ function generateRandom() {
     familiars,
     hatchlings,
     trophies: [],
-    tattoos: [],
+    tattoos,
   };
 }
 
@@ -57,6 +62,7 @@ export default function MainPage() {
           terrarium={data?.familiars ?? []}
           hatchlings={data?.hatchlings ?? []}
         />
+        <Tattoos playerTattoos={data?.tattoos ?? []} />
       </Accordion>
     </Container>
   );

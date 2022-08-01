@@ -9,6 +9,7 @@ type Props = {
   name: string;
   image: string;
   title?: string;
+  sourceWidth?: number;
 };
 
 function styleFromState(state: StateType) {
@@ -35,6 +36,7 @@ export default function Thing({
   state,
   name,
   image,
+  sourceWidth = 30,
   title = `${name} (${state || "none"})`,
 }: Props) {
   const style = styleFromState(state);
@@ -50,7 +52,8 @@ export default function Thing({
       title={title}
     >
       <AlphaImage
-        src={`http://images.kingdomofloathing.com/itemimages/${image}`}
+        src={`http://images.kingdomofloathing.com/${image}`}
+        sourceWidth={sourceWidth}
       />
       <Text textAlign="center" fontSize="10px">
         {name}

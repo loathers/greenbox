@@ -20,7 +20,7 @@ export default function Familiar({ familiar, terrarium, hatchling }: Props) {
   return (
     <Thing
       name={familiar.name}
-      image={familiar.image}
+      image={`itemimages/${familiar.image}`}
       state={state}
       title={title}
     />

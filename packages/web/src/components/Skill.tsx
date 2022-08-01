@@ -14,6 +14,11 @@ export default function Skill({ skill, hardcore, softcore }: Props) {
     hardcore ? "Hardcore" : softcore ? "Softcore" : "Not"
   } Permed)`;
   return (
-    <Thing name={skill.name} image={skill.image} state={state} title={title} />
+    <Thing
+      name={skill.name}
+      image={`itemimages/${skill.image}`}
+      state={state}
+      title={title}
+    />
   );
 }

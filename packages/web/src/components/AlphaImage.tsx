@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function floodErase(data: Uint8ClampedArray) {
+function floodErase(data: Uint8ClampedArray, width: number) {
   const visited = new Set();
 
   function eraser(i: number) {
@@ -17,24 +17,30 @@ function floodErase(data: Uint8ClampedArray) {
     data[i + 3] = 0;
 
     // And visit neighbours
-    eraser(i - 120); // Visit top
+    eraser(i - width * 4); // Visit top
     eraser(i + 4); // Visit right
-    eraser(i + 120); // Visit bottom
+    eraser(i + width * 4); // Visit bottom
     eraser(i - 4); // Visit left
   }
 
   // Start an erase process from each corner
   eraser(0);
-  eraser(112);
-  eraser(data.length - 120);
+  eraser(width * 4 - 8);
+  eraser(data.length - width * 4);
   eraser(data.length - 8);
 }
 
 type Props = {
   src: string;
+  sourceWidth?: number;
+  sourceHeight?: number;
 };
 
-export default function AlphaImage({ src }: Props) {
+export default function AlphaImage({
+  src,
+  sourceWidth = 30,
+  sourceHeight = sourceWidth,
+}: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -44,13 +50,13 @@ export default function AlphaImage({ src }: Props) {
     const image = new Image();
     image.onload = () => {
       ctx.drawImage(image, 0, 0);
-      const imageData = ctx.getImageData(0, 0, 30, 30);
-      floodErase(imageData.data);
+      const imageData = ctx.getImageData(0, 0, sourceWidth, sourceHeight);
+      floodErase(imageData.data, sourceWidth);
       ctx.putImageData(imageData, 0, 0);
     };
     image.crossOrigin = "anonymous";
     image.src = src;
   }, [canvas.current, src]);
 
-  return <canvas ref={canvas} width={30} height={30} />;
+  return <canvas ref={canvas} width={sourceWidth} height={sourceHeight} />;
 }
