@@ -1,4 +1,11 @@
-import { Familiar, getPermedSkills, print, toInt, toSkill, visitUrl } from "kolmafia";
+import {
+  Familiar,
+  getPermedSkills,
+  print,
+  toInt,
+  toSkill,
+  visitUrl,
+} from "kolmafia";
 import { have } from "libram";
 
 /**
@@ -40,7 +47,7 @@ function checkSkills(): SnapshotOutput {
   return skillOutput;
 }
 
-/** 
+/**
  * Generates an object with a list of familiars.
  * @returns large numeric list of familiars by fam ID
  */
@@ -59,7 +66,7 @@ function checkFamiliars(): SnapshotOutput {
   return famOutput;
 }
 
-/** 
+/**
  * Generates an object with a list of trophy numbers.
  * @returns large numeric list of trophies by trophy number
  */
