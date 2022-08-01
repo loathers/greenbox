@@ -11,11 +11,15 @@ on:
 
 env:
   # Default version of Node.js for jobs
-  node-version: "12"
+  node-version: "14"
 
 jobs:
   lint:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ["14", "16"]
 
     steps:
       - uses: actions/checkout@v2
