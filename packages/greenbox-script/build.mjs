@@ -2,6 +2,11 @@
 
 import { build } from "esbuild";
 import babel from "esbuild-plugin-babel";
+import process from "process";
+
+const args = process.argv.slice(2);
+
+const watch = args.some(a => a === "--watch" || a === "-w")
 
 build({
     entryPoints: {
@@ -12,5 +17,7 @@ build({
     target: "rhino1.7.14",
     external: ["kolmafia"],
     plugins: [babel()],
-    outdir: "dist"
+    outdir: "dist",
+    watch,
+    loader: { ".json": "text" }
 });

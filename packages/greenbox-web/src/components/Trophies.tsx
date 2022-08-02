@@ -7,34 +7,34 @@ import {
   Heading,
   SimpleGrid,
 } from "@chakra-ui/react";
-import { loadTattoos, TattooDef } from "greenbox-data";
+import { loadTrophies, TrophyDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
 import Progress from "./Progress";
-import Tattoo from "./Tattoo";
+import Trophy from "./Trophy";
 
 type Props = {
-  playerTattoos: string[];
+  playerTrophies: number[];
 };
 
-export default function Tattoos({ playerTattoos }: Props) {
+export default function Tattoos({ playerTrophies }: Props) {
   const [loading, setLoading] = useState(true);
-  const [tattoos, setTattoos] = useState([] as TattooDef[]);
-  const [validTattoos, setValidTattoos] = useState(new Set());
+  const [trophies, setTrophies] = useState([] as TrophyDef[]);
+  const [validTrophies, setValidTrophies] = useState(new Set());
 
   useEffect(() => {
     async function load() {
-      const tats = await loadTattoos();
-      setTattoos(tats);
-      setValidTattoos(new Set([...tats.map((t) => t.image)]));
+      const results = await loadTrophies();
+      setTrophies(results);
+      setValidTrophies(new Set([...results.map((t) => t.id)]));
       setLoading(false);
     }
     load();
   }, []);
 
-  const tats = useMemo(
-    () => playerTattoos.filter((image) => validTattoos.has(image)),
-    [playerTattoos, validTattoos]
+  const validPlayerTrophies = useMemo(
+    () => playerTrophies.filter((id) => validTrophies.has(id)),
+    [playerTrophies, validTrophies]
   );
 
   return (
@@ -42,25 +42,25 @@ export default function Tattoos({ playerTattoos }: Props) {
       <Heading>
         <AccordionButton fontSize="3xl">
           <Box flex="1" textAlign="left">
-            Tattoos
+            Trophies
           </Box>
           <Progress
             values={[
               {
                 color: "complete",
-                value: tats.length,
-                name: `${tats.length} / ${tattoos.length} tattoos unlocked`,
+                value: validPlayerTrophies.length,
+                name: `${validPlayerTrophies.length} / ${trophies.length} tattoos unlocked`,
               },
             ]}
-            max={tattoos.length}
+            max={trophies.length}
           />
           <AccordionIcon />
         </AccordionButton>
       </Heading>
       <AccordionPanel>
         <SimpleGrid columns={6} spacing={1}>
-          {tattoos.map((t) => (
-            <Tattoo key={t.image} tattoo={t} have={tats.includes(t.image)} />
+          {trophies.map((t) => (
+            <Trophy key={t.id} trophy={t} have={validPlayerTrophies.includes(t.id)} />
           ))}
         </SimpleGrid>
       </AccordionPanel>

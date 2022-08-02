@@ -4,14 +4,12 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
-  CircularProgressLabel,
   Heading,
   SimpleGrid,
 } from "@chakra-ui/react";
 import { loadFamiliars, FamiliarDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
-import { CircularMultiProgress } from "./CircularMultiProgress";
 import Familiar from "./Familiar";
 import Progress from "./Progress";
 

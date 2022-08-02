@@ -3,6 +3,8 @@ import { useMemo } from "react";
 import { BarChart, Bar, YAxis, XAxis, LabelList, ResponsiveContainer, LabelProps } from "recharts";
 
 const renderLabel = ({ width, height, value, offset, name, ...props }: LabelProps) => {
+  if (Number(value) <= 0) return null;
+
   const x = Number(props.x) + Number(width) / 2;
   const y = Number(props.y) + Number(height) / 2;
   return (
@@ -56,7 +58,7 @@ export default function Progress({ values, max }: Props) {
         </defs>
         {values.map((v, i) => (
           <Bar
-            key={i.toString()}
+            key={i}
             dataKey={i.toString()}
             stackId="s"
             fill={v.color === "partial" ? "url(#partial)" : theme.colors[v.color] || v.color}

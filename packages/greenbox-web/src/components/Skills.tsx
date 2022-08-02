@@ -4,7 +4,6 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
-  CircularProgressLabel,
   Heading,
   SimpleGrid,
   Stack,
@@ -12,7 +11,6 @@ import {
 import { loadSkills, SkillDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
-import { CircularMultiProgress } from "./CircularMultiProgress";
 import Progress from "./Progress";
 import Skill from "./Skill";
 

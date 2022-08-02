@@ -4,24 +4,62 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Button,
   Heading,
+  Stack,
   Textarea,
 } from "@chakra-ui/react";
+import { loadTattoos, loadTrophies, SnapshotData } from "greenbox-data";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
-import { PlayerData } from "./MainPage";
+async function generateRandom(chance: number) {
+  const hardcore = Array(30000)
+    .fill(1)
+    .map((_, i) => i)
+    .filter((_) => Math.random() < chance / 2);
+  const softcore = Array(30000)
+    .fill(1)
+    .map((_, i) => i)
+    .filter((i) => !hardcore.includes(i) && Math.random() < chance);
+  const familiars = Array(500)
+    .fill(1)
+    .map((_, i) => i)
+    .filter((_) => Math.random() < chance / 2);
+  const hatchlings = Array(500)
+    .fill(1)
+    .map((_, i) => i)
+    .filter((i) => !familiars.includes(i) && Math.random() < chance);
+  const tattoos = (await loadTattoos()).map((t) => t.image).filter((_) => Math.random() < chance);
+  const trophies = (await loadTrophies()).map((i) => i.id).filter((_) => Math.random() < chance);
+
+  return {
+    hardcore,
+    softcore,
+    familiars,
+    hatchlings,
+    trophies,
+    tattoos,
+  };
+}
 
 type Props = {
-  value: PlayerData | null;
-  onChange: (data: PlayerData | null) => any;
+  value: SnapshotData | null;
+  onChange: (data: SnapshotData | null) => any;
 };
 
 export default function DataInput({ value, onChange }: Props) {
   const [rawValue, setRawValue] = useState(value == null ? "" : JSON.stringify(value));
   const [invalid, setInvalid] = useState(false);
 
+  const handleRandom = useCallback((chance: number) => {
+    async function load() {
+      onChange(await generateRandom(chance));
+    }
+    load();
+  }, []);
+
   useEffect(() => {
-    setRawValue((v) => ((v === "" && value !== null) ? JSON.stringify(value) : v));
+    setRawValue((v) => (v === "" && value !== null ? JSON.stringify(value) : v));
   }, [value]);
 
   const handleChange = useCallback(
@@ -52,7 +90,15 @@ export default function DataInput({ value, onChange }: Props) {
         </AccordionButton>
       </Heading>
       <AccordionPanel>
-        <Textarea isInvalid={invalid} value={rawValue} onChange={handleChange} />
+        <Stack>
+          <Textarea isInvalid={invalid} value={rawValue} onChange={handleChange} />
+          <Stack direction="row">
+            <Button onClick={() => handleRandom(50)}>Everything</Button>
+            <Button onClick={() => handleRandom(0.6)}>Randomise high</Button>
+            <Button onClick={() => handleRandom(0.2)}>Randomise low</Button>
+            <Button onClick={() => handleRandom(0)}>Nothing</Button>
+          </Stack>
+        </Stack>
       </AccordionPanel>
     </AccordionItem>
   );
