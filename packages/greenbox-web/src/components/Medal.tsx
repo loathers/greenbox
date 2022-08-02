@@ -1,9 +1,9 @@
-import AlphaImage from "./AlphaImage";
+import { Image } from "@chakra-ui/react";
 
 type Props = {
   title?: string;
 };
 
 export default function Medal({ title }: Props) {
-  return <AlphaImage src="itemimages/fdkol_medal.gif" title={title} />;
+  return <Image src="/medal.png" title={title} height="20px" mt={1} mr={1} />;
 }
