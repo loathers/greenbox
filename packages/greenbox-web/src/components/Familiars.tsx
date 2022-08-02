@@ -28,7 +28,7 @@ export default function Familiars({ playerTerrarium, playerHatchlings, hundredPe
 
   useEffect(() => {
     async function load() {
-      const results = await loadFamiliars();
+      const results = (await loadFamiliars()).filter((f) => !f.pokefam);
       setFamiliars(results);
       setValidFamiliarIds(new Set([...results.map((r) => r.id)]));
       setLoading(false);
