@@ -1,5 +1,15 @@
+import "core-js/modules/es.string.match-all";
 import { loadTrophies, SnapshotData } from "greenbox-data";
-import { Familiar, getPermedSkills, print, toInt, toSkill, visitUrl } from "kolmafia";
+import {
+  Familiar,
+  getPermedSkills,
+  myId,
+  print,
+  toFamiliar,
+  toInt,
+  toSkill,
+  visitUrl,
+} from "kolmafia";
 import { have } from "libram";
 
 /**
@@ -31,6 +41,16 @@ function checkSkills() {
 }
 
 /**
+ * Generates a list of familiars with 100% runs
+ */
+function hundredPercentFamiliars() {
+  const history =
+    visitUrl(`ascensionhistory.php?back=self&who=${myId()}`, false) +
+    visitUrl(`ascensionhistory.php?back=self&prens13=1&who=${myId()}`, false);
+  return new Set([...history.matchAll(/alt="([^"]*?) \(100%\)/gm)].map((m) => toFamiliar(m[1])));
+}
+
+/**
  * Generates an object with a list of familiars.
  * @returns large numeric list of familiars by fam ID
  */
@@ -39,12 +59,17 @@ function checkFamiliars() {
   const familiarHatchlings = new Set<number>();
 
   for (const fam of Familiar.all()) {
-    if (have(fam)) familiarsInTerrarium.add(toInt(fam));
+    if (have(fam)) {
+      familiarsInTerrarium.add(toInt(fam));
+    } else if (have(fam.hatchling)) {
+      familiarHatchlings.add(toInt(fam));
+    }
   }
 
   const famOutput = {
     familiars: Array.from(familiarsInTerrarium),
     hatchlings: Array.from(familiarHatchlings),
+    hundredPercents: Array.from(hundredPercentFamiliars()).map((f) => toInt(f)),
   };
 
   return famOutput;

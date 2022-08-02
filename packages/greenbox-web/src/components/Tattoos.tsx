@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { loadTattoos, TattooDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
-import AlphaImage from "./AlphaImage";
 
+import AlphaImage from "./AlphaImage";
 import Progress from "./Progress";
 import Tattoo from "./Tattoo";
 
@@ -48,16 +48,16 @@ export default function Tattoos({ playerTattoos }: Props) {
             <Box>Tattoos</Box>
           </Stack>
           <Box alignSelf="stretch" flex="1">
-          <Progress
-            values={[
-              {
-                color: "complete",
-                value: tats.length,
-                name: `${tats.length} / ${tattoos.length} tattoos unlocked`,
-              },
-            ]}
-            max={tattoos.length}
-          />
+            <Progress
+              values={[
+                {
+                  color: "complete",
+                  value: tats.length,
+                  name: `${tats.length} / ${tattoos.length} tattoos unlocked`,
+                },
+              ]}
+              max={tattoos.length}
+            />
           </Box>
           <AccordionIcon />
         </AccordionButton>

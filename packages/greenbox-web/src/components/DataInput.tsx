@@ -24,13 +24,14 @@ async function generateRandom(chance: number) {
   const familiars = Array(500)
     .fill(1)
     .map((_, i) => i)
-    .filter((_) => Math.random() < chance / 2);
+    .filter((_) => Math.random() < chance);
   const hatchlings = Array(500)
     .fill(1)
     .map((_, i) => i)
-    .filter((i) => !familiars.includes(i) && Math.random() < chance);
+    .filter((i) => !familiars.includes(i) && Math.random() < chance / 4);
   const tattoos = (await loadTattoos()).map((t) => t.image).filter((_) => Math.random() < chance);
   const trophies = (await loadTrophies()).map((i) => i.id).filter((_) => Math.random() < chance);
+  const hundredPercents = familiars.filter((_) => Math.random() < chance ** 1.5);
 
   return {
     hardcore,
@@ -39,6 +40,7 @@ async function generateRandom(chance: number) {
     hatchlings,
     trophies,
     tattoos,
+    hundredPercents,
   };
 }
 

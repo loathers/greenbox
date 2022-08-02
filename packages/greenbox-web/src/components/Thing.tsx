@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 import AlphaImage from "./AlphaImage";
 
@@ -10,6 +10,7 @@ type Props = {
   image: string;
   title?: string;
   sourceWidth?: number;
+  badges?: React.ReactNode;
 };
 
 function styleFromState(state: StateType) {
@@ -36,6 +37,7 @@ export default function Thing({
   state,
   name,
   image,
+  badges = null,
   sourceWidth = 30,
   title = `${name} (${state || "none"})`,
 }: Props) {
@@ -50,11 +52,12 @@ export default function Thing({
       p={1}
       {...style}
       title={title}
+      position="relative"
     >
-      <AlphaImage
-        src={image}
-        sourceWidth={sourceWidth}
-      />
+      <Box position="absolute" sx={{ top: 0, right: 0 }}>
+        {badges}
+      </Box>
+      <AlphaImage src={image} sourceWidth={sourceWidth} />
       <Text textAlign="center" fontSize="10px">
         {name}
       </Text>

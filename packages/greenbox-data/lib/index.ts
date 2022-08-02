@@ -13,4 +13,5 @@ export interface SnapshotData {
   hatchlings: number[];
   trophies: number[];
   tattoos: string[];
+  hundredPercents: number[];
 }

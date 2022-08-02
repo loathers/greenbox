@@ -36,9 +36,15 @@ type Props = {
   src: string;
   sourceWidth?: number;
   sourceHeight?: number;
+  title?: string;
 };
 
-export default function AlphaImage({ src, sourceWidth = 30, sourceHeight = sourceWidth }: Props) {
+export default function AlphaImage({
+  src,
+  title,
+  sourceWidth = 30,
+  sourceHeight = sourceWidth,
+}: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const [loading, setLoading] = useState(true);
 
@@ -62,6 +68,7 @@ export default function AlphaImage({ src, sourceWidth = 30, sourceHeight = sourc
     <>
       {loading && <Spinner />}
       <canvas
+        title={title}
         style={{ display: loading ? "none" : "block" }}
         ref={canvas}
         width={sourceWidth}

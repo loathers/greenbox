@@ -16,7 +16,11 @@ export default function MainPage() {
       <Accordion allowMultiple allowToggle defaultIndex={0}>
         <DataInput value={data} onChange={setData} />
         <Skills hardcore={data?.hardcore ?? []} softcore={data?.softcore ?? []} />
-        <Familiars terrarium={data?.familiars ?? []} hatchlings={data?.hatchlings ?? []} />
+        <Familiars
+          playerTerrarium={data?.familiars ?? []}
+          playerHatchlings={data?.hatchlings ?? []}
+          hundredPercents={data?.hundredPercents ?? []}
+        />
         <Tattoos playerTattoos={data?.tattoos ?? []} />
         <Trophies playerTrophies={data?.trophies ?? []} />
       </Accordion>

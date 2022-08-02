@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { loadTrophies, TrophyDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
-import AlphaImage from "./AlphaImage";
 
+import AlphaImage from "./AlphaImage";
 import Progress from "./Progress";
 import Trophy from "./Trophy";
 

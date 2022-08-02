@@ -10,39 +10,45 @@ import {
 } from "@chakra-ui/react";
 import { loadFamiliars, FamiliarDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
-import AlphaImage from "./AlphaImage";
 
+import AlphaImage from "./AlphaImage";
 import Familiar from "./Familiar";
 import Progress from "./Progress";
 
 type Props = {
-  terrarium: number[];
-  hatchlings: number[];
+  playerTerrarium: number[];
+  playerHatchlings: number[];
+  hundredPercents: number[];
 };
 
-export default function Familiars({ terrarium, hatchlings }: Props) {
+export default function Familiars({ playerTerrarium, playerHatchlings, hundredPercents }: Props) {
   const [loading, setLoading] = useState(true);
   const [familiars, setFamiliars] = useState([] as FamiliarDef[]);
   const [validFamiliarIds, setValidFamiliarIds] = useState(new Set());
 
   useEffect(() => {
     async function load() {
-      const fams = await loadFamiliars();
-      setFamiliars(fams);
-      setValidFamiliarIds(new Set([...fams.map((f) => f.id)]));
+      const results = await loadFamiliars();
+      setFamiliars(results);
+      setValidFamiliarIds(new Set([...results.map((r) => r.id)]));
       setLoading(false);
     }
     load();
   }, []);
 
-  const ter = useMemo(
-    () => terrarium.filter((id) => validFamiliarIds.has(id)),
-    [terrarium, validFamiliarIds]
+  const validTerrarium = useMemo(
+    () => playerTerrarium.filter((id) => validFamiliarIds.has(id)),
+    [playerTerrarium, validFamiliarIds]
   );
 
-  const hat = useMemo(
-    () => hatchlings.filter((id) => validFamiliarIds.has(id)),
-    [hatchlings, validFamiliarIds]
+  const validHatchlings = useMemo(
+    () => playerHatchlings.filter((id) => validFamiliarIds.has(id)),
+    [playerHatchlings, validFamiliarIds]
+  );
+
+  const validHundredPercents = useMemo(
+    () => hundredPercents.filter((id) => validFamiliarIds.has(id)),
+    [hundredPercents, validFamiliarIds]
   );
 
   return (
@@ -58,13 +64,13 @@ export default function Familiars({ terrarium, hatchlings }: Props) {
               values={[
                 {
                   color: "partial",
-                  value: hat.length,
-                  name: `${hat.length} / ${familiars.length} as hatching`,
+                  value: validHatchlings.length,
+                  name: `${validHatchlings.length} / ${familiars.length} as hatching`,
                 },
                 {
                   color: "complete",
-                  value: ter.length,
-                  name: `${ter.length} / ${familiars.length} in terrarium`,
+                  value: validTerrarium.length,
+                  name: `${validTerrarium.length} / ${familiars.length} in terrarium`,
                 },
               ]}
               max={familiars.length}
@@ -79,8 +85,9 @@ export default function Familiars({ terrarium, hatchlings }: Props) {
             <Familiar
               key={f.id}
               familiar={f}
-              terrarium={ter.includes(f.id)}
-              hatchling={hat.includes(f.id)}
+              terrarium={validTerrarium.includes(f.id)}
+              hatchling={validHatchlings.includes(f.id)}
+              hundredPercent={validHundredPercents.includes(f.id)}
             />
           ))}
         </SimpleGrid>
