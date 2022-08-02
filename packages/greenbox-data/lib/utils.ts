@@ -1,7 +1,4 @@
-import he from "he";
-
-const MAFIA_DATA_BASE =
-  "https://raw.githubusercontent.com/kolmafia/kolmafia/main/src/data";
+const MAFIA_DATA_BASE = "https://raw.githubusercontent.com/kolmafia/kolmafia/main/src/data";
 
 export async function loadMafiaData(fileName: string) {
   const request = await fetch(`${MAFIA_DATA_BASE}/${fileName}.txt`);
@@ -12,25 +9,6 @@ export async function loadMafiaData(fileName: string) {
     .filter((r) => r !== "" && !r.startsWith("#"))
     .map((r) => r.split("\t"));
 }
-
-export type FamiliarDef = {
-  id: number;
-  name: string;
-  image: string;
-};
-
-export const parseFamiliar = (parts: string[]): FamiliarDef => ({
-  id: Number(parts[0]),
-  name: he.decode(parts[1]),
-  image: parts[2],
-});
-
-export type SkillDef = {
-  id: number;
-  name: string;
-  image: string;
-  permable: boolean;
-};
 
 export const isPermable = (id: number) => {
   // Random old skills
@@ -94,10 +72,3 @@ export const isPermable = (id: number) => {
 
   return true;
 };
-
-export const parseSkill = (parts: string[]): SkillDef => ({
-  id: Number(parts[0]),
-  name: he.decode(parts[1]),
-  image: parts[2],
-  permable: isPermable(Number(parts[0])),
-});

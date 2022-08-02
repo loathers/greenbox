@@ -8,9 +8,8 @@ import {
   Heading,
   SimpleGrid,
 } from "@chakra-ui/react";
+import { loadFamiliars, FamiliarDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
-
-import { loadMafiaData, parseFamiliar, FamiliarDef } from "../api";
 
 import { CircularMultiProgress } from "./CircularMultiProgress";
 import Familiar from "./Familiar";
@@ -18,11 +17,6 @@ import Familiar from "./Familiar";
 type Props = {
   terrarium: number[];
   hatchlings: number[];
-};
-
-const loadFamiliars = async () => {
-  const raw = await loadMafiaData("familiars");
-  return raw.filter((p) => p.length > 2).map(parseFamiliar);
 };
 
 export default function Familiars({ terrarium, hatchlings }: Props) {

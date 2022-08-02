@@ -11,11 +11,7 @@ type Props = {
 export default function Familiar({ familiar, terrarium, hatchling }: Props) {
   const state = terrarium ? "complete" : hatchling ? "partial" : null;
   const title = `${familiar.name} (${
-    terrarium
-      ? "Have in terrarium"
-      : hatchling
-      ? "Have as hatchling"
-      : "Do not have"
+    terrarium ? "Have in terrarium" : hatchling ? "Have as hatchling" : "Do not have"
   })`;
   return (
     <Thing

@@ -17,9 +17,7 @@ type Props = {
 };
 
 export default function DataInput({ value, onChange }: Props) {
-  const [rawValue, setRawValue] = useState(
-    value == null ? "" : JSON.stringify(value)
-  );
+  const [rawValue, setRawValue] = useState(value == null ? "" : JSON.stringify(value));
   const [invalid, setInvalid] = useState(false);
 
   const handleChange = useCallback(
@@ -50,11 +48,7 @@ export default function DataInput({ value, onChange }: Props) {
         </AccordionButton>
       </Heading>
       <AccordionPanel>
-        <Textarea
-          isInvalid={invalid}
-          value={rawValue}
-          onChange={handleChange}
-        />
+        <Textarea isInvalid={invalid} value={rawValue} onChange={handleChange} />
       </AccordionPanel>
     </AccordionItem>
   );

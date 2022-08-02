@@ -51,10 +51,7 @@ export default function Thing({
       {...style}
       title={title}
     >
-      <AlphaImage
-        src={`http://images.kingdomofloathing.com/${image}`}
-        sourceWidth={sourceWidth}
-      />
+      <AlphaImage src={`http://images.kingdomofloathing.com/${image}`} sourceWidth={sourceWidth} />
       <Text textAlign="center" fontSize="10px">
         {name}
       </Text>

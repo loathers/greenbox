@@ -13,7 +13,7 @@ export default function Tattoo({ tattoo, have }: Props) {
   return (
     <Thing
       name={tattoo.name}
-      image={`otherimages/sigils/${tattoo.image}`}
+      image={`otherimages/sigils/${tattoo.image}.gif`}
       sourceWidth={50}
       state={state}
       title={title}

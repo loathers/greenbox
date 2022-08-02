@@ -1,25 +1,23 @@
 {
-  "name": "data",
+  "name": "prettier-config",
   "version": "0.0.0",
-  "description": "> TODO: description",
   "author": "Sam Gaus <sam@gaus.co.uk>",
   "homepage": "https://github.com/Loathing-Associates-Scripting-Society/greenbox#readme",
   "license": "ISC",
-  "main": "lib/data.ts",
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "prettier-config.js",
   "files": [
-    "lib"
+    "prettier-config.js"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Loathing-Associates-Scripting-Society/greenbox.git"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "prettier": "^2.7.1"
   },
-  "bugs": {
-    "url": "https://github.com/Loathing-Associates-Scripting-Society/greenbox/issues"
+  "peerDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "prettier": "^2.7.1"
   }
 }

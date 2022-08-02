@@ -1,4 +1,4 @@
-import { SkillDef } from "../api";
+import { SkillDef } from "greenbox-data";
 
 import Thing from "./Thing";
 
@@ -10,15 +10,8 @@ type Props = {
 
 export default function Skill({ skill, hardcore, softcore }: Props) {
   const state = hardcore ? "complete" : softcore ? "partial" : null;
-  const title = `${skill.name} (${
-    hardcore ? "Hardcore" : softcore ? "Softcore" : "Not"
-  } Permed)`;
+  const title = `${skill.name} (${hardcore ? "Hardcore" : softcore ? "Softcore" : "Not"} Permed)`;
   return (
-    <Thing
-      name={skill.name}
-      image={`itemimages/${skill.image}`}
-      state={state}
-      title={title}
-    />
+    <Thing name={skill.name} image={`itemimages/${skill.image}`} state={state} title={title} />
   );
 }

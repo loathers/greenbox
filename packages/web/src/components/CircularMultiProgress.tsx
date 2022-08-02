@@ -1,10 +1,5 @@
 import { CircularProgressProps } from "@chakra-ui/react";
-import {
-  chakra,
-  HTMLChakraProps,
-  keyframes,
-  SystemStyleObject,
-} from "@chakra-ui/system";
+import { chakra, HTMLChakraProps, keyframes, SystemStyleObject } from "@chakra-ui/system";
 import { StringOrNumber, __DEV__ } from "@chakra-ui/utils";
 
 const rotate = keyframes({
@@ -65,8 +60,7 @@ if (__DEV__) {
   Shape.displayName = "Shape";
 }
 
-export interface CircularMultiProgressProps
-  extends Omit<CircularProgressProps, "value" | "color"> {
+export interface CircularMultiProgressProps extends Omit<CircularProgressProps, "value" | "color"> {
   values?: number[];
   colors?: string[];
 }
@@ -79,9 +73,7 @@ export interface CircularMultiProgressProps
  * @see Docs https://chakra-ui.com/circularprogress
  * @todo add theming support for circular progress
  */
-export const CircularMultiProgress: React.FC<CircularMultiProgressProps> = (
-  props
-) => {
+export const CircularMultiProgress: React.FC<CircularMultiProgressProps> = (props) => {
   const {
     size = "48px",
     max = 100,
@@ -109,9 +101,7 @@ export const CircularMultiProgress: React.FC<CircularMultiProgressProps> = (
     "data-indeterminate": isIndeterminate ? "" : undefined,
     "aria-valuemax": max,
     "aria-valuemin": min,
-    "aria-valuenow": isIndeterminate
-      ? undefined
-      : values.reduce((t, v) => t + v, 0),
+    "aria-valuenow": isIndeterminate ? undefined : values.reduce((t, v) => t + v, 0),
     "aria-valuetext": valueText,
     role: "progressbar",
   };
@@ -120,27 +110,15 @@ export const CircularMultiProgress: React.FC<CircularMultiProgressProps> = (
     ([acc, sum], v) => {
       const determinant = max === 0 ? 0 : (v / max) * 264;
 
-      return [
-        [...acc, [determinant, sum] as [number, number]],
-        sum + determinant,
-      ];
+      return [[...acc, [determinant, sum] as [number, number]], sum + determinant];
     },
     [[] as [number, number][], 0]
   );
 
   return (
-    <chakra.div
-      className="chakra-progress"
-      {...bind}
-      {...rest}
-      __css={rootStyles}
-    >
+    <chakra.div className="chakra-progress" {...bind} {...rest} __css={rootStyles}>
       <Shape size={size} isIndeterminate={isIndeterminate}>
-        <Circle
-          stroke={trackColor}
-          strokeWidth={thickness}
-          className="chakra-progress__track"
-        />
+        <Circle stroke={trackColor} strokeWidth={thickness} className="chakra-progress__track" />
         {isIndeterminate ? (
           <Circle
             stroke={colors?.[0] ?? "#0078d4"}
@@ -165,9 +143,7 @@ export const CircularMultiProgress: React.FC<CircularMultiProgressProps> = (
                 stroke={colors[i]}
                 strokeWidth={thickness}
                 className="chakra-progress__indicator"
-                strokeLinecap={
-                  capIsRound && i === values.length - 1 ? "round" : undefined
-                }
+                strokeLinecap={capIsRound && i === values.length - 1 ? "round" : undefined}
                 {...indicatorProps}
               />
             );

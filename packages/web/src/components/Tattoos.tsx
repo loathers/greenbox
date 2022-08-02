@@ -8,7 +8,7 @@ import {
   Heading,
   SimpleGrid,
 } from "@chakra-ui/react";
-import { loadTattoos, TattooDef } from "data";
+import { loadTattoos, TattooDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
 import { CircularMultiProgress } from "./CircularMultiProgress";
