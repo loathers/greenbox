@@ -6,7 +6,8 @@
 
 - [x] A prototype script that generates a JSON document of what an account has
   - [x] Lists out skills split by HC/SC
-  - [ ] Lists levels of skills like slime skills & PVP rewards
+  - [x] Lists levels of skills like slime skills & PVP rewards
+    - [ ] Show maximum level for skills with a maximum level
   - [x] Lists out owned familiars
   - [x] Lists out owned but unused familiar hatchlings
   - [x] list out <strike>90 &</strike> 100% Familiar Percentages
