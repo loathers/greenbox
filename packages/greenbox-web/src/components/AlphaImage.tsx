@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+import Spinner from "./Spinner";
 
 function floodErase(data: Uint8ClampedArray, width: number) {
   const visited = new Set();
@@ -38,6 +40,7 @@ type Props = {
 
 export default function AlphaImage({ src, sourceWidth = 30, sourceHeight = sourceWidth }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const ctx = canvas.current?.getContext("2d");
@@ -49,10 +52,21 @@ export default function AlphaImage({ src, sourceWidth = 30, sourceHeight = sourc
       const imageData = ctx.getImageData(0, 0, sourceWidth, sourceHeight);
       floodErase(imageData.data, sourceWidth);
       ctx.putImageData(imageData, 0, 0);
+      setLoading(false);
     };
     image.crossOrigin = "anonymous";
     image.src = src;
   }, [canvas.current, src]);
 
-  return <canvas ref={canvas} width={sourceWidth} height={sourceHeight} />;
+  return (
+    <>
+      {loading && <Spinner />}
+      <canvas
+        style={{ display: loading ? "none" : "block" }}
+        ref={canvas}
+        width={sourceWidth}
+        height={sourceHeight}
+      />
+    </>
+  );
 }
