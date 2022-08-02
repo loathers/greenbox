@@ -28,7 +28,7 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "prettier": "^2.7.1",
-    "prettier-config": "^0.0.0"
+    "greenbox-prettier-config": "^0.0.0"
   },
-  "prettier": "prettier-config"
+  "prettier": "greenbox-prettier-config"
 }

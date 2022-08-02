@@ -20,9 +20,9 @@ jobs:
         run: |
           yarn
           yarn run lerna bootstrap
-          yarn run lerna run build --scope=web
+          yarn run lerna run build --scope=greenbox-web
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: packages/web/dist
+          folder: packages/greenbox-web/dist

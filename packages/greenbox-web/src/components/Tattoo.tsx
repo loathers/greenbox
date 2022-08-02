@@ -1,4 +1,4 @@
-import { TattooDef } from "data";
+import { TattooDef } from "greenbox-data";
 
 import Thing from "./Thing";
 

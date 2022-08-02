@@ -30,8 +30,8 @@
     "eslint-plugin-libram": "^0.2.13",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1",
-    "prettier-config": "^0.0.0",
+    "greenbox-prettier-config": "^0.0.0",
     "typescript": "^4.7.4"
   },
-  "prettier": "prettier-config"
+  "prettier": "greenbox-prettier-config"
 }

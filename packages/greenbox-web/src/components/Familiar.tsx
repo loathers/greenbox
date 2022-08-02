@@ -1,4 +1,4 @@
-import { FamiliarDef } from "../api";
+import { FamiliarDef } from "greenbox-data";
 
 import Thing from "./Thing";
 
