@@ -13,6 +13,7 @@ import { loadSkills, SkillDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
 import { CircularMultiProgress } from "./CircularMultiProgress";
+import Progress from "./Progress";
 import Skill from "./Skill";
 
 type Props = {
@@ -60,17 +61,21 @@ export default function Skills({ hardcore, softcore }: Props) {
           <Box flex="1" textAlign="left" fontSize="inherit">
             Skills
           </Box>
-          <CircularMultiProgress
-            size="1em"
-            colors={["partial", "complete"]}
-            values={[sc.length, hc.length]}
+          <Progress
+            values={[
+              {
+                color: "partial",
+                value: sc.length,
+                name: `${sc.length} / ${skills.length} softcore permed`,
+              },
+              {
+                color: "complete",
+                value: hc.length,
+                name: `${hc.length} / ${skills.length} hardcore permed`,
+              },
+            ]}
             max={skills.length}
-            isIndeterminate={loading}
-          >
-            <CircularProgressLabel>
-              {sc.length + hc.length} / {skills.length}
-            </CircularProgressLabel>
-          </CircularMultiProgress>
+          />
           <AccordionIcon />
         </AccordionButton>
       </Heading>

@@ -7,7 +7,7 @@ import {
   Heading,
   Textarea,
 } from "@chakra-ui/react";
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 import { PlayerData } from "./MainPage";
 
@@ -19,6 +19,10 @@ type Props = {
 export default function DataInput({ value, onChange }: Props) {
   const [rawValue, setRawValue] = useState(value == null ? "" : JSON.stringify(value));
   const [invalid, setInvalid] = useState(false);
+
+  useEffect(() => {
+    setRawValue((v) => (v === null ? JSON.stringify(value) : v));
+  }, [value]);
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => {
