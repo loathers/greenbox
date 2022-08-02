@@ -5,5 +5,5 @@ type Props = {
 };
 
 export default function Image({ name }: Props) {
-  return <ChakraImage src={`http://images.kingdomofloathing.com/${name}`} />;
+  return <ChakraImage src={`https://s3.amazonaws.com/images.kingdomofloathing.com/${name}`} />;
 }
