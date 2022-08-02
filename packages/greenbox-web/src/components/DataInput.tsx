@@ -21,7 +21,7 @@ export default function DataInput({ value, onChange }: Props) {
   const [invalid, setInvalid] = useState(false);
 
   useEffect(() => {
-    setRawValue((v) => (v === "" ? JSON.stringify(value) : v));
+    setRawValue((v) => ((v === "" && value !== null) ? JSON.stringify(value) : v));
   }, [value]);
 
   const handleChange = useCallback(
