@@ -22,8 +22,8 @@ function styleFromState(state: StateType) {
         backgroundColor: "partial",
         backgroundImage:
           "repeating-linear-gradient(45deg, white 25%, transparent 25%, transparent 75%, white 75%, white), repeating-linear-gradient(45deg, white 25%, transparent 25%, transparent 75%, white 75%, white)",
-        backgroundPosition: "0 0, 10px 10px",
-        backgroundSize: "20px 20px",
+        backgroundPosition: "0 0, 5px 5px",
+        backgroundSize: "10px 10px",
       };
     }
     default: {

@@ -1,6 +1,5 @@
-import { useTheme } from "@chakra-ui/react";
+import { chakra, useTheme } from "@chakra-ui/react";
 import { useMemo } from "react";
-import { render } from "react-dom";
 import { BarChart, Bar, YAxis, XAxis, LabelList, ResponsiveContainer, LabelProps } from "recharts";
 
 const renderLabel = ({ width, height, value, offset, name, ...props }: LabelProps) => {
@@ -48,12 +47,19 @@ export default function Progress({ values, max }: Props) {
       <BarChart data={data} layout="vertical">
         <XAxis type="number" hide domain={[0, max]} />
         <YAxis type="category" dataKey="name" hide />
+        <defs>
+          <pattern id="partial" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+            <rect fill="white" x="0" y="0" width="10" height="10"></rect>
+            <chakra.rect fill="partial" x="0" width="5px" height="5px" y="0"></chakra.rect>
+            <chakra.rect fill="partial" x="5" width="5px" height="5px" y="5"></chakra.rect>
+          </pattern>
+        </defs>
         {values.map((v, i) => (
           <Bar
             key={i.toString()}
             dataKey={i.toString()}
             stackId="s"
-            fill={theme.colors[v.color] || v.color}
+            fill={v.color === "partial" ? "url(#partial)" : theme.colors[v.color] || v.color}
             {...(i === 0 ? { background: { fill: "#eee" } } : {})}
           >
             <LabelList
