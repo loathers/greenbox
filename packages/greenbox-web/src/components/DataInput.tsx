@@ -44,9 +44,9 @@ export default function DataInput({ value, onChange }: Props) {
   return (
     <AccordionItem>
       <Heading>
-        <AccordionButton fontSize="3xl">
+        <AccordionButton fontSize="4xl">
           <Box flex="1" textAlign="left">
-            Player Data
+            Greenbox
           </Box>
           <AccordionIcon />
         </AccordionButton>
