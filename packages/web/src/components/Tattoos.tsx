@@ -8,10 +8,11 @@ import {
   Heading,
   SimpleGrid,
 } from "@chakra-ui/react";
-import { loadTattoos, TattooDef } from "data";
+import { loadTattoos, TattooDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
 import { CircularMultiProgress } from "./CircularMultiProgress";
+import Progress from "./Progress";
 import Tattoo from "./Tattoo";
 
 type Props = {
@@ -45,16 +46,16 @@ export default function Tattoos({ playerTattoos }: Props) {
           <Box flex="1" textAlign="left">
             Tattoos
           </Box>
-          <CircularMultiProgress
-            size="1em"
-            colors={["complete"]}
-            values={[tats.length]}
+          <Progress
+            values={[
+              {
+                color: "complete",
+                value: tats.length,
+                name: `${tats.length} / ${tattoos.length} tattoos unlocked`,
+              },
+            ]}
             max={tattoos.length}
-          >
-            <CircularProgressLabel>
-              {tats.length} / {tattoos.length}
-            </CircularProgressLabel>
-          </CircularMultiProgress>
+          />
           <AccordionIcon />
         </AccordionButton>
       </Heading>

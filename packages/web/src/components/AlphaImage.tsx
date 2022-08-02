@@ -36,11 +36,7 @@ type Props = {
   sourceHeight?: number;
 };
 
-export default function AlphaImage({
-  src,
-  sourceWidth = 30,
-  sourceHeight = sourceWidth,
-}: Props) {
+export default function AlphaImage({ src, sourceWidth = 30, sourceHeight = sourceWidth }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

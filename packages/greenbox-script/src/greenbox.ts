@@ -1,11 +1,4 @@
-import {
-  Familiar,
-  getPermedSkills,
-  print,
-  toInt,
-  toSkill,
-  visitUrl,
-} from "kolmafia";
+import { Familiar, getPermedSkills, print, toInt, toSkill, visitUrl } from "kolmafia";
 import { have } from "libram";
 
 /**

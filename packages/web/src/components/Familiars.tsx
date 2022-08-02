@@ -8,21 +8,16 @@ import {
   Heading,
   SimpleGrid,
 } from "@chakra-ui/react";
+import { loadFamiliars, FamiliarDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
-
-import { loadMafiaData, parseFamiliar, FamiliarDef } from "../api";
 
 import { CircularMultiProgress } from "./CircularMultiProgress";
 import Familiar from "./Familiar";
+import Progress from "./Progress";
 
 type Props = {
   terrarium: number[];
   hatchlings: number[];
-};
-
-const loadFamiliars = async () => {
-  const raw = await loadMafiaData("familiars");
-  return raw.filter((p) => p.length > 2).map(parseFamiliar);
 };
 
 export default function Familiars({ terrarium, hatchlings }: Props) {
@@ -57,16 +52,21 @@ export default function Familiars({ terrarium, hatchlings }: Props) {
           <Box flex="1" textAlign="left">
             Familiars
           </Box>
-          <CircularMultiProgress
-            size="1em"
-            colors={["partial", "complete"]}
-            values={[hat.length, ter.length]}
+          <Progress
+            values={[
+              {
+                color: "partial",
+                value: hat.length,
+                name: `${hat.length} / ${familiars.length} as hatching`,
+              },
+              {
+                color: "complete",
+                value: ter.length,
+                name: `${ter.length} / ${familiars.length} in terrarium`,
+              },
+            ]}
             max={familiars.length}
-          >
-            <CircularProgressLabel>
-              {ter.length + hat.length} / {familiars.length}
-            </CircularProgressLabel>
-          </CircularMultiProgress>
+          />
           <AccordionIcon />
         </AccordionButton>
       </Heading>
