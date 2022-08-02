@@ -5,12 +5,13 @@ import {
   getPermedSkills,
   myId,
   print,
+  propertyExists,
   toFamiliar,
   toInt,
   toSkill,
   visitUrl,
 } from "kolmafia";
-import { have } from "libram";
+import { get, have, property } from "libram";
 
 /**
  * Generates an object with a list of HC & SC skill perms.
@@ -19,6 +20,7 @@ import { have } from "libram";
 function checkSkills() {
   const skillsHCPermed = new Set<number>();
   const skillsSCPermed = new Set<number>();
+  const levels = {} as { [id: number]: number };
 
   // Within getPermedSkills, the attached boolean represents HC/SC status.
   //   If the boolean is true, it's HC permed. False, SC permed.
@@ -26,15 +28,19 @@ function checkSkills() {
 
   // Checks permedSkills for HC/SC status and populates the two perm lists.
   for (const skillName in permedSkills) {
-    permedSkills[skillName]
-      ? skillsHCPermed.add(toInt(toSkill(skillName)))
-      : skillsSCPermed.add(toInt(toSkill(skillName)));
+    const id = toInt(toSkill(skillName));
+    (permedSkills[skillName] ? skillsHCPermed : skillsSCPermed).add(id);
+
+    if (propertyExists(`skillLevel${id}`)) {
+      levels[id] = property.getNumber(`skillLevel${id}`);
+    }
   }
 
   // Place output in the desired interface format
   const skillOutput = {
     hardcore: Array.from(skillsHCPermed),
     softcore: Array.from(skillsSCPermed),
+    levels,
   };
 
   return skillOutput;

@@ -9,6 +9,7 @@ export * from "./trophies";
 export interface SnapshotData {
   hardcore: number[];
   softcore: number[];
+  levels: { [skillId: string]: number };
   familiars: number[];
   hatchlings: number[];
   trophies: number[];

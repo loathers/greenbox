@@ -41,6 +41,7 @@ async function generateRandom(chance: number) {
     trophies,
     tattoos,
     hundredPercents,
+    levels: {},
   };
 }
 

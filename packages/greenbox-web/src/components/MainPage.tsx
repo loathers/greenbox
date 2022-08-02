@@ -15,7 +15,11 @@ export default function MainPage() {
     <Container maxWidth="1000px" width="100%">
       <Accordion allowMultiple allowToggle defaultIndex={0}>
         <DataInput value={data} onChange={setData} />
-        <Skills hardcore={data?.hardcore ?? []} softcore={data?.softcore ?? []} />
+        <Skills
+          hardcore={data?.hardcore ?? []}
+          softcore={data?.softcore ?? []}
+          levels={data?.levels ?? {}}
+        />
         <Familiars
           playerTerrarium={data?.familiars ?? []}
           playerHatchlings={data?.hatchlings ?? []}

@@ -18,9 +18,10 @@ import Skill from "./Skill";
 type Props = {
   hardcore: number[];
   softcore: number[];
+  levels: { [skillId: string]: number };
 };
 
-export default function Skills({ hardcore, softcore }: Props) {
+export default function Skills({ hardcore, softcore, levels }: Props) {
   const [loading, setLoading] = useState(true);
   const [skills, setSkills] = useState([] as SkillDef[]);
   const [validSkillIds, setValidSkillIds] = useState(new Set());
@@ -91,6 +92,7 @@ export default function Skills({ hardcore, softcore }: Props) {
                   skill={s}
                   hardcore={hardcore.includes(s.id)}
                   softcore={softcore.includes(s.id)}
+                  level={levels[s.id.toString()]}
                 />
               ))}
             </SimpleGrid>
