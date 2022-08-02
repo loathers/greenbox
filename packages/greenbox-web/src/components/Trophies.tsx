@@ -6,9 +6,11 @@ import {
   Box,
   Heading,
   SimpleGrid,
+  Stack,
 } from "@chakra-ui/react";
 import { loadTrophies, TrophyDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
+import AlphaImage from "./AlphaImage";
 
 import Progress from "./Progress";
 import Trophy from "./Trophy";
@@ -41,19 +43,22 @@ export default function Tattoos({ playerTrophies }: Props) {
     <AccordionItem>
       <Heading>
         <AccordionButton fontSize="3xl">
-          <Box flex="1" textAlign="left">
-            Trophies
+          <Stack direction="row" flex="1" textAlign="left">
+            <AlphaImage src="itemimages/trophy.gif" />
+            <Box>Trophies</Box>
+          </Stack>
+          <Box alignSelf="stretch" flex="1">
+            <Progress
+              values={[
+                {
+                  color: "complete",
+                  value: validPlayerTrophies.length,
+                  name: `${validPlayerTrophies.length} / ${trophies.length} tattoos unlocked`,
+                },
+              ]}
+              max={trophies.length}
+            />
           </Box>
-          <Progress
-            values={[
-              {
-                color: "complete",
-                value: validPlayerTrophies.length,
-                name: `${validPlayerTrophies.length} / ${trophies.length} tattoos unlocked`,
-              },
-            ]}
-            max={trophies.length}
-          />
           <AccordionIcon />
         </AccordionButton>
       </Heading>

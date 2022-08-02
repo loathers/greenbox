@@ -6,9 +6,11 @@ import {
   Box,
   Heading,
   SimpleGrid,
+  Stack,
 } from "@chakra-ui/react";
 import { loadTattoos, TattooDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
+import AlphaImage from "./AlphaImage";
 
 import Progress from "./Progress";
 import Tattoo from "./Tattoo";
@@ -41,9 +43,11 @@ export default function Tattoos({ playerTattoos }: Props) {
     <AccordionItem>
       <Heading>
         <AccordionButton fontSize="3xl">
-          <Box flex="1" textAlign="left">
-            Tattoos
-          </Box>
+          <Stack direction="row" flex="1" textAlign="left">
+            <AlphaImage src="itemimages/paintbrush.gif" />
+            <Box>Tattoos</Box>
+          </Stack>
+          <Box alignSelf="stretch" flex="1">
           <Progress
             values={[
               {
@@ -54,6 +58,7 @@ export default function Tattoos({ playerTattoos }: Props) {
             ]}
             max={tattoos.length}
           />
+          </Box>
           <AccordionIcon />
         </AccordionButton>
       </Heading>

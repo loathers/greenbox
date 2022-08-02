@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { loadSkills, SkillDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
+import AlphaImage from "./AlphaImage";
 
 import Progress from "./Progress";
 import Skill from "./Skill";
@@ -56,24 +57,27 @@ export default function Skills({ hardcore, softcore }: Props) {
     <AccordionItem>
       <Heading>
         <AccordionButton fontSize="3xl">
-          <Box flex="1" textAlign="left" fontSize="inherit">
-            Skills
+          <Stack direction="row" flex="1" textAlign="left">
+            <AlphaImage src="itemimages/book3.gif" />
+            <Box>Skills</Box>
+          </Stack>
+          <Box alignSelf="stretch" flex="1">
+            <Progress
+              values={[
+                {
+                  color: "partial",
+                  value: sc.length,
+                  name: `${sc.length} / ${skills.length} softcore permed`,
+                },
+                {
+                  color: "complete",
+                  value: hc.length,
+                  name: `${hc.length} / ${skills.length} hardcore permed`,
+                },
+              ]}
+              max={skills.length}
+            />
           </Box>
-          <Progress
-            values={[
-              {
-                color: "partial",
-                value: sc.length,
-                name: `${sc.length} / ${skills.length} softcore permed`,
-              },
-              {
-                color: "complete",
-                value: hc.length,
-                name: `${hc.length} / ${skills.length} hardcore permed`,
-              },
-            ]}
-            max={skills.length}
-          />
           <AccordionIcon />
         </AccordionButton>
       </Heading>

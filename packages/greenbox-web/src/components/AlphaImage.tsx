@@ -55,7 +55,7 @@ export default function AlphaImage({ src, sourceWidth = 30, sourceHeight = sourc
       setLoading(false);
     };
     image.crossOrigin = "anonymous";
-    image.src = src;
+    image.src = `https://s3.amazonaws.com/images.kingdomofloathing.com/${src}`;
   }, [canvas.current, src]);
 
   return (

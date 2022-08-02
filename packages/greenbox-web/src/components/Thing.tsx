@@ -52,7 +52,7 @@ export default function Thing({
       title={title}
     >
       <AlphaImage
-        src={`https://s3.amazonaws.com/images.kingdomofloathing.com/${image}`}
+        src={image}
         sourceWidth={sourceWidth}
       />
       <Text textAlign="center" fontSize="10px">

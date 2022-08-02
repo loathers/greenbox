@@ -6,9 +6,11 @@ import {
   Box,
   Heading,
   SimpleGrid,
+  Stack,
 } from "@chakra-ui/react";
 import { loadFamiliars, FamiliarDef } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
+import AlphaImage from "./AlphaImage";
 
 import Familiar from "./Familiar";
 import Progress from "./Progress";
@@ -47,24 +49,27 @@ export default function Familiars({ terrarium, hatchlings }: Props) {
     <AccordionItem>
       <Heading>
         <AccordionButton fontSize="3xl">
-          <Box flex="1" textAlign="left">
-            Familiars
+          <Stack direction="row" flex="1" textAlign="left">
+            <AlphaImage src="itemimages/terrarium.gif" />
+            <Box>Familiars</Box>
+          </Stack>
+          <Box alignSelf="stretch" flex="1">
+            <Progress
+              values={[
+                {
+                  color: "partial",
+                  value: hat.length,
+                  name: `${hat.length} / ${familiars.length} as hatching`,
+                },
+                {
+                  color: "complete",
+                  value: ter.length,
+                  name: `${ter.length} / ${familiars.length} in terrarium`,
+                },
+              ]}
+              max={familiars.length}
+            />
           </Box>
-          <Progress
-            values={[
-              {
-                color: "partial",
-                value: hat.length,
-                name: `${hat.length} / ${familiars.length} as hatching`,
-              },
-              {
-                color: "complete",
-                value: ter.length,
-                name: `${ter.length} / ${familiars.length} in terrarium`,
-              },
-            ]}
-            max={familiars.length}
-          />
           <AccordionIcon />
         </AccordionButton>
       </Heading>
