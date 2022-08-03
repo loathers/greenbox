@@ -17,7 +17,7 @@ build({
     target: "rhino1.7.14",
     external: ["kolmafia"],
     plugins: [babel()],
-    outdir: "dist",
+    outdir: "dist/scripts/greenbox",
     watch,
     loader: { ".json": "text" }
 });
