@@ -1,55 +1,56 @@
 import "core-js/modules/es.string.match-all";
-import { loadTrophies, SnapshotData } from "greenbox-data";
+import { loadTrophies, isPermable, SnapshotData } from "greenbox-data";
 import {
   Familiar,
   getPermedSkills,
   myId,
   print,
   propertyExists,
+  Skill,
   toFamiliar,
   toInt,
   toSkill,
   visitUrl,
 } from "kolmafia";
-import { get, have, property } from "libram";
+import { have, property } from "libram";
 
 /**
  * Generates an object with a list of HC & SC skill perms.
  * @returns large numeric list of skills, comma delimited, in two sections
  */
 function checkSkills() {
-  const skillsHCPermed = new Set<number>();
-  const skillsSCPermed = new Set<number>();
-  const levels = {} as { [id: number]: number };
-
-  // Within getPermedSkills, the attached boolean represents HC/SC status.
-  //   If the boolean is true, it's HC permed. False, SC permed.
+  // Key existence means permed in some way, true is HC, false is SC
   const permedSkills = getPermedSkills();
 
-  // Checks permedSkills for HC/SC status and populates the two perm lists.
-  for (const skillName in permedSkills) {
-    const id = toInt(toSkill(skillName));
-    (permedSkills[skillName] ? skillsHCPermed : skillsSCPermed).add(id);
-
-    if (propertyExists(`skillLevel${id}`)) {
-      levels[id] = property.getNumber(`skillLevel${id}`);
-    }
-  }
-
-  // Place output in the desired interface format
-  const skillOutput = {
-    hardcore: Array.from(skillsHCPermed),
-    softcore: Array.from(skillsSCPermed),
-    levels,
-  };
-
-  return skillOutput;
+  return Skill.all()
+    .filter((s) => isPermable(toInt(s)))
+    .reduce((r, skill) => {
+      const id = toInt(skill);
+      const block = Math.floor(id / 1000);
+      let result = r[block] || "";
+      switch (permedSkills[skill.name]) {
+        case true:
+          result += "2";
+          break;
+        case false:
+          result += "1";
+          break;
+        default:
+          result += "0";
+          break;
+      }
+      if (propertyExists(`skillLevel${id}`)) result += `(${property.getNumber(`skillLevel${id}`)})`;
+      return {
+        ...r,
+        [block]: result,
+      };
+    }, {} as { [key: number]: string });
 }
 
 /**
  * Generates a list of familiars with 100% runs
  */
-function hundredPercentFamiliars() {
+function checkHundredPercentFamiliars() {
   const history =
     visitUrl(`ascensionhistory.php?back=self&who=${myId()}`, false) +
     visitUrl(`ascensionhistory.php?back=self&prens13=1&who=${myId()}`, false);
@@ -61,24 +62,19 @@ function hundredPercentFamiliars() {
  * @returns large numeric list of familiars by fam ID
  */
 function checkFamiliars() {
-  const familiarsInTerrarium = new Set<number>();
-  const familiarHatchlings = new Set<number>();
+  const hundredPercentFamiliars = checkHundredPercentFamiliars();
 
-  for (const fam of Familiar.all()) {
+  return Familiar.all().reduce((r, fam) => {
     if (have(fam)) {
-      familiarsInTerrarium.add(toInt(fam));
+      r += "2";
     } else if (have(fam.hatchling)) {
-      familiarHatchlings.add(toInt(fam));
+      r += "1";
+    } else {
+      r += "0";
     }
-  }
-
-  const famOutput = {
-    familiars: Array.from(familiarsInTerrarium),
-    hatchlings: Array.from(familiarHatchlings),
-    hundredPercents: Array.from(hundredPercentFamiliars()).map((f) => toInt(f)),
-  };
-
-  return famOutput;
+    if (hundredPercentFamiliars.has(fam)) r += "*";
+    return r;
+  }, "");
 }
 
 /**
@@ -86,16 +82,11 @@ function checkFamiliars() {
  * @returns large numeric list of trophies by trophy number
  */
 function checkTrophies() {
-  const trophiesInCase = new Set<number>();
   const page = visitUrl("trophies.php");
-
-  for (let x = 0; x < loadTrophies().length; x++) {
-    if (page.match(`"trophy${x}"`)) trophiesInCase.add(x);
-  }
-  const trophyOutput = {
-    trophies: Array.from(trophiesInCase),
-  };
-  return trophyOutput;
+  return Array<number>(loadTrophies().length).reduce(
+    (r, _, i) => r + (page.match(`"trophy${i}"`) ? "1" : "0"),
+    ""
+  );
 }
 
 function checkTattoos() {
@@ -117,9 +108,9 @@ function checkTattoos() {
 
 function main(): void {
   const greenboxOutput: SnapshotData = {
-    ...checkSkills(),
-    ...checkFamiliars(),
-    ...checkTrophies(),
+    skills: checkSkills(),
+    familiars: checkFamiliars(),
+    trophies: checkTrophies(),
     ...checkTattoos(),
   };
 

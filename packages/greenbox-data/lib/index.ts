@@ -7,12 +7,8 @@ export * from "./trophies";
  * Interface for the JSON output.
  */
 export interface SnapshotData {
-  hardcore: number[];
-  softcore: number[];
-  levels: { [skillId: string]: number };
-  familiars: number[];
-  hatchlings: number[];
-  trophies: number[];
+  skills: { [skillBlock: string]: string };
+  familiars: string;
+  trophies: string;
   tattoos: string[];
-  hundredPercents: number[];
 }

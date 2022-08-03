@@ -9,7 +9,7 @@ export type SkillDef = {
   permable: boolean;
 };
 
-const isPermable = (id: number) => {
+export const isPermable = (id: number) => {
   // Random old skills
   if (id < 10) return false;
 
