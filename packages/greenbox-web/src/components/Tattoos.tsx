@@ -21,7 +21,7 @@ type Props = {
 
 export default function Tattoos({ playerTattoos }: Props) {
   const [loading, setLoading] = useState(true);
-  const [tattoos, setTattoos] = useState([] as TattooDef[]);
+  const [tattoos, setTattoos] = useState([] as readonly TattooDef[]);
   const [validTattoos, setValidTattoos] = useState(new Set());
 
   useEffect(() => {

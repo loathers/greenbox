@@ -21,7 +21,7 @@ type Props = {
 
 export default function Tattoos({ playerTrophies }: Props) {
   const [loading, setLoading] = useState(true);
-  const [trophies, setTrophies] = useState([] as TrophyDef[]);
+  const [trophies, setTrophies] = useState([] as readonly TrophyDef[]);
   const [validTrophies, setValidTrophies] = useState(new Set());
 
   useEffect(() => {

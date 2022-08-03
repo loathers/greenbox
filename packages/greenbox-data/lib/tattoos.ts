@@ -1,10 +1,7 @@
 import tattoos from "../data/tattoos";
 
-export type TattooDef = {
-  name: string;
-  image: string;
-};
+export type TattooDef = typeof tattoos[number];
 
-export function loadTattoos(): TattooDef[] {
+export function loadTattoos(): readonly TattooDef[] {
   return tattoos;
 }

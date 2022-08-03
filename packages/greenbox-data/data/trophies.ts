@@ -159,4 +159,4 @@ export default [
   { id: 160, name: "Talking Heads", image: "twenty_two_eyes" },
   { id: 161, name: "Yule Have a Headache Tomorrow", image: "cuppa_cuppa_burning_goo" },
   { id: 162, name: "Dreaming of a Bland Crimbo", image: "every_christmas_is_like_sunday" },
-];
+] as const;

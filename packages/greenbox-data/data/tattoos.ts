@@ -157,4 +157,4 @@ export default [
   { name: "Wumpus-Hair Wardrobe", image: "wumpustat" },
   { name: "Xiblaxian Stealth Suit", image: "xiblaxtat" },
   { name: "Yendorian Finery", image: "elbereth" },
-];
+] as const;

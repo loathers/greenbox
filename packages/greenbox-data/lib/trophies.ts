@@ -1,11 +1,7 @@
 import trophies from "../data/trophies";
 
-export type TrophyDef = {
-  id: number;
-  name: string;
-  image: string;
-};
+export type TrophyDef = typeof trophies[number];
 
-export function loadTrophies(): TrophyDef[] {
+export function loadTrophies(): readonly TrophyDef[] {
   return trophies;
 }
