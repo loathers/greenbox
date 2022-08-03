@@ -45,6 +45,8 @@ export default function Thing({
 
   return (
     <Flex
+      as="a"
+      href={`https://kol.coldfront.net/thekolwiki/index.php/${name}`}
       direction="column"
       alignItems="center"
       justifyContent="center"
