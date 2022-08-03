@@ -7,7 +7,7 @@
     "watch": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "format": "prettier --write src/**/*.{ts,tsx}"
+    "format": "prettier --write src/**/*.{ts,tsx} *.{json,ts,html}"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",

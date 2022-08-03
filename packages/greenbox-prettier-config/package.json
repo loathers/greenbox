@@ -8,6 +8,9 @@
   "files": [
     "prettier-config.js"
   ],
+  "scripts": {
+    "format": "prettier --write *.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Loathing-Associates-Scripting-Society/greenbox.git"
