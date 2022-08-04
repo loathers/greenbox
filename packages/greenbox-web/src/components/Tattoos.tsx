@@ -77,7 +77,7 @@ export default function Tattoos({ outfitTattoos: playerOutfitTattoos }: Props) {
         </AccordionButton>
       </Heading>
       <AccordionPanel>
-        <SimpleGrid columns={6} spacing={1}>
+        <SimpleGrid columns={[4, null, 6]} spacing={1}>
           {tattoos.map((t) => (
             <Tattoo key={t.image} tattoo={t} status={idToOutfitTattoo[t.outfit]?.[1] ?? 0} />
           ))}

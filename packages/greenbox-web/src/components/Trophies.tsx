@@ -65,7 +65,7 @@ export default function Tattoos({ trophies: playerTrophies }: Props) {
         </AccordionButton>
       </Heading>
       <AccordionPanel>
-        <SimpleGrid columns={6} spacing={1}>
+        <SimpleGrid columns={[3, null, 6]} spacing={1}>
           {trophies.map((t) => (
             <Trophy key={t.id} trophy={t} status={idToTrophy[t.id]?.[1] ?? 0} />
           ))}

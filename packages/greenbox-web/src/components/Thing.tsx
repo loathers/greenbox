@@ -55,6 +55,7 @@ export default function Thing({
       {...style}
       title={title}
       position="relative"
+      overflow="hidden"
     >
       <Box position="absolute" sx={{ top: 0, right: 0 }}>
         {badges}
