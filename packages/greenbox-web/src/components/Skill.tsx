@@ -1,24 +1,43 @@
 import { Badge } from "@chakra-ui/react";
-import { SkillDef } from "greenbox-data";
+import { SkillDef, SkillStatus } from "greenbox-data";
 
 import Thing from "./Thing";
 
 type Props = {
   skill: SkillDef;
-  hardcore: boolean;
-  softcore: boolean;
-  level?: number;
+  status: SkillStatus;
+  level: number;
 };
 
-export default function Skill({ skill, hardcore, softcore, level }: Props) {
-  const state = hardcore ? "complete" : softcore ? "partial" : null;
-  const title = `${skill.name} (${hardcore ? "Hardcore" : softcore ? "Softcore" : "Not"} Permed)`;
+function skillStatusToThingState(status: SkillStatus) {
+  switch (status) {
+    case SkillStatus.HARDCORE:
+      return "complete";
+    case SkillStatus.SOFTCORE:
+      return "partial";
+    default:
+      return null;
+  }
+}
+
+function skillStatusToTitle(status: SkillStatus) {
+  switch (status) {
+    case SkillStatus.HARDCORE:
+      return "Hardcore permed";
+    case SkillStatus.SOFTCORE:
+      return "Softcore permed";
+    default:
+      return "Not permed";
+  }
+}
+
+export default function Skill({ skill, status, level }: Props) {
   return (
     <Thing
       name={skill.name}
       image={`itemimages/${skill.image}`}
-      state={state}
-      title={title}
+      state={skillStatusToThingState(status)}
+      title={skillStatusToTitle(status)}
       badges={
         level ? (
           <Badge mr={1} title={`Skill at level ${level}`}>

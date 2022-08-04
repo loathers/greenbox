@@ -8,7 +8,7 @@ import {
   SimpleGrid,
   Stack,
 } from "@chakra-ui/react";
-import { loadSkills, SkillDef } from "greenbox-data";
+import { loadSkills, RawSkill, SkillDef, SkillStatus } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
 import AlphaImage from "./AlphaImage";
@@ -16,33 +16,33 @@ import Progress from "./Progress";
 import Skill from "./Skill";
 
 type Props = {
-  hardcore: number[];
-  softcore: number[];
-  levels: { [skillId: string]: number };
+  skills: RawSkill[];
 };
 
-export default function Skills({ hardcore, softcore, levels }: Props) {
+export default function Skills({ skills: playerSkills }: Props) {
   const [loading, setLoading] = useState(true);
   const [skills, setSkills] = useState([] as SkillDef[]);
-  const [validSkillIds, setValidSkillIds] = useState(new Set());
 
   useEffect(() => {
     async function load() {
-      const sks = (await loadSkills()).filter((s) => s.permable);
-      setSkills(sks);
-      setValidSkillIds(new Set([...sks.map((s) => s.id)]));
+      setSkills((await loadSkills()).filter((s) => s.permable));
       setLoading(false);
     }
     load();
   }, []);
 
-  const hc = useMemo(
-    () => hardcore.filter((id) => validSkillIds.has(id)),
-    [hardcore, validSkillIds]
+  const totalHardcorePermed = useMemo(
+    () => playerSkills.filter((s) => s[1] === SkillStatus.HARDCORE).length,
+    [playerSkills]
   );
-  const sc = useMemo(
-    () => softcore.filter((id) => validSkillIds.has(id)),
-    [softcore, validSkillIds]
+  const totalSoftcorePermed = useMemo(
+    () => playerSkills.filter((s) => s[1] === SkillStatus.SOFTCORE).length,
+    [playerSkills]
+  );
+  const idToSkill = useMemo(
+    () =>
+      playerSkills.reduce((acc, s) => ({ ...acc, [s[0]]: s }), {} as { [id: number]: RawSkill }),
+    [playerSkills]
   );
 
   const groupedSkills = skills.reduce((acc, s) => {
@@ -67,13 +67,13 @@ export default function Skills({ hardcore, softcore, levels }: Props) {
               values={[
                 {
                   color: "partial",
-                  value: sc.length,
-                  name: `${sc.length} / ${skills.length} softcore permed`,
+                  value: totalSoftcorePermed,
+                  name: `${totalSoftcorePermed} / ${skills.length} softcore permed`,
                 },
                 {
                   color: "complete",
-                  value: hc.length,
-                  name: `${hc.length} / ${skills.length} hardcore permed`,
+                  value: totalHardcorePermed,
+                  name: `${totalHardcorePermed} / ${skills.length} hardcore permed`,
                 },
               ]}
               max={skills.length}
@@ -90,9 +90,8 @@ export default function Skills({ hardcore, softcore, levels }: Props) {
                 <Skill
                   key={s.id}
                   skill={s}
-                  hardcore={hardcore.includes(s.id)}
-                  softcore={softcore.includes(s.id)}
-                  level={levels[s.id.toString()]}
+                  status={idToSkill[s.id]?.[1] ?? 0}
+                  level={idToSkill[s.id]?.[2] ?? 0}
                 />
               ))}
             </SimpleGrid>

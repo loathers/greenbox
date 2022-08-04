@@ -8,7 +8,7 @@ import {
   SimpleGrid,
   Stack,
 } from "@chakra-ui/react";
-import { loadFamiliars, FamiliarDef } from "greenbox-data";
+import { loadFamiliars, FamiliarDef, RawFamiliar, FamiliarStatus } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
 import AlphaImage from "./AlphaImage";
@@ -16,39 +16,36 @@ import Familiar from "./Familiar";
 import Progress from "./Progress";
 
 type Props = {
-  playerTerrarium: number[];
-  playerHatchlings: number[];
-  hundredPercents: number[];
+  familiars: RawFamiliar[];
 };
 
-export default function Familiars({ playerTerrarium, playerHatchlings, hundredPercents }: Props) {
+export default function Familiars({ familiars: playerFamiliars }: Props) {
   const [loading, setLoading] = useState(true);
   const [familiars, setFamiliars] = useState([] as FamiliarDef[]);
-  const [validFamiliarIds, setValidFamiliarIds] = useState(new Set());
 
   useEffect(() => {
     async function load() {
-      const results = (await loadFamiliars()).filter((f) => !f.pokefam);
-      setFamiliars(results);
-      setValidFamiliarIds(new Set([...results.map((r) => r.id)]));
+      setFamiliars((await loadFamiliars()).filter((f) => !f.pokefam));
       setLoading(false);
     }
     load();
   }, []);
 
-  const validTerrarium = useMemo(
-    () => playerTerrarium.filter((id) => validFamiliarIds.has(id)),
-    [playerTerrarium, validFamiliarIds]
+  const totalInTerrarium = useMemo(
+    () => playerFamiliars.filter((f) => f[1] === FamiliarStatus.TERRARIUM).length,
+    [playerFamiliars]
   );
-
-  const validHatchlings = useMemo(
-    () => playerHatchlings.filter((id) => validFamiliarIds.has(id)),
-    [playerHatchlings, validFamiliarIds]
+  const totalAsHatchlings = useMemo(
+    () => playerFamiliars.filter((f) => f[1] === FamiliarStatus.HATCHLING).length,
+    [playerFamiliars]
   );
-
-  const validHundredPercents = useMemo(
-    () => hundredPercents.filter((id) => validFamiliarIds.has(id)),
-    [hundredPercents, validFamiliarIds]
+  const idToFamiliar = useMemo(
+    () =>
+      playerFamiliars.reduce(
+        (acc, f) => ({ ...acc, [f[0]]: f }),
+        {} as { [id: number]: RawFamiliar }
+      ),
+    [playerFamiliars]
   );
 
   return (
@@ -64,13 +61,13 @@ export default function Familiars({ playerTerrarium, playerHatchlings, hundredPe
               values={[
                 {
                   color: "partial",
-                  value: validHatchlings.length,
-                  name: `${validHatchlings.length} / ${familiars.length} as hatching`,
+                  value: totalAsHatchlings,
+                  name: `${totalAsHatchlings} / ${familiars.length} as hatching`,
                 },
                 {
                   color: "complete",
-                  value: validTerrarium.length,
-                  name: `${validTerrarium.length} / ${familiars.length} in terrarium`,
+                  value: totalInTerrarium,
+                  name: `${totalInTerrarium} / ${familiars.length} in terrarium`,
                 },
               ]}
               max={familiars.length}
@@ -85,9 +82,8 @@ export default function Familiars({ playerTerrarium, playerHatchlings, hundredPe
             <Familiar
               key={f.id}
               familiar={f}
-              terrarium={validTerrarium.includes(f.id)}
-              hatchling={validHatchlings.includes(f.id)}
-              hundredPercent={validHundredPercents.includes(f.id)}
+              status={idToFamiliar[f.id]?.[1] ?? 0}
+              hundredPercent={idToFamiliar[f.id]?.[2] ?? 0}
             />
           ))}
         </SimpleGrid>

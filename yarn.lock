@@ -1860,6 +1860,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@kunigi/string-compression@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@kunigi/string-compression/-/string-compression-1.0.2.tgz#aed3d6d29ba170d51079562328ced905d6a7d6da"
+  integrity sha512-rB2OpMgWOe9J7KQhEmLFniA2lwJm9v3hoGSWuMihitKcoOiY/dLn5GoXOXbeQV+pui6IuVSuKoa8jbYoQhhewA==
+
 "@lerna/add@5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-5.3.0.tgz#2e6cd5ff3d8bad2b0b36cdeaa300fc39fbae215e"

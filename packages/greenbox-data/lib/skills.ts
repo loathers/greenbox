@@ -2,6 +2,12 @@ import he from "he";
 
 import { loadMafiaData } from "./utils";
 
+export enum SkillStatus {
+  NONE = 0,
+  SOFTCORE = 1,
+  HARDCORE = 2,
+}
+
 export type SkillDef = {
   id: number;
   name: string;
@@ -9,7 +15,7 @@ export type SkillDef = {
   permable: boolean;
 };
 
-const isPermable = (id: number) => {
+export const isPermable = (id: number) => {
   // Random old skills
   if (id < 10) return false;
 
@@ -86,4 +92,66 @@ const parseSkill = (parts: string[]): SkillDef => ({
 export const loadSkills = async () => {
   const raw = await loadMafiaData("classskills");
   return raw.filter((p) => p.length > 2).map(parseSkill);
+};
+
+export type RawSkill = [id: number, status: SkillStatus, level: number];
+
+export const compressSkills = (skills: RawSkill[]) =>
+  skills
+    .sort((a, b) => a[0] - b[0])
+    .reduce(
+      (acc, skill, i) => {
+        let [r, currentBlock] = acc;
+        const block = Math.floor(skill[0] / 1000);
+        // Add a comma between 1000 breaks
+        if (block > currentBlock) {
+          r += ",".repeat(block - currentBlock);
+          currentBlock = block;
+        }
+
+        // Pad any missing skill ids
+        const zeros = "0".repeat(
+          Math.max(0, skill[0] - block * 1000 - (r.length - r.lastIndexOf(",")))
+        );
+        r += zeros;
+
+        // Add the skill status
+        r += skill[1];
+
+        // Add the level in parenthesis f applicable
+        if (skill[2] > 0) {
+          r += `(${skill[2]})`;
+        }
+
+        return [r, currentBlock] as [string, number];
+      },
+      ["", 0] as [string, number]
+    )[0]
+    .replace(/0+($|,)/, "$1");
+
+export const expandSkills = (s: string) => {
+  let id = 0;
+
+  let result = [] as RawSkill[];
+
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    switch (c) {
+      case "(":
+        // If we see brackets, adjust the last skill level
+        const end = s.indexOf(")", i);
+        result[result.length - 1][2] = Number(s.substring(i + 1, end));
+        i = end;
+        break;
+      case ",":
+        // If we see a comma, jump to the next 1k block
+        id = (Math.floor(id / 1000) + 1) * 1000;
+        break;
+      default:
+        result.push([++id, Number(c), 0]);
+        break;
+    }
+  }
+
+  return result;
 };

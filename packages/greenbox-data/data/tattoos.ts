@@ -49,7 +49,7 @@ export default [
   { name: "eXtreme Cold-Weather Gear", image: "coldgear", outfit: 7 },
   { name: "Fancy Tux", image: "blacktie", outfit: 72 },
   { name: "FantasyRealm Thief's Outfit", image: "frtat3", outfit: 139 },
-  { name: "FantasyRealm Warrior's Outfit", image: "frtat1", outfit: 139 },
+  { name: "FantasyRealm Warrior's Outfit", image: "frtat1", outfit: 137 },
   { name: "FantasyRealm Wizard's Outfit", image: "frtat2", outfit: 138 },
   { name: "Fiberglass Finery", image: "fibertat", outfit: 121 },
   { name: "Filthy Hippy Disguise", image: "hippy", outfit: 2 },

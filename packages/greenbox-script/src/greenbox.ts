@@ -1,55 +1,67 @@
 import "core-js/modules/es.string.match-all";
-import { loadTrophies, SnapshotData } from "greenbox-data";
+import {
+  loadTrophies,
+  isPermable,
+  loadTattoos,
+  getOutfitTattoos,
+  SkillStatus,
+  FamiliarStatus,
+  TrophyStatus,
+  TattooStatus,
+  TattooDef,
+  compress,
+  RawOutfitTattoo,
+  RawTrophy,
+  RawSkill,
+  RawFamiliar,
+  TrophyDef,
+} from "greenbox-data";
 import {
   Familiar,
   getPermedSkills,
+  haveOutfit,
   myId,
   print,
-  propertyExists,
+  printHtml,
+  Skill,
   toFamiliar,
   toInt,
-  toSkill,
   visitUrl,
 } from "kolmafia";
-import { get, have, property } from "libram";
+import { have, property } from "libram";
 
 /**
  * Generates an object with a list of HC & SC skill perms.
  * @returns large numeric list of skills, comma delimited, in two sections
  */
 function checkSkills() {
-  const skillsHCPermed = new Set<number>();
-  const skillsSCPermed = new Set<number>();
-  const levels = {} as { [id: number]: number };
-
-  // Within getPermedSkills, the attached boolean represents HC/SC status.
-  //   If the boolean is true, it's HC permed. False, SC permed.
+  // Key existence means permed in some way, true is HC, false is SC
   const permedSkills = getPermedSkills();
 
-  // Checks permedSkills for HC/SC status and populates the two perm lists.
-  for (const skillName in permedSkills) {
-    const id = toInt(toSkill(skillName));
-    (permedSkills[skillName] ? skillsHCPermed : skillsSCPermed).add(id);
-
-    if (propertyExists(`skillLevel${id}`)) {
-      levels[id] = property.getNumber(`skillLevel${id}`);
+  function getStatus(skill: Skill) {
+    switch (permedSkills[skill.name]) {
+      case true:
+        return SkillStatus.HARDCORE;
+      case false:
+        return SkillStatus.SOFTCORE;
+      default:
+        return SkillStatus.NONE;
     }
   }
 
-  // Place output in the desired interface format
-  const skillOutput = {
-    hardcore: Array.from(skillsHCPermed),
-    softcore: Array.from(skillsSCPermed),
-    levels,
-  };
+  function getLevel(skill: Skill) {
+    return property.getNumber(`skillLevel${toInt(skill)}`);
+  }
 
-  return skillOutput;
+  return Skill.all()
+    .filter((skill) => isPermable(toInt(skill)))
+    .map((skill) => [toInt(skill), getStatus(skill), getLevel(skill)] as RawSkill);
 }
 
 /**
  * Generates a list of familiars with 100% runs
  */
-function hundredPercentFamiliars() {
+function getHundredPercentFamiliars() {
   const history =
     visitUrl(`ascensionhistory.php?back=self&who=${myId()}`, false) +
     visitUrl(`ascensionhistory.php?back=self&prens13=1&who=${myId()}`, false);
@@ -61,24 +73,21 @@ function hundredPercentFamiliars() {
  * @returns large numeric list of familiars by fam ID
  */
 function checkFamiliars() {
-  const familiarsInTerrarium = new Set<number>();
-  const familiarHatchlings = new Set<number>();
+  const hundredPercentFamiliars = getHundredPercentFamiliars();
 
-  for (const fam of Familiar.all()) {
-    if (have(fam)) {
-      familiarsInTerrarium.add(toInt(fam));
-    } else if (have(fam.hatchling)) {
-      familiarHatchlings.add(toInt(fam));
-    }
+  function getStatus(familiar: Familiar) {
+    if (have(familiar)) return FamiliarStatus.TERRARIUM;
+    if (have(familiar.hatchling)) return FamiliarStatus.HATCHLING;
+    return FamiliarStatus.NONE;
   }
 
-  const famOutput = {
-    familiars: Array.from(familiarsInTerrarium),
-    hatchlings: Array.from(familiarHatchlings),
-    hundredPercents: Array.from(hundredPercentFamiliars()).map((f) => toInt(f)),
-  };
+  function getHundredPercent(familiar: Familiar) {
+    return hundredPercentFamiliars.has(familiar);
+  }
 
-  return famOutput;
+  return Familiar.all().map(
+    (familiar) => [toInt(familiar), getStatus(familiar), getHundredPercent(familiar)] as RawFamiliar
+  );
 }
 
 /**
@@ -86,44 +95,47 @@ function checkFamiliars() {
  * @returns large numeric list of trophies by trophy number
  */
 function checkTrophies() {
-  const trophiesInCase = new Set<number>();
   const page = visitUrl("trophies.php");
 
-  for (let x = 0; x < loadTrophies().length; x++) {
-    if (page.match(`"trophy${x}"`)) trophiesInCase.add(x);
+  function getStatus(trophy: TrophyDef) {
+    return page.includes(`"trophy${trophy.id}"`) ? TrophyStatus.HAVE : TrophyStatus.NONE;
   }
-  const trophyOutput = {
-    trophies: Array.from(trophiesInCase),
-  };
-  return trophyOutput;
+
+  return loadTrophies().map((trophy) => [trophy.id, getStatus(trophy)] as RawTrophy);
+}
+
+function checkOutfitTattoos(page: string) {
+  function getStatus(tattoo: TattooDef) {
+    if (page.includes(tattoo.image)) return TattooStatus.HAVE;
+    if (haveOutfit(tattoo.name)) return TattooStatus.HAVE_OUTFIT;
+    return TattooStatus.NONE;
+  }
+
+  return getOutfitTattoos(loadTattoos()).map(
+    (tattoo) => [tattoo.outfit, getStatus(tattoo)] as RawOutfitTattoo
+  );
 }
 
 function checkTattoos() {
-  const tattoosUnlocked = new Set<string>();
   const page = visitUrl("account_tattoos.php");
-  const tats = page.split(`Tattoo: `).slice(1); //gives an array where each item in the array starts with the tattoo name
-  for (let i = 0; i < tats.length; i = i + 2) {
-    //Tattoo page lists every tattoo twice, hence only doing evens
-    const tattoo = tats[i].match(`[a-z0-9_]*`);
-    if (tattoo !== null) {
-      tattoosUnlocked.add(tattoo[0]);
-    }
-  }
-  const tattooOutput = {
-    tattoos: Array.from(tattoosUnlocked),
+
+  return {
+    outfitTattoos: checkOutfitTattoos(page),
   };
-  return tattooOutput;
 }
 
 function main(): void {
-  const greenboxOutput: SnapshotData = {
-    ...checkSkills(),
-    ...checkFamiliars(),
-    ...checkTrophies(),
+  const code = compress({
+    skills: checkSkills(),
+    familiars: checkFamiliars(),
+    trophies: checkTrophies(),
     ...checkTattoos(),
-  };
+  });
 
-  print(JSON.stringify(greenboxOutput));
+  printHtml(
+    `Visit <a href="https://greenbox.loathers.net">https://greenbox.loathers.net</a> and paste the following unique code into the text box!<br />` +
+      `<table border="1"><tr><td>${code.replace(/(.{80})/g, "$1\n")}</td></tr></table>`
+  );
 }
 
 module.exports.main = main;
