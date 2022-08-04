@@ -5,6 +5,11 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __esm = function(fn, res) {
+  return function __init() {
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+  };
+};
 var __commonJS = function(cb, mod) {
   return function __require() {
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
@@ -32,9 +37,28 @@ var __toESM = function(mod, isNodeMode, target) {
   );
 };
 
+// kolmafia-polyfill.js
+var kolmafia, console, global;
+var init_kolmafia_polyfill = __esm({
+  "kolmafia-polyfill.js": function() {
+    "use strict";
+    kolmafia = require("kolmafia");
+    console = {
+      log: kolmafia.print
+    };
+    global = {
+      encodeURI: encodeURI,
+      decodeURI: decodeURI,
+      encodeURIComponent: encodeURIComponent,
+      decodeURIComponent: decodeURIComponent
+    };
+  }
+});
+
 // ../../node_modules/core-js/internals/global.js
 var require_global = __commonJS({
   "../../node_modules/core-js/internals/global.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var check = function check2(it) {
       return it && it.Math == Math && it;
     };
@@ -47,6 +71,7 @@ var require_global = __commonJS({
 // ../../node_modules/core-js/internals/fails.js
 var require_fails = __commonJS({
   "../../node_modules/core-js/internals/fails.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     module2.exports = function(exec) {
       try {
         return !!exec();
@@ -60,6 +85,7 @@ var require_fails = __commonJS({
 // ../../node_modules/core-js/internals/descriptors.js
 var require_descriptors = __commonJS({
   "../../node_modules/core-js/internals/descriptors.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var fails2 = require_fails();
     module2.exports = !fails2(function() {
       return Object.defineProperty({}, 1, {
@@ -74,6 +100,7 @@ var require_descriptors = __commonJS({
 // ../../node_modules/core-js/internals/function-bind-native.js
 var require_function_bind_native = __commonJS({
   "../../node_modules/core-js/internals/function-bind-native.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var fails2 = require_fails();
     module2.exports = !fails2(function() {
       var test = function() {
@@ -86,6 +113,7 @@ var require_function_bind_native = __commonJS({
 // ../../node_modules/core-js/internals/function-call.js
 var require_function_call = __commonJS({
   "../../node_modules/core-js/internals/function-call.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var NATIVE_BIND = require_function_bind_native();
     var call2 = Function.prototype.call;
     module2.exports = NATIVE_BIND ? call2.bind(call2) : function() {
@@ -98,6 +126,7 @@ var require_function_call = __commonJS({
 var require_object_property_is_enumerable = __commonJS({
   "../../node_modules/core-js/internals/object-property-is-enumerable.js": function(exports2) {
     "use strict";
+    init_kolmafia_polyfill();
     var $propertyIsEnumerable = {}.propertyIsEnumerable;
     var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
     var NASHORN_BUG = getOwnPropertyDescriptor && !$propertyIsEnumerable.call({
@@ -113,6 +142,7 @@ var require_object_property_is_enumerable = __commonJS({
 // ../../node_modules/core-js/internals/create-property-descriptor.js
 var require_create_property_descriptor = __commonJS({
   "../../node_modules/core-js/internals/create-property-descriptor.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     module2.exports = function(bitmap, value) {
       return {
         enumerable: !(bitmap & 1),
@@ -127,6 +157,7 @@ var require_create_property_descriptor = __commonJS({
 // ../../node_modules/core-js/internals/function-uncurry-this.js
 var require_function_uncurry_this = __commonJS({
   "../../node_modules/core-js/internals/function-uncurry-this.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var NATIVE_BIND = require_function_bind_native();
     var FunctionPrototype = Function.prototype;
     var bind = FunctionPrototype.bind;
@@ -145,6 +176,7 @@ var require_function_uncurry_this = __commonJS({
 // ../../node_modules/core-js/internals/classof-raw.js
 var require_classof_raw = __commonJS({
   "../../node_modules/core-js/internals/classof-raw.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var uncurryThis2 = require_function_uncurry_this();
     var toString2 = uncurryThis2({}.toString);
     var stringSlice = uncurryThis2("".slice);
@@ -157,6 +189,7 @@ var require_classof_raw = __commonJS({
 // ../../node_modules/core-js/internals/indexed-object.js
 var require_indexed_object = __commonJS({
   "../../node_modules/core-js/internals/indexed-object.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var uncurryThis2 = require_function_uncurry_this();
     var fails2 = require_fails();
     var classof2 = require_classof_raw();
@@ -173,6 +206,7 @@ var require_indexed_object = __commonJS({
 // ../../node_modules/core-js/internals/require-object-coercible.js
 var require_require_object_coercible = __commonJS({
   "../../node_modules/core-js/internals/require-object-coercible.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var $TypeError2 = TypeError;
     module2.exports = function(it) {
       if (it == void 0)
@@ -185,6 +219,7 @@ var require_require_object_coercible = __commonJS({
 // ../../node_modules/core-js/internals/to-indexed-object.js
 var require_to_indexed_object = __commonJS({
   "../../node_modules/core-js/internals/to-indexed-object.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var IndexedObject = require_indexed_object();
     var requireObjectCoercible2 = require_require_object_coercible();
     module2.exports = function(it) {
@@ -196,6 +231,7 @@ var require_to_indexed_object = __commonJS({
 // ../../node_modules/core-js/internals/is-callable.js
 var require_is_callable = __commonJS({
   "../../node_modules/core-js/internals/is-callable.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     module2.exports = function(argument) {
       return typeof argument == "function";
     };
@@ -205,6 +241,7 @@ var require_is_callable = __commonJS({
 // ../../node_modules/core-js/internals/is-object.js
 var require_is_object = __commonJS({
   "../../node_modules/core-js/internals/is-object.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var isCallable = require_is_callable();
     module2.exports = function(it) {
       return typeof it == "object" ? it !== null : isCallable(it);
@@ -215,6 +252,7 @@ var require_is_object = __commonJS({
 // ../../node_modules/core-js/internals/get-built-in.js
 var require_get_built_in = __commonJS({
   "../../node_modules/core-js/internals/get-built-in.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var global2 = require_global();
     var isCallable = require_is_callable();
     var aFunction = function aFunction2(argument) {
@@ -229,6 +267,7 @@ var require_get_built_in = __commonJS({
 // ../../node_modules/core-js/internals/object-is-prototype-of.js
 var require_object_is_prototype_of = __commonJS({
   "../../node_modules/core-js/internals/object-is-prototype-of.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var uncurryThis2 = require_function_uncurry_this();
     module2.exports = uncurryThis2({}.isPrototypeOf);
   }
@@ -237,6 +276,7 @@ var require_object_is_prototype_of = __commonJS({
 // ../../node_modules/core-js/internals/engine-user-agent.js
 var require_engine_user_agent = __commonJS({
   "../../node_modules/core-js/internals/engine-user-agent.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var getBuiltIn = require_get_built_in();
     module2.exports = getBuiltIn("navigator", "userAgent") || "";
   }
@@ -245,11 +285,12 @@ var require_engine_user_agent = __commonJS({
 // ../../node_modules/core-js/internals/engine-v8-version.js
 var require_engine_v8_version = __commonJS({
   "../../node_modules/core-js/internals/engine-v8-version.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var global2 = require_global();
     var userAgent = require_engine_user_agent();
-    var process = global2.process;
+    var process2 = global2.process;
     var Deno = global2.Deno;
-    var versions = process && process.versions || Deno && Deno.version;
+    var versions = process2 && process2.versions || Deno && Deno.version;
     var v8 = versions && versions.v8;
     var match;
     var version;
@@ -272,6 +313,7 @@ var require_engine_v8_version = __commonJS({
 // ../../node_modules/core-js/internals/native-symbol.js
 var require_native_symbol = __commonJS({
   "../../node_modules/core-js/internals/native-symbol.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var V8_VERSION = require_engine_v8_version();
     var fails2 = require_fails();
     module2.exports = !!Object.getOwnPropertySymbols && !fails2(function() {
@@ -284,6 +326,7 @@ var require_native_symbol = __commonJS({
 // ../../node_modules/core-js/internals/use-symbol-as-uid.js
 var require_use_symbol_as_uid = __commonJS({
   "../../node_modules/core-js/internals/use-symbol-as-uid.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var NATIVE_SYMBOL = require_native_symbol();
     module2.exports = NATIVE_SYMBOL && !Symbol.sham && typeof Symbol.iterator == "symbol";
   }
@@ -292,6 +335,7 @@ var require_use_symbol_as_uid = __commonJS({
 // ../../node_modules/core-js/internals/is-symbol.js
 var require_is_symbol = __commonJS({
   "../../node_modules/core-js/internals/is-symbol.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var getBuiltIn = require_get_built_in();
     var isCallable = require_is_callable();
     var isPrototypeOf = require_object_is_prototype_of();
@@ -309,6 +353,7 @@ var require_is_symbol = __commonJS({
 // ../../node_modules/core-js/internals/try-to-string.js
 var require_try_to_string = __commonJS({
   "../../node_modules/core-js/internals/try-to-string.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var $String = String;
     module2.exports = function(argument) {
       try {
@@ -323,6 +368,7 @@ var require_try_to_string = __commonJS({
 // ../../node_modules/core-js/internals/a-callable.js
 var require_a_callable = __commonJS({
   "../../node_modules/core-js/internals/a-callable.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var isCallable = require_is_callable();
     var tryToString = require_try_to_string();
     var $TypeError2 = TypeError;
@@ -337,6 +383,7 @@ var require_a_callable = __commonJS({
 // ../../node_modules/core-js/internals/get-method.js
 var require_get_method = __commonJS({
   "../../node_modules/core-js/internals/get-method.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var aCallable = require_a_callable();
     module2.exports = function(V, P) {
       var func = V[P];
@@ -348,6 +395,7 @@ var require_get_method = __commonJS({
 // ../../node_modules/core-js/internals/ordinary-to-primitive.js
 var require_ordinary_to_primitive = __commonJS({
   "../../node_modules/core-js/internals/ordinary-to-primitive.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var call2 = require_function_call();
     var isCallable = require_is_callable();
     var isObject = require_is_object();
@@ -368,6 +416,7 @@ var require_ordinary_to_primitive = __commonJS({
 // ../../node_modules/core-js/internals/is-pure.js
 var require_is_pure = __commonJS({
   "../../node_modules/core-js/internals/is-pure.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     module2.exports = false;
   }
 });
@@ -375,6 +424,7 @@ var require_is_pure = __commonJS({
 // ../../node_modules/core-js/internals/define-global-property.js
 var require_define_global_property = __commonJS({
   "../../node_modules/core-js/internals/define-global-property.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var global2 = require_global();
     var defineProperty = Object.defineProperty;
     module2.exports = function(key, value) {
@@ -395,6 +445,7 @@ var require_define_global_property = __commonJS({
 // ../../node_modules/core-js/internals/shared-store.js
 var require_shared_store = __commonJS({
   "../../node_modules/core-js/internals/shared-store.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var global2 = require_global();
     var defineGlobalProperty = require_define_global_property();
     var SHARED = "__core-js_shared__";
@@ -406,6 +457,7 @@ var require_shared_store = __commonJS({
 // ../../node_modules/core-js/internals/shared.js
 var require_shared = __commonJS({
   "../../node_modules/core-js/internals/shared.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var IS_PURE2 = require_is_pure();
     var store = require_shared_store();
     (module2.exports = function(key, value) {
@@ -423,6 +475,7 @@ var require_shared = __commonJS({
 // ../../node_modules/core-js/internals/to-object.js
 var require_to_object = __commonJS({
   "../../node_modules/core-js/internals/to-object.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var requireObjectCoercible2 = require_require_object_coercible();
     var $Object = Object;
     module2.exports = function(argument) {
@@ -434,6 +487,7 @@ var require_to_object = __commonJS({
 // ../../node_modules/core-js/internals/has-own-property.js
 var require_has_own_property = __commonJS({
   "../../node_modules/core-js/internals/has-own-property.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var uncurryThis2 = require_function_uncurry_this();
     var toObject = require_to_object();
     var hasOwnProperty = uncurryThis2({}.hasOwnProperty);
@@ -446,6 +500,7 @@ var require_has_own_property = __commonJS({
 // ../../node_modules/core-js/internals/uid.js
 var require_uid = __commonJS({
   "../../node_modules/core-js/internals/uid.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var uncurryThis2 = require_function_uncurry_this();
     var id = 0;
     var postfix = Math.random();
@@ -459,6 +514,7 @@ var require_uid = __commonJS({
 // ../../node_modules/core-js/internals/well-known-symbol.js
 var require_well_known_symbol = __commonJS({
   "../../node_modules/core-js/internals/well-known-symbol.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var global2 = require_global();
     var shared = require_shared();
     var hasOwn = require_has_own_property();
@@ -488,6 +544,7 @@ var require_well_known_symbol = __commonJS({
 // ../../node_modules/core-js/internals/to-primitive.js
 var require_to_primitive = __commonJS({
   "../../node_modules/core-js/internals/to-primitive.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var call2 = require_function_call();
     var isObject = require_is_object();
     var isSymbol = require_is_symbol();
@@ -519,6 +576,7 @@ var require_to_primitive = __commonJS({
 // ../../node_modules/core-js/internals/to-property-key.js
 var require_to_property_key = __commonJS({
   "../../node_modules/core-js/internals/to-property-key.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var toPrimitive = require_to_primitive();
     var isSymbol = require_is_symbol();
     module2.exports = function(argument) {
@@ -531,6 +589,7 @@ var require_to_property_key = __commonJS({
 // ../../node_modules/core-js/internals/document-create-element.js
 var require_document_create_element = __commonJS({
   "../../node_modules/core-js/internals/document-create-element.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var global2 = require_global();
     var isObject = require_is_object();
     var document2 = global2.document;
@@ -544,6 +603,7 @@ var require_document_create_element = __commonJS({
 // ../../node_modules/core-js/internals/ie8-dom-define.js
 var require_ie8_dom_define = __commonJS({
   "../../node_modules/core-js/internals/ie8-dom-define.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var DESCRIPTORS = require_descriptors();
     var fails2 = require_fails();
     var createElement = require_document_create_element();
@@ -560,6 +620,7 @@ var require_ie8_dom_define = __commonJS({
 // ../../node_modules/core-js/internals/object-get-own-property-descriptor.js
 var require_object_get_own_property_descriptor = __commonJS({
   "../../node_modules/core-js/internals/object-get-own-property-descriptor.js": function(exports2) {
+    init_kolmafia_polyfill();
     var DESCRIPTORS = require_descriptors();
     var call2 = require_function_call();
     var propertyIsEnumerableModule = require_object_property_is_enumerable();
@@ -586,6 +647,7 @@ var require_object_get_own_property_descriptor = __commonJS({
 // ../../node_modules/core-js/internals/v8-prototype-define-bug.js
 var require_v8_prototype_define_bug = __commonJS({
   "../../node_modules/core-js/internals/v8-prototype-define-bug.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var DESCRIPTORS = require_descriptors();
     var fails2 = require_fails();
     module2.exports = DESCRIPTORS && fails2(function() {
@@ -601,6 +663,7 @@ var require_v8_prototype_define_bug = __commonJS({
 // ../../node_modules/core-js/internals/an-object.js
 var require_an_object = __commonJS({
   "../../node_modules/core-js/internals/an-object.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var isObject = require_is_object();
     var $String = String;
     var $TypeError2 = TypeError;
@@ -615,6 +678,7 @@ var require_an_object = __commonJS({
 // ../../node_modules/core-js/internals/object-define-property.js
 var require_object_define_property = __commonJS({
   "../../node_modules/core-js/internals/object-define-property.js": function(exports2) {
+    init_kolmafia_polyfill();
     var DESCRIPTORS = require_descriptors();
     var IE8_DOM_DEFINE = require_ie8_dom_define();
     var V8_PROTOTYPE_DEFINE_BUG = require_v8_prototype_define_bug();
@@ -663,6 +727,7 @@ var require_object_define_property = __commonJS({
 // ../../node_modules/core-js/internals/create-non-enumerable-property.js
 var require_create_non_enumerable_property = __commonJS({
   "../../node_modules/core-js/internals/create-non-enumerable-property.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var DESCRIPTORS = require_descriptors();
     var definePropertyModule = require_object_define_property();
     var createPropertyDescriptor = require_create_property_descriptor();
@@ -678,6 +743,7 @@ var require_create_non_enumerable_property = __commonJS({
 // ../../node_modules/core-js/internals/function-name.js
 var require_function_name = __commonJS({
   "../../node_modules/core-js/internals/function-name.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var DESCRIPTORS = require_descriptors();
     var hasOwn = require_has_own_property();
     var FunctionPrototype = Function.prototype;
@@ -697,6 +763,7 @@ var require_function_name = __commonJS({
 // ../../node_modules/core-js/internals/inspect-source.js
 var require_inspect_source = __commonJS({
   "../../node_modules/core-js/internals/inspect-source.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var uncurryThis2 = require_function_uncurry_this();
     var isCallable = require_is_callable();
     var store = require_shared_store();
@@ -713,6 +780,7 @@ var require_inspect_source = __commonJS({
 // ../../node_modules/core-js/internals/native-weak-map.js
 var require_native_weak_map = __commonJS({
   "../../node_modules/core-js/internals/native-weak-map.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var global2 = require_global();
     var isCallable = require_is_callable();
     var inspectSource = require_inspect_source();
@@ -724,6 +792,7 @@ var require_native_weak_map = __commonJS({
 // ../../node_modules/core-js/internals/shared-key.js
 var require_shared_key = __commonJS({
   "../../node_modules/core-js/internals/shared-key.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var shared = require_shared();
     var uid = require_uid();
     var keys = shared("keys");
@@ -736,6 +805,7 @@ var require_shared_key = __commonJS({
 // ../../node_modules/core-js/internals/hidden-keys.js
 var require_hidden_keys = __commonJS({
   "../../node_modules/core-js/internals/hidden-keys.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     module2.exports = {};
   }
 });
@@ -743,6 +813,7 @@ var require_hidden_keys = __commonJS({
 // ../../node_modules/core-js/internals/internal-state.js
 var require_internal_state = __commonJS({
   "../../node_modules/core-js/internals/internal-state.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var NATIVE_WEAK_MAP = require_native_weak_map();
     var global2 = require_global();
     var uncurryThis2 = require_function_uncurry_this();
@@ -823,6 +894,7 @@ var require_internal_state = __commonJS({
 // ../../node_modules/core-js/internals/make-built-in.js
 var require_make_built_in = __commonJS({
   "../../node_modules/core-js/internals/make-built-in.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var fails2 = require_fails();
     var isCallable = require_is_callable();
     var hasOwn = require_has_own_property();
@@ -887,6 +959,7 @@ var require_make_built_in = __commonJS({
 // ../../node_modules/core-js/internals/define-built-in.js
 var require_define_built_in = __commonJS({
   "../../node_modules/core-js/internals/define-built-in.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var isCallable = require_is_callable();
     var definePropertyModule = require_object_define_property();
     var makeBuiltIn = require_make_built_in();
@@ -929,6 +1002,7 @@ var require_define_built_in = __commonJS({
 // ../../node_modules/core-js/internals/math-trunc.js
 var require_math_trunc = __commonJS({
   "../../node_modules/core-js/internals/math-trunc.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var ceil = Math.ceil;
     var floor = Math.floor;
     module2.exports = Math.trunc || function trunc(x) {
@@ -941,6 +1015,7 @@ var require_math_trunc = __commonJS({
 // ../../node_modules/core-js/internals/to-integer-or-infinity.js
 var require_to_integer_or_infinity = __commonJS({
   "../../node_modules/core-js/internals/to-integer-or-infinity.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var trunc = require_math_trunc();
     module2.exports = function(argument) {
       var number = +argument;
@@ -952,6 +1027,7 @@ var require_to_integer_or_infinity = __commonJS({
 // ../../node_modules/core-js/internals/to-absolute-index.js
 var require_to_absolute_index = __commonJS({
   "../../node_modules/core-js/internals/to-absolute-index.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var toIntegerOrInfinity = require_to_integer_or_infinity();
     var max = Math.max;
     var min = Math.min;
@@ -965,6 +1041,7 @@ var require_to_absolute_index = __commonJS({
 // ../../node_modules/core-js/internals/to-length.js
 var require_to_length = __commonJS({
   "../../node_modules/core-js/internals/to-length.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var toIntegerOrInfinity = require_to_integer_or_infinity();
     var min = Math.min;
     module2.exports = function(argument) {
@@ -976,6 +1053,7 @@ var require_to_length = __commonJS({
 // ../../node_modules/core-js/internals/length-of-array-like.js
 var require_length_of_array_like = __commonJS({
   "../../node_modules/core-js/internals/length-of-array-like.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var toLength2 = require_to_length();
     module2.exports = function(obj) {
       return toLength2(obj.length);
@@ -986,6 +1064,7 @@ var require_length_of_array_like = __commonJS({
 // ../../node_modules/core-js/internals/array-includes.js
 var require_array_includes = __commonJS({
   "../../node_modules/core-js/internals/array-includes.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var toIndexedObject = require_to_indexed_object();
     var toAbsoluteIndex = require_to_absolute_index();
     var lengthOfArrayLike = require_length_of_array_like();
@@ -1019,6 +1098,7 @@ var require_array_includes = __commonJS({
 // ../../node_modules/core-js/internals/object-keys-internal.js
 var require_object_keys_internal = __commonJS({
   "../../node_modules/core-js/internals/object-keys-internal.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var uncurryThis2 = require_function_uncurry_this();
     var hasOwn = require_has_own_property();
     var toIndexedObject = require_to_indexed_object();
@@ -1046,6 +1126,7 @@ var require_object_keys_internal = __commonJS({
 // ../../node_modules/core-js/internals/enum-bug-keys.js
 var require_enum_bug_keys = __commonJS({
   "../../node_modules/core-js/internals/enum-bug-keys.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     module2.exports = ["constructor", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "toLocaleString", "toString", "valueOf"];
   }
 });
@@ -1053,6 +1134,7 @@ var require_enum_bug_keys = __commonJS({
 // ../../node_modules/core-js/internals/object-get-own-property-names.js
 var require_object_get_own_property_names = __commonJS({
   "../../node_modules/core-js/internals/object-get-own-property-names.js": function(exports2) {
+    init_kolmafia_polyfill();
     var internalObjectKeys = require_object_keys_internal();
     var enumBugKeys = require_enum_bug_keys();
     var hiddenKeys = enumBugKeys.concat("length", "prototype");
@@ -1065,6 +1147,7 @@ var require_object_get_own_property_names = __commonJS({
 // ../../node_modules/core-js/internals/object-get-own-property-symbols.js
 var require_object_get_own_property_symbols = __commonJS({
   "../../node_modules/core-js/internals/object-get-own-property-symbols.js": function(exports2) {
+    init_kolmafia_polyfill();
     exports2.f = Object.getOwnPropertySymbols;
   }
 });
@@ -1072,6 +1155,7 @@ var require_object_get_own_property_symbols = __commonJS({
 // ../../node_modules/core-js/internals/own-keys.js
 var require_own_keys = __commonJS({
   "../../node_modules/core-js/internals/own-keys.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var getBuiltIn = require_get_built_in();
     var uncurryThis2 = require_function_uncurry_this();
     var getOwnPropertyNamesModule = require_object_get_own_property_names();
@@ -1089,6 +1173,7 @@ var require_own_keys = __commonJS({
 // ../../node_modules/core-js/internals/copy-constructor-properties.js
 var require_copy_constructor_properties = __commonJS({
   "../../node_modules/core-js/internals/copy-constructor-properties.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var hasOwn = require_has_own_property();
     var ownKeys3 = require_own_keys();
     var getOwnPropertyDescriptorModule = require_object_get_own_property_descriptor();
@@ -1110,6 +1195,7 @@ var require_copy_constructor_properties = __commonJS({
 // ../../node_modules/core-js/internals/is-forced.js
 var require_is_forced = __commonJS({
   "../../node_modules/core-js/internals/is-forced.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var fails2 = require_fails();
     var isCallable = require_is_callable();
     var replacement = /#|\.prototype\./;
@@ -1130,6 +1216,7 @@ var require_is_forced = __commonJS({
 // ../../node_modules/core-js/internals/export.js
 var require_export = __commonJS({
   "../../node_modules/core-js/internals/export.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var global2 = require_global();
     var getOwnPropertyDescriptor = require_object_get_own_property_descriptor().f;
     var createNonEnumerableProperty = require_create_non_enumerable_property();
@@ -1175,6 +1262,7 @@ var require_export = __commonJS({
 // ../../node_modules/core-js/internals/object-keys.js
 var require_object_keys = __commonJS({
   "../../node_modules/core-js/internals/object-keys.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var internalObjectKeys = require_object_keys_internal();
     var enumBugKeys = require_enum_bug_keys();
     module2.exports = Object.keys || function keys(O) {
@@ -1186,6 +1274,7 @@ var require_object_keys = __commonJS({
 // ../../node_modules/core-js/internals/object-define-properties.js
 var require_object_define_properties = __commonJS({
   "../../node_modules/core-js/internals/object-define-properties.js": function(exports2) {
+    init_kolmafia_polyfill();
     var DESCRIPTORS = require_descriptors();
     var V8_PROTOTYPE_DEFINE_BUG = require_v8_prototype_define_bug();
     var definePropertyModule = require_object_define_property();
@@ -1210,6 +1299,7 @@ var require_object_define_properties = __commonJS({
 // ../../node_modules/core-js/internals/html.js
 var require_html = __commonJS({
   "../../node_modules/core-js/internals/html.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var getBuiltIn = require_get_built_in();
     module2.exports = getBuiltIn("document", "documentElement");
   }
@@ -1218,6 +1308,7 @@ var require_html = __commonJS({
 // ../../node_modules/core-js/internals/object-create.js
 var require_object_create = __commonJS({
   "../../node_modules/core-js/internals/object-create.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var anObject2 = require_an_object();
     var definePropertiesModule = require_object_define_properties();
     var enumBugKeys = require_enum_bug_keys();
@@ -1286,6 +1377,7 @@ var require_object_create = __commonJS({
 // ../../node_modules/core-js/internals/correct-prototype-getter.js
 var require_correct_prototype_getter = __commonJS({
   "../../node_modules/core-js/internals/correct-prototype-getter.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var fails2 = require_fails();
     module2.exports = !fails2(function() {
       function F() {
@@ -1299,6 +1391,7 @@ var require_correct_prototype_getter = __commonJS({
 // ../../node_modules/core-js/internals/object-get-prototype-of.js
 var require_object_get_prototype_of = __commonJS({
   "../../node_modules/core-js/internals/object-get-prototype-of.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var hasOwn = require_has_own_property();
     var isCallable = require_is_callable();
     var toObject = require_to_object();
@@ -1324,6 +1417,7 @@ var require_object_get_prototype_of = __commonJS({
 var require_iterators_core = __commonJS({
   "../../node_modules/core-js/internals/iterators-core.js": function(exports2, module2) {
     "use strict";
+    init_kolmafia_polyfill();
     var fails2 = require_fails();
     var isCallable = require_is_callable();
     var create = require_object_create();
@@ -1369,6 +1463,7 @@ var require_iterators_core = __commonJS({
 // ../../node_modules/core-js/internals/set-to-string-tag.js
 var require_set_to_string_tag = __commonJS({
   "../../node_modules/core-js/internals/set-to-string-tag.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var defineProperty = require_object_define_property().f;
     var hasOwn = require_has_own_property();
     var wellKnownSymbol2 = require_well_known_symbol();
@@ -1389,6 +1484,7 @@ var require_set_to_string_tag = __commonJS({
 // ../../node_modules/core-js/internals/iterators.js
 var require_iterators = __commonJS({
   "../../node_modules/core-js/internals/iterators.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     module2.exports = {};
   }
 });
@@ -1397,6 +1493,7 @@ var require_iterators = __commonJS({
 var require_create_iterator_constructor = __commonJS({
   "../../node_modules/core-js/internals/create-iterator-constructor.js": function(exports2, module2) {
     "use strict";
+    init_kolmafia_polyfill();
     var IteratorPrototype = require_iterators_core().IteratorPrototype;
     var create = require_object_create();
     var createPropertyDescriptor = require_create_property_descriptor();
@@ -1420,6 +1517,7 @@ var require_create_iterator_constructor = __commonJS({
 // ../../node_modules/core-js/internals/to-string-tag-support.js
 var require_to_string_tag_support = __commonJS({
   "../../node_modules/core-js/internals/to-string-tag-support.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var wellKnownSymbol2 = require_well_known_symbol();
     var TO_STRING_TAG = wellKnownSymbol2("toStringTag");
     var test = {};
@@ -1431,6 +1529,7 @@ var require_to_string_tag_support = __commonJS({
 // ../../node_modules/core-js/internals/classof.js
 var require_classof = __commonJS({
   "../../node_modules/core-js/internals/classof.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var TO_STRING_TAG_SUPPORT = require_to_string_tag_support();
     var isCallable = require_is_callable();
     var classofRaw = require_classof_raw();
@@ -1456,6 +1555,7 @@ var require_classof = __commonJS({
 // ../../node_modules/core-js/internals/to-string.js
 var require_to_string = __commonJS({
   "../../node_modules/core-js/internals/to-string.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var classof2 = require_classof();
     var $String = String;
     module2.exports = function(argument) {
@@ -1469,6 +1569,7 @@ var require_to_string = __commonJS({
 // ../../node_modules/core-js/internals/is-regexp.js
 var require_is_regexp = __commonJS({
   "../../node_modules/core-js/internals/is-regexp.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var isObject = require_is_object();
     var classof2 = require_classof_raw();
     var wellKnownSymbol2 = require_well_known_symbol();
@@ -1484,6 +1585,7 @@ var require_is_regexp = __commonJS({
 var require_regexp_flags = __commonJS({
   "../../node_modules/core-js/internals/regexp-flags.js": function(exports2, module2) {
     "use strict";
+    init_kolmafia_polyfill();
     var anObject2 = require_an_object();
     module2.exports = function() {
       var that = anObject2(this);
@@ -1512,6 +1614,7 @@ var require_regexp_flags = __commonJS({
 // ../../node_modules/core-js/internals/regexp-get-flags.js
 var require_regexp_get_flags = __commonJS({
   "../../node_modules/core-js/internals/regexp-get-flags.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var call2 = require_function_call();
     var hasOwn = require_has_own_property();
     var isPrototypeOf = require_object_is_prototype_of();
@@ -1527,6 +1630,7 @@ var require_regexp_get_flags = __commonJS({
 // ../../node_modules/core-js/internals/is-constructor.js
 var require_is_constructor = __commonJS({
   "../../node_modules/core-js/internals/is-constructor.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var uncurryThis2 = require_function_uncurry_this();
     var fails2 = require_fails();
     var isCallable = require_is_callable();
@@ -1578,6 +1682,7 @@ var require_is_constructor = __commonJS({
 // ../../node_modules/core-js/internals/a-constructor.js
 var require_a_constructor = __commonJS({
   "../../node_modules/core-js/internals/a-constructor.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var isConstructor = require_is_constructor();
     var tryToString = require_try_to_string();
     var $TypeError2 = TypeError;
@@ -1592,6 +1697,7 @@ var require_a_constructor = __commonJS({
 // ../../node_modules/core-js/internals/species-constructor.js
 var require_species_constructor = __commonJS({
   "../../node_modules/core-js/internals/species-constructor.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var anObject2 = require_an_object();
     var aConstructor = require_a_constructor();
     var wellKnownSymbol2 = require_well_known_symbol();
@@ -1607,6 +1713,7 @@ var require_species_constructor = __commonJS({
 // ../../node_modules/core-js/internals/string-multibyte.js
 var require_string_multibyte = __commonJS({
   "../../node_modules/core-js/internals/string-multibyte.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var uncurryThis2 = require_function_uncurry_this();
     var toIntegerOrInfinity = require_to_integer_or_infinity();
     var toString2 = require_to_string();
@@ -1637,6 +1744,7 @@ var require_string_multibyte = __commonJS({
 var require_advance_string_index = __commonJS({
   "../../node_modules/core-js/internals/advance-string-index.js": function(exports2, module2) {
     "use strict";
+    init_kolmafia_polyfill();
     var charAt = require_string_multibyte().charAt;
     module2.exports = function(S, index, unicode) {
       return index + (unicode ? charAt(S, index).length : 1);
@@ -1647,6 +1755,7 @@ var require_advance_string_index = __commonJS({
 // ../../node_modules/core-js/internals/regexp-sticky-helpers.js
 var require_regexp_sticky_helpers = __commonJS({
   "../../node_modules/core-js/internals/regexp-sticky-helpers.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var fails2 = require_fails();
     var global2 = require_global();
     var $RegExp = global2.RegExp;
@@ -1674,6 +1783,7 @@ var require_regexp_sticky_helpers = __commonJS({
 // ../../node_modules/core-js/internals/regexp-unsupported-dot-all.js
 var require_regexp_unsupported_dot_all = __commonJS({
   "../../node_modules/core-js/internals/regexp-unsupported-dot-all.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var fails2 = require_fails();
     var global2 = require_global();
     var $RegExp = global2.RegExp;
@@ -1687,6 +1797,7 @@ var require_regexp_unsupported_dot_all = __commonJS({
 // ../../node_modules/core-js/internals/regexp-unsupported-ncg.js
 var require_regexp_unsupported_ncg = __commonJS({
   "../../node_modules/core-js/internals/regexp-unsupported-ncg.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var fails2 = require_fails();
     var global2 = require_global();
     var $RegExp = global2.RegExp;
@@ -1701,6 +1812,7 @@ var require_regexp_unsupported_ncg = __commonJS({
 var require_regexp_exec = __commonJS({
   "../../node_modules/core-js/internals/regexp-exec.js": function(exports2, module2) {
     "use strict";
+    init_kolmafia_polyfill();
     var call2 = require_function_call();
     var uncurryThis2 = require_function_uncurry_this();
     var toString2 = require_to_string();
@@ -1802,6 +1914,7 @@ var require_regexp_exec = __commonJS({
 // ../../node_modules/core-js/internals/regexp-exec-abstract.js
 var require_regexp_exec_abstract = __commonJS({
   "../../node_modules/core-js/internals/regexp-exec-abstract.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var call2 = require_function_call();
     var anObject2 = require_an_object();
     var isCallable = require_is_callable();
@@ -1823,9 +1936,198 @@ var require_regexp_exec_abstract = __commonJS({
   }
 });
 
+// ../../node_modules/@kunigi/string-compression/dist/string-compression.cjs.production.min.js
+var require_string_compression_cjs_production_min = __commonJS({
+  "../../node_modules/@kunigi/string-compression/dist/string-compression.cjs.production.min.js": function(exports2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    function e(e2, t2) {
+      (null == t2 || t2 > e2.length) && (t2 = e2.length);
+      for (var n2 = 0, r2 = new Array(t2); n2 < t2; n2++) {
+        r2[n2] = e2[n2];
+      }
+      return r2;
+    }
+    Object.defineProperty(exports2, "__esModule", {
+      value: true
+    });
+    var t = function t2(e2, _t) {
+      var n2 = new RegExp((_t[2] ? _t[2] : "") + _t[0] + "|" + ((_t[3] ? _t[3] : "") + _t[1]), "g");
+      return e2.replace(n2, function(e3) {
+        return e3 === _t[0] ? _t[1] : _t[0];
+      });
+    };
+    var n = function n2(e2, _n) {
+      void 0 === _n && (_n = 1);
+      var r2 = [['"', "'"], ["':", "!"], [",'", "~"], ["}", ")", "\\", "\\"], ["{", "(", "\\", "\\"]];
+      if (_n)
+        for (var o2 = 0; o2 < r2.length; o2++) {
+          e2 = t(e2, r2[o2]);
+        }
+      else
+        for (var i2 = r2.length; i2--; ) {
+          e2 = t(e2, r2[i2]);
+        }
+      return e2;
+    };
+    var r = function() {
+      function t2(e2) {
+        void 0 === e2 && (e2 = "_"), this.postfix = e2;
+      }
+      var r2 = t2.prototype;
+      return r2.execute = function(t3) {
+        var r3 = this.splitStartHeading(this.trimPostfix(t3)), o2 = r3[0];
+        if (r3.length > 1)
+          for (var i2, a2 = function(t4, n2) {
+            var r4 = "undefined" != typeof Symbol && t4[Symbol.iterator] || t4["@@iterator"];
+            if (r4)
+              return (r4 = r4.call(t4)).next.bind(r4);
+            if (Array.isArray(t4) || (r4 = function(t5, n3) {
+              if (t5) {
+                if ("string" == typeof t5)
+                  return e(t5, void 0);
+                var r5 = Object.prototype.toString.call(t5).slice(8, -1);
+                return "Object" === r5 && t5.constructor && (r5 = t5.constructor.name), "Map" === r5 || "Set" === r5 ? Array.from(t5) : "Arguments" === r5 || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r5) ? e(t5, void 0) : void 0;
+              }
+            }(t4))) {
+              r4 && (t4 = r4);
+              var o3 = 0;
+              return function() {
+                return o3 >= t4.length ? {
+                  done: true
+                } : {
+                  done: false,
+                  value: t4[o3++]
+                };
+              };
+            }
+            throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+          }(r3[1].split("")); !(i2 = a2()).done; ) {
+            var u2 = o2.split(i2.value);
+            o2 = u2.join(u2.pop());
+          }
+        return n(o2, 0);
+      }, r2.trimPostfix = function(e2) {
+        return e2.endsWith(this.postfix), e2.substring(0, e2.length - this.postfix.length);
+      }, r2.splitStartHeading = function(e2) {
+        return e2.split("");
+      }, t2;
+    }();
+    var o = function() {
+      function e2(e3) {
+        this.delimiterPattern = "", this.timesToIterate = 127, this.unescapedCharacters = "-_.!~*()", this.maxSubstringLength = (null == e3 ? void 0 : e3.maxSubstringLength) || 50;
+      }
+      var t2 = e2.prototype;
+      return t2.execute = function(e3) {
+        var t3 = this.seedCharacters();
+        e3 = (e3 = e3.replace(/\n/, "__")).replace(new RegExp(this.delimiterPattern, "g"), ""), e3 = n(e3), t3 = this.pickFromExtendedSetLast(t3);
+        var r2 = this.loop(e3, t3, this.countSubstrings(e3)), o2 = r2.a;
+        return r2.b.length && (o2 += this.delimiterPattern + r2.b), o2 + "_";
+      }, t2.seedCharacters = function() {
+        var e3 = this, t3 = [];
+        return function(e4, t4) {
+          for (var n2 = 0; n2 < e4; n2++) {
+            t4(n2);
+          }
+        }(this.timesToIterate, function(n2) {
+          (n2 >= 48 && n2 <= 57 || n2 >= 65 && n2 <= 90 || n2 >= 97 && n2 <= 122 || e3.unescapedCharacters.includes(String.fromCharCode(n2))) && t3.push(String.fromCharCode(n2));
+        }), t3;
+      }, t2.pickFromExtendedSetLast = function(e3) {
+        for (var t3 = 32; t3 < 255; ++t3) {
+          var n2 = String.fromCharCode(t3);
+          "\\" === n2 || e3.includes(n2) || e3.unshift(n2);
+        }
+        return e3;
+      }, t2.getByteLength = function(e3) {
+        return encodeURI(encodeURIComponent(e3)).replace(/%../g, "i").length;
+      }, t2.hasUnmatchedSurrogate = function(e3) {
+        var t3 = e3.charCodeAt(0), n2 = e3.charCodeAt(e3.length - 1);
+        return t3 >= 56320 && t3 <= 57343 || n2 >= 55296 && n2 <= 56319;
+      }, t2.countSubstrings = function(e3) {
+        for (var t3 = {}, n2 = 2; n2 < this.maxSubstringLength; n2++) {
+          for (var r2 = 0; r2 < e3.length - n2; ++r2) {
+            var o2 = e3.substr(r2, n2);
+            if (!t3[o2] && !this.hasUnmatchedSurrogate(o2)) {
+              for (var i2 = 1, a2 = e3.indexOf(o2, r2 + n2); a2 >= 0; ++i2) {
+                a2 = e3.indexOf(o2, a2 + n2);
+              }
+              i2 > 1 && (t3[o2] = i2);
+            }
+          }
+        }
+        return t3;
+      }, t2.loop = function(e3, t3, n2) {
+        for (var r2 = t3.length, o2 = "", i2 = this.getByteLength(this.delimiterPattern); ; ) {
+          for (; r2-- && e3.includes(t3[r2]); ) {
+            ;
+          }
+          if (r2 < 0)
+            break;
+          var a2 = t3[r2], u2 = void 0, s2 = 0, c2 = this.getByteLength(a2);
+          for (var d in n2) {
+            var l = n2[d], f = (l - 1) * this.getByteLength(d) - (l + 1) * c2;
+            o2.length || (f -= i2), f <= 0 ? delete n2[d] : f > s2 && (u2 = d, s2 = f);
+          }
+          if (!u2)
+            break;
+          e3 = e3.split(u2).join(a2) + a2 + u2, o2 = a2 + o2;
+          var h = {};
+          for (var p in n2) {
+            for (var g = p.split(u2).join(a2), v = 0, m = e3.indexOf(g); m >= 0; ++v) {
+              m = e3.indexOf(g, m + g.length);
+            }
+            v > 1 && (h[g] = v);
+          }
+          n2 = h;
+        }
+        return {
+          a: e3,
+          b: o2
+        };
+      }, e2;
+    }();
+    var i = "undefined" != typeof window && window.encodeURI && window.decodeURI && window.encodeURIComponent && window.decodeURIComponent ? window : null !== typeof global && global.encodeURI && global.decodeURI && global.encodeURIComponent && global.decodeURIComponent ? global : null;
+    if (!i)
+      throw Error("string-compression cannot be used because the expected encode and decode API's seem unavailable.");
+    var a = new o({
+      maxSubstringLength: 50
+    });
+    var u = new r();
+    var s = function s2(e2) {
+      return a.execute(e2);
+    };
+    var c = function c2(e2) {
+      return u.execute(e2);
+    };
+    exports2.decode = c, exports2.decodeURI = function(e2) {
+      return c(i.decodeURI(e2));
+    }, exports2.decodeURIComponent = function(e2) {
+      return c(i.decodeURIComponent(e2));
+    }, exports2.encode = s, exports2.encodeURI = function(e2) {
+      return i.encodeURI(s(e2));
+    }, exports2.encodeURIComponent = function(e2) {
+      return i.encodeURIComponent(s(e2));
+    };
+  }
+});
+
+// ../../node_modules/@kunigi/string-compression/dist/index.js
+var require_dist = __commonJS({
+  "../../node_modules/@kunigi/string-compression/dist/index.js": function(exports2, module2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    if (true) {
+      module2.exports = require_string_compression_cjs_production_min();
+    } else {
+      module2.exports = null;
+    }
+  }
+});
+
 // ../../node_modules/he/he.js
 var require_he = __commonJS({
   "../../node_modules/he/he.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     (function(root) {
       var freeExports = typeof exports2 == "object" && exports2;
       var freeModule = typeof module2 == "object" && module2 && module2.exports == freeExports && module2;
@@ -5838,6 +6140,7 @@ var require_he = __commonJS({
 // ../../node_modules/core-js/internals/object-to-array.js
 var require_object_to_array = __commonJS({
   "../../node_modules/core-js/internals/object-to-array.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var DESCRIPTORS = require_descriptors();
     var uncurryThis2 = require_function_uncurry_this();
     var objectKeys = require_object_keys();
@@ -5872,6 +6175,7 @@ var require_object_to_array = __commonJS({
 // ../../node_modules/core-js/internals/is-array.js
 var require_is_array = __commonJS({
   "../../node_modules/core-js/internals/is-array.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var classof2 = require_classof_raw();
     module2.exports = Array.isArray || function isArray(argument) {
       return classof2(argument) == "Array";
@@ -5882,6 +6186,7 @@ var require_is_array = __commonJS({
 // ../../node_modules/core-js/internals/does-not-exceed-safe-integer.js
 var require_does_not_exceed_safe_integer = __commonJS({
   "../../node_modules/core-js/internals/does-not-exceed-safe-integer.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var $TypeError2 = TypeError;
     var MAX_SAFE_INTEGER = 9007199254740991;
     module2.exports = function(it) {
@@ -5895,6 +6200,7 @@ var require_does_not_exceed_safe_integer = __commonJS({
 // ../../node_modules/core-js/internals/function-bind-context.js
 var require_function_bind_context = __commonJS({
   "../../node_modules/core-js/internals/function-bind-context.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var uncurryThis2 = require_function_uncurry_this();
     var aCallable = require_a_callable();
     var NATIVE_BIND = require_function_bind_native();
@@ -5912,6 +6218,7 @@ var require_function_bind_context = __commonJS({
 var require_flatten_into_array = __commonJS({
   "../../node_modules/core-js/internals/flatten-into-array.js": function(exports2, module2) {
     "use strict";
+    init_kolmafia_polyfill();
     var isArray = require_is_array();
     var lengthOfArrayLike = require_length_of_array_like();
     var doesNotExceedSafeInteger = require_does_not_exceed_safe_integer();
@@ -5944,6 +6251,7 @@ var require_flatten_into_array = __commonJS({
 // ../../node_modules/core-js/internals/array-species-constructor.js
 var require_array_species_constructor = __commonJS({
   "../../node_modules/core-js/internals/array-species-constructor.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var isArray = require_is_array();
     var isConstructor = require_is_constructor();
     var isObject = require_is_object();
@@ -5970,6 +6278,7 @@ var require_array_species_constructor = __commonJS({
 // ../../node_modules/core-js/internals/array-species-create.js
 var require_array_species_create = __commonJS({
   "../../node_modules/core-js/internals/array-species-create.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var arraySpeciesConstructor = require_array_species_constructor();
     module2.exports = function(originalArray, length) {
       return new (arraySpeciesConstructor(originalArray))(length === 0 ? 0 : length);
@@ -5981,6 +6290,7 @@ var require_array_species_create = __commonJS({
 var require_es_array_flat = __commonJS({
   "../../node_modules/core-js/modules/es.array.flat.js": function() {
     "use strict";
+    init_kolmafia_polyfill();
     var $4 = require_export();
     var flattenIntoArray = require_flatten_into_array();
     var toObject = require_to_object();
@@ -6006,6 +6316,7 @@ var require_es_array_flat = __commonJS({
 // ../../node_modules/core-js/internals/add-to-unscopables.js
 var require_add_to_unscopables = __commonJS({
   "../../node_modules/core-js/internals/add-to-unscopables.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var wellKnownSymbol2 = require_well_known_symbol();
     var create = require_object_create();
     var defineProperty = require_object_define_property().f;
@@ -6026,6 +6337,7 @@ var require_add_to_unscopables = __commonJS({
 // ../../node_modules/core-js/modules/es.array.unscopables.flat.js
 var require_es_array_unscopables_flat = __commonJS({
   "../../node_modules/core-js/modules/es.array.unscopables.flat.js": function() {
+    init_kolmafia_polyfill();
     var addToUnscopables = require_add_to_unscopables();
     addToUnscopables("flat");
   }
@@ -6034,6 +6346,7 @@ var require_es_array_unscopables_flat = __commonJS({
 // ../../node_modules/core-js/internals/entry-unbind.js
 var require_entry_unbind = __commonJS({
   "../../node_modules/core-js/internals/entry-unbind.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var global2 = require_global();
     var uncurryThis2 = require_function_uncurry_this();
     module2.exports = function(CONSTRUCTOR, METHOD) {
@@ -6045,6 +6358,7 @@ var require_entry_unbind = __commonJS({
 // ../../node_modules/core-js/es/array/flat.js
 var require_flat = __commonJS({
   "../../node_modules/core-js/es/array/flat.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     require_es_array_flat();
     require_es_array_unscopables_flat();
     var entryUnbind = require_entry_unbind();
@@ -6055,6 +6369,7 @@ var require_flat = __commonJS({
 // ../../node_modules/core-js/stable/array/flat.js
 var require_flat2 = __commonJS({
   "../../node_modules/core-js/stable/array/flat.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var parent = require_flat();
     module2.exports = parent;
   }
@@ -6063,6 +6378,7 @@ var require_flat2 = __commonJS({
 // ../../node_modules/core-js/actual/array/flat.js
 var require_flat3 = __commonJS({
   "../../node_modules/core-js/actual/array/flat.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var parent = require_flat2();
     module2.exports = parent;
   }
@@ -6071,6 +6387,7 @@ var require_flat3 = __commonJS({
 // ../../node_modules/core-js/full/array/flat.js
 var require_flat4 = __commonJS({
   "../../node_modules/core-js/full/array/flat.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var parent = require_flat3();
     module2.exports = parent;
   }
@@ -6079,6 +6396,7 @@ var require_flat4 = __commonJS({
 // ../../node_modules/core-js/features/array/flat.js
 var require_flat5 = __commonJS({
   "../../node_modules/core-js/features/array/flat.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     module2.exports = require_flat4();
   }
 });
@@ -6086,6 +6404,7 @@ var require_flat5 = __commonJS({
 // ../../node_modules/core-js/internals/is-array-iterator-method.js
 var require_is_array_iterator_method = __commonJS({
   "../../node_modules/core-js/internals/is-array-iterator-method.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var wellKnownSymbol2 = require_well_known_symbol();
     var Iterators = require_iterators();
     var ITERATOR = wellKnownSymbol2("iterator");
@@ -6099,6 +6418,7 @@ var require_is_array_iterator_method = __commonJS({
 // ../../node_modules/core-js/internals/get-iterator-method.js
 var require_get_iterator_method = __commonJS({
   "../../node_modules/core-js/internals/get-iterator-method.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var classof2 = require_classof();
     var getMethod2 = require_get_method();
     var Iterators = require_iterators();
@@ -6114,6 +6434,7 @@ var require_get_iterator_method = __commonJS({
 // ../../node_modules/core-js/internals/get-iterator.js
 var require_get_iterator = __commonJS({
   "../../node_modules/core-js/internals/get-iterator.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var call2 = require_function_call();
     var aCallable = require_a_callable();
     var anObject2 = require_an_object();
@@ -6132,6 +6453,7 @@ var require_get_iterator = __commonJS({
 // ../../node_modules/core-js/internals/iterator-close.js
 var require_iterator_close = __commonJS({
   "../../node_modules/core-js/internals/iterator-close.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var call2 = require_function_call();
     var anObject2 = require_an_object();
     var getMethod2 = require_get_method();
@@ -6163,6 +6485,7 @@ var require_iterator_close = __commonJS({
 // ../../node_modules/core-js/internals/iterate.js
 var require_iterate = __commonJS({
   "../../node_modules/core-js/internals/iterate.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
     var bind = require_function_bind_context();
     var call2 = require_function_call();
     var anObject2 = require_an_object();
@@ -6236,6 +6559,7 @@ var require_iterate = __commonJS({
 var require_create_property = __commonJS({
   "../../node_modules/core-js/internals/create-property.js": function(exports2, module2) {
     "use strict";
+    init_kolmafia_polyfill();
     var toPropertyKey = require_to_property_key();
     var definePropertyModule = require_object_define_property();
     var createPropertyDescriptor = require_create_property_descriptor();
@@ -6249,7 +6573,11 @@ var require_create_property = __commonJS({
   }
 });
 
+// src/greenbox.ts
+init_kolmafia_polyfill();
+
 // ../../node_modules/core-js/modules/es.string.match-all.js
+init_kolmafia_polyfill();
 var $ = require_export();
 var call = require_function_call();
 var uncurryThis = require_function_uncurry_this();
@@ -6362,13 +6690,839 @@ $({
 });
 IS_PURE || MATCH_ALL in RegExpPrototype || defineBuiltIn(RegExpPrototype, MATCH_ALL, $matchAll);
 
-// ../greenbox-data/lib/skills.ts
-var import_he = __toESM(require_he());
+// ../greenbox-data/lib/index.ts
+init_kolmafia_polyfill();
+var import_string_compression = __toESM(require_dist());
 
 // ../greenbox-data/lib/familiars.ts
+init_kolmafia_polyfill();
+var import_he = __toESM(require_he());
+
+// ../greenbox-data/lib/utils.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/lib/familiars.ts
+var FamiliarStatus;
+(function(FamiliarStatus2) {
+  FamiliarStatus2[FamiliarStatus2["NONE"] = 0] = "NONE";
+  FamiliarStatus2[FamiliarStatus2["HATCHLING"] = 1] = "HATCHLING";
+  FamiliarStatus2[FamiliarStatus2["TERRARIUM"] = 2] = "TERRARIUM";
+})(FamiliarStatus || (FamiliarStatus = {}));
+var compressFamiliars = function(familiars) {
+  return familiars.sort(function(a, b) {
+    return a[0] - b[0];
+  }).reduce(function(r, familiar) {
+    return "".concat(r).concat("0".repeat(familiar[0] - r.length - 1)).concat(familiar[1]).concat(familiar[2] ? "*" : "");
+  }, "").replace(/0+$/, "");
+};
+
+// ../greenbox-data/lib/skills.ts
+init_kolmafia_polyfill();
 var import_he2 = __toESM(require_he());
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o)
+    return;
+  if (typeof o === "string")
+    return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor)
+    n = o.constructor.name;
+  if (n === "Map" || n === "Set")
+    return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+    return _arrayLikeToArray(o, minLen);
+}
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length)
+    len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+  return arr2;
+}
+function _iterableToArrayLimit(arr, i) {
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+  if (_i == null)
+    return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _s, _e;
+  try {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+      if (i && _arr.length === i)
+        break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null)
+        _i["return"]();
+    } finally {
+      if (_d)
+        throw _e;
+    }
+  }
+  return _arr;
+}
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr))
+    return arr;
+}
+var SkillStatus;
+(function(SkillStatus2) {
+  SkillStatus2[SkillStatus2["NONE"] = 0] = "NONE";
+  SkillStatus2[SkillStatus2["SOFTCORE"] = 1] = "SOFTCORE";
+  SkillStatus2[SkillStatus2["HARDCORE"] = 2] = "HARDCORE";
+})(SkillStatus || (SkillStatus = {}));
+var isPermable = function(id) {
+  if (id < 10)
+    return false;
+  if (id > 20 && id <= 27)
+    return false;
+  if (id > 63 && id <= 73)
+    return false;
+  if (id > 7175 && id < 7181)
+    return false;
+  switch (id) {
+    case 91:
+    case 116:
+      return false;
+    case 49:
+    case 50:
+    case 51:
+    case 52:
+    case 3024:
+      return false;
+    case 6019:
+      return false;
+    case 17047:
+      return true;
+    case 156:
+      return false;
+    case 174:
+      return false;
+  }
+  switch (Math.floor(id / 1e3)) {
+    case 7:
+    case 8:
+    case 11:
+    case 12:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+    case 18:
+    case 19:
+    case 20:
+    case 21:
+    case 22:
+    case 23:
+    case 24:
+    case 25:
+    case 27:
+      return false;
+  }
+  return true;
+};
+var compressSkills = function(skills) {
+  return skills.sort(function(a, b) {
+    return a[0] - b[0];
+  }).reduce(function(acc, skill, i) {
+    var _acc = _slicedToArray(acc, 2), r = _acc[0], currentBlock = _acc[1];
+    var block = Math.floor(skill[0] / 1e3);
+    if (block > currentBlock) {
+      r += ",".repeat(block - currentBlock);
+      currentBlock = block;
+    }
+    var zeros = "0".repeat(Math.max(0, skill[0] - block * 1e3 - (r.length - r.lastIndexOf(","))));
+    r += zeros;
+    r += skill[1];
+    if (skill[2] > 0) {
+      r += "(".concat(skill[2], ")");
+    }
+    return [r, currentBlock];
+  }, ["", 0])[0].replace(/0+($|,)/, "$1");
+};
+
+// ../greenbox-data/lib/tattoos.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/data/tattoos.ts
+init_kolmafia_polyfill();
+var tattoos_default = [{
+  name: "8-Bit Finery",
+  image: "swordtat",
+  outfit: 15
+}, {
+  name: "Aeroutfit",
+  image: "aerotat",
+  outfit: 118
+}, {
+  name: "Animelf Apparel",
+  image: "animelftat",
+  outfit: 89
+}, {
+  name: "Antique Arms And Armor",
+  image: "armortat",
+  outfit: 29
+}, {
+  name: "Antique Nutcracker Outfit",
+  image: "nutctat",
+  outfit: 157
+}, {
+  name: "Arboreal Raiment",
+  image: "wreathtat",
+  outfit: 25
+}, {
+  name: "Arrrbor Day Apparrrrrel",
+  image: "arbortat",
+  outfit: 48
+}, {
+  name: "Bakelite Brigandine",
+  image: "baketat",
+  outfit: 117
+}, {
+  name: "Bauxite Baubles",
+  image: "bauxtat",
+  outfit: 144
+}, {
+  name: "Bits o' Honey",
+  image: "honeytat",
+  outfit: 81
+}, {
+  name: "Black Armaments",
+  image: "blacktat",
+  outfit: 35
+}, {
+  name: "Blasphemous Bedizenment",
+  image: "brimtat",
+  outfit: 75
+}, {
+  name: "Bounty-Hunting Rig",
+  image: "meattat",
+  outfit: 34
+}, {
+  name: "Bow Tux",
+  image: "bowtat",
+  outfit: 19
+}, {
+  name: "BRICKOfig Outfit",
+  image: "minifigtat",
+  outfit: 70
+}, {
+  name: "Brogre Brouture",
+  image: "brogretat",
+  outfit: 106
+}, {
+  name: "Bugbear Costume",
+  image: "bugbear",
+  outfit: 1
+}, {
+  name: "Ceramic Suit",
+  image: "porctat",
+  outfit: 114
+}, {
+  name: "Chalk Chostume",
+  image: "chalktat",
+  outfit: 145
+}, {
+  name: "Cheerful Reindeer Suit",
+  image: "reintat",
+  outfit: 132
+}, {
+  name: "Cloaca-Cola Uniform",
+  image: "cola1tat",
+  outfit: 23
+}, {
+  name: "Clockwork Apparatus",
+  image: "clocktat",
+  outfit: 20
+}, {
+  name: "Clothing of Loathing",
+  image: "loathetat",
+  outfit: 94
+}, {
+  name: "Cold Comforts",
+  image: "doubicetat",
+  outfit: 80
+}, {
+  name: "Cool Irons",
+  image: "dvotat8",
+  outfit: 102
+}, {
+  name: "Cooper's Couture",
+  image: "barreltat",
+  outfit: 126
+}, {
+  name: "Crappy Mer-kin Disguise",
+  image: "merkintat",
+  outfit: 59
+}, {
+  name: "Crimbo Duds",
+  image: "pressietat",
+  outfit: 11
+}, {
+  name: "Crimborg Assault Armor",
+  image: "halotat",
+  outfit: 40
+}, {
+  name: "Crimbot Crimboutfit",
+  image: "zaptat",
+  outfit: 111
+}, {
+  name: "Cursed Skeleton Pirate Costume",
+  image: "skelepiratetat",
+  outfit: 155
+}, {
+  name: "Cursed Zombie Pirate Costume",
+  image: "zompirtat",
+  outfit: 39
+}, {
+  name: "Dark Bro's Vestments",
+  image: "necbrotat",
+  outfit: 83
+}, {
+  name: "Dinsey's Exoskeleton",
+  image: "wdbraintat",
+  outfit: 123
+}, {
+  name: "Dire Drifter Duds",
+  image: "spohobotat",
+  outfit: 45
+}, {
+  name: "Dreadful Bugbear Suit",
+  image: "dvotat2",
+  outfit: 96
+}, {
+  name: "Dreadful Ghost Suit",
+  image: "dvotat5",
+  outfit: 99
+}, {
+  name: "Dreadful Pajamas",
+  image: "dvotat1",
+  outfit: 95
+}, {
+  name: "Dreadful Skeleton Suit",
+  image: "dvotat6",
+  outfit: 101
+}, {
+  name: "Dreadful Vampire Suit",
+  image: "dvotat7",
+  outfit: 100
+}, {
+  name: "Dreadful Werewolf Suit",
+  image: "dvotat3",
+  outfit: 97
+}, {
+  name: "Dreadful Zombie Suit",
+  image: "dvotat4",
+  outfit: 98
+}, {
+  name: "Dwarvish War Uniform",
+  image: "dwarvish",
+  outfit: 50
+}, {
+  name: "Dyspepsi-Cola Uniform",
+  image: "cola2tat",
+  outfit: 24
+}, {
+  name: "El Vibrato Relics",
+  image: "elvtat",
+  outfit: 41
+}, {
+  name: "Eldritch Equipage",
+  image: "elditchtat",
+  outfit: 128
+}, {
+  name: "Encephalic Ensemble",
+  image: "jfishtat",
+  outfit: 27
+}, {
+  name: "eXtreme Cold-Weather Gear",
+  image: "coldgear",
+  outfit: 7
+}, {
+  name: "Fancy Tux",
+  image: "blacktie",
+  outfit: 72
+}, {
+  name: "FantasyRealm Thief's Outfit",
+  image: "frtat3",
+  outfit: 139
+}, {
+  name: "FantasyRealm Warrior's Outfit",
+  image: "frtat1",
+  outfit: 137
+}, {
+  name: "FantasyRealm Wizard's Outfit",
+  image: "frtat2",
+  outfit: 138
+}, {
+  name: "Fiberglass Finery",
+  image: "fibertat",
+  outfit: 121
+}, {
+  name: "Filthy Hippy Disguise",
+  image: "hippy",
+  outfit: 2
+}, {
+  name: "Flagstone Finery",
+  image: "flagstonetat",
+  outfit: 152
+}, {
+  name: "Floaty Fatigues",
+  image: "rock_tat",
+  outfit: 56
+}, {
+  name: "Frat Boy Ensemble",
+  image: "fratboy",
+  outfit: 3
+}, {
+  name: "Frat Warrior Fatigues",
+  image: "warfrattat",
+  outfit: 33
+}, {
+  name: "Frigid Northlands Garb",
+  image: "nosealtat",
+  outfit: 63
+}, {
+  name: "Furry Suit",
+  image: "losertat",
+  outfit: 14
+}, {
+  name: "Gabardine Guise",
+  image: "gabtat",
+  outfit: 120
+}, {
+  name: "Genie Garments",
+  image: "genietat",
+  outfit: 135
+}, {
+  name: "Ghast Iron Gear",
+  image: "hotghosttat",
+  outfit: 105
+}, {
+  name: "Gingerbread Best",
+  image: "gingertat",
+  outfit: 129
+}, {
+  name: "Glad Bag Glad Rags",
+  image: "recyctat",
+  outfit: 28
+}, {
+  name: "Gladiatorial Glad Rags",
+  image: "spqktat",
+  outfit: 108
+}, {
+  name: "Gnauga Hides",
+  image: "gnaugatat",
+  outfit: 21
+}, {
+  name: "Government-Issued Garb",
+  image: "vwgovttat",
+  outfit: 143
+}, {
+  name: "Grass Guise",
+  image: "eggtat",
+  outfit: 26
+}, {
+  name: "Grimy Reaper's Vestments",
+  image: "reapertat",
+  outfit: 53
+}, {
+  name: "Guzzlr Uniform",
+  image: "guzzlrtat",
+  outfit: 159
+}, {
+  name: "Hateful Habiliment",
+  image: "yogtat",
+  outfit: 93
+}, {
+  name: "High-Radiation Mining Gear",
+  image: "radminetat",
+  outfit: 110
+}, {
+  name: "Hodgman's Regal Frippery",
+  image: "hodgmantat",
+  outfit: 47
+}, {
+  name: "Hot and Cold Running Ninja Suit",
+  image: "ninja",
+  outfit: 6
+}, {
+  name: "Hot Daub Ensemble",
+  image: "claytat",
+  outfit: 86
+}, {
+  name: "Hyperborean Hobo Habiliments",
+  image: "colhobotat",
+  outfit: 43
+}, {
+  name: "Knight's Armor",
+  image: "bknight",
+  outfit: 71
+}, {
+  name: "Knob Goblin Elite Guard Uniform",
+  image: "eliteguard",
+  outfit: 5
+}, {
+  name: "Knob Goblin Harem Girl Disguise",
+  image: "haremgirl",
+  outfit: 4
+}, {
+  name: "Lathed Livery",
+  image: "lathetat",
+  outfit: 160
+}, {
+  name: "Legendary Regalia of the Chelonian Overlord",
+  image: "revclass2",
+  outfit: 65
+}, {
+  name: "Legendary Regalia of the Groovelord",
+  image: "revclass5",
+  outfit: 68
+}, {
+  name: "Legendary Regalia of the Master Squeezeboxer",
+  image: "revclass6",
+  outfit: 69
+}, {
+  name: "Legendary Regalia of the Pasta Master",
+  image: "revclass3",
+  outfit: 66
+}, {
+  name: "Legendary Regalia of the Saucemaestro",
+  image: "revclass4",
+  outfit: 67
+}, {
+  name: "Legendary Regalia of the Seal Crusher",
+  image: "revclass1",
+  outfit: 64
+}, {
+  name: "Loofah Loungewear ",
+  image: "loofahtat",
+  outfit: 151
+}, {
+  name: "Luniform",
+  image: "lunartat",
+  outfit: 82
+}, {
+  name: "Marble Materials",
+  image: "marbletat",
+  outfit: 146
+}, {
+  name: "Mer-kin Gladiatorial Gear",
+  image: "merkgtat",
+  outfit: 60
+}, {
+  name: "Mer-kin Scholar's Vestments",
+  image: "merkstat",
+  outfit: 61
+}, {
+  name: "Meteor Masquerade",
+  image: "meteortat",
+  outfit: 131
+}, {
+  name: "Miming Paraphernalia",
+  image: "mimetat",
+  outfit: 133
+}, {
+  name: "Mining Gear",
+  image: "miner",
+  outfit: 8
+}, {
+  name: "Mushroom Masquerade",
+  image: "mushtat",
+  outfit: 158
+}, {
+  name: "Mutant Couture",
+  image: "dnatat",
+  outfit: 49
+}, {
+  name: "Mutant Parts Apparel",
+  image: "vwmuttat",
+  outfit: 142
+}, {
+  name: "Oil Rig",
+  image: "oiltat",
+  outfit: 88
+}, {
+  name: "OK Lumberjack Outfit",
+  image: "canadiatat",
+  outfit: 17
+}, {
+  name: "Palmist Paraphernalia",
+  image: "palmtat",
+  outfit: 36
+}, {
+  name: "Paperclippery",
+  image: "cliptat",
+  outfit: 79
+}, {
+  name: "Paraffinalia",
+  image: "para_tat",
+  outfit: 147
+}, {
+  name: "Pinata Provisions",
+  image: "rad_tat",
+  outfit: 87
+}, {
+  name: "PirateRealm Assortment",
+  image: "prealmtat",
+  outfit: 153
+}, {
+  name: "Pork Elf Prizes",
+  image: "pigirontat",
+  outfit: 52
+}, {
+  name: "Primitive Radio Duds",
+  image: "vol_tat",
+  outfit: 55
+}, {
+  name: "Psychic Enpsemble",
+  image: "psychictat",
+  outfit: 136
+}, {
+  name: "Pyretic Panhandler Paraphernalia",
+  image: "hothobotat",
+  outfit: 42
+}, {
+  name: "Pyrotechnic Paper Paraphernalia",
+  image: "fpmtat",
+  outfit: 134
+}, {
+  name: "Radio Free Regalia",
+  image: "radiotat",
+  outfit: 18
+}, {
+  name: "Raiments of the Final Boss",
+  image: "bosstat",
+  outfit: 91
+}, {
+  name: "Roy Orbison Disguise",
+  image: "orbisontat",
+  outfit: 38
+}, {
+  name: "Seafaring Suit",
+  image: "sailortat",
+  outfit: 90
+}, {
+  name: "Shallow Sea Fishing Outfit",
+  image: "fishingtat",
+  outfit: 154
+}, {
+  name: "Slime Enslamble",
+  image: "vwslimetat",
+  outfit: 141
+}, {
+  name: "Slimesuit",
+  image: "slimetat",
+  outfit: 54
+}, {
+  name: "Smoked Pottery",
+  image: "potterytat",
+  outfit: 76
+}, {
+  name: "SMOOCH Army Uniform",
+  image: "smoochtat",
+  outfit: 125
+}, {
+  name: "Snakeskin Suit",
+  image: "vwsnaketat",
+  outfit: 140
+}, {
+  name: "Snowman Suit",
+  image: "snowmantat",
+  outfit: 62
+}, {
+  name: "Space Beast Furs",
+  image: "sbeasttat",
+  outfit: 107
+}, {
+  name: "Spant Armor",
+  image: "spantat",
+  outfit: 130
+}, {
+  name: "Spelunker's Gear",
+  image: "spelunktat",
+  outfit: 115
+}, {
+  name: "Stained Glass Suit",
+  image: "stainedtat",
+  outfit: 150
+}, {
+  name: "Star Garb",
+  image: "startat",
+  outfit: 12
+}, {
+  name: "Sucker Samurai Suit",
+  image: "lollitat",
+  outfit: 84
+}, {
+  name: "Swashbuckling Getup",
+  image: "pirate",
+  outfit: 9
+}, {
+  name: "Synthetic Suit",
+  image: "polytat",
+  outfit: 113
+}, {
+  name: "Tapered Threads",
+  image: "ducttat",
+  outfit: 37
+}, {
+  name: "Tawdry Tramp Togs",
+  image: "slehobotat",
+  outfit: 46
+}, {
+  name: "Terra Cotta Tackle",
+  image: "tc_tat",
+  outfit: 148
+}, {
+  name: "Terrifying Clown Suit",
+  image: "clown",
+  outfit: 10
+}, {
+  name: "Terrycloth Tackle",
+  image: "toweltat",
+  outfit: 30
+}, {
+  name: "The Emperor's New Clothes",
+  image: "emperortat",
+  outfit: 124
+}, {
+  name: "The Jokester's Costume",
+  image: "jokestertat",
+  outfit: 127
+}, {
+  name: "Thousandth Birthday Suit",
+  image: "skeletat",
+  outfit: 77
+}, {
+  name: "Time Trappings",
+  image: "hourtat",
+  outfit: 22
+}, {
+  name: "Topiaria",
+  image: "topitat",
+  outfit: 112
+}, {
+  name: "Toxic Togs",
+  image: "toxictat",
+  outfit: 122
+}, {
+  name: "Transparent Trappings",
+  image: "plexitat",
+  outfit: 73
+}, {
+  name: "Tropical Crimbo Duds",
+  image: "tropictat",
+  outfit: 31
+}, {
+  name: "Unblemished Uniform",
+  image: "staintat",
+  outfit: 74
+}, {
+  name: "Uncle Hobo's Rags",
+  image: "crimbeard",
+  outfit: 78
+}, {
+  name: "Velour Vestments",
+  image: "velourtat",
+  outfit: 149
+}, {
+  name: "Vestments of the Treeslayer",
+  image: "arborween",
+  outfit: 58
+}, {
+  name: "Vile Vagrant Vestments",
+  image: "stehobotat",
+  outfit: 44
+}, {
+  name: "Violent Vestments",
+  image: "shubtat",
+  outfit: 92
+}, {
+  name: "War Hippy Fatigues",
+  image: "warhiptat",
+  outfit: 32
+}, {
+  name: "Warbear Dress Armor",
+  image: "bearclawtat",
+  outfit: 103
+}, {
+  name: "Wax Wardrobe",
+  image: "crayontat",
+  outfit: 85
+}, {
+  name: "Whittled Wearables",
+  image: "whittletat",
+  outfit: 156
+}, {
+  name: "Wicker Wear",
+  image: "wickertat",
+  outfit: 116
+}, {
+  name: "Workoutfit",
+  image: "workouttat",
+  outfit: 104
+}, {
+  name: "Wrought Wrappings",
+  image: "wroughttat",
+  outfit: 119
+}, {
+  name: "Wumpus-Hair Wardrobe",
+  image: "wumpustat",
+  outfit: 51
+}, {
+  name: "Xiblaxian Stealth Suit",
+  image: "xiblaxtat",
+  outfit: 109
+}, {
+  name: "Yendorian Finery",
+  image: "elbereth",
+  outfit: 16
+}];
+
+// ../greenbox-data/lib/tattoos.ts
+var TattooStatus;
+(function(TattooStatus2) {
+  TattooStatus2[TattooStatus2["NONE"] = 0] = "NONE";
+  TattooStatus2[TattooStatus2["HAVE_OUTFIT"] = 1] = "HAVE_OUTFIT";
+  TattooStatus2[TattooStatus2["HAVE"] = 2] = "HAVE";
+})(TattooStatus || (TattooStatus = {}));
+function loadTattoos() {
+  return tattoos_default;
+}
+function getOutfitTattoos(tattoos) {
+  return tattoos.filter(function(t) {
+    return t.outfit !== void 0;
+  }).sort(function(a, b) {
+    return a.outfit - b.outfit;
+  });
+}
+var compressOutfitTattoos = function(tattoos) {
+  return tattoos.sort(function(a, b) {
+    return a[0] - b[0];
+  }).reduce(function(r, tattoo) {
+    return "".concat(r).concat("0".repeat(tattoo[0] - r.length - 1)).concat(tattoo[1]);
+  }, "").replace(/0+$/, "");
+};
+
+// ../greenbox-data/lib/trophies.ts
+init_kolmafia_polyfill();
 
 // ../greenbox-data/data/trophies.ts
+init_kolmafia_polyfill();
 var trophies_default = [{
   id: 1,
   name: "Little Boat",
@@ -7012,14 +8166,45 @@ var trophies_default = [{
 }];
 
 // ../greenbox-data/lib/trophies.ts
+var TrophyStatus;
+(function(TrophyStatus2) {
+  TrophyStatus2[TrophyStatus2["NONE"] = 0] = "NONE";
+  TrophyStatus2[TrophyStatus2["HAVE"] = 1] = "HAVE";
+})(TrophyStatus || (TrophyStatus = {}));
 function loadTrophies() {
   return trophies_default;
+}
+var compressTrophies = function(trophies) {
+  return trophies.sort(function(a, b) {
+    return a[0] - b[0];
+  }).reduce(function(r, trophy) {
+    return "".concat(r).concat("0".repeat(trophy[0] - r.length - 1)).concat(trophy[1]);
+  }, "").replace(/0+$/, "");
+};
+
+// ../greenbox-data/lib/index.ts
+function compress(raw) {
+  var compressed = {
+    skills: compressSkills(raw.skills),
+    familiars: compressFamiliars(raw.familiars),
+    trophies: compressTrophies(raw.trophies),
+    outfitTattoos: compressOutfitTattoos(raw.outfitTattoos)
+  };
+  var compressedString = JSON.stringify(compressed);
+  return (0, import_string_compression.encodeURI)(compressedString);
 }
 
 // src/greenbox.ts
 var import_kolmafia4 = require("kolmafia");
 
+// ../../node_modules/libram/dist/index.js
+init_kolmafia_polyfill();
+
+// ../../node_modules/libram/dist/lib.js
+init_kolmafia_polyfill();
+
 // ../../node_modules/core-js/modules/es.object.entries.js
+init_kolmafia_polyfill();
 var $2 = require_export();
 var $entries = require_object_to_array().entries;
 $2({
@@ -7120,8 +8305,10 @@ __export(property_exports, {
     return withProperty;
   }
 });
+init_kolmafia_polyfill();
 
 // ../../node_modules/core-js/modules/es.object.from-entries.js
+init_kolmafia_polyfill();
 var $3 = require_export();
 var iterate = require_iterate();
 var createProperty = require_create_property();
@@ -7143,7 +8330,11 @@ $3({
 // ../../node_modules/libram/dist/property.js
 var import_kolmafia = require("kolmafia");
 
+// ../../node_modules/libram/dist/propertyTyping.js
+init_kolmafia_polyfill();
+
 // ../../node_modules/libram/dist/propertyTypes.js
+init_kolmafia_polyfill();
 var booleanProperties = ["addChatCommandLine", "addCreationQueue", "addStatusBarToFrames", "allowCloseableDesktopTabs", "allowNegativeTally", "allowNonMoodBurning", "allowSummonBurning", "autoHighlightOnFocus", "broadcastEvents", "cacheMallSearches", "chatBeep", "chatLinksUseRelay", "compactChessboard", "copyAsHTML", "customizedTabs", "debugBuy", "debugConsequences", "debugFoxtrotRemoval", "debugPathnames", "gapProtection", "gitInstallDependencies", "gitShowCommitMessages", "gitUpdateOnLogin", "greenScreenProtection", "guiUsesOneWindow", "hideServerDebugText", "logAcquiredItems", "logBattleAction", "logBrowserInteractions", "logChatMessages", "logChatRequests", "logCleanedHTML", "logDecoratedResponses", "logFamiliarActions", "logGainMessages", "logReadableHTML", "logPreferenceChange", "logMonsterHealth", "logReverseOrder", "logStatGains", "logStatusEffects", "logStatusOnLogin", "macroDebug", "macroLens", "mementoListActive", "mergeHobopolisChat", "printStackOnAbort", "protectAgainstOverdrink", "proxySet", "relayAddSounds", "relayAddsCustomCombat", "relayAddsDiscoHelper", "relayAddsGraphicalCLI", "relayAddsQuickScripts", "relayAddsRestoreLinks", "relayAddsUpArrowLinks", "relayAddsUseLinks", "relayAddsWikiLinks", "relayAllowRemoteAccess", "relayBrowserOnly", "relayFormatsChatText", "relayHidesJunkMallItems", "relayMaintainsEffects", "relayMaintainsHealth", "relayMaintainsMana", "relayOverridesImages", "relayRunsAfterAdventureScript", "relayRunsBeforeBattleScript", "relayRunsBeforePVPScript", "relayScriptButtonFirst", "relayTextualizesEffects", "relayTrimsZapList", "relayUsesInlineLinks", "relayUsesIntegratedChat", "relayWarnOnRecoverFailure", "removeMalignantEffects", "saveSettingsOnSet", "sharePriceData", "showAllRequests", "showExceptionalRequests", "stealthLogin", "svnInstallDependencies", "svnShowCommitMessages", "svnUpdateOnLogin", "switchEquipmentForBuffs", "syncAfterSvnUpdate", "useChatToolbar", "useContactsFrame", "useDevProxyServer", "useDockIconBadge", "useHugglerChannel", "useImageCache", "useLastUserAgent", "useSystemTrayIcon", "useTabbedChatFrame", "useToolbars", "useZoneComboBox", "verboseSpeakeasy", "verboseFloundry", "wrapLongLines", "_announcementShown", "_gitUpdated", "_svnRepoFileFetched", "_svnUpdated", "antagonisticSnowmanKitAvailable", "arcadeGameHints", "armoryUnlocked", "autoForbidIgnoringStores", "autoCraft", "autoQuest", "autoEntangle", "autoGarish", "autoManaRestore", "autoFillMayoMinder", "autoPinkyRing", "autoPlantHardcore", "autoPlantSoftcore", "autoPotionID", "autoRepairBoxServants", "autoSatisfyWithCloset", "autoSatisfyWithCoinmasters", "autoSatisfyWithMall", "autoSatisfyWithNPCs", "autoSatisfyWithStash", "autoSatisfyWithStorage", "autoSetConditions", "autoSphereID", "autoSteal", "autoTuxedo", "backupCameraReverserEnabled", "badMoonEncounter01", "badMoonEncounter02", "badMoonEncounter03", "badMoonEncounter04", "badMoonEncounter05", "badMoonEncounter06", "badMoonEncounter07", "badMoonEncounter08", "badMoonEncounter09", "badMoonEncounter10", "badMoonEncounter11", "badMoonEncounter12", "badMoonEncounter13", "badMoonEncounter14", "badMoonEncounter15", "badMoonEncounter16", "badMoonEncounter17", "badMoonEncounter18", "badMoonEncounter19", "badMoonEncounter20", "badMoonEncounter21", "badMoonEncounter22", "badMoonEncounter23", "badMoonEncounter24", "badMoonEncounter25", "badMoonEncounter26", "badMoonEncounter27", "badMoonEncounter28", "badMoonEncounter29", "badMoonEncounter30", "badMoonEncounter31", "badMoonEncounter32", "badMoonEncounter33", "badMoonEncounter34", "badMoonEncounter35", "badMoonEncounter36", "badMoonEncounter37", "badMoonEncounter38", "badMoonEncounter39", "badMoonEncounter40", "badMoonEncounter41", "badMoonEncounter42", "badMoonEncounter43", "badMoonEncounter44", "badMoonEncounter45", "badMoonEncounter46", "badMoonEncounter47", "badMoonEncounter48", "barrelShrineUnlocked", "bigBrotherRescued", "blackBartsBootyAvailable", "bondAdv", "bondBeach", "bondBeat", "bondBooze", "bondBridge", "bondDesert", "bondDR", "bondDrunk1", "bondDrunk2", "bondHoney", "bondHP", "bondInit", "bondItem1", "bondItem2", "bondItem3", "bondJetpack", "bondMartiniDelivery", "bondMartiniPlus", "bondMartiniTurn", "bondMeat", "bondMox1", "bondMox2", "bondMPregen", "bondMus1", "bondMus2", "bondMys1", "bondMys2", "bondSpleen", "bondStat", "bondStat2", "bondStealth", "bondStealth2", "bondSymbols", "bondWar", "bondWeapon2", "bondWpn", "booPeakLit", "bootsCharged", "breakfastCompleted", "burrowgrubHiveUsed", "canteenUnlocked", "chaosButterflyThrown", "chatbotScriptExecuted", "chateauAvailable", "chatLiterate", "chatServesUpdates", "checkJackassHardcore", "checkJackassSoftcore", "clanAttacksEnabled", "coldAirportAlways", "considerShadowNoodles", "controlRoomUnlock", "concertVisited", "controlPanel1", "controlPanel2", "controlPanel3", "controlPanel4", "controlPanel5", "controlPanel6", "controlPanel7", "controlPanel8", "controlPanel9", "corralUnlocked", "dailyDungeonDone", "dampOldBootPurchased", "daycareOpen", "demonSummoned", "dinseyAudienceEngagement", "dinseyGarbagePirate", "dinseyRapidPassEnabled", "dinseyRollercoasterNext", "dinseySafetyProtocolsLoose", "doghouseBoarded", "dontStopForCounters", "drippingHallUnlocked", "drippyShieldUnlocked", "edUsedLash", "eldritchFissureAvailable", "eldritchHorrorAvailable", "essenceOfAnnoyanceAvailable", "essenceOfBearAvailable", "expressCardUsed", "falloutShelterChronoUsed", "falloutShelterCoolingTankUsed", "fireExtinguisherBatHoleUsed", "fireExtinguisherChasmUsed", "fireExtinguisherCyrptUsed", "fireExtinguisherDesertUsed", "fireExtinguisherHaremUsed", "fistTeachingsHaikuDungeon", "fistTeachingsPokerRoom", "fistTeachingsBarroomBrawl", "fistTeachingsConservatory", "fistTeachingsBatHole", "fistTeachingsFunHouse", "fistTeachingsMenagerie", "fistTeachingsSlums", "fistTeachingsFratHouse", "fistTeachingsRoad", "fistTeachingsNinjaSnowmen", "flickeringPixel1", "flickeringPixel2", "flickeringPixel3", "flickeringPixel4", "flickeringPixel5", "flickeringPixel6", "flickeringPixel7", "flickeringPixel8", "frAlways", "frCemetaryUnlocked", "friarsBlessingReceived", "frMountainsUnlocked", "frSwampUnlocked", "frVillageUnlocked", "frWoodUnlocked", "getawayCampsiteUnlocked", "ghostPencil1", "ghostPencil2", "ghostPencil3", "ghostPencil4", "ghostPencil5", "ghostPencil6", "ghostPencil7", "ghostPencil8", "ghostPencil9", "gingerAdvanceClockUnlocked", "gingerBlackmailAccomplished", "gingerbreadCityAvailable", "gingerExtraAdventures", "gingerNegativesDropped", "gingerSewersUnlocked", "gingerSubwayLineUnlocked", "gingerRetailUnlocked", "glitchItemAvailable", "grabCloversHardcore", "grabCloversSoftcore", "guideToSafariAvailable", "guyMadeOfBeesDefeated", "hardcorePVPWarning", "harvestBatteriesHardcore", "harvestBatteriesSoftcore", "hasBartender", "hasChef", "hasCocktailKit", "hasCosmicBowlingBall", "hasDetectiveSchool", "hasMaydayContract", "hasOven", "hasRange", "hasShaker", "hasSushiMat", "haveBoxingDaydreamHardcore", "haveBoxingDaydreamSoftcore", "hermitHax0red", "holidayHalsBookAvailable", "horseryAvailable", "hotAirportAlways", "implementGlitchItem", "itemBoughtPerAscension637", "itemBoughtPerAscension8266", "itemBoughtPerAscension10790", "itemBoughtPerAscension10794", "itemBoughtPerAscension10795", "itemBoughtPerCharacter6423", "itemBoughtPerCharacter6428", "itemBoughtPerCharacter6429", "kingLiberated", "lastPirateInsult1", "lastPirateInsult2", "lastPirateInsult3", "lastPirateInsult4", "lastPirateInsult5", "lastPirateInsult6", "lastPirateInsult7", "lastPirateInsult8", "lawOfAveragesAvailable", "leafletCompleted", "libraryCardUsed", "lockPicked", "logBastilleBattalionBattles", "loginRecoveryHardcore", "loginRecoverySoftcore", "lovebugsUnlocked", "loveTunnelAvailable", "lowerChamberUnlock", "makePocketWishesHardcore", "makePocketWishesSoftcore", "manualOfNumberologyAvailable", "mappingMonsters", "mapToAnemoneMinePurchased", "mapToKokomoAvailable", "mapToMadnessReefPurchased", "mapToTheDiveBarPurchased", "mapToTheMarinaraTrenchPurchased", "mapToTheSkateParkPurchased", "maraisBeaverUnlock", "maraisCorpseUnlock", "maraisDarkUnlock", "maraisVillageUnlock", "maraisWildlifeUnlock", "maraisWizardUnlock", "maximizerAlwaysCurrent", "maximizerCreateOnHand", "maximizerCurrentMallPrices", "maximizerFoldables", "maximizerIncludeAll", "maximizerNoAdventures", "middleChamberUnlock", "milkOfMagnesiumActive", "moonTuned", "neverendingPartyAlways", "odeBuffbotCheck", "oilPeakLit", "oscusSodaUsed", "outrageousSombreroUsed", "pathedSummonsHardcore", "pathedSummonsSoftcore", "popularTartUnlocked", "prAlways", "prayedForGlamour", "prayedForProtection", "prayedForVigor", "primaryLabCheerCoreGrabbed", "pyramidBombUsed", "ROMOfOptimalityAvailable", "rageGlandVented", "readManualHardcore", "readManualSoftcore", "relayShowSpoilers", "relayShowWarnings", "rememberDesktopSize", "restUsingChateau", "restUsingCampAwayTent", "requireBoxServants", "requireSewerTestItems", "safePickpocket", "schoolOfHardKnocksDiplomaAvailable", "scriptCascadingMenus", "serverAddsCustomCombat", "SHAWARMAInitiativeUnlocked", "showForbiddenStores", "showGainsPerUnit", "showIgnoringStorePrices", "showNoSummonOnly", "showTurnFreeOnly", "sleazeAirportAlways", "snojoAvailable", "sortByRoom", "spacegateAlways", "spacegateVaccine1", "spacegateVaccine2", "spacegateVaccine3", "spaceInvaderDefeated", "spelunkyHints", "spiceMelangeUsed", "spookyAirportAlways", "stenchAirportAlways", "stopForFixedWanderer", "stopForUltraRare", "styxPixieVisited", "suppressInappropriateNags", "suppressPowerPixellation", "suppressMallPriceCacheMessages", "telegraphOfficeAvailable", "telescopeLookedHigh", "timeTowerAvailable", "trackLightsOut", "trackVoteMonster", "uneffectWithHotTub", "universalSeasoningActive", "universalSeasoningAvailable", "useCrimboToysHardcore", "useCrimboToysSoftcore", "verboseMaximizer", "visitLoungeHardcore", "visitLoungeSoftcore", "visitRumpusHardcore", "visitRumpusSoftcore", "voteAlways", "wildfireBarrelCaulked", "wildfireDusted", "wildfireFracked", "wildfirePumpGreased", "wildfireSprinkled", "yearbookCameraPending", "youRobotScavenged", "_affirmationCookieEaten", "_affirmationHateUsed", "_airFryerUsed", "_akgyxothUsed", "_alienAnimalMilkUsed", "_alienPlantPodUsed", "_allYearSucker", "_aprilShower", "_armyToddlerCast", "_authorsInkUsed", "_baconMachineUsed", "_bagOfCandy", "_bagOfCandyUsed", "_bagOTricksUsed", "_ballastTurtleUsed", "_ballInACupUsed", "_ballpit", "_barrelPrayer", "_bastilleLastBattleWon", "_beachCombing", "_bendHellUsed", "_blankoutUsed", "_bonersSummoned", "_borrowedTimeUsed", "_bowleggedSwaggerUsed", "_bowlFullOfJellyUsed", "_boxOfHammersUsed", "_brainPreservationFluidUsed", "_brassDreadFlaskUsed", "_cameraUsed", "_canSeekBirds", "_carboLoaded", "_cargoPocketEmptied", "_ceciHatUsed", "_chateauDeskHarvested", "_chateauMonsterFought", "_chronerCrossUsed", "_chronerTriggerUsed", "_chubbyAndPlumpUsed", "_circleDrumUsed", "_clanFortuneBuffUsed", "_claraBellUsed", "_coalPaperweightUsed", "_cocoaDispenserUsed", "_cocktailShakerUsed", "_coldAirportToday", "_coldOne", "_communismUsed", "_confusingLEDClockUsed", "_controlPanelUsed", "_corruptedStardustUsed", "_cosmicSixPackConjured", "_crappyCameraUsed", "_creepyVoodooDollUsed", "_crimboTree", "_cursedKegUsed", "_cursedMicrowaveUsed", "_dailyDungeonMalwareUsed", "_darkChocolateHeart", "_daycareFights", "_daycareNap", "_daycareSpa", "_daycareToday", "_defectiveTokenChecked", "_defectiveTokenUsed", "_dinseyGarbageDisposed", "_discoKnife", "_distentionPillUsed", "_dnaHybrid", "_docClocksThymeCocktailDrunk", "_drippingHallDoor1", "_drippingHallDoor2", "_drippingHallDoor3", "_drippingHallDoor4", "_drippyCaviarUsed", "_drippyNuggetUsed", "_drippyPilsnerUsed", "_drippyPlumUsed", "_drippyWineUsed", "_eldritchHorrorEvoked", "_eldritchTentacleFought", "_entauntaunedToday", "_envyfishEggUsed", "_essentialTofuUsed", "_etchedHourglassUsed", "_eternalCarBatteryUsed", "_everfullGlassUsed", "_eyeAndATwistUsed", "_fancyChessSetUsed", "_falloutShelterSpaUsed", "_fancyHotDogEaten", "_farmerItemsCollected", "_favoriteBirdVisited", "_firedJokestersGun", "_fireExtinguisherRefilled", "_fireStartingKitUsed", "_fireworksShop", "_fireworksShopHatBought", "_fireworksShopEquipmentBought", "_fireworkUsed", "_fishyPipeUsed", "_floundryItemCreated", "_floundryItemUsed", "_freePillKeeperUsed", "_frToday", "_fudgeSporkUsed", "_garbageItemChanged", "_gingerBiggerAlligators", "_gingerbreadCityToday", "_gingerbreadClockAdvanced", "_gingerbreadClockVisited", "_gingerbreadColumnDestroyed", "_gingerbreadMobHitUsed", "_glennGoldenDiceUsed", "_glitchItemImplemented", "_gnollEyeUsed", "_grimBuff", "_guildManualUsed", "_guzzlrQuestAbandoned", "_hardKnocksDiplomaUsed", "_hippyMeatCollected", "_hobbyHorseUsed", "_holidayFunUsed", "_holoWristCrystal", "_hotAirportToday", "_hungerSauceUsed", "_hyperinflatedSealLungUsed", "_iceHotelRoomsRaided", "_iceSculptureUsed", "_incredibleSelfEsteemCast", "_infernoDiscoVisited", "_internetDailyDungeonMalwareBought", "_internetGallonOfMilkBought", "_internetPlusOneBought", "_internetPrintScreenButtonBought", "_internetViralVideoBought", "_interviewIsabella", "_interviewMasquerade", "_interviewVlad", "_inquisitorsUnidentifiableObjectUsed", "_ironicMoustache", "_jackassPlumberGame", "_jarlsCheeseSummoned", "_jarlsCreamSummoned", "_jarlsDoughSummoned", "_jarlsEggsSummoned", "_jarlsFruitSummoned", "_jarlsMeatSummoned", "_jarlsPotatoSummoned", "_jarlsVeggiesSummoned", "_jingleBellUsed", "_jukebox", "_kgbFlywheelCharged", "_kgbLeftDrawerUsed", "_kgbOpened", "_kgbRightDrawerUsed", "_kolConSixPackUsed", "_kolhsCutButNotDried", "_kolhsIsskayLikeAnAshtray", "_kolhsPoeticallyLicenced", "_kolhsSchoolSpirited", "_kudzuSaladEaten", "_latteBanishUsed", "_latteCopyUsed", "_latteDrinkUsed", "_legendaryBeat", "_licenseToChillUsed", "_lookingGlass", "_loveTunnelUsed", "_luckyGoldRingVolcoino", "_lunchBreak", "_lupineHormonesUsed", "_lyleFavored", "_madLiquorDrunk", "_madTeaParty", "_mafiaMiddleFingerRingUsed", "_managerialManipulationUsed", "_mansquitoSerumUsed", "_maydayDropped", "_mayoDeviceRented", "_mayoTankSoaked", "_meatballMachineUsed", "_meatifyMatterUsed", "_milkOfMagnesiumUsed", "_mimeArmyShotglassUsed", "_missGravesVermouthDrunk", "_missileLauncherUsed", "_momFoodReceived", "_mrBurnsgerEaten", "_muffinOrderedToday", "_mushroomGardenVisited", "_neverendingPartyToday", "_newYouQuestCompleted", "_olympicSwimmingPool", "_olympicSwimmingPoolItemFound", "_overflowingGiftBasketUsed", "_partyHard", "_pastaAdditive", "_perfectFreezeUsed", "_perfectlyFairCoinUsed", "_petePartyThrown", "_peteRiotIncited", "_photocopyUsed", "_pickyTweezersUsed", "_pirateBellowUsed", "_pirateForkUsed", "_pixelOrbUsed", "_plumbersMushroomStewEaten", "_pneumaticityPotionUsed", "_potatoAlarmClockUsed", "_pottedTeaTreeUsed", "_prToday", "_psychoJarFilled", "_psychoJarUsed", "_psychokineticHugUsed", "_rainStickUsed", "_redwoodRainStickUsed", "_requestSandwichSucceeded", "_rhinestonesAcquired", "_seaJellyHarvested", "_setOfJacksUsed", "_sewingKitUsed", "_sexChanged", "_shrubDecorated", "_silverDreadFlaskUsed", "_skateBuff1", "_skateBuff2", "_skateBuff3", "_skateBuff4", "_skateBuff5", "_sleazeAirportToday", "_sobrieTeaUsed", "_softwareGlitchTurnReceived", "_spacegateMurderbot", "_spacegateRuins", "_spacegateSpant", "_spacegateToday", "_spacegateVaccine", "_spaghettiBreakfast", "_spaghettiBreakfastEaten", "_spinmasterLatheVisited", "_spinningWheel", "_spookyAirportToday", "_stabonicScrollUsed", "_steelyEyedSquintUsed", "_stenchAirportToday", "_stinkyCheeseBanisherUsed", "_streamsCrossed", "_stuffedPocketwatchUsed", "_styxSprayUsed", "_summonAnnoyanceUsed", "_summonCarrotUsed", "_summonResortPassUsed", "_sweetToothUsed", "_syntheticDogHairPillUsed", "_tacoFlierUsed", "_templeHiddenPower", "_tempuraAirUsed", "_thesisDelivered", "_timeSpinnerReplicatorUsed", "_toastSummoned", "_tonicDjinn", "_treasuryEliteMeatCollected", "_treasuryHaremMeatCollected", "_trivialAvocationsGame", "_tryptophanDartUsed", "_turtlePowerCast", "_twelveNightEnergyUsed", "_ultraMegaSourBallUsed", "_victorSpoilsUsed", "_villainLairCanLidUsed", "_villainLairColorChoiceUsed", "_villainLairDoorChoiceUsed", "_villainLairFirecrackerUsed", "_villainLairSymbologyChoiceUsed", "_villainLairWebUsed", "_vmaskBanisherUsed", "_voraciTeaUsed", "_volcanoItemRedeemed", "_volcanoSuperduperheatedMetal", "_voteToday", "_VYKEACafeteriaRaided", "_VYKEALoungeRaided", "_walfordQuestStartedToday", "_warbearBankUsed", "_warbearBreakfastMachineUsed", "_warbearGyrocopterUsed", "_warbearSodaMachineUsed", "_wildfireBarrelHarvested", "_witchessBuff", "_workshedItemUsed", "_zombieClover", "_preventScurvy", "lockedItem4637", "lockedItem4638", "lockedItem4639", "lockedItem4646", "lockedItem4647", "unknownRecipe3542", "unknownRecipe3543", "unknownRecipe3544", "unknownRecipe3545", "unknownRecipe3546", "unknownRecipe3547", "unknownRecipe3548", "unknownRecipe3749", "unknownRecipe3751", "unknownRecipe4172", "unknownRecipe4173", "unknownRecipe4174", "unknownRecipe5060", "unknownRecipe5061", "unknownRecipe5062", "unknownRecipe5063", "unknownRecipe5064", "unknownRecipe5066", "unknownRecipe5067", "unknownRecipe5069", "unknownRecipe5070", "unknownRecipe5072", "unknownRecipe5073", "unknownRecipe5670", "unknownRecipe5671", "unknownRecipe6501", "unknownRecipe6564", "unknownRecipe6565", "unknownRecipe6566", "unknownRecipe6567", "unknownRecipe6568", "unknownRecipe6569", "unknownRecipe6570", "unknownRecipe6571", "unknownRecipe6572", "unknownRecipe6573", "unknownRecipe6574", "unknownRecipe6575", "unknownRecipe6576", "unknownRecipe6577", "unknownRecipe6578", "unknownRecipe7752", "unknownRecipe7753", "unknownRecipe7754", "unknownRecipe7755", "unknownRecipe7756", "unknownRecipe7757", "unknownRecipe7758"];
 var numericProperties = ["charsheetDropdown", "chatStyle", "coinMasterIndex", "dailyDeedsVersion", "defaultDropdown1", "defaultDropdown2", "defaultDropdownSplit", "defaultLimit", "fixedThreadPoolSize", "itemManagerIndex", "lastBuffRequestType", "lastGlobalCounterDay", "lastImageCacheClear", "lastRssUpdate", "previousUpdateRevision", "relayDelayForSVN", "relaySkillButtonCount", "scriptButtonPosition", "statusDropdown", "svnThreadPoolSize", "toolbarPosition", "_g9Effect", "addingScrolls", "affirmationCookiesEaten", "aminoAcidsUsed", "antagonisticSnowmanKitCost", "autoAbortThreshold", "autoAntidote", "autoBuyPriceLimit", "availableCandyCredits", "availableDimes", "availableFunPoints", "availableQuarters", "availableStoreCredits", "availableSwagger", "averageSwagger", "awolMedicine", "awolPointsBeanslinger", "awolPointsCowpuncher", "awolPointsSnakeoiler", "awolDeferredPointsBeanslinger", "awolDeferredPointsCowpuncher", "awolDeferredPointsSnakeoiler", "awolVenom", "bagOTricksCharges", "ballpitBonus", "bankedKarma", "barrelGoal", "bartenderTurnsUsed", "basementMallPrices", "basementSafetyMargin", "batmanFundsAvailable", "batmanBonusInitialFunds", "batmanTimeLeft", "bearSwagger", "beeCounter", "beGregariousCharges", "beGregariousFightsLeft", "birdformCold", "birdformHot", "birdformRoc", "birdformSleaze", "birdformSpooky", "birdformStench", "blackBartsBootyCost", "blackPuddingsDefeated", "blackForestProgress", "blankOutUsed", "bloodweiserDrunk", "bondPoints", "bondVillainsDefeated", "boneAbacusVictories", "booPeakProgress", "borisPoints", "breakableHandling", "breakableHandling1964", "breakableHandling9691", "breakableHandling9692", "breakableHandling9699", "breathitinCharges", "brodenBacteria", "brodenSprinkles", "buffBotMessageDisposal", "buffBotPhilanthropyType", "buffJimmyIngredients", "burnoutsDefeated", "burrowgrubSummonsRemaining", "camelSpit", "camerasUsed", "campAwayDecoration", "carboLoading", "catBurglarBankHeists", "cellarLayout", "charitableDonations", "chasmBridgeProgress", "chefTurnsUsed", "chessboardsCleared", "chilledToTheBone", "cinderellaMinutesToMidnight", "cinderellaScore", "cocktailSummons", "commerceGhostCombats", "controlPanelOmega", "cornucopiasOpened", "cosmicBowlingBallReturnCombats", "cozyCounter6332", "cozyCounter6333", "cozyCounter6334", "crimbo16BeardChakraCleanliness", "crimbo16BootsChakraCleanliness", "crimbo16BungChakraCleanliness", "crimbo16CrimboHatChakraCleanliness", "crimbo16GutsChakraCleanliness", "crimbo16HatChakraCleanliness", "crimbo16JellyChakraCleanliness", "crimbo16LiverChakraCleanliness", "crimbo16NippleChakraCleanliness", "crimbo16NoseChakraCleanliness", "crimbo16ReindeerChakraCleanliness", "crimbo16SackChakraCleanliness", "crimboTreeDays", "cubelingProgress", "currentExtremity", "currentHedgeMazeRoom", "currentMojoFilters", "currentNunneryMeat", "cursedMagnifyingGlassCount", "cyrptAlcoveEvilness", "cyrptCrannyEvilness", "cyrptNicheEvilness", "cyrptNookEvilness", "cyrptTotalEvilness", "darkGyfftePoints", "daycareEquipment", "daycareInstructors", "daycareLastScavenge", "daycareToddlers", "dbNemesisSkill1", "dbNemesisSkill2", "dbNemesisSkill3", "desertExploration", "desktopHeight", "desktopWidth", "dinseyFilthLevel", "dinseyFunProgress", "dinseyNastyBearsDefeated", "dinseySocialJusticeIProgress", "dinseySocialJusticeIIProgress", "dinseyTouristsFed", "dinseyToxicMultiplier", "doctorBagQuestLights", "doctorBagUpgrades", "dreadScroll1", "dreadScroll2", "dreadScroll3", "dreadScroll4", "dreadScroll5", "dreadScroll6", "dreadScroll7", "dreadScroll8", "dripAdventuresSinceAscension", "drippingHallAdventuresSinceAscension", "drippingTreesAdventuresSinceAscension", "drippyBatsUnlocked", "drippyJuice", "drippyOrbsClaimed", "drunkenSwagger", "edDefeatAbort", "edPoints", "eldritchTentaclesFought", "electricKoolAidEaten", "encountersUntilDMTChoice", "encountersUntilNEPChoice", "ensorceleeLevel", "entauntaunedColdRes", "essenceOfAnnoyanceCost", "essenceOfBearCost", "extraRolloverAdventures", "falloutShelterLevel", "fingernailsClipped", "fistSkillsKnown", "flyeredML", "fossilB", "fossilD", "fossilN", "fossilP", "fossilS", "fossilW", "fratboysDefeated", "frenchGuardTurtlesFreed", "garbageChampagneCharge", "garbageFireProgress", "garbageShirtCharge", "garbageTreeCharge", "garlandUpgrades", "gingerDigCount", "gingerLawChoice", "gingerMuscleChoice", "gingerTrainScheduleStudies", "gladiatorBallMovesKnown", "gladiatorBladeMovesKnown", "gladiatorNetMovesKnown", "glitchItemCost", "glitchItemImplementationCount", "glitchItemImplementationLevel", "glitchSwagger", "gloverPoints", "gnasirProgress", "goldenMrAccessories", "gongPath", "gooseDronesRemaining", "goreCollected", "gourdItemCount", "greyYouPoints", "grimoire1Summons", "grimoire2Summons", "grimoire3Summons", "grimstoneCharge", "guardTurtlesFreed", "guideToSafariCost", "guyMadeOfBeesCount", "guzzlrBronzeDeliveries", "guzzlrDeliveryProgress", "guzzlrGoldDeliveries", "guzzlrPlatinumDeliveries", "haciendaLayout", "heavyRainsStartingThunder", "heavyRainsStartingRain", "heavyRainsStartingLightning", "heroDonationBoris", "heroDonationJarlsberg", "heroDonationSneakyPete", "hiddenApartmentProgress", "hiddenBowlingAlleyProgress", "hiddenHospitalProgress", "hiddenOfficeProgress", "hiddenTavernUnlock", "highTopPumped", "hippiesDefeated", "holidayHalsBookCost", "holidaySwagger", "homemadeRobotUpgrades", "homebodylCharges", "hpAutoRecovery", "hpAutoRecoveryTarget", "iceSwagger", "item9084", "jarlsbergPoints", "jungCharge", "junglePuns", "knownAscensions", "kolhsTotalSchoolSpirited", "lastAnticheeseDay", "lastArcadeAscension", "lastBadMoonReset", "lastBangPotionReset", "lastBarrelSmashed", "lastBattlefieldReset", "lastBeardBuff", "lastBreakfast", "lastCastleGroundUnlock", "lastCastleTopUnlock", "lastCellarReset", "lastChanceThreshold", "lastChasmReset", "lastColosseumRoundWon", "lastCouncilVisit", "lastCounterDay", "lastDesertUnlock", "lastDispensaryOpen", "lastDMTDuplication", "lastDwarfFactoryReset", "lastEVHelmetValue", "lastEVHelmetReset", "lastEasterEggBalloon", "lastEmptiedStorage", "lastFilthClearance", "lastGoofballBuy", "lastGuildStoreOpen", "lastGuyMadeOfBeesReset", "lastFratboyCall", "lastFriarCeremonyAscension", "lastHippyCall", "lastIslandUnlock", "lastKeyotronUse", "lastKingLiberation", "lastLightsOutTurn", "lastMushroomPlot", "lastMiningReset", "lastNemesisReset", "lastPaperStripReset", "lastPirateEphemeraReset", "lastPirateInsultReset", "lastPlusSignUnlock", "lastQuartetAscension", "lastQuartetRequest", "lastSecondFloorUnlock", "lastSkateParkReset", "lastStillBeatingSpleen", "lastTavernAscension", "lastTavernSquare", "lastTelescopeReset", "lastTempleAdventures", "lastTempleButtonsUnlock", "lastTempleUnlock", "lastThingWithNoNameDefeated", "lastTr4pz0rQuest", "lastVioletFogMap", "lastVoteMonsterTurn", "lastWartDinseyDefeated", "lastWuTangDefeated", "lastYearbookCameraAscension", "lastZapperWand", "lastZapperWandExplosionDay", "lawOfAveragesCost", "libramSummons", "lightsOutAutomation", "louvreDesiredGoal", "louvreGoal", "lovebugsAridDesert", "lovebugsBeachBuck", "lovebugsBooze", "lovebugsChroner", "lovebugsCoinspiracy", "lovebugsCyrpt", "lovebugsFreddy", "lovebugsFunFunds", "lovebugsHoboNickel", "lovebugsItemDrop", "lovebugsMeat", "lovebugsMeatDrop", "lovebugsMoxie", "lovebugsMuscle", "lovebugsMysticality", "lovebugsOilPeak", "lovebugsOrcChasm", "lovebugsPowder", "lovebugsWalmart", "lttQuestDifficulty", "lttQuestStageCount", "manaBurnSummonThreshold", "manaBurningThreshold", "manaBurningTrigger", "manorDrawerCount", "manualOfNumberologyCost", "mapToKokomoCost", "masksUnlocked", "maximizerMRUSize", "maximizerCombinationLimit", "maximizerEquipmentLevel", "maximizerEquipmentScope", "maximizerMaxPrice", "maximizerPriceLevel", "maxManaBurn", "mayflyExperience", "mayoLevel", "meansuckerPrice", "merkinVocabularyMastery", "miniAdvClass", "miniMartinisDrunk", "moleTunnelLevel", "mothershipProgress", "mpAutoRecovery", "mpAutoRecoveryTarget", "munchiesPillsUsed", "mushroomGardenCropLevel", "nextParanormalActivity", "nextQuantumFamiliarOwnerId", "nextQuantumFamiliarTurn", "noobPoints", "noobDeferredPoints", "noodleSummons", "nsContestants1", "nsContestants2", "nsContestants3", "numericSwagger", "nunsVisits", "oilPeakProgress", "optimalSwagger", "optimisticCandleProgress", "palindomeDudesDefeated", "parasolUsed", "pendingMapReflections", "pirateSwagger", "plantingDay", "plumberBadgeCost", "plumberCostumeCost", "plumberPoints", "poolSharkCount", "poolSkill", "primaryLabGooIntensity", "prismaticSummons", "procrastinatorLanguageFluency", "promptAboutCrafting", "puzzleChampBonus", "pyramidPosition", "rockinRobinProgress", "ROMOfOptimalityCost", "quantumPoints", "reagentSummons", "reanimatorArms", "reanimatorLegs", "reanimatorSkulls", "reanimatorWeirdParts", "reanimatorWings", "recentLocations", "redSnapperProgress", "relocatePygmyJanitor", "relocatePygmyLawyer", "rumpelstiltskinTurnsUsed", "rumpelstiltskinKidsRescued", "safariSwagger", "sausageGrinderUnits", "schoolOfHardKnocksDiplomaCost", "schoolSwagger", "scrapbookCharges", "scriptMRULength", "seaodesFound", "SeasoningSwagger", "sexChanges", "shenInitiationDay", "shockingLickCharges", "singleFamiliarRun", "skillBurn3", "skillBurn90", "skillBurn153", "skillBurn154", "skillBurn155", "skillBurn1019", "skillBurn5017", "skillBurn6014", "skillBurn6015", "skillBurn6016", "skillBurn6020", "skillBurn6021", "skillBurn6022", "skillBurn6023", "skillBurn6024", "skillBurn6026", "skillBurn6028", "skillBurn7323", "skillBurn14008", "skillBurn14028", "skillBurn14038", "skillBurn15011", "skillBurn15028", "skillBurn17005", "skillBurn22034", "skillBurn22035", "skillBurn23301", "skillBurn23302", "skillBurn23303", "skillBurn23304", "skillBurn23305", "skillBurn23306", "skillLevel46", "skillLevel47", "skillLevel48", "skillLevel117", "skillLevel118", "skillLevel121", "skillLevel128", "skillLevel134", "skillLevel144", "skillLevel180", "skillLevel188", "skillLevel7254", "slimelingFullness", "slimelingStacksDropped", "slimelingStacksDue", "smoresEaten", "smutOrcNoncombatProgress", "sneakyPetePoints", "snojoMoxieWins", "snojoMuscleWins", "snojoMysticalityWins", "sourceAgentsDefeated", "sourceEnlightenment", "sourceInterval", "sourcePoints", "sourceTerminalGram", "sourceTerminalPram", "sourceTerminalSpam", "spaceBabyLanguageFluency", "spacePirateLanguageFluency", "spelunkyNextNoncombat", "spelunkySacrifices", "spelunkyWinCount", "spookyPuttyCopiesMade", "statbotUses", "sugarCounter4178", "sugarCounter4179", "sugarCounter4180", "sugarCounter4181", "sugarCounter4182", "sugarCounter4183", "sugarCounter4191", "summonAnnoyanceCost", "sweat", "tacoDanCocktailSauce", "tacoDanFishMeat", "tavernLayout", "telescopeUpgrades", "tempuraSummons", "timeSpinnerMedals", "timesRested", "tomeSummons", "totalCharitableDonations", "turtleBlessingTurns", "twinPeakProgress", "unicornHornInflation", "universalSeasoningCost", "usable1HWeapons", "usable1xAccs", "usable2HWeapons", "usable3HWeapons", "usableAccessories", "usableHats", "usableOffhands", "usableOther", "usablePants", "usableShirts", "valueOfAdventure", "valueOfInventory", "valueOfStill", "valueOfTome", "vintnerCharge", "vintnerWineLevel", "violetFogGoal", "walfordBucketProgress", "warehouseProgress", "welcomeBackAdv", "writingDesksDefeated", "xoSkeleltonXProgress", "xoSkeleltonOProgress", "yearbookCameraAscensions", "yearbookCameraUpgrades", "youRobotBody", "youRobotBottom", "youRobotLeft", "youRobotPoints", "youRobotRight", "youRobotTop", "zeppelinProtestors", "zigguratLianas", "zombiePoints", "_absintheDrops", "_abstractionDropsCrown", "_aguaDrops", "_xenomorphCharge", "_ancestralRecallCasts", "_antihangoverBonus", "_astralDrops", "_backUpUses", "_badlyRomanticArrows", "_badgerCharge", "_balefulHowlUses", "_banderRunaways", "_bastilleCheese", "_bastilleGames", "_bastilleGameTurn", "_bastilleLastCheese", "_beanCannonUses", "_bearHugs", "_beerLensDrops", "_bellydancerPickpockets", "_benettonsCasts", "_birdsSoughtToday", "_boomBoxFights", "_boomBoxSongsLeft", "_bootStomps", "_boxingGloveArrows", "_brickoEyeSummons", "_brickoFights", "_campAwayCloudBuffs", "_campAwaySmileBuffs", "_candySummons", "_captainHagnkUsed", "_carnieCandyDrops", "_carrotNoseDrops", "_catBurglarCharge", "_catBurglarHeistsComplete", "_cheerleaderSteam", "_chestXRayUsed", "_chipBags", "_chocolateCigarsUsed", "_chocolateSculpturesUsed", "_chocolatesUsed", "_chronolithActivations", "_chronolithNextCost", "_clanFortuneConsultUses", "_clipartSummons", "_coldMedicineConsults", "_coldMedicineEquipmentTaken", "_companionshipCasts", "_cosmicBowlingSkillsUsed", "_crimbo21ColdResistance", "_dailySpecialPrice", "_daycareGymScavenges", "_daycareRecruits", "_deckCardsDrawn", "_deluxeKlawSummons", "_demandSandwich", "_detectiveCasesCompleted", "_disavowed", "_dnaPotionsMade", "_donhosCasts", "_dreamJarDrops", "_drunkPygmyBanishes", "_edDefeats", "_edLashCount", "_elronsCasts", "_enamorangs", "_energyCollected", "_expertCornerCutterUsed", "_favorRareSummons", "_feastUsed", "_feelinTheRhythm", "_feelPrideUsed", "_feelExcitementUsed", "_feelHatredUsed", "_feelLonelyUsed", "_feelNervousUsed", "_feelEnvyUsed", "_feelDisappointedUsed", "_feelSuperiorUsed", "_feelLostUsed", "_feelNostalgicUsed", "_feelPeacefulUsed", "_fingertrapArrows", "_fireExtinguisherCharge", "_fragrantHerbsUsed", "_freeBeachWalksUsed", "_frButtonsPressed", "_fudgeWaspFights", "_gapBuffs", "_garbageFireDropsCrown", "_genieFightsUsed", "_genieWishesUsed", "_gibbererAdv", "_gibbererCharge", "_gingerbreadCityTurns", "_glarkCableUses", "_glitchMonsterFights", "_gnomeAdv", "_godLobsterFights", "_goldenMoneyCharge", "_gongDrops", "_gothKidCharge", "_gothKidFights", "_grimBrotherCharge", "_grimFairyTaleDrops", "_grimFairyTaleDropsCrown", "_grimoireConfiscatorSummons", "_grimoireGeekySummons", "_grimstoneMaskDrops", "_grimstoneMaskDropsCrown", "_grooseCharge", "_grooseDrops", "_guzzlrDeliveries", "_guzzlrGoldDeliveries", "_guzzlrPlatinumDeliveries", "_hareAdv", "_hareCharge", "_highTopPumps", "_hipsterAdv", "_hoardedCandyDropsCrown", "_hoboUnderlingSummons", "_holoWristDrops", "_holoWristProgress", "_hotAshesDrops", "_hotJellyUses", "_hotTubSoaks", "_humanMuskUses", "_iceballUses", "_inigosCasts", "_jerksHealthMagazinesUsed", "_jiggleCheese", "_jiggleCream", "_jiggleLife", "_jiggleSteak", "_jitbCharge", "_juneCleaverFightsLeft", "_juneCleaverEncounters", "_juneCleaverStench", "_juneCleaverSpooky", "_juneCleaverSleaze", "_juneCleaverHot", "_juneCleaverCold", "_juneCleaverSkips", "_jungDrops", "_kgbClicksUsed", "_kgbDispenserUses", "_kgbTranquilizerDartUses", "_klawSummons", "_kloopCharge", "_kloopDrops", "_kolhsAdventures", "_kolhsSavedByTheBell", "_lastDailyDungeonRoom", "_lastSausageMonsterTurn", "_lastZomboEye", "_latteRefillsUsed", "_leafblowerML", "_legionJackhammerCrafting", "_llamaCharge", "_longConUsed", "_lovebugsBeachBuck", "_lovebugsChroner", "_lovebugsCoinspiracy", "_lovebugsFreddy", "_lovebugsFunFunds", "_lovebugsHoboNickel", "_lovebugsWalmart", "_loveChocolatesUsed", "_lynyrdSnareUses", "_machineTunnelsAdv", "_macrometeoriteUses", "_mafiaThumbRingAdvs", "_mayflowerDrops", "_mayflySummons", "_mediumSiphons", "_meteoriteAdesUsed", "_meteorShowerUses", "_micrometeoriteUses", "_miniMartiniDrops", "_monstersMapped", "_mushroomGardenFights", "_nanorhinoCharge", "_navelRunaways", "_neverendingPartyFreeTurns", "_newYouQuestSharpensDone", "_newYouQuestSharpensToDo", "_nextColdMedicineConsult", "_nextQuantumAlignment", "_nightmareFuelCharges", "_noobSkillCount", "_nuclearStockpileUsed", "_oilExtracted", "_olfactionsUsed", "_optimisticCandleDropsCrown", "_oreDropsCrown", "_otoscopeUsed", "_oysterEggsFound", "_pantsgivingBanish", "_pantsgivingCount", "_pantsgivingCrumbs", "_pantsgivingFullness", "_pasteDrops", "_peteJukeboxFixed", "_peteJumpedShark", "_petePeeledOut", "_pieDrops", "_piePartsCount", "_pixieCharge", "_pocketProfessorLectures", "_poisonArrows", "_pokeGrowFertilizerDrops", "_poolGames", "_powderedGoldDrops", "_powderedMadnessUses", "_powerfulGloveBatteryPowerUsed", "_powerPillDrops", "_powerPillUses", "_precisionCasts", "_radlibSummons", "_raindohCopiesMade", "_rapidPrototypingUsed", "_raveStealCount", "_reflexHammerUsed", "_resolutionAdv", "_resolutionRareSummons", "_riftletAdv", "_roboDrops", "_rogueProgramCharge", "_romanticFightsLeft", "_saberForceMonsterCount", "_saberForceUses", "_saberMod", "_saltGrainsConsumed", "_sandwormCharge", "_saplingsPlanted", "_sausageFights", "_sausagesEaten", "_sausagesMade", "_sealFigurineUses", "_sealScreeches", "_sealsSummoned", "_shatteringPunchUsed", "_shortOrderCookCharge", "_shrubCharge", "_sloppyDinerBeachBucks", "_smilesOfMrA", "_smithsnessSummons", "_snojoFreeFights", "_snojoParts", "_snokebombUsed", "_snowconeSummons", "_snowglobeDrops", "_snowSuitCount", "_sourceTerminalDigitizeMonsterCount", "_sourceTerminalDigitizeUses", "_sourceTerminalDuplicateUses", "_sourceTerminalEnhanceUses", "_sourceTerminalExtrudes", "_sourceTerminalPortscanUses", "_spaceFurDropsCrown", "_spacegatePlanetIndex", "_spacegateTurnsLeft", "_spaceJellyfishDrops", "_speakeasyDrinksDrunk", "_spelunkerCharges", "_spelunkingTalesDrops", "_spookyJellyUses", "_stackLumpsUses", "_steamCardDrops", "_stickerSummons", "_stinkyCheeseCount", "_stressBallSqueezes", "_sugarSummons", "_sweatOutSomeBoozeUsed", "_taffyRareSummons", "_taffyYellowSummons", "_thanksgettingFoodsEaten", "_thingfinderCasts", "_thinknerdPackageDrops", "_thorsPliersCrafting", "_timeHelmetAdv", "_timeSpinnerMinutesUsed", "_tokenDrops", "_transponderDrops", "_turkeyBlastersUsed", "_turkeyBooze", "_turkeyMuscle", "_turkeyMyst", "_turkeyMoxie", "_unaccompaniedMinerUsed", "_unconsciousCollectiveCharge", "_universalSeasoningsUsed", "_universeCalculated", "_universeImploded", "_usedReplicaBatoomerang", "_vampyreCloakeFormUses", "_villainLairProgress", "_vitachocCapsulesUsed", "_vmaskAdv", "_voidFreeFights", "_volcanoItem1", "_volcanoItem2", "_volcanoItem3", "_volcanoItemCount1", "_volcanoItemCount2", "_volcanoItemCount3", "_voteFreeFights", "_VYKEACompanionLevel", "_warbearAutoAnvilCrafting", "_whiteRiceDrops", "_witchessFights", "_xoHugsUsed", "_yellowPixelDropsCrown", "_zapCount"];
 var monsterProperties = ["beGregariousMonster", "cameraMonster", "chateauMonster", "clumsinessGroveBoss", "crappyCameraMonster", "crudeMonster", "enamorangMonster", "envyfishMonster", "glacierOfJerksBoss", "iceSculptureMonster", "lastCopyableMonster", "longConMonster", "maelstromOfLoversBoss", "makeFriendsMonster", "merkinLockkeyMonster", "nosyNoseMonster", "olfactedMonster", "photocopyMonster", "rainDohMonster", "romanticTarget", "screencappedMonster", "spookyPuttyMonster", "stenchCursedMonster", "superficiallyInterestedMonster", "waxMonster", "yearbookCameraTarget", "_gallapagosMonster", "_jiggleCreamedMonster", "_latteMonster", "_nanorhinoBanishedMonster", "_newYouQuestMonster", "_relativityMonster", "_saberForceMonster", "_sourceTerminalDigitizeMonster", "_voteMonster"];
@@ -7245,26 +8436,26 @@ function _defineProperty(obj, key, value) {
   }
   return obj;
 }
-function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+function _slicedToArray2(arr, i) {
+  return _arrayWithHoles2(arr) || _iterableToArrayLimit2(arr, i) || _unsupportedIterableToArray2(arr, i) || _nonIterableRest2();
 }
-function _nonIterableRest() {
+function _nonIterableRest2() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _unsupportedIterableToArray(o, minLen) {
+function _unsupportedIterableToArray2(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray(o, minLen);
+    return _arrayLikeToArray2(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray(o, minLen);
+    return _arrayLikeToArray2(o, minLen);
 }
-function _arrayLikeToArray(arr, len) {
+function _arrayLikeToArray2(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -7272,7 +8463,7 @@ function _arrayLikeToArray(arr, len) {
   }
   return arr2;
 }
-function _iterableToArrayLimit(arr, i) {
+function _iterableToArrayLimit2(arr, i) {
   var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
   if (_i == null)
     return;
@@ -7300,7 +8491,7 @@ function _iterableToArrayLimit(arr, i) {
   }
   return _arr;
 }
-function _arrayWithHoles(arr) {
+function _arrayWithHoles2(arr) {
   if (Array.isArray(arr))
     return arr;
 }
@@ -7397,13 +8588,13 @@ function _set(property, value) {
 }
 function setProperties(properties) {
   for (var _i = 0, _Object$entries = Object.entries(properties); _i < _Object$entries.length; _i++) {
-    var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2), prop = _Object$entries$_i[0], value = _Object$entries$_i[1];
+    var _Object$entries$_i = _slicedToArray2(_Object$entries[_i], 2), prop = _Object$entries$_i[0], value = _Object$entries$_i[1];
     _set(prop, value);
   }
 }
 function withProperties(properties, callback) {
   var propertiesBackup = Object.fromEntries(Object.entries(properties).map(function(_ref) {
-    var _ref2 = _slicedToArray(_ref, 1), prop = _ref2[0];
+    var _ref2 = _slicedToArray2(_ref, 1), prop = _ref2[0];
     return [prop, get(prop)];
   }));
   setProperties(properties);
@@ -7418,7 +8609,7 @@ function withProperty(property, value, callback) {
 }
 function withChoices(choices, callback) {
   var properties = Object.fromEntries(Object.entries(choices).map(function(_ref3) {
-    var _ref4 = _slicedToArray(_ref3, 2), choice = _ref4[0], option = _ref4[1];
+    var _ref4 = _slicedToArray2(_ref3, 2), choice = _ref4[0], option = _ref4[1];
     return ["choiceAdventure".concat(choice), option];
   }));
   withProperties(properties, callback);
@@ -7440,7 +8631,7 @@ var PropertiesManager = /* @__PURE__ */ function() {
     key: "set",
     value: function set(propertiesToSet) {
       for (var _i2 = 0, _Object$entries2 = Object.entries(propertiesToSet); _i2 < _Object$entries2.length; _i2++) {
-        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2), propertyName = _Object$entries2$_i[0], propertyValue = _Object$entries2$_i[1];
+        var _Object$entries2$_i = _slicedToArray2(_Object$entries2[_i2], 2), propertyName = _Object$entries2$_i[0], propertyValue = _Object$entries2$_i[1];
         if (this.properties[propertyName] === void 0) {
           this.properties[propertyName] = get(propertyName);
         }
@@ -7451,7 +8642,7 @@ var PropertiesManager = /* @__PURE__ */ function() {
     key: "setChoices",
     value: function setChoices(choicesToSet) {
       this.set(Object.fromEntries(Object.entries(choicesToSet).map(function(_ref5) {
-        var _ref6 = _slicedToArray(_ref5, 2), choiceNumber = _ref6[0], choiceValue = _ref6[1];
+        var _ref6 = _slicedToArray2(_ref5, 2), choiceNumber = _ref6[0], choiceValue = _ref6[1];
         return ["choiceAdventure".concat(choiceNumber), choiceValue];
       })));
     }
@@ -7540,7 +8731,7 @@ var PropertiesManager = /* @__PURE__ */ function() {
       if (thisProps.length !== otherProps.size)
         return false;
       for (var _i5 = 0, _thisProps = thisProps; _i5 < _thisProps.length; _i5++) {
-        var _thisProps$_i = _slicedToArray(_thisProps[_i5], 2), propertyName = _thisProps$_i[0], propertyValue = _thisProps$_i[1];
+        var _thisProps$_i = _slicedToArray2(_thisProps[_i5], 2), propertyName = _thisProps$_i[0], propertyValue = _thisProps$_i[1];
         if (otherProps.get(propertyName) === propertyValue)
           return false;
       }
@@ -7570,13 +8761,15 @@ var PropertiesManager = /* @__PURE__ */ function() {
 }();
 
 // ../../node_modules/libram/dist/template-string.js
+init_kolmafia_polyfill();
 var import_kolmafia2 = require("kolmafia");
 
 // ../../node_modules/libram/dist/utils.js
+init_kolmafia_polyfill();
 function _createForOfIteratorHelper(o, allowArrayLike) {
   var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
   if (!it) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray2(o)) || allowArrayLike && o && typeof o.length === "number") {
+    if (Array.isArray(o) || (it = _unsupportedIterableToArray3(o)) || allowArrayLike && o && typeof o.length === "number") {
       if (it)
         o = it;
       var i = 0;
@@ -7612,20 +8805,20 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
     }
   } };
 }
-function _unsupportedIterableToArray2(o, minLen) {
+function _unsupportedIterableToArray3(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray2(o, minLen);
+    return _arrayLikeToArray3(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray2(o, minLen);
+    return _arrayLikeToArray3(o, minLen);
 }
-function _arrayLikeToArray2(arr, len) {
+function _arrayLikeToArray3(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -7830,63 +9023,24 @@ function _defineProperty2(obj, key, value) {
   }
   return obj;
 }
-function _createForOfIteratorHelper2(o, allowArrayLike) {
-  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
-  if (!it) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray3(o)) || allowArrayLike && o && typeof o.length === "number") {
-      if (it)
-        o = it;
-      var i = 0;
-      var F = function F2() {
-      };
-      return { s: F, n: function n() {
-        if (i >= o.length)
-          return { done: true };
-        return { done: false, value: o[i++] };
-      }, e: function e(_e) {
-        throw _e;
-      }, f: F };
-    }
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  var normalCompletion = true, didErr = false, err;
-  return { s: function s() {
-    it = it.call(o);
-  }, n: function n() {
-    var step = it.next();
-    normalCompletion = step.done;
-    return step;
-  }, e: function e(_e2) {
-    didErr = true;
-    err = _e2;
-  }, f: function f() {
-    try {
-      if (!normalCompletion && it.return != null)
-        it.return();
-    } finally {
-      if (didErr)
-        throw err;
-    }
-  } };
-}
 function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray3(arr) || _nonIterableSpread();
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray4(arr) || _nonIterableSpread();
 }
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _unsupportedIterableToArray3(o, minLen) {
+function _unsupportedIterableToArray4(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray3(o, minLen);
+    return _arrayLikeToArray4(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray3(o, minLen);
+    return _arrayLikeToArray4(o, minLen);
 }
 function _iterableToArray(iter) {
   if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
@@ -7894,9 +9048,9 @@ function _iterableToArray(iter) {
 }
 function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr))
-    return _arrayLikeToArray3(arr);
+    return _arrayLikeToArray4(arr);
 }
-function _arrayLikeToArray3(arr, len) {
+function _arrayLikeToArray4(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -7905,87 +9059,82 @@ function _arrayLikeToArray3(arr, len) {
   return arr2;
 }
 function checkSkills() {
-  var skillsHCPermed = /* @__PURE__ */ new Set();
-  var skillsSCPermed = /* @__PURE__ */ new Set();
-  var levels = {};
   var permedSkills = (0, import_kolmafia4.getPermedSkills)();
-  for (var skillName in permedSkills) {
-    var _id = (0, import_kolmafia4.toInt)((0, import_kolmafia4.toSkill)(skillName));
-    (permedSkills[skillName] ? skillsHCPermed : skillsSCPermed).add(_id);
-    if ((0, import_kolmafia4.propertyExists)("skillLevel".concat(_id))) {
-      levels[_id] = property_exports.getNumber("skillLevel".concat(_id));
+  function getStatus(skill) {
+    switch (permedSkills[skill.name]) {
+      case true:
+        return SkillStatus.HARDCORE;
+      case false:
+        return SkillStatus.SOFTCORE;
+      default:
+        return SkillStatus.NONE;
     }
   }
-  var skillOutput = {
-    hardcore: Array.from(skillsHCPermed),
-    softcore: Array.from(skillsSCPermed),
-    levels: levels
-  };
-  return skillOutput;
+  function getLevel(skill) {
+    return property_exports.getNumber("skillLevel".concat((0, import_kolmafia4.toInt)(skill)));
+  }
+  return import_kolmafia4.Skill.all().filter(function(skill) {
+    return isPermable((0, import_kolmafia4.toInt)(skill));
+  }).map(function(skill) {
+    return [(0, import_kolmafia4.toInt)(skill), getStatus(skill), getLevel(skill)];
+  });
 }
-function hundredPercentFamiliars() {
+function getHundredPercentFamiliars() {
   var history = (0, import_kolmafia4.visitUrl)("ascensionhistory.php?back=self&who=".concat((0, import_kolmafia4.myId)()), false) + (0, import_kolmafia4.visitUrl)("ascensionhistory.php?back=self&prens13=1&who=".concat((0, import_kolmafia4.myId)()), false);
   return new Set(_toConsumableArray(history.matchAll(/alt="([^"]*?) \(100%\)/gm)).map(function(m) {
     return (0, import_kolmafia4.toFamiliar)(m[1]);
   }));
 }
 function checkFamiliars() {
-  var familiarsInTerrarium = /* @__PURE__ */ new Set();
-  var familiarHatchlings = /* @__PURE__ */ new Set();
-  var _iterator = _createForOfIteratorHelper2(import_kolmafia4.Familiar.all()), _step;
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-      var fam = _step.value;
-      if (have(fam)) {
-        familiarsInTerrarium.add((0, import_kolmafia4.toInt)(fam));
-      } else if (have(fam.hatchling)) {
-        familiarHatchlings.add((0, import_kolmafia4.toInt)(fam));
-      }
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
+  var hundredPercentFamiliars = getHundredPercentFamiliars();
+  function getStatus(familiar) {
+    if (have(familiar))
+      return FamiliarStatus.TERRARIUM;
+    if (have(familiar.hatchling))
+      return FamiliarStatus.HATCHLING;
+    return FamiliarStatus.NONE;
   }
-  var famOutput = {
-    familiars: Array.from(familiarsInTerrarium),
-    hatchlings: Array.from(familiarHatchlings),
-    hundredPercents: Array.from(hundredPercentFamiliars()).map(function(f) {
-      return (0, import_kolmafia4.toInt)(f);
-    })
-  };
-  return famOutput;
+  function getHundredPercent(familiar) {
+    return hundredPercentFamiliars.has(familiar);
+  }
+  return import_kolmafia4.Familiar.all().map(function(familiar) {
+    return [(0, import_kolmafia4.toInt)(familiar), getStatus(familiar), getHundredPercent(familiar)];
+  });
 }
 function checkTrophies() {
-  var trophiesInCase = /* @__PURE__ */ new Set();
   var page = (0, import_kolmafia4.visitUrl)("trophies.php");
-  for (var x = 0; x < loadTrophies().length; x++) {
-    if (page.match('"trophy'.concat(x, '"')))
-      trophiesInCase.add(x);
+  function getStatus(trophy) {
+    return page.includes('"trophy'.concat(trophy.id, '"')) ? TrophyStatus.HAVE : TrophyStatus.NONE;
   }
-  var trophyOutput = {
-    trophies: Array.from(trophiesInCase)
-  };
-  return trophyOutput;
+  return loadTrophies().map(function(trophy) {
+    return [trophy.id, getStatus(trophy)];
+  });
+}
+function checkOutfitTattoos(page) {
+  function getStatus(tattoo) {
+    if (page.includes(tattoo.image))
+      return TattooStatus.HAVE;
+    if ((0, import_kolmafia4.haveOutfit)(tattoo.name))
+      return TattooStatus.HAVE_OUTFIT;
+    return TattooStatus.NONE;
+  }
+  return getOutfitTattoos(loadTattoos()).map(function(tattoo) {
+    return [tattoo.outfit, getStatus(tattoo)];
+  });
 }
 function checkTattoos() {
-  var tattoosUnlocked = /* @__PURE__ */ new Set();
   var page = (0, import_kolmafia4.visitUrl)("account_tattoos.php");
-  var tats = page.split("Tattoo: ").slice(1);
-  for (var i = 0; i < tats.length; i = i + 2) {
-    var tattoo = tats[i].match("[a-z0-9_]*");
-    if (tattoo !== null) {
-      tattoosUnlocked.add(tattoo[0]);
-    }
-  }
-  var tattooOutput = {
-    tattoos: Array.from(tattoosUnlocked)
+  return {
+    outfitTattoos: checkOutfitTattoos(page)
   };
-  return tattooOutput;
 }
 function main() {
-  var greenboxOutput = _objectSpread2(_objectSpread2(_objectSpread2(_objectSpread2({}, checkSkills()), checkFamiliars()), checkTrophies()), checkTattoos());
-  (0, import_kolmafia4.print)(JSON.stringify(greenboxOutput));
+  var code = compress(_objectSpread2({
+    skills: checkSkills(),
+    familiars: checkFamiliars(),
+    trophies: checkTrophies()
+  }, checkTattoos()));
+  (0, import_kolmafia4.printHtml)('Visit <a href="https://greenbox.loathers.net">https://greenbox.loathers.net</a> and paste the following unique code into the text box!<br />' + '<table border="1"><tr><td>'.concat(code.replace(/(.{80})/g, "$1\n"), "</td></tr></table>"));
 }
 module.exports.main = main;
 /*! https://mths.be/he v1.2.0 by @mathias | MIT license */
