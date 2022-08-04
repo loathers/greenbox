@@ -1860,11 +1860,6 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@kunigi/string-compression@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@kunigi/string-compression/-/string-compression-1.0.2.tgz#aed3d6d29ba170d51079562328ced905d6a7d6da"
-  integrity sha512-rB2OpMgWOe9J7KQhEmLFniA2lwJm9v3hoGSWuMihitKcoOiY/dLn5GoXOXbeQV+pui6IuVSuKoa8jbYoQhhewA==
-
 "@lerna/add@5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-5.3.0.tgz#2e6cd5ff3d8bad2b0b36cdeaa300fc39fbae215e"
@@ -5247,6 +5242,11 @@ jsonc-parser@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-3.0.0.tgz#abdd785701c7e7eaca8a9ec8cf070ca51a745a22"
   integrity sha512-fQzRfAbIBnR0IQvftw9FJveWiHp72Fg20giDrHz6TdfB12UH/uue0D3hm57UB5KgAVuniLMCaS8P1IMj9NR7cA==
+
+jsoncrush@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/jsoncrush/-/jsoncrush-1.1.8.tgz#5dd9389df1979592df8c89ab99ba69b029a030be"
+  integrity sha512-lvIMGzMUA0fjuqwNcxlTNRq2bibPZ9auqT/LyGdlR5hvydJtA/BasSgkx4qclqTKVeTidrJvsS/oVjlTCPQ4Nw==
 
 jsonfile@^6.0.1:
   version "6.1.0"

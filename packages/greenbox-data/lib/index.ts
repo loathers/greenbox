@@ -1,4 +1,4 @@
-import { encode, encodeURI, decode, decodeURI } from "@kunigi/string-compression";
+import jsoncrush from "jsoncrush";
 
 import { compressFamiliars, expandFamiliars, RawFamiliar } from "./familiars";
 import { compressSkills, expandSkills, RawSkill } from "./skills";
@@ -28,11 +28,12 @@ export function compress(raw: RawSnapshotData): string {
   };
 
   const compressedString = JSON.stringify(compressed);
-  return encodeURI(compressedString);
+  console.log(compressedString);
+  return decodeURIComponent(jsoncrush.crush(compressedString));
 }
 
 export function expand(encoded: string): RawSnapshotData {
-  const decoded = decodeURI(encoded.replace(/\n/g, ""));
+  const decoded = jsoncrush.uncrush(decodeURIComponent(encoded.replace(/\n/g, "")));
   const compressed = JSON.parse(decoded) as CompressedSnapshotData;
 
   return {
