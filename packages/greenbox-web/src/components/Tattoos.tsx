@@ -8,7 +8,7 @@ import {
   SimpleGrid,
   Stack,
 } from "@chakra-ui/react";
-import { loadTattoos, TattooDef } from "greenbox-data";
+import { loadTattoos, RawOutfitTattoo, TattooDef, TattooStatus } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
 import AlphaImage from "./AlphaImage";
@@ -16,27 +16,36 @@ import Progress from "./Progress";
 import Tattoo from "./Tattoo";
 
 type Props = {
-  playerTattoos: string[];
+  outfitTattoos: RawOutfitTattoo[];
 };
 
-export default function Tattoos({ playerTattoos }: Props) {
+export default function Tattoos({ outfitTattoos: playerOutfitTattoos }: Props) {
   const [loading, setLoading] = useState(true);
   const [tattoos, setTattoos] = useState([] as readonly TattooDef[]);
-  const [validTattoos, setValidTattoos] = useState(new Set());
 
   useEffect(() => {
     async function load() {
-      const tats = await loadTattoos();
-      setTattoos(tats);
-      setValidTattoos(new Set([...tats.map((t) => t.image)]));
+      setTattoos(await loadTattoos());
       setLoading(false);
     }
     load();
   }, []);
 
-  const tats = useMemo(
-    () => playerTattoos.filter((image) => validTattoos.has(image)),
-    [playerTattoos, validTattoos]
+  const totalOutfitTattos = useMemo(
+    () => playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE).length,
+    [playerOutfitTattoos]
+  );
+  const totalOutfits = useMemo(
+    () => playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE_OUTFIT).length,
+    [playerOutfitTattoos]
+  );
+  const idToOutfitTattoo = useMemo(
+    () =>
+      playerOutfitTattoos.reduce(
+        (acc, t) => ({ ...acc, [t[0]]: t }),
+        {} as { [id: number]: RawOutfitTattoo }
+      ),
+    [playerOutfitTattoos]
   );
 
   return (
@@ -51,9 +60,14 @@ export default function Tattoos({ playerTattoos }: Props) {
             <Progress
               values={[
                 {
+                  color: "partial",
+                  value: totalOutfits,
+                  name: `${totalOutfits} / ${tattoos.length} tattoos unlocked`,
+                },
+                {
                   color: "complete",
-                  value: tats.length,
-                  name: `${tats.length} / ${tattoos.length} tattoos unlocked`,
+                  value: totalOutfitTattos,
+                  name: `${totalOutfitTattos} / ${tattoos.length} tattoos unlocked`,
                 },
               ]}
               max={tattoos.length}
@@ -65,7 +79,7 @@ export default function Tattoos({ playerTattoos }: Props) {
       <AccordionPanel>
         <SimpleGrid columns={6} spacing={1}>
           {tattoos.map((t) => (
-            <Tattoo key={t.image} tattoo={t} have={tats.includes(t.image)} />
+            <Tattoo key={t.image} tattoo={t} status={idToOutfitTattoo[t.outfit]?.[1] ?? 0} />
           ))}
         </SimpleGrid>
       </AccordionPanel>

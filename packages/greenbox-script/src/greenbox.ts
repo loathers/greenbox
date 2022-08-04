@@ -1,15 +1,31 @@
 import "core-js/modules/es.string.match-all";
-import { loadTrophies, isPermable, SnapshotData } from "greenbox-data";
+import {
+  loadTrophies,
+  isPermable,
+  loadTattoos,
+  getOutfitTattoos,
+  SkillStatus,
+  FamiliarStatus,
+  TrophyStatus,
+  TattooStatus,
+  TattooDef,
+  compress,
+  RawOutfitTattoo,
+  RawTrophy,
+  RawSkill,
+  RawFamiliar,
+  TrophyDef,
+} from "greenbox-data";
 import {
   Familiar,
   getPermedSkills,
+  haveOutfit,
   myId,
   print,
-  propertyExists,
+  printHtml,
   Skill,
   toFamiliar,
   toInt,
-  toSkill,
   visitUrl,
 } from "kolmafia";
 import { have, property } from "libram";
@@ -22,35 +38,30 @@ function checkSkills() {
   // Key existence means permed in some way, true is HC, false is SC
   const permedSkills = getPermedSkills();
 
+  function getStatus(skill: Skill) {
+    switch (permedSkills[skill.name]) {
+      case true:
+        return SkillStatus.HARDCORE;
+      case false:
+        return SkillStatus.SOFTCORE;
+      default:
+        return SkillStatus.NONE;
+    }
+  }
+
+  function getLevel(skill: Skill) {
+    return property.getNumber(`skillLevel${toInt(skill)}`);
+  }
+
   return Skill.all()
-    .filter((s) => isPermable(toInt(s)))
-    .reduce((r, skill) => {
-      const id = toInt(skill);
-      const block = Math.floor(id / 1000);
-      let result = r[block] || "";
-      switch (permedSkills[skill.name]) {
-        case true:
-          result += "2";
-          break;
-        case false:
-          result += "1";
-          break;
-        default:
-          result += "0";
-          break;
-      }
-      if (propertyExists(`skillLevel${id}`)) result += `(${property.getNumber(`skillLevel${id}`)})`;
-      return {
-        ...r,
-        [block]: result,
-      };
-    }, {} as { [key: number]: string });
+    .filter((skill) => isPermable(toInt(skill)))
+    .map((skill) => [toInt(skill), getStatus(skill), getLevel(skill)] as RawSkill);
 }
 
 /**
  * Generates a list of familiars with 100% runs
  */
-function checkHundredPercentFamiliars() {
+function getHundredPercentFamiliars() {
   const history =
     visitUrl(`ascensionhistory.php?back=self&who=${myId()}`, false) +
     visitUrl(`ascensionhistory.php?back=self&prens13=1&who=${myId()}`, false);
@@ -62,19 +73,21 @@ function checkHundredPercentFamiliars() {
  * @returns large numeric list of familiars by fam ID
  */
 function checkFamiliars() {
-  const hundredPercentFamiliars = checkHundredPercentFamiliars();
+  const hundredPercentFamiliars = getHundredPercentFamiliars();
 
-  return Familiar.all().reduce((r, fam) => {
-    if (have(fam)) {
-      r += "2";
-    } else if (have(fam.hatchling)) {
-      r += "1";
-    } else {
-      r += "0";
-    }
-    if (hundredPercentFamiliars.has(fam)) r += "*";
-    return r;
-  }, "");
+  function getStatus(familiar: Familiar) {
+    if (have(familiar)) return FamiliarStatus.TERRARIUM;
+    if (have(familiar.hatchling)) return FamiliarStatus.HATCHLING;
+    return FamiliarStatus.NONE;
+  }
+
+  function getHundredPercent(familiar: Familiar) {
+    return hundredPercentFamiliars.has(familiar);
+  }
+
+  return Familiar.all().map(
+    (familiar) => [toInt(familiar), getStatus(familiar), getHundredPercent(familiar)] as RawFamiliar
+  );
 }
 
 /**
@@ -83,38 +96,46 @@ function checkFamiliars() {
  */
 function checkTrophies() {
   const page = visitUrl("trophies.php");
-  return Array<number>(loadTrophies().length).reduce(
-    (r, _, i) => r + (page.match(`"trophy${i}"`) ? "1" : "0"),
-    ""
+
+  function getStatus(trophy: TrophyDef) {
+    return page.includes(`"trophy${trophy.id}"`) ? TrophyStatus.HAVE : TrophyStatus.NONE;
+  }
+
+  return loadTrophies().map((trophy) => [trophy.id, getStatus(trophy)] as RawTrophy);
+}
+
+function checkOutfitTattoos(page: string) {
+  function getStatus(tattoo: TattooDef) {
+    if (page.includes(tattoo.image)) return TattooStatus.HAVE;
+    if (haveOutfit(tattoo.name)) return TattooStatus.HAVE_OUTFIT;
+    return TattooStatus.NONE;
+  }
+
+  return getOutfitTattoos(loadTattoos()).map(
+    (tattoo) => [tattoo.outfit, getStatus(tattoo)] as RawOutfitTattoo
   );
 }
 
 function checkTattoos() {
-  const tattoosUnlocked = new Set<string>();
   const page = visitUrl("account_tattoos.php");
-  const tats = page.split(`Tattoo: `).slice(1); //gives an array where each item in the array starts with the tattoo name
-  for (let i = 0; i < tats.length; i = i + 2) {
-    //Tattoo page lists every tattoo twice, hence only doing evens
-    const tattoo = tats[i].match(`[a-z0-9_]*`);
-    if (tattoo !== null) {
-      tattoosUnlocked.add(tattoo[0]);
-    }
-  }
-  const tattooOutput = {
-    tattoos: Array.from(tattoosUnlocked),
+
+  return {
+    outfitTattoos: checkOutfitTattoos(page),
   };
-  return tattooOutput;
 }
 
 function main(): void {
-  const greenboxOutput: SnapshotData = {
+  const code = compress({
     skills: checkSkills(),
     familiars: checkFamiliars(),
     trophies: checkTrophies(),
     ...checkTattoos(),
-  };
+  });
 
-  print(JSON.stringify(greenboxOutput));
+  printHtml(
+    `Visit <a href="https://greenbox.loathers.net">https://greenbox.loathers.net</a> and paste the following unique code into the text box!<br />` +
+      `<table border="1"><tr><td>${code.replace(/(.{80})/g, "$1\n")}</td></tr></table>`
+  );
 }
 
 module.exports.main = main;

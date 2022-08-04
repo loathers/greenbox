@@ -1,26 +1,43 @@
-import { FamiliarDef } from "greenbox-data";
+import { FamiliarDef, FamiliarStatus } from "greenbox-data";
 
 import Medal from "./Medal.js";
 import Thing from "./Thing";
 
 type Props = {
   familiar: FamiliarDef;
-  hatchling: boolean;
-  terrarium: boolean;
+  status: FamiliarStatus;
   hundredPercent: boolean;
 };
 
-export default function Familiar({ familiar, terrarium, hatchling, hundredPercent }: Props) {
-  const state = terrarium ? "complete" : hatchling ? "partial" : null;
-  const title = `${familiar.name} (${
-    terrarium ? "Have in terrarium" : hatchling ? "Have as hatchling" : "Do not have"
-  })`;
+function familiarStatusToThingState(status: FamiliarStatus) {
+  switch (status) {
+    case FamiliarStatus.TERRARIUM:
+      return "complete";
+    case FamiliarStatus.HATCHLING:
+      return "partial";
+    default:
+      return null;
+  }
+}
+
+function familiarStatusToTitle(status: FamiliarStatus) {
+  switch (status) {
+    case FamiliarStatus.TERRARIUM:
+      return "Have in terrarium";
+    case FamiliarStatus.HATCHLING:
+      return "Have as hatchling";
+    default:
+      return "Do not have";
+  }
+}
+
+export default function Familiar({ familiar, status, hundredPercent }: Props) {
   return (
     <Thing
       name={familiar.name}
       image={`itemimages/${familiar.image}`}
-      state={state}
-      title={title}
+      state={familiarStatusToThingState(status)}
+      title={familiarStatusToTitle(status)}
       badges={hundredPercent ? <Medal title="100% run" /> : null}
     />
   );

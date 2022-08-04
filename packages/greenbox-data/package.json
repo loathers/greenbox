@@ -27,8 +27,11 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
-    "prettier": "^2.7.1",
-    "greenbox-prettier-config": "^0.0.0"
+    "greenbox-prettier-config": "^0.0.0",
+    "prettier": "^2.7.1"
   },
-  "prettier": "greenbox-prettier-config"
+  "prettier": "greenbox-prettier-config",
+  "dependencies": {
+    "@kunigi/string-compression": "^1.0.2"
+  }
 }

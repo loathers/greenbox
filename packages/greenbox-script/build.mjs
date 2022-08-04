@@ -19,4 +19,8 @@ build({
   outdir: "dist/scripts/greenbox",
   watch,
   loader: { ".json": "text" },
+  inject: ["./kolmafia-polyfill.js"],
+  define: {
+    "process.env.NODE_ENV": '"production"',
+  },
 });
