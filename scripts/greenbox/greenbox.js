@@ -288,9 +288,9 @@ var require_engine_v8_version = __commonJS({
     init_kolmafia_polyfill();
     var global2 = require_global();
     var userAgent = require_engine_user_agent();
-    var process2 = global2.process;
+    var process = global2.process;
     var Deno = global2.Deno;
-    var versions = process2 && process2.versions || Deno && Deno.version;
+    var versions = process && process.versions || Deno && Deno.version;
     var v8 = versions && versions.v8;
     var match;
     var version;
@@ -1933,194 +1933,6 @@ var require_regexp_exec_abstract = __commonJS({
         return call2(regexpExec, R, S);
       throw $TypeError2("RegExp#exec called on incompatible receiver");
     };
-  }
-});
-
-// ../../node_modules/@kunigi/string-compression/dist/string-compression.cjs.production.min.js
-var require_string_compression_cjs_production_min = __commonJS({
-  "../../node_modules/@kunigi/string-compression/dist/string-compression.cjs.production.min.js": function(exports2) {
-    "use strict";
-    init_kolmafia_polyfill();
-    function e(e2, t2) {
-      (null == t2 || t2 > e2.length) && (t2 = e2.length);
-      for (var n2 = 0, r2 = new Array(t2); n2 < t2; n2++) {
-        r2[n2] = e2[n2];
-      }
-      return r2;
-    }
-    Object.defineProperty(exports2, "__esModule", {
-      value: true
-    });
-    var t = function t2(e2, _t) {
-      var n2 = new RegExp((_t[2] ? _t[2] : "") + _t[0] + "|" + ((_t[3] ? _t[3] : "") + _t[1]), "g");
-      return e2.replace(n2, function(e3) {
-        return e3 === _t[0] ? _t[1] : _t[0];
-      });
-    };
-    var n = function n2(e2, _n) {
-      void 0 === _n && (_n = 1);
-      var r2 = [['"', "'"], ["':", "!"], [",'", "~"], ["}", ")", "\\", "\\"], ["{", "(", "\\", "\\"]];
-      if (_n)
-        for (var o2 = 0; o2 < r2.length; o2++) {
-          e2 = t(e2, r2[o2]);
-        }
-      else
-        for (var i2 = r2.length; i2--; ) {
-          e2 = t(e2, r2[i2]);
-        }
-      return e2;
-    };
-    var r = function() {
-      function t2(e2) {
-        void 0 === e2 && (e2 = "_"), this.postfix = e2;
-      }
-      var r2 = t2.prototype;
-      return r2.execute = function(t3) {
-        var r3 = this.splitStartHeading(this.trimPostfix(t3)), o2 = r3[0];
-        if (r3.length > 1)
-          for (var i2, a2 = function(t4, n2) {
-            var r4 = "undefined" != typeof Symbol && t4[Symbol.iterator] || t4["@@iterator"];
-            if (r4)
-              return (r4 = r4.call(t4)).next.bind(r4);
-            if (Array.isArray(t4) || (r4 = function(t5, n3) {
-              if (t5) {
-                if ("string" == typeof t5)
-                  return e(t5, void 0);
-                var r5 = Object.prototype.toString.call(t5).slice(8, -1);
-                return "Object" === r5 && t5.constructor && (r5 = t5.constructor.name), "Map" === r5 || "Set" === r5 ? Array.from(t5) : "Arguments" === r5 || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r5) ? e(t5, void 0) : void 0;
-              }
-            }(t4))) {
-              r4 && (t4 = r4);
-              var o3 = 0;
-              return function() {
-                return o3 >= t4.length ? {
-                  done: true
-                } : {
-                  done: false,
-                  value: t4[o3++]
-                };
-              };
-            }
-            throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-          }(r3[1].split("")); !(i2 = a2()).done; ) {
-            var u2 = o2.split(i2.value);
-            o2 = u2.join(u2.pop());
-          }
-        return n(o2, 0);
-      }, r2.trimPostfix = function(e2) {
-        return e2.endsWith(this.postfix), e2.substring(0, e2.length - this.postfix.length);
-      }, r2.splitStartHeading = function(e2) {
-        return e2.split("");
-      }, t2;
-    }();
-    var o = function() {
-      function e2(e3) {
-        this.delimiterPattern = "", this.timesToIterate = 127, this.unescapedCharacters = "-_.!~*()", this.maxSubstringLength = (null == e3 ? void 0 : e3.maxSubstringLength) || 50;
-      }
-      var t2 = e2.prototype;
-      return t2.execute = function(e3) {
-        var t3 = this.seedCharacters();
-        e3 = (e3 = e3.replace(/\n/, "__")).replace(new RegExp(this.delimiterPattern, "g"), ""), e3 = n(e3), t3 = this.pickFromExtendedSetLast(t3);
-        var r2 = this.loop(e3, t3, this.countSubstrings(e3)), o2 = r2.a;
-        return r2.b.length && (o2 += this.delimiterPattern + r2.b), o2 + "_";
-      }, t2.seedCharacters = function() {
-        var e3 = this, t3 = [];
-        return function(e4, t4) {
-          for (var n2 = 0; n2 < e4; n2++) {
-            t4(n2);
-          }
-        }(this.timesToIterate, function(n2) {
-          (n2 >= 48 && n2 <= 57 || n2 >= 65 && n2 <= 90 || n2 >= 97 && n2 <= 122 || e3.unescapedCharacters.includes(String.fromCharCode(n2))) && t3.push(String.fromCharCode(n2));
-        }), t3;
-      }, t2.pickFromExtendedSetLast = function(e3) {
-        for (var t3 = 32; t3 < 255; ++t3) {
-          var n2 = String.fromCharCode(t3);
-          "\\" === n2 || e3.includes(n2) || e3.unshift(n2);
-        }
-        return e3;
-      }, t2.getByteLength = function(e3) {
-        return encodeURI(encodeURIComponent(e3)).replace(/%../g, "i").length;
-      }, t2.hasUnmatchedSurrogate = function(e3) {
-        var t3 = e3.charCodeAt(0), n2 = e3.charCodeAt(e3.length - 1);
-        return t3 >= 56320 && t3 <= 57343 || n2 >= 55296 && n2 <= 56319;
-      }, t2.countSubstrings = function(e3) {
-        for (var t3 = {}, n2 = 2; n2 < this.maxSubstringLength; n2++) {
-          for (var r2 = 0; r2 < e3.length - n2; ++r2) {
-            var o2 = e3.substr(r2, n2);
-            if (!t3[o2] && !this.hasUnmatchedSurrogate(o2)) {
-              for (var i2 = 1, a2 = e3.indexOf(o2, r2 + n2); a2 >= 0; ++i2) {
-                a2 = e3.indexOf(o2, a2 + n2);
-              }
-              i2 > 1 && (t3[o2] = i2);
-            }
-          }
-        }
-        return t3;
-      }, t2.loop = function(e3, t3, n2) {
-        for (var r2 = t3.length, o2 = "", i2 = this.getByteLength(this.delimiterPattern); ; ) {
-          for (; r2-- && e3.includes(t3[r2]); ) {
-            ;
-          }
-          if (r2 < 0)
-            break;
-          var a2 = t3[r2], u2 = void 0, s2 = 0, c2 = this.getByteLength(a2);
-          for (var d in n2) {
-            var l = n2[d], f = (l - 1) * this.getByteLength(d) - (l + 1) * c2;
-            o2.length || (f -= i2), f <= 0 ? delete n2[d] : f > s2 && (u2 = d, s2 = f);
-          }
-          if (!u2)
-            break;
-          e3 = e3.split(u2).join(a2) + a2 + u2, o2 = a2 + o2;
-          var h = {};
-          for (var p in n2) {
-            for (var g = p.split(u2).join(a2), v = 0, m = e3.indexOf(g); m >= 0; ++v) {
-              m = e3.indexOf(g, m + g.length);
-            }
-            v > 1 && (h[g] = v);
-          }
-          n2 = h;
-        }
-        return {
-          a: e3,
-          b: o2
-        };
-      }, e2;
-    }();
-    var i = "undefined" != typeof window && window.encodeURI && window.decodeURI && window.encodeURIComponent && window.decodeURIComponent ? window : null !== typeof global && global.encodeURI && global.decodeURI && global.encodeURIComponent && global.decodeURIComponent ? global : null;
-    if (!i)
-      throw Error("string-compression cannot be used because the expected encode and decode API's seem unavailable.");
-    var a = new o({
-      maxSubstringLength: 50
-    });
-    var u = new r();
-    var s = function s2(e2) {
-      return a.execute(e2);
-    };
-    var c = function c2(e2) {
-      return u.execute(e2);
-    };
-    exports2.decode = c, exports2.decodeURI = function(e2) {
-      return c(i.decodeURI(e2));
-    }, exports2.decodeURIComponent = function(e2) {
-      return c(i.decodeURIComponent(e2));
-    }, exports2.encode = s, exports2.encodeURI = function(e2) {
-      return i.encodeURI(s(e2));
-    }, exports2.encodeURIComponent = function(e2) {
-      return i.encodeURIComponent(s(e2));
-    };
-  }
-});
-
-// ../../node_modules/@kunigi/string-compression/dist/index.js
-var require_dist = __commonJS({
-  "../../node_modules/@kunigi/string-compression/dist/index.js": function(exports2, module2) {
-    "use strict";
-    init_kolmafia_polyfill();
-    if (true) {
-      module2.exports = require_string_compression_cjs_production_min();
-    } else {
-      module2.exports = null;
-    }
   }
 });
 
@@ -6692,7 +6504,203 @@ IS_PURE || MATCH_ALL in RegExpPrototype || defineBuiltIn(RegExpPrototype, MATCH_
 
 // ../greenbox-data/lib/index.ts
 init_kolmafia_polyfill();
-var import_string_compression = __toESM(require_dist());
+
+// ../../node_modules/jsoncrush/JSONCrush.js
+init_kolmafia_polyfill();
+function _createForOfIteratorHelper(o, allowArrayLike) {
+  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+  if (!it) {
+    if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+      if (it)
+        o = it;
+      var i = 0;
+      var F = function F2() {
+      };
+      return { s: F, n: function n() {
+        if (i >= o.length)
+          return { done: true };
+        return { done: false, value: o[i++] };
+      }, e: function e(_e) {
+        throw _e;
+      }, f: F };
+    }
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  var normalCompletion = true, didErr = false, err;
+  return { s: function s() {
+    it = it.call(o);
+  }, n: function n() {
+    var step = it.next();
+    normalCompletion = step.done;
+    return step;
+  }, e: function e(_e2) {
+    didErr = true;
+    err = _e2;
+  }, f: function f() {
+    try {
+      if (!normalCompletion && it.return != null)
+        it.return();
+    } finally {
+      if (didErr)
+        throw err;
+    }
+  } };
+}
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o)
+    return;
+  if (typeof o === "string")
+    return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor)
+    n = o.constructor.name;
+  if (n === "Map" || n === "Set")
+    return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+    return _arrayLikeToArray(o, minLen);
+}
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length)
+    len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+  return arr2;
+}
+var JSONCrush_default = {
+  crush: function crush(string) {
+    var maxSubstringLength = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 50;
+    var delimiter = "";
+    var JSCrush = function(string2, replaceCharacters) {
+      var replaceCharacterPos = replaceCharacters.length;
+      var splitString = "";
+      var ByteLength = function(string3) {
+        return encodeURI(encodeURIComponent(string3)).replace(/%../g, "i").length;
+      };
+      var HasUnmatchedSurrogate = function(string3) {
+        var c1 = string3.charCodeAt(0);
+        var c2 = string3.charCodeAt(string3.length - 1);
+        return c1 >= 56320 && c1 <= 57343 || c2 >= 55296 && c2 <= 56319;
+      };
+      var substringCount = {};
+      for (var substringLength = 2; substringLength < maxSubstringLength; substringLength++) {
+        for (var i2 = 0; i2 < string2.length - substringLength; ++i2) {
+          var substring = string2.substr(i2, substringLength);
+          if (substringCount[substring])
+            continue;
+          if (HasUnmatchedSurrogate(substring))
+            continue;
+          var count = 1;
+          for (var substringPos = string2.indexOf(substring, i2 + substringLength); substringPos >= 0; ++count) {
+            substringPos = string2.indexOf(substring, substringPos + substringLength);
+          }
+          if (count > 1)
+            substringCount[substring] = count;
+        }
+      }
+      while (true) {
+        for (; replaceCharacterPos-- && string2.includes(replaceCharacters[replaceCharacterPos]); ) {
+        }
+        if (replaceCharacterPos < 0)
+          break;
+        var replaceCharacter = replaceCharacters[replaceCharacterPos];
+        var bestSubstring = void 0;
+        var bestLengthDelta = 0;
+        var replaceByteLength = ByteLength(replaceCharacter);
+        for (var _substring in substringCount) {
+          var _count = substringCount[_substring];
+          var lengthDelta = (_count - 1) * ByteLength(_substring) - (_count + 1) * replaceByteLength;
+          if (!splitString.length)
+            lengthDelta -= ByteLength(delimiter);
+          if (lengthDelta <= 0)
+            delete substringCount[_substring];
+          else if (lengthDelta > bestLengthDelta) {
+            bestSubstring = _substring;
+            bestLengthDelta = lengthDelta;
+          }
+        }
+        if (!bestSubstring)
+          break;
+        string2 = string2.split(bestSubstring).join(replaceCharacter) + replaceCharacter + bestSubstring;
+        splitString = replaceCharacter + splitString;
+        var newSubstringCount = {};
+        for (var _substring2 in substringCount) {
+          var newSubstring = _substring2.split(bestSubstring).join(replaceCharacter);
+          var _count2 = 0;
+          for (var _i = string2.indexOf(newSubstring); _i >= 0; ++_count2) {
+            _i = string2.indexOf(newSubstring, _i + newSubstring.length);
+          }
+          if (_count2 > 1)
+            newSubstringCount[newSubstring] = _count2;
+        }
+        substringCount = newSubstringCount;
+      }
+      return {
+        a: string2,
+        b: splitString
+      };
+    };
+    var characters = [];
+    var unescapedCharacters = "-_.!~*'()";
+    for (var i = 127; --i; ) {
+      if (i >= 48 && i <= 57 || i >= 65 && i <= 90 || i >= 97 && i <= 122 || unescapedCharacters.includes(String.fromCharCode(i)))
+        characters.push(String.fromCharCode(i));
+    }
+    for (var _i2 = 32; _i2 < 255; ++_i2) {
+      var c = String.fromCharCode(_i2);
+      if (c != "\\" && !characters.includes(c))
+        characters.unshift(c);
+    }
+    string = string.replace(new RegExp(delimiter, "g"), "");
+    string = JSONCrushSwap(string);
+    var crushed = JSCrush(string, characters);
+    var crushedString = crushed.a;
+    if (crushed.b.length)
+      crushedString += delimiter + crushed.b;
+    crushedString += "_";
+    return crushedString;
+  },
+  uncrush: function(string) {
+    string = string.substring(0, string.length - 1);
+    var stringParts = string.split("");
+    var uncrushedString = stringParts[0];
+    if (stringParts.length > 1) {
+      var splitString = stringParts[1];
+      var _iterator = _createForOfIteratorHelper(splitString), _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+          var character = _step.value;
+          var splitArray = uncrushedString.split(character);
+          uncrushedString = splitArray.join(splitArray.pop());
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+    return JSONCrushSwap(uncrushedString, 0);
+  }
+};
+var JSONCrushSwap = function JSONCrushSwap2(string) {
+  var forward = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 1;
+  var swapGroups = [['"', "'"], ["':", "!"], [",'", "~"], ["}", ")", "\\", "\\"], ["{", "(", "\\", "\\"]];
+  var swapInternal = function(string2, g) {
+    var regex = new RegExp("".concat((g[2] ? g[2] : "") + g[0], "|").concat((g[3] ? g[3] : "") + g[1]), "g");
+    return string2.replace(regex, function($1) {
+      return $1 === g[0] ? g[1] : g[0];
+    });
+  };
+  if (forward)
+    for (var i = 0; i < swapGroups.length; ++i) {
+      string = swapInternal(string, swapGroups[i]);
+    }
+  else
+    for (var _i3 = swapGroups.length; _i3--; ) {
+      string = swapInternal(string, swapGroups[_i3]);
+    }
+  return string;
+};
 
 // ../greenbox-data/lib/familiars.ts
 init_kolmafia_polyfill();
@@ -6720,25 +6728,25 @@ var compressFamiliars = function(familiars) {
 init_kolmafia_polyfill();
 var import_he2 = __toESM(require_he());
 function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray2(arr, i) || _nonIterableRest();
 }
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _unsupportedIterableToArray(o, minLen) {
+function _unsupportedIterableToArray2(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray(o, minLen);
+    return _arrayLikeToArray2(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray(o, minLen);
+    return _arrayLikeToArray2(o, minLen);
 }
-function _arrayLikeToArray(arr, len) {
+function _arrayLikeToArray2(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -8191,7 +8199,8 @@ function compress(raw) {
     outfitTattoos: compressOutfitTattoos(raw.outfitTattoos)
   };
   var compressedString = JSON.stringify(compressed);
-  return (0, import_string_compression.encodeURI)(compressedString);
+  console.log(compressedString);
+  return decodeURIComponent(JSONCrush_default.crush(compressedString));
 }
 
 // src/greenbox.ts
@@ -8437,25 +8446,25 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 function _slicedToArray2(arr, i) {
-  return _arrayWithHoles2(arr) || _iterableToArrayLimit2(arr, i) || _unsupportedIterableToArray2(arr, i) || _nonIterableRest2();
+  return _arrayWithHoles2(arr) || _iterableToArrayLimit2(arr, i) || _unsupportedIterableToArray3(arr, i) || _nonIterableRest2();
 }
 function _nonIterableRest2() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _unsupportedIterableToArray2(o, minLen) {
+function _unsupportedIterableToArray3(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray2(o, minLen);
+    return _arrayLikeToArray3(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray2(o, minLen);
+    return _arrayLikeToArray3(o, minLen);
 }
-function _arrayLikeToArray2(arr, len) {
+function _arrayLikeToArray3(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -8766,10 +8775,10 @@ var import_kolmafia2 = require("kolmafia");
 
 // ../../node_modules/libram/dist/utils.js
 init_kolmafia_polyfill();
-function _createForOfIteratorHelper(o, allowArrayLike) {
+function _createForOfIteratorHelper2(o, allowArrayLike) {
   var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
   if (!it) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray3(o)) || allowArrayLike && o && typeof o.length === "number") {
+    if (Array.isArray(o) || (it = _unsupportedIterableToArray4(o)) || allowArrayLike && o && typeof o.length === "number") {
       if (it)
         o = it;
       var i = 0;
@@ -8805,20 +8814,20 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
     }
   } };
 }
-function _unsupportedIterableToArray3(o, minLen) {
+function _unsupportedIterableToArray4(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray3(o, minLen);
+    return _arrayLikeToArray4(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray3(o, minLen);
+    return _arrayLikeToArray4(o, minLen);
 }
-function _arrayLikeToArray3(arr, len) {
+function _arrayLikeToArray4(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -8830,7 +8839,7 @@ function splitByCommasWithEscapes(str) {
   var returnValue = [];
   var ignoreNext = false;
   var currentString = "";
-  var _iterator2 = _createForOfIteratorHelper(str.split("")), _step2;
+  var _iterator2 = _createForOfIteratorHelper2(str.split("")), _step2;
   try {
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
       var char = _step2.value;
@@ -9024,23 +9033,23 @@ function _defineProperty2(obj, key, value) {
   return obj;
 }
 function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray4(arr) || _nonIterableSpread();
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray5(arr) || _nonIterableSpread();
 }
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _unsupportedIterableToArray4(o, minLen) {
+function _unsupportedIterableToArray5(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray4(o, minLen);
+    return _arrayLikeToArray5(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray4(o, minLen);
+    return _arrayLikeToArray5(o, minLen);
 }
 function _iterableToArray(iter) {
   if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
@@ -9048,9 +9057,9 @@ function _iterableToArray(iter) {
 }
 function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr))
-    return _arrayLikeToArray4(arr);
+    return _arrayLikeToArray5(arr);
 }
-function _arrayLikeToArray4(arr, len) {
+function _arrayLikeToArray5(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
