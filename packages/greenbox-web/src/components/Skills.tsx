@@ -1,5 +1,5 @@
 import { SimpleGrid, Stack } from "@chakra-ui/react";
-import { RawSkill, SkillDef, SkillStatus } from "greenbox-data";
+import { ClassDef, RawSkill, SkillDef, SkillStatus } from "greenbox-data";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
@@ -7,6 +7,7 @@ import { RootState } from "../store";
 
 import Section from "./Section";
 import Skill from "./Skill";
+import SkillClassHeading from "./SkillClassHeading";
 
 type Props = {
   skills: RawSkill[];
@@ -14,6 +15,7 @@ type Props = {
 
 export default function Skills({ skills: playerSkills }: Props) {
   const skills = useSelector((state: RootState) => state.skills.filter((s) => s.permable));
+  const classes = useSelector((state: RootState) => state.classes);
   const loading = useSelector((state: RootState) => state.loading.skills || false);
 
   const totalHardcorePermed = useMemo(
@@ -28,6 +30,10 @@ export default function Skills({ skills: playerSkills }: Props) {
     () =>
       playerSkills.reduce((acc, s) => ({ ...acc, [s[0]]: s }), {} as { [id: number]: RawSkill }),
     [playerSkills]
+  );
+  const idToClass = useMemo(
+    () => classes.reduce((acc, c) => ({ ...acc, [c.id]: c }), {} as { [id: number]: ClassDef }),
+    [classes]
   );
 
   const groupedSkills = skills.reduce((acc, s) => {
@@ -60,16 +66,19 @@ export default function Skills({ skills: playerSkills }: Props) {
     >
       <Stack spacing={4}>
         {bucketedSkills.map(([bucket, contents]) => (
-          <SimpleGrid key={bucket} columns={6} spacing={1}>
-            {contents.map((s) => (
-              <Skill
-                key={s.id}
-                skill={s}
-                status={idToSkill[s.id]?.[1] ?? 0}
-                level={idToSkill[s.id]?.[2] ?? 0}
-              />
-            ))}
-          </SimpleGrid>
+          <Stack spacing={4} key={bucket}>
+            <SkillClassHeading bucket={Number(bucket)} cls={idToClass[Number(bucket)]} />
+            <SimpleGrid columns={6} spacing={1}>
+              {contents.map((s) => (
+                <Skill
+                  key={s.id}
+                  skill={s}
+                  status={idToSkill[s.id]?.[1] ?? 0}
+                  level={idToSkill[s.id]?.[2] ?? 0}
+                />
+              ))}
+            </SimpleGrid>
+          </Stack>
         ))}
       </Stack>
     </Section>

@@ -5,12 +5,13 @@ import { compressSkills, expandSkills, RawSkill } from "./skills";
 import { compressOutfitTattoos, expandOutfitTattoos, RawOutfitTattoo } from "./tattoos";
 import { compressTrophies, expandTrophies, RawTrophy } from "./trophies";
 
-export * from "./skills";
+export * from "./classes";
+export * from "./effects";
 export * from "./familiars";
+export * from "./items";
+export * from "./skills";
 export * from "./tattoos";
 export * from "./trophies";
-export * from "./items";
-export * from "./effects";
 
 export interface RawSnapshotData {
   skills: RawSkill[];

@@ -34,7 +34,7 @@ export default function MainSection({}: Props) {
 
   return (
     <AccordionItem>
-      <Heading>
+      <Heading as="h1">
         <AccordionButton fontSize="4xl">
           <Box flex="1" textAlign="left">
             Greenbox

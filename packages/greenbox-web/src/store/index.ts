@@ -1,6 +1,14 @@
 import { configureStore, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "greenbox-data";
-import { EffectDef, FamiliarDef, ItemDef, SkillDef, TattooDef, TrophyDef } from "greenbox-data";
+import {
+  EffectDef,
+  FamiliarDef,
+  ItemDef,
+  SkillDef,
+  TattooDef,
+  TrophyDef,
+  ClassDef,
+} from "greenbox-data";
 import {
   persistStore,
   persistReducer,
@@ -16,6 +24,7 @@ import storage from "redux-persist/lib/storage";
 import { processWikiClashes, wikiClashMiddleware } from "./clashes";
 
 export interface GreenboxState {
+  classes: ClassDef[];
   effects: EffectDef[];
   familiars: FamiliarDef[];
   items: ItemDef[];
@@ -28,6 +37,7 @@ export interface GreenboxState {
 }
 
 const initialState: GreenboxState = {
+  classes: [],
   effects: [],
   familiars: [],
   items: [],
@@ -36,6 +46,7 @@ const initialState: GreenboxState = {
   trophies: [],
   wikiClashes: [],
   loading: {
+    classes: false,
     effects: false,
     familiars: false,
     items: false,
@@ -47,9 +58,19 @@ const initialState: GreenboxState = {
   error: { wikiClashes: false },
 };
 
-export const entities = ["effects", "familiars", "items", "skills", "tattoos", "trophies"] as const;
+export const entities = [
+  "classes",
+  "effects",
+  "familiars",
+  "items",
+  "skills",
+  "tattoos",
+  "trophies",
+] as const;
 
 export type EntityTypes = GreenboxState[typeof entities[number]];
+
+export const fetchClasses = createAsyncThunk("classes/fetch", async () => api.loadClasses());
 
 export const fetchEffects = createAsyncThunk("effects/fetch", async () => api.loadEffects());
 
@@ -67,6 +88,7 @@ export const fetchAll = createAsyncThunk(
   "all/fetch",
   async (force: boolean, { getState, dispatch }) => {
     const state = getState() as RootState;
+    if (force || state.classes.length === 0) dispatch(fetchClasses());
     if (force || state.effects.length === 0) dispatch(fetchEffects());
     if (force || state.familiars.length === 0) dispatch(fetchFamiliars());
     if (force || state.items.length === 0) dispatch(fetchItems());
@@ -82,6 +104,13 @@ export const greenboxSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchClasses.pending, (state) => {
+        state.loading.classes = true;
+      })
+      .addCase(fetchClasses.fulfilled, (state, action) => {
+        state.classes = action.payload;
+        state.loading.classes = false;
+      })
       .addCase(fetchEffects.pending, (state) => {
         state.loading.effects = true;
       })
@@ -140,7 +169,7 @@ export const greenboxSlice = createSlice({
 
 const persistedReducer = persistReducer(
   {
-    whitelist: ["effects", "familiars", "items", "skills", "tattoos", "trophies", "wikiClashes"],
+    whitelist: [...entities, "wikiClashes"],
     key: "greenbox",
     version: 1,
     storage,
