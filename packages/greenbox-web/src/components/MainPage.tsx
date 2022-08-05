@@ -23,19 +23,31 @@ export default function MainPage() {
   const toast = useToast();
   const clashToast = useRef<ToastId>();
   const loading = useSelector((state: RootState) => state.loading);
+  const error = useSelector((state: RootState) => state.error);
+
+  const id = "clash-toast";
 
   useEffect(() => {
-    if (loading.wikiClashes) {
+    if (loading.wikiClashes && !toast.isActive(id)) {
       clashToast.current = toast({
         description: "Detecting name clashes for wiki links (takes a few seconds)...",
         duration: null,
+        id,
       });
     } else if (clashToast.current) {
-      toast.update(clashToast.current, {
-        description: "Clash detection complete",
-        status: "success",
-        duration: 2000,
-      });
+      if (error.wikiClashes) {
+        toast.update(clashToast.current, {
+          description: "Clash detection errored (probably don't support web workers)",
+          status: "error",
+          duration: 2000,
+        });
+      } else {
+        toast.update(clashToast.current, {
+          description: "Clash detection complete",
+          status: "success",
+          duration: 2000,
+        });
+      }
     }
   }, [loading.wikiClashes]);
 

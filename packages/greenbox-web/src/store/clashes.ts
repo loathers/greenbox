@@ -1,5 +1,8 @@
 import { createAsyncThunk, createListenerMiddleware, TypedStartListening } from "@reduxjs/toolkit";
-import { Worker, spawn, Thread } from "threads";
+import * as Comlink from "comlink";
+
+import { DuplicateFinder } from "../workers/duplicateFinder";
+import DuplicateFinderWorker from "../workers/duplicateFinder?worker";
 
 import {
   RootState,
@@ -51,14 +54,11 @@ startAppListening({
   },
 });
 
+const WrappedDuplicateFinderWorker = Comlink.wrap<DuplicateFinder>(new DuplicateFinderWorker());
+
 export const processWikiClashes = createAsyncThunk(
   "wikiClashes/process",
   async (names: string[]) => {
-    const findClashes = await spawn(
-      new Worker("../workers/counter.ts", { _baseURL: import.meta.url, type: "module" })
-    );
-    const clashes = await findClashes(names);
-    await Thread.terminate(findClashes);
-    return clashes;
+    return await WrappedDuplicateFinderWorker(names);
   }
 );
