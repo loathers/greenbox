@@ -8191,11 +8191,17 @@ var compressTrophies = function(trophies) {
   }, "").replace(/0+$/, "");
 };
 
-// ../greenbox-data/lib/items.ts
+// ../greenbox-data/lib/classes.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/data/classes.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/lib/effects.ts
 init_kolmafia_polyfill();
 var import_he3 = __toESM(require_he());
 
-// ../greenbox-data/lib/effects.ts
+// ../greenbox-data/lib/items.ts
 init_kolmafia_polyfill();
 var import_he4 = __toESM(require_he());
 
