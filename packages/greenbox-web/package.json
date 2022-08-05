@@ -13,13 +13,18 @@
     "@chakra-ui/react": "^2.2.4",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@reduxjs/toolkit": "^1.8.3",
     "framer-motion": "^6.5.1",
     "greenbox-data": "^0.0.0",
     "he": "^1.2.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "recharts": "^2.1.13"
+    "react-redux": "^8.0.2",
+    "recharts": "^2.1.13",
+    "redux": "^4.2.0",
+    "redux-persist": "^6.0.0",
+    "threads": "^1.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
@@ -28,8 +33,8 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
-    "prettier": "^2.7.1",
     "greenbox-prettier-config": "^0.0.0",
+    "prettier": "^2.7.1",
     "typescript": "^4.7.4",
     "vite": "^3.0.0"
   },

@@ -5,10 +5,14 @@ export enum TrophyStatus {
   HAVE = 1,
 }
 
-export type TrophyDef = typeof trophies[number];
+export interface TrophyDef {
+  id: number;
+  image: string;
+  name: string;
+}
 
-export function loadTrophies(): readonly TrophyDef[] {
-  return trophies;
+export function loadTrophies(): TrophyDef[] {
+  return trophies as unknown as TrophyDef[];
 }
 
 export type RawTrophy = readonly [id: number, status: TrophyStatus];

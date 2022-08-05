@@ -1,18 +1,11 @@
-import {
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Heading,
-  SimpleGrid,
-  Stack,
-} from "@chakra-ui/react";
-import { loadTattoos, RawOutfitTattoo, TattooDef, TattooStatus } from "greenbox-data";
-import { useEffect, useMemo, useState } from "react";
+import { SimpleGrid } from "@chakra-ui/react";
+import { RawOutfitTattoo, TattooStatus } from "greenbox-data";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 
-import AlphaImage from "./AlphaImage";
-import Progress from "./Progress";
+import { RootState } from "../store";
+
+import Section from "./Section";
 import Tattoo from "./Tattoo";
 
 type Props = {
@@ -20,16 +13,8 @@ type Props = {
 };
 
 export default function Tattoos({ outfitTattoos: playerOutfitTattoos }: Props) {
-  const [loading, setLoading] = useState(true);
-  const [tattoos, setTattoos] = useState([] as readonly TattooDef[]);
-
-  useEffect(() => {
-    async function load() {
-      setTattoos(await loadTattoos());
-      setLoading(false);
-    }
-    load();
-  }, []);
+  const tattoos = useSelector((state: RootState) => state.tattoos);
+  const loading = useSelector((state: RootState) => state.loading.tattoos || false);
 
   const totalOutfitTattos = useMemo(
     () => playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE).length,
@@ -49,40 +34,29 @@ export default function Tattoos({ outfitTattoos: playerOutfitTattoos }: Props) {
   );
 
   return (
-    <AccordionItem>
-      <Heading>
-        <AccordionButton fontSize="3xl">
-          <Stack direction="row" flex="1" textAlign="left">
-            <AlphaImage src="itemimages/paintbrush.gif" />
-            <Box>Tattoos</Box>
-          </Stack>
-          <Box alignSelf="stretch" flex="1">
-            <Progress
-              values={[
-                {
-                  color: "partial",
-                  value: totalOutfits,
-                  name: `${totalOutfits} / ${tattoos.length} tattoos unlocked`,
-                },
-                {
-                  color: "complete",
-                  value: totalOutfitTattos,
-                  name: `${totalOutfitTattos} / ${tattoos.length} tattoos unlocked`,
-                },
-              ]}
-              max={tattoos.length}
-            />
-          </Box>
-          <AccordionIcon />
-        </AccordionButton>
-      </Heading>
-      <AccordionPanel>
-        <SimpleGrid columns={[4, null, 6]} spacing={1}>
-          {tattoos.map((t) => (
-            <Tattoo key={t.image} tattoo={t} status={idToOutfitTattoo[t.outfit]?.[1] ?? 0} />
-          ))}
-        </SimpleGrid>
-      </AccordionPanel>
-    </AccordionItem>
+    <Section
+      title="Tattoos"
+      icon="itemimages/paintbrush.gif"
+      loading={loading}
+      values={[
+        {
+          color: "partial",
+          value: totalOutfits,
+          name: `${totalOutfits} / ${tattoos.length} tattoos unlocked`,
+        },
+        {
+          color: "complete",
+          value: totalOutfitTattos,
+          name: `${totalOutfitTattos} / ${tattoos.length} tattoos unlocked`,
+        },
+      ]}
+      max={tattoos.length}
+    >
+      <SimpleGrid columns={[4, null, 6]} spacing={1}>
+        {tattoos.map((t) => (
+          <Tattoo key={t.image} tattoo={t} status={idToOutfitTattoo[t.outfit]?.[1] ?? 0} />
+        ))}
+      </SimpleGrid>
+    </Section>
   );
 }

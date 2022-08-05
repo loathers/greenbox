@@ -1,18 +1,11 @@
-import {
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Heading,
-  SimpleGrid,
-  Stack,
-} from "@chakra-ui/react";
-import { loadTrophies, RawTrophy, TrophyDef, TrophyStatus } from "greenbox-data";
-import { useEffect, useMemo, useState } from "react";
+import { SimpleGrid } from "@chakra-ui/react";
+import { RawTrophy, TrophyStatus } from "greenbox-data";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 
-import AlphaImage from "./AlphaImage";
-import Progress from "./Progress";
+import { RootState } from "../store";
+
+import Section from "./Section";
 import Trophy from "./Trophy";
 
 type Props = {
@@ -20,16 +13,8 @@ type Props = {
 };
 
 export default function Tattoos({ trophies: playerTrophies }: Props) {
-  const [loading, setLoading] = useState(true);
-  const [trophies, setTrophies] = useState([] as readonly TrophyDef[]);
-
-  useEffect(() => {
-    async function load() {
-      setTrophies(await loadTrophies());
-      setLoading(false);
-    }
-    load();
-  }, []);
+  const trophies = useSelector((state: RootState) => state.trophies);
+  const loading = useSelector((state: RootState) => state.loading.trophies || false);
 
   const numberOfTrophies = useMemo(
     () => playerTrophies.filter((t) => t[1] == TrophyStatus.HAVE).length,
@@ -42,35 +27,24 @@ export default function Tattoos({ trophies: playerTrophies }: Props) {
   );
 
   return (
-    <AccordionItem>
-      <Heading>
-        <AccordionButton fontSize="3xl">
-          <Stack direction="row" flex="1" textAlign="left">
-            <AlphaImage src="itemimages/trophy.gif" />
-            <Box>Trophies</Box>
-          </Stack>
-          <Box alignSelf="stretch" flex="1">
-            <Progress
-              values={[
-                {
-                  color: "complete",
-                  value: numberOfTrophies,
-                  name: `${numberOfTrophies} / ${trophies.length} tattoos unlocked`,
-                },
-              ]}
-              max={trophies.length}
-            />
-          </Box>
-          <AccordionIcon />
-        </AccordionButton>
-      </Heading>
-      <AccordionPanel>
-        <SimpleGrid columns={[3, null, 6]} spacing={1}>
-          {trophies.map((t) => (
-            <Trophy key={t.id} trophy={t} status={idToTrophy[t.id]?.[1] ?? 0} />
-          ))}
-        </SimpleGrid>
-      </AccordionPanel>
-    </AccordionItem>
+    <Section
+      title="Trophies"
+      icon="itemimages/trophy.gif"
+      loading={loading}
+      values={[
+        {
+          color: "complete",
+          value: numberOfTrophies,
+          name: `${numberOfTrophies} / ${trophies.length} tattoos unlocked`,
+        },
+      ]}
+      max={trophies.length}
+    >
+      <SimpleGrid columns={[3, null, 6]} spacing={1}>
+        {trophies.map((t) => (
+          <Trophy key={t.id} trophy={t} status={idToTrophy[t.id]?.[1] ?? 0} />
+        ))}
+      </SimpleGrid>
+    </Section>
   );
 }

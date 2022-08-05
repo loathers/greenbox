@@ -6,10 +6,14 @@ export enum TattooStatus {
   HAVE = 2,
 }
 
-export type TattooDef = typeof tattoos[number];
+export interface TattooDef {
+  name: string;
+  image: string;
+  outfit: number;
+}
 
-export function loadTattoos(): readonly TattooDef[] {
-  return tattoos;
+export function loadTattoos(): TattooDef[] {
+  return tattoos as unknown as TattooDef[];
 }
 
 export function getOutfitTattoos(tattoos: readonly TattooDef[]) {

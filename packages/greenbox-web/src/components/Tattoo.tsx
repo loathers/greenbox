@@ -32,6 +32,7 @@ function tattooStatusToTitle(status: TattooStatus) {
 export default function Tattoo({ tattoo, status }: Props) {
   return (
     <Thing
+      type="tattoo"
       name={tattoo.name}
       image={`otherimages/sigils/${tattoo.image}.gif`}
       sourceWidth={50}

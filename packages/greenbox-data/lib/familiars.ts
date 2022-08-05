@@ -38,7 +38,9 @@ export const compressFamiliars = (familiars: RawFamiliar[]) =>
     .sort((a, b) => a[0] - b[0])
     .reduce(
       (r, familiar) =>
-        `${r}${"0".repeat(familiar[0] - r.length - 1)}${familiar[1]}${familiar[2] ? "*" : ""}`,
+        `${r}${"0".repeat(familiar[0] - r.replace(/\*/g, "").length - 1)}${familiar[1]}${
+          familiar[2] ? "*" : ""
+        }`,
       ""
     )
     .replace(/0+$/, "");

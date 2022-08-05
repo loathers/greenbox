@@ -34,6 +34,7 @@ function skillStatusToTitle(status: SkillStatus) {
 export default function Skill({ skill, status, level }: Props) {
   return (
     <Thing
+      type="skill"
       name={skill.name}
       image={`itemimages/${skill.image}`}
       state={skillStatusToThingState(status)}

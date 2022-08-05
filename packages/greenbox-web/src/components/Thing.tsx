@@ -1,10 +1,14 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+
+import { RootState } from "../store";
 
 import AlphaImage from "./AlphaImage";
 
 type StateType = "complete" | "partial" | null | undefined;
 
 type Props = {
+  type: "skill" | "familiar" | "trophy" | "tattoo";
   state?: StateType;
   name: string;
   image: string;
@@ -13,7 +17,7 @@ type Props = {
   badges?: React.ReactNode;
 };
 
-function styleFromState(state: StateType) {
+function styleFromStatus(state: StateType) {
   switch (state) {
     case "complete": {
       return { backgroundColor: "complete" };
@@ -33,20 +37,31 @@ function styleFromState(state: StateType) {
   }
 }
 
+function guessWikiLink(name: string, type: Props["type"], clashes: string[]) {
+  const n = name.replaceAll(" ", "_");
+
+  if (clashes.includes(name)) return `${n}_(${type})`;
+  return n;
+}
+
 export default function Thing({
-  state,
+  type,
+  state: status,
   name,
   image,
   badges = null,
   sourceWidth = 30,
-  title = `${name} (${state || "none"})`,
+  title = `${name} (${status || "none"})`,
 }: Props) {
-  const style = styleFromState(state);
+  const style = styleFromStatus(status);
+  const clashes = useSelector((state: RootState) => state.wikiClashes);
+
+  const wikiLink = guessWikiLink(name, type, clashes);
 
   return (
     <Flex
       as="a"
-      href={`https://kol.coldfront.net/thekolwiki/index.php/${name}`}
+      href={`https://kol.coldfront.net/thekolwiki/index.php/${wikiLink}`}
       direction="column"
       alignItems="center"
       justifyContent="center"

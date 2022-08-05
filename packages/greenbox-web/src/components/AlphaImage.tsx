@@ -5,9 +5,12 @@ import Spinner from "./Spinner";
 function floodErase(data: Uint8ClampedArray, width: number) {
   const visited = new Set();
 
+  const valid = (i: number) => i >= 0 && i < data.length && !visited.has(i);
+
   function eraser(i: number) {
     // Don't revist or go out of bounds
-    if (i < 0 || i >= data.length || visited.has(i)) return;
+    if (!valid(i)) return;
+
     visited.add(i);
 
     // If not white, stop here
@@ -19,17 +22,15 @@ function floodErase(data: Uint8ClampedArray, width: number) {
     data[i + 3] = 0;
 
     // And visit neighbours
-    eraser(i - width * 4); // Visit top
-    eraser(i + 4); // Visit right
-    eraser(i + width * 4); // Visit bottom
-    eraser(i - 4); // Visit left
+    try {
+      [i - width * 4, i + 4, i + width * 4, i - 4].filter(valid).forEach(eraser);
+    } catch (e) {
+      return;
+    }
   }
 
   // Start an erase process from each corner
-  eraser(0);
-  eraser(width * 4 - 8);
-  eraser(data.length - width * 4);
-  eraser(data.length - 8);
+  [0, width * 4 - 8, data.length - width * 4, data.length - 8].forEach(eraser);
 }
 
 type Props = {
