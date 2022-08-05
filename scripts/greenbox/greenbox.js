@@ -5923,7 +5923,7 @@ var require_he = __commonJS({
           return escapeMap[$0];
         });
       };
-      var he3 = {
+      var he5 = {
         "version": "1.2.0",
         "encode": encode,
         "decode": decode,
@@ -5932,18 +5932,18 @@ var require_he = __commonJS({
       };
       if (typeof define == "function" && typeof define.amd == "object" && define.amd) {
         define(function() {
-          return he3;
+          return he5;
         });
       } else if (freeExports && !freeExports.nodeType) {
         if (freeModule) {
-          freeModule.exports = he3;
+          freeModule.exports = he5;
         } else {
-          for (var key in he3) {
-            has(he3, key) && (freeExports[key] = he3[key]);
+          for (var key in he5) {
+            has(he5, key) && (freeExports[key] = he5[key]);
           }
         }
       } else {
-        root.he = he3;
+        root.he = he5;
       }
     })(exports2);
   }
@@ -6720,7 +6720,7 @@ var compressFamiliars = function(familiars) {
   return familiars.sort(function(a, b) {
     return a[0] - b[0];
   }).reduce(function(r, familiar) {
-    return "".concat(r).concat("0".repeat(familiar[0] - r.length - 1)).concat(familiar[1]).concat(familiar[2] ? "*" : "");
+    return "".concat(r).concat("0".repeat(familiar[0] - r.replace(/\*/g, "").length - 1)).concat(familiar[1]).concat(familiar[2] ? "*" : "");
   }, "").replace(/0+$/, "");
 };
 
@@ -6845,14 +6845,15 @@ var isPermable = function(id) {
 var compressSkills = function(skills) {
   return skills.sort(function(a, b) {
     return a[0] - b[0];
-  }).reduce(function(acc, skill, i) {
+  }).reduce(function(acc, skill) {
     var _acc = _slicedToArray(acc, 2), r = _acc[0], currentBlock = _acc[1];
     var block = Math.floor(skill[0] / 1e3);
     if (block > currentBlock) {
       r += ",".repeat(block - currentBlock);
       currentBlock = block;
     }
-    var zeros = "0".repeat(Math.max(0, skill[0] - block * 1e3 - (r.length - r.lastIndexOf(","))));
+    var blockContents = r.substring(r.lastIndexOf(",") + 1);
+    var zeros = "0".repeat(Math.max(0, skill[0] - block * 1e3 - blockContents.replace(/\(\d+\)/g, "").length - (block === 0 ? 1 : 0)));
     r += zeros;
     r += skill[1];
     if (skill[2] > 0) {
@@ -8190,6 +8191,14 @@ var compressTrophies = function(trophies) {
   }, "").replace(/0+$/, "");
 };
 
+// ../greenbox-data/lib/items.ts
+init_kolmafia_polyfill();
+var import_he3 = __toESM(require_he());
+
+// ../greenbox-data/lib/effects.ts
+init_kolmafia_polyfill();
+var import_he4 = __toESM(require_he());
+
 // ../greenbox-data/lib/index.ts
 function compress(raw) {
   var compressed = {
@@ -8199,7 +8208,6 @@ function compress(raw) {
     outfitTattoos: compressOutfitTattoos(raw.outfitTattoos)
   };
   var compressedString = JSON.stringify(compressed);
-  console.log(compressedString);
   return decodeURIComponent(JSONCrush_default.crush(compressedString));
 }
 
@@ -9070,7 +9078,7 @@ function _arrayLikeToArray5(arr, len) {
 function checkSkills() {
   var permedSkills = (0, import_kolmafia4.getPermedSkills)();
   function getStatus(skill) {
-    switch (permedSkills[skill.name]) {
+    switch (permedSkills[skill.toString()]) {
       case true:
         return SkillStatus.HARDCORE;
       case false:
