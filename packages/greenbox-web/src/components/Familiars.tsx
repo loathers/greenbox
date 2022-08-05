@@ -1,35 +1,20 @@
-import {
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Heading,
-  SimpleGrid,
-  Stack,
-} from "@chakra-ui/react";
-import { loadFamiliars, FamiliarDef, RawFamiliar, FamiliarStatus } from "greenbox-data";
-import { useEffect, useMemo, useState } from "react";
+import { SimpleGrid } from "@chakra-ui/react";
+import { RawFamiliar, FamiliarStatus } from "greenbox-data";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 
-import AlphaImage from "./AlphaImage";
+import { RootState } from "../store";
+
 import Familiar from "./Familiar";
-import Progress from "./Progress";
+import Section from "./Section";
 
 type Props = {
   familiars: RawFamiliar[];
 };
 
 export default function Familiars({ familiars: playerFamiliars }: Props) {
-  const [loading, setLoading] = useState(true);
-  const [familiars, setFamiliars] = useState([] as FamiliarDef[]);
-
-  useEffect(() => {
-    async function load() {
-      setFamiliars((await loadFamiliars()).filter((f) => !f.pokefam));
-      setLoading(false);
-    }
-    load();
-  }, []);
+  const familiars = useSelector((state: RootState) => state.familiars.filter((s) => !s.pokefam));
+  const loading = useSelector((state: RootState) => state.loading.familiars || false);
 
   const totalInTerrarium = useMemo(
     () => playerFamiliars.filter((f) => f[1] === FamiliarStatus.TERRARIUM).length,
@@ -49,45 +34,34 @@ export default function Familiars({ familiars: playerFamiliars }: Props) {
   );
 
   return (
-    <AccordionItem>
-      <Heading>
-        <AccordionButton fontSize="3xl">
-          <Stack direction="row" flex="1" textAlign="left">
-            <AlphaImage src="itemimages/terrarium.gif" />
-            <Box>Familiars</Box>
-          </Stack>
-          <Box alignSelf="stretch" flex="1">
-            <Progress
-              values={[
-                {
-                  color: "partial",
-                  value: totalAsHatchlings,
-                  name: `${totalAsHatchlings} / ${familiars.length} as hatching`,
-                },
-                {
-                  color: "complete",
-                  value: totalInTerrarium,
-                  name: `${totalInTerrarium} / ${familiars.length} in terrarium`,
-                },
-              ]}
-              max={familiars.length}
-            />
-          </Box>
-          <AccordionIcon />
-        </AccordionButton>
-      </Heading>
-      <AccordionPanel>
-        <SimpleGrid columns={6} spacing={1}>
-          {familiars.map((f) => (
-            <Familiar
-              key={f.id}
-              familiar={f}
-              status={idToFamiliar[f.id]?.[1] ?? 0}
-              hundredPercent={idToFamiliar[f.id]?.[2] ?? 0}
-            />
-          ))}
-        </SimpleGrid>
-      </AccordionPanel>
-    </AccordionItem>
+    <Section
+      title="Familiars"
+      icon="itemimages/terrarium.gif"
+      loading={loading}
+      values={[
+        {
+          color: "partial",
+          value: totalAsHatchlings,
+          name: `${totalAsHatchlings} / ${familiars.length} as hatching`,
+        },
+        {
+          color: "complete",
+          value: totalInTerrarium,
+          name: `${totalInTerrarium} / ${familiars.length} in terrarium`,
+        },
+      ]}
+      max={familiars.length}
+    >
+      <SimpleGrid columns={6} spacing={1}>
+        {familiars.map((f) => (
+          <Familiar
+            key={f.id}
+            familiar={f}
+            status={idToFamiliar[f.id]?.[1] ?? 0}
+            hundredPercent={idToFamiliar[f.id]?.[2] ?? 0}
+          />
+        ))}
+      </SimpleGrid>
+    </Section>
   );
 }

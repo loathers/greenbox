@@ -28,6 +28,7 @@ function trophyStatusToTitle(status: TrophyStatus) {
 export default function Trophy({ trophy, status }: Props) {
   return (
     <Thing
+      type="trophy"
       name={trophy.name}
       image={`otherimages/trophy/${trophy.image}.gif`}
       sourceWidth={100}

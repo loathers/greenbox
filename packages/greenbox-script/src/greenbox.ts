@@ -21,7 +21,6 @@ import {
   getPermedSkills,
   haveOutfit,
   myId,
-  print,
   printHtml,
   Skill,
   toFamiliar,
@@ -39,7 +38,7 @@ function checkSkills() {
   const permedSkills = getPermedSkills();
 
   function getStatus(skill: Skill) {
-    switch (permedSkills[skill.name]) {
+    switch (permedSkills[skill.toString()]) {
       case true:
         return SkillStatus.HARDCORE;
       case false:

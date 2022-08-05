@@ -34,6 +34,7 @@ function familiarStatusToTitle(status: FamiliarStatus) {
 export default function Familiar({ familiar, status, hundredPercent }: Props) {
   return (
     <Thing
+      type="familiar"
       name={familiar.name}
       image={`itemimages/${familiar.image}`}
       state={familiarStatusToThingState(status)}

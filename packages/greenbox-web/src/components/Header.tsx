@@ -3,7 +3,9 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Alert,
   Box,
+  Button,
   Code,
   Heading,
   Stack,
@@ -12,13 +14,16 @@ import {
 } from "@chakra-ui/react";
 import { RawSnapshotData, expand } from "greenbox-data";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { fetchAll, store } from "../store";
 
 type Props = {
   value: RawSnapshotData | null;
   onChange: (data: RawSnapshotData | null) => any;
 };
 
-export default function DataInput({ value, onChange }: Props) {
+export default function MainSection({ value, onChange }: Props) {
   const [rawValue, setRawValue] = useState(value == null ? "" : JSON.stringify(value));
   const [invalid, setInvalid] = useState(false);
 
@@ -42,6 +47,12 @@ export default function DataInput({ value, onChange }: Props) {
     },
     [onChange]
   );
+
+  const dispatch = useDispatch<typeof store.dispatch>();
+
+  const forceUpdate = useCallback(() => {
+    dispatch(fetchAll(true));
+  }, [dispatch]);
 
   return (
     <AccordionItem>
@@ -68,6 +79,11 @@ export default function DataInput({ value, onChange }: Props) {
             onChange={handleChange}
             placeholder="Paste your script output here!"
           />
+          <Stack direction="row-reverse">
+            <Button size="xs" colorScheme="red" onClick={forceUpdate}>
+              Force update game data
+            </Button>
+          </Stack>
         </Stack>
       </AccordionPanel>
     </AccordionItem>

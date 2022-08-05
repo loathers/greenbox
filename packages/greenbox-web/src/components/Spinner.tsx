@@ -1,4 +1,4 @@
-import { Image, keyframes } from "@chakra-ui/react";
+import { Box, Image, keyframes } from "@chakra-ui/react";
 
 const spin = keyframes({
   "0%": {
@@ -11,6 +11,12 @@ const spin = keyframes({
 
 export default function Spinner() {
   return (
-    <Image src="/loading.png" alt="Loading" sx={{ animation: `${spin} 1.5s infinite linear` }} />
+    <Box width={37.5} height={37.5} p={1}>
+      <Image
+        src="/loading.png"
+        alt="Loading"
+        sx={{ animation: `${spin} 1.5s infinite linear`, opacity: "0.3" }}
+      />
+    </Box>
   );
 }

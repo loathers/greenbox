@@ -9,6 +9,8 @@ export * from "./skills";
 export * from "./familiars";
 export * from "./tattoos";
 export * from "./trophies";
+export * from "./items";
+export * from "./effects";
 
 export interface RawSnapshotData {
   skills: RawSkill[];
@@ -28,7 +30,6 @@ export function compress(raw: RawSnapshotData): string {
   };
 
   const compressedString = JSON.stringify(compressed);
-  console.log(compressedString);
   return decodeURIComponent(jsoncrush.crush(compressedString));
 }
 
