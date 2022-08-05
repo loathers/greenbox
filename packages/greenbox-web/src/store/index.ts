@@ -24,6 +24,7 @@ export interface GreenboxState {
   trophies: TrophyDef[];
   wikiClashes: string[];
   loading: Partial<{ [K in keyof GreenboxState]: boolean }>;
+  error: Partial<{ [K in keyof GreenboxState]: boolean }>;
 }
 
 const initialState: GreenboxState = {
@@ -43,6 +44,7 @@ const initialState: GreenboxState = {
     trophies: false,
     wikiClashes: false,
   },
+  error: { wikiClashes: false },
 };
 
 export const entities = ["effects", "familiars", "items", "skills", "tattoos", "trophies"] as const;
@@ -124,16 +126,25 @@ export const greenboxSlice = createSlice({
       })
       .addCase(processWikiClashes.pending, (state) => {
         state.loading.wikiClashes = true;
+        state.error.wikiClashes = false;
       })
       .addCase(processWikiClashes.fulfilled, (state, action) => {
         state.wikiClashes = action.payload;
         state.loading.wikiClashes = false;
+      })
+      .addCase(processWikiClashes.rejected, (state) => {
+        state.error.wikiClashes = true;
       });
   },
 });
 
 const persistedReducer = persistReducer(
-  { key: "greenbox", version: 1, storage },
+  {
+    whitelist: ["effects", "familiars", "items", "skills", "tattoos", "trophies", "wikiClashes"],
+    key: "greenbox",
+    version: 1,
+    storage,
+  },
   greenboxSlice.reducer
 );
 
