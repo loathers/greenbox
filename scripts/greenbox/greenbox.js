@@ -8208,7 +8208,7 @@ function compress(raw) {
     outfitTattoos: compressOutfitTattoos(raw.outfitTattoos)
   };
   var compressedString = JSON.stringify(compressed);
-  return decodeURIComponent(JSONCrush_default.crush(compressedString));
+  return encodeURIComponent(JSONCrush_default.crush(compressedString));
 }
 
 // src/greenbox.ts
@@ -9151,7 +9151,7 @@ function main() {
     familiars: checkFamiliars(),
     trophies: checkTrophies()
   }, checkTattoos()));
-  (0, import_kolmafia4.printHtml)('Visit <a href="https://greenbox.loathers.net">https://greenbox.loathers.net</a> and paste the following unique code into the text box!<br />' + '<table border="1"><tr><td>'.concat(code.replace(/(.{80})/g, "$1\n"), "</td></tr></table>"));
+  (0, import_kolmafia4.printHtml)('All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?d='.concat(code, '">https://greenbox.loathers.net/?d=').concat(code, "</a>"));
 }
 module.exports.main = main;
 /*! https://mths.be/he v1.2.0 by @mathias | MIT license */
