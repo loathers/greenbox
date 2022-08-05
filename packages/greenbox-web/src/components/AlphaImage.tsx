@@ -1,3 +1,4 @@
+import Color from "color";
 import { useEffect, useRef, useState } from "react";
 
 import Spinner from "./Spinner";
@@ -13,8 +14,9 @@ function floodErase(data: Uint8ClampedArray, width: number) {
 
     visited.add(i);
 
-    // If not white, stop here
-    if (data[i] + data[i + 1] + data[i + 2] < 765) {
+    // If we've hit a black-ish cell, we don't want to look around for more white-ish cells.
+    const color = Color.rgb(...data.slice(i, i + 3));
+    if (color.luminosity() < 0.6) {
       return;
     }
 
