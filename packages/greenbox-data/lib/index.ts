@@ -30,7 +30,7 @@ export function compress(raw: RawSnapshotData): string {
   };
 
   const compressedString = JSON.stringify(compressed);
-  return decodeURIComponent(jsoncrush.crush(compressedString));
+  return encodeURIComponent(jsoncrush.crush(compressedString));
 }
 
 export function expand(encoded: string): RawSnapshotData {

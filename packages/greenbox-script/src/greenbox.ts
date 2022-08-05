@@ -132,8 +132,7 @@ function main(): void {
   });
 
   printHtml(
-    `Visit <a href="https://greenbox.loathers.net">https://greenbox.loathers.net</a> and paste the following unique code into the text box!<br />` +
-      `<table border="1"><tr><td>${code.replace(/(.{80})/g, "$1\n")}</td></tr></table>`
+    `All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?d=${code}">https://greenbox.loathers.net/?d=${code}</a>`
   );
 }
 

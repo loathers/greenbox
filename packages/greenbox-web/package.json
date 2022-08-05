@@ -10,6 +10,7 @@
     "format": "prettier --write src/**/*.{ts,tsx} *.{json,ts,html}"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.6",
     "@chakra-ui/react": "^2.2.4",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
@@ -24,7 +25,8 @@
     "react-redux": "^8.0.2",
     "recharts": "^2.1.13",
     "redux": "^4.2.0",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "use-query-params": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",

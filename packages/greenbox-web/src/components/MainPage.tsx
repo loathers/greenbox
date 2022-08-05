@@ -1,7 +1,8 @@
 import { Accordion, Container, ToastId, useToast } from "@chakra-ui/react";
-import { RawSnapshotData } from "greenbox-data";
+import { expand, RawSnapshotData } from "greenbox-data";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { StringParam, useQueryParam } from "use-query-params";
 
 import { fetchAll, RootState, store } from "../store";
 
@@ -12,7 +13,18 @@ import Tattoos from "./Tattoos";
 import Trophies from "./Trophies";
 
 export default function MainPage() {
+  const [value] = useQueryParam("d", StringParam);
   const [data, setData] = useState<RawSnapshotData | null>(null);
+
+  useEffect(() => {
+    if (!value) return;
+    try {
+      setData(expand(value));
+    } catch (e) {
+      if (!(e instanceof SyntaxError)) throw e;
+      setData(null);
+    }
+  }, [value]);
 
   const dispatch = useDispatch<typeof store.dispatch>();
 
@@ -54,7 +66,7 @@ export default function MainPage() {
   return (
     <Container maxWidth="1000px" width="100%">
       <Accordion allowMultiple allowToggle defaultIndex={0}>
-        <Header value={data} onChange={setData} />
+        <Header />
         <Skills skills={data?.skills ?? []} />
         <Familiars familiars={data?.familiars ?? []} />
         <Tattoos outfitTattoos={data?.outfitTattoos ?? []} />
