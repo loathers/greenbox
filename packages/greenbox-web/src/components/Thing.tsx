@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, LinkBox, LinkOverlay, Text } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../store";
@@ -59,13 +59,7 @@ export default function Thing({
   const wikiLink = guessWikiLink(name, type, clashes);
 
   return (
-    <Flex
-      as="a"
-      href={`https://kol.coldfront.net/thekolwiki/index.php/${wikiLink}`}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      boxSizing="border-box"
+    <LinkBox
       borderWidth={1}
       borderStyle="solid"
       borderColor="black"
@@ -74,6 +68,12 @@ export default function Thing({
       title={title}
       position="relative"
       overflow="hidden"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
       _hover={{
         filter: style.backgroundColor ? "brightness(90%)" : undefined,
         backgroundColor: style.backgroundColor || "#efefef",
@@ -83,9 +83,14 @@ export default function Thing({
         {badges}
       </Box>
       <AlphaImage src={image} sourceWidth={sourceWidth} />
-      <Text textAlign="center" fontSize="10px">
+      <LinkOverlay
+        textAlign="center"
+        fontSize="10px"
+        href={`https://kol.coldfront.net/thekolwiki/index.php/${wikiLink}`}
+        isExternal
+      >
         {name}
-      </Text>
-    </Flex>
+      </LinkOverlay>
+    </LinkBox>
   );
 }
