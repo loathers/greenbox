@@ -65,12 +65,19 @@ export default function Thing({
       direction="column"
       alignItems="center"
       justifyContent="center"
-      border="1px solid black"
+      boxSizing="border-box"
+      borderWidth={1}
+      borderStyle="solid"
+      borderColor="black"
       p={1}
       {...style}
       title={title}
       position="relative"
       overflow="hidden"
+      _hover={{
+        filter: style.backgroundColor ? "brightness(90%)" : undefined,
+        backgroundColor: style.backgroundColor || "#efefef",
+      }}
     >
       <Box position="absolute" sx={{ top: 0, right: 0 }}>
         {badges}
