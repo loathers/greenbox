@@ -8,7 +8,7 @@ import AlphaImage from "./AlphaImage";
 type StateType = "complete" | "partial" | null | undefined;
 
 type Props = {
-  type: "skill" | "familiar" | "trophy" | "tattoo";
+  type: "skill" | "familiar" | "trophy" | "tattoo" | "item";
   state?: StateType;
   name: string;
   image: string;

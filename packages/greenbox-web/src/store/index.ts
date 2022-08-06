@@ -8,6 +8,7 @@ import {
   TattooDef,
   TrophyDef,
   ClassDef,
+  PathDef,
 } from "greenbox-data";
 import {
   persistStore,
@@ -28,6 +29,7 @@ export interface GreenboxState {
   effects: EffectDef[];
   familiars: FamiliarDef[];
   items: ItemDef[];
+  paths: PathDef[];
   skills: SkillDef[];
   tattoos: TattooDef[];
   trophies: TrophyDef[];
@@ -41,6 +43,7 @@ const initialState: GreenboxState = {
   effects: [],
   familiars: [],
   items: [],
+  paths: [],
   skills: [],
   tattoos: [],
   trophies: [],
@@ -50,6 +53,7 @@ const initialState: GreenboxState = {
     effects: false,
     familiars: false,
     items: false,
+    paths: false,
     skills: false,
     tattoos: false,
     trophies: false,
@@ -63,6 +67,7 @@ export const entities = [
   "effects",
   "familiars",
   "items",
+  "paths",
   "skills",
   "tattoos",
   "trophies",
@@ -71,17 +76,12 @@ export const entities = [
 export type EntityTypes = GreenboxState[typeof entities[number]];
 
 export const fetchClasses = createAsyncThunk("classes/fetch", async () => api.loadClasses());
-
 export const fetchEffects = createAsyncThunk("effects/fetch", async () => api.loadEffects());
-
 export const fetchFamiliars = createAsyncThunk("familiars/fetch", async () => api.loadFamiliars());
-
 export const fetchItems = createAsyncThunk("items/fetch", async () => api.loadItems());
-
+export const fetchPaths = createAsyncThunk("paths/fetch", async () => api.loadPaths());
 export const fetchSkills = createAsyncThunk("skills/fetch", async () => api.loadSkills());
-
 export const fetchTattoos = createAsyncThunk("tattoos/fetch", async () => api.loadTattoos());
-
 export const fetchTrophies = createAsyncThunk("trophies/fetch", async () => api.loadTrophies());
 
 export const fetchAll = createAsyncThunk(
@@ -92,6 +92,7 @@ export const fetchAll = createAsyncThunk(
     if (force || state.effects.length === 0) dispatch(fetchEffects());
     if (force || state.familiars.length === 0) dispatch(fetchFamiliars());
     if (force || state.items.length === 0) dispatch(fetchItems());
+    if (force || state.paths.length === 0) dispatch(fetchPaths());
     if (force || state.skills.length === 0) dispatch(fetchSkills());
     if (force || state.tattoos.length === 0) dispatch(fetchTattoos());
     if (force || state.trophies.length === 0) dispatch(fetchTrophies());
@@ -131,6 +132,13 @@ export const greenboxSlice = createSlice({
       .addCase(fetchItems.fulfilled, (state, action) => {
         state.items = action.payload;
         state.loading.items = false;
+      })
+      .addCase(fetchPaths.pending, (state) => {
+        state.loading.paths = true;
+      })
+      .addCase(fetchPaths.fulfilled, (state, action) => {
+        state.paths = action.payload;
+        state.loading.paths = false;
       })
       .addCase(fetchSkills.pending, (state) => {
         state.loading.skills = true;

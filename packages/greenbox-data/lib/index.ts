@@ -9,6 +9,7 @@ export * from "./classes";
 export * from "./effects";
 export * from "./familiars";
 export * from "./items";
+export * from "./paths";
 export * from "./skills";
 export * from "./tattoos";
 export * from "./trophies";
