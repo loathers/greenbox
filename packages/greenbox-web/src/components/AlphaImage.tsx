@@ -1,9 +1,11 @@
+import { Image as ChakraImage } from "@chakra-ui/react";
 import Color from "color";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import Spinner from "./Spinner";
 
-function floodErase(data: Uint8ClampedArray, width: number) {
+function createAlphaMask(data: Uint8ClampedArray, width: number) {
+  const mask = new Uint8ClampedArray(data.length).fill(255);
   const visited = new Set();
 
   const valid = (i: number) => i >= 0 && i < data.length && !visited.has(i);
@@ -20,8 +22,8 @@ function floodErase(data: Uint8ClampedArray, width: number) {
       return;
     }
 
-    // Set this pixel to transparent
-    data[i + 3] = 0;
+    // Set pixel to white in mask
+    mask[i] = mask[i + 1] = mask[i + 2] = mask[i + 3] = 0;
 
     // And visit neighbours
     try {
@@ -33,6 +35,8 @@ function floodErase(data: Uint8ClampedArray, width: number) {
 
   // Start an erase process from each corner
   [0, width * 4 - 8, data.length - width * 4, data.length - 8].forEach(eraser);
+
+  return mask;
 }
 
 type Props = {
@@ -48,35 +52,49 @@ export default function AlphaImage({
   sourceWidth = 30,
   sourceHeight = sourceWidth,
 }: Props) {
-  const canvas = useRef<HTMLCanvasElement>(null);
-  const [loading, setLoading] = useState(true);
+  const [maskImage, setMaskImage] = useState("");
+
+  const url = useMemo(() => `https://s3.amazonaws.com/images.kingdomofloathing.com/${src}`, [src]);
 
   useEffect(() => {
-    const ctx = canvas.current?.getContext("2d");
-    if (!ctx) return;
+    const key = `alphamask-${src}`;
+    const cached = localStorage.getItem(key);
+    if (cached) {
+      setMaskImage(cached);
+      return;
+    }
+
+    const canvas = document.createElement("canvas");
+    canvas.width = sourceWidth;
+    canvas.height = sourceHeight;
+    const ctx = canvas.getContext("2d")!;
 
     const image = new Image();
     image.onload = () => {
       ctx.drawImage(image, 0, 0);
       const imageData = ctx.getImageData(0, 0, sourceWidth, sourceHeight);
-      floodErase(imageData.data, sourceWidth);
-      ctx.putImageData(imageData, 0, 0);
-      setLoading(false);
+      const maskData = createAlphaMask(imageData.data, sourceWidth);
+      const d = new ImageData(maskData, sourceWidth, sourceHeight);
+      ctx.putImageData(d, 0, 0);
+      const data = canvas.toDataURL();
+      localStorage.setItem(key, data);
+      setMaskImage(data);
     };
+
     image.crossOrigin = "anonymous";
-    image.src = `https://s3.amazonaws.com/images.kingdomofloathing.com/${src}`;
-  }, [canvas.current, src]);
+    image.src = url;
+  }, [url, src]);
 
   return (
-    <>
-      {loading && <Spinner />}
-      <canvas
-        title={title}
-        style={{ display: loading ? "none" : "block" }}
-        ref={canvas}
-        width={sourceWidth}
-        height={sourceHeight}
-      />
-    </>
+    <ChakraImage
+      alt={title}
+      src={url}
+      width={sourceWidth}
+      height={sourceHeight}
+      sx={{
+        maskImage: `url(${maskImage})`,
+        maskSize: "100% 100%",
+      }}
+    />
   );
 }
