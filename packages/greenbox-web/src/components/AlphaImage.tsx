@@ -93,6 +93,7 @@ export default function AlphaImage({
       height={sourceHeight}
       sx={{
         maskImage: `url(${maskImage})`,
+        maskSize: "100% 100%",
       }}
     />
   );
