@@ -1,6 +1,6 @@
 import {availableAmount, Familiar, xpath, haveFamiliar, Item, Skill, visitUrl, floristAvailable} from "kolmafia";
-import {  $familiar, get, $item, $items, $skill, sum, getFoldGroup, haveInCampground, have as _have } from "libram";
-import { BooleanProperty } from "libram/dist/propertyTypes";
+import {$familiar, get, $item, $items, $skill, sum, getFoldGroup, haveInCampground, have as _have} from "libram";
+import {BooleanProperty} from "libram/dist/propertyTypes";
 
 // Exporting constants for months and years. 0 is for special casing.
 const months = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
@@ -464,8 +464,7 @@ export const MrStoreMonthly: {[x in Year]: Partial<{[y in Month]: [Item, IOTM]}>
         1: recordPreferenceIOTM($item`undrilled cosmic bowling ball`,"hasCosmicBowlingBall"),
         2: recordItemIOTM($item`combat lover's locket lockbox`, $item`combat lover's locket`),
         3: recordFamiliarIOTM($familiar`Grey Goose`),
-        // I am not sure this will work for the umbrella honestly.
-        4: recordFoldableIOTM($item`undamaged Unbreakable Umbrella`),
+        4: recordItemIOTM($item`undamaged Unbreakable Umbrella`, $item`Unbreakable Umbrella`),
         5: recordPreferenceIOTM($item`MayDay™ contract`, "hasMaydayContract"),
         6: recordItemIOTM($item`packaged June cleaver`, $item`June cleaver`),
         7: recordItemIOTM($item`designer sweatpants (new old stock)`, $item`designer sweatpants`),
