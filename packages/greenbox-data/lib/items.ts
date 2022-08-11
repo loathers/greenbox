@@ -8,6 +8,11 @@ export type ItemDef = {
   image: string;
 };
 
+export enum ItemStatus {
+  NONE = 0,
+  HAVE = 1,
+}
+
 const parseItem = (parts: string[]): ItemDef => ({
   id: Number(parts[0]),
   name: he.decode(parts[1]),

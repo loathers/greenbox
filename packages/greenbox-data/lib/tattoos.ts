@@ -8,8 +8,8 @@ export enum TattooStatus {
 
 export interface TattooDef {
   name: string;
-  image: string;
-  outfit: number;
+  image: string | string[];
+  outfit?: number;
 }
 
 export function loadTattoos(): TattooDef[] {
@@ -17,7 +17,7 @@ export function loadTattoos(): TattooDef[] {
 }
 
 export function getOutfitTattoos(tattoos: readonly TattooDef[]) {
-  return tattoos.filter((t) => t.outfit !== undefined).sort((a, b) => a.outfit - b.outfit);
+  return tattoos.filter((t) => t.outfit !== undefined).sort((a, b) => a.outfit! - b.outfit!);
 }
 
 export type RawOutfitTattoo = readonly [id: number, status: TattooStatus];

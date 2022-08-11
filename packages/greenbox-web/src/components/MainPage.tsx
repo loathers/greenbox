@@ -69,7 +69,7 @@ export default function MainPage() {
       <Accordion allowMultiple allowToggle defaultIndex={0}>
         <Header />
         <Skills skills={data?.skills ?? []} />
-        <Paths />
+        <Paths paths={data?.paths ?? []} />
         <Familiars familiars={data?.familiars ?? []} />
         <Tattoos outfitTattoos={data?.outfitTattoos ?? []} />
         <Trophies trophies={data?.trophies ?? []} />
