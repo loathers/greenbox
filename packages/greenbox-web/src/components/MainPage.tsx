@@ -8,6 +8,7 @@ import { fetchAll, RootState, store } from "../store";
 
 import Familiars from "./Familiars";
 import Header from "./Header";
+import Paths from "./Paths";
 import Skills from "./Skills";
 import Tattoos from "./Tattoos";
 import Trophies from "./Trophies";
@@ -68,6 +69,7 @@ export default function MainPage() {
       <Accordion allowMultiple allowToggle defaultIndex={0}>
         <Header />
         <Skills skills={data?.skills ?? []} />
+        <Paths paths={data?.paths ?? []} />
         <Familiars familiars={data?.familiars ?? []} />
         <Tattoos outfitTattoos={data?.outfitTattoos ?? []} />
         <Trophies trophies={data?.trophies ?? []} />

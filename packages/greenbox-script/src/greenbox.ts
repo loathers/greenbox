@@ -15,11 +15,17 @@ import {
   RawSkill,
   RawFamiliar,
   TrophyDef,
+  loadPaths,
+  ItemStatus,
+  RawPath,
+  PathDef,
 } from "greenbox-data";
 import {
+  displayAmount,
   Familiar,
   getPermedSkills,
   haveOutfit,
+  Item,
   myId,
   printHtml,
   Skill,
@@ -28,6 +34,10 @@ import {
   visitUrl,
 } from "kolmafia";
 import { have, property } from "libram";
+
+function haveItem(item: Item) {
+  return have(item) || displayAmount(item) > 0;
+}
 
 /**
  * Generates an object with a list of HC & SC skill perms.
@@ -100,35 +110,73 @@ function checkTrophies() {
     return page.includes(`"trophy${trophy.id}"`) ? TrophyStatus.HAVE : TrophyStatus.NONE;
   }
 
-  return loadTrophies().map((trophy) => [trophy.id, getStatus(trophy)] as RawTrophy);
+  return (loadTrophies()?.data ?? []).map((trophy) => [trophy.id, getStatus(trophy)] as RawTrophy);
 }
 
 function checkOutfitTattoos(page: string) {
   function getStatus(tattoo: TattooDef) {
+    if (Array.isArray(tattoo.image)) return TattooStatus.NONE;
     if (page.includes(tattoo.image)) return TattooStatus.HAVE;
     if (haveOutfit(tattoo.name)) return TattooStatus.HAVE_OUTFIT;
     return TattooStatus.NONE;
   }
 
-  return getOutfitTattoos(loadTattoos()).map(
+  return getOutfitTattoos(loadTattoos()?.data || []).map(
     (tattoo) => [tattoo.outfit, getStatus(tattoo)] as RawOutfitTattoo
   );
 }
 
-function checkTattoos() {
-  const page = visitUrl("account_tattoos.php");
-
+function checkTattoos(tattoos: string) {
   return {
-    outfitTattoos: checkOutfitTattoos(page),
+    outfitTattoos: checkOutfitTattoos(tattoos),
   };
 }
 
+function getPathLevel(path: PathDef) {
+  if (path.points === null) return 0;
+  return Math.min(
+    (Array.isArray(path.points) ? path.points : [path.points])
+      .map((k) => property.getNumber(k))
+      .reduce((sum, v) => sum + v, 0),
+    path.maxPoints
+  );
+}
+
+function checkPaths(tattoos: string) {
+  return (loadPaths()?.data ?? []).map((path) => {
+    const level = getPathLevel(path);
+    const items = path.items.map((i) =>
+      haveItem(Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE
+    );
+    const equipment = path.equipment.map((i) =>
+      haveItem(Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE
+    );
+    const tats = path.tattoos.map((tattoo) => {
+      if (Array.isArray(tattoo.image)) {
+        for (let i = tattoo.image.length - 1; i >= 0; i--) {
+          if (tattoos.includes(tattoo.image[i])) {
+            return i + 1;
+          }
+        }
+        return 0;
+      }
+
+      return tattoos.includes(tattoo.image) ? 1 : 0;
+    });
+
+    return [path.id, level, items, equipment, tats] as RawPath;
+  });
+}
+
 function main(): void {
+  const tattoos = visitUrl("account_tattoos.php");
+
   const code = compress({
     skills: checkSkills(),
     familiars: checkFamiliars(),
     trophies: checkTrophies(),
-    ...checkTattoos(),
+    ...checkTattoos(tattoos),
+    paths: checkPaths(tattoos),
   });
 
   printHtml(

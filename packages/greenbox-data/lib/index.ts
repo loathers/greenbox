@@ -1,6 +1,7 @@
 import jsoncrush from "jsoncrush";
 
 import { compressFamiliars, expandFamiliars, RawFamiliar } from "./familiars";
+import { compressPaths, expandPaths, RawPath } from "./paths";
 import { compressSkills, expandSkills, RawSkill } from "./skills";
 import { compressOutfitTattoos, expandOutfitTattoos, RawOutfitTattoo } from "./tattoos";
 import { compressTrophies, expandTrophies, RawTrophy } from "./trophies";
@@ -9,6 +10,7 @@ export * from "./classes";
 export * from "./effects";
 export * from "./familiars";
 export * from "./items";
+export * from "./paths";
 export * from "./skills";
 export * from "./tattoos";
 export * from "./trophies";
@@ -18,6 +20,7 @@ export interface RawSnapshotData {
   familiars: RawFamiliar[];
   trophies: RawTrophy[];
   outfitTattoos: RawOutfitTattoo[];
+  paths: RawPath[];
 }
 
 export type CompressedSnapshotData = { [key in keyof RawSnapshotData]: string };
@@ -28,6 +31,7 @@ export function compress(raw: RawSnapshotData): string {
     familiars: compressFamiliars(raw.familiars),
     trophies: compressTrophies(raw.trophies),
     outfitTattoos: compressOutfitTattoos(raw.outfitTattoos),
+    paths: compressPaths(raw.paths),
   };
 
   const compressedString = JSON.stringify(compressed);
@@ -43,5 +47,6 @@ export function expand(encoded: string): RawSnapshotData {
     familiars: expandFamiliars(compressed.familiars),
     trophies: expandTrophies(compressed.trophies),
     outfitTattoos: expandOutfitTattoos(compressed.outfitTattoos),
+    paths: expandPaths(compressed.paths),
   };
 }

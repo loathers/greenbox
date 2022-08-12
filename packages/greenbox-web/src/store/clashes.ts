@@ -36,9 +36,9 @@ startAppListening({
     ) {
       return false;
     }
+    if (action.payload === null) return false;
     if (entities.some((e) => state.loading[e])) return false;
     if (state.loading.wikiClashes) return false;
-
     return true;
   },
   effect: async (_action, { getState, dispatch }) => {

@@ -11,8 +11,15 @@ export interface TrophyDef {
   name: string;
 }
 
-export function loadTrophies(): TrophyDef[] {
-  return trophies as unknown as TrophyDef[];
+export function loadTrophies(lastKnownSize = 0) {
+  const size = JSON.stringify(trophies).length;
+
+  if (size === lastKnownSize) return null;
+
+  return {
+    data: trophies as unknown as TrophyDef[],
+    size: size,
+  };
 }
 
 export type RawTrophy = readonly [id: number, status: TrophyStatus];
