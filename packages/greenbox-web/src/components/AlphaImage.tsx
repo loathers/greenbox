@@ -1,8 +1,6 @@
 import { Image as ChakraImage } from "@chakra-ui/react";
 import Color from "color";
-import { useEffect, useMemo, useRef, useState } from "react";
-
-import Spinner from "./Spinner";
+import { useEffect, useMemo, useState } from "react";
 
 function createAlphaMask(data: Uint8ClampedArray, width: number) {
   const mask = new Uint8ClampedArray(data.length).fill(255);

@@ -23,7 +23,8 @@ export default function PathTattoos({ tattoos, playerTattoos, maxTattooLevel }: 
       {tattoos.map(({ name, image }, index) => {
         const level = playerTattoos[index] || 0;
         const max = maxTattooLevel[index];
-        const i = Array.isArray(image) ? image[level - 1] : image;
+        const i = Array.isArray(image) ? image[Math.max(0, level - 1)] : image;
+
         return (
           <Thing
             key={name}

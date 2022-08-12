@@ -20,6 +20,7 @@ enum ItemId {
   Ring = 10252,
   RedPlumbersBoots = 10501,
   QuantumOfFamiliar = 10758,
+  TheBigBookOfEverySkill = 10917,
 }
 
 enum Thwaitgold {
@@ -594,7 +595,7 @@ export default [
     id: 45,
     name: "Journeyman",
     image: "itemimages/map.gif",
-    items: [Thwaitgold.Harvestman],
+    items: [Thwaitgold.Harvestman, ItemId.TheBigBookOfEverySkill],
     equipment: [],
     tattoos: [],
     points: null,

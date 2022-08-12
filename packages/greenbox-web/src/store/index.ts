@@ -24,6 +24,19 @@ import storage from "redux-persist/lib/storage";
 
 import { processWikiClashes, wikiClashMiddleware } from "./clashes";
 
+export const entities = [
+  "classes",
+  "effects",
+  "familiars",
+  "items",
+  "paths",
+  "skills",
+  "tattoos",
+  "trophies",
+] as const;
+
+export type EntityTypes = GreenboxState[typeof entities[number]];
+
 export interface GreenboxState {
   classes: ClassDef[];
   effects: EffectDef[];
@@ -34,6 +47,7 @@ export interface GreenboxState {
   tattoos: TattooDef[];
   trophies: TrophyDef[];
   wikiClashes: string[];
+  sizeAtLastFetch: { [K in typeof entities[number]]: number };
   loading: Partial<{ [K in keyof GreenboxState]: boolean }>;
   error: Partial<{ [K in keyof GreenboxState]: boolean }>;
 }
@@ -48,6 +62,16 @@ const initialState: GreenboxState = {
   tattoos: [],
   trophies: [],
   wikiClashes: [],
+  sizeAtLastFetch: {
+    classes: 0,
+    effects: 0,
+    familiars: 0,
+    items: 0,
+    paths: 0,
+    skills: 0,
+    tattoos: 0,
+    trophies: 0,
+  },
   loading: {
     classes: false,
     effects: false,
@@ -62,25 +86,22 @@ const initialState: GreenboxState = {
   error: { wikiClashes: false },
 };
 
-export const entities = [
-  "classes",
-  "effects",
-  "familiars",
-  "items",
-  "paths",
-  "skills",
-  "tattoos",
-  "trophies",
-] as const;
-
-export type EntityTypes = GreenboxState[typeof entities[number]];
-
+type RemoteThunkProps = { size: number };
 export const fetchClasses = createAsyncThunk("classes/fetch", async () => api.loadClasses());
-export const fetchEffects = createAsyncThunk("effects/fetch", async () => api.loadEffects());
-export const fetchFamiliars = createAsyncThunk("familiars/fetch", async () => api.loadFamiliars());
-export const fetchItems = createAsyncThunk("items/fetch", async () => api.loadItems());
+export const fetchEffects = createAsyncThunk("effects/fetch", async ({ size }: RemoteThunkProps) =>
+  api.loadEffects(size)
+);
+export const fetchFamiliars = createAsyncThunk(
+  "familiars/fetch",
+  async ({ size }: RemoteThunkProps) => api.loadFamiliars(size)
+);
+export const fetchItems = createAsyncThunk("items/fetch", async ({ size }: RemoteThunkProps) =>
+  api.loadItems(size)
+);
 export const fetchPaths = createAsyncThunk("paths/fetch", async () => api.loadPaths());
-export const fetchSkills = createAsyncThunk("skills/fetch", async () => api.loadSkills());
+export const fetchSkills = createAsyncThunk("skills/fetch", async ({ size }: RemoteThunkProps) =>
+  api.loadSkills(size)
+);
 export const fetchTattoos = createAsyncThunk("tattoos/fetch", async () => api.loadTattoos());
 export const fetchTrophies = createAsyncThunk("trophies/fetch", async () => api.loadTrophies());
 
@@ -88,14 +109,17 @@ export const fetchAll = createAsyncThunk(
   "all/fetch",
   async (force: boolean, { getState, dispatch }) => {
     const state = getState() as RootState;
-    if (force || state.classes.length === 0) dispatch(fetchClasses());
-    if (force || state.effects.length === 0) dispatch(fetchEffects());
-    if (force || state.familiars.length === 0) dispatch(fetchFamiliars());
-    if (force || state.items.length === 0) dispatch(fetchItems());
-    if (force || state.paths.length === 0) dispatch(fetchPaths());
-    if (force || state.skills.length === 0) dispatch(fetchSkills());
-    if (force || state.tattoos.length === 0) dispatch(fetchTattoos());
-    if (force || state.trophies.length === 0) dispatch(fetchTrophies());
+    // Always load ones that aren't calculated from mafia files
+    dispatch(fetchClasses());
+    dispatch(fetchTattoos());
+    dispatch(fetchTrophies());
+    dispatch(fetchPaths());
+
+    // For those calculated from mafia files, check most recent updates
+    dispatch(fetchEffects({ size: force ? 0 : state.sizeAtLastFetch.effects }));
+    dispatch(fetchFamiliars({ size: force ? 0 : state.sizeAtLastFetch.familiars }));
+    dispatch(fetchItems({ size: force ? 0 : state.sizeAtLastFetch.items }));
+    dispatch(fetchSkills({ size: force ? 0 : state.sizeAtLastFetch.skills }));
   }
 );
 
@@ -116,21 +140,33 @@ export const greenboxSlice = createSlice({
         state.loading.effects = true;
       })
       .addCase(fetchEffects.fulfilled, (state, action) => {
-        state.effects = action.payload;
+        if (action.payload !== null) {
+          state.effects = action.payload.data;
+          state.sizeAtLastFetch.effects = action.payload.size;
+        }
+
         state.loading.effects = false;
       })
       .addCase(fetchFamiliars.pending, (state) => {
         state.loading.familiars = true;
       })
       .addCase(fetchFamiliars.fulfilled, (state, action) => {
-        state.familiars = action.payload;
+        if (action.payload !== null) {
+          state.familiars = action.payload.data;
+          state.sizeAtLastFetch.familiars = action.payload.size;
+        }
+
         state.loading.familiars = false;
       })
       .addCase(fetchItems.pending, (state) => {
         state.loading.items = true;
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
-        state.items = action.payload;
+        if (action.payload !== null) {
+          state.items = action.payload.data;
+          state.sizeAtLastFetch.items = action.payload.size;
+        }
+
         state.loading.items = false;
       })
       .addCase(fetchPaths.pending, (state) => {
@@ -144,7 +180,11 @@ export const greenboxSlice = createSlice({
         state.loading.skills = true;
       })
       .addCase(fetchSkills.fulfilled, (state, action) => {
-        state.skills = action.payload;
+        if (action.payload !== null) {
+          state.skills = action.payload.data;
+          state.sizeAtLastFetch.skills = action.payload.size;
+        }
+
         state.loading.skills = false;
       })
       .addCase(fetchTattoos.pending, (state) => {
@@ -175,9 +215,11 @@ export const greenboxSlice = createSlice({
   },
 });
 
+const whitelist: (keyof GreenboxState)[] = [...entities, "wikiClashes", "sizeAtLastFetch"];
+
 const persistedReducer = persistReducer(
   {
-    whitelist: [...entities, "wikiClashes"],
+    whitelist,
     key: "greenbox",
     version: 1,
     storage,

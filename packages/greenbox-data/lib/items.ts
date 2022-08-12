@@ -19,7 +19,13 @@ const parseItem = (parts: string[]): ItemDef => ({
   image: parts[3],
 });
 
-export const loadItems = async () => {
-  const raw = await loadMafiaData("items");
-  return raw.filter((p) => p.length > 2).map(parseItem);
+export const loadItems = async (lastKnownSize: number) => {
+  const raw = await loadMafiaData("items", lastKnownSize);
+
+  if (raw === null) return null;
+
+  return {
+    ...raw,
+    data: raw.data.filter((p) => p.length > 2).map(parseItem),
+  };
 };
