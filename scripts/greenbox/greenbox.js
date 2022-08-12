@@ -6731,9 +6731,6 @@ init_kolmafia_polyfill();
 init_kolmafia_polyfill();
 var ItemId;
 (function(ItemId2) {
-  ItemId2[ItemId2["Whiskey"] = 1150] = "Whiskey";
-  ItemId2[ItemId2["Pate"] = 1153] = "Pate";
-  ItemId2[ItemId2["Air"] = 1154] = "Air";
   ItemId2[ItemId2["StainlessSC"] = 1224] = "StainlessSC";
   ItemId2[ItemId2["StainlessTT"] = 1225] = "StainlessTT";
   ItemId2[ItemId2["StainlessPM"] = 1226] = "StainlessPM";
@@ -6747,6 +6744,7 @@ var ItemId;
   ItemId2[ItemId2["PlexiDB"] = 1234] = "PlexiDB";
   ItemId2[ItemId2["PlexiAT"] = 1235] = "PlexiAT";
   ItemId2[ItemId2["PickyTweezers"] = 7936] = "PickyTweezers";
+  ItemId2[ItemId2["AdventurerBobblehead"] = 9084] = "AdventurerBobblehead";
   ItemId2[ItemId2["PerfectlyFairCoin"] = 9526] = "PerfectlyFairCoin";
   ItemId2[ItemId2["GarlandOfGreatness"] = 9910] = "GarlandOfGreatness";
   ItemId2[ItemId2["Ring"] = 10252] = "Ring";
@@ -7132,10 +7130,10 @@ var paths_default = [{
   id: 28,
   name: "Nuclear Autumn",
   image: "itemimages/radiation.gif",
-  items: [Thwaitgold.Cockroach],
+  items: [Thwaitgold.Cockroach, ItemId.AdventurerBobblehead],
   equipment: [],
   tattoos: [],
-  points: "item9084",
+  points: "someoneShouldMakeThisPrefItsSortOfLikeItem9084",
   maxPoints: 23
 }, {
   id: 29,
@@ -7222,8 +7220,8 @@ var paths_default = [{
   items: [Thwaitgold.Nymph, ItemId.Ring],
   equipment: [],
   tattoos: [],
-  points: null,
-  maxPoints: 0
+  points: "someoneShouldMakeThisPref",
+  maxPoints: 37
 }, {
   id: 37,
   name: "Kingdom of Exploathing",
