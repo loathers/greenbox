@@ -320,7 +320,7 @@ export default [
   {
     id: 19,
     name: "Heavy Rains",
-    image: "itemimages/pickypath.gif",
+    image: "itemimages/familiar31.gif",
     items: [Thwaitgold.Spider],
     equipment: [],
     tattoos: [],
