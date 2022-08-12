@@ -2,22 +2,30 @@ import { chakra, useTheme } from "@chakra-ui/react";
 import { useMemo } from "react";
 import { BarChart, Bar, YAxis, XAxis, LabelList, ResponsiveContainer, LabelProps } from "recharts";
 
-const renderLabel = ({ width, height, value, offset, name, fontSize, ...props }: LabelProps) => {
+const Label = ({
+  width,
+  height,
+  value,
+  offset,
+  title,
+  ...props
+}: LabelProps & { title?: string }) => {
   if (Number(value) <= 0) return null;
 
   const x = Number(props.x) + Number(width) / 2;
   const y = Number(props.y) + Number(height) / 2;
+
   return (
     <text
-      name={name}
+      name={title}
       className="recharts-text recharts-label"
       x={x}
       y={y}
       offset={offset}
       textAnchor="middle"
-      fontSize={fontSize}
+      fontSize="40%"
     >
-      <title>{name}</title>
+      <title>{title}</title>
       <tspan x={x} dy="0.355em">
         {value}
       </tspan>
@@ -61,15 +69,9 @@ export default function Progress({ values, max }: Props) {
             stackId="s"
             fill={v.color === "partial" ? "url(#partial)" : theme.colors[v.color] || v.color}
             {...(i === 0 ? { background: { fill: "#eee" } } : {})}
-          >
-            <LabelList
-              dataKey={i.toString()}
-              position="center"
-              fontSize="40%"
-              name={v.name}
-              content={renderLabel}
-            />
-          </Bar>
+            label={<Label title={v.name} />}
+            isAnimationActive={false}
+          />
         ))}
       </BarChart>
     </ResponsiveContainer>

@@ -67,9 +67,11 @@ export default function AlphaImage({
     canvas.height = sourceHeight;
     const ctx = canvas.getContext("2d")!;
 
-    const image = new Image();
-    image.onload = () => {
-      ctx.drawImage(image, 0, 0);
+    async function storeMask() {
+      const image = await fetch(url);
+      const blob = await image.blob();
+      const imageBitmap = await createImageBitmap(blob);
+      ctx.drawImage(imageBitmap, 0, 0);
       const imageData = ctx.getImageData(0, 0, sourceWidth, sourceHeight);
       const maskData = createAlphaMask(imageData.data, sourceWidth);
       const d = new ImageData(maskData, sourceWidth, sourceHeight);
@@ -77,10 +79,9 @@ export default function AlphaImage({
       const data = canvas.toDataURL();
       localStorage.setItem(key, data);
       setMaskImage(data);
-    };
+    }
 
-    image.crossOrigin = "anonymous";
-    image.src = url;
+    storeMask();
   }, [url, src]);
 
   return (

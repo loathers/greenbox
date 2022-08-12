@@ -50,7 +50,7 @@ export default function MainSection({}: Props) {
           </Code>
           <Text>
             in KoLmafia's Graphical CLI. Once that's done, you can get an up-to-date link whenever
-            you like by running <Code>greenbox</Code>
+            you like by running <Code>greenbox</Code>.
           </Text>
           <Stack direction="row-reverse" pt={3}>
             <Tooltip p={2} label={forceRefreshInfo}>

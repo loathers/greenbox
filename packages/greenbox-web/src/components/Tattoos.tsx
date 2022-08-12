@@ -13,7 +13,9 @@ type Props = {
 };
 
 export default function Tattoos({ outfitTattoos: playerOutfitTattoos }: Props) {
-  const tattoos = useSelector((state: RootState) => state.tattoos);
+  const tattoos = useSelector((state: RootState) => state.tattoos).filter(
+    (t) => t.outfit !== undefined
+  );
   const loading = useSelector((state: RootState) => state.loading.tattoos || false);
 
   const totalOutfitTattos = useMemo(
@@ -36,7 +38,7 @@ export default function Tattoos({ outfitTattoos: playerOutfitTattoos }: Props) {
   return (
     <Section
       title="Tattoos"
-      icon="itemimages/paintbrush.gif"
+      icon="itemimages/palette.gif"
       loading={loading}
       values={[
         {
@@ -54,7 +56,11 @@ export default function Tattoos({ outfitTattoos: playerOutfitTattoos }: Props) {
     >
       <SimpleGrid columns={[4, null, 6]} spacing={1}>
         {tattoos.map((t) => (
-          <Tattoo key={t.image} tattoo={t} status={idToOutfitTattoo[t.outfit]?.[1] ?? 0} />
+          <Tattoo
+            key={Array.isArray(t.image) ? t.image[0] : t.image}
+            tattoo={t}
+            status={idToOutfitTattoo[t.outfit!]?.[1] ?? 0}
+          />
         ))}
       </SimpleGrid>
     </Section>
