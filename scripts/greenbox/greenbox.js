@@ -6724,9 +6724,602 @@ var compressFamiliars = function(familiars) {
   }, "").replace(/0+$/, "");
 };
 
-// ../greenbox-data/lib/skills.ts
+// ../greenbox-data/lib/paths.ts
 init_kolmafia_polyfill();
-var import_he2 = __toESM(require_he());
+
+// ../greenbox-data/data/paths.ts
+init_kolmafia_polyfill();
+var ItemId;
+(function(ItemId2) {
+  ItemId2[ItemId2["Whiskey"] = 1150] = "Whiskey";
+  ItemId2[ItemId2["Pate"] = 1153] = "Pate";
+  ItemId2[ItemId2["Air"] = 1154] = "Air";
+  ItemId2[ItemId2["StainlessSC"] = 1224] = "StainlessSC";
+  ItemId2[ItemId2["StainlessTT"] = 1225] = "StainlessTT";
+  ItemId2[ItemId2["StainlessPM"] = 1226] = "StainlessPM";
+  ItemId2[ItemId2["StainlessSA"] = 1227] = "StainlessSA";
+  ItemId2[ItemId2["StainlessDB"] = 1228] = "StainlessDB";
+  ItemId2[ItemId2["StainlessAT"] = 1229] = "StainlessAT";
+  ItemId2[ItemId2["PlexiSC"] = 1230] = "PlexiSC";
+  ItemId2[ItemId2["PlexiTT"] = 1231] = "PlexiTT";
+  ItemId2[ItemId2["PlexiPM"] = 1232] = "PlexiPM";
+  ItemId2[ItemId2["PlexiSA"] = 1233] = "PlexiSA";
+  ItemId2[ItemId2["PlexiDB"] = 1234] = "PlexiDB";
+  ItemId2[ItemId2["PlexiAT"] = 1235] = "PlexiAT";
+  ItemId2[ItemId2["PickyTweezers"] = 7936] = "PickyTweezers";
+  ItemId2[ItemId2["PerfectlyFairCoin"] = 9526] = "PerfectlyFairCoin";
+  ItemId2[ItemId2["GarlandOfGreatness"] = 9910] = "GarlandOfGreatness";
+  ItemId2[ItemId2["Ring"] = 10252] = "Ring";
+  ItemId2[ItemId2["RedPlumbersBoots"] = 10501] = "RedPlumbersBoots";
+  ItemId2[ItemId2["QuantumOfFamiliar"] = 10758] = "QuantumOfFamiliar";
+  ItemId2[ItemId2["TheBigBookOfEverySkill"] = 10917] = "TheBigBookOfEverySkill";
+})(ItemId || (ItemId = {}));
+var Thwaitgold;
+(function(Thwaitgold2) {
+  Thwaitgold2[Thwaitgold2["Bee"] = 5141] = "Bee";
+  Thwaitgold2[Thwaitgold2["Grasshopper"] = 5222] = "Grasshopper";
+  Thwaitgold2[Thwaitgold2["Butterfly"] = 5392] = "Butterfly";
+  Thwaitgold2[Thwaitgold2["StagBeetle"] = 5572] = "StagBeetle";
+  Thwaitgold2[Thwaitgold2["WoollyBear"] = 5694] = "WoollyBear";
+  Thwaitgold2[Thwaitgold2["Maggot"] = 5773] = "Maggot";
+  Thwaitgold2[Thwaitgold2["PrayingMantis"] = 6045] = "PrayingMantis";
+  Thwaitgold2[Thwaitgold2["Firefly"] = 6298] = "Firefly";
+  Thwaitgold2[Thwaitgold2["GoliathBeetle"] = 6547] = "GoliathBeetle";
+  Thwaitgold2[Thwaitgold2["Bookworm"] = 6676] = "Bookworm";
+  Thwaitgold2[Thwaitgold2["Ant"] = 6899] = "Ant";
+  Thwaitgold2[Thwaitgold2["Dragonfly"] = 7249] = "Dragonfly";
+  Thwaitgold2[Thwaitgold2["WheelBug"] = 7498] = "WheelBug";
+  Thwaitgold2[Thwaitgold2["Spider"] = 7668] = "Spider";
+  Thwaitgold2[Thwaitgold2["Nit"] = 7935] = "Nit";
+  Thwaitgold2[Thwaitgold2["ScarabBeetle"] = 8087] = "ScarabBeetle";
+  Thwaitgold2[Thwaitgold2["Caterpillar"] = 8296] = "Caterpillar";
+  Thwaitgold2[Thwaitgold2["Termite"] = 8556] = "Termite";
+  Thwaitgold2[Thwaitgold2["Scorpion"] = 8984] = "Scorpion";
+  Thwaitgold2[Thwaitgold2["Moth"] = 9031] = "Moth";
+  Thwaitgold2[Thwaitgold2["Cockroach"] = 9099] = "Cockroach";
+  Thwaitgold2[Thwaitgold2["Amoeba"] = 9346] = "Amoeba";
+  Thwaitgold2[Thwaitgold2["Bug"] = 9488] = "Bug";
+  Thwaitgold2[Thwaitgold2["TimeFly"] = 9525] = "TimeFly";
+  Thwaitgold2[Thwaitgold2["Metabug"] = 9758] = "Metabug";
+  Thwaitgold2[Thwaitgold2["Chigger"] = 9917] = "Chigger";
+  Thwaitgold2[Thwaitgold2["MaskedHunter"] = 9941] = "MaskedHunter";
+  Thwaitgold2[Thwaitgold2["Mosquito"] = 10184] = "Mosquito";
+  Thwaitgold2[Thwaitgold2["Nymph"] = 10253] = "Nymph";
+  Thwaitgold2[Thwaitgold2["BombardierBeetle"] = 10319] = "BombardierBeetle";
+  Thwaitgold2[Thwaitgold2["BuzzyBeetle"] = 10470] = "BuzzyBeetle";
+  Thwaitgold2[Thwaitgold2["KeyholeSpider"] = 10570] = "KeyholeSpider";
+  Thwaitgold2[Thwaitgold2["Slug"] = 10601] = "Slug";
+  Thwaitgold2[Thwaitgold2["ListeningBug"] = 10736] = "ListeningBug";
+  Thwaitgold2[Thwaitgold2["QuantumBug"] = 10757] = "QuantumBug";
+  Thwaitgold2[Thwaitgold2["FireBeetle"] = 10791] = "FireBeetle";
+  Thwaitgold2[Thwaitgold2["Protozoa"] = 10894] = "Protozoa";
+  Thwaitgold2[Thwaitgold2["Harvestman"] = 10918] = "Harvestman";
+})(Thwaitgold || (Thwaitgold = {}));
+var paths_default = [{
+  id: -2,
+  name: "Softcore",
+  image: "itemimages/karma.gif",
+  items: [],
+  equipment: [],
+  tattoos: [{
+    name: "Seal Clubber",
+    image: "class1"
+  }, {
+    name: "Turtle Tamer",
+    image: "class2"
+  }, {
+    name: "Pastamancer",
+    image: "class3"
+  }, {
+    name: "Sauceror",
+    image: "class4"
+  }, {
+    name: "Disco Bandit",
+    image: "class5"
+  }, {
+    name: "Accordion Thief",
+    image: "class6"
+  }, {
+    name: "Normal Ascensions",
+    image: ["asc01", "asc02", "asc03", "asc04", "asc05", "asc06", "asc07", "asc08", "asc09", "asc10", "asc11", "asc12"]
+  }],
+  points: null,
+  maxPoints: 0
+}, {
+  id: -1,
+  name: "Hardcore",
+  image: "otherimages/sigils/staintat.gif",
+  items: [],
+  equipment: [ItemId.StainlessSC, ItemId.StainlessTT, ItemId.StainlessPM, ItemId.StainlessSA, ItemId.StainlessDB, ItemId.StainlessAT],
+  tattoos: [{
+    name: "Seal Clubber",
+    image: "class1hc"
+  }, {
+    name: "Turtle Tamer",
+    image: "class2hc"
+  }, {
+    name: "Pastamancer",
+    image: "class3hc"
+  }, {
+    name: "Sauceror",
+    image: "class4hc"
+  }, {
+    name: "Disco Bandit",
+    image: "class5hc"
+  }, {
+    name: "Accordion Thief",
+    image: "class6hc"
+  }, {
+    name: "Hardcore Ascensions",
+    image: ["hasc01", "hasc02", "hasc03", "hasc04", "hasc05", "hasc06", "hasc07", "hasc08", "hasc09", "hasc10", "hasc11", "hasc12"]
+  }],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 1,
+  name: "Boozetafarian",
+  image: "itemimages/martini.gif",
+  items: [],
+  equipment: [],
+  tattoos: [{
+    name: "Hardcore Boozetafarian",
+    image: "nofood"
+  }],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 2,
+  name: "Teetotaler",
+  image: "itemimages/bowl.gif",
+  items: [],
+  equipment: [],
+  tattoos: [{
+    name: "Hardcore Teetotaler",
+    image: "nobeer"
+  }],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 3,
+  name: "Oxygenarian",
+  image: "itemimages/smalloxy.gif",
+  items: [],
+  equipment: [ItemId.PlexiSC, ItemId.PlexiTT, ItemId.PlexiPM, ItemId.PlexiSA, ItemId.PlexiDB, ItemId.PlexiAT],
+  tattoos: [{
+    name: "Hardocre Oxygenarian",
+    image: "oxy"
+  }],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 4,
+  name: "Bees Hate You",
+  image: "itemimages/beeicon.gif",
+  items: [Thwaitgold.Bee],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 6,
+  name: "Way of the Surprising Fist",
+  image: "itemimages/wosp_fist.gif",
+  items: [Thwaitgold.Grasshopper],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 7,
+  name: "Trendy",
+  image: "itemimages/trendyicon.gif",
+  items: [Thwaitgold.Butterfly],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 8,
+  name: "Avatar of Boris",
+  image: "itemimages/trusty.gif",
+  items: [Thwaitgold.StagBeetle],
+  equipment: [],
+  tattoos: [{
+    name: "Boris",
+    image: "class11"
+  }, {
+    name: "Hardcore Boris",
+    image: "class11hc"
+  }],
+  points: "borisPoints",
+  maxPoints: 29
+}, {
+  id: 9,
+  name: "Bugbear Invasion",
+  image: "itemimages/familiar39.gif",
+  items: [Thwaitgold.WoollyBear],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 10,
+  name: "Zombie Slayer",
+  image: "itemimages/tombstone.gif",
+  items: [Thwaitgold.Maggot],
+  equipment: [],
+  tattoos: [{
+    name: "Zombie Slayer",
+    image: "class12"
+  }, {
+    name: "Hardcore Zombie Slayer",
+    image: "class12hc"
+  }],
+  points: "zombiePoints",
+  maxPoints: 30
+}, {
+  id: 11,
+  name: "Class Act",
+  image: "itemimages/motorboat.gif",
+  items: [Thwaitgold.PrayingMantis],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 12,
+  name: "Avatar of Jarlsberg",
+  image: "itemimages/jarlhat.gif",
+  items: [Thwaitgold.Firefly],
+  equipment: [],
+  tattoos: [{
+    name: "Jarlsberg",
+    image: "class14"
+  }, {
+    name: "Hardcore Jarlsberg",
+    image: "class14hc"
+  }],
+  points: "jarlsbergPoints",
+  maxPoints: 30
+}, {
+  id: 14,
+  name: "BIG!",
+  image: "itemimages/bigicon.gif",
+  items: [Thwaitgold.GoliathBeetle],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 15,
+  name: "KOLHS",
+  image: "itemimages/kolhsicon.gif",
+  items: [Thwaitgold.Bookworm],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 16,
+  name: "Class Act II: A Class For Pigs",
+  image: "itemimages/motorboat2.gif",
+  items: [Thwaitgold.Ant],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 17,
+  name: "Avatar of Sneaky Pete",
+  image: "itemimages/bigglasses.gif",
+  items: [Thwaitgold.Dragonfly],
+  equipment: [],
+  tattoos: [{
+    name: "Sneaky Pete",
+    image: "class15"
+  }, {
+    name: "Hardcore Sneaky Pete",
+    image: "class15hc"
+  }],
+  points: "sneakyPetePoints",
+  maxPoints: 30
+}, {
+  id: 18,
+  name: "Slow and Steady",
+  image: "itemimages/sas.gif",
+  items: [Thwaitgold.WheelBug],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 19,
+  name: "Heavy Rains",
+  image: "itemimages/pickypath.gif",
+  items: [Thwaitgold.Spider],
+  equipment: [],
+  tattoos: [],
+  points: ["heavyRainsStartingLightning", "heavyRainsStartingThunder", "heavyRainsStartingRain"],
+  maxPoints: 9
+}, {
+  id: 21,
+  name: "Picky",
+  image: "itemimages/pickypath.gif",
+  items: [Thwaitgold.Nit, ItemId.PickyTweezers],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 22,
+  name: "Standard",
+  image: "itemimages/standardicon.gif",
+  items: [],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 23,
+  name: "Actually Ed the Undying",
+  image: "itemimages/scarab.gif",
+  items: [Thwaitgold.ScarabBeetle],
+  equipment: [],
+  tattoos: [{
+    name: "Ed the Undying",
+    image: "class17"
+  }, {
+    name: "Hardcore Ed the Undying",
+    image: "class17hc"
+  }],
+  points: "edPoints",
+  maxPoints: 20
+}, {
+  id: 24,
+  name: "Crazy Random Summer",
+  image: "itemimages/dice.gif",
+  items: [Thwaitgold.Caterpillar],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 25,
+  name: "Community Service",
+  image: "itemimages/csplaquesmall.gif",
+  items: [Thwaitgold.Termite],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 26,
+  name: "Avatar of West of Loathing",
+  image: "itemimages/badge.gif",
+  items: [Thwaitgold.Scorpion],
+  equipment: [],
+  tattoos: [{
+    name: "Cow Puncher",
+    image: "class18"
+  }, {
+    name: "Hardcore Cow Puncher",
+    image: "class18hc"
+  }, {
+    name: "Beanslinger",
+    image: "class19"
+  }, {
+    name: "Hardcore Beanslinger",
+    image: "class19hc"
+  }, {
+    name: "Snake Oiler",
+    image: "class20"
+  }, {
+    name: "Hardcore Snake Oiler",
+    image: "class20hc"
+  }],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 27,
+  name: "The Source",
+  image: "itemimages/ss_datasiphon.gif",
+  items: [Thwaitgold.Moth],
+  equipment: [],
+  tattoos: [],
+  points: "sourcePoints",
+  maxPoints: 12
+}, {
+  id: 28,
+  name: "Nuclear Autumn",
+  image: "itemimages/radiation.gif",
+  items: [Thwaitgold.Cockroach],
+  equipment: [],
+  tattoos: [],
+  points: "item9084",
+  maxPoints: 23
+}, {
+  id: 29,
+  name: "Gelatinous Noob",
+  image: "itemimages/gcube.gif",
+  items: [Thwaitgold.Amoeba],
+  equipment: [],
+  tattoos: [{
+    name: "Gelatinous Noob",
+    image: "class23"
+  }, {
+    name: "Hardcore Gelatinous Noob",
+    image: "class23hc"
+  }],
+  points: "noobPoints",
+  maxPoints: 20
+}, {
+  id: 30,
+  name: "License to Adventure",
+  image: "itemimages/briefcase.gif",
+  items: [Thwaitgold.Bug],
+  equipment: [],
+  tattoos: [],
+  points: "bondPoints",
+  maxPoints: 23
+}, {
+  id: 31,
+  name: "Live. Ascend. Repeat.",
+  image: "itemimages/watch.gif",
+  items: [Thwaitgold.TimeFly, ItemId.PerfectlyFairCoin],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 32,
+  name: "Pocket Familiars",
+  image: "itemimages/spiritorb.gif",
+  items: [Thwaitgold.Metabug],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 33,
+  name: "G-Lover",
+  image: "itemimages/g-loveheart.gif",
+  items: [Thwaitgold.Chigger, ItemId.GarlandOfGreatness],
+  equipment: [],
+  tattoos: [{
+    name: "Gattoo",
+    image: "gtat"
+  }],
+  points: "gloverPoints",
+  maxPoints: 10
+}, {
+  id: 34,
+  name: "Disguises Delimit",
+  image: "itemimages/dd_icon.gif",
+  items: [Thwaitgold.MaskedHunter],
+  equipment: [],
+  tattoos: [],
+  points: "masksUnlocked",
+  maxPoints: 25
+}, {
+  id: 35,
+  name: "Dark Gyffte",
+  image: "itemimages/darkgift.gif",
+  items: [Thwaitgold.Mosquito],
+  equipment: [],
+  tattoos: [{
+    name: "Vampyre",
+    image: "class24"
+  }, {
+    name: "Hardcore Vampyre",
+    image: "class24hc"
+  }],
+  points: "darkGyfftePoints",
+  maxPoints: 23
+}, {
+  id: 36,
+  name: "Two Crazy Random Summer",
+  image: "itemimages/twocrazydice.gif",
+  items: [Thwaitgold.Nymph, ItemId.Ring],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 37,
+  name: "Kingdom of Exploathing",
+  image: "itemimages/puff.gif",
+  items: [Thwaitgold.BombardierBeetle],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 38,
+  name: "Path of the Plumber",
+  image: "itemimages/mario_mushroom1.gif",
+  items: [Thwaitgold.BuzzyBeetle, ItemId.RedPlumbersBoots],
+  equipment: [],
+  tattoos: [{
+    name: "Plumber",
+    image: "class25"
+  }, {
+    name: "Hardcore Plumber",
+    image: "class25hc"
+  }],
+  points: "plumberPoints",
+  maxPoints: 11
+}, {
+  id: 39,
+  name: "Low Key Summer",
+  image: "itemimages/littlelock.gif",
+  items: [Thwaitgold.KeyholeSpider],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 40,
+  name: "Grey Goo",
+  image: "itemimages/greygooball.gif",
+  items: [Thwaitgold.Slug],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 41,
+  name: "You, Robot",
+  image: "itemimages/robobattery.gif",
+  items: [Thwaitgold.ListeningBug],
+  equipment: [],
+  tattoos: [],
+  points: "youRobotPoints",
+  maxPoints: 12
+}, {
+  id: 42,
+  name: "Quantum Terrarium",
+  image: "itemimages/quantum.gif",
+  items: [Thwaitgold.QuantumBug, ItemId.QuantumOfFamiliar],
+  equipment: [],
+  tattoos: [],
+  points: "quantumPoints",
+  maxPoints: 11
+}, {
+  id: 43,
+  name: "Wildfire",
+  image: "itemimages/fire.gif",
+  items: [Thwaitgold.FireBeetle],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}, {
+  id: 44,
+  name: "Grey You",
+  image: "itemimages/greygooring.gif",
+  items: [Thwaitgold.Protozoa],
+  equipment: [],
+  tattoos: [{
+    name: "Grey Goo",
+    image: "class27"
+  }, {
+    name: "Hardcore Grey Goo",
+    image: "class27hc"
+  }],
+  points: "greyYouPoints",
+  maxPoints: 11
+}, {
+  id: 45,
+  name: "Journeyman",
+  image: "itemimages/map.gif",
+  items: [Thwaitgold.Harvestman, ItemId.TheBigBookOfEverySkill],
+  equipment: [],
+  tattoos: [],
+  points: null,
+  maxPoints: 0
+}];
+
+// ../greenbox-data/lib/paths.ts
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray2(arr, i) || _nonIterableRest();
 }
@@ -6783,6 +7376,99 @@ function _iterableToArrayLimit(arr, i) {
   return _arr;
 }
 function _arrayWithHoles(arr) {
+  if (Array.isArray(arr))
+    return arr;
+}
+function loadPaths() {
+  var lastKnownSize = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;
+  var size = JSON.stringify(paths_default).length;
+  if (size === lastKnownSize)
+    return null;
+  return {
+    data: paths_default,
+    size: size
+  };
+}
+var pointsRadix = 32;
+var tattooLevelRadix = 16;
+var compressPaths = function(paths) {
+  return paths.sort(function(a, b) {
+    return a[0] - b[0];
+  }).reduce(function(acc, path) {
+    var _acc = _slicedToArray(acc, 2), r = _acc[0], currentId = _acc[1];
+    if (path[0] > currentId) {
+      r += ",".repeat(path[0] - currentId);
+      currentId = path[0];
+    }
+    r += path[1].toString(pointsRadix);
+    r += path[2].join("");
+    r += path[3].join("");
+    r += path[4].map(function(i) {
+      return i.toString(tattooLevelRadix);
+    }).join("");
+    return [r, currentId];
+  }, ["", -2])[0].replace(/0+($|,)/, "$1");
+};
+
+// ../greenbox-data/lib/skills.ts
+init_kolmafia_polyfill();
+var import_he2 = __toESM(require_he());
+function _slicedToArray2(arr, i) {
+  return _arrayWithHoles2(arr) || _iterableToArrayLimit2(arr, i) || _unsupportedIterableToArray3(arr, i) || _nonIterableRest2();
+}
+function _nonIterableRest2() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray3(o, minLen) {
+  if (!o)
+    return;
+  if (typeof o === "string")
+    return _arrayLikeToArray3(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor)
+    n = o.constructor.name;
+  if (n === "Map" || n === "Set")
+    return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+    return _arrayLikeToArray3(o, minLen);
+}
+function _arrayLikeToArray3(arr, len) {
+  if (len == null || len > arr.length)
+    len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+  return arr2;
+}
+function _iterableToArrayLimit2(arr, i) {
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+  if (_i == null)
+    return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _s, _e;
+  try {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+      if (i && _arr.length === i)
+        break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null)
+        _i["return"]();
+    } finally {
+      if (_d)
+        throw _e;
+    }
+  }
+  return _arr;
+}
+function _arrayWithHoles2(arr) {
   if (Array.isArray(arr))
     return arr;
 }
@@ -6846,7 +7532,7 @@ var compressSkills = function(skills) {
   return skills.sort(function(a, b) {
     return a[0] - b[0];
   }).reduce(function(acc, skill) {
-    var _acc = _slicedToArray(acc, 2), r = _acc[0], currentBlock = _acc[1];
+    var _acc = _slicedToArray2(acc, 2), r = _acc[0], currentBlock = _acc[1];
     var block = Math.floor(skill[0] / 1e3);
     if (block > currentBlock) {
       r += ",".repeat(block - currentBlock);
@@ -7510,7 +8196,14 @@ var TattooStatus;
   TattooStatus2[TattooStatus2["HAVE"] = 2] = "HAVE";
 })(TattooStatus || (TattooStatus = {}));
 function loadTattoos() {
-  return tattoos_default;
+  var lastKnownSize = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;
+  var size = JSON.stringify(tattoos_default).length;
+  if (size === lastKnownSize)
+    return null;
+  return {
+    data: tattoos_default,
+    size: size
+  };
 }
 function getOutfitTattoos(tattoos) {
   return tattoos.filter(function(t) {
@@ -8181,7 +8874,14 @@ var TrophyStatus;
   TrophyStatus2[TrophyStatus2["HAVE"] = 1] = "HAVE";
 })(TrophyStatus || (TrophyStatus = {}));
 function loadTrophies() {
-  return trophies_default;
+  var lastKnownSize = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;
+  var size = JSON.stringify(trophies_default).length;
+  if (size === lastKnownSize)
+    return null;
+  return {
+    data: trophies_default,
+    size: size
+  };
 }
 var compressTrophies = function(trophies) {
   return trophies.sort(function(a, b) {
@@ -8204,6 +8904,11 @@ var import_he3 = __toESM(require_he());
 // ../greenbox-data/lib/items.ts
 init_kolmafia_polyfill();
 var import_he4 = __toESM(require_he());
+var ItemStatus;
+(function(ItemStatus2) {
+  ItemStatus2[ItemStatus2["NONE"] = 0] = "NONE";
+  ItemStatus2[ItemStatus2["HAVE"] = 1] = "HAVE";
+})(ItemStatus || (ItemStatus = {}));
 
 // ../greenbox-data/lib/index.ts
 function compress(raw) {
@@ -8211,7 +8916,8 @@ function compress(raw) {
     skills: compressSkills(raw.skills),
     familiars: compressFamiliars(raw.familiars),
     trophies: compressTrophies(raw.trophies),
-    outfitTattoos: compressOutfitTattoos(raw.outfitTattoos)
+    outfitTattoos: compressOutfitTattoos(raw.outfitTattoos),
+    paths: compressPaths(raw.paths)
   };
   var compressedString = JSON.stringify(compressed);
   return encodeURIComponent(JSONCrush_default.crush(compressedString));
@@ -8459,26 +9165,26 @@ function _defineProperty(obj, key, value) {
   }
   return obj;
 }
-function _slicedToArray2(arr, i) {
-  return _arrayWithHoles2(arr) || _iterableToArrayLimit2(arr, i) || _unsupportedIterableToArray3(arr, i) || _nonIterableRest2();
+function _slicedToArray3(arr, i) {
+  return _arrayWithHoles3(arr) || _iterableToArrayLimit3(arr, i) || _unsupportedIterableToArray4(arr, i) || _nonIterableRest3();
 }
-function _nonIterableRest2() {
+function _nonIterableRest3() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _unsupportedIterableToArray3(o, minLen) {
+function _unsupportedIterableToArray4(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray3(o, minLen);
+    return _arrayLikeToArray4(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray3(o, minLen);
+    return _arrayLikeToArray4(o, minLen);
 }
-function _arrayLikeToArray3(arr, len) {
+function _arrayLikeToArray4(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -8486,7 +9192,7 @@ function _arrayLikeToArray3(arr, len) {
   }
   return arr2;
 }
-function _iterableToArrayLimit2(arr, i) {
+function _iterableToArrayLimit3(arr, i) {
   var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
   if (_i == null)
     return;
@@ -8514,7 +9220,7 @@ function _iterableToArrayLimit2(arr, i) {
   }
   return _arr;
 }
-function _arrayWithHoles2(arr) {
+function _arrayWithHoles3(arr) {
   if (Array.isArray(arr))
     return arr;
 }
@@ -8611,13 +9317,13 @@ function _set(property, value) {
 }
 function setProperties(properties) {
   for (var _i = 0, _Object$entries = Object.entries(properties); _i < _Object$entries.length; _i++) {
-    var _Object$entries$_i = _slicedToArray2(_Object$entries[_i], 2), prop = _Object$entries$_i[0], value = _Object$entries$_i[1];
+    var _Object$entries$_i = _slicedToArray3(_Object$entries[_i], 2), prop = _Object$entries$_i[0], value = _Object$entries$_i[1];
     _set(prop, value);
   }
 }
 function withProperties(properties, callback) {
   var propertiesBackup = Object.fromEntries(Object.entries(properties).map(function(_ref) {
-    var _ref2 = _slicedToArray2(_ref, 1), prop = _ref2[0];
+    var _ref2 = _slicedToArray3(_ref, 1), prop = _ref2[0];
     return [prop, get(prop)];
   }));
   setProperties(properties);
@@ -8632,7 +9338,7 @@ function withProperty(property, value, callback) {
 }
 function withChoices(choices, callback) {
   var properties = Object.fromEntries(Object.entries(choices).map(function(_ref3) {
-    var _ref4 = _slicedToArray2(_ref3, 2), choice = _ref4[0], option = _ref4[1];
+    var _ref4 = _slicedToArray3(_ref3, 2), choice = _ref4[0], option = _ref4[1];
     return ["choiceAdventure".concat(choice), option];
   }));
   withProperties(properties, callback);
@@ -8654,7 +9360,7 @@ var PropertiesManager = /* @__PURE__ */ function() {
     key: "set",
     value: function set(propertiesToSet) {
       for (var _i2 = 0, _Object$entries2 = Object.entries(propertiesToSet); _i2 < _Object$entries2.length; _i2++) {
-        var _Object$entries2$_i = _slicedToArray2(_Object$entries2[_i2], 2), propertyName = _Object$entries2$_i[0], propertyValue = _Object$entries2$_i[1];
+        var _Object$entries2$_i = _slicedToArray3(_Object$entries2[_i2], 2), propertyName = _Object$entries2$_i[0], propertyValue = _Object$entries2$_i[1];
         if (this.properties[propertyName] === void 0) {
           this.properties[propertyName] = get(propertyName);
         }
@@ -8665,7 +9371,7 @@ var PropertiesManager = /* @__PURE__ */ function() {
     key: "setChoices",
     value: function setChoices(choicesToSet) {
       this.set(Object.fromEntries(Object.entries(choicesToSet).map(function(_ref5) {
-        var _ref6 = _slicedToArray2(_ref5, 2), choiceNumber = _ref6[0], choiceValue = _ref6[1];
+        var _ref6 = _slicedToArray3(_ref5, 2), choiceNumber = _ref6[0], choiceValue = _ref6[1];
         return ["choiceAdventure".concat(choiceNumber), choiceValue];
       })));
     }
@@ -8754,7 +9460,7 @@ var PropertiesManager = /* @__PURE__ */ function() {
       if (thisProps.length !== otherProps.size)
         return false;
       for (var _i5 = 0, _thisProps = thisProps; _i5 < _thisProps.length; _i5++) {
-        var _thisProps$_i = _slicedToArray2(_thisProps[_i5], 2), propertyName = _thisProps$_i[0], propertyValue = _thisProps$_i[1];
+        var _thisProps$_i = _slicedToArray3(_thisProps[_i5], 2), propertyName = _thisProps$_i[0], propertyValue = _thisProps$_i[1];
         if (otherProps.get(propertyName) === propertyValue)
           return false;
       }
@@ -8792,7 +9498,7 @@ init_kolmafia_polyfill();
 function _createForOfIteratorHelper2(o, allowArrayLike) {
   var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
   if (!it) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray4(o)) || allowArrayLike && o && typeof o.length === "number") {
+    if (Array.isArray(o) || (it = _unsupportedIterableToArray5(o)) || allowArrayLike && o && typeof o.length === "number") {
       if (it)
         o = it;
       var i = 0;
@@ -8828,20 +9534,20 @@ function _createForOfIteratorHelper2(o, allowArrayLike) {
     }
   } };
 }
-function _unsupportedIterableToArray4(o, minLen) {
+function _unsupportedIterableToArray5(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray4(o, minLen);
+    return _arrayLikeToArray5(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray4(o, minLen);
+    return _arrayLikeToArray5(o, minLen);
 }
-function _arrayLikeToArray4(arr, len) {
+function _arrayLikeToArray5(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -9047,23 +9753,23 @@ function _defineProperty2(obj, key, value) {
   return obj;
 }
 function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray5(arr) || _nonIterableSpread();
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray6(arr) || _nonIterableSpread();
 }
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _unsupportedIterableToArray5(o, minLen) {
+function _unsupportedIterableToArray6(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray5(o, minLen);
+    return _arrayLikeToArray6(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray5(o, minLen);
+    return _arrayLikeToArray6(o, minLen);
 }
 function _iterableToArray(iter) {
   if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
@@ -9071,15 +9777,18 @@ function _iterableToArray(iter) {
 }
 function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr))
-    return _arrayLikeToArray5(arr);
+    return _arrayLikeToArray6(arr);
 }
-function _arrayLikeToArray5(arr, len) {
+function _arrayLikeToArray6(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
     arr2[i] = arr[i];
   }
   return arr2;
+}
+function haveItem(item) {
+  return have(item) || (0, import_kolmafia4.displayAmount)(item) > 0;
 }
 function checkSkills() {
   var permedSkills = (0, import_kolmafia4.getPermedSkills)();
@@ -9125,38 +9834,77 @@ function checkFamiliars() {
   });
 }
 function checkTrophies() {
+  var _loadTrophies$data, _loadTrophies;
   var page = (0, import_kolmafia4.visitUrl)("trophies.php");
   function getStatus(trophy) {
     return page.includes('"trophy'.concat(trophy.id, '"')) ? TrophyStatus.HAVE : TrophyStatus.NONE;
   }
-  return loadTrophies().map(function(trophy) {
+  return ((_loadTrophies$data = (_loadTrophies = loadTrophies()) === null || _loadTrophies === void 0 ? void 0 : _loadTrophies.data) !== null && _loadTrophies$data !== void 0 ? _loadTrophies$data : []).map(function(trophy) {
     return [trophy.id, getStatus(trophy)];
   });
 }
 function checkOutfitTattoos(page) {
+  var _loadTattoos;
   function getStatus(tattoo) {
+    if (Array.isArray(tattoo.image))
+      return TattooStatus.NONE;
     if (page.includes(tattoo.image))
       return TattooStatus.HAVE;
     if ((0, import_kolmafia4.haveOutfit)(tattoo.name))
       return TattooStatus.HAVE_OUTFIT;
     return TattooStatus.NONE;
   }
-  return getOutfitTattoos(loadTattoos()).map(function(tattoo) {
+  return getOutfitTattoos(((_loadTattoos = loadTattoos()) === null || _loadTattoos === void 0 ? void 0 : _loadTattoos.data) || []).map(function(tattoo) {
     return [tattoo.outfit, getStatus(tattoo)];
   });
 }
-function checkTattoos() {
-  var page = (0, import_kolmafia4.visitUrl)("account_tattoos.php");
+function checkTattoos(tattoos) {
   return {
-    outfitTattoos: checkOutfitTattoos(page)
+    outfitTattoos: checkOutfitTattoos(tattoos)
   };
 }
+function getPathLevel(path) {
+  if (path.points === null)
+    return 0;
+  return Math.min((Array.isArray(path.points) ? path.points : [path.points]).map(function(k) {
+    return property_exports.getNumber(k);
+  }).reduce(function(sum, v) {
+    return sum + v;
+  }, 0), path.maxPoints);
+}
+function checkPaths(tattoos) {
+  var _loadPaths$data, _loadPaths;
+  return ((_loadPaths$data = (_loadPaths = loadPaths()) === null || _loadPaths === void 0 ? void 0 : _loadPaths.data) !== null && _loadPaths$data !== void 0 ? _loadPaths$data : []).map(function(path) {
+    var level = getPathLevel(path);
+    var items = path.items.map(function(i) {
+      return haveItem(import_kolmafia4.Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE;
+    });
+    var equipment = path.equipment.map(function(i) {
+      return haveItem(import_kolmafia4.Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE;
+    });
+    var tats = path.tattoos.map(function(tattoo) {
+      if (Array.isArray(tattoo.image)) {
+        for (var i = tattoo.image.length - 1; i >= 0; i--) {
+          if (tattoos.includes(tattoo.image[i])) {
+            return i + 1;
+          }
+        }
+        return 0;
+      }
+      return tattoos.includes(tattoo.image) ? 1 : 0;
+    });
+    return [path.id, level, items, equipment, tats];
+  });
+}
 function main() {
-  var code = compress(_objectSpread2({
+  var tattoos = (0, import_kolmafia4.visitUrl)("account_tattoos.php");
+  var code = compress(_objectSpread2(_objectSpread2({
     skills: checkSkills(),
     familiars: checkFamiliars(),
     trophies: checkTrophies()
-  }, checkTattoos()));
+  }, checkTattoos(tattoos)), {}, {
+    paths: checkPaths(tattoos)
+  }));
   (0, import_kolmafia4.printHtml)('All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?d='.concat(code, '">https://greenbox.loathers.net/?d=').concat(code, "</a>"));
 }
 module.exports.main = main;
