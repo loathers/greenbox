@@ -86,40 +86,43 @@ const initialState: GreenboxState = {
   error: { wikiClashes: false },
 };
 
-type RemoteThunkProps = { size: number };
-export const fetchClasses = createAsyncThunk("classes/fetch", async () => api.loadClasses());
-export const fetchEffects = createAsyncThunk("effects/fetch", async ({ size }: RemoteThunkProps) =>
+export const fetchClasses = createAsyncThunk("classes/fetch", async (size: number) =>
+  api.loadClasses(size)
+);
+export const fetchEffects = createAsyncThunk("effects/fetch", async (size: number) =>
   api.loadEffects(size)
 );
-export const fetchFamiliars = createAsyncThunk(
-  "familiars/fetch",
-  async ({ size }: RemoteThunkProps) => api.loadFamiliars(size)
+export const fetchFamiliars = createAsyncThunk("familiars/fetch", async (size: number) =>
+  api.loadFamiliars(size)
 );
-export const fetchItems = createAsyncThunk("items/fetch", async ({ size }: RemoteThunkProps) =>
+export const fetchItems = createAsyncThunk("items/fetch", async (size: number) =>
   api.loadItems(size)
 );
-export const fetchPaths = createAsyncThunk("paths/fetch", async () => api.loadPaths());
-export const fetchSkills = createAsyncThunk("skills/fetch", async ({ size }: RemoteThunkProps) =>
+export const fetchPaths = createAsyncThunk("paths/fetch", async (size: number) =>
+  api.loadPaths(size)
+);
+export const fetchSkills = createAsyncThunk("skills/fetch", async (size: number) =>
   api.loadSkills(size)
 );
-export const fetchTattoos = createAsyncThunk("tattoos/fetch", async () => api.loadTattoos());
-export const fetchTrophies = createAsyncThunk("trophies/fetch", async () => api.loadTrophies());
+export const fetchTattoos = createAsyncThunk("tattoos/fetch", async (size: number) =>
+  api.loadTattoos(size)
+);
+export const fetchTrophies = createAsyncThunk("trophies/fetch", async (size: number) =>
+  api.loadTrophies(size)
+);
 
 export const fetchAll = createAsyncThunk(
   "all/fetch",
   async (force: boolean, { getState, dispatch }) => {
     const state = getState() as RootState;
-    // Always load ones that aren't calculated from mafia files
-    dispatch(fetchClasses());
-    dispatch(fetchTattoos());
-    dispatch(fetchTrophies());
-    dispatch(fetchPaths());
-
-    // For those calculated from mafia files, check most recent updates
-    dispatch(fetchEffects({ size: force ? 0 : state.sizeAtLastFetch.effects }));
-    dispatch(fetchFamiliars({ size: force ? 0 : state.sizeAtLastFetch.familiars }));
-    dispatch(fetchItems({ size: force ? 0 : state.sizeAtLastFetch.items }));
-    dispatch(fetchSkills({ size: force ? 0 : state.sizeAtLastFetch.skills }));
+    dispatch(fetchClasses(force ? 0 : state.sizeAtLastFetch.classes));
+    dispatch(fetchEffects(force ? 0 : state.sizeAtLastFetch.effects));
+    dispatch(fetchFamiliars(force ? 0 : state.sizeAtLastFetch.familiars));
+    dispatch(fetchItems(force ? 0 : state.sizeAtLastFetch.items));
+    dispatch(fetchPaths(force ? 0 : state.sizeAtLastFetch.paths));
+    dispatch(fetchSkills(force ? 0 : state.sizeAtLastFetch.skills));
+    dispatch(fetchTattoos(force ? 0 : state.sizeAtLastFetch.tattoos));
+    dispatch(fetchTrophies(force ? 0 : state.sizeAtLastFetch.trophies));
   }
 );
 
@@ -133,7 +136,11 @@ export const greenboxSlice = createSlice({
         state.loading.classes = true;
       })
       .addCase(fetchClasses.fulfilled, (state, action) => {
-        state.classes = action.payload;
+        if (action.payload !== null) {
+          state.classes = action.payload.data;
+          state.sizeAtLastFetch.classes = action.payload.size;
+        }
+
         state.loading.classes = false;
       })
       .addCase(fetchEffects.pending, (state) => {
@@ -173,7 +180,11 @@ export const greenboxSlice = createSlice({
         state.loading.paths = true;
       })
       .addCase(fetchPaths.fulfilled, (state, action) => {
-        state.paths = action.payload;
+        if (action.payload !== null) {
+          state.paths = action.payload.data;
+          state.sizeAtLastFetch.paths = action.payload.size;
+        }
+
         state.loading.paths = false;
       })
       .addCase(fetchSkills.pending, (state) => {
@@ -191,14 +202,22 @@ export const greenboxSlice = createSlice({
         state.loading.tattoos = true;
       })
       .addCase(fetchTattoos.fulfilled, (state, action) => {
-        state.tattoos = action.payload;
+        if (action.payload !== null) {
+          state.tattoos = action.payload.data;
+          state.sizeAtLastFetch.tattoos = action.payload.size;
+        }
+
         state.loading.tattoos = false;
       })
       .addCase(fetchTrophies.pending, (state) => {
         state.loading.trophies = true;
       })
       .addCase(fetchTrophies.fulfilled, (state, action) => {
-        state.trophies = action.payload;
+        if (action.payload !== null) {
+          state.trophies = action.payload.data;
+          state.sizeAtLastFetch.trophies = action.payload.size;
+        }
+
         state.loading.trophies = false;
       })
       .addCase(processWikiClashes.pending, (state) => {

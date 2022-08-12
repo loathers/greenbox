@@ -110,7 +110,7 @@ function checkTrophies() {
     return page.includes(`"trophy${trophy.id}"`) ? TrophyStatus.HAVE : TrophyStatus.NONE;
   }
 
-  return loadTrophies().map((trophy) => [trophy.id, getStatus(trophy)] as RawTrophy);
+  return (loadTrophies()?.data ?? []).map((trophy) => [trophy.id, getStatus(trophy)] as RawTrophy);
 }
 
 function checkOutfitTattoos(page: string) {
@@ -121,7 +121,7 @@ function checkOutfitTattoos(page: string) {
     return TattooStatus.NONE;
   }
 
-  return getOutfitTattoos(loadTattoos()).map(
+  return getOutfitTattoos(loadTattoos()?.data || []).map(
     (tattoo) => [tattoo.outfit, getStatus(tattoo)] as RawOutfitTattoo
   );
 }
@@ -143,7 +143,7 @@ function getPathLevel(path: PathDef) {
 }
 
 function checkPaths(tattoos: string) {
-  return loadPaths().map((path) => {
+  return (loadPaths()?.data ?? []).map((path) => {
     const level = getPathLevel(path);
     const items = path.items.map((i) =>
       haveItem(Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE

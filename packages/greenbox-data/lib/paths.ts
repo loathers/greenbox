@@ -13,8 +13,15 @@ export interface PathDef {
   maxPoints: number;
 }
 
-export function loadPaths(): PathDef[] {
-  return paths as unknown as PathDef[];
+export function loadPaths(lastKnownSize = 0) {
+  const size = JSON.stringify(paths).length;
+
+  if (size === lastKnownSize) return null;
+
+  return {
+    data: paths as unknown as PathDef[],
+    size: size,
+  };
 }
 
 export type RawPath = [

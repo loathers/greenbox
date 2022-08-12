@@ -30,8 +30,8 @@ startAppListening({
         fetchFamiliars.fulfilled,
         fetchItems.fulfilled,
         fetchSkills.fulfilled,
-        // fetchTattoos.fulfilled,
-        // fetchTrophies.fulfilled,
+        fetchTattoos.fulfilled,
+        fetchTrophies.fulfilled,
       ].some((a) => a.match(action))
     ) {
       return false;

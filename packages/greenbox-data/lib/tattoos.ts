@@ -12,8 +12,15 @@ export interface TattooDef {
   outfit?: number;
 }
 
-export function loadTattoos(): TattooDef[] {
-  return tattoos as unknown as TattooDef[];
+export function loadTattoos(lastKnownSize = 0) {
+  const size = JSON.stringify(tattoos).length;
+
+  if (size === lastKnownSize) return null;
+
+  return {
+    data: tattoos as unknown as TattooDef[],
+    size: size,
+  };
 }
 
 export function getOutfitTattoos(tattoos: readonly TattooDef[]) {
