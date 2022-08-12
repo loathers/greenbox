@@ -25,6 +25,8 @@ export default function PathTattoos({ tattoos, playerTattoos, maxTattooLevel }: 
         const max = maxTattooLevel[index];
         const i = Array.isArray(image) ? image[Math.max(0, level - 1)] : image;
 
+        const anchor = guessAnchorFromTattooImage(i);
+
         return (
           <Thing
             key={name}
@@ -34,9 +36,16 @@ export default function PathTattoos({ tattoos, playerTattoos, maxTattooLevel }: 
             sourceWidth={50}
             title={levelToTitle(level, max)}
             state={level === 0 ? null : level < max ? "partial" : "complete"}
+            link={`Tattoo${anchor}`}
           />
         );
       })}
     </SimpleGrid>
   );
+}
+
+function guessAnchorFromTattooImage(i: string) {
+  if (i.startsWith("class")) return i.endsWith("hc") ? "#Ascension_Tattoos" : "#Class_Tattoos";
+  if (!isNaN(parseFloat(i[i.length - 1]))) return "#Ascension_Tattoos";
+  return "";
 }

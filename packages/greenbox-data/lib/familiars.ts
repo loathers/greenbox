@@ -51,7 +51,7 @@ export const compressFamiliars = (familiars: RawFamiliar[]) =>
     )
     .replace(/0+$/, "");
 
-export const expandFamiliars = (s: string) => {
+export const expandFamiliars = (s = "") => {
   let id = 0;
 
   let result = [] as RawFamiliar[];

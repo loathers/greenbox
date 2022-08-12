@@ -30,5 +30,5 @@ export const compressTrophies = (trophies: RawTrophy[]) =>
     .reduce((r, trophy) => `${r}${"0".repeat(trophy[0] - r.length - 1)}${trophy[1]}`, "")
     .replace(/0+$/, "");
 
-export const expandTrophies = (s: string) =>
+export const expandTrophies = (s = "") =>
   s.split("").map((c, i) => [i + 1, Number(c)] as RawTrophy);

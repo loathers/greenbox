@@ -142,7 +142,7 @@ export const compressSkills = (skills: RawSkill[]) =>
     )[0]
     .replace(/0+($|,)/, "$1");
 
-export const expandSkills = (s: string) => {
+export const expandSkills = (s = "") => {
   let id = 1;
 
   let result = [] as RawSkill[];

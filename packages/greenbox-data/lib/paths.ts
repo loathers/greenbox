@@ -64,7 +64,7 @@ export const compressPaths = (paths: RawPath[]) =>
     )[0]
     .replace(/0+($|,)/, "$1");
 
-export const expandPaths = (s: string) => {
+export const expandPaths = (s = "") => {
   const parts = s.split(",");
 
   return paths.map((path) => {
