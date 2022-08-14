@@ -27,6 +27,7 @@ import {
   haveOutfit,
   Item,
   myId,
+  outfitPieces,
   printHtml,
   Skill,
   toFamiliar,
@@ -113,11 +114,15 @@ function checkTrophies() {
   return (loadTrophies()?.data ?? []).map((trophy) => [trophy.id, getStatus(trophy)] as RawTrophy);
 }
 
+function haveOutfitPieces(outfit: string) {
+  return outfitPieces(outfit).every(piece => have(piece));
+}
+
 function checkOutfitTattoos(page: string) {
   function getStatus(tattoo: TattooDef) {
     if (Array.isArray(tattoo.image)) return TattooStatus.NONE;
     if (page.includes(tattoo.image)) return TattooStatus.HAVE;
-    if (haveOutfit(tattoo.name)) return TattooStatus.HAVE_OUTFIT;
+    if (haveOutfitPieces(tattoo.name)) return TattooStatus.HAVE_OUTFIT;
     return TattooStatus.NONE;
   }
 
