@@ -9841,6 +9841,11 @@ function checkTrophies() {
     return [trophy.id, getStatus(trophy)];
   });
 }
+function haveOutfitPieces(outfit) {
+  return (0, import_kolmafia4.outfitPieces)(outfit).every(function(piece) {
+    return have(piece);
+  });
+}
 function checkOutfitTattoos(page) {
   var _loadTattoos;
   function getStatus(tattoo) {
@@ -9848,7 +9853,7 @@ function checkOutfitTattoos(page) {
       return TattooStatus.NONE;
     if (page.includes(tattoo.image))
       return TattooStatus.HAVE;
-    if ((0, import_kolmafia4.haveOutfit)(tattoo.name))
+    if (haveOutfitPieces(tattoo.name))
       return TattooStatus.HAVE_OUTFIT;
     return TattooStatus.NONE;
   }
