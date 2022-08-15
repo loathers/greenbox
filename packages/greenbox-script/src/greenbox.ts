@@ -115,7 +115,7 @@ function checkTrophies() {
 }
 
 function haveOutfitPieces(outfit: string) {
-  return outfitPieces(outfit).every(piece => have(piece));
+  return outfitPieces(outfit).every((piece) => have(piece));
 }
 
 function checkOutfitTattoos(page: string) {

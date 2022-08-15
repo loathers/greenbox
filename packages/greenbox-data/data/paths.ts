@@ -281,8 +281,8 @@ export default [
     items: [Thwaitgold.Bookworm],
     equipment: [],
     tattoos: [],
-    points: null,
-    maxPoints: 0,
+    points: "yearbookCameraAscensions",
+    maxPoints: 20,
   },
   {
     id: 16,
@@ -414,7 +414,7 @@ export default [
     items: [Thwaitgold.Cockroach, ItemId.AdventurerBobblehead],
     equipment: [],
     tattoos: [],
-    points: "someoneShouldMakeThisPrefItsSortOfLikeItem9084",
+    points: "nuclearAutumnPoints",
     maxPoints: 23,
   },
   {
@@ -457,8 +457,8 @@ export default [
     items: [Thwaitgold.Metabug],
     equipment: [],
     tattoos: [],
-    points: null,
-    maxPoints: 0,
+    points: "todo: make a pref that tracks starting pokedollars",
+    maxPoints: 10,
   },
   {
     id: 33,
@@ -500,7 +500,7 @@ export default [
     items: [Thwaitgold.Nymph, ItemId.Ring],
     equipment: [],
     tattoos: [],
-    points: "someoneShouldMakeThisPref",
+    points: "twoCRSPoints",
     maxPoints: 37,
   },
   {
@@ -510,8 +510,8 @@ export default [
     items: [Thwaitgold.BombardierBeetle],
     equipment: [],
     tattoos: [],
-    points: null,
-    maxPoints: 0,
+    points: "skillLevel188",
+    maxPoints: 13,
   },
   {
     id: 38,
