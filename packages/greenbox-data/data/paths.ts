@@ -394,8 +394,8 @@ export default [
       { name: "Snake Oiler", image: "class20" },
       { name: "Hardcore Snake Oiler", image: "class20hc" },
     ],
-    points: null,
-    maxPoints: 0,
+    points: ["awolPointsCowpuncher", "awolPointsBeanslinger", "awolPointsSnakeoiler"],
+    maxPoints: 30,
   },
   {
     id: 27,
