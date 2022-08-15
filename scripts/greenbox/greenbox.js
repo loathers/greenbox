@@ -6995,8 +6995,8 @@ var paths_default = [{
   items: [Thwaitgold.Bookworm],
   equipment: [],
   tattoos: [],
-  points: null,
-  maxPoints: 0
+  points: "yearbookCameraAscensions",
+  maxPoints: 20
 }, {
   id: 16,
   name: "Class Act II: A Class For Pigs",
@@ -7133,7 +7133,7 @@ var paths_default = [{
   items: [Thwaitgold.Cockroach, ItemId.AdventurerBobblehead],
   equipment: [],
   tattoos: [],
-  points: "someoneShouldMakeThisPrefItsSortOfLikeItem9084",
+  points: "nuclearAutumnPoints",
   maxPoints: 23
 }, {
   id: 29,
@@ -7175,8 +7175,8 @@ var paths_default = [{
   items: [Thwaitgold.Metabug],
   equipment: [],
   tattoos: [],
-  points: null,
-  maxPoints: 0
+  points: "todo: make a pref that tracks starting pokedollars",
+  maxPoints: 10
 }, {
   id: 33,
   name: "G-Lover",
@@ -7220,7 +7220,7 @@ var paths_default = [{
   items: [Thwaitgold.Nymph, ItemId.Ring],
   equipment: [],
   tattoos: [],
-  points: "someoneShouldMakeThisPref",
+  points: "twoCRSPoints",
   maxPoints: 37
 }, {
   id: 37,
@@ -7229,8 +7229,8 @@ var paths_default = [{
   items: [Thwaitgold.BombardierBeetle],
   equipment: [],
   tattoos: [],
-  points: null,
-  maxPoints: 0
+  points: "skillLevel188",
+  maxPoints: 13
 }, {
   id: 38,
   name: "Path of the Plumber",
