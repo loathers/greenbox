@@ -7115,8 +7115,8 @@ var paths_default = [{
     name: "Hardcore Snake Oiler",
     image: "class20hc"
   }],
-  points: null,
-  maxPoints: 0
+  points: ["awolPointsCowpuncher", "awolPointsBeanslinger", "awolPointsSnakeoiler"],
+  maxPoints: 30
 }, {
   id: 27,
   name: "The Source",
