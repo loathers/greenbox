@@ -89,9 +89,15 @@ const parseSkill = (parts: string[]): SkillDef => ({
   permable: isPermable(Number(parts[0])),
 });
 
-export const loadSkills = async () => {
-  const raw = await loadMafiaData("classskills");
-  return raw.filter((p) => p.length > 2).map(parseSkill);
+export const loadSkills = async (lastKnownSize: number) => {
+  const raw = await loadMafiaData("classskills", lastKnownSize);
+
+  if (raw === null) return null;
+
+  return {
+    ...raw,
+    data: raw.data.filter((p) => p.length > 2).map(parseSkill),
+  };
 };
 
 export type RawSkill = [id: number, status: SkillStatus, level: number];
@@ -136,7 +142,7 @@ export const compressSkills = (skills: RawSkill[]) =>
     )[0]
     .replace(/0+($|,)/, "$1");
 
-export const expandSkills = (s: string) => {
+export const expandSkills = (s = "") => {
   let id = 1;
 
   let result = [] as RawSkill[];

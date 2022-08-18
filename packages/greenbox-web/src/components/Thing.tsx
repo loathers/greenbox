@@ -8,13 +8,14 @@ import AlphaImage from "./AlphaImage";
 type StateType = "complete" | "partial" | null | undefined;
 
 type Props = {
-  type: "skill" | "familiar" | "trophy" | "tattoo";
+  type: "skill" | "familiar" | "trophy" | "tattoo" | "item";
   state?: StateType;
   name: string;
   image: string;
   title?: string;
   sourceWidth?: number;
   badges?: React.ReactNode;
+  link?: string;
 };
 
 function styleFromStatus(state: StateType) {
@@ -51,12 +52,13 @@ export default function Thing({
   image,
   badges = null,
   sourceWidth = 30,
-  title = `${name} (${status || "none"})`,
+  title = `${name} (${status || "do not have"})`,
+  link,
 }: Props) {
   const style = styleFromStatus(status);
   const clashes = useSelector((state: RootState) => state.wikiClashes);
 
-  const wikiLink = guessWikiLink(name, type, clashes);
+  const wikiLink = link || guessWikiLink(name, type, clashes);
 
   return (
     <LinkBox

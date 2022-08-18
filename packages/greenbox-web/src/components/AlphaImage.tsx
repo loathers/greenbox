@@ -1,8 +1,7 @@
 import { Image as ChakraImage } from "@chakra-ui/react";
+import { CSSObject } from "@emotion/react";
 import Color from "color";
-import { useEffect, useMemo, useRef, useState } from "react";
-
-import Spinner from "./Spinner";
+import { useEffect, useMemo, useState } from "react";
 
 function createAlphaMask(data: Uint8ClampedArray, width: number) {
   const mask = new Uint8ClampedArray(data.length).fill(255);
@@ -52,7 +51,7 @@ export default function AlphaImage({
   sourceWidth = 30,
   sourceHeight = sourceWidth,
 }: Props) {
-  const [maskImage, setMaskImage] = useState("");
+  const [maskImage, setMaskImage] = useState({} as CSSObject);
 
   const url = useMemo(() => `https://s3.amazonaws.com/images.kingdomofloathing.com/${src}`, [src]);
 
@@ -60,7 +59,10 @@ export default function AlphaImage({
     const key = `alphamask-${src}`;
     const cached = localStorage.getItem(key);
     if (cached) {
-      setMaskImage(cached);
+      setMaskImage({
+        maskImage: `url(${cached})`,
+        maskSize: "100% 100%",
+      });
       return;
     }
 
@@ -69,32 +71,27 @@ export default function AlphaImage({
     canvas.height = sourceHeight;
     const ctx = canvas.getContext("2d")!;
 
-    const image = new Image();
-    image.onload = () => {
-      ctx.drawImage(image, 0, 0);
+    async function storeMask() {
+      const image = await fetch(url);
+      const blob = await image.blob();
+      const imageBitmap = await createImageBitmap(blob);
+      ctx.drawImage(imageBitmap, 0, 0);
       const imageData = ctx.getImageData(0, 0, sourceWidth, sourceHeight);
       const maskData = createAlphaMask(imageData.data, sourceWidth);
       const d = new ImageData(maskData, sourceWidth, sourceHeight);
       ctx.putImageData(d, 0, 0);
       const data = canvas.toDataURL();
       localStorage.setItem(key, data);
-      setMaskImage(data);
-    };
+      setMaskImage({
+        maskImage: `url(${data})`,
+        maskSize: "100% 100%",
+      });
+    }
 
-    image.crossOrigin = "anonymous";
-    image.src = url;
+    storeMask();
   }, [url, src]);
 
   return (
-    <ChakraImage
-      alt={title}
-      src={url}
-      width={sourceWidth}
-      height={sourceHeight}
-      sx={{
-        maskImage: `url(${maskImage})`,
-        maskSize: "100% 100%",
-      }}
-    />
+    <ChakraImage alt={title} src={url} width={sourceWidth} height={sourceHeight} sx={maskImage} />
   );
 }

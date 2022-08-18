@@ -26,9 +26,15 @@ const parseFamiliar = (parts: string[]): FamiliarDef => ({
   pokefam: isPokefam(Number(parts[0])),
 });
 
-export const loadFamiliars = async () => {
-  const raw = await loadMafiaData("familiars");
-  return raw.filter((p) => p.length > 2).map(parseFamiliar);
+export const loadFamiliars = async (lastKnownSize: number) => {
+  const raw = await loadMafiaData("familiars", lastKnownSize);
+
+  if (raw === null) return null;
+
+  return {
+    ...raw,
+    data: raw.data.filter((p) => p.length > 2).map(parseFamiliar),
+  };
 };
 
 export type RawFamiliar = [id: number, status: FamiliarStatus, hundredPercent: boolean];
@@ -45,7 +51,7 @@ export const compressFamiliars = (familiars: RawFamiliar[]) =>
     )
     .replace(/0+$/, "");
 
-export const expandFamiliars = (s: string) => {
+export const expandFamiliars = (s = "") => {
   let id = 0;
 
   let result = [] as RawFamiliar[];

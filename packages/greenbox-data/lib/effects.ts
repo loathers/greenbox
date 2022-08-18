@@ -14,7 +14,13 @@ const parseEffect = (parts: string[]): EffectDef => ({
   image: parts[2],
 });
 
-export const loadEffects = async () => {
-  const raw = await loadMafiaData("statuseffects");
-  return raw.filter((p) => p.length > 2).map(parseEffect);
+export const loadEffects = async (lastKnownSize: number) => {
+  const raw = await loadMafiaData("statuseffects", lastKnownSize);
+
+  if (raw === null) return null;
+
+  return {
+    ...raw,
+    data: raw.data.filter((p) => p.length > 2).map(parseEffect),
+  };
 };
