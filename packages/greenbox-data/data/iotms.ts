@@ -1,217 +1,217 @@
 export default [
-    { id: "894", name: "Dark Jill-O-Lantern", image: "jilldark.gif" },
-    { id: "914", name: "hand turkey outline", image: "hand.gif" },
-    { id: "924", name: "crimbo elfling", image: "elfling.gif" },
-    { id: "954", name: "orphan baby yeti", image: "babyyeti.gif" },
-    { id: "961", name: "silk garter snake", image: "garter.gif" },
-    { id: "1040", name: "lucky Tam O'Shanter", image: "tamo.gif" },
-    { id: "1083", name: "personal raindrop", image: "raindrop.gif" },
-    { id: "1152", name: "miniature gravy-covered maypole", image: "maypole.gif" },
-    { id: "1242", name: "deflated inflatable dodecapede", image: "deflatdod.gif" },
-    { id: "1260", name: "wax lips", image: "waxlips.gif" },
-    { id: "1263", name: "pygmy bugbear shaman", image: "familiar39.gif" },
-    { id: "1291", name: "Jekyllin hide belt", image: "jbelt.gif" },
-    { id: "1304", name: "doppelshifter egg", image: "doppegg.gif" },
-    { id: "1349", name: "miniscule temporal rip", image: "rip.gif" },
-    { id: "1373", name: "sweet nutcracker", image: "nutcracker.gif" },
-    { id: "1411", name: "Tome of Snowcone Summoning", image: "book.gif" },
-    { id: "1423", name: "iceberglet", image: "iceberglet.gif" },
-    { id: "1488", name: "March hat", image: "marchhat.gif" },
-    { id: "1498", name: "McPhee's Grimoire of Hilarious Object Summoning", image: "book2.gif" },
-    { id: "1536", name: "homeless hobo spirit", image: "ghoboh.gif" },
-    { id: "1621", name: "astral badger", image: "badger1.gif" },
-    { id: "1653", name: "jewel-eyed wizard hat", image: "wizhat.gif" },
-    { id: "1703", name: "Comma Chameleon egg", image: "commaegg.gif" },
-    { id: "1792", name: "Travoltan trousers", image: "travtrou.gif" },
-    { id: "1971", name: "plastic pumpkin bucket", image: "punkin.gif" },
-    { id: "2090", name: "pilgrim shield", image: "pilshield.gif" },
-    { id: "2190", name: "yuletide troll chrysalis", image: "chrysalis.gif" },
-    { id: "2221", name: "Great Ball of Frozen Fire", image: "ffball.gif" },
-    { id: "2303", name: "Libram of Candy Heart Summoning", image: "book.gif" },
-    { id: "2380", name: "dandy lion cub", image: "dandylioncub.gif" },
-    { id: "2447", name: "bad penguin egg", image: "pengegg.gif" },
-    { id: "2541", name: "Mayflower bouquet", image: "maybouquet.gif" },
-    { id: "2650", name: "bottled green pixie", image: "bottledpixie.gif" },
-    { id: "2834", name: "bottle-rocket crossbow", image: "brcrossbow.gif" },
-    { id: "2836", name: "wizard action figure", image: "waflarva.gif" },
-    { id: "2844", name: "navel ring of navel gazing", image: "navelring.gif" },
-    { id: "2845", name: "class five ecto-larva", image: "ectoegg.gif" },
-    { id: "2946", name: "V for Vivala mask", image: "vivala.gif" },
-    { id: "3042", name: "Crimbo P. R. E. S. S. I. E.", image: "pressielarva.gif" },
-    { id: "3117", name: "Libram of Divine Favors", image: "book3.gif" },
-    { id: "3192", name: "naughty origami kit", image: "origamikit.gif" },
-    { id: "3219", name: "sane hatrack", image: "sanehatrack.gif" },
-    { id: "3263", name: "Sp'n-Zor's Grimoire of \"Tasteful\" Gifts", image: "book4.gif" },
-    { id: "3321", name: "packet of mayfly bait", image: "mayflybait.gif" },
-    { id: "3351", name: "llama lama cria", image: "cria.gif" },
-    { id: "3421", name: "little box of fireworks", image: "fireworksbox.gif" },
-    { id: "3431", name: "cotton candy cocoon", image: "cccoccoon.gif" },
-    { id: "3466", name: "haiku katana", image: "hkatana.gif" },
-    { id: "3434", name: "spooky rattling cigar box", image: "cigarbox.gif" },
-    { id: "3507", name: "Scratch 'n' Sniff Sticker Tome", image: "book3.gif" },
-    { id: "3578", name: "candy cornucopia", image: "cornucopia.gif" },
-    { id: "3661", name: "container of Spooky Putty", image: "sputtyegg.gif" },
-    { id: "3753", name: "Libram of Love Songs", image: "book4.gif" },
-    { id: "3799", name: "Apathargic Bandersnatch", image: "banderlarva.gif" },
-    { id: "3836", name: "Elvish sunglasses", image: "elvisshades.gif" },
-    { id: "3963", name: "Clan pool table", image: "crate.gif" },
-    { id: "3999", name: "infant sandworm", image: "wormlarva.gif" },
-    { id: "4136", name: "Bag o' Tricks", image: "bagotricks.gif" },
-    { id: "4148", name: "floaty stone sphere", image: "beholderegg.gif" },
-    { id: "4177", name: "Tome of Sugar Shummoning", image: "book4.gif" },
-    { id: "4223", name: "squamous polyp", image: "polyp.gif" },
-    { id: "4135", name: "moveable feast", image: "movfeast.gif" },
-    { id: "4328", name: "suspicious stocking", image: "susstocking.gif" },
-    { id: "4398", name: "stinky cheese ball", image: "sc_ball.gif" },
-    { id: "4468", name: "Libram of BRICKOs", image: "book2.gif" },
-    { id: "4507", name: "Clan looking glass", image: "crate.gif" },
-    { id: "4574", name: "panicked kernel", image: "kernel.gif" },
-    { id: "4614", name: "Crown of Thrones", image: "chairhat.gif" },
-    { id: "4619", name: "glowing frisbee", image: "trondisc.gif" },
-    { id: "4644", name: "Juju Mojo Mask", image: "jujumask.gif" },
-    { id: "4648", name: "Schmalz's First Prize Beer", image: "pbr.gif" },
-    { id: "4696", name: "Greatest American Pants", image: "gapants.gif" },
-    { id: "4720", name: "organ grinder", image: "grinder.gif" },
-    { id: "4759", name: "Grumpy Bumpkin's Pumpkin Seed Catalog", image: "book2.gif" },
-    { id: "4827", name: "hibernating robot reindeer", image: "hyberdeer.gif" },
-    { id: "4908", name: "Loathing Legion knife", image: "llknife.gif" },
-    { id: "4937", name: "a cute angel", image: "acuteangel.gif" },
-    { id: "4965", name: "Sorcerers of the Shore Grimoire", image: "book3.gif" },
-    { id: "5047", name: "Clan shower", image: "crate.gif" },
-    { id: "5112", name: "My Own Pen Pal kit", image: "ppkit.gif" },
-    { id: "5164", name: "mysterious chest", image: "spacechest.gif" },
-    { id: "5190", name: "Operation Patriot Shield", image: "opshield.gif" },
-    { id: "4536", name: "fairy-worn boots", image: "fairyboots.gif" },
-    { id: "5223", name: "Tome of Clip Art", image: "book3.gif" },
-    { id: "5301", name: "Make-Your-Own-Vampire-Fangs kit", image: "fangskit.gif" },
-    { id: "5371", name: "stuffed-shirt scarecrow", image: "pantscrow.gif" },
-    { id: "5403", name: "Mint Salton Pepper's Peppermint Seed Catalog", image: "pep_catalog.gif" },
-    { id: "5463", name: "Libram of Resolutions", image: "book5.gif" },
-    { id: "5553", name: "can of Rain-Doh", image: "raindoh.gif" },
-    { id: "5639", name: "Small Medium", image: "medium_small.gif" },
-    { id: "5648", name: "Boris's Helm", image: "borishelm.gif" },
-    { id: "5662", name: "Olympic-sized Clan crate", image: "crate.gif" },
-    { id: "5701", name: "Moping Artistic Goth Kid", image: "mopinggoth.gif" },
-    { id: "5738", name: "Camp Scout backpack", image: "csbackpack.gif" },
-    { id: "5767", name: "Unagnimated Gnome", image: "frankenlarva.gif" },
-    { id: "5790", name: "box of bear arms", image: "beararms.gif" },
-    { id: "5879", name: "Pete & Jackie's Dragon Tooth Emporium Catalog", image: "teethcatalog.gif" },
-    { id: "5910", name: "deactivated nanobots", image: "nanobox.gif" },
-    { id: "6071", name: "Thinknerd's Grimoire of Geeky Gifts", image: "nerdgrimoire.gif" },
-    { id: "6150", name: "Snow Suit", image: "snowsuit.gif" },
-    { id: "4712", name: "GameInformPowerDailyPro subscription card", image: "subcard.gif" },
-    { id: "6305", name: "Jarlsberg's pan", image: "jarl_fry.gif" },
-    { id: "6360", name: "Libram of Pulled Taffy", image: "book4.gif" },
-    { id: "6413", name: "Order of the Green Thumb Order Form", image: "floristform.gif" },
-    { id: "6561", name: "adventurer clone egg", image: "cloneegg.gif" },
-    { id: "6582", name: "Clan hot dog stand", image: "crate.gif" },
-    { id: "4930", name: "Folder Holder", image: "folderholder.gif" },
-    { id: "6411", name: "KoLHS Pep Squad Box", image: "crate.gif" },
-    { id: "6784", name: "deanimated reanimator's coffin", image: "coffinlid.gif" },
-    { id: "6860", name: "Pantsgiving", image: "pantsgiving.gif" },
-    { id: "7003", name: "The Smith's Tome", image: "book4.gif" },
-    { id: "7069", name: "Discontent™ Winter Garden Catalog", image: "wintercatalog.gif" },
-    { id: "7200", name: "Buddy Bjorn", image: "buddybjorn.gif" },
-    { id: "7250", name: "Sneaky Pete's leather jacket", image: "petejacket.gif" },
-    { id: "7382", name: "Little Geneticist DNA-Splicing Lab", image: "genelab.gif" },
-    { id: "7466", name: "airplane charter: Spring Break Beach", image: "aircharter.gif" },
-    { id: "7312", name: "still grill", image: "stillgrill.gif" },
-    { id: "7588", name: "Clan speakeasy", image: "crate.gif" },
-    { id: "7706", name: "The Confiscator's Grimoire", image: "book4.gif" },
-    { id: "7709", name: "Thor's Pliers", image: "thorpliers.gif" },
-    { id: "7767", name: "airplane charter: Conspiracy Island", image: "aircharter.gif" },
-    { id: "7920", name: "fist turkey outline", image: "fistoutline.gif" },
-    { id: "7956", name: "Crimbo sapling", image: "crimbosapling.gif" },
-    { id: "8019", name: "Chateau Mantegna room key", image: "cmkey.gif" },
-    { id: "8134", name: "bottle of lovebug pheromones", image: "lovebugjuice.gif" },
-    { id: "8184", name: "Ed the Undying exhibit crate", image: "crate.gif" },
-    { id: "8203", name: "airplane charter: Dinseylandfill", image: "aircharter.gif" },
-    { id: "8260", name: "portable Mayo Clinic", image: "mayocase.gif" },
-    { id: "8287", name: "yellow puck", image: "yellapuck.gif" },
-    { id: "8381", name: "Pack of Every Card", image: "deckbox.gif" },
-    { id: "8487", name: "airplane charter: That 70s Volcano", image: "aircharter.gif" },
-    { id: "8564", name: "shrine to the Barrel god", image: "crate.gif" },
-    { id: "8639", name: "haunted doghouse", image: "crate.gif" },
-    { id: "8674", name: "airplane charter: The Glaciest", image: "aircharter.gif" },
-    { id: "8706", name: "machine elf capsule", image: "machelfcapsule.gif" },
-    { id: "8705", name: "X-32-F snowman crate", image: "crate.gif" },
-    { id: "8836", name: "LT&T telegraph office deed", image: "document.gif" },
-    { id: "8989", name: "Witchess Set", image: "chessset.gif" },
-    { id: "9000", name: "Clan Floundry", image: "crate.gif" },
-    { id: "9016", name: "disconnected intergnat", image: "discognat.gif" },
-    { id: "9033", name: "Source terminal", image: "sourceterminal.gif" },
-    { id: "9073", name: "detective school application", image: "letter.gif" },
-    { id: "9081", name: "DIY protonic accelerator kit", image: "crate.gif" },
-    { id: "9103", name: "Dear Past Self Package", image: "pastselfpackage.gif" },
-    { id: "9136", name: "li'l orphan tot", image: "boredtot.gif" },
-    { id: "9189", name: "Granny Tood's Thanksgarden Catalog", image: "thankscatalog.gif" },
-    { id: "9203", name: "Build-a-City Gingerbread kit", image: "gingercity.gif" },
-    { id: "9296", name: "space planula", image: "planula.gif" },
-    { id: "9316", name: "heart-shaped crate", image: "heartcrate.gif" },
-    { id: "9401", name: "unpowered Robortender", image: "robotenderlarva.gif" },
-    { id: "9404", name: "Spacegate access badge", image: "sgbadge.gif" },
-    { id: "9478", name: "New-You Club Membership Form", image: "newyouform.gif" },
-    { id: "9492", name: "suspicious package", image: "kgbpackage.gif" },
-    { id: "9507", name: "LI-11 Motor Pool voucher", image: "l11voucher.gif" },
-    { id: "9511", name: "Pocket Meteor Guide", image: "meteorbook.gif" },
-    { id: "9528", name: "corked genie bottle", image: "gbottle_cork.gif" },
-    { id: "9541", name: "xo-skeleton-in-a-box", image: "xobox.gif" },
-    { id: "9572", name: "pantogram", image: "pantogramgram.gif" },
-    { id: "9591", name: "locked mumming trunk", image: "mumtrunk_closed.gif" },
-    { id: "9689", name: "January's Garbage Tote (unopened)", image: "tote_closed.gif" },
-    { id: "9712", name: "Clan Carnival Game", image: "crate.gif" },
-    { id: "9759", name: "Pokéfam Guide to Capturing All of Them", image: "pokebook.gif" },
-    { id: "9835", name: "FantasyRealm membership packet", image: "fr_packet.gif" },
-    { id: "9661", name: "God Lobster Egg", image: "godlob_egg.gif" },
-    { id: "9920", name: "SongBoom™ BoomBox Box", image: "songboomboxbox.gif" },
-    { id: "9939", name: "kitten burglar", image: "kittenburglar.gif" },
-    { id: "9927", name: "Bastille Battalion control rig crate", image: "bbattcrate.gif" },
-    { id: "9942", name: "Neverending Party invitation envelope", image: "npartyinv.gif" },
-    { id: "9988", name: "latte lovers club card", image: "lattecard.gif" },
-    { id: "9989", name: "voter registration form", image: "vrform.gif" },
-    { id: "10049", name: "Boxing Day care package", image: "boxingpackage.gif" },
-    { id: "10057", name: "Kramco Industries packing carton", image: "saugrindbox.gif" },
-    { id: "10165", name: "mint condition Lil' Doctor™ bag", image: "dbag_mint.gif" },
-    { id: "10241", name: "vampyric cloake pattern", image: "cloakepattern.gif" },
-    { id: "10187", name: "PirateRealm membership packet", image: "pr_packet.gif" },
-    { id: "10250", name: "Fourth of May Cosplay Saber kit", image: "may4swordkit.gif" },
-    { id: "10256", name: "rune-strewn spoon cocoon", image: "spooncocoon.gif" },
-    { id: "10257", name: "Beach Comb Box", image: "beachcombbox.gif" },
-    { id: "10292", name: "Distant Woods Getaway Brochure", image: "campbrochure.gif" },
-    { id: "10323", name: "packaged Pocket Professor", image: "lilprofessoroff.gif" },
-    { id: "10332", name: "Unopened Eight Days a Week Pill Keeper", image: "pillminderpack.gif" },
-    { id: "10334", name: "unopened diabolic pizza cube box", image: "crate.gif" },
-    { id: "10345", name: "red-spotted snapper roe", image: "redroe.gif" },
-    { id: "10433", name: "unopened Bird-a-Day calendar", image: "birdcal_unopened.gif" },
-    { id: "10437", name: "mint-in-box Powerful Glove", image: "pglove_inbox.gif" },
-    { id: "10481", name: "Better Shrooms and Gardens catalog", image: "mushcatalog.gif" },
-    { id: "10502", name: "sinistral homunculus", image: "lhmlarva.gif" },
-    { id: "10532", name: "Guzzlr application", image: "guzzlrapp.gif" },
-    { id: "10573", name: "bag of Iunion stones", image: "iunionbag.gif" },
-    { id: "10579", name: "baby camelCalf", image: "camelcalf.gif" },
-    { id: "10581", name: "packaged SpinMaster™ lathe", image: "lathebox.gif" },
-    { id: "10635", name: "bagged Cargo Cultist Shorts", image: "cultistshortsbag.gif" },
-    { id: "10644", name: "Comprehensive Cartographic Compendium", image: "cccbook.gif" },
-    { id: "10646", name: "packaged knock-off retro superhero cape", image: "retrocape0.gif" },
-    { id: "10648", name: "box o' ghosts", image: "cghostbox.gif" },
-    { id: "10729", name: "packaged miniature crystal ball", image: "famballbox.gif" },
-    { id: "10733", name: "emotion chip", image: "emochip_clean.gif" },
-    { id: "10737", name: "power seed", image: "powerseed.gif" },
-    { id: "10748", name: "packaged backup camera", image: "backcamera_box.gif" },
-    { id: "10750", name: "shortest-order cook", image: "shortcheflarva.gif" },
-    { id: "10760", name: "packaged familiar scrapbook", image: "fambook_blank.gif" },
-    { id: "10761", name: "clan underground fireworks shop", image: "crate.gif" },
-    { id: "10773", name: "Our Daily Candles™ order form", image: "canclecform.gif" },
-    { id: "10796", name: "packaged industrial fire extinguisher", image: "exting2box.gif" },
-    { id: "10801", name: "bottled Vampire Vintner", image: "vampvintbottle.gif" },
-    { id: "10803", name: "packaged Daylight Shavings Helmet", image: "dshelmet_box.gif" },
-    { id: "10814", name: "packaged cold medicine cabinet", image: "cmcabinet_box.gif" },
-    { id: "10890", name: "undrilled cosmic bowling ball", image: "cosmicball.gif" },
-    { id: "10892", name: "combat lover's locket lockbox", image: "lovelocketbox.gif" },
-    { id: "10895", name: "grey gosling", image: "greygosling.gif" },
-    { id: "10898", name: "undamaged Unbreakable Umbrella", image: "unbrella1.gif" },
-    { id: "10900", name: "MayDay™ contract", image: "maydaycontract.gif" },
-    { id: "10919", name: "packaged June cleaver", image: "junecleaverbox.gif" },
-    { id: "10928", name: "designer sweatpants (new old stock)", image: "sweats_box.gif" },
-    { id: "10931", name: "unopened tiny stillsuit", image: "stillsuit_box.gif" },
+    { id: "894", mmyyyy: "102004" }, // Dark Jill-O-Lantern
+    { id: "914", mmyyyy: "112004" }, // hand turkey outline
+    { id: "924", mmyyyy: "122004" }, // crimbo elfling
+    { id: "954", mmyyyy: "012005" }, // orphan baby yeti
+    { id: "961", mmyyyy: "022005" }, // silk garter snake
+    { id: "1040", mmyyyy: "032005" }, // lucky Tam O'Shanter
+    { id: "1083", mmyyyy: "042005" }, // personal raindrop
+    { id: "1152", mmyyyy: "052005" }, // miniature gravy-covered maypole
+    { id: "1242", mmyyyy: "062005" }, // deflated inflatable dodecapede
+    { id: "1260", mmyyyy: "072005" }, // wax lips
+    { id: "1263", mmyyyy: "082005" }, // pygmy bugbear shaman
+    { id: "1291", mmyyyy: "092005" }, // Jekyllin hide belt
+    { id: "1304", mmyyyy: "102005" }, // doppelshifter egg
+    { id: "1349", mmyyyy: "112005" }, // miniscule temporal rip
+    { id: "1373", mmyyyy: "122005" }, // sweet nutcracker
+    { id: "1411", mmyyyy: "012006" }, // Tome of Snowcone Summoning
+    { id: "1423", mmyyyy: "022006" }, // iceberglet
+    { id: "1488", mmyyyy: "032006" }, // March hat
+    { id: "1498", mmyyyy: "042006" }, // McPhee's Grimoire of Hilarious Object Summoning
+    { id: "1536", mmyyyy: "052006" }, // homeless hobo spirit
+    { id: "1621", mmyyyy: "062006" }, // astral badger
+    { id: "1653", mmyyyy: "072006" }, // jewel-eyed wizard hat
+    { id: "1703", mmyyyy: "082006" }, // Comma Chameleon egg
+    { id: "1792", mmyyyy: "092006" }, // Travoltan trousers
+    { id: "1971", mmyyyy: "102006" }, // plastic pumpkin bucket
+    { id: "2090", mmyyyy: "112006" }, // pilgrim shield
+    { id: "2190", mmyyyy: "122006" }, // yuletide troll chrysalis
+    { id: "2221", mmyyyy: "012007" }, // Great Ball of Frozen Fire
+    { id: "2303", mmyyyy: "022007" }, // Libram of Candy Heart Summoning
+    { id: "2380", mmyyyy: "032007" }, // dandy lion cub
+    { id: "2447", mmyyyy: "042007" }, // bad penguin egg
+    { id: "2541", mmyyyy: "052007" }, // Mayflower bouquet
+    { id: "2650", mmyyyy: "062007" }, // bottled green pixie
+    { id: "2834", mmyyyy: "072007" }, // bottle-rocket crossbow
+    { id: "2836", mmyyyy: "082007" }, // wizard action figure
+    { id: "2844", mmyyyy: "092007" }, // navel ring of navel gazing
+    { id: "2845", mmyyyy: "102007" }, // class five ecto-larva
+    { id: "2946", mmyyyy: "112007" }, // V for Vivala mask
+    { id: "3042", mmyyyy: "122007" }, // Crimbo P. R. E. S. S. I. E.
+    { id: "3117", mmyyyy: "012008" }, // Libram of Divine Favors
+    { id: "3192", mmyyyy: "022008" }, // naughty origami kit
+    { id: "3219", mmyyyy: "032008" }, // sane hatrack
+    { id: "3263", mmyyyy: "042008" }, // Sp'n-Zor's Grimoire of "Tasteful" Gifts
+    { id: "3321", mmyyyy: "052008" }, // packet of mayfly bait
+    { id: "3351", mmyyyy: "062008" }, // llama lama cria
+    { id: "3421", mmyyyy: "072008" }, // little box of fireworks
+    { id: "3431", mmyyyy: "082008" }, // cotton candy cocoon
+    { id: "3466", mmyyyy: "092008" }, // haiku katana
+    { id: "3434", mmyyyy: "102008" }, // spooky rattling cigar box
+    { id: "3507", mmyyyy: "112008" }, // Scratch 'n' Sniff Sticker Tome
+    { id: "3578", mmyyyy: "122008" }, // candy cornucopia
+    { id: "3661", mmyyyy: "012009" }, // container of Spooky Putty
+    { id: "3753", mmyyyy: "022009" }, // Libram of Love Songs
+    { id: "3799", mmyyyy: "032009" }, // Apathargic Bandersnatch
+    { id: "3836", mmyyyy: "042009" }, // Elvish sunglasses
+    { id: "3963", mmyyyy: "052009" }, // Clan pool table
+    { id: "3999", mmyyyy: "062009" }, // infant sandworm
+    { id: "4136", mmyyyy: "072009" }, // Bag o' Tricks
+    { id: "4148", mmyyyy: "082009" }, // floaty stone sphere
+    { id: "4177", mmyyyy: "092009" }, // Tome of Sugar Shummoning
+    { id: "4223", mmyyyy: "102009" }, // squamous polyp
+    { id: "4135", mmyyyy: "112009" }, // moveable feast
+    { id: "4328", mmyyyy: "122009" }, // suspicious stocking
+    { id: "4398", mmyyyy: "012010" }, // stinky cheese ball
+    { id: "4468", mmyyyy: "022010" }, // Libram of BRICKOs
+    { id: "4507", mmyyyy: "032010" }, // Clan looking glass
+    { id: "4574", mmyyyy: "042010" }, // panicked kernel
+    { id: "4614", mmyyyy: "052010" }, // Crown of Thrones
+    { id: "4619", mmyyyy: "062010" }, // glowing frisbee
+    { id: "4644", mmyyyy: "072010" }, // Juju Mojo Mask
+    { id: "4648", mmyyyy: "082010" }, // Schmalz's First Prize Beer
+    { id: "4696", mmyyyy: "092010" }, // Greatest American Pants
+    { id: "4720", mmyyyy: "102010" }, // organ grinder
+    { id: "4759", mmyyyy: "112010" }, // Grumpy Bumpkin's Pumpkin Seed Catalog
+    { id: "4827", mmyyyy: "122010" }, // hibernating robot reindeer
+    { id: "4908", mmyyyy: "012011" }, // Loathing Legion knife
+    { id: "4937", mmyyyy: "022011" }, // a cute angel
+    { id: "4965", mmyyyy: "032011" }, // Sorcerers of the Shore Grimoire
+    { id: "5047", mmyyyy: "042011" }, // Clan shower
+    { id: "5112", mmyyyy: "052011" }, // My Own Pen Pal kit
+    { id: "5164", mmyyyy: "062011" }, // mysterious chest
+    { id: "5190", mmyyyy: "072011" }, // Operation Patriot Shield
+    { id: "4536", mmyyyy: "082011" }, // fairy-worn boots
+    { id: "5223", mmyyyy: "092011" }, // Tome of Clip Art
+    { id: "5301", mmyyyy: "102011" }, // Make-Your-Own-Vampire-Fangs kit
+    { id: "5371", mmyyyy: "112011" }, // stuffed-shirt scarecrow
+    { id: "5403", mmyyyy: "122011" }, // Mint Salton Pepper's Peppermint Seed Catalog
+    { id: "5463", mmyyyy: "012012" }, // Libram of Resolutions
+    { id: "5553", mmyyyy: "022012" }, // can of Rain-Doh
+    { id: "5639", mmyyyy: "032012" }, // Small Medium
+    { id: "5648", mmyyyy: "042012" }, // Boris's Helm
+    { id: "5662", mmyyyy: "052012" }, // Olympic-sized Clan crate
+    { id: "5701", mmyyyy: "062012" }, // Moping Artistic Goth Kid
+    { id: "5738", mmyyyy: "072012" }, // Camp Scout backpack
+    { id: "5767", mmyyyy: "082012" }, // Unagnimated Gnome
+    { id: "5790", mmyyyy: "092012" }, // box of bear arms
+    { id: "5879", mmyyyy: "102012" }, // Pete & Jackie's Dragon Tooth Emporium Catalog
+    { id: "5910", mmyyyy: "112012" }, // deactivated nanobots
+    { id: "6071", mmyyyy: "122012" }, // Thinknerd's Grimoire of Geeky Gifts
+    { id: "6150", mmyyyy: "012013" }, // Snow Suit
+    { id: "4712", mmyyyy: "022013" }, // GameInformPowerDailyPro subscription card
+    { id: "6305", mmyyyy: "032013" }, // Jarlsberg's pan
+    { id: "6360", mmyyyy: "042013" }, // Libram of Pulled Taffy
+    { id: "6413", mmyyyy: "052013" }, // Order of the Green Thumb Order Form
+    { id: "6561", mmyyyy: "062013" }, // adventurer clone egg
+    { id: "6582", mmyyyy: "072013" }, // Clan hot dog stand
+    { id: "4930", mmyyyy: "082013" }, // Folder Holder
+    { id: "6411", mmyyyy: "092013" }, // KoLHS Pep Squad Box
+    { id: "6784", mmyyyy: "102013" }, // deanimated reanimator's coffin
+    { id: "6860", mmyyyy: "112013" }, // Pantsgiving
+    { id: "7003", mmyyyy: "122013" }, // The Smith's Tome
+    { id: "7069", mmyyyy: "012014" }, // Discontent™ Winter Garden Catalog
+    { id: "7200", mmyyyy: "022014" }, // Buddy Bjorn
+    { id: "7250", mmyyyy: "032014" }, // Sneaky Pete's leather jacket
+    { id: "7382", mmyyyy: "042014" }, // Little Geneticist DNA-Splicing Lab
+    { id: "7466", mmyyyy: "052014" }, // airplane charter: Spring Break Beach
+    { id: "7312", mmyyyy: "062014" }, // still grill
+    { id: "7588", mmyyyy: "072014" }, // Clan speakeasy
+    { id: "7706", mmyyyy: "082014" }, // The Confiscator's Grimoire
+    { id: "7709", mmyyyy: "092014" }, // Thor's Pliers
+    { id: "7767", mmyyyy: "102014" }, // airplane charter: Conspiracy Island
+    { id: "7920", mmyyyy: "112014" }, // fist turkey outline
+    { id: "7956", mmyyyy: "122014" }, // Crimbo sapling
+    { id: "8019", mmyyyy: "012015" }, // Chateau Mantegna room key
+    { id: "8134", mmyyyy: "022015" }, // bottle of lovebug pheromones
+    { id: "8184", mmyyyy: "032015" }, // Ed the Undying exhibit crate
+    { id: "8203", mmyyyy: "042015" }, // airplane charter: Dinseylandfill
+    { id: "8260", mmyyyy: "052015" }, // portable Mayo Clinic
+    { id: "8287", mmyyyy: "062015" }, // yellow puck
+    { id: "8381", mmyyyy: "072015" }, // Pack of Every Card
+    { id: "8487", mmyyyy: "082015" }, // airplane charter: That 70s Volcano
+    { id: "8564", mmyyyy: "092015" }, // shrine to the Barrel god
+    { id: "8639", mmyyyy: "102015" }, // haunted doghouse
+    { id: "8674", mmyyyy: "112015" }, // airplane charter: The Glaciest
+    { id: "8706", mmyyyy: "122015" }, // machine elf capsule
+    { id: "8705", mmyyyy: "012016" }, // X-32-F snowman crate
+    { id: "8836", mmyyyy: "022016" }, // LT&T telegraph office deed
+    { id: "8989", mmyyyy: "032016" }, // Witchess Set
+    { id: "9000", mmyyyy: "042016" }, // Clan Floundry
+    { id: "9016", mmyyyy: "052016" }, // disconnected intergnat
+    { id: "9033", mmyyyy: "062016" }, // Source terminal
+    { id: "9073", mmyyyy: "072016" }, // detective school application
+    { id: "9081", mmyyyy: "082016" }, // DIY protonic accelerator kit
+    { id: "9103", mmyyyy: "092016" }, // Dear Past Self Package
+    { id: "9136", mmyyyy: "102016" }, // li'l orphan tot
+    { id: "9189", mmyyyy: "112016" }, // Granny Tood's Thanksgarden Catalog
+    { id: "9203", mmyyyy: "122016" }, // Build-a-City Gingerbread kit
+    { id: "9296", mmyyyy: "012017" }, // space planula
+    { id: "9316", mmyyyy: "022017" }, // heart-shaped crate
+    { id: "9401", mmyyyy: "032017" }, // unpowered Robortender
+    { id: "9404", mmyyyy: "042017" }, // Spacegate access badge
+    { id: "9478", mmyyyy: "052017" }, // New-You Club Membership Form
+    { id: "9492", mmyyyy: "062017" }, // suspicious package
+    { id: "9507", mmyyyy: "072017" }, // LI-11 Motor Pool voucher
+    { id: "9511", mmyyyy: "082017" }, // Pocket Meteor Guide
+    { id: "9528", mmyyyy: "092017" }, // corked genie bottle
+    { id: "9541", mmyyyy: "102017" }, // xo-skeleton-in-a-box
+    { id: "9572", mmyyyy: "112017" }, // pantogram
+    { id: "9591", mmyyyy: "122017" }, // locked mumming trunk
+    { id: "9689", mmyyyy: "012018" }, // January's Garbage Tote (unopened)
+    { id: "9712", mmyyyy: "022018" }, // Clan Carnival Game
+    { id: "9759", mmyyyy: "032018" }, // Pokéfam Guide to Capturing All of Them
+    { id: "9835", mmyyyy: "042018" }, // FantasyRealm membership packet
+    { id: "9661", mmyyyy: "052018" }, // God Lobster Egg
+    { id: "9920", mmyyyy: "062018" }, // SongBoom™ BoomBox Box
+    { id: "9939", mmyyyy: "072018" }, // kitten burglar
+    { id: "9927", mmyyyy: "082018" }, // Bastille Battalion control rig crate
+    { id: "9942", mmyyyy: "092018" }, // Neverending Party invitation envelope
+    { id: "9988", mmyyyy: "102018" }, // latte lovers club card
+    { id: "9989", mmyyyy: "112018" }, // voter registration form
+    { id: "10049", mmyyyy: "122018" }, // Boxing Day care package
+    { id: "10057", mmyyyy: "012019" }, // Kramco Industries packing carton
+    { id: "10165", mmyyyy: "022019" }, // mint condition Lil' Doctor™ bag
+    { id: "10241", mmyyyy: "032019" }, // vampyric cloake pattern
+    { id: "10187", mmyyyy: "042019" }, // PirateRealm membership packet
+    { id: "10250", mmyyyy: "052019" }, // Fourth of May Cosplay Saber kit
+    { id: "10256", mmyyyy: "062019" }, // rune-strewn spoon cocoon
+    { id: "10257", mmyyyy: "072019" }, // Beach Comb Box
+    { id: "10292", mmyyyy: "082019" }, // Distant Woods Getaway Brochure
+    { id: "10323", mmyyyy: "092019" }, // packaged Pocket Professor
+    { id: "10332", mmyyyy: "102019" }, // Unopened Eight Days a Week Pill Keeper
+    { id: "10334", mmyyyy: "112019" }, // unopened diabolic pizza cube box
+    { id: "10345", mmyyyy: "122019" }, // red-spotted snapper roe
+    { id: "10433", mmyyyy: "012020" }, // unopened Bird-a-Day calendar
+    { id: "10437", mmyyyy: "022020" }, // mint-in-box Powerful Glove
+    { id: "10481", mmyyyy: "032020" }, // Better Shrooms and Gardens catalog
+    { id: "10502", mmyyyy: "042020" }, // sinistral homunculus
+    { id: "10532", mmyyyy: "052020" }, // Guzzlr application
+    { id: "10573", mmyyyy: "062020" }, // bag of Iunion stones
+    { id: "10579", mmyyyy: "072020" }, // baby camelCalf
+    { id: "10581", mmyyyy: "082020" }, // packaged SpinMaster™ lathe
+    { id: "10635", mmyyyy: "092020" }, // bagged Cargo Cultist Shorts
+    { id: "10644", mmyyyy: "102020" }, // Comprehensive Cartographic Compendium
+    { id: "10646", mmyyyy: "112020" }, // packaged knock-off retro superhero cape
+    { id: "10648", mmyyyy: "122020" }, // box o' ghosts
+    { id: "10729", mmyyyy: "012021" }, // packaged miniature crystal ball
+    { id: "10733", mmyyyy: "022021" }, // emotion chip
+    { id: "10737", mmyyyy: "032021" }, // power seed
+    { id: "10748", mmyyyy: "042021" }, // packaged backup camera
+    { id: "10750", mmyyyy: "052021" }, // shortest-order cook
+    { id: "10760", mmyyyy: "062021" }, // packaged familiar scrapbook
+    { id: "10761", mmyyyy: "072021" }, // clan underground fireworks shop
+    { id: "10773", mmyyyy: "082021" }, // Our Daily Candles™ order form
+    { id: "10796", mmyyyy: "092021" }, // packaged industrial fire extinguisher
+    { id: "10801", mmyyyy: "102021" }, // bottled Vampire Vintner
+    { id: "10803", mmyyyy: "112021" }, // packaged Daylight Shavings Helmet
+    { id: "10814", mmyyyy: "122021" }, // packaged cold medicine cabinet
+    { id: "10890", mmyyyy: "012022" }, // undrilled cosmic bowling ball
+    { id: "10892", mmyyyy: "022022" }, // combat lover's locket lockbox
+    { id: "10895", mmyyyy: "032022" }, // grey gosling
+    { id: "10898", mmyyyy: "042022" }, // undamaged Unbreakable Umbrella
+    { id: "10900", mmyyyy: "052022" }, // MayDay™ contract
+    { id: "10919", mmyyyy: "062022" }, // packaged June cleaver
+    { id: "10928", mmyyyy: "072022" }, // designer sweatpants (new old stock)
+    { id: "10931", mmyyyy: "082022" }, // unopened tiny stillsuit
 ] as const;
