@@ -31,13 +31,13 @@ export function loadIotms(lastKnownSize = 0) {
 
 export type RawIOTM = readonly [id: number, status: IotmStatus];
 
-export const compressIotm = (iotmList: RawIOTM[]) =>
+export const compressIotms = (iotmList: RawIOTM[]) =>
     iotmList
       .sort((a,b) => a[0] - b[0]) //sorts by itemID?
       .reduce((r, iotm) => `${r}${iotm[1]}`, "") // concats owned status to the resulting object
       .replace(/0+$/, ""); // removes trailing zeroes to lower string size
 
-export const expandIotm = (iotmString = "") => {
+export const expandIotms = (iotmString = "") => {
     let result = [] as RawIOTM[]; 
     let referencePoint = 0;
 
