@@ -10,7 +10,7 @@ for (const y of years) {
         var currIotm = MrStoreMonthly[y][m] as [Item, IOTM] | undefined;
 
         if (currIotm != undefined) {
-            print("{ id: \"" + toInt(currIotm[1].storeItem) + "\", name: \"" + currIotm[1].storeItem.name + "\", image: \"" + currIotm[1].storeItem.image +"\" },")
+            print("{ id: \"" + toInt(currIotm[1].storeItem) + "\", mmyyyy: \""+ String(m).padStart(2,"0") + String(y) +"\" }, // " + currIotm[1].storeItem.name)
         }
         
     }
