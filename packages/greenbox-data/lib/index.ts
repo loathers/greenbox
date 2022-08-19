@@ -14,6 +14,7 @@ export * from "./paths";
 export * from "./skills";
 export * from "./tattoos";
 export * from "./trophies";
+export * from "./iotms"
 
 export interface RawSnapshotData {
   skills: RawSkill[];
