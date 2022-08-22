@@ -4,6 +4,7 @@ import {
   isPermable,
   loadTattoos,
   getOutfitTattoos,
+  loadIotms,
   SkillStatus,
   FamiliarStatus,
   TrophyStatus,
@@ -19,6 +20,8 @@ import {
   ItemStatus,
   RawPath,
   PathDef,
+  IotmStatus,
+  RawIOTM,
 } from "greenbox-data";
 import {
   displayAmount,
@@ -35,9 +38,27 @@ import {
   visitUrl,
 } from "kolmafia";
 import { have, property } from "libram";
+import { IOTM, MrStoreMonthly } from "./iotms";
 
 function haveItem(item: Item) {
   return have(item) || displayAmount(item) > 0;
+}
+
+/**
+ * Generates an object with a list of IOTMs & ownership stats.
+ * @returns large string of IOTM ownership
+ */
+
+function checkIotms() {
+
+  // Check status using Mr. Store Monthly. Have = bound, count > 0 but not have = boxed, else = none.
+  function getIOTMStatus(iotmID: string) {
+    if (MrStoreMonthly[iotmID].have) return IotmStatus.BOUND;
+    if (MrStoreMonthly[iotmID].count > 0) return IotmStatus.BOXED;
+    else return IotmStatus.NONE; 
+  }
+
+  return (loadIotms()?.data ?? []).map((iotm) => [iotm.id, getIOTMStatus(String(iotm.id)) as IotmStatus] as RawIOTM);
 }
 
 /**
@@ -182,6 +203,7 @@ function main(): void {
     trophies: checkTrophies(),
     ...checkTattoos(tattoos),
     paths: checkPaths(tattoos),
+    iotms: checkIotms(),
   });
 
   printHtml(
