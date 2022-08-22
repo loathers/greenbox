@@ -1,217 +1,313 @@
-export default [
-    { id: "894", mmyyyy: "102004" }, // Dark Jill-O-Lantern
-    { id: "914", mmyyyy: "112004" }, // hand turkey outline
-    { id: "924", mmyyyy: "122004" }, // crimbo elfling
-    { id: "954", mmyyyy: "012005" }, // orphan baby yeti
-    { id: "961", mmyyyy: "022005" }, // silk garter snake
-    { id: "1040", mmyyyy: "032005" }, // lucky Tam O'Shanter
-    { id: "1083", mmyyyy: "042005" }, // personal raindrop
-    { id: "1152", mmyyyy: "052005" }, // miniature gravy-covered maypole
-    { id: "1242", mmyyyy: "062005" }, // deflated inflatable dodecapede
-    { id: "1260", mmyyyy: "072005" }, // wax lips
-    { id: "1263", mmyyyy: "082005" }, // pygmy bugbear shaman
-    { id: "1291", mmyyyy: "092005" }, // Jekyllin hide belt
-    { id: "1304", mmyyyy: "102005" }, // doppelshifter egg
-    { id: "1349", mmyyyy: "112005" }, // miniscule temporal rip
-    { id: "1373", mmyyyy: "122005" }, // sweet nutcracker
-    { id: "1411", mmyyyy: "012006" }, // Tome of Snowcone Summoning
-    { id: "1423", mmyyyy: "022006" }, // iceberglet
-    { id: "1488", mmyyyy: "032006" }, // March hat
-    { id: "1498", mmyyyy: "042006" }, // McPhee's Grimoire of Hilarious Object Summoning
-    { id: "1536", mmyyyy: "052006" }, // homeless hobo spirit
-    { id: "1621", mmyyyy: "062006" }, // astral badger
-    { id: "1653", mmyyyy: "072006" }, // jewel-eyed wizard hat
-    { id: "1703", mmyyyy: "082006" }, // Comma Chameleon egg
-    { id: "1792", mmyyyy: "092006" }, // Travoltan trousers
-    { id: "1971", mmyyyy: "102006" }, // plastic pumpkin bucket
-    { id: "2090", mmyyyy: "112006" }, // pilgrim shield
-    { id: "2190", mmyyyy: "122006" }, // yuletide troll chrysalis
-    { id: "2221", mmyyyy: "012007" }, // Great Ball of Frozen Fire
-    { id: "2303", mmyyyy: "022007" }, // Libram of Candy Heart Summoning
-    { id: "2380", mmyyyy: "032007" }, // dandy lion cub
-    { id: "2447", mmyyyy: "042007" }, // bad penguin egg
-    { id: "2541", mmyyyy: "052007" }, // Mayflower bouquet
-    { id: "2650", mmyyyy: "062007" }, // bottled green pixie
-    { id: "2834", mmyyyy: "072007" }, // bottle-rocket crossbow
-    { id: "2836", mmyyyy: "082007" }, // wizard action figure
-    { id: "2844", mmyyyy: "092007" }, // navel ring of navel gazing
-    { id: "2845", mmyyyy: "102007" }, // class five ecto-larva
-    { id: "2946", mmyyyy: "112007" }, // V for Vivala mask
-    { id: "3042", mmyyyy: "122007" }, // Crimbo P. R. E. S. S. I. E.
-    { id: "3117", mmyyyy: "012008" }, // Libram of Divine Favors
-    { id: "3192", mmyyyy: "022008" }, // naughty origami kit
-    { id: "3219", mmyyyy: "032008" }, // sane hatrack
-    { id: "3263", mmyyyy: "042008" }, // Sp'n-Zor's Grimoire of "Tasteful" Gifts
-    { id: "3321", mmyyyy: "052008" }, // packet of mayfly bait
-    { id: "3351", mmyyyy: "062008" }, // llama lama cria
-    { id: "3421", mmyyyy: "072008" }, // little box of fireworks
-    { id: "3431", mmyyyy: "082008" }, // cotton candy cocoon
-    { id: "3466", mmyyyy: "092008" }, // haiku katana
-    { id: "3434", mmyyyy: "102008" }, // spooky rattling cigar box
-    { id: "3507", mmyyyy: "112008" }, // Scratch 'n' Sniff Sticker Tome
-    { id: "3578", mmyyyy: "122008" }, // candy cornucopia
-    { id: "3661", mmyyyy: "012009" }, // container of Spooky Putty
-    { id: "3753", mmyyyy: "022009" }, // Libram of Love Songs
-    { id: "3799", mmyyyy: "032009" }, // Apathargic Bandersnatch
-    { id: "3836", mmyyyy: "042009" }, // Elvish sunglasses
-    { id: "3963", mmyyyy: "052009" }, // Clan pool table
-    { id: "3999", mmyyyy: "062009" }, // infant sandworm
-    { id: "4136", mmyyyy: "072009" }, // Bag o' Tricks
-    { id: "4148", mmyyyy: "082009" }, // floaty stone sphere
-    { id: "4177", mmyyyy: "092009" }, // Tome of Sugar Shummoning
-    { id: "4223", mmyyyy: "102009" }, // squamous polyp
-    { id: "4135", mmyyyy: "112009" }, // moveable feast
-    { id: "4328", mmyyyy: "122009" }, // suspicious stocking
-    { id: "4398", mmyyyy: "012010" }, // stinky cheese ball
-    { id: "4468", mmyyyy: "022010" }, // Libram of BRICKOs
-    { id: "4507", mmyyyy: "032010" }, // Clan looking glass
-    { id: "4574", mmyyyy: "042010" }, // panicked kernel
-    { id: "4614", mmyyyy: "052010" }, // Crown of Thrones
-    { id: "4619", mmyyyy: "062010" }, // glowing frisbee
-    { id: "4644", mmyyyy: "072010" }, // Juju Mojo Mask
-    { id: "4648", mmyyyy: "082010" }, // Schmalz's First Prize Beer
-    { id: "4696", mmyyyy: "092010" }, // Greatest American Pants
-    { id: "4720", mmyyyy: "102010" }, // organ grinder
-    { id: "4759", mmyyyy: "112010" }, // Grumpy Bumpkin's Pumpkin Seed Catalog
-    { id: "4827", mmyyyy: "122010" }, // hibernating robot reindeer
-    { id: "4908", mmyyyy: "012011" }, // Loathing Legion knife
-    { id: "4937", mmyyyy: "022011" }, // a cute angel
-    { id: "4965", mmyyyy: "032011" }, // Sorcerers of the Shore Grimoire
-    { id: "5047", mmyyyy: "042011" }, // Clan shower
-    { id: "5112", mmyyyy: "052011" }, // My Own Pen Pal kit
-    { id: "5164", mmyyyy: "062011" }, // mysterious chest
-    { id: "5190", mmyyyy: "072011" }, // Operation Patriot Shield
-    { id: "4536", mmyyyy: "082011" }, // fairy-worn boots
-    { id: "5223", mmyyyy: "092011" }, // Tome of Clip Art
-    { id: "5301", mmyyyy: "102011" }, // Make-Your-Own-Vampire-Fangs kit
-    { id: "5371", mmyyyy: "112011" }, // stuffed-shirt scarecrow
-    { id: "5403", mmyyyy: "122011" }, // Mint Salton Pepper's Peppermint Seed Catalog
-    { id: "5463", mmyyyy: "012012" }, // Libram of Resolutions
-    { id: "5553", mmyyyy: "022012" }, // can of Rain-Doh
-    { id: "5639", mmyyyy: "032012" }, // Small Medium
-    { id: "5648", mmyyyy: "042012" }, // Boris's Helm
-    { id: "5662", mmyyyy: "052012" }, // Olympic-sized Clan crate
-    { id: "5701", mmyyyy: "062012" }, // Moping Artistic Goth Kid
-    { id: "5738", mmyyyy: "072012" }, // Camp Scout backpack
-    { id: "5767", mmyyyy: "082012" }, // Unagnimated Gnome
-    { id: "5790", mmyyyy: "092012" }, // box of bear arms
-    { id: "5879", mmyyyy: "102012" }, // Pete & Jackie's Dragon Tooth Emporium Catalog
-    { id: "5910", mmyyyy: "112012" }, // deactivated nanobots
-    { id: "6071", mmyyyy: "122012" }, // Thinknerd's Grimoire of Geeky Gifts
-    { id: "6150", mmyyyy: "012013" }, // Snow Suit
-    { id: "4712", mmyyyy: "022013" }, // GameInformPowerDailyPro subscription card
-    { id: "6305", mmyyyy: "032013" }, // Jarlsberg's pan
-    { id: "6360", mmyyyy: "042013" }, // Libram of Pulled Taffy
-    { id: "6413", mmyyyy: "052013" }, // Order of the Green Thumb Order Form
-    { id: "6561", mmyyyy: "062013" }, // adventurer clone egg
-    { id: "6582", mmyyyy: "072013" }, // Clan hot dog stand
-    { id: "4930", mmyyyy: "082013" }, // Folder Holder
-    { id: "6411", mmyyyy: "092013" }, // KoLHS Pep Squad Box
-    { id: "6784", mmyyyy: "102013" }, // deanimated reanimator's coffin
-    { id: "6860", mmyyyy: "112013" }, // Pantsgiving
-    { id: "7003", mmyyyy: "122013" }, // The Smith's Tome
-    { id: "7069", mmyyyy: "012014" }, // Discontent™ Winter Garden Catalog
-    { id: "7200", mmyyyy: "022014" }, // Buddy Bjorn
-    { id: "7250", mmyyyy: "032014" }, // Sneaky Pete's leather jacket
-    { id: "7382", mmyyyy: "042014" }, // Little Geneticist DNA-Splicing Lab
-    { id: "7466", mmyyyy: "052014" }, // airplane charter: Spring Break Beach
-    { id: "7312", mmyyyy: "062014" }, // still grill
-    { id: "7588", mmyyyy: "072014" }, // Clan speakeasy
-    { id: "7706", mmyyyy: "082014" }, // The Confiscator's Grimoire
-    { id: "7709", mmyyyy: "092014" }, // Thor's Pliers
-    { id: "7767", mmyyyy: "102014" }, // airplane charter: Conspiracy Island
-    { id: "7920", mmyyyy: "112014" }, // fist turkey outline
-    { id: "7956", mmyyyy: "122014" }, // Crimbo sapling
-    { id: "8019", mmyyyy: "012015" }, // Chateau Mantegna room key
-    { id: "8134", mmyyyy: "022015" }, // bottle of lovebug pheromones
-    { id: "8184", mmyyyy: "032015" }, // Ed the Undying exhibit crate
-    { id: "8203", mmyyyy: "042015" }, // airplane charter: Dinseylandfill
-    { id: "8260", mmyyyy: "052015" }, // portable Mayo Clinic
-    { id: "8287", mmyyyy: "062015" }, // yellow puck
-    { id: "8381", mmyyyy: "072015" }, // Pack of Every Card
-    { id: "8487", mmyyyy: "082015" }, // airplane charter: That 70s Volcano
-    { id: "8564", mmyyyy: "092015" }, // shrine to the Barrel god
-    { id: "8639", mmyyyy: "102015" }, // haunted doghouse
-    { id: "8674", mmyyyy: "112015" }, // airplane charter: The Glaciest
-    { id: "8706", mmyyyy: "122015" }, // machine elf capsule
-    { id: "8705", mmyyyy: "012016" }, // X-32-F snowman crate
-    { id: "8836", mmyyyy: "022016" }, // LT&T telegraph office deed
-    { id: "8989", mmyyyy: "032016" }, // Witchess Set
-    { id: "9000", mmyyyy: "042016" }, // Clan Floundry
-    { id: "9016", mmyyyy: "052016" }, // disconnected intergnat
-    { id: "9033", mmyyyy: "062016" }, // Source terminal
-    { id: "9073", mmyyyy: "072016" }, // detective school application
-    { id: "9081", mmyyyy: "082016" }, // DIY protonic accelerator kit
-    { id: "9103", mmyyyy: "092016" }, // Dear Past Self Package
-    { id: "9136", mmyyyy: "102016" }, // li'l orphan tot
-    { id: "9189", mmyyyy: "112016" }, // Granny Tood's Thanksgarden Catalog
-    { id: "9203", mmyyyy: "122016" }, // Build-a-City Gingerbread kit
-    { id: "9296", mmyyyy: "012017" }, // space planula
-    { id: "9316", mmyyyy: "022017" }, // heart-shaped crate
-    { id: "9401", mmyyyy: "032017" }, // unpowered Robortender
-    { id: "9404", mmyyyy: "042017" }, // Spacegate access badge
-    { id: "9478", mmyyyy: "052017" }, // New-You Club Membership Form
-    { id: "9492", mmyyyy: "062017" }, // suspicious package
-    { id: "9507", mmyyyy: "072017" }, // LI-11 Motor Pool voucher
-    { id: "9511", mmyyyy: "082017" }, // Pocket Meteor Guide
-    { id: "9528", mmyyyy: "092017" }, // corked genie bottle
-    { id: "9541", mmyyyy: "102017" }, // xo-skeleton-in-a-box
-    { id: "9572", mmyyyy: "112017" }, // pantogram
-    { id: "9591", mmyyyy: "122017" }, // locked mumming trunk
-    { id: "9689", mmyyyy: "012018" }, // January's Garbage Tote (unopened)
-    { id: "9712", mmyyyy: "022018" }, // Clan Carnival Game
-    { id: "9759", mmyyyy: "032018" }, // Pokéfam Guide to Capturing All of Them
-    { id: "9835", mmyyyy: "042018" }, // FantasyRealm membership packet
-    { id: "9661", mmyyyy: "052018" }, // God Lobster Egg
-    { id: "9920", mmyyyy: "062018" }, // SongBoom™ BoomBox Box
-    { id: "9939", mmyyyy: "072018" }, // kitten burglar
-    { id: "9927", mmyyyy: "082018" }, // Bastille Battalion control rig crate
-    { id: "9942", mmyyyy: "092018" }, // Neverending Party invitation envelope
-    { id: "9988", mmyyyy: "102018" }, // latte lovers club card
-    { id: "9989", mmyyyy: "112018" }, // voter registration form
-    { id: "10049", mmyyyy: "122018" }, // Boxing Day care package
-    { id: "10057", mmyyyy: "012019" }, // Kramco Industries packing carton
-    { id: "10165", mmyyyy: "022019" }, // mint condition Lil' Doctor™ bag
-    { id: "10241", mmyyyy: "032019" }, // vampyric cloake pattern
-    { id: "10187", mmyyyy: "042019" }, // PirateRealm membership packet
-    { id: "10250", mmyyyy: "052019" }, // Fourth of May Cosplay Saber kit
-    { id: "10256", mmyyyy: "062019" }, // rune-strewn spoon cocoon
-    { id: "10257", mmyyyy: "072019" }, // Beach Comb Box
-    { id: "10292", mmyyyy: "082019" }, // Distant Woods Getaway Brochure
-    { id: "10323", mmyyyy: "092019" }, // packaged Pocket Professor
-    { id: "10332", mmyyyy: "102019" }, // Unopened Eight Days a Week Pill Keeper
-    { id: "10334", mmyyyy: "112019" }, // unopened diabolic pizza cube box
-    { id: "10345", mmyyyy: "122019" }, // red-spotted snapper roe
-    { id: "10433", mmyyyy: "012020" }, // unopened Bird-a-Day calendar
-    { id: "10437", mmyyyy: "022020" }, // mint-in-box Powerful Glove
-    { id: "10481", mmyyyy: "032020" }, // Better Shrooms and Gardens catalog
-    { id: "10502", mmyyyy: "042020" }, // sinistral homunculus
-    { id: "10532", mmyyyy: "052020" }, // Guzzlr application
-    { id: "10573", mmyyyy: "062020" }, // bag of Iunion stones
-    { id: "10579", mmyyyy: "072020" }, // baby camelCalf
-    { id: "10581", mmyyyy: "082020" }, // packaged SpinMaster™ lathe
-    { id: "10635", mmyyyy: "092020" }, // bagged Cargo Cultist Shorts
-    { id: "10644", mmyyyy: "102020" }, // Comprehensive Cartographic Compendium
-    { id: "10646", mmyyyy: "112020" }, // packaged knock-off retro superhero cape
-    { id: "10648", mmyyyy: "122020" }, // box o' ghosts
-    { id: "10729", mmyyyy: "012021" }, // packaged miniature crystal ball
-    { id: "10733", mmyyyy: "022021" }, // emotion chip
-    { id: "10737", mmyyyy: "032021" }, // power seed
-    { id: "10748", mmyyyy: "042021" }, // packaged backup camera
-    { id: "10750", mmyyyy: "052021" }, // shortest-order cook
-    { id: "10760", mmyyyy: "062021" }, // packaged familiar scrapbook
-    { id: "10761", mmyyyy: "072021" }, // clan underground fireworks shop
-    { id: "10773", mmyyyy: "082021" }, // Our Daily Candles™ order form
-    { id: "10796", mmyyyy: "092021" }, // packaged industrial fire extinguisher
-    { id: "10801", mmyyyy: "102021" }, // bottled Vampire Vintner
-    { id: "10803", mmyyyy: "112021" }, // packaged Daylight Shavings Helmet
-    { id: "10814", mmyyyy: "122021" }, // packaged cold medicine cabinet
-    { id: "10890", mmyyyy: "012022" }, // undrilled cosmic bowling ball
-    { id: "10892", mmyyyy: "022022" }, // combat lover's locket lockbox
-    { id: "10895", mmyyyy: "032022" }, // grey gosling
-    { id: "10898", mmyyyy: "042022" }, // undamaged Unbreakable Umbrella
-    { id: "10900", mmyyyy: "052022" }, // MayDay™ contract
-    { id: "10919", mmyyyy: "062022" }, // packaged June cleaver
-    { id: "10928", mmyyyy: "072022" }, // designer sweatpants (new old stock)
-    { id: "10931", mmyyyy: "082022" }, // unopened tiny stillsuit
-] as const;
+import { BooleanProperty } from "libram/dist/propertyTypes";
+
+interface BaseIotM {
+  id: number;
+  month: number;
+  year: number;
+}
+
+interface CampgroundIotM extends BaseIotM {
+  type: "campground";
+  /**
+   * This can cover gardens, worksheds and items that install directly to the campground.
+   * If no item is supplied, the Mr Store item is checked directly.
+   */
+  item?: string;
+}
+
+interface CustomIotM extends BaseIotM {
+  type: "custom";
+}
+
+interface EudoraIotM extends BaseIotM {
+  type: "eudora";
+  /**
+   * The id of the correspondent
+   */
+  eudoraId: number;
+}
+
+interface FamiliarIotM extends BaseIotM {
+  type: "familiar";
+  /**
+   * Familiar name to check. If an array is provided, checks for any of those familiars
+   */
+  familiar: string | string[];
+}
+
+interface ItemIotM extends BaseIotM {
+  type: "item";
+  /**
+   * Item name to check. If an array is provided, checks for any of those items.
+   * If the item provided is part of a fold group, any of those items will match.
+   */
+  item: string | string[];
+}
+
+interface PreferenceIotM extends BaseIotM {
+  type: "preference";
+  /**
+   * Preference to check. If it contains "true" the IotM will be considered owned.
+   */
+  preference: BooleanProperty;
+}
+
+interface SkillIotM extends BaseIotM {
+  type: "skill";
+  /**
+   * Skill name to check.
+   */
+  skill: string;
+}
+
+interface VIPIotM extends BaseIotM {
+  type: "vip";
+}
+
+export type IotMDef =
+  | CampgroundIotM
+  | CustomIotM
+  | EudoraIotM
+  | FamiliarIotM
+  | ItemIotM
+  | PreferenceIotM
+  | SkillIotM
+  | VIPIotM;
+
+const iotms: IotMDef[] = [
+  { id: 894, month: 10, year: 2004, type: "familiar", familiar: "Jill-O-Lantern" }, // Dark Jill-O-Lantern
+  { id: 914, month: 11, year: 2004, type: "familiar", familiar: "Hand Turkey" }, // hand turkey outline
+  { id: 924, month: 12, year: 2004, type: "familiar", familiar: "Crimbo Elf" }, // crimbo elfling
+  { id: 954, month: 1, year: 2005, type: "familiar", familiar: "Baby Yeti" }, // orphan baby yeti
+  { id: 961, month: 2, year: 2005, type: "familiar", familiar: "Feather Boa Constrictor" }, // silk garter snake
+  { id: 1040, month: 3, year: 2005, type: "item", item: "lucky Tam O'Shanter" }, // lucky Tam O'Shanter
+  { id: 1083, month: 4, year: 2005, type: "familiar", familiar: "Personal Raincloud" }, // personal raindrop
+  { id: 1152, month: 5, year: 2005, type: "item", item: "miniature gravy-covered maypole" }, // miniature gravy-covered maypole
+  { id: 1242, month: 6, year: 2005, type: "familiar", familiar: "inflatable dodecapede" }, // deflated inflatable dodecapede
+  { id: 1260, month: 7, year: 2005, type: "item", item: "wax lips" }, // wax lips
+  { id: 1263, month: 8, year: 2005, type: "familiar", familiar: "Pygmy Bugbear Shaman" }, // pygmy bugbear shaman
+  { id: 1291, month: 9, year: 2005, type: "item", item: "Jekyllin hide belt" }, // Jekyllin hide belt
+  { id: 1304, month: 10, year: 2005, type: "familiar", familiar: "Doppelshifter" }, // doppelshifter egg
+  { id: 1349, month: 11, year: 2005, type: "familiar", familiar: "Temporal Riftlet" }, // miniscule temporal rip
+  { id: 1373, month: 12, year: 2005, type: "familiar", familiar: "Sweet Nutcracker" }, // sweet nutcracker
+  { id: 1411, month: 1, year: 2006, type: "skill", skill: "Summon Snowcones" }, // Tome of Snowcone Summoning
+  { id: 1423, month: 2, year: 2006, type: "item", item: "iceberglet" }, // iceberglet
+  { id: 1488, month: 3, year: 2006, type: "familiar", familiar: "Wild Hare" }, // March hat
+  { id: 1498, month: 4, year: 2006, type: "skill", skill: "Summon Hilarious Objects" }, // McPhee's Grimoire of Hilarious Object Summoning
+  { id: 1536, month: 5, year: 2006, type: "familiar", familiar: "Spirit Hobo" }, // homeless hobo spirit
+  { id: 1621, month: 6, year: 2006, type: "familiar", familiar: "Astral Badger" }, // astral badger
+  { id: 1653, month: 7, year: 2006, type: "item", item: "jewel-eyed wizard hat" }, // jewel-eyed wizard hat
+  { id: 1703, month: 8, year: 2006, type: "familiar", familiar: "Comma Chameleon" }, // Comma Chameleon egg
+  { id: 1792, month: 9, year: 2006, type: "item", item: "Travoltan trousers" }, // Travoltan trousers
+  { id: 1971, month: 10, year: 2006, type: "item", item: "plastic pumpkin bucket" }, // plastic pumpkin bucket
+  { id: 2090, month: 11, year: 200, type: "item", item: "pilgrim shield" }, // pilgrim shield
+  { id: 2190, month: 12, year: 2006, type: "familiar", familiar: "Ancient Yuletide Troll" }, // yuletide troll chrysalis
+  { id: 2221, month: 1, year: 2007, type: "item", item: "Great Ball of Frozen Fire" }, // Great Ball of Frozen Fire
+  { id: 2303, month: 2, year: 2007, type: "skill", skill: "Summon Candy Heart" }, // Libram of Candy Heart Summoning
+  { id: 2380, month: 3, year: 2007, type: "familiar", familiar: "Dandy Lion" }, // dandy lion cub
+  { id: 2447, month: 4, year: 2007, type: "familiar", familiar: "Penguin Goodfella" }, // bad penguin egg
+  { id: 2541, month: 5, year: 2007, type: "item", item: "Mayflower bouquet" }, // Mayflower bouquet
+  { id: 2650, month: 6, year: 2007, type: "familiar", familiar: "Green Pixie" }, // bottled green pixie
+  { id: 2834, month: 7, year: 2007, type: "item", item: "bottle-rocket crossbow" }, // bottle-rocket crossbow
+  { id: 2836, month: 8, year: 2007, type: "familiar", familiar: "Wizard Action Figure" }, // wizard action figure
+  { id: 2844, month: 9, year: 2007, type: "item", item: "navel ring of navel gazing" }, // navel ring of navel gazing
+  { id: 2845, month: 10, year: 2007, type: "familiar", familiar: "Gluttonous Green Ghost" }, // class five ecto-larva
+  { id: 2946, month: 11, year: 2007, type: "item", item: "V for Vivala Mask" }, // V for Vivala mask
+  { id: 3042, month: 12, year: 2007, type: "familiar", familiar: "Crimbo P. R. E. S. S. I. E." }, // Crimbo P. R. E. S. S. I. E.
+  { id: 3117, month: 1, year: 2008, type: "skill", skill: "Summon Party Favor" }, // Libram of Divine Favors
+  { id: 3192, month: 2, year: 2008, type: "item", item: "naughty origami kit" }, // naughty origami kit
+  { id: 3219, month: 3, year: 2008, type: "familiar", familiar: "Mad Hatrack" }, // sane hatrack
+  { id: 3263, month: 4, year: 2008, type: "skill", skill: "Summon Tasteful Items" }, // Sp'n-Zor's Grimoire of "Tasteful" Gifts
+  { id: 3321, month: 5, year: 2008, type: "item", item: "mayfly bait necklace" }, // packet of mayfly bait
+  { id: 3351, month: 6, year: 2008, type: "familiar", familiar: "Llama Lama" }, // llama lama cria
+  { id: 3421, month: 7, year: 2008, type: "item", item: "little box of fireworks" }, // little box of fireworks
+  { id: 3431, month: 8, year: 2008, type: "familiar", familiar: "Cotton Candy Carnie" }, // cotton candy cocoon
+  { id: 3466, month: 9, year: 2008, type: "item", item: "haiku katana" }, // haiku katana
+  { id: 3434, month: 10, year: 2008, type: "familiar", familiar: "Disembodied Hand" }, // spooky rattling cigar box
+  { id: 3507, month: 11, year: 2008, type: "skill", skill: "Summon Stickers" }, // Scratch 'n' Sniff Sticker Tome
+  { id: 3578, month: 12, year: 2008, type: "familiar", familiar: "Sugar Fruit Fairy" }, // candy cornucopia
+  {
+    id: 3661,
+    month: 1,
+    year: 2009,
+    type: "item",
+    item: ["container of Spooky Putty", "spooky putty monster"],
+  }, // container of Spooky Putty
+  { id: 3753, month: 2, year: 2009, type: "skill", skill: "Summon Love Song" }, // Libram of Love Songs
+  { id: 3799, month: 3, year: 2009, type: "familiar", familiar: "Frumious Bandersnatch" }, // Apathargic Bandersnatch
+  { id: 3836, month: 4, year: 2009, type: "item", item: "elvish sunglasses" }, // Elvish sunglasses
+  { id: 3963, month: 5, year: 2009, type: "vip" }, // Clan pool table
+  { id: 3999, month: 6, year: 2009, type: "familiar", familiar: "Baby Sandworm" }, // infant sandworm
+  { id: 4136, month: 7, year: 2009, type: "item", item: "Bag o' Tricks" }, // Bag o' Tricks
+  { id: 4148, month: 8, year: 2009, type: "familiar", familiar: "He-Boulder" }, // floaty stone sphere
+  { id: 4177, month: 9, year: 2009, type: "skill", skill: "Summon Sugar Sheets" }, // Tome of Sugar Shummoning
+  { id: 4223, month: 10, year: 2009, type: "familiar", familiar: "Squamous Gibberer" }, // squamous polyp
+  { id: 4135, month: 11, year: 2009, type: "item", item: "moveable feast" }, // moveable feast
+  { id: 4328, month: 12, year: 2009, type: "familiar", familiar: "Stocking Mimic" }, // suspicious stocking
+  { id: 4398, month: 1, year: 2010, type: "item", item: "stinky cheese ball" }, // stinky cheese ball
+  { id: 4468, month: 2, year: 2010, type: "skill", skill: "Summon BRICKOs" }, // Libram of BRICKOs
+  { id: 4507, month: 3, year: 2010, type: "vip" }, // Clan looking glass
+  { id: 4574, month: 4, year: 2010, type: "familiar", familiar: "Baby Bugged Bugbear" }, // panicked kernel
+  { id: 4614, month: 5, year: 2010, type: "item", item: "Crown of Thrones" }, // Crown of Thrones
+  { id: 4619, month: 6, year: 2010, type: "familiar", familiar: "Rogue Program" }, // glowing frisbee
+  { id: 4644, month: 7, year: 2010, type: "item", item: "Juju Mojo Mask" }, // Juju Mojo Mask
+  { id: 4648, month: 8, year: 2010, type: "familiar", familiar: "Mini-Hipster" }, // Schmalz's First Prize Beer
+  { id: 4696, month: 9, year: 2010, type: "item", item: "Greatest American Pants" }, // Greatest American Pants
+  { id: 4720, month: 10, year: 2010, type: "familiar", familiar: "organ grinder" }, // organ grinder
+  { id: 4759, month: 11, year: 2010, type: "campground", item: "packet of pumpkin seeds" }, // Grumpy Bumpkin's Pumpkin Seed Catalog
+  { id: 4827, month: 12, year: 2010, type: "familiar", familiar: "Robot Reindeer" }, // hibernating robot reindeer
+  { id: 4908, month: 1, year: 2011, type: "item", item: "Loathing Legion Knife" }, // Loathing Legion knife
+  { id: 4937, month: 2, year: 2011, type: "familiar", familiar: "Obtuse Angel" }, // a cute angel
+  { id: 4965, month: 3, year: 2011, type: "skill", skill: "Summon Alice's Army Cards" }, // Sorcerers of the Shore Grimoire
+  { id: 5047, month: 4, year: 2011, type: "vip" }, // Clan shower
+  { id: 5112, month: 5, year: 2011, type: "eudora", eudoraId: 1 }, // My Own Pen Pal kit
+  { id: 5164, month: 6, year: 2011, type: "familiar", familiar: "Li'l Xenomorph" }, // mysterious chest
+  { id: 5190, month: 7, year: 2011, type: "item", item: "Operation Patriot Shield" }, // Operation Patriot Shield
+  { id: 4536, month: 8, year: 2011, type: "familiar", familiar: "Pair of Stomping Boots" }, // fairy-worn boots
+  { id: 5223, month: 9, year: 2011, type: "skill", skill: "Summon Clip Art" }, // Tome of Clip Art
+  { id: 5301, month: 10, year: 2011, type: "item", item: "plastic vampire fangs" }, // Make-Your-Own-Vampire-Fangs kit
+  { id: 5371, month: 11, year: 2011, type: "familiar", familiar: "Fancypants Scarecrow" }, // stuffed-shirt scarecrow
+  { id: 5403, month: 12, year: 2011, type: "campground", item: "Peppermint Pip Packet" }, // Mint Salton Pepper's Peppermint Seed Catalog
+  { id: 5463, month: 1, year: 2012, type: "skill", skill: "Summon Resolutions" }, // Libram of Resolutions
+  { id: 5553, month: 2, year: 2012, type: "item", item: "can of Rain-Doh" }, // can of Rain-Doh
+  { id: 5639, month: 3, year: 2012, type: "familiar", familiar: "Happy Medium" }, // Small Medium
+  { id: 5648, month: 4, year: 2012, type: "item", item: "Boris's Helm" }, // Boris's Helm
+  { id: 5662, month: 5, year: 2012, type: "vip" }, // Olympic-sized Clan crate
+  { id: 5701, month: 6, year: 2012, type: "familiar", familiar: "Artistic Goth Kid" }, // Moping Artistic Goth Kid
+  { id: 5738, month: 7, year: 2012, type: "item", item: "Camp Scout backpack" }, // Camp Scout backpack
+  { id: 5767, month: 8, year: 2012, type: "familiar", familiar: "Reagnimated Gnome" }, // Unagnimated Gnome
+  { id: 5790, month: 9, year: 2012, type: "custom" }, // box of bear arms
+  { id: 5879, month: 10, year: 2012, type: "campground", item: "packet of dragon's teeth" }, // Pete & Jackie's Dragon Tooth Emporium Catalog
+  { id: 5910, month: 11, year: 2012, type: "familiar", familiar: "Nanorhino" }, // deactivated nanobots
+  { id: 6071, month: 12, year: 2012, type: "skill", skill: "Summon Geeky Gifts" }, // Thinknerd's Grimoire of Geeky Gifts
+  { id: 6150, month: 1, year: 2013, type: "item", item: "Snow Suit" }, // Snow Suit
+  { id: 4712, month: 2, year: 2013, type: "eudora", eudoraId: 2 }, // GameInformPowerDailyPro subscription card
+  { id: 6305, month: 3, year: 2013, type: "item", item: "Jarlsberg's Pan" }, // Jarlsberg's pan
+  { id: 6360, month: 4, year: 2013, type: "skill", skill: "Summon Taffy" }, // Libram of Pulled Taffy
+  { id: 6413, month: 5, year: 2013, type: "custom" }, // Order of the Green Thumb Order Form
+  { id: 6561, month: 6, year: 2013, type: "familiar", familiar: "Mini-Adventurer" }, // adventurer clone egg
+  { id: 6582, month: 7, year: 2013, type: "vip" }, // Clan hot dog stand
+  { id: 4930, month: 8, year: 2013, type: "item", item: "over-the-shoulder Folder Holder" }, // Folder Holder
+  { id: 6411, month: 9, year: 2013, type: "familiar", familiar: "Steam-Powered Cheerleader" }, // KoLHS Pep Squad Box
+  { id: 6784, month: 10, year: 2013, type: "familiar", familiar: "Reanimated Reanimator" }, // deanimated reanimator's coffin
+  { id: 6860, month: 11, year: 2013, type: "item", item: "Pantsgiving" }, // Pantsgiving
+  { id: 7003, month: 12, year: 2013, type: "skill", skill: "Summon Smithsness" }, // The Smith's Tome
+  { id: 7069, month: 1, year: 2014, type: "campground", item: "packet of winter seeds" }, // Discontent™ Winter Garden Catalog
+  { id: 7200, month: 2, year: 2014, type: "item", item: "Buddy Bjorn" }, // Buddy Bjorn
+  { id: 7250, month: 3, year: 2014, type: "item", item: "Sneaky Pete's leather jacket" }, // Sneaky Pete's leather jacket
+  { id: 7382, month: 4, year: 2014, type: "campground" }, // Little Geneticist DNA-Splicing Lab
+  { id: 7466, month: 5, year: 2014, type: "preference", preference: "sleazeAirportAlways" }, // airplane charter: Spring Break Beach
+  { id: 7312, month: 6, year: 2014, type: "familiar", familiar: "Galloping Grill" }, // still grill
+  { id: 7588, month: 7, year: 2014, type: "vip" }, // Clan speakeasy
+  { id: 7706, month: 8, year: 2014, type: "skill", skill: "Summon Confiscated Things" }, // The Confiscator's Grimoire
+  { id: 7709, month: 9, year: 2014, type: "item", item: "Thor's Pliers" }, // Thor's Pliers
+  { id: 7767, month: 10, year: 2014, type: "preference", preference: "spookyAirportAlways" }, // airplane charter: Conspiracy Island
+  { id: 7920, month: 11, year: 2014, type: "familiar", familiar: "fist turkey" }, // fist turkey outline
+  { id: 7956, month: 12, year: 2014, type: "familiar", familiar: "Crimbo Shrub" }, // Crimbo sapling
+  { id: 8019, month: 1, year: 2015, type: "preference", preference: "chateauAvailable" }, // Chateau Mantegna room key
+  { id: 8134, month: 2, year: 2015, type: "preference", preference: "lovebugsUnlocked" }, // bottle of lovebug pheromones
+  { id: 8184, month: 3, year: 2015, type: "item", item: "The Crown of Ed the Undying" }, // Ed the Undying exhibit crate
+  { id: 8203, month: 4, year: 2015, type: "preference", preference: "stenchAirportAlways" }, // airplane charter: Dinseylandfill
+  { id: 8260, month: 5, year: 2015, type: "item", item: "portable Mayo Clinic" }, // portable Mayo Clinic
+  { id: 8287, month: 6, year: 2015, type: "familiar", familiar: ["Puck Man", "Ms Puck Man"] }, // yellow puck
+  { id: 8381, month: 7, year: 2015, type: "item", item: "Deck of Every Card" }, // Pack of Every Card
+  { id: 8487, month: 8, year: 2015, type: "preference", preference: "hotAirportAlways" }, // airplane charter: That 70s Volcano
+  { id: 8564, month: 9, year: 2015, type: "preference", preference: "barrelShrineUnlocked" }, // shrine to the Barrel god
+  { id: 8639, month: 10, year: 2015, type: "campground" }, // haunted doghouse
+  { id: 8674, month: 11, year: 2015, type: "preference", preference: "coldAirportAlways" }, // airplane charter: The Glaciest
+  { id: 8706, month: 12, year: 2015, type: "familiar", familiar: "Machine Elf" }, // machine elf capsule
+  { id: 8705, month: 1, year: 2016, type: "preference", preference: "snojoAvailable" }, // X-32-F snowman crate
+  { id: 8836, month: 2, year: 2016, type: "preference", preference: "telegraphOfficeAvailable" }, // LT&T telegraph office deed
+  { id: 8989, month: 3, year: 2016, type: "campground" }, // Witchess Set
+  { id: 9000, month: 4, year: 2016, type: "vip" }, // Clan Floundry
+  { id: 9016, month: 5, year: 2016, type: "familiar", familiar: "intergnat" }, // disconnected intergnat
+  { id: 9033, month: 6, year: 2016, type: "campground" }, // Source terminal
+  { id: 9073, month: 7, year: 2016, type: "preference", preference: "hasDetectiveSchool" }, // detective school application
+  { id: 9081, month: 8, year: 2016, type: "item", item: "protonic accelerator pack" }, // DIY protonic accelerator kit
+  { id: 9103, month: 9, year: 2016, type: "item", item: "Time-Spinner" }, // Dear Past Self Package
+  { id: 9136, month: 10, year: 2016, type: "familiar", familiar: "Trick-or-Treating Tot" }, // li'l orphan tot
+  { id: 9189, month: 11, year: 2016, type: "campground", item: "packet of thanksgarden seeds" }, // Granny Tood's Thanksgarden Catalog
+  { id: 9203, month: 12, year: 2016, type: "preference", preference: "gingerbreadCityAvailable" }, // Build-a-City Gingerbread kit
+  { id: 9296, month: 1, year: 2017, type: "familiar", familiar: "Space Jellyfish" }, // space planula
+  { id: 9316, month: 2, year: 2017, type: "preference", preference: "loveTunnelAvailable" }, // heart-shaped crate
+  { id: 9401, month: 3, year: 2017, type: "familiar", familiar: "Robortender" }, // unpowered Robortender
+  { id: 9404, month: 4, year: 2017, type: "preference", preference: "spacegateAlways" }, // Spacegate access badge
+  { id: 9478, month: 5, year: 2017, type: "eudora", eudoraId: 4 }, // New-You Club Membership Form
+  { id: 9492, month: 6, year: 2017, type: "item", item: "Kremlin's Greatest Briefcase" }, // suspicious package
+  { id: 9507, month: 7, year: 2017, type: "campground", item: "Asdon Martin keyfob" }, // LI-11 Motor Pool voucher
+  { id: 9511, month: 8, year: 2017, type: "skill", skill: "Meteor Lore" }, // Pocket Meteor Guide
+  { id: 9528, month: 9, year: 2017, type: "item", item: "genie bottle" }, // corked genie bottle
+  { id: 9541, month: 10, year: 2017, type: "familiar", familiar: "XO Skeleton" }, // xo-skeleton-in-a-box
+  { id: 9572, month: 11, year: 2017, type: "item", item: "portable pantogram" }, // pantogram
+  { id: 9591, month: 12, year: 2017, type: "item", item: "mumming trunk" }, // locked mumming trunk
+  { id: 9689, month: 1, year: 2018, type: "item", item: "mumming trunk" }, // January's Garbage Tote (unopened)
+  { id: 9712, month: 2, year: 2018, type: "vip" }, // Clan Carnival Game
+  { id: 9759, month: 3, year: 2018, type: "campground", item: "packet of tall grass seeds" }, // Pokéfam Guide to Capturing All of Them
+  { id: 9835, month: 4, year: 2018, type: "preference", preference: "frAlways" }, // FantasyRealm membership packet
+  { id: 9661, month: 5, year: 2018, type: "familiar", familiar: "God Lobster" }, // God Lobster Egg
+  { id: 9920, month: 6, year: 2018, type: "item", item: "SongBoom™ BoomBox Box" }, // SongBoom™ BoomBox Box
+  { id: 9939, month: 7, year: 2018, type: "familiar", familiar: "Cat Burglar" }, // kitten burglar
+  { id: 9927, month: 8, year: 2018, type: "item", item: "Bastille Battalion control rig" }, // Bastille Battalion control rig crate
+  { id: 9942, month: 9, year: 2018, type: "preference", preference: "neverendingPartyAlways" }, // Neverending Party invitation envelope
+  { id: 9988, month: 10, year: 2018, type: "item", item: "latte lovers member's mug" }, // latte lovers club card
+  { id: 9989, month: 11, year: 2018, type: "preference", preference: "voteAlways" }, // voter registration form
+  { id: 10049, month: 12, year: 2018, type: "preference", preference: "daycareOpen" }, // Boxing Day care package
+  { id: 10057, month: 1, year: 2019, type: "item", item: "Kramco Sausage-o-Matic™" }, // Kramco Industries packing carton
+  { id: 10165, month: 2, year: 2019, type: "item", item: "Lil' Doctor™ bag" }, // mint condition Lil' Doctor™ bag
+  { id: 10241, month: 3, year: 2019, type: "item", item: "vampyric cloake" }, // vampyric cloake pattern
+  { id: 10187, month: 4, year: 2019, type: "preference", preference: "prAlways" }, // PirateRealm membership packet
+  { id: 10250, month: 5, year: 2019, type: "item", item: "Fourth of May Cosplay Saber" }, // Fourth of May Cosplay Saber kit
+  { id: 10256, month: 6, year: 2019, type: "item", item: "hewn moon-rune spoon" }, // rune-strewn spoon cocoon
+  { id: 10257, month: 7, year: 2019, type: "item", item: "Beach Comb" }, // Beach Comb Box
+  { id: 10292, month: 8, year: 2019, type: "preference", preference: "getawayCampsiteUnlocked" }, // Distant Woods Getaway Brochure
+  { id: 10323, month: 9, year: 2019, type: "familiar", familiar: "Pocket Professor" }, // packaged Pocket Professor
+  { id: 10332, month: 10, year: 2019, type: "item", item: "Eight Days a Week Pill Keeper" }, // Unopened Eight Days a Week Pill Keeper
+  { id: 10334, month: 11, year: 2019, type: "campground", item: "diabolic pizza cube" }, // unopened diabolic pizza cube box
+  { id: 10345, month: 12, year: 2019, type: "familiar", familiar: "Red-Nosed Snapper" }, // red-spotted snapper roe
+  { id: 10433, month: 1, year: 2020, type: "item", item: "Bird-a-Day calendar" }, // unopened Bird-a-Day calendar
+  { id: 10437, month: 2, year: 2020, type: "item", item: "Powerful Glove" }, // mint-in-box Powerful Glove
+  { id: 10481, month: 3, year: 2020, type: "campground", item: "packet of mushroom spores" }, // Better Shrooms and Gardens catalog
+  { id: 10502, month: 4, year: 2020, type: "familiar", familiar: "Left-Hand Man" }, // sinistral homunculus
+  { id: 10532, month: 5, year: 2020, type: "item", item: "Guzzlr tablet" }, // Guzzlr application
+  { id: 10573, month: 6, year: 2020, type: "item", item: "Iunion Crown" }, // bag of Iunion stones
+  { id: 10579, month: 7, year: 2020, type: "familiar", familiar: "Melodramedary" }, // baby camelCalf
+  { id: 10581, month: 8, year: 2020, type: "item", item: "SpinMaster™ lathe" }, // packaged SpinMaster™ lathe
+  { id: 10635, month: 9, year: 2020, type: "item", item: "Cargo Cultist Shorts" }, // bagged Cargo Cultist Shorts
+  { id: 10644, month: 10, year: 2020, type: "skill", skill: "Comprehensive Cartography" }, // Comprehensive Cartographic Compendium
+  {
+    id: 10646,
+    month: 11,
+    year: 2020,
+    type: "item",
+    item: "unwrapped knock-off retro superhero cape",
+  }, // packaged knock-off retro superhero cape
+  {
+    id: 10648,
+    month: 12,
+    year: 2020,
+    type: "familiar",
+    familiar: ["Ghost of Crimbo Commerce", "Ghost of Crimbo Carols", "Ghost of Crimbo Cheer"],
+  }, // box o' ghosts
+  { id: 10729, month: 1, year: 2021, type: "item", item: "miniature crystal ball" }, // packaged miniature crystal ball
+  { id: 10733, month: 2, year: 2021, type: "skill", skill: "Emotionally Chipped" }, // emotion chip
+  { id: 10737, month: 3, year: 2021, type: "item", item: "potted power plant" }, // power seed
+  { id: 10748, month: 4, year: 2021, type: "item", item: "backup camera" }, // packaged backup camera
+  { id: 10750, month: 5, year: 2021, type: "familiar", familiar: "Shorter-Order Cook" }, // shortest-order cook
+  { id: 10760, month: 6, year: 2021, type: "item", item: "familiar scrapbook" }, // packaged familiar scrapbook
+  { id: 10761, month: 7, year: 2021, type: "vip" }, // clan underground fireworks shop
+  { id: 10773, month: 8, year: 2021, type: "eudora", eudoraId: 5 }, // Our Daily Candles™ order form
+  { id: 10796, month: 9, year: 2021, type: "item", item: "industrial fire extinguisher" }, // packaged industrial fire extinguisher
+  { id: 10801, month: 10, year: 2021, type: "familiar", familiar: "Vampire Vintner" }, // bottled Vampire Vintner
+  { id: 10803, month: 11, year: 2021, type: "item", item: "Daylight Shavings Helmet" }, // packaged Daylight Shavings Helmet
+  { id: 10814, month: 12, year: 2021, type: "campground", item: "cold medicine cabinet" }, // packaged cold medicine cabinet
+  { id: 10890, month: 1, year: 2022, type: "preference", preference: "hasCosmicBowlingBall" }, // undrilled cosmic bowling ball
+  { id: 10892, month: 2, year: 2022, type: "item", item: "combat lover's locket" }, // combat lover's locket lockbox
+  { id: 10895, month: 3, year: 2022, type: "familiar", familiar: "Grey Goose" }, // grey gosling
+  { id: 10898, month: 4, year: 2022, type: "item", item: "Unbreakable Umbrella" }, // undamaged Unbreakable Umbrella
+  { id: 10900, month: 5, year: 2022, type: "preference", preference: "hasMaydayContract" }, // MayDay™ contract
+  { id: 10919, month: 6, year: 2022, type: "item", item: "June cleaver" }, // packaged June cleaver
+  { id: 10928, month: 7, year: 2022, type: "item", item: "designer sweatpants" }, // designer sweatpants (new old stock)
+  { id: 10931, month: 8, year: 2022, type: "item", item: "tiny stillsuit" }, // unopened tiny stillsuit
+];
+
+export default iotms;

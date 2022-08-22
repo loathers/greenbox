@@ -4,7 +4,7 @@ import {
   isPermable,
   loadTattoos,
   getOutfitTattoos,
-  loadIotms,
+  loadIotms as loadIotMs,
   SkillStatus,
   FamiliarStatus,
   TrophyStatus,
@@ -20,14 +20,11 @@ import {
   ItemStatus,
   RawPath,
   PathDef,
-  IotmStatus,
-  RawIOTM,
+  RawIotM,
 } from "greenbox-data";
 import {
-  displayAmount,
   Familiar,
   getPermedSkills,
-  haveOutfit,
   Item,
   myId,
   outfitPieces,
@@ -38,27 +35,21 @@ import {
   visitUrl,
 } from "kolmafia";
 import { have, property } from "libram";
-import { IOTM, MrStoreMonthly } from "./iotms";
 
-function haveItem(item: Item) {
-  return have(item) || displayAmount(item) > 0;
-}
+import { getIotMStatus } from "./iotms";
+import { haveItem } from "./utils";
 
 /**
  * Generates an object with a list of IOTMs & ownership stats.
  * @returns large string of IOTM ownership
  */
 
-function checkIotms() {
-
-  // Check status using Mr. Store Monthly. Have = bound, count > 0 but not have = boxed, else = none.
-  function getIOTMStatus(iotmID: string) {
-    if (MrStoreMonthly[iotmID].have) return IotmStatus.BOUND;
-    if (MrStoreMonthly[iotmID].count > 0) return IotmStatus.BOXED;
-    else return IotmStatus.NONE; 
-  }
-
-  return (loadIotms()?.data ?? []).map((iotm) => [iotm.id, getIOTMStatus(String(iotm.id)) as IotmStatus] as RawIOTM);
+function checkIotMs() {
+  const checked = (loadIotMs()?.data ?? []).map(
+    (iotm) => [iotm.id, getIotMStatus(iotm)] as RawIotM
+  );
+  console.log(JSON.stringify(checked));
+  return checked;
 }
 
 /**
@@ -203,7 +194,7 @@ function main(): void {
     trophies: checkTrophies(),
     ...checkTattoos(tattoos),
     paths: checkPaths(tattoos),
-    iotms: checkIotms(),
+    iotms: checkIotMs(),
   });
 
   printHtml(
