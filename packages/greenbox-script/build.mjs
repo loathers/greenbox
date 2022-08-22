@@ -10,8 +10,6 @@ const watch = args.some((a) => a === "--watch" || a === "-w");
 build({
   entryPoints: {
     greenbox: "src/greenbox.ts",
-    // This is where you generate the data for iotms.ts from MrStoreMonthly; does not need to exist in distribution
-    // generateIotmList: "src/generateIotms.ts",
   },
   bundle: true,
   platform: "node",
