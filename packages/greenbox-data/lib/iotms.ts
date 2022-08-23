@@ -21,11 +21,17 @@ export function loadIotMs(lastKnownSize = 0) {
 
 export type RawIotM = readonly [id: number, status: IotMStatus];
 
-export const compressIotMs = (iotmList: RawIotM[]) =>
-  iotmList
-    .map((iotm) => iotm[1])
+export const compressIotMs = (iotmList: RawIotM[]) => {
+  const idToIotM = iotmList.reduce(
+    (acc, i) => ({ ...acc, [i[0]]: i }),
+    {} as { [key: number]: RawIotM }
+  );
+
+  return iotms
+    .map((iotm) => idToIotM[iotm.id]?.[1] ?? 0)
     .join("")
     .replace(/0+$/, "");
+};
 
 export const expandIotMs = (s = "") =>
   s.split("").map((c, i) => [iotms[i].id, Number(c)] as RawIotM);
