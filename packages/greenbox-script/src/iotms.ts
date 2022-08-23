@@ -53,10 +53,6 @@ function haveBound(iotm: IotMDef): boolean {
           return group.length > 0 ? group : i;
         })
         .flat()
-        .map((i) => {
-          console.log(i);
-          return i;
-        })
         .some((i) => haveItem(i));
     case "preference":
       return get(iotm.preference);

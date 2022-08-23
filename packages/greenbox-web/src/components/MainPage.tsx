@@ -8,6 +8,7 @@ import { fetchAll, RootState, store } from "../store";
 
 import Familiars from "./Familiars";
 import Header from "./Header";
+import IotMs from "./IotMs";
 import Paths from "./Paths";
 import Skills from "./Skills";
 import Tattoos from "./Tattoos";
@@ -68,6 +69,7 @@ export default function MainPage() {
     <Container maxWidth="1000px" width="100%">
       <Accordion allowMultiple allowToggle defaultIndex={0}>
         <Header />
+        <IotMs iotms={data?.iotms ?? []} />
         <Skills skills={data?.skills ?? []} />
         <Paths paths={data?.paths ?? []} />
         <Familiars familiars={data?.familiars ?? []} />

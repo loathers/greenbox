@@ -4,7 +4,7 @@ import {
   isPermable,
   loadTattoos,
   getOutfitTattoos,
-  loadIotms as loadIotMs,
+  loadIotMs,
   SkillStatus,
   FamiliarStatus,
   TrophyStatus,
@@ -21,6 +21,7 @@ import {
   RawPath,
   PathDef,
   RawIotM,
+  IotMStatus,
 } from "greenbox-data";
 import {
   Familiar,
@@ -45,11 +46,9 @@ import { haveItem } from "./utils";
  */
 
 function checkIotMs() {
-  const checked = (loadIotMs()?.data ?? []).map(
+  return (loadIotMs()?.data ?? []).map(
     (iotm) => [iotm.id, getIotMStatus(iotm)] as RawIotM
   );
-  console.log(JSON.stringify(checked));
-  return checked;
 }
 
 /**

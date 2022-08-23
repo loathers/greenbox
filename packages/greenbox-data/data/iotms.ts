@@ -91,7 +91,7 @@ const iotms: IotMDef[] = [
   { id: 1349, month: 11, year: 2005, type: "familiar", familiar: "Temporal Riftlet" }, // miniscule temporal rip
   { id: 1373, month: 12, year: 2005, type: "familiar", familiar: "Sweet Nutcracker" }, // sweet nutcracker
   { id: 1411, month: 1, year: 2006, type: "skill", skill: "Summon Snowcones" }, // Tome of Snowcone Summoning
-  { id: 1423, month: 2, year: 2006, type: "item", item: "iceberglet" }, // iceberglet
+  { id: 1423, month: 2, year: 2006, type: "item", item: ["iceberglet", "ice baby"] }, // iceberglet
   { id: 1488, month: 3, year: 2006, type: "familiar", familiar: "Wild Hare" }, // March hat
   { id: 1498, month: 4, year: 2006, type: "skill", skill: "Summon Hilarious Objects" }, // McPhee's Grimoire of Hilarious Object Summoning
   { id: 1536, month: 5, year: 2006, type: "familiar", familiar: "Spirit Hobo" }, // homeless hobo spirit
@@ -102,7 +102,13 @@ const iotms: IotMDef[] = [
   { id: 1971, month: 10, year: 2006, type: "item", item: "plastic pumpkin bucket" }, // plastic pumpkin bucket
   { id: 2090, month: 11, year: 200, type: "item", item: "pilgrim shield" }, // pilgrim shield
   { id: 2190, month: 12, year: 2006, type: "familiar", familiar: "Ancient Yuletide Troll" }, // yuletide troll chrysalis
-  { id: 2221, month: 1, year: 2007, type: "item", item: "Great Ball of Frozen Fire" }, // Great Ball of Frozen Fire
+  {
+    id: 2221,
+    month: 1,
+    year: 2007,
+    type: "item",
+    item: ["Great Ball of Frozen Fire", "liar's pants"],
+  }, // Great Ball of Frozen Fire
   { id: 2303, month: 2, year: 2007, type: "skill", skill: "Summon Candy Heart" }, // Libram of Candy Heart Summoning
   { id: 2380, month: 3, year: 2007, type: "familiar", familiar: "Dandy Lion" }, // dandy lion cub
   { id: 2447, month: 4, year: 2007, type: "familiar", familiar: "Penguin Goodfella" }, // bad penguin egg
@@ -115,7 +121,13 @@ const iotms: IotMDef[] = [
   { id: 2946, month: 11, year: 2007, type: "item", item: "V for Vivala Mask" }, // V for Vivala mask
   { id: 3042, month: 12, year: 2007, type: "familiar", familiar: "Crimbo P. R. E. S. S. I. E." }, // Crimbo P. R. E. S. S. I. E.
   { id: 3117, month: 1, year: 2008, type: "skill", skill: "Summon Party Favor" }, // Libram of Divine Favors
-  { id: 3192, month: 2, year: 2008, type: "item", item: "naughty origami kit" }, // naughty origami kit
+  {
+    id: 3192,
+    month: 2,
+    year: 2008,
+    type: "item",
+    item: ["naughty origami kit", "origami pasties"],
+  }, // naughty origami kit
   { id: 3219, month: 3, year: 2008, type: "familiar", familiar: "Mad Hatrack" }, // sane hatrack
   { id: 3263, month: 4, year: 2008, type: "skill", skill: "Summon Tasteful Items" }, // Sp'n-Zor's Grimoire of "Tasteful" Gifts
   { id: 3321, month: 5, year: 2008, type: "item", item: "mayfly bait necklace" }, // packet of mayfly bait
@@ -131,7 +143,7 @@ const iotms: IotMDef[] = [
     month: 1,
     year: 2009,
     type: "item",
-    item: ["container of Spooky Putty", "spooky putty monster"],
+    item: ["container of Spooky Putty", "spooky putty monster", "Spooky Putty sheet"],
   }, // container of Spooky Putty
   { id: 3753, month: 2, year: 2009, type: "skill", skill: "Summon Love Song" }, // Libram of Love Songs
   { id: 3799, month: 3, year: 2009, type: "familiar", familiar: "Frumious Bandersnatch" }, // Apathargic Bandersnatch
@@ -144,7 +156,13 @@ const iotms: IotMDef[] = [
   { id: 4223, month: 10, year: 2009, type: "familiar", familiar: "Squamous Gibberer" }, // squamous polyp
   { id: 4135, month: 11, year: 2009, type: "item", item: "moveable feast" }, // moveable feast
   { id: 4328, month: 12, year: 2009, type: "familiar", familiar: "Stocking Mimic" }, // suspicious stocking
-  { id: 4398, month: 1, year: 2010, type: "item", item: "stinky cheese ball" }, // stinky cheese ball
+  {
+    id: 4398,
+    month: 1,
+    year: 2010,
+    type: "item",
+    item: ["stinky cheese ball", "stinky cheese eye"],
+  }, // stinky cheese ball
   { id: 4468, month: 2, year: 2010, type: "skill", skill: "Summon BRICKOs" }, // Libram of BRICKOs
   { id: 4507, month: 3, year: 2010, type: "vip" }, // Clan looking glass
   { id: 4574, month: 4, year: 2010, type: "familiar", familiar: "Baby Bugged Bugbear" }, // panicked kernel
@@ -169,7 +187,7 @@ const iotms: IotMDef[] = [
   { id: 5371, month: 11, year: 2011, type: "familiar", familiar: "Fancypants Scarecrow" }, // stuffed-shirt scarecrow
   { id: 5403, month: 12, year: 2011, type: "campground", item: "Peppermint Pip Packet" }, // Mint Salton Pepper's Peppermint Seed Catalog
   { id: 5463, month: 1, year: 2012, type: "skill", skill: "Summon Resolutions" }, // Libram of Resolutions
-  { id: 5553, month: 2, year: 2012, type: "item", item: "can of Rain-Doh" }, // can of Rain-Doh
+  { id: 5553, month: 2, year: 2012, type: "item", item: ["can of Rain-Doh", "empty Rain-Doh can"] }, // can of Rain-Doh
   { id: 5639, month: 3, year: 2012, type: "familiar", familiar: "Happy Medium" }, // Small Medium
   { id: 5648, month: 4, year: 2012, type: "item", item: "Boris's Helm" }, // Boris's Helm
   { id: 5662, month: 5, year: 2012, type: "vip" }, // Olympic-sized Clan crate
@@ -195,7 +213,13 @@ const iotms: IotMDef[] = [
   { id: 7069, month: 1, year: 2014, type: "campground", item: "packet of winter seeds" }, // Discontent™ Winter Garden Catalog
   { id: 7200, month: 2, year: 2014, type: "item", item: "Buddy Bjorn" }, // Buddy Bjorn
   { id: 7250, month: 3, year: 2014, type: "item", item: "Sneaky Pete's leather jacket" }, // Sneaky Pete's leather jacket
-  { id: 7382, month: 4, year: 2014, type: "campground" }, // Little Geneticist DNA-Splicing Lab
+  {
+    id: 7382,
+    month: 4,
+    year: 2014,
+    type: "campground",
+    item: "Little Geneticist DNA-Splicing Lab",
+  }, // Little Geneticist DNA-Splicing Lab
   { id: 7466, month: 5, year: 2014, type: "preference", preference: "sleazeAirportAlways" }, // airplane charter: Spring Break Beach
   { id: 7312, month: 6, year: 2014, type: "familiar", familiar: "Galloping Grill" }, // still grill
   { id: 7588, month: 7, year: 2014, type: "vip" }, // Clan speakeasy
@@ -245,7 +269,7 @@ const iotms: IotMDef[] = [
   { id: 9759, month: 3, year: 2018, type: "campground", item: "packet of tall grass seeds" }, // Pokéfam Guide to Capturing All of Them
   { id: 9835, month: 4, year: 2018, type: "preference", preference: "frAlways" }, // FantasyRealm membership packet
   { id: 9661, month: 5, year: 2018, type: "familiar", familiar: "God Lobster" }, // God Lobster Egg
-  { id: 9920, month: 6, year: 2018, type: "item", item: "SongBoom™ BoomBox Box" }, // SongBoom™ BoomBox Box
+  { id: 9920, month: 6, year: 2018, type: "item", item: "SongBoom™ BoomBox" }, // SongBoom™ BoomBox Box
   { id: 9939, month: 7, year: 2018, type: "familiar", familiar: "Cat Burglar" }, // kitten burglar
   { id: 9927, month: 8, year: 2018, type: "item", item: "Bastille Battalion control rig" }, // Bastille Battalion control rig crate
   { id: 9942, month: 9, year: 2018, type: "preference", preference: "neverendingPartyAlways" }, // Neverending Party invitation envelope

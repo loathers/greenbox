@@ -8,7 +8,7 @@ export enum IotMStatus {
 
 export type { IotMDef };
 
-export function loadIotms(lastKnownSize = 0) {
+export function loadIotMs(lastKnownSize = 0) {
   const iotmCount = JSON.stringify(iotms).length;
 
   if (iotmCount === lastKnownSize) return null;

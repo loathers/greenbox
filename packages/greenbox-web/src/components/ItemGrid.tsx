@@ -9,11 +9,12 @@ type Props = {
   items: number[];
   playerItems: number[];
   idToItem: { [id: number]: ItemDef };
+  columns?: number;
 };
 
-export default function ItemGrid({ items, playerItems, idToItem }: Props) {
+export default function ItemGrid({ items, playerItems, idToItem, columns = 6 }: Props) {
   return (
-    <SimpleGrid columns={6} spacing={1}>
+    <SimpleGrid columns={columns} spacing={1}>
       {items.map(
         (i, index) =>
           idToItem[i] && (

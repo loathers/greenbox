@@ -9,6 +9,7 @@ import {
   TrophyDef,
   ClassDef,
   PathDef,
+  IotMDef,
 } from "greenbox-data";
 import {
   persistStore,
@@ -28,6 +29,7 @@ export const entities = [
   "classes",
   "effects",
   "familiars",
+  "iotms",
   "items",
   "paths",
   "skills",
@@ -41,6 +43,7 @@ export interface GreenboxState {
   classes: ClassDef[];
   effects: EffectDef[];
   familiars: FamiliarDef[];
+  iotms: IotMDef[];
   items: ItemDef[];
   paths: PathDef[];
   skills: SkillDef[];
@@ -56,6 +59,7 @@ const initialState: GreenboxState = {
   classes: [],
   effects: [],
   familiars: [],
+  iotms: [],
   items: [],
   paths: [],
   skills: [],
@@ -66,6 +70,7 @@ const initialState: GreenboxState = {
     classes: 0,
     effects: 0,
     familiars: 0,
+    iotms: 0,
     items: 0,
     paths: 0,
     skills: 0,
@@ -76,6 +81,7 @@ const initialState: GreenboxState = {
     classes: false,
     effects: false,
     familiars: false,
+    iotms: false,
     items: false,
     paths: false,
     skills: false,
@@ -94,6 +100,9 @@ export const fetchEffects = createAsyncThunk("effects/fetch", async (size: numbe
 );
 export const fetchFamiliars = createAsyncThunk("familiars/fetch", async (size: number) =>
   api.loadFamiliars(size)
+);
+export const fetchIotMs = createAsyncThunk("iotms/fetch", async (size: number) =>
+  api.loadIotMs(size)
 );
 export const fetchItems = createAsyncThunk("items/fetch", async (size: number) =>
   api.loadItems(size)
@@ -118,6 +127,7 @@ export const fetchAll = createAsyncThunk(
     dispatch(fetchClasses(force ? 0 : state.sizeAtLastFetch.classes));
     dispatch(fetchEffects(force ? 0 : state.sizeAtLastFetch.effects));
     dispatch(fetchFamiliars(force ? 0 : state.sizeAtLastFetch.familiars));
+    dispatch(fetchIotMs(force ? 0 : state.sizeAtLastFetch.iotms));
     dispatch(fetchItems(force ? 0 : state.sizeAtLastFetch.items));
     dispatch(fetchPaths(force ? 0 : state.sizeAtLastFetch.paths));
     dispatch(fetchSkills(force ? 0 : state.sizeAtLastFetch.skills));
@@ -164,6 +174,17 @@ export const greenboxSlice = createSlice({
         }
 
         state.loading.familiars = false;
+      })
+      .addCase(fetchIotMs.pending, (state) => {
+        state.loading.iotms = true;
+      })
+      .addCase(fetchIotMs.fulfilled, (state, action) => {
+        if (action.payload !== null) {
+          state.iotms = action.payload.data;
+          state.sizeAtLastFetch.iotms = action.payload.size;
+        }
+
+        state.loading.iotms = false;
       })
       .addCase(fetchItems.pending, (state) => {
         state.loading.items = true;
