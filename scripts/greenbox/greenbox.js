@@ -9828,7 +9828,7 @@ var trophies_default = [{
   name: "Der Toastdieb",
   image: "you_done_took_my_toast"
 }, {
-  id: 13,
+  id: 14,
   name: "Easy Come Easy Go",
   image: "van_went"
 }, {
@@ -10352,7 +10352,7 @@ var trophies_default = [{
   name: "Golden Burglar",
   image: "banangrama_xer"
 }, {
-  id: 145,
+  id: 146,
   name: "Some Assembly Required (trophy)",
   image: "college_kids_and_divorced_men"
 }, {
