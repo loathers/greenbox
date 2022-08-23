@@ -46,8 +46,7 @@ export default function MainSection({}: Props) {
         <Stack>
           <Text>To get the data from your account, first install the script by running</Text>
           <Code p={2} borderRadius={5}>
-            git checkout https://github.com/Loathing-Associates-Scripting-Society/greenbox.git
-            release
+            git checkout https://github.com/loathers/greenbox.git release
           </Code>
           <Text>
             in KoLmafia's Graphical CLI. Once that's done, you can get an up-to-date link whenever

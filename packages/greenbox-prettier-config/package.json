@@ -2,7 +2,7 @@
   "name": "greenbox-prettier-config",
   "version": "0.0.0",
   "author": "Sam Gaus <sam@gaus.co.uk>",
-  "homepage": "https://github.com/Loathing-Associates-Scripting-Society/greenbox#readme",
+  "homepage": "https://github.com/loathers/greenbox#readme",
   "license": "ISC",
   "main": "prettier-config.js",
   "files": [
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Loathing-Associates-Scripting-Society/greenbox.git"
+    "url": "git+https://github.com/loathers/greenbox.git"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
