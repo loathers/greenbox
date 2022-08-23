@@ -34,3 +34,7 @@ export const chunk = <T>(arr: T[], size: number) =>
   Array(Math.ceil(arr.length / size)).fill(0).map((_, i) =>
     arr.slice(i * size, i * size + size)
   );
+
+  export function notNullOrUndefined<T>(value: T | null | undefined): value is T {
+    return value !== null  && value !== undefined;
+  }

@@ -1,18 +1,22 @@
 import { Badge, Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
-import { IotMStatus, RawIotM } from "greenbox-data";
+import { IotMStatus, ItemStatus, RawIotM } from "greenbox-data";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../store";
-import { chunk, useItemMap } from "../utils";
+import { chunk, notNullOrUndefined, useItemMap } from "../utils";
 
 import IotM from "./IotM";
 import Section from "./Section";
 
-function Year({ year }: { year: number }) {
+function Year({ year, complete }: { year: number; complete: boolean }) {
   return (
     <Flex key={`year-${year}`} alignItems="center" justifyContent="flex-end">
-      <Badge sx={{ transform: "rotate(270deg)" }} fontSize="sm">
+      <Badge
+        sx={{ transform: "rotate(270deg)" }}
+        fontSize="sm"
+        bg={complete ? "complete" : undefined}
+      >
         {year}
       </Badge>
     </Flex>
@@ -57,8 +61,12 @@ export default function IotMs({ iotms: playerIotMs }: Props) {
     >
       <SimpleGrid columns={[13]} spacing={1} gridTemplateColumns="auto repeat(12, minmax(0, 1fr))">
         {iotmChunks.map((yearChunk, year) => {
+          const all = yearChunk
+            .filter(notNullOrUndefined)
+            .map((i) => idToIotM[i.id]?.[1] ?? IotMStatus.NONE)
+            .every((status) => status !== IotMStatus.NONE);
           return [
-            <Year year={year + 2004} />,
+            <Year year={year + 2004} complete={all} />,
             ...yearChunk.map((iotm, i) =>
               iotm ? (
                 <IotM
