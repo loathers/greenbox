@@ -48,7 +48,7 @@ startAppListening({
     const names = entities
       .map((e) => state[e])
       .flat()
-      .map((e) => e.name);
+      .reduce((acc, e) => ("name" in e ? [...acc, e.name] : acc), [] as string[]);
 
     dispatch(processWikiClashes(names));
   },

@@ -46,9 +46,7 @@ import { haveItem } from "./utils";
  */
 
 function checkIotMs() {
-  return (loadIotMs()?.data ?? []).map(
-    (iotm) => [iotm.id, getIotMStatus(iotm)] as RawIotM
-  );
+  return (loadIotMs()?.data ?? []).map((iotm) => [iotm.id, getIotMStatus(iotm)] as RawIotM);
 }
 
 /**
