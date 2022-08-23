@@ -11,10 +11,10 @@
   - [x] Lists out owned familiars
   - [x] Lists out owned but unused familiar hatchlings
   - [x] list out <strike>90 &</strike> 100% Familiar Percentages
-  - [ ] Lists out IOTMs split by ownership & usage
+  - [x] Lists out IOTMs split by ownership & usage
   - [x] Lists out tattoos
   - [x] Lists out trophies
-  - [ ] Lists out ascension rewards
+  - [x] Lists out ascension rewards
 - [x] A single page application
 - [ ] Add different sorting/filtering/display options to the JSON (show only what a user has, sort based on most recent tier list, only show standard iotm/skills, et cetera)
 
