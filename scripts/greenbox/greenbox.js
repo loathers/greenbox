@@ -8242,11 +8242,9 @@ function loadIotMs() {
   };
 }
 var compressIotMs = function(iotmList) {
-  return iotmList.sort(function(a, b) {
-    return a[0] - b[0];
-  }).reduce(function(r, iotm) {
-    return "".concat(r).concat(iotm[1]);
-  }, "").replace(/0+$/, "");
+  return iotmList.map(function(iotm) {
+    return iotm[1];
+  }).join("").replace(/0+$/, "");
 };
 
 // ../greenbox-data/lib/paths.ts
