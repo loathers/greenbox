@@ -583,8 +583,8 @@ export default [
     items: [Thwaitgold.Protozoa],
     equipment: [],
     tattoos: [
-      { name: "Grey Goo", image: "class27" },
-      { name: "Hardcore Grey Goo", image: "class27hc" },
+      { name: "Grey You", image: "class27" },
+      { name: "Hardcore Grey You", image: "class27hc" },
     ],
     points: "greyYouPoints",
     maxPoints: 11,
