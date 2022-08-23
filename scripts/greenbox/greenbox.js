@@ -1162,7 +1162,7 @@ var require_own_keys = __commonJS({
     var getOwnPropertySymbolsModule = require_object_get_own_property_symbols();
     var anObject2 = require_an_object();
     var concat = uncurryThis2([].concat);
-    module2.exports = getBuiltIn("Reflect", "ownKeys") || function ownKeys3(it) {
+    module2.exports = getBuiltIn("Reflect", "ownKeys") || function ownKeys4(it) {
       var keys = getOwnPropertyNamesModule.f(anObject2(it));
       var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
       return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;
@@ -1175,11 +1175,11 @@ var require_copy_constructor_properties = __commonJS({
   "../../node_modules/core-js/internals/copy-constructor-properties.js": function(exports2, module2) {
     init_kolmafia_polyfill();
     var hasOwn = require_has_own_property();
-    var ownKeys3 = require_own_keys();
+    var ownKeys4 = require_own_keys();
     var getOwnPropertyDescriptorModule = require_object_get_own_property_descriptor();
     var definePropertyModule = require_object_define_property();
     module2.exports = function(target, source, exceptions) {
-      var keys = ownKeys3(source);
+      var keys = ownKeys4(source);
       var defineProperty = definePropertyModule.f;
       var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
       for (var i = 0; i < keys.length; i++) {
@@ -8225,6 +8225,35 @@ var iotms = [
 var iotms_default = iotms;
 
 // ../greenbox-data/lib/iotms.ts
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    enumerableOnly && (symbols = symbols.filter(function(sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    })), keys.push.apply(keys, symbols);
+  }
+  return keys;
+}
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = null != arguments[i] ? arguments[i] : {};
+    i % 2 ? ownKeys(Object(source), true).forEach(function(key) {
+      _defineProperty(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function(key) {
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    });
+  }
+  return target;
+}
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
 var IotMStatus;
 (function(IotMStatus2) {
   IotMStatus2[IotMStatus2["NONE"] = 0] = "NONE";
@@ -8242,8 +8271,12 @@ function loadIotMs() {
   };
 }
 var compressIotMs = function(iotmList) {
-  return iotmList.map(function(iotm) {
-    return iotm[1];
+  var idToIotM = iotmList.reduce(function(acc, i) {
+    return _objectSpread(_objectSpread({}, acc), {}, _defineProperty({}, i[0], i));
+  }, {});
+  return iotms_default.map(function(iotm) {
+    var _idToIotM$iotm$id$, _idToIotM$iotm$id;
+    return (_idToIotM$iotm$id$ = (_idToIotM$iotm$id = idToIotM[iotm.id]) === null || _idToIotM$iotm$id === void 0 ? void 0 : _idToIotM$iotm$id[1]) !== null && _idToIotM$iotm$id$ !== void 0 ? _idToIotM$iotm$id$ : 0;
   }).join("").replace(/0+$/, "");
 };
 
@@ -10635,7 +10668,7 @@ function isPhylumProperty(property) {
 }
 
 // ../../node_modules/libram/dist/property.js
-function ownKeys(object, enumerableOnly) {
+function ownKeys2(object, enumerableOnly) {
   var keys = Object.keys(object);
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
@@ -10645,12 +10678,12 @@ function ownKeys(object, enumerableOnly) {
   }
   return keys;
 }
-function _objectSpread(target) {
+function _objectSpread2(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = null != arguments[i] ? arguments[i] : {};
-    i % 2 ? ownKeys(Object(source), true).forEach(function(key) {
-      _defineProperty(target, key, source[key]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function(key) {
+    i % 2 ? ownKeys2(Object(source), true).forEach(function(key) {
+      _defineProperty2(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys2(Object(source)).forEach(function(key) {
       Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
     });
   }
@@ -10679,7 +10712,7 @@ function _createClass(Constructor, protoProps, staticProps) {
   Object.defineProperty(Constructor, "prototype", { writable: false });
   return Constructor;
 }
-function _defineProperty(obj, key, value) {
+function _defineProperty2(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
   } else {
@@ -10856,7 +10889,7 @@ function withProperties(properties, callback) {
   }
 }
 function withProperty(property, value, callback) {
-  withProperties(_defineProperty({}, property, value), callback);
+  withProperties(_defineProperty2({}, property, value), callback);
 }
 function withChoices(choices, callback) {
   var properties = Object.fromEntries(Object.entries(choices).map(function(_ref3) {
@@ -10866,12 +10899,12 @@ function withChoices(choices, callback) {
   withProperties(properties, callback);
 }
 function withChoice(choice, value, callback) {
-  withChoices(_defineProperty({}, choice, value), callback);
+  withChoices(_defineProperty2({}, choice, value), callback);
 }
 var PropertiesManager = /* @__PURE__ */ function() {
   function PropertiesManager2() {
     _classCallCheck(this, PropertiesManager2);
-    _defineProperty(this, "properties", {});
+    _defineProperty2(this, "properties", {});
   }
   _createClass(PropertiesManager2, [{
     key: "storedValues",
@@ -10900,7 +10933,7 @@ var PropertiesManager = /* @__PURE__ */ function() {
   }, {
     key: "setChoice",
     value: function setChoice(choiceToSet, value) {
-      this.setChoices(_defineProperty({}, choiceToSet, value));
+      this.setChoices(_defineProperty2({}, choiceToSet, value));
     }
   }, {
     key: "reset",
@@ -10943,7 +10976,7 @@ var PropertiesManager = /* @__PURE__ */ function() {
     key: "setMinimumValue",
     value: function setMinimumValue(property, value) {
       if (get(property, 0) < value) {
-        this.set(_defineProperty({}, property, value));
+        this.set(_defineProperty2({}, property, value));
         return true;
       }
       return false;
@@ -10952,7 +10985,7 @@ var PropertiesManager = /* @__PURE__ */ function() {
     key: "setMaximumValue",
     value: function setMaximumValue(property, value) {
       if (get(property, 0) > value) {
-        this.set(_defineProperty({}, property, value));
+        this.set(_defineProperty2({}, property, value));
         return true;
       }
       return false;
@@ -10992,7 +11025,7 @@ var PropertiesManager = /* @__PURE__ */ function() {
     key: "merge",
     value: function merge(other) {
       var newGuy = new PropertiesManager2();
-      newGuy.properties = _objectSpread(_objectSpread({}, this.properties), other.properties);
+      newGuy.properties = _objectSpread2(_objectSpread2({}, this.properties), other.properties);
       return newGuy;
     }
   }], [{
@@ -11396,7 +11429,7 @@ function getIotMStatus(iotm) {
 }
 
 // src/greenbox.ts
-function ownKeys2(object, enumerableOnly) {
+function ownKeys3(object, enumerableOnly) {
   var keys = Object.keys(object);
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
@@ -11406,18 +11439,18 @@ function ownKeys2(object, enumerableOnly) {
   }
   return keys;
 }
-function _objectSpread2(target) {
+function _objectSpread3(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = null != arguments[i] ? arguments[i] : {};
-    i % 2 ? ownKeys2(Object(source), true).forEach(function(key) {
-      _defineProperty2(target, key, source[key]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys2(Object(source)).forEach(function(key) {
+    i % 2 ? ownKeys3(Object(source), true).forEach(function(key) {
+      _defineProperty3(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys3(Object(source)).forEach(function(key) {
       Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
     });
   }
   return target;
 }
-function _defineProperty2(obj, key, value) {
+function _defineProperty3(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
   } else {
@@ -11579,7 +11612,7 @@ function checkPaths(tattoos) {
 }
 function main() {
   var tattoos = (0, import_kolmafia6.visitUrl)("account_tattoos.php");
-  var code = compress(_objectSpread2(_objectSpread2({
+  var code = compress(_objectSpread3(_objectSpread3({
     skills: checkSkills(),
     familiars: checkFamiliars(),
     trophies: checkTrophies()
