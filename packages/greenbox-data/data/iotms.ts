@@ -264,7 +264,7 @@ const iotms: IotMDef[] = [
   { id: 9541, month: 10, year: 2017, type: "familiar", familiar: "XO Skeleton" }, // xo-skeleton-in-a-box
   { id: 9572, month: 11, year: 2017, type: "item", item: "portable pantogram" }, // pantogram
   { id: 9591, month: 12, year: 2017, type: "item", item: "mumming trunk" }, // locked mumming trunk
-  { id: 9689, month: 1, year: 2018, type: "item", item: "mumming trunk" }, // January's Garbage Tote (unopened)
+  { id: 9689, month: 1, year: 2018, type: "item", item: "January's Garbage Tote" }, // January's Garbage Tote (unopened)
   { id: 9712, month: 2, year: 2018, type: "vip" }, // Clan Carnival Game
   { id: 9759, month: 3, year: 2018, type: "campground", item: "packet of tall grass seeds" }, // Pokéfam Guide to Capturing All of Them
   { id: 9835, month: 4, year: 2018, type: "preference", preference: "frAlways" }, // FantasyRealm membership packet
