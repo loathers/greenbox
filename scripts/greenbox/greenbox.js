@@ -9706,7 +9706,7 @@ var tattoos_default = [{
   outfit: 32
 }, {
   name: "Warbear Dress Armor",
-  image: "bearclawtat",
+  image: "bearclawta",
   outfit: 103
 }, {
   name: "Wax Wardrobe",
