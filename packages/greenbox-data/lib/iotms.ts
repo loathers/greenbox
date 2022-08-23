@@ -23,9 +23,9 @@ export type RawIotM = readonly [id: number, status: IotMStatus];
 
 export const compressIotMs = (iotmList: RawIotM[]) =>
   iotmList
-    .sort((a, b) => a[0] - b[0]) //sorts by itemID?
-    .reduce((r, iotm) => `${r}${iotm[1]}`, "") // concats owned status to the resulting object
-    .replace(/0+$/, ""); // removes trailing zeroes to lower string size
+    .map((iotm) => iotm[1])
+    .join("")
+    .replace(/0+$/, "");
 
 export const expandIotMs = (s = "") =>
   s.split("").map((c, i) => [iotms[i].id, Number(c)] as RawIotM);
