@@ -6724,6 +6724,1531 @@ var compressFamiliars = function(familiars) {
   }, "").replace(/0+$/, "");
 };
 
+// ../greenbox-data/lib/iotms.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/data/iotms.ts
+init_kolmafia_polyfill();
+var iotms = [
+  {
+    id: 894,
+    month: 10,
+    year: 2004,
+    type: "familiar",
+    familiar: "Jill-O-Lantern"
+  },
+  {
+    id: 914,
+    month: 11,
+    year: 2004,
+    type: "familiar",
+    familiar: "Hand Turkey"
+  },
+  {
+    id: 924,
+    month: 12,
+    year: 2004,
+    type: "familiar",
+    familiar: "Crimbo Elf"
+  },
+  {
+    id: 954,
+    month: 1,
+    year: 2005,
+    type: "familiar",
+    familiar: "Baby Yeti"
+  },
+  {
+    id: 961,
+    month: 2,
+    year: 2005,
+    type: "familiar",
+    familiar: "Feather Boa Constrictor"
+  },
+  {
+    id: 1040,
+    month: 3,
+    year: 2005,
+    type: "item",
+    item: "lucky Tam O'Shanter"
+  },
+  {
+    id: 1083,
+    month: 4,
+    year: 2005,
+    type: "familiar",
+    familiar: "Personal Raincloud"
+  },
+  {
+    id: 1152,
+    month: 5,
+    year: 2005,
+    type: "item",
+    item: "miniature gravy-covered maypole"
+  },
+  {
+    id: 1242,
+    month: 6,
+    year: 2005,
+    type: "familiar",
+    familiar: "inflatable dodecapede"
+  },
+  {
+    id: 1260,
+    month: 7,
+    year: 2005,
+    type: "item",
+    item: "wax lips"
+  },
+  {
+    id: 1263,
+    month: 8,
+    year: 2005,
+    type: "familiar",
+    familiar: "Pygmy Bugbear Shaman"
+  },
+  {
+    id: 1291,
+    month: 9,
+    year: 2005,
+    type: "item",
+    item: "Jekyllin hide belt"
+  },
+  {
+    id: 1304,
+    month: 10,
+    year: 2005,
+    type: "familiar",
+    familiar: "Doppelshifter"
+  },
+  {
+    id: 1349,
+    month: 11,
+    year: 2005,
+    type: "familiar",
+    familiar: "Temporal Riftlet"
+  },
+  {
+    id: 1373,
+    month: 12,
+    year: 2005,
+    type: "familiar",
+    familiar: "Sweet Nutcracker"
+  },
+  {
+    id: 1411,
+    month: 1,
+    year: 2006,
+    type: "skill",
+    skill: "Summon Snowcones"
+  },
+  {
+    id: 1423,
+    month: 2,
+    year: 2006,
+    type: "item",
+    item: ["iceberglet", "ice baby"]
+  },
+  {
+    id: 1488,
+    month: 3,
+    year: 2006,
+    type: "familiar",
+    familiar: "Wild Hare"
+  },
+  {
+    id: 1498,
+    month: 4,
+    year: 2006,
+    type: "skill",
+    skill: "Summon Hilarious Objects"
+  },
+  {
+    id: 1536,
+    month: 5,
+    year: 2006,
+    type: "familiar",
+    familiar: "Spirit Hobo"
+  },
+  {
+    id: 1621,
+    month: 6,
+    year: 2006,
+    type: "familiar",
+    familiar: "Astral Badger"
+  },
+  {
+    id: 1653,
+    month: 7,
+    year: 2006,
+    type: "item",
+    item: "jewel-eyed wizard hat"
+  },
+  {
+    id: 1703,
+    month: 8,
+    year: 2006,
+    type: "familiar",
+    familiar: "Comma Chameleon"
+  },
+  {
+    id: 1792,
+    month: 9,
+    year: 2006,
+    type: "item",
+    item: "Travoltan trousers"
+  },
+  {
+    id: 1971,
+    month: 10,
+    year: 2006,
+    type: "item",
+    item: "plastic pumpkin bucket"
+  },
+  {
+    id: 2090,
+    month: 11,
+    year: 200,
+    type: "item",
+    item: "pilgrim shield"
+  },
+  {
+    id: 2190,
+    month: 12,
+    year: 2006,
+    type: "familiar",
+    familiar: "Ancient Yuletide Troll"
+  },
+  {
+    id: 2221,
+    month: 1,
+    year: 2007,
+    type: "item",
+    item: ["Great Ball of Frozen Fire", "liar's pants"]
+  },
+  {
+    id: 2303,
+    month: 2,
+    year: 2007,
+    type: "skill",
+    skill: "Summon Candy Heart"
+  },
+  {
+    id: 2380,
+    month: 3,
+    year: 2007,
+    type: "familiar",
+    familiar: "Dandy Lion"
+  },
+  {
+    id: 2447,
+    month: 4,
+    year: 2007,
+    type: "familiar",
+    familiar: "Penguin Goodfella"
+  },
+  {
+    id: 2541,
+    month: 5,
+    year: 2007,
+    type: "item",
+    item: "Mayflower bouquet"
+  },
+  {
+    id: 2650,
+    month: 6,
+    year: 2007,
+    type: "familiar",
+    familiar: "Green Pixie"
+  },
+  {
+    id: 2834,
+    month: 7,
+    year: 2007,
+    type: "item",
+    item: "bottle-rocket crossbow"
+  },
+  {
+    id: 2836,
+    month: 8,
+    year: 2007,
+    type: "familiar",
+    familiar: "Wizard Action Figure"
+  },
+  {
+    id: 2844,
+    month: 9,
+    year: 2007,
+    type: "item",
+    item: "navel ring of navel gazing"
+  },
+  {
+    id: 2845,
+    month: 10,
+    year: 2007,
+    type: "familiar",
+    familiar: "Gluttonous Green Ghost"
+  },
+  {
+    id: 2946,
+    month: 11,
+    year: 2007,
+    type: "item",
+    item: "V for Vivala Mask"
+  },
+  {
+    id: 3042,
+    month: 12,
+    year: 2007,
+    type: "familiar",
+    familiar: "Crimbo P. R. E. S. S. I. E."
+  },
+  {
+    id: 3117,
+    month: 1,
+    year: 2008,
+    type: "skill",
+    skill: "Summon Party Favor"
+  },
+  {
+    id: 3192,
+    month: 2,
+    year: 2008,
+    type: "item",
+    item: ["naughty origami kit", "origami pasties"]
+  },
+  {
+    id: 3219,
+    month: 3,
+    year: 2008,
+    type: "familiar",
+    familiar: "Mad Hatrack"
+  },
+  {
+    id: 3263,
+    month: 4,
+    year: 2008,
+    type: "skill",
+    skill: "Summon Tasteful Items"
+  },
+  {
+    id: 3321,
+    month: 5,
+    year: 2008,
+    type: "item",
+    item: "mayfly bait necklace"
+  },
+  {
+    id: 3351,
+    month: 6,
+    year: 2008,
+    type: "familiar",
+    familiar: "Llama Lama"
+  },
+  {
+    id: 3421,
+    month: 7,
+    year: 2008,
+    type: "item",
+    item: "little box of fireworks"
+  },
+  {
+    id: 3431,
+    month: 8,
+    year: 2008,
+    type: "familiar",
+    familiar: "Cotton Candy Carnie"
+  },
+  {
+    id: 3466,
+    month: 9,
+    year: 2008,
+    type: "item",
+    item: "haiku katana"
+  },
+  {
+    id: 3434,
+    month: 10,
+    year: 2008,
+    type: "familiar",
+    familiar: "Disembodied Hand"
+  },
+  {
+    id: 3507,
+    month: 11,
+    year: 2008,
+    type: "skill",
+    skill: "Summon Stickers"
+  },
+  {
+    id: 3578,
+    month: 12,
+    year: 2008,
+    type: "familiar",
+    familiar: "Sugar Fruit Fairy"
+  },
+  {
+    id: 3661,
+    month: 1,
+    year: 2009,
+    type: "item",
+    item: ["container of Spooky Putty", "spooky putty monster", "Spooky Putty sheet"]
+  },
+  {
+    id: 3753,
+    month: 2,
+    year: 2009,
+    type: "skill",
+    skill: "Summon Love Song"
+  },
+  {
+    id: 3799,
+    month: 3,
+    year: 2009,
+    type: "familiar",
+    familiar: "Frumious Bandersnatch"
+  },
+  {
+    id: 3836,
+    month: 4,
+    year: 2009,
+    type: "item",
+    item: "elvish sunglasses"
+  },
+  {
+    id: 3963,
+    month: 5,
+    year: 2009,
+    type: "vip"
+  },
+  {
+    id: 3999,
+    month: 6,
+    year: 2009,
+    type: "familiar",
+    familiar: "Baby Sandworm"
+  },
+  {
+    id: 4136,
+    month: 7,
+    year: 2009,
+    type: "item",
+    item: "Bag o' Tricks"
+  },
+  {
+    id: 4148,
+    month: 8,
+    year: 2009,
+    type: "familiar",
+    familiar: "He-Boulder"
+  },
+  {
+    id: 4177,
+    month: 9,
+    year: 2009,
+    type: "skill",
+    skill: "Summon Sugar Sheets"
+  },
+  {
+    id: 4223,
+    month: 10,
+    year: 2009,
+    type: "familiar",
+    familiar: "Squamous Gibberer"
+  },
+  {
+    id: 4135,
+    month: 11,
+    year: 2009,
+    type: "item",
+    item: "moveable feast"
+  },
+  {
+    id: 4328,
+    month: 12,
+    year: 2009,
+    type: "familiar",
+    familiar: "Stocking Mimic"
+  },
+  {
+    id: 4398,
+    month: 1,
+    year: 2010,
+    type: "item",
+    item: ["stinky cheese ball", "stinky cheese eye"]
+  },
+  {
+    id: 4468,
+    month: 2,
+    year: 2010,
+    type: "skill",
+    skill: "Summon BRICKOs"
+  },
+  {
+    id: 4507,
+    month: 3,
+    year: 2010,
+    type: "vip"
+  },
+  {
+    id: 4574,
+    month: 4,
+    year: 2010,
+    type: "familiar",
+    familiar: "Baby Bugged Bugbear"
+  },
+  {
+    id: 4614,
+    month: 5,
+    year: 2010,
+    type: "item",
+    item: "Crown of Thrones"
+  },
+  {
+    id: 4619,
+    month: 6,
+    year: 2010,
+    type: "familiar",
+    familiar: "Rogue Program"
+  },
+  {
+    id: 4644,
+    month: 7,
+    year: 2010,
+    type: "item",
+    item: "Juju Mojo Mask"
+  },
+  {
+    id: 4648,
+    month: 8,
+    year: 2010,
+    type: "familiar",
+    familiar: "Mini-Hipster"
+  },
+  {
+    id: 4696,
+    month: 9,
+    year: 2010,
+    type: "item",
+    item: "Greatest American Pants"
+  },
+  {
+    id: 4720,
+    month: 10,
+    year: 2010,
+    type: "familiar",
+    familiar: "organ grinder"
+  },
+  {
+    id: 4759,
+    month: 11,
+    year: 2010,
+    type: "campground",
+    item: "packet of pumpkin seeds"
+  },
+  {
+    id: 4827,
+    month: 12,
+    year: 2010,
+    type: "familiar",
+    familiar: "Robot Reindeer"
+  },
+  {
+    id: 4908,
+    month: 1,
+    year: 2011,
+    type: "item",
+    item: "Loathing Legion Knife"
+  },
+  {
+    id: 4937,
+    month: 2,
+    year: 2011,
+    type: "familiar",
+    familiar: "Obtuse Angel"
+  },
+  {
+    id: 4965,
+    month: 3,
+    year: 2011,
+    type: "skill",
+    skill: "Summon Alice's Army Cards"
+  },
+  {
+    id: 5047,
+    month: 4,
+    year: 2011,
+    type: "vip"
+  },
+  {
+    id: 5112,
+    month: 5,
+    year: 2011,
+    type: "eudora",
+    eudoraId: 1
+  },
+  {
+    id: 5164,
+    month: 6,
+    year: 2011,
+    type: "familiar",
+    familiar: "Li'l Xenomorph"
+  },
+  {
+    id: 5190,
+    month: 7,
+    year: 2011,
+    type: "item",
+    item: "Operation Patriot Shield"
+  },
+  {
+    id: 4536,
+    month: 8,
+    year: 2011,
+    type: "familiar",
+    familiar: "Pair of Stomping Boots"
+  },
+  {
+    id: 5223,
+    month: 9,
+    year: 2011,
+    type: "skill",
+    skill: "Summon Clip Art"
+  },
+  {
+    id: 5301,
+    month: 10,
+    year: 2011,
+    type: "item",
+    item: "plastic vampire fangs"
+  },
+  {
+    id: 5371,
+    month: 11,
+    year: 2011,
+    type: "familiar",
+    familiar: "Fancypants Scarecrow"
+  },
+  {
+    id: 5403,
+    month: 12,
+    year: 2011,
+    type: "campground",
+    item: "Peppermint Pip Packet"
+  },
+  {
+    id: 5463,
+    month: 1,
+    year: 2012,
+    type: "skill",
+    skill: "Summon Resolutions"
+  },
+  {
+    id: 5553,
+    month: 2,
+    year: 2012,
+    type: "item",
+    item: ["can of Rain-Doh", "empty Rain-Doh can"]
+  },
+  {
+    id: 5639,
+    month: 3,
+    year: 2012,
+    type: "familiar",
+    familiar: "Happy Medium"
+  },
+  {
+    id: 5648,
+    month: 4,
+    year: 2012,
+    type: "item",
+    item: "Boris's Helm"
+  },
+  {
+    id: 5662,
+    month: 5,
+    year: 2012,
+    type: "vip"
+  },
+  {
+    id: 5701,
+    month: 6,
+    year: 2012,
+    type: "familiar",
+    familiar: "Artistic Goth Kid"
+  },
+  {
+    id: 5738,
+    month: 7,
+    year: 2012,
+    type: "item",
+    item: "Camp Scout backpack"
+  },
+  {
+    id: 5767,
+    month: 8,
+    year: 2012,
+    type: "familiar",
+    familiar: "Reagnimated Gnome"
+  },
+  {
+    id: 5790,
+    month: 9,
+    year: 2012,
+    type: "custom"
+  },
+  {
+    id: 5879,
+    month: 10,
+    year: 2012,
+    type: "campground",
+    item: "packet of dragon's teeth"
+  },
+  {
+    id: 5910,
+    month: 11,
+    year: 2012,
+    type: "familiar",
+    familiar: "Nanorhino"
+  },
+  {
+    id: 6071,
+    month: 12,
+    year: 2012,
+    type: "skill",
+    skill: "Summon Geeky Gifts"
+  },
+  {
+    id: 6150,
+    month: 1,
+    year: 2013,
+    type: "item",
+    item: "Snow Suit"
+  },
+  {
+    id: 4712,
+    month: 2,
+    year: 2013,
+    type: "eudora",
+    eudoraId: 2
+  },
+  {
+    id: 6305,
+    month: 3,
+    year: 2013,
+    type: "item",
+    item: "Jarlsberg's Pan"
+  },
+  {
+    id: 6360,
+    month: 4,
+    year: 2013,
+    type: "skill",
+    skill: "Summon Taffy"
+  },
+  {
+    id: 6413,
+    month: 5,
+    year: 2013,
+    type: "custom"
+  },
+  {
+    id: 6561,
+    month: 6,
+    year: 2013,
+    type: "familiar",
+    familiar: "Mini-Adventurer"
+  },
+  {
+    id: 6582,
+    month: 7,
+    year: 2013,
+    type: "vip"
+  },
+  {
+    id: 4930,
+    month: 8,
+    year: 2013,
+    type: "item",
+    item: "over-the-shoulder Folder Holder"
+  },
+  {
+    id: 6411,
+    month: 9,
+    year: 2013,
+    type: "familiar",
+    familiar: "Steam-Powered Cheerleader"
+  },
+  {
+    id: 6784,
+    month: 10,
+    year: 2013,
+    type: "familiar",
+    familiar: "Reanimated Reanimator"
+  },
+  {
+    id: 6860,
+    month: 11,
+    year: 2013,
+    type: "item",
+    item: "Pantsgiving"
+  },
+  {
+    id: 7003,
+    month: 12,
+    year: 2013,
+    type: "skill",
+    skill: "Summon Smithsness"
+  },
+  {
+    id: 7069,
+    month: 1,
+    year: 2014,
+    type: "campground",
+    item: "packet of winter seeds"
+  },
+  {
+    id: 7200,
+    month: 2,
+    year: 2014,
+    type: "item",
+    item: "Buddy Bjorn"
+  },
+  {
+    id: 7250,
+    month: 3,
+    year: 2014,
+    type: "item",
+    item: "Sneaky Pete's leather jacket"
+  },
+  {
+    id: 7382,
+    month: 4,
+    year: 2014,
+    type: "campground",
+    item: "Little Geneticist DNA-Splicing Lab"
+  },
+  {
+    id: 7466,
+    month: 5,
+    year: 2014,
+    type: "preference",
+    preference: "sleazeAirportAlways"
+  },
+  {
+    id: 7312,
+    month: 6,
+    year: 2014,
+    type: "familiar",
+    familiar: "Galloping Grill"
+  },
+  {
+    id: 7588,
+    month: 7,
+    year: 2014,
+    type: "vip"
+  },
+  {
+    id: 7706,
+    month: 8,
+    year: 2014,
+    type: "skill",
+    skill: "Summon Confiscated Things"
+  },
+  {
+    id: 7709,
+    month: 9,
+    year: 2014,
+    type: "item",
+    item: "Thor's Pliers"
+  },
+  {
+    id: 7767,
+    month: 10,
+    year: 2014,
+    type: "preference",
+    preference: "spookyAirportAlways"
+  },
+  {
+    id: 7920,
+    month: 11,
+    year: 2014,
+    type: "familiar",
+    familiar: "fist turkey"
+  },
+  {
+    id: 7956,
+    month: 12,
+    year: 2014,
+    type: "familiar",
+    familiar: "Crimbo Shrub"
+  },
+  {
+    id: 8019,
+    month: 1,
+    year: 2015,
+    type: "preference",
+    preference: "chateauAvailable"
+  },
+  {
+    id: 8134,
+    month: 2,
+    year: 2015,
+    type: "preference",
+    preference: "lovebugsUnlocked"
+  },
+  {
+    id: 8184,
+    month: 3,
+    year: 2015,
+    type: "item",
+    item: "The Crown of Ed the Undying"
+  },
+  {
+    id: 8203,
+    month: 4,
+    year: 2015,
+    type: "preference",
+    preference: "stenchAirportAlways"
+  },
+  {
+    id: 8260,
+    month: 5,
+    year: 2015,
+    type: "item",
+    item: "portable Mayo Clinic"
+  },
+  {
+    id: 8287,
+    month: 6,
+    year: 2015,
+    type: "familiar",
+    familiar: ["Puck Man", "Ms Puck Man"]
+  },
+  {
+    id: 8381,
+    month: 7,
+    year: 2015,
+    type: "item",
+    item: "Deck of Every Card"
+  },
+  {
+    id: 8487,
+    month: 8,
+    year: 2015,
+    type: "preference",
+    preference: "hotAirportAlways"
+  },
+  {
+    id: 8564,
+    month: 9,
+    year: 2015,
+    type: "preference",
+    preference: "barrelShrineUnlocked"
+  },
+  {
+    id: 8639,
+    month: 10,
+    year: 2015,
+    type: "campground"
+  },
+  {
+    id: 8674,
+    month: 11,
+    year: 2015,
+    type: "preference",
+    preference: "coldAirportAlways"
+  },
+  {
+    id: 8706,
+    month: 12,
+    year: 2015,
+    type: "familiar",
+    familiar: "Machine Elf"
+  },
+  {
+    id: 8705,
+    month: 1,
+    year: 2016,
+    type: "preference",
+    preference: "snojoAvailable"
+  },
+  {
+    id: 8836,
+    month: 2,
+    year: 2016,
+    type: "preference",
+    preference: "telegraphOfficeAvailable"
+  },
+  {
+    id: 8989,
+    month: 3,
+    year: 2016,
+    type: "campground"
+  },
+  {
+    id: 9e3,
+    month: 4,
+    year: 2016,
+    type: "vip"
+  },
+  {
+    id: 9016,
+    month: 5,
+    year: 2016,
+    type: "familiar",
+    familiar: "intergnat"
+  },
+  {
+    id: 9033,
+    month: 6,
+    year: 2016,
+    type: "campground"
+  },
+  {
+    id: 9073,
+    month: 7,
+    year: 2016,
+    type: "preference",
+    preference: "hasDetectiveSchool"
+  },
+  {
+    id: 9081,
+    month: 8,
+    year: 2016,
+    type: "item",
+    item: "protonic accelerator pack"
+  },
+  {
+    id: 9103,
+    month: 9,
+    year: 2016,
+    type: "item",
+    item: "Time-Spinner"
+  },
+  {
+    id: 9136,
+    month: 10,
+    year: 2016,
+    type: "familiar",
+    familiar: "Trick-or-Treating Tot"
+  },
+  {
+    id: 9189,
+    month: 11,
+    year: 2016,
+    type: "campground",
+    item: "packet of thanksgarden seeds"
+  },
+  {
+    id: 9203,
+    month: 12,
+    year: 2016,
+    type: "preference",
+    preference: "gingerbreadCityAvailable"
+  },
+  {
+    id: 9296,
+    month: 1,
+    year: 2017,
+    type: "familiar",
+    familiar: "Space Jellyfish"
+  },
+  {
+    id: 9316,
+    month: 2,
+    year: 2017,
+    type: "preference",
+    preference: "loveTunnelAvailable"
+  },
+  {
+    id: 9401,
+    month: 3,
+    year: 2017,
+    type: "familiar",
+    familiar: "Robortender"
+  },
+  {
+    id: 9404,
+    month: 4,
+    year: 2017,
+    type: "preference",
+    preference: "spacegateAlways"
+  },
+  {
+    id: 9478,
+    month: 5,
+    year: 2017,
+    type: "eudora",
+    eudoraId: 4
+  },
+  {
+    id: 9492,
+    month: 6,
+    year: 2017,
+    type: "item",
+    item: "Kremlin's Greatest Briefcase"
+  },
+  {
+    id: 9507,
+    month: 7,
+    year: 2017,
+    type: "campground",
+    item: "Asdon Martin keyfob"
+  },
+  {
+    id: 9511,
+    month: 8,
+    year: 2017,
+    type: "skill",
+    skill: "Meteor Lore"
+  },
+  {
+    id: 9528,
+    month: 9,
+    year: 2017,
+    type: "item",
+    item: "genie bottle"
+  },
+  {
+    id: 9541,
+    month: 10,
+    year: 2017,
+    type: "familiar",
+    familiar: "XO Skeleton"
+  },
+  {
+    id: 9572,
+    month: 11,
+    year: 2017,
+    type: "item",
+    item: "portable pantogram"
+  },
+  {
+    id: 9591,
+    month: 12,
+    year: 2017,
+    type: "item",
+    item: "mumming trunk"
+  },
+  {
+    id: 9689,
+    month: 1,
+    year: 2018,
+    type: "item",
+    item: "mumming trunk"
+  },
+  {
+    id: 9712,
+    month: 2,
+    year: 2018,
+    type: "vip"
+  },
+  {
+    id: 9759,
+    month: 3,
+    year: 2018,
+    type: "campground",
+    item: "packet of tall grass seeds"
+  },
+  {
+    id: 9835,
+    month: 4,
+    year: 2018,
+    type: "preference",
+    preference: "frAlways"
+  },
+  {
+    id: 9661,
+    month: 5,
+    year: 2018,
+    type: "familiar",
+    familiar: "God Lobster"
+  },
+  {
+    id: 9920,
+    month: 6,
+    year: 2018,
+    type: "item",
+    item: "SongBoom\u2122 BoomBox"
+  },
+  {
+    id: 9939,
+    month: 7,
+    year: 2018,
+    type: "familiar",
+    familiar: "Cat Burglar"
+  },
+  {
+    id: 9927,
+    month: 8,
+    year: 2018,
+    type: "item",
+    item: "Bastille Battalion control rig"
+  },
+  {
+    id: 9942,
+    month: 9,
+    year: 2018,
+    type: "preference",
+    preference: "neverendingPartyAlways"
+  },
+  {
+    id: 9988,
+    month: 10,
+    year: 2018,
+    type: "item",
+    item: "latte lovers member's mug"
+  },
+  {
+    id: 9989,
+    month: 11,
+    year: 2018,
+    type: "preference",
+    preference: "voteAlways"
+  },
+  {
+    id: 10049,
+    month: 12,
+    year: 2018,
+    type: "preference",
+    preference: "daycareOpen"
+  },
+  {
+    id: 10057,
+    month: 1,
+    year: 2019,
+    type: "item",
+    item: "Kramco Sausage-o-Matic\u2122"
+  },
+  {
+    id: 10165,
+    month: 2,
+    year: 2019,
+    type: "item",
+    item: "Lil' Doctor\u2122 bag"
+  },
+  {
+    id: 10241,
+    month: 3,
+    year: 2019,
+    type: "item",
+    item: "vampyric cloake"
+  },
+  {
+    id: 10187,
+    month: 4,
+    year: 2019,
+    type: "preference",
+    preference: "prAlways"
+  },
+  {
+    id: 10250,
+    month: 5,
+    year: 2019,
+    type: "item",
+    item: "Fourth of May Cosplay Saber"
+  },
+  {
+    id: 10256,
+    month: 6,
+    year: 2019,
+    type: "item",
+    item: "hewn moon-rune spoon"
+  },
+  {
+    id: 10257,
+    month: 7,
+    year: 2019,
+    type: "item",
+    item: "Beach Comb"
+  },
+  {
+    id: 10292,
+    month: 8,
+    year: 2019,
+    type: "preference",
+    preference: "getawayCampsiteUnlocked"
+  },
+  {
+    id: 10323,
+    month: 9,
+    year: 2019,
+    type: "familiar",
+    familiar: "Pocket Professor"
+  },
+  {
+    id: 10332,
+    month: 10,
+    year: 2019,
+    type: "item",
+    item: "Eight Days a Week Pill Keeper"
+  },
+  {
+    id: 10334,
+    month: 11,
+    year: 2019,
+    type: "campground",
+    item: "diabolic pizza cube"
+  },
+  {
+    id: 10345,
+    month: 12,
+    year: 2019,
+    type: "familiar",
+    familiar: "Red-Nosed Snapper"
+  },
+  {
+    id: 10433,
+    month: 1,
+    year: 2020,
+    type: "item",
+    item: "Bird-a-Day calendar"
+  },
+  {
+    id: 10437,
+    month: 2,
+    year: 2020,
+    type: "item",
+    item: "Powerful Glove"
+  },
+  {
+    id: 10481,
+    month: 3,
+    year: 2020,
+    type: "campground",
+    item: "packet of mushroom spores"
+  },
+  {
+    id: 10502,
+    month: 4,
+    year: 2020,
+    type: "familiar",
+    familiar: "Left-Hand Man"
+  },
+  {
+    id: 10532,
+    month: 5,
+    year: 2020,
+    type: "item",
+    item: "Guzzlr tablet"
+  },
+  {
+    id: 10573,
+    month: 6,
+    year: 2020,
+    type: "item",
+    item: "Iunion Crown"
+  },
+  {
+    id: 10579,
+    month: 7,
+    year: 2020,
+    type: "familiar",
+    familiar: "Melodramedary"
+  },
+  {
+    id: 10581,
+    month: 8,
+    year: 2020,
+    type: "item",
+    item: "SpinMaster\u2122 lathe"
+  },
+  {
+    id: 10635,
+    month: 9,
+    year: 2020,
+    type: "item",
+    item: "Cargo Cultist Shorts"
+  },
+  {
+    id: 10644,
+    month: 10,
+    year: 2020,
+    type: "skill",
+    skill: "Comprehensive Cartography"
+  },
+  {
+    id: 10646,
+    month: 11,
+    year: 2020,
+    type: "item",
+    item: "unwrapped knock-off retro superhero cape"
+  },
+  {
+    id: 10648,
+    month: 12,
+    year: 2020,
+    type: "familiar",
+    familiar: ["Ghost of Crimbo Commerce", "Ghost of Crimbo Carols", "Ghost of Crimbo Cheer"]
+  },
+  {
+    id: 10729,
+    month: 1,
+    year: 2021,
+    type: "item",
+    item: "miniature crystal ball"
+  },
+  {
+    id: 10733,
+    month: 2,
+    year: 2021,
+    type: "skill",
+    skill: "Emotionally Chipped"
+  },
+  {
+    id: 10737,
+    month: 3,
+    year: 2021,
+    type: "item",
+    item: "potted power plant"
+  },
+  {
+    id: 10748,
+    month: 4,
+    year: 2021,
+    type: "item",
+    item: "backup camera"
+  },
+  {
+    id: 10750,
+    month: 5,
+    year: 2021,
+    type: "familiar",
+    familiar: "Shorter-Order Cook"
+  },
+  {
+    id: 10760,
+    month: 6,
+    year: 2021,
+    type: "item",
+    item: "familiar scrapbook"
+  },
+  {
+    id: 10761,
+    month: 7,
+    year: 2021,
+    type: "vip"
+  },
+  {
+    id: 10773,
+    month: 8,
+    year: 2021,
+    type: "eudora",
+    eudoraId: 5
+  },
+  {
+    id: 10796,
+    month: 9,
+    year: 2021,
+    type: "item",
+    item: "industrial fire extinguisher"
+  },
+  {
+    id: 10801,
+    month: 10,
+    year: 2021,
+    type: "familiar",
+    familiar: "Vampire Vintner"
+  },
+  {
+    id: 10803,
+    month: 11,
+    year: 2021,
+    type: "item",
+    item: "Daylight Shavings Helmet"
+  },
+  {
+    id: 10814,
+    month: 12,
+    year: 2021,
+    type: "campground",
+    item: "cold medicine cabinet"
+  },
+  {
+    id: 10890,
+    month: 1,
+    year: 2022,
+    type: "preference",
+    preference: "hasCosmicBowlingBall"
+  },
+  {
+    id: 10892,
+    month: 2,
+    year: 2022,
+    type: "item",
+    item: "combat lover's locket"
+  },
+  {
+    id: 10895,
+    month: 3,
+    year: 2022,
+    type: "familiar",
+    familiar: "Grey Goose"
+  },
+  {
+    id: 10898,
+    month: 4,
+    year: 2022,
+    type: "item",
+    item: "Unbreakable Umbrella"
+  },
+  {
+    id: 10900,
+    month: 5,
+    year: 2022,
+    type: "preference",
+    preference: "hasMaydayContract"
+  },
+  {
+    id: 10919,
+    month: 6,
+    year: 2022,
+    type: "item",
+    item: "June cleaver"
+  },
+  {
+    id: 10928,
+    month: 7,
+    year: 2022,
+    type: "item",
+    item: "designer sweatpants"
+  },
+  {
+    id: 10931,
+    month: 8,
+    year: 2022,
+    type: "item",
+    item: "tiny stillsuit"
+  }
+];
+var iotms_default = iotms;
+
+// ../greenbox-data/lib/iotms.ts
+var IotMStatus;
+(function(IotMStatus2) {
+  IotMStatus2[IotMStatus2["NONE"] = 0] = "NONE";
+  IotMStatus2[IotMStatus2["BOXED"] = 1] = "BOXED";
+  IotMStatus2[IotMStatus2["BOUND"] = 2] = "BOUND";
+})(IotMStatus || (IotMStatus = {}));
+function loadIotMs() {
+  var lastKnownSize = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;
+  var iotmCount = JSON.stringify(iotms_default).length;
+  if (iotmCount === lastKnownSize)
+    return null;
+  return {
+    data: iotms_default,
+    size: iotmCount
+  };
+}
+var compressIotMs = function(iotmList) {
+  return iotmList.sort(function(a, b) {
+    return a[0] - b[0];
+  }).reduce(function(r, iotm) {
+    return "".concat(r).concat(iotm[1]);
+  }, "").replace(/0+$/, "");
+};
+
 // ../greenbox-data/lib/paths.ts
 init_kolmafia_polyfill();
 
@@ -8915,14 +10440,15 @@ function compress(raw) {
     familiars: compressFamiliars(raw.familiars),
     trophies: compressTrophies(raw.trophies),
     outfitTattoos: compressOutfitTattoos(raw.outfitTattoos),
-    paths: compressPaths(raw.paths)
+    paths: compressPaths(raw.paths),
+    iotms: compressIotMs(raw.iotms)
   };
   var compressedString = JSON.stringify(compressed);
   return encodeURIComponent(JSONCrush_default.crush(compressedString));
 }
 
 // src/greenbox.ts
-var import_kolmafia4 = require("kolmafia");
+var import_kolmafia6 = require("kolmafia");
 
 // ../../node_modules/libram/dist/index.js
 init_kolmafia_polyfill();
@@ -9671,6 +11197,65 @@ var _templateObject35;
 var _templateObject36;
 var _templateObject37;
 var _templateObject38;
+function _slicedToArray4(arr, i) {
+  return _arrayWithHoles4(arr) || _iterableToArrayLimit4(arr, i) || _unsupportedIterableToArray6(arr, i) || _nonIterableRest4();
+}
+function _nonIterableRest4() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray6(o, minLen) {
+  if (!o)
+    return;
+  if (typeof o === "string")
+    return _arrayLikeToArray6(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor)
+    n = o.constructor.name;
+  if (n === "Map" || n === "Set")
+    return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+    return _arrayLikeToArray6(o, minLen);
+}
+function _arrayLikeToArray6(arr, len) {
+  if (len == null || len > arr.length)
+    len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+  return arr2;
+}
+function _iterableToArrayLimit4(arr, i) {
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+  if (_i == null)
+    return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _s, _e;
+  try {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+      if (i && _arr.length === i)
+        break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null)
+        _i["return"]();
+    } finally {
+      if (_d)
+        throw _e;
+    }
+  }
+  return _arr;
+}
+function _arrayWithHoles4(arr) {
+  if (Array.isArray(arr))
+    return arr;
+}
 function _taggedTemplateLiteral(strings, raw) {
   if (!raw) {
     raw = strings.slice(0);
@@ -9700,6 +11285,11 @@ function have(thing) {
   }
   return false;
 }
+function haveInCampground(item) {
+  return Object.keys((0, import_kolmafia3.getCampground)()).map(function(i) {
+    return import_kolmafia3.Item.get(i);
+  }).includes(item);
+}
 var Wanderer;
 (function(Wanderer2) {
   Wanderer2["Digitize"] = "Digitize Monster";
@@ -9713,12 +11303,99 @@ var Wanderer;
   Wanderer2["Vote"] = "Vote Monster";
 })(Wanderer || (Wanderer = {}));
 var deterministicWanderers = [Wanderer.Digitize, Wanderer.Portscan];
+function getFoldGroup(item) {
+  return Object.entries((0, import_kolmafia3.getRelated)(item, "fold")).sort(function(_ref, _ref2) {
+    var _ref3 = _slicedToArray4(_ref, 2), a = _ref3[1];
+    var _ref4 = _slicedToArray4(_ref2, 2), b = _ref4[1];
+    return a - b;
+  }).map(function(_ref5) {
+    var _ref6 = _slicedToArray4(_ref5, 1), i = _ref6[0];
+    return import_kolmafia3.Item.get(i);
+  });
+}
 var holidayWanderers = /* @__PURE__ */ new Map([["El Dia De Los Muertos Borrachos", $monsters(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["Novia Cad\xE1ver, Novio Cad\xE1ver, Padre Cad\xE1ver, Persona Inocente Cad\xE1ver"])))], ["Feast of Boris", $monsters(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["Candied Yam Golem, Malevolent Tofurkey, Possessed Can of Cranberry Sauce, Stuffing Golem"])))], ["Talk Like a Pirate Day", $monsters(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["ambulatory pirate, migratory pirate, peripatetic pirate"])))]]);
 var telescopeStats = /* @__PURE__ */ new Map([["standing around flexing their muscles and using grip exercisers", $stat(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["Muscle"])))], ["sitting around playing chess and solving complicated-looking logic puzzles", $stat(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["Mysticality"])))], ["all wearing sunglasses and dancing", $stat(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["Moxie"])))]]);
 var telescopeElements = /* @__PURE__ */ new Map([["people, all of whom appear to be on fire", $element(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["hot"])))], ["people, surrounded by a cloud of eldritch mist", $element(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["spooky"])))], ["greasy-looking people furtively skulking around", $element(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["sleaze"])))], ["people, surrounded by garbage and clouds of flies", $element(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["stench"])))], ["people, clustered around a group of igloos", $element(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["cold"])))]]);
 var hedgeTrap1 = /* @__PURE__ */ new Map([["smoldering bushes on the outskirts of a hedge maze", $element(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["hot"])))], ["creepy-looking black bushes on the outskirts of a hedge maze", $element(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["spooky"])))], ["purplish, greasy-looking hedges", $element(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["sleaze"])))], ["nasty-looking, dripping green bushes on the outskirts of a hedge maze", $element(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["stench"])))], ["frost-rimed bushes on the outskirts of a hedge maze", $element(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["cold"])))]]);
 var hedgeTrap2 = /* @__PURE__ */ new Map([["smoke rising from deeper within the maze", $element(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["hot"])))], ["a miasma of eldritch vapors rising from deeper within the maze", $element(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["spooky"])))], ["a greasy purple cloud hanging over the center of the maze", $element(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["sleaze"])))], ["a cloud of green gas hovering over the maze", $element(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["stench"])))], ["wintry mists rising from deeper within the maze", $element(_templateObject33 || (_templateObject33 = _taggedTemplateLiteral(["cold"])))]]);
 var hedgeTrap3 = /* @__PURE__ */ new Map([["with lava slowly oozing out of it", $element(_templateObject34 || (_templateObject34 = _taggedTemplateLiteral(["hot"])))], ["surrounded by creepy black mist", $element(_templateObject35 || (_templateObject35 = _taggedTemplateLiteral(["spooky"])))], ["that occasionally vomits out a greasy ball of hair", $element(_templateObject36 || (_templateObject36 = _taggedTemplateLiteral(["sleaze"])))], ["disgorging a really surprising amount of sewage", $element(_templateObject37 || (_templateObject37 = _taggedTemplateLiteral(["stench"])))], ["occasionally disgorging a bunch of ice cubes", $element(_templateObject38 || (_templateObject38 = _taggedTemplateLiteral(["cold"])))]]);
+
+// src/iotms.ts
+init_kolmafia_polyfill();
+var import_kolmafia5 = require("kolmafia");
+
+// src/utils.ts
+init_kolmafia_polyfill();
+var import_kolmafia4 = require("kolmafia");
+function haveItem(item) {
+  return have(item) || (0, import_kolmafia4.displayAmount)(item) > 0;
+}
+
+// src/iotms.ts
+var _templateObject;
+var _templateObject2;
+var _templateObject3;
+function _taggedTemplateLiteral2(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+  return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
+}
+var arrayOf = function(items) {
+  return Array.isArray(items) ? items : [items];
+};
+function haveBound(iotm) {
+  var boxed = import_kolmafia5.Item.get(iotm.id);
+  switch (iotm.type) {
+    case "campground": {
+      var bound = iotm.item ? import_kolmafia5.Item.get(iotm.item) : null;
+      return bound && (haveItem(bound) || haveInCampground(bound)) || haveInCampground(boxed);
+    }
+    case "custom": {
+      switch (iotm.id) {
+        case 5790: {
+          return haveItem(boxed) || haveItem($item(_templateObject || (_templateObject = _taggedTemplateLiteral2(["right bear arm"])))) && haveItem($item(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral2(["left bear arm"]))));
+        }
+        case 6413: {
+          return (0, import_kolmafia5.floristAvailable)();
+        }
+      }
+      return false;
+    }
+    case "eudora":
+      return (0, import_kolmafia5.xpath)((0, import_kolmafia5.visitUrl)("account.php?tab=correspondence"), '//select[@name="whichpenpal"]/option/@value').includes(iotm.eudoraId.toString());
+    case "familiar":
+      return arrayOf(iotm.familiar).map(function(f) {
+        return import_kolmafia5.Familiar.get(f);
+      }).some(function(f) {
+        return (0, import_kolmafia5.haveFamiliar)(f);
+      });
+    case "item":
+      return arrayOf(iotm.item).map(function(i) {
+        return import_kolmafia5.Item.get(i);
+      }).map(function(i) {
+        var group = getFoldGroup(i);
+        return group.length > 0 ? group : i;
+      }).flat().some(function(i) {
+        return haveItem(i);
+      });
+    case "preference":
+      return get(iotm.preference);
+    case "skill":
+      var skill = import_kolmafia5.Skill.get(iotm.skill);
+      return (0, import_kolmafia5.haveSkill)(skill);
+    case "vip":
+      return haveItem($item(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral2(["Clan VIP Lounge Key"]))));
+  }
+}
+function getIotMStatus(iotm) {
+  if (haveBound(iotm))
+    return IotMStatus.BOUND;
+  var boxed = import_kolmafia5.Item.get(iotm.id);
+  if (have(boxed))
+    return IotMStatus.BOXED;
+  return IotMStatus.NONE;
+}
 
 // src/greenbox.ts
 function ownKeys2(object, enumerableOnly) {
@@ -9751,23 +11428,23 @@ function _defineProperty2(obj, key, value) {
   return obj;
 }
 function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray6(arr) || _nonIterableSpread();
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray7(arr) || _nonIterableSpread();
 }
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _unsupportedIterableToArray6(o, minLen) {
+function _unsupportedIterableToArray7(o, minLen) {
   if (!o)
     return;
   if (typeof o === "string")
-    return _arrayLikeToArray6(o, minLen);
+    return _arrayLikeToArray7(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor)
     n = o.constructor.name;
   if (n === "Map" || n === "Set")
     return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray6(o, minLen);
+    return _arrayLikeToArray7(o, minLen);
 }
 function _iterableToArray(iter) {
   if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
@@ -9775,9 +11452,9 @@ function _iterableToArray(iter) {
 }
 function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr))
-    return _arrayLikeToArray6(arr);
+    return _arrayLikeToArray7(arr);
 }
-function _arrayLikeToArray6(arr, len) {
+function _arrayLikeToArray7(arr, len) {
   if (len == null || len > arr.length)
     len = arr.length;
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -9785,11 +11462,14 @@ function _arrayLikeToArray6(arr, len) {
   }
   return arr2;
 }
-function haveItem(item) {
-  return have(item) || (0, import_kolmafia4.displayAmount)(item) > 0;
+function checkIotMs() {
+  var _loadIotMs$data, _loadIotMs;
+  return ((_loadIotMs$data = (_loadIotMs = loadIotMs()) === null || _loadIotMs === void 0 ? void 0 : _loadIotMs.data) !== null && _loadIotMs$data !== void 0 ? _loadIotMs$data : []).map(function(iotm) {
+    return [iotm.id, getIotMStatus(iotm)];
+  });
 }
 function checkSkills() {
-  var permedSkills = (0, import_kolmafia4.getPermedSkills)();
+  var permedSkills = (0, import_kolmafia6.getPermedSkills)();
   function getStatus(skill) {
     switch (permedSkills[skill.toString()]) {
       case true:
@@ -9801,18 +11481,18 @@ function checkSkills() {
     }
   }
   function getLevel(skill) {
-    return property_exports.getNumber("skillLevel".concat((0, import_kolmafia4.toInt)(skill)));
+    return property_exports.getNumber("skillLevel".concat((0, import_kolmafia6.toInt)(skill)));
   }
-  return import_kolmafia4.Skill.all().filter(function(skill) {
-    return isPermable((0, import_kolmafia4.toInt)(skill));
+  return import_kolmafia6.Skill.all().filter(function(skill) {
+    return isPermable((0, import_kolmafia6.toInt)(skill));
   }).map(function(skill) {
-    return [(0, import_kolmafia4.toInt)(skill), getStatus(skill), getLevel(skill)];
+    return [(0, import_kolmafia6.toInt)(skill), getStatus(skill), getLevel(skill)];
   });
 }
 function getHundredPercentFamiliars() {
-  var history = (0, import_kolmafia4.visitUrl)("ascensionhistory.php?back=self&who=".concat((0, import_kolmafia4.myId)()), false) + (0, import_kolmafia4.visitUrl)("ascensionhistory.php?back=self&prens13=1&who=".concat((0, import_kolmafia4.myId)()), false);
+  var history = (0, import_kolmafia6.visitUrl)("ascensionhistory.php?back=self&who=".concat((0, import_kolmafia6.myId)()), false) + (0, import_kolmafia6.visitUrl)("ascensionhistory.php?back=self&prens13=1&who=".concat((0, import_kolmafia6.myId)()), false);
   return new Set(_toConsumableArray(history.matchAll(/alt="([^"]*?) \(100%\)/gm)).map(function(m) {
-    return (0, import_kolmafia4.toFamiliar)(m[1]);
+    return (0, import_kolmafia6.toFamiliar)(m[1]);
   }));
 }
 function checkFamiliars() {
@@ -9827,13 +11507,13 @@ function checkFamiliars() {
   function getHundredPercent(familiar) {
     return hundredPercentFamiliars.has(familiar);
   }
-  return import_kolmafia4.Familiar.all().map(function(familiar) {
-    return [(0, import_kolmafia4.toInt)(familiar), getStatus(familiar), getHundredPercent(familiar)];
+  return import_kolmafia6.Familiar.all().map(function(familiar) {
+    return [(0, import_kolmafia6.toInt)(familiar), getStatus(familiar), getHundredPercent(familiar)];
   });
 }
 function checkTrophies() {
   var _loadTrophies$data, _loadTrophies;
-  var page = (0, import_kolmafia4.visitUrl)("trophies.php");
+  var page = (0, import_kolmafia6.visitUrl)("trophies.php");
   function getStatus(trophy) {
     return page.includes('"trophy'.concat(trophy.id, '"')) ? TrophyStatus.HAVE : TrophyStatus.NONE;
   }
@@ -9842,7 +11522,7 @@ function checkTrophies() {
   });
 }
 function haveOutfitPieces(outfit) {
-  return (0, import_kolmafia4.outfitPieces)(outfit).every(function(piece) {
+  return (0, import_kolmafia6.outfitPieces)(outfit).every(function(piece) {
     return have(piece);
   });
 }
@@ -9880,10 +11560,10 @@ function checkPaths(tattoos) {
   return ((_loadPaths$data = (_loadPaths = loadPaths()) === null || _loadPaths === void 0 ? void 0 : _loadPaths.data) !== null && _loadPaths$data !== void 0 ? _loadPaths$data : []).map(function(path) {
     var level = getPathLevel(path);
     var items = path.items.map(function(i) {
-      return haveItem(import_kolmafia4.Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE;
+      return haveItem(import_kolmafia6.Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE;
     });
     var equipment = path.equipment.map(function(i) {
-      return haveItem(import_kolmafia4.Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE;
+      return haveItem(import_kolmafia6.Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE;
     });
     var tats = path.tattoos.map(function(tattoo) {
       if (Array.isArray(tattoo.image)) {
@@ -9900,15 +11580,16 @@ function checkPaths(tattoos) {
   });
 }
 function main() {
-  var tattoos = (0, import_kolmafia4.visitUrl)("account_tattoos.php");
+  var tattoos = (0, import_kolmafia6.visitUrl)("account_tattoos.php");
   var code = compress(_objectSpread2(_objectSpread2({
     skills: checkSkills(),
     familiars: checkFamiliars(),
     trophies: checkTrophies()
   }, checkTattoos(tattoos)), {}, {
-    paths: checkPaths(tattoos)
+    paths: checkPaths(tattoos),
+    iotms: checkIotMs()
   }));
-  (0, import_kolmafia4.printHtml)('All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?d='.concat(code, '">https://greenbox.loathers.net/?d=').concat(code, "</a>"));
+  (0, import_kolmafia6.printHtml)('All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?d='.concat(code, '">https://greenbox.loathers.net/?d=').concat(code, "</a>"));
 }
 module.exports.main = main;
 /*! https://mths.be/he v1.2.0 by @mathias | MIT license */
