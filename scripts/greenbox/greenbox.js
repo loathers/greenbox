@@ -11531,7 +11531,7 @@ function checkFamiliars() {
   function getStatus(familiar) {
     if (have(familiar))
       return FamiliarStatus.TERRARIUM;
-    if (have(familiar.hatchling))
+    if (haveItem(familiar.hatchling))
       return FamiliarStatus.HATCHLING;
     return FamiliarStatus.NONE;
   }
