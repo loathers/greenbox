@@ -148,7 +148,7 @@ export default [
   { name: "Vile Vagrant Vestments", image: "stehobotat", outfit: 44 },
   { name: "Violent Vestments", image: "shubtat", outfit: 92 },
   { name: "War Hippy Fatigues", image: "warhiptat", outfit: 32 },
-  { name: "Warbear Dress Armor", image: "bearclawtat", outfit: 103 },
+  { name: "Warbear Dress Armor", image: "bearclawta", outfit: 103 },
   { name: "Wax Wardrobe", image: "crayontat", outfit: 85 },
   { name: "Whittled Wearables", image: "whittletat", outfit: 156 },
   { name: "Wicker Wear", image: "wickertat", outfit: 116 },
