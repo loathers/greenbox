@@ -96,7 +96,7 @@ function checkFamiliars() {
 
   function getStatus(familiar: Familiar) {
     if (have(familiar)) return FamiliarStatus.TERRARIUM;
-    if (have(familiar.hatchling)) return FamiliarStatus.HATCHLING;
+    if (haveItem(familiar.hatchling)) return FamiliarStatus.HATCHLING;
     return FamiliarStatus.NONE;
   }
 
