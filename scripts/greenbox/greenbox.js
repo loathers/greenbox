@@ -10353,7 +10353,7 @@ var trophies_default = [{
   image: "banangrama_xer"
 }, {
   id: 146,
-  name: "Some Assembly Required (trophy)",
+  name: "Some Assembly Required",
   image: "college_kids_and_divorced_men"
 }, {
   id: 147,
