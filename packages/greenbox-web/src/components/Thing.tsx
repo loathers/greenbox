@@ -38,10 +38,12 @@ function styleFromStatus(state: StateType) {
   }
 }
 
+const otherClashes = ["Some Assembly Required"];
+
 function guessWikiLink(name: string, type: Props["type"], clashes: string[]) {
   const n = name.replaceAll(" ", "_");
 
-  if (clashes.includes(name)) return `${n}_(${type})`;
+  if (clashes.includes(name) || otherClashes.includes(name)) return `${n}_(${type})`;
   return n;
 }
 

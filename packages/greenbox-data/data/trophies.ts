@@ -142,7 +142,7 @@ export default [
   { id: 142, name: "Golden Idol", image: "bananarama_crux" },
   { id: 143, name: "Golden Moustache", image: "badonkadonkus_flex" },
   { id: 144, name: "Golden Burglar", image: "banangrama_xer" },
-  { id: 146, name: "Some Assembly Required (trophy)", image: "college_kids_and_divorced_men" },
+  { id: 146, name: "Some Assembly Required", image: "college_kids_and_divorced_men" },
   { id: 147, name: "Bucket List", image: "anger_management_about_schmidt" },
   { id: 148, name: "Gotpork Connoisseur", image: "this_town_needs_an_enema" },
   { id: 149, name: "A Gallon of Milk Keeps the Doctor Away", image: "this_this_lemonade" },
