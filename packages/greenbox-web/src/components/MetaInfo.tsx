@@ -24,7 +24,7 @@ export default function MetaInfo({ meta }: Props) {
   );
 
   useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 30 * 1000);
+    const timer = setInterval(() => setNow(new Date()), 60 * 1000);
     return () => clearInterval(timer);
   }, []);
 
