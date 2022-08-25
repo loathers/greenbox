@@ -33,7 +33,9 @@ export type CompressedSnapshotData = { [key in keyof RawSnapshotData]: string };
 
 export function compress(raw: RawSnapshotData): string {
   const compressed: CompressedSnapshotData = {
-    meta: JSON.stringify(raw.meta),
+    meta: Object.entries(raw.meta)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(","),
     skills: compressSkills(raw.skills),
     familiars: compressFamiliars(raw.familiars),
     trophies: compressTrophies(raw.trophies),
@@ -51,7 +53,7 @@ export function expand(encoded: string): RawSnapshotData {
   const compressed = JSON.parse(decoded) as CompressedSnapshotData;
 
   return {
-    meta: JSON.parse(compressed?.meta ?? null),
+    meta: Object.fromEntries(compressed.meta.split(",").map((s) => s.split(":"))),
     skills: expandSkills(compressed.skills),
     familiars: expandFamiliars(compressed.familiars),
     trophies: expandTrophies(compressed.trophies),
