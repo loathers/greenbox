@@ -10467,6 +10467,7 @@ var ItemStatus;
 // ../greenbox-data/lib/index.ts
 function compress(raw) {
   var compressed = {
+    meta: JSON.stringify(raw.meta),
     skills: compressSkills(raw.skills),
     familiars: compressFamiliars(raw.familiars),
     trophies: compressTrophies(raw.trophies),
@@ -11610,9 +11611,19 @@ function checkPaths(tattoos) {
     return [path.id, level, items, equipment, tats];
   });
 }
+function checkMeta() {
+  return {
+    name: (0, import_kolmafia6.myName)(),
+    id: (0, import_kolmafia6.myId)(),
+    timestamp: new Date().toISOString(),
+    revision: (0, import_kolmafia6.getRevision)()
+  };
+}
 function main() {
+  (0, import_kolmafia6.printHtml)("Deciding your fate...");
   var tattoos = (0, import_kolmafia6.visitUrl)("account_tattoos.php");
   var code = compress(_objectSpread3(_objectSpread3({
+    meta: checkMeta(),
     skills: checkSkills(),
     familiars: checkFamiliars(),
     trophies: checkTrophies()
