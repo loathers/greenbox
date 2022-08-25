@@ -21,7 +21,6 @@ import {
   RawPath,
   PathDef,
   RawIotM,
-  IotMStatus,
 } from "greenbox-data";
 import {
   Familiar,

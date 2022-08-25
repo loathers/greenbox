@@ -1,5 +1,5 @@
 import { Badge } from "@chakra-ui/react";
-import { SkillDef, SkillStatus } from "greenbox-data";
+import { getMaxSkillLevel, SkillDef, SkillStatus } from "greenbox-data";
 
 import Thing from "./Thing";
 
@@ -42,7 +42,7 @@ export default function Skill({ skill, status, level }: Props) {
       badges={
         level ? (
           <Badge mr={1} title={`Skill at level ${level}`}>
-            {level}
+            {level} / {getMaxSkillLevel(skill.id)}
           </Badge>
         ) : null
       }
