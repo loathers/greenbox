@@ -9059,6 +9059,8 @@ var isPermable = function(id) {
       return false;
     case 174:
       return false;
+    case 7254:
+      return true;
   }
   switch (Math.floor(id / 1e3)) {
     case 7:
@@ -11503,6 +11505,9 @@ function checkIotMs() {
 function checkSkills() {
   var permedSkills = (0, import_kolmafia6.getPermedSkills)();
   function getStatus(skill) {
+    if ((0, import_kolmafia6.toInt)(skill) == 7254 && get("skillLevel7254") > 0) {
+      return SkillStatus.HARDCORE;
+    }
     switch (permedSkills[skill.toString()]) {
       case true:
         return SkillStatus.HARDCORE;
