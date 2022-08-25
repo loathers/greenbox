@@ -51,7 +51,7 @@ export function expand(encoded: string): RawSnapshotData {
   const compressed = JSON.parse(decoded) as CompressedSnapshotData;
 
   return {
-    meta: JSON.parse(compressed.meta),
+    meta: JSON.parse(compressed?.meta ?? null),
     skills: expandSkills(compressed.skills),
     familiars: expandFamiliars(compressed.familiars),
     trophies: expandTrophies(compressed.trophies),

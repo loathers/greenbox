@@ -24,6 +24,7 @@ export default function MainPage() {
       setData(expand(value));
     } catch (e) {
       if (!(e instanceof SyntaxError)) throw e;
+      console.error(e);
       setData(null);
     }
   }, [value]);
