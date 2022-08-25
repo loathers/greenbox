@@ -26,8 +26,10 @@ import {
 import {
   Familiar,
   getPermedSkills,
+  getRevision,
   Item,
   myId,
+  myName,
   outfitPieces,
   printHtml,
   Skill,
@@ -182,10 +184,22 @@ function checkPaths(tattoos: string) {
   });
 }
 
+function checkMeta() {
+  return {
+    name: myName(),
+    id: myId(),
+    timestamp: new Date().toISOString(),
+    revision: getRevision(),
+  };
+}
+
 function main(): void {
+  printHtml(`Deciding your fate...`);
+
   const tattoos = visitUrl("account_tattoos.php");
 
   const code = compress({
+    meta: checkMeta(),
     skills: checkSkills(),
     familiars: checkFamiliars(),
     trophies: checkTrophies(),
