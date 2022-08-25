@@ -1,5 +1,5 @@
-import { Badge, Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
-import { IotMStatus, ItemStatus, RawIotM } from "greenbox-data";
+import { Box, Flex, SimpleGrid } from "@chakra-ui/react";
+import { IotMStatus, RawIotM } from "greenbox-data";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
@@ -7,21 +7,8 @@ import { RootState } from "../store";
 import { chunk, notNullOrUndefined, useItemMap } from "../utils";
 
 import IotM from "./IotM";
+import RotatedHeading from "./RotatedHeading";
 import Section from "./Section";
-
-function Year({ year, complete }: { year: number; complete: boolean }) {
-  return (
-    <Flex key={`year-${year}`} alignItems="center" justifyContent="flex-end">
-      <Badge
-        sx={{ transform: "rotate(270deg)" }}
-        fontSize="sm"
-        bg={complete ? "complete" : undefined}
-      >
-        {year}
-      </Badge>
-    </Flex>
-  );
-}
 
 type Props = {
   iotms: RawIotM[];
@@ -66,7 +53,9 @@ export default function IotMs({ iotms: playerIotMs }: Props) {
             .map((i) => idToIotM[i.id]?.[1] ?? IotMStatus.NONE)
             .every((status) => status !== IotMStatus.NONE);
           return [
-            <Year key={`year-${year}`} year={year + 2004} complete={all} />,
+            <Flex alignItems="center" justifyContent="flex-end">
+              <RotatedHeading bg={all ? "complete" : undefined}>{year + 2004}</RotatedHeading>
+            </Flex>,
             ...yearChunk.map((iotm, i) =>
               iotm ? (
                 <IotM

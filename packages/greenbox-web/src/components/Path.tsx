@@ -1,13 +1,25 @@
-import { Badge, Box, Heading, Stack } from "@chakra-ui/react";
-import { ItemDef, ItemStatus, PathDef } from "greenbox-data";
-import { useSelector } from "react-redux";
+import { Badge, Box, Heading, Stack, Wrap, WrapItem } from "@chakra-ui/react";
+import { ItemStatus, PathDef } from "greenbox-data";
 
-import { RootState } from "../store";
-import { useItemMap } from "../utils";
+import { itemStatusToThingState, useItemMap } from "../utils";
 
 import AlphaImage from "./AlphaImage";
-import ItemGrid from "./ItemGrid";
-import PathTattoos from "./PathTattoos";
+import RotatedHeading from "./RotatedHeading";
+import Thing from "./Thing";
+
+function levelToTitle(level: number, max: number) {
+  if (max === 1) {
+    return level === 1 ? "Have" : "Do not have";
+  }
+
+  return `${level < max ? "Partially have" : "Have"} (level ${level} / ${max})`;
+}
+
+function guessAnchorFromTattooImage(i: string) {
+  if (i.startsWith("class")) return i.endsWith("hc") ? "#Ascension_Tattoos" : "#Class_Tattoos";
+  if (!isNaN(parseFloat(i[i.length - 1]))) return "#Ascension_Tattoos";
+  return "";
+}
 
 type Props = {
   path: PathDef;
@@ -41,34 +53,73 @@ export default function Path({ path, points, items, equipment, tattoos, maxTatto
           )}
         </Stack>
       </Heading>
-      {path.items.length > 0 && (
-        <>
-          <Heading as="h4" textTransform="uppercase" fontSize="xs">
-            Items
-          </Heading>
-          <ItemGrid items={path.items} playerItems={items} idToItem={idToItem} />
-        </>
-      )}
-      {path.equipment.length > 0 && (
-        <>
-          <Heading as="h4" textTransform="uppercase" fontSize="xs">
-            Equipment
-          </Heading>
-          <ItemGrid items={path.equipment} playerItems={equipment} idToItem={idToItem} />
-        </>
-      )}
-      {path.tattoos.length > 0 && (
-        <>
-          <Heading as="h4" textTransform="uppercase" fontSize="xs">
-            Tattoos
-          </Heading>
-          <PathTattoos
-            tattoos={path.tattoos}
-            playerTattoos={tattoos}
-            maxTattooLevel={maxTattooLevel}
-          />
-        </>
-      )}
+      <Wrap spacing={1}>
+        {path.items.length > 0 && (
+          <WrapItem>
+            <RotatedHeading size="6px">Items</RotatedHeading>
+          </WrapItem>
+        )}
+        {path.items.map(
+          (i, index) =>
+            idToItem[i] && (
+              <WrapItem>
+                <Thing
+                  key={i}
+                  type="item"
+                  name={idToItem[i].name}
+                  image={`itemimages/${idToItem[i].image}`}
+                  state={itemStatusToThingState(items[index])}
+                />
+              </WrapItem>
+            )
+        )}
+        {path.equipment.length > 0 && (
+          <WrapItem>
+            <RotatedHeading size="6px">Equipment</RotatedHeading>
+          </WrapItem>
+        )}
+        {path.equipment.map(
+          (i, index) =>
+            idToItem[i] && (
+              <WrapItem>
+                <Thing
+                  key={i}
+                  type="item"
+                  name={idToItem[i].name}
+                  image={`itemimages/${idToItem[i].image}`}
+                  state={itemStatusToThingState(equipment[index])}
+                />
+              </WrapItem>
+            )
+        )}
+        {path.tattoos.length > 0 && (
+          <WrapItem>
+            <RotatedHeading size="6px">Tattoos</RotatedHeading>
+          </WrapItem>
+        )}
+        {path.tattoos.map(({ name, image }, index) => {
+          const level = tattoos[index] || 0;
+          const max = maxTattooLevel[index];
+          const i = Array.isArray(image) ? image[Math.max(0, level - 1)] : image;
+
+          const anchor = guessAnchorFromTattooImage(i);
+
+          return (
+            <WrapItem>
+              <Thing
+                key={name}
+                type="tattoo"
+                name={name}
+                image={`otherimages/sigils/${i}.gif`}
+                sourceWidth={50}
+                title={levelToTitle(level, max)}
+                state={level === 0 ? null : level < max ? "partial" : "complete"}
+                link={`Tattoo${anchor}`}
+              />
+            </WrapItem>
+          );
+        })}
+      </Wrap>
     </Stack>
   );
 }
