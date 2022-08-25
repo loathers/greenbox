@@ -16,7 +16,7 @@ export default function MutexSkills({ groupName, skills, statuses }: Props) {
 
   return (
     <Thing
-      link={skills[active].name}
+      link={skills[active]?.name}
       type="skill"
       name={groupName}
       image={
