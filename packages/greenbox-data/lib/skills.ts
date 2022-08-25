@@ -107,6 +107,10 @@ export const isPermable = (id: number) => {
     // Not permable but granted every ascension
     case 174: // SkillPool.INCREDIBLE_SELF_ESTEEM:
       return false;
+
+    // Permable from PvP
+    case 7254: // SkillPool.TOGGLE_OPTIMALITY
+      return true;
   }
 
   switch (Math.floor(id / 1000)) {
@@ -212,7 +216,12 @@ export const expandSkills = (s = "") => {
         id = (Math.floor(id / 1000) + 1) * 1000;
         break;
       default:
-        result.push([id++, Number(c), 0]);
+        const status = Number(c) as SkillStatus;
+        // We can just drop any references to skills we do not have at this stage
+        if (status !== SkillStatus.NONE) {
+          result.push([id, status, 0]);
+        }
+        id++;
         break;
     }
   }

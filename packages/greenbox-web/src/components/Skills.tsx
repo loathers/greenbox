@@ -36,13 +36,23 @@ export default function Skills({ skills: playerSkills }: Props) {
     [classes]
   );
 
-  const groupedSkills = skills.reduce((acc, s) => {
-    const bucket = Math.floor(s.id / 1000);
-    return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
-  }, {} as { [key: number]: SkillDef[] });
+  const groupedSkills = useMemo(
+    () =>
+      skills.reduce((acc, s) => {
+        let bucket = Math.floor(s.id / 1000);
+        // This is just for Toggle Optimality :)
+        if (bucket === 7) bucket = 0;
+        return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
+      }, {} as { [key: number]: SkillDef[] }),
+    [skills]
+  );
 
-  const bucketedSkills = Object.entries(groupedSkills).sort((a, b) =>
-    Number(a[0]) === 0 ? 1 : Number(a[0]) - Number(b[0])
+  const bucketedSkills = useMemo(
+    () =>
+      Object.entries(groupedSkills).sort((a, b) =>
+        Number(a[0]) === 0 ? 1 : Number(a[0]) - Number(b[0])
+      ),
+    [groupedSkills]
   );
 
   return (
@@ -73,7 +83,7 @@ export default function Skills({ skills: playerSkills }: Props) {
                 <Skill
                   key={s.id}
                   skill={s}
-                  status={idToSkill[s.id]?.[1] ?? 0}
+                  status={idToSkill[s.id]?.[1] ?? SkillStatus.NONE}
                   level={idToSkill[s.id]?.[2] ?? 0}
                 />
               ))}

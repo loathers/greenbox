@@ -36,7 +36,7 @@ import {
   toInt,
   visitUrl,
 } from "kolmafia";
-import { have, property } from "libram";
+import { get, have, property } from "libram";
 
 import { getIotMStatus } from "./iotms";
 import { haveItem } from "./utils";
@@ -59,6 +59,10 @@ function checkSkills() {
   const permedSkills = getPermedSkills();
 
   function getStatus(skill: Skill) {
+    if (toInt(skill) == 7254 && get(`skillLevel7254`) > 0) {
+      return SkillStatus.HARDCORE;
+    }
+
     switch (permedSkills[skill.toString()]) {
       case true:
         return SkillStatus.HARDCORE;
