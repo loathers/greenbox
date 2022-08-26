@@ -17,7 +17,10 @@ export * from "./tattoos";
 export * from "./trophies";
 export * from "./iotms";
 
+export type Meta = { name: string; id: string; revision: number; timestamp: string };
+
 export interface RawSnapshotData {
+  meta: Meta;
   skills: RawSkill[];
   familiars: RawFamiliar[];
   trophies: RawTrophy[];
@@ -30,6 +33,9 @@ export type CompressedSnapshotData = { [key in keyof RawSnapshotData]: string };
 
 export function compress(raw: RawSnapshotData): string {
   const compressed: CompressedSnapshotData = {
+    meta: Object.entries(raw.meta)
+      .map(([k, v]) => `${k}:${v}`)
+      .join(","),
     skills: compressSkills(raw.skills),
     familiars: compressFamiliars(raw.familiars),
     trophies: compressTrophies(raw.trophies),
@@ -47,6 +53,7 @@ export function expand(encoded: string): RawSnapshotData {
   const compressed = JSON.parse(decoded) as CompressedSnapshotData;
 
   return {
+    meta: Object.fromEntries(compressed.meta.split(",").map((s) => s.split(":"))),
     skills: expandSkills(compressed.skills),
     familiars: expandFamiliars(compressed.familiars),
     trophies: expandTrophies(compressed.trophies),

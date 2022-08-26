@@ -1,4 +1,4 @@
-import { ItemDef, ItemStatus } from "greenbox-data";
+import { ItemDef, ItemStatus, SkillStatus } from "greenbox-data";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 
@@ -8,6 +8,28 @@ export function itemStatusToThingState(status: ItemStatus) {
       return "complete";
     default:
       return null;
+  }
+}
+
+export function skillStatusToThingState(status: SkillStatus) {
+  switch (status) {
+    case SkillStatus.HARDCORE:
+      return "complete";
+    case SkillStatus.SOFTCORE:
+      return "partial";
+    default:
+      return null;
+  }
+}
+
+export function skillStatusToTitle(status: SkillStatus) {
+  switch (status) {
+    case SkillStatus.HARDCORE:
+      return "Hardcore permed";
+    case SkillStatus.SOFTCORE:
+      return "Softcore permed";
+    default:
+      return "Not permed";
   }
 }
 

@@ -15,6 +15,57 @@ export type SkillDef = {
   permable: boolean;
 };
 
+export const getMaxSkillLevel = (id: number) => {
+  switch (id) {
+    // Will probably be this way forever
+
+    // Slimy Sinews
+    case 46:
+      return 10;
+    // Slimy Synapes
+    case 47:
+      return 10;
+    // Slimy Shoulders
+    case 48:
+      return 10;
+    // Summon Annoyance
+    case 107:
+      return 9;
+    // Belch The Rainbow
+    case 117:
+      return 11;
+
+    // Will change in future
+
+    // Pirate Bellow
+    case 118:
+      return 6;
+    // Summon Holiday Fun
+    case 121:
+      return 6;
+    // Summon Carrot
+    case 128:
+      return 5;
+    // Bear Essence
+    case 134:
+      return 6;
+    // Calculate The universe
+    case 144:
+      return 4;
+    // Experience Safari
+    case 180:
+      return 4;
+    // Implode Universe
+    case 188:
+      return 13;
+    // Toggle Optimality
+    case 7254:
+      return 3;
+    default:
+      return 0;
+  }
+};
+
 export const isPermable = (id: number) => {
   // Random old skills
   if (id < 10) return false;
@@ -56,6 +107,10 @@ export const isPermable = (id: number) => {
     // Not permable but granted every ascension
     case 174: // SkillPool.INCREDIBLE_SELF_ESTEEM:
       return false;
+
+    // Permable from PvP
+    case 7254: // SkillPool.TOGGLE_OPTIMALITY
+      return true;
   }
 
   switch (Math.floor(id / 1000)) {
@@ -161,7 +216,12 @@ export const expandSkills = (s = "") => {
         id = (Math.floor(id / 1000) + 1) * 1000;
         break;
       default:
-        result.push([id++, Number(c), 0]);
+        const status = Number(c) as SkillStatus;
+        // We can just drop any references to skills we do not have at this stage
+        if (status !== SkillStatus.NONE) {
+          result.push([id, status, 0]);
+        }
+        id++;
         break;
     }
   }

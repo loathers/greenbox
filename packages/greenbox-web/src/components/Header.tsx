@@ -12,12 +12,17 @@ import {
   Text,
   Tooltip,
 } from "@chakra-ui/react";
+import { Meta } from "greenbox-data";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
 import { fetchAll, store } from "../store";
 
-type Props = {};
+import MetaInfo from "./MetaInfo";
+
+type Props = {
+  meta?: Meta;
+};
 
 const forceRefreshInfo = `
 This reloads the general information Greenbox needs to know about the Kingdom of Loathing.
@@ -25,7 +30,7 @@ Press it if some new content is not appearing at all.
 It will not collect any new information about you specifically - you still need to run the command in KoLmafia!
 `;
 
-export default function MainSection({}: Props) {
+export default function Header({ meta }: Props) {
   const dispatch = useDispatch<typeof store.dispatch>();
 
   const forceUpdate = useCallback(() => {
@@ -39,6 +44,7 @@ export default function MainSection({}: Props) {
           <Box flex="1" textAlign="left">
             Greenbox
           </Box>
+          <Box flex="1">{meta && <MetaInfo meta={meta} />}</Box>
           <AccordionIcon />
         </AccordionButton>
       </Heading>

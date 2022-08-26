@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 import { RootState } from "../store";
 
+import MutexSkills from "./MutexSkills";
 import Section from "./Section";
 import Skill from "./Skill";
 import SkillClassHeading from "./SkillClassHeading";
@@ -36,14 +37,27 @@ export default function Skills({ skills: playerSkills }: Props) {
     [classes]
   );
 
-  const groupedSkills = skills.reduce((acc, s) => {
-    const bucket = Math.floor(s.id / 1000);
-    return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
-  }, {} as { [key: number]: SkillDef[] });
-
-  const bucketedSkills = Object.entries(groupedSkills).sort((a, b) =>
-    Number(a[0]) === 0 ? 1 : Number(a[0]) - Number(b[0])
+  const groupedSkills = useMemo(
+    () =>
+      skills.reduce((acc, s) => {
+        let bucket = Math.floor(s.id / 1000);
+        // This is just for Toggle Optimality :)
+        if (bucket === 7) bucket = 0;
+        return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
+      }, {} as { [key: number]: SkillDef[] }),
+    [skills]
   );
+
+  const bucketedSkills = useMemo(
+    () =>
+      Object.entries(groupedSkills).sort((a, b) =>
+        Number(a[0]) === 0 ? 1 : Number(a[0]) - Number(b[0])
+      ),
+    [groupedSkills]
+  );
+
+  // Not ideal but we accumulate mutually exclusive groups of skills in this array as we traverse the skills array (if necessary).
+  const skillGroup = [] as SkillDef[];
 
   return (
     <Section
@@ -69,14 +83,35 @@ export default function Skills({ skills: playerSkills }: Props) {
           <Stack spacing={4} key={bucket}>
             <SkillClassHeading bucket={Number(bucket)} cls={idToClass[Number(bucket)]} />
             <SimpleGrid columns={6} spacing={1}>
-              {contents.map((s) => (
-                <Skill
-                  key={s.id}
-                  skill={s}
-                  status={idToSkill[s.id]?.[1] ?? 0}
-                  level={idToSkill[s.id]?.[2] ?? 0}
-                />
-              ))}
+              {contents.map((s) => {
+                switch (s.id) {
+                  case 191:
+                  case 192:
+                  case 193:
+                    skillGroup.push(s);
+                    if (s.id !== 193) return null;
+
+                    const group = [...skillGroup];
+                    skillGroup.length = 0;
+                    return (
+                      <MutexSkills
+                        key={s.id}
+                        groupName="Drippy Skill"
+                        skills={group}
+                        statuses={group.map((s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE)}
+                      />
+                    );
+                  default:
+                    return (
+                      <Skill
+                        key={s.id}
+                        skill={s}
+                        status={idToSkill[s.id]?.[1] ?? SkillStatus.NONE}
+                        level={idToSkill[s.id]?.[2] ?? 0}
+                      />
+                    );
+                }
+              })}
             </SimpleGrid>
           </Stack>
         ))}

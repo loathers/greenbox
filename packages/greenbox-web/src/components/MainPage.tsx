@@ -24,6 +24,7 @@ export default function MainPage() {
       setData(expand(value));
     } catch (e) {
       if (!(e instanceof SyntaxError)) throw e;
+      console.error(e);
       setData(null);
     }
   }, [value]);
@@ -68,7 +69,7 @@ export default function MainPage() {
   return (
     <Container maxWidth="1000px" width="100%">
       <Accordion allowMultiple allowToggle defaultIndex={0}>
-        <Header />
+        <Header meta={data?.meta} />
         <IotMs iotms={data?.iotms ?? []} />
         <Skills skills={data?.skills ?? []} />
         <Paths paths={data?.paths ?? []} />

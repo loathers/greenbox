@@ -66,7 +66,7 @@ export default function IotMs({ iotms: playerIotMs }: Props) {
             .map((i) => idToIotM[i.id]?.[1] ?? IotMStatus.NONE)
             .every((status) => status !== IotMStatus.NONE);
           return [
-            <Year year={year + 2004} complete={all} />,
+            <Year key={`year-${year}`} year={year + 2004} complete={all} />,
             ...yearChunk.map((iotm, i) =>
               iotm ? (
                 <IotM

@@ -1,4 +1,4 @@
-import { Box, Flex, LinkBox, LinkOverlay, Text } from "@chakra-ui/react";
+import { Box, LinkBox, LinkOverlay } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../store";
@@ -11,7 +11,7 @@ type Props = {
   type: "skill" | "familiar" | "trophy" | "tattoo" | "item";
   state?: StateType;
   name: string;
-  image: string;
+  image: string | React.ReactNode;
   title?: string;
   sourceWidth?: number;
   badges?: React.ReactNode;
@@ -38,10 +38,12 @@ function styleFromStatus(state: StateType) {
   }
 }
 
+const otherClashes = ["Some Assembly Required"];
+
 function guessWikiLink(name: string, type: Props["type"], clashes: string[]) {
   const n = name.replaceAll(" ", "_");
 
-  if (clashes.includes(name)) return `${n}_(${type})`;
+  if (clashes.includes(name) || otherClashes.includes(name)) return `${n}_(${type})`;
   return n;
 }
 
@@ -84,7 +86,7 @@ export default function Thing({
       <Box position="absolute" sx={{ top: 0, right: 0 }}>
         {badges}
       </Box>
-      <AlphaImage src={image} sourceWidth={sourceWidth} />
+      {typeof image === "string" ? <AlphaImage src={image} sourceWidth={sourceWidth} /> : image}
       <LinkOverlay
         textAlign="center"
         fontSize="10px"

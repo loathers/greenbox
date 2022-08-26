@@ -21,13 +21,14 @@ import {
   RawPath,
   PathDef,
   RawIotM,
-  IotMStatus,
 } from "greenbox-data";
 import {
   Familiar,
   getPermedSkills,
+  getRevision,
   Item,
   myId,
+  myName,
   outfitPieces,
   printHtml,
   Skill,
@@ -35,7 +36,7 @@ import {
   toInt,
   visitUrl,
 } from "kolmafia";
-import { have, property } from "libram";
+import { get, have, property } from "libram";
 
 import { getIotMStatus } from "./iotms";
 import { haveItem } from "./utils";
@@ -58,6 +59,10 @@ function checkSkills() {
   const permedSkills = getPermedSkills();
 
   function getStatus(skill: Skill) {
+    if (toInt(skill) == 7254 && get(`skillLevel7254`) > 0) {
+      return SkillStatus.HARDCORE;
+    }
+
     switch (permedSkills[skill.toString()]) {
       case true:
         return SkillStatus.HARDCORE;
@@ -182,10 +187,22 @@ function checkPaths(tattoos: string) {
   });
 }
 
+function checkMeta() {
+  return {
+    name: myName(),
+    id: myId(),
+    timestamp: new Date().toISOString(),
+    revision: getRevision(),
+  };
+}
+
 function main(): void {
+  printHtml(`Deciding your fate...`);
+
   const tattoos = visitUrl("account_tattoos.php");
 
   const code = compress({
+    meta: checkMeta(),
     skills: checkSkills(),
     familiars: checkFamiliars(),
     trophies: checkTrophies(),
