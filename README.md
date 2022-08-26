@@ -2,7 +2,7 @@
 
 `greenbox` is a script meant to examine a [Kingdom of Loathing](https://www.kingdomofloathing.com/) player's overall loadout and return a graphical interface showing the user what they own and do not own, among some of the coolest items, tattoos, and trophies in the kingdom.
 
-To install, run the following command on [KolMafia](https://github.com/kolmafia/kolmafia) version [r26691](https://github.com/kolmafia/kolmafia/releases/tag/r26691) or later:
+To install, run the following command on an up-to-date [KolMafia](https://github.com/kolmafia/kolmafia) version:
 
 ```git checkout loathers/greenbox release ```
 
