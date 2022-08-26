@@ -25,17 +25,16 @@ import {
   Familiar,
   getPermedSkills,
   getRevision,
+  haveFamiliar,
   Item,
   myId,
   myName,
   outfitPieces,
   printHtml,
   Skill,
-  toFamiliar,
   toInt,
   visitUrl,
 } from "kolmafia";
-import { have } from "libram";
 import { getNumber } from "libram/dist/property";
 
 import { getIotMStatus } from "./iotms";
@@ -103,7 +102,7 @@ function checkFamiliars() {
   const hundredPercentFamiliars = getHundredPercentFamiliars();
 
   function getStatus(familiar: Familiar) {
-    if (have(familiar)) return FamiliarStatus.TERRARIUM;
+    if (haveFamiliar(familiar)) return FamiliarStatus.TERRARIUM;
     if (haveItem(familiar.hatchling)) return FamiliarStatus.HATCHLING;
     return FamiliarStatus.NONE;
   }
@@ -132,7 +131,7 @@ function checkTrophies() {
 }
 
 function haveOutfitPieces(outfit: string) {
-  return outfitPieces(outfit).every((piece) => have(piece));
+  return outfitPieces(outfit).every((piece) => haveItem(piece));
 }
 
 function checkOutfitTattoos(page: string) {

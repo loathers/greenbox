@@ -1,6 +1,5 @@
-import { displayAmount, Item } from "kolmafia";
-import { have } from "libram";
+import { availableAmount, displayAmount, Item } from "kolmafia";
 
 export function haveItem(item: Item) {
-  return have(item) || displayAmount(item) > 0;
+  return availableAmount(item) > 0 || displayAmount(item) > 0;
 }

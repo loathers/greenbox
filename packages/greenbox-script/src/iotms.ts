@@ -9,7 +9,7 @@ import {
   floristAvailable,
   haveSkill,
 } from "kolmafia";
-import { $item, haveInCampground, have as _have, have, getFoldGroup } from "libram";
+import { haveInCampground, getFoldGroup } from "libram";
 import { getBoolean } from "libram/dist/property";
 
 import { haveItem } from "./utils";
@@ -28,7 +28,7 @@ function haveBound(iotm: IotMDef): boolean {
       switch (iotm.id) {
         case 5790: {
           return (
-            haveItem(boxed) || (haveItem($item`right bear arm`) && haveItem($item`left bear arm`))
+            haveItem(boxed) || (haveItem(Item.get("right bear arm")) && haveItem(Item.get("left bear arm")))
           );
         }
         case 6413: {
@@ -61,13 +61,13 @@ function haveBound(iotm: IotMDef): boolean {
       const skill = Skill.get(iotm.skill);
       return haveSkill(skill);
     case "vip":
-      return haveItem($item`Clan VIP Lounge Key`);
+      return haveItem(Item.get("Clan VIP Lounge Key"));
   }
 }
 
 export function getIotMStatus(iotm: IotMDef): IotMStatus {
   if (haveBound(iotm)) return IotMStatus.BOUND;
   const boxed = Item.get(iotm.id);
-  if (have(boxed)) return IotMStatus.BOXED;
+  if (haveItem(boxed)) return IotMStatus.BOXED;
   return IotMStatus.NONE;
 }
