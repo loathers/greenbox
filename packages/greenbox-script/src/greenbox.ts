@@ -89,8 +89,9 @@ function getHundredPercentFamiliars() {
     visitUrl(`ascensionhistory.php?back=self&who=${myId()}`, false) +
     visitUrl(`ascensionhistory.php?back=self&prens13=1&who=${myId()}`, false);
   const set = new Set();
+  const pattern = /alt="([^"]*?) \(100%\)/gm;
   let m;
-  while ((m = /alt="([^"]*?) \(100%\)/gm.exec(history)) !== null) set.add(Familiar.get(m[1]));
+  while ((m = pattern.exec(history)) !== null) set.add(Familiar.get(m[1]));
   return set;
 }
 
