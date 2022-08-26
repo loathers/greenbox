@@ -9455,7 +9455,7 @@ function checkSkills() {
   });
 }
 function getHundredPercentFamiliars() {
-  for (var history = (0, import_kolmafia6.visitUrl)("ascensionhistory.php?back=self&who=".concat((0, import_kolmafia6.myId)()), !1) + (0, import_kolmafia6.visitUrl)("ascensionhistory.php?back=self&prens13=1&who=".concat((0, import_kolmafia6.myId)()), !1), set = /* @__PURE__ */ new Set(), m; (m = /alt="([^"]*?) \(100%\)/gm.exec(history)) !== null; )
+  for (var history = (0, import_kolmafia6.visitUrl)("ascensionhistory.php?back=self&who=".concat((0, import_kolmafia6.myId)()), !1) + (0, import_kolmafia6.visitUrl)("ascensionhistory.php?back=self&prens13=1&who=".concat((0, import_kolmafia6.myId)()), !1), set = /* @__PURE__ */ new Set(), pattern = /alt="([^"]*?) \(100%\)/gm, m; (m = pattern.exec(history)) !== null; )
     set.add(import_kolmafia6.Familiar.get(m[1]));
   return set;
 }
