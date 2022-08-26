@@ -1,4 +1,5 @@
 import { Box, LinkBox, LinkOverlay } from "@chakra-ui/react";
+import { forwardRef } from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../store";
@@ -40,30 +41,40 @@ function styleFromStatus(state: StateType) {
 
 const otherClashes = ["Some Assembly Required"];
 
-function guessWikiLink(name: string, type: Props["type"], clashes: string[]) {
+export function guessWikiLink(
+  link: string | undefined,
+  name: string,
+  type: Props["type"],
+  clashes: string[]
+) {
+  if (link) return link;
   const n = name.replaceAll(" ", "_");
-
   if (clashes.includes(name) || otherClashes.includes(name)) return `${n}_(${type})`;
   return n;
 }
 
-export default function Thing({
-  type,
-  state: status,
-  name,
-  image,
-  badges = null,
-  sourceWidth = 30,
-  title = `${name} (${status || "do not have"})`,
-  link,
-}: Props) {
+export default forwardRef<HTMLDivElement, Props>(function Thing(
+  {
+    type,
+    state: status,
+    name,
+    image,
+    badges = null,
+    sourceWidth = 30,
+    title = `${name} (${status || "do not have"})`,
+    link,
+    ...rest
+  },
+  ref
+) {
   const style = styleFromStatus(status);
   const clashes = useSelector((state: RootState) => state.wikiClashes);
 
-  const wikiLink = link || guessWikiLink(name, type, clashes);
+  const wikiLink = guessWikiLink(link, name, type, clashes);
 
   return (
     <LinkBox
+      ref={ref}
       borderWidth={1}
       borderStyle="solid"
       borderColor="black"
@@ -82,10 +93,13 @@ export default function Thing({
         filter: style.backgroundColor ? "brightness(90%)" : undefined,
         backgroundColor: style.backgroundColor || "#efefef",
       }}
+      {...rest}
     >
-      <Box position="absolute" sx={{ top: 0, right: 0 }}>
-        {badges}
-      </Box>
+      {badges && (
+        <Box position="absolute" sx={{ top: 0, right: 0 }}>
+          {badges}
+        </Box>
+      )}
       {typeof image === "string" ? <AlphaImage src={image} sourceWidth={sourceWidth} /> : image}
       <LinkOverlay
         textAlign="center"
@@ -97,4 +111,4 @@ export default function Thing({
       </LinkOverlay>
     </LinkBox>
   );
-}
+});

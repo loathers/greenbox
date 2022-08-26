@@ -28,7 +28,8 @@ function haveBound(iotm: IotMDef): boolean {
       switch (iotm.id) {
         case 5790: {
           return (
-            haveItem(boxed) || (haveItem(Item.get("right bear arm")) && haveItem(Item.get("left bear arm")))
+            haveItem(boxed) ||
+            (haveItem(Item.get("right bear arm")) && haveItem(Item.get("left bear arm")))
           );
         }
         case 6413: {
