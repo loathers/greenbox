@@ -4846,30 +4846,6 @@ var require_object_to_array = __commonJS({
   }
 });
 
-// ../../node_modules/core-js/internals/is-array.js
-var require_is_array = __commonJS({
-  "../../node_modules/core-js/internals/is-array.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var classof = require_classof_raw();
-    module2.exports = Array.isArray || function(argument) {
-      return classof(argument) == "Array";
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/does-not-exceed-safe-integer.js
-var require_does_not_exceed_safe_integer = __commonJS({
-  "../../node_modules/core-js/internals/does-not-exceed-safe-integer.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var $TypeError = TypeError, MAX_SAFE_INTEGER = 9007199254740991;
-    module2.exports = function(it) {
-      if (it > MAX_SAFE_INTEGER)
-        throw $TypeError("Maximum allowed index exceeded");
-      return it;
-    };
-  }
-});
-
 // ../../node_modules/core-js/internals/function-bind-context.js
 var require_function_bind_context = __commonJS({
   "../../node_modules/core-js/internals/function-bind-context.js": function(exports2, module2) {
@@ -4883,17 +4859,22 @@ var require_function_bind_context = __commonJS({
   }
 });
 
-// ../../node_modules/core-js/internals/flatten-into-array.js
-var require_flatten_into_array = __commonJS({
-  "../../node_modules/core-js/internals/flatten-into-array.js": function(exports2, module2) {
-    "use strict";
+// ../../node_modules/core-js/internals/iterators.js
+var require_iterators = __commonJS({
+  "../../node_modules/core-js/internals/iterators.js": function(exports2, module2) {
     init_kolmafia_polyfill();
-    var isArray = require_is_array(), lengthOfArrayLike = require_length_of_array_like(), doesNotExceedSafeInteger = require_does_not_exceed_safe_integer(), bind = require_function_bind_context(), flattenIntoArray = function flattenIntoArray2(target, original, source, sourceLen, start, depth, mapper, thisArg) {
-      for (var targetIndex = start, sourceIndex = 0, mapFn = mapper ? bind(mapper, thisArg) : !1, element, elementLen; sourceIndex < sourceLen; )
-        sourceIndex in source && (element = mapFn ? mapFn(source[sourceIndex], sourceIndex, original) : source[sourceIndex], depth > 0 && isArray(element) ? (elementLen = lengthOfArrayLike(element), targetIndex = flattenIntoArray2(target, original, element, elementLen, targetIndex, depth - 1) - 1) : (doesNotExceedSafeInteger(targetIndex + 1), target[targetIndex] = element), targetIndex++), sourceIndex++;
-      return targetIndex;
+    module2.exports = {};
+  }
+});
+
+// ../../node_modules/core-js/internals/is-array-iterator-method.js
+var require_is_array_iterator_method = __commonJS({
+  "../../node_modules/core-js/internals/is-array-iterator-method.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var wellKnownSymbol = require_well_known_symbol(), Iterators = require_iterators(), ITERATOR = wellKnownSymbol("iterator"), ArrayPrototype = Array.prototype;
+    module2.exports = function(it) {
+      return it !== void 0 && (Iterators.Array === it || ArrayPrototype[ITERATOR] === it);
     };
-    module2.exports = flattenIntoArray;
   }
 });
 
@@ -4923,6 +4904,152 @@ var require_classof = __commonJS({
       var O, tag, result;
       return it === void 0 ? "Undefined" : it === null ? "Null" : typeof (tag = tryGet(O = $Object(it), TO_STRING_TAG)) == "string" ? tag : CORRECT_ARGUMENTS ? classofRaw(O) : (result = classofRaw(O)) == "Object" && isCallable(O.callee) ? "Arguments" : result;
     };
+  }
+});
+
+// ../../node_modules/core-js/internals/get-iterator-method.js
+var require_get_iterator_method = __commonJS({
+  "../../node_modules/core-js/internals/get-iterator-method.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var classof = require_classof(), getMethod = require_get_method(), Iterators = require_iterators(), wellKnownSymbol = require_well_known_symbol(), ITERATOR = wellKnownSymbol("iterator");
+    module2.exports = function(it) {
+      if (it != null)
+        return getMethod(it, ITERATOR) || getMethod(it, "@@iterator") || Iterators[classof(it)];
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/get-iterator.js
+var require_get_iterator = __commonJS({
+  "../../node_modules/core-js/internals/get-iterator.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var call = require_function_call(), aCallable = require_a_callable(), anObject = require_an_object(), tryToString = require_try_to_string(), getIteratorMethod = require_get_iterator_method(), $TypeError = TypeError;
+    module2.exports = function(argument, usingIterator) {
+      var iteratorMethod = arguments.length < 2 ? getIteratorMethod(argument) : usingIterator;
+      if (aCallable(iteratorMethod))
+        return anObject(call(iteratorMethod, argument));
+      throw $TypeError(tryToString(argument) + " is not iterable");
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/iterator-close.js
+var require_iterator_close = __commonJS({
+  "../../node_modules/core-js/internals/iterator-close.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var call = require_function_call(), anObject = require_an_object(), getMethod = require_get_method();
+    module2.exports = function(iterator, kind, value) {
+      var innerResult, innerError;
+      anObject(iterator);
+      try {
+        if (innerResult = getMethod(iterator, "return"), !innerResult) {
+          if (kind === "throw")
+            throw value;
+          return value;
+        }
+        innerResult = call(innerResult, iterator);
+      } catch (error) {
+        innerError = !0, innerResult = error;
+      }
+      if (kind === "throw")
+        throw value;
+      if (innerError)
+        throw innerResult;
+      return anObject(innerResult), value;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/iterate.js
+var require_iterate = __commonJS({
+  "../../node_modules/core-js/internals/iterate.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var bind = require_function_bind_context(), call = require_function_call(), anObject = require_an_object(), tryToString = require_try_to_string(), isArrayIteratorMethod = require_is_array_iterator_method(), lengthOfArrayLike = require_length_of_array_like(), isPrototypeOf = require_object_is_prototype_of(), getIterator = require_get_iterator(), getIteratorMethod = require_get_iterator_method(), iteratorClose = require_iterator_close(), $TypeError = TypeError, Result = function(stopped, result) {
+      this.stopped = stopped, this.result = result;
+    }, ResultPrototype = Result.prototype;
+    module2.exports = function(iterable, unboundFunction, options) {
+      var that = options && options.that, AS_ENTRIES = !!(options && options.AS_ENTRIES), IS_RECORD = !!(options && options.IS_RECORD), IS_ITERATOR = !!(options && options.IS_ITERATOR), INTERRUPTED = !!(options && options.INTERRUPTED), fn = bind(unboundFunction, that), iterator, iterFn, index, length, result, next, step, stop = function(condition) {
+        return iterator && iteratorClose(iterator, "normal", condition), new Result(!0, condition);
+      }, callFn = function(value) {
+        return AS_ENTRIES ? (anObject(value), INTERRUPTED ? fn(value[0], value[1], stop) : fn(value[0], value[1])) : INTERRUPTED ? fn(value, stop) : fn(value);
+      };
+      if (IS_RECORD)
+        iterator = iterable.iterator;
+      else if (IS_ITERATOR)
+        iterator = iterable;
+      else {
+        if (iterFn = getIteratorMethod(iterable), !iterFn)
+          throw $TypeError(tryToString(iterable) + " is not iterable");
+        if (isArrayIteratorMethod(iterFn)) {
+          for (index = 0, length = lengthOfArrayLike(iterable); length > index; index++)
+            if (result = callFn(iterable[index]), result && isPrototypeOf(ResultPrototype, result))
+              return result;
+          return new Result(!1);
+        }
+        iterator = getIterator(iterable, iterFn);
+      }
+      for (next = IS_RECORD ? iterable.next : iterator.next; !(step = call(next, iterator)).done; ) {
+        try {
+          result = callFn(step.value);
+        } catch (error) {
+          iteratorClose(iterator, "throw", error);
+        }
+        if (typeof result == "object" && result && isPrototypeOf(ResultPrototype, result))
+          return result;
+      }
+      return new Result(!1);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/create-property.js
+var require_create_property = __commonJS({
+  "../../node_modules/core-js/internals/create-property.js": function(exports2, module2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    var toPropertyKey = require_to_property_key(), definePropertyModule = require_object_define_property(), createPropertyDescriptor = require_create_property_descriptor();
+    module2.exports = function(object, key, value) {
+      var propertyKey = toPropertyKey(key);
+      propertyKey in object ? definePropertyModule.f(object, propertyKey, createPropertyDescriptor(0, value)) : object[propertyKey] = value;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/is-array.js
+var require_is_array = __commonJS({
+  "../../node_modules/core-js/internals/is-array.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var classof = require_classof_raw();
+    module2.exports = Array.isArray || function(argument) {
+      return classof(argument) == "Array";
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/does-not-exceed-safe-integer.js
+var require_does_not_exceed_safe_integer = __commonJS({
+  "../../node_modules/core-js/internals/does-not-exceed-safe-integer.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var $TypeError = TypeError, MAX_SAFE_INTEGER = 9007199254740991;
+    module2.exports = function(it) {
+      if (it > MAX_SAFE_INTEGER)
+        throw $TypeError("Maximum allowed index exceeded");
+      return it;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/flatten-into-array.js
+var require_flatten_into_array = __commonJS({
+  "../../node_modules/core-js/internals/flatten-into-array.js": function(exports2, module2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    var isArray = require_is_array(), lengthOfArrayLike = require_length_of_array_like(), doesNotExceedSafeInteger = require_does_not_exceed_safe_integer(), bind = require_function_bind_context(), flattenIntoArray = function flattenIntoArray2(target, original, source, sourceLen, start, depth, mapper, thisArg) {
+      for (var targetIndex = start, sourceIndex = 0, mapFn = mapper ? bind(mapper, thisArg) : !1, element, elementLen; sourceIndex < sourceLen; )
+        sourceIndex in source && (element = mapFn ? mapFn(source[sourceIndex], sourceIndex, original) : source[sourceIndex], depth > 0 && isArray(element) ? (elementLen = lengthOfArrayLike(element), targetIndex = flattenIntoArray2(target, original, element, elementLen, targetIndex, depth - 1) - 1) : (doesNotExceedSafeInteger(targetIndex + 1), target[targetIndex] = element), targetIndex++), sourceIndex++;
+      return targetIndex;
+    };
+    module2.exports = flattenIntoArray;
   }
 });
 
@@ -5138,133 +5265,6 @@ var require_flat5 = __commonJS({
   "../../node_modules/core-js/features/array/flat.js": function(exports2, module2) {
     init_kolmafia_polyfill();
     module2.exports = require_flat4();
-  }
-});
-
-// ../../node_modules/core-js/internals/iterators.js
-var require_iterators = __commonJS({
-  "../../node_modules/core-js/internals/iterators.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    module2.exports = {};
-  }
-});
-
-// ../../node_modules/core-js/internals/is-array-iterator-method.js
-var require_is_array_iterator_method = __commonJS({
-  "../../node_modules/core-js/internals/is-array-iterator-method.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var wellKnownSymbol = require_well_known_symbol(), Iterators = require_iterators(), ITERATOR = wellKnownSymbol("iterator"), ArrayPrototype = Array.prototype;
-    module2.exports = function(it) {
-      return it !== void 0 && (Iterators.Array === it || ArrayPrototype[ITERATOR] === it);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/get-iterator-method.js
-var require_get_iterator_method = __commonJS({
-  "../../node_modules/core-js/internals/get-iterator-method.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var classof = require_classof(), getMethod = require_get_method(), Iterators = require_iterators(), wellKnownSymbol = require_well_known_symbol(), ITERATOR = wellKnownSymbol("iterator");
-    module2.exports = function(it) {
-      if (it != null)
-        return getMethod(it, ITERATOR) || getMethod(it, "@@iterator") || Iterators[classof(it)];
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/get-iterator.js
-var require_get_iterator = __commonJS({
-  "../../node_modules/core-js/internals/get-iterator.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var call = require_function_call(), aCallable = require_a_callable(), anObject = require_an_object(), tryToString = require_try_to_string(), getIteratorMethod = require_get_iterator_method(), $TypeError = TypeError;
-    module2.exports = function(argument, usingIterator) {
-      var iteratorMethod = arguments.length < 2 ? getIteratorMethod(argument) : usingIterator;
-      if (aCallable(iteratorMethod))
-        return anObject(call(iteratorMethod, argument));
-      throw $TypeError(tryToString(argument) + " is not iterable");
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/iterator-close.js
-var require_iterator_close = __commonJS({
-  "../../node_modules/core-js/internals/iterator-close.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var call = require_function_call(), anObject = require_an_object(), getMethod = require_get_method();
-    module2.exports = function(iterator, kind, value) {
-      var innerResult, innerError;
-      anObject(iterator);
-      try {
-        if (innerResult = getMethod(iterator, "return"), !innerResult) {
-          if (kind === "throw")
-            throw value;
-          return value;
-        }
-        innerResult = call(innerResult, iterator);
-      } catch (error) {
-        innerError = !0, innerResult = error;
-      }
-      if (kind === "throw")
-        throw value;
-      if (innerError)
-        throw innerResult;
-      return anObject(innerResult), value;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/iterate.js
-var require_iterate = __commonJS({
-  "../../node_modules/core-js/internals/iterate.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var bind = require_function_bind_context(), call = require_function_call(), anObject = require_an_object(), tryToString = require_try_to_string(), isArrayIteratorMethod = require_is_array_iterator_method(), lengthOfArrayLike = require_length_of_array_like(), isPrototypeOf = require_object_is_prototype_of(), getIterator = require_get_iterator(), getIteratorMethod = require_get_iterator_method(), iteratorClose = require_iterator_close(), $TypeError = TypeError, Result = function(stopped, result) {
-      this.stopped = stopped, this.result = result;
-    }, ResultPrototype = Result.prototype;
-    module2.exports = function(iterable, unboundFunction, options) {
-      var that = options && options.that, AS_ENTRIES = !!(options && options.AS_ENTRIES), IS_RECORD = !!(options && options.IS_RECORD), IS_ITERATOR = !!(options && options.IS_ITERATOR), INTERRUPTED = !!(options && options.INTERRUPTED), fn = bind(unboundFunction, that), iterator, iterFn, index, length, result, next, step, stop = function(condition) {
-        return iterator && iteratorClose(iterator, "normal", condition), new Result(!0, condition);
-      }, callFn = function(value) {
-        return AS_ENTRIES ? (anObject(value), INTERRUPTED ? fn(value[0], value[1], stop) : fn(value[0], value[1])) : INTERRUPTED ? fn(value, stop) : fn(value);
-      };
-      if (IS_RECORD)
-        iterator = iterable.iterator;
-      else if (IS_ITERATOR)
-        iterator = iterable;
-      else {
-        if (iterFn = getIteratorMethod(iterable), !iterFn)
-          throw $TypeError(tryToString(iterable) + " is not iterable");
-        if (isArrayIteratorMethod(iterFn)) {
-          for (index = 0, length = lengthOfArrayLike(iterable); length > index; index++)
-            if (result = callFn(iterable[index]), result && isPrototypeOf(ResultPrototype, result))
-              return result;
-          return new Result(!1);
-        }
-        iterator = getIterator(iterable, iterFn);
-      }
-      for (next = IS_RECORD ? iterable.next : iterator.next; !(step = call(next, iterator)).done; ) {
-        try {
-          result = callFn(step.value);
-        } catch (error) {
-          iteratorClose(iterator, "throw", error);
-        }
-        if (typeof result == "object" && result && isPrototypeOf(ResultPrototype, result))
-          return result;
-      }
-      return new Result(!1);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/create-property.js
-var require_create_property = __commonJS({
-  "../../node_modules/core-js/internals/create-property.js": function(exports2, module2) {
-    "use strict";
-    init_kolmafia_polyfill();
-    var toPropertyKey = require_to_property_key(), definePropertyModule = require_object_define_property(), createPropertyDescriptor = require_create_property_descriptor();
-    module2.exports = function(object, key, value) {
-      var propertyKey = toPropertyKey(key);
-      propertyKey in object ? definePropertyModule.f(object, propertyKey, createPropertyDescriptor(0, value)) : object[propertyKey] = value;
-    };
   }
 });
 
@@ -9108,7 +9108,7 @@ function compress(raw) {
 // src/greenbox.ts
 var import_kolmafia6 = require("kolmafia");
 
-// ../../node_modules/libram/dist/lib.js
+// ../../node_modules/libram/dist/property.js
 init_kolmafia_polyfill();
 
 // ../../node_modules/core-js/modules/es.object.entries.js
@@ -9122,12 +9122,6 @@ $({
     return $entries(O);
   }
 });
-
-// ../../node_modules/libram/dist/lib.js
-var import_flat = __toESM(require_flat5()), import_kolmafia3 = require("kolmafia");
-
-// ../../node_modules/libram/dist/property.js
-init_kolmafia_polyfill();
 
 // ../../node_modules/core-js/modules/es.object.from-entries.js
 init_kolmafia_polyfill();
@@ -9169,6 +9163,14 @@ var createPropertyGetter = function(transform) {
 }), getNumber = createPropertyGetter(function(value) {
   return Number(value);
 }), getBounty = createMafiaClassPropertyGetter(import_kolmafia.Bounty, import_kolmafia.toBounty), getClass = createMafiaClassPropertyGetter(import_kolmafia.Class, import_kolmafia.toClass), getCoinmaster = createMafiaClassPropertyGetter(import_kolmafia.Coinmaster, import_kolmafia.toCoinmaster), getEffect = createMafiaClassPropertyGetter(import_kolmafia.Effect, import_kolmafia.toEffect), getElement = createMafiaClassPropertyGetter(import_kolmafia.Element, import_kolmafia.toElement), getFamiliar = createMafiaClassPropertyGetter(import_kolmafia.Familiar, import_kolmafia.toFamiliar), getItem = createMafiaClassPropertyGetter(import_kolmafia.Item, import_kolmafia.toItem), getLocation = createMafiaClassPropertyGetter(import_kolmafia.Location, import_kolmafia.toLocation), getMonster = createMafiaClassPropertyGetter(import_kolmafia.Monster, import_kolmafia.toMonster), getPhylum = createMafiaClassPropertyGetter(import_kolmafia.Phylum, import_kolmafia.toPhylum), getServant = createMafiaClassPropertyGetter(import_kolmafia.Servant, import_kolmafia.toServant), getSkill = createMafiaClassPropertyGetter(import_kolmafia.Skill, import_kolmafia.toSkill), getSlot = createMafiaClassPropertyGetter(import_kolmafia.Slot, import_kolmafia.toSlot), getStat = createMafiaClassPropertyGetter(import_kolmafia.Stat, import_kolmafia.toStat), getThrall = createMafiaClassPropertyGetter(import_kolmafia.Thrall, import_kolmafia.toThrall);
+
+// src/iotms.ts
+init_kolmafia_polyfill();
+var import_kolmafia5 = require("kolmafia");
+
+// ../../node_modules/libram/dist/lib.js
+init_kolmafia_polyfill();
+var import_flat = __toESM(require_flat5()), import_kolmafia3 = require("kolmafia");
 
 // ../../node_modules/libram/dist/template-string.js
 init_kolmafia_polyfill();
@@ -9316,24 +9318,6 @@ function _arrayWithHoles4(arr) {
 function _taggedTemplateLiteral(strings, raw) {
   return raw || (raw = strings.slice(0)), Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
 }
-function have(thing) {
-  var quantity = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 1;
-  if (thing instanceof import_kolmafia3.Effect)
-    return (0, import_kolmafia3.haveEffect)(thing) >= quantity;
-  if (thing instanceof import_kolmafia3.Familiar)
-    return (0, import_kolmafia3.haveFamiliar)(thing);
-  if (thing instanceof import_kolmafia3.Item)
-    return (0, import_kolmafia3.availableAmount)(thing) >= quantity;
-  if (thing instanceof import_kolmafia3.Servant)
-    return (0, import_kolmafia3.haveServant)(thing);
-  if (thing instanceof import_kolmafia3.Skill)
-    return (0, import_kolmafia3.haveSkill)(thing);
-  if (thing instanceof import_kolmafia3.Thrall) {
-    var thrall = (0, import_kolmafia3.myThrall)();
-    return thrall.id === thing.id && thrall.level >= quantity;
-  }
-  return !1;
-}
 function haveInCampground(item) {
   return Object.keys((0, import_kolmafia3.getCampground)()).map(function(i) {
     return import_kolmafia3.Item.get(i);
@@ -9356,22 +9340,14 @@ function getFoldGroup(item) {
 var holidayWanderers = /* @__PURE__ */ new Map([["El Dia De Los Muertos Borrachos", $monsters(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["Novia Cad\xE1ver, Novio Cad\xE1ver, Padre Cad\xE1ver, Persona Inocente Cad\xE1ver"])))], ["Feast of Boris", $monsters(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["Candied Yam Golem, Malevolent Tofurkey, Possessed Can of Cranberry Sauce, Stuffing Golem"])))], ["Talk Like a Pirate Day", $monsters(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["ambulatory pirate, migratory pirate, peripatetic pirate"])))]]);
 var telescopeStats = /* @__PURE__ */ new Map([["standing around flexing their muscles and using grip exercisers", $stat(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["Muscle"])))], ["sitting around playing chess and solving complicated-looking logic puzzles", $stat(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["Mysticality"])))], ["all wearing sunglasses and dancing", $stat(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["Moxie"])))]]), telescopeElements = /* @__PURE__ */ new Map([["people, all of whom appear to be on fire", $element(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["hot"])))], ["people, surrounded by a cloud of eldritch mist", $element(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["spooky"])))], ["greasy-looking people furtively skulking around", $element(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["sleaze"])))], ["people, surrounded by garbage and clouds of flies", $element(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["stench"])))], ["people, clustered around a group of igloos", $element(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["cold"])))]]), hedgeTrap1 = /* @__PURE__ */ new Map([["smoldering bushes on the outskirts of a hedge maze", $element(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["hot"])))], ["creepy-looking black bushes on the outskirts of a hedge maze", $element(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["spooky"])))], ["purplish, greasy-looking hedges", $element(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["sleaze"])))], ["nasty-looking, dripping green bushes on the outskirts of a hedge maze", $element(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["stench"])))], ["frost-rimed bushes on the outskirts of a hedge maze", $element(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["cold"])))]]), hedgeTrap2 = /* @__PURE__ */ new Map([["smoke rising from deeper within the maze", $element(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["hot"])))], ["a miasma of eldritch vapors rising from deeper within the maze", $element(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["spooky"])))], ["a greasy purple cloud hanging over the center of the maze", $element(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["sleaze"])))], ["a cloud of green gas hovering over the maze", $element(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["stench"])))], ["wintry mists rising from deeper within the maze", $element(_templateObject33 || (_templateObject33 = _taggedTemplateLiteral(["cold"])))]]), hedgeTrap3 = /* @__PURE__ */ new Map([["with lava slowly oozing out of it", $element(_templateObject34 || (_templateObject34 = _taggedTemplateLiteral(["hot"])))], ["surrounded by creepy black mist", $element(_templateObject35 || (_templateObject35 = _taggedTemplateLiteral(["spooky"])))], ["that occasionally vomits out a greasy ball of hair", $element(_templateObject36 || (_templateObject36 = _taggedTemplateLiteral(["sleaze"])))], ["disgorging a really surprising amount of sewage", $element(_templateObject37 || (_templateObject37 = _taggedTemplateLiteral(["stench"])))], ["occasionally disgorging a bunch of ice cubes", $element(_templateObject38 || (_templateObject38 = _taggedTemplateLiteral(["cold"])))]]);
 
-// src/iotms.ts
-init_kolmafia_polyfill();
-var import_kolmafia5 = require("kolmafia");
-
 // src/utils.ts
 init_kolmafia_polyfill();
 var import_kolmafia4 = require("kolmafia");
 function haveItem(item) {
-  return have(item) || (0, import_kolmafia4.displayAmount)(item) > 0;
+  return (0, import_kolmafia4.availableAmount)(item) > 0 || (0, import_kolmafia4.displayAmount)(item) > 0;
 }
 
 // src/iotms.ts
-var _templateObject, _templateObject2, _templateObject3;
-function _taggedTemplateLiteral2(strings, raw) {
-  return raw || (raw = strings.slice(0)), Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
-}
 var arrayOf = function(items) {
   return Array.isArray(items) ? items : [items];
 };
@@ -9385,7 +9361,7 @@ function haveBound(iotm) {
     case "custom": {
       switch (iotm.id) {
         case 5790:
-          return haveItem(boxed) || haveItem($item(_templateObject || (_templateObject = _taggedTemplateLiteral2(["right bear arm"])))) && haveItem($item(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral2(["left bear arm"]))));
+          return haveItem(boxed) || haveItem(import_kolmafia5.Item.get("right bear arm")) && haveItem(import_kolmafia5.Item.get("left bear arm"));
         case 6413:
           return (0, import_kolmafia5.floristAvailable)();
       }
@@ -9414,14 +9390,14 @@ function haveBound(iotm) {
       var skill = import_kolmafia5.Skill.get(iotm.skill);
       return (0, import_kolmafia5.haveSkill)(skill);
     case "vip":
-      return haveItem($item(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral2(["Clan VIP Lounge Key"]))));
+      return haveItem(import_kolmafia5.Item.get("Clan VIP Lounge Key"));
   }
 }
 function getIotMStatus(iotm) {
   if (haveBound(iotm))
     return IotMStatus.BOUND;
   var boxed = import_kolmafia5.Item.get(iotm.id);
-  return have(boxed) ? IotMStatus.BOXED : IotMStatus.NONE;
+  return haveItem(boxed) ? IotMStatus.BOXED : IotMStatus.NONE;
 }
 
 // src/greenbox.ts
@@ -9486,7 +9462,7 @@ function getHundredPercentFamiliars() {
 function checkFamiliars() {
   var hundredPercentFamiliars = getHundredPercentFamiliars();
   function getStatus(familiar) {
-    return have(familiar) ? FamiliarStatus.TERRARIUM : haveItem(familiar.hatchling) ? FamiliarStatus.HATCHLING : FamiliarStatus.NONE;
+    return (0, import_kolmafia6.haveFamiliar)(familiar) ? FamiliarStatus.TERRARIUM : haveItem(familiar.hatchling) ? FamiliarStatus.HATCHLING : FamiliarStatus.NONE;
   }
   function getHundredPercent(familiar) {
     return hundredPercentFamiliars.has(familiar);
@@ -9506,7 +9482,7 @@ function checkTrophies() {
 }
 function haveOutfitPieces(outfit) {
   return (0, import_kolmafia6.outfitPieces)(outfit).every(function(piece) {
-    return have(piece);
+    return haveItem(piece);
   });
 }
 function checkOutfitTattoos(page) {
