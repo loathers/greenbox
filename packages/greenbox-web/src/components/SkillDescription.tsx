@@ -23,10 +23,9 @@ export default function SkillDescription({ skill }: Props) {
 
   useEffect(() => {
     async function load() {
-      const url = `https://kol.coldfront.net/thekolwiki/index.php/${wikiLink}`;
-      const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+      const response = await fetch(`https://l8sdqazjji.execute-api.us-east-1.amazonaws.com/?action=parse&page=${wikiLink}&prop=text&format=json`);
       const result = await response.json();
-      const match = /<table width="100%"><tr><td>(.*?)<\/td>/s.exec(result.contents);
+      const match = /<table width="100%"><tr><td>(.*?)<\/td>/s.exec(result.parse.text["*"]);
       if (match == null) {
         setContents("Cannot load wiki page (this is an experimental feature!)");
       } else {

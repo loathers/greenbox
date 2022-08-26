@@ -39,7 +39,7 @@ function styleFromStatus(state: StateType) {
   }
 }
 
-const otherClashes = ["Some Assembly Required"];
+const otherClashes = ["Some Assembly Required", "Batter Up!"];
 
 export function guessWikiLink(
   link: string | undefined,
