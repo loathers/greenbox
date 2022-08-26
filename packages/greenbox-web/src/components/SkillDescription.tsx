@@ -29,7 +29,7 @@ export default function SkillDescription({ skill }: Props) {
       if (match == null) {
         setContents("Cannot load wiki page (this is an experimental feature!)");
       } else {
-        setContents(match[0] + "</tr></table>");
+        setContents(match[0].replaceAll("href=\"/", "href=\"https://kol.coldfront.net/") + "</tr></table>");
       }
     }
 
