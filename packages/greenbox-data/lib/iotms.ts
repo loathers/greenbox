@@ -1,6 +1,6 @@
 import iotms, { IotMDef } from "../data/iotms";
 
-export enum IotMStatus {
+export const enum IotMStatus {
   NONE = 0,
   BOXED = 1,
   BOUND = 2,

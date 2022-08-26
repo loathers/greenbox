@@ -1,4 +1,4 @@
-enum ItemId {
+const enum ItemId {
   StainlessSC = 1224,
   StainlessTT = 1225,
   StainlessPM = 1226,
@@ -21,7 +21,7 @@ enum ItemId {
   TheBigBookOfEverySkill = 10917,
 }
 
-enum Thwaitgold {
+const enum Thwaitgold {
   Bee = 5141,
   Grasshopper = 5222,
   Butterfly = 5392,

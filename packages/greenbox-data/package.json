@@ -28,7 +28,11 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "greenbox-prettier-config": "^0.0.0",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "eslint": "^8.21.0",
+    "eslint-plugin-prettier": "^4.2.1"
   },
   "prettier": "greenbox-prettier-config",
   "dependencies": {

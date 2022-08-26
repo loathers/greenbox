@@ -2,7 +2,7 @@ import he from "he";
 
 import { loadMafiaData } from "./utils";
 
-export enum SkillStatus {
+export const enum SkillStatus {
   NONE = 0,
   SOFTCORE = 1,
   HARDCORE = 2,

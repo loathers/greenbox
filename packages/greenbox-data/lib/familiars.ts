@@ -2,7 +2,7 @@ import he from "he";
 
 import { loadMafiaData } from "./utils";
 
-export enum FamiliarStatus {
+export const enum FamiliarStatus {
   NONE = 0,
   HATCHLING = 1,
   TERRARIUM = 2,

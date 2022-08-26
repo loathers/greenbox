@@ -36,7 +36,8 @@ import {
   toInt,
   visitUrl,
 } from "kolmafia";
-import { get, have, property } from "libram";
+import { have } from "libram";
+import { getNumber } from "libram/dist/property";
 
 import { getIotMStatus } from "./iotms";
 import { haveItem } from "./utils";
@@ -59,7 +60,7 @@ function checkSkills() {
   const permedSkills = getPermedSkills();
 
   function getStatus(skill: Skill) {
-    if (toInt(skill) == 7254 && get(`skillLevel7254`) > 0) {
+    if (toInt(skill) == 7254 && getNumber(`skillLevel7254`) > 0) {
       return SkillStatus.HARDCORE;
     }
 
@@ -74,7 +75,7 @@ function checkSkills() {
   }
 
   function getLevel(skill: Skill) {
-    return property.getNumber(`skillLevel${toInt(skill)}`);
+    return getNumber(`skillLevel${toInt(skill)}`);
   }
 
   return Skill.all()
@@ -155,7 +156,7 @@ function getPathLevel(path: PathDef) {
   if (path.points === null) return 0;
   return Math.min(
     (Array.isArray(path.points) ? path.points : [path.points])
-      .map((k) => property.getNumber(k))
+      .map((k) => getNumber(k))
       .reduce((sum, v) => sum + v, 0),
     path.maxPoints
   );

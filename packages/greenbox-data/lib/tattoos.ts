@@ -1,6 +1,6 @@
 import tattoos from "../data/tattoos";
 
-export enum TattooStatus {
+export const enum TattooStatus {
   NONE = 0,
   HAVE_OUTFIT = 1,
   HAVE = 2,

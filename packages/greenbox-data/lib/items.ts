@@ -8,7 +8,7 @@ export type ItemDef = {
   image: string;
 };
 
-export enum ItemStatus {
+export const enum ItemStatus {
   NONE = 0,
   HAVE = 1,
 }
