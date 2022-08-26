@@ -51,1887 +51,6 @@ var init_kolmafia_polyfill = __esm({
   }
 });
 
-// ../../node_modules/core-js/internals/global.js
-var require_global = __commonJS({
-  "../../node_modules/core-js/internals/global.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var check = function check2(it) {
-      return it && it.Math == Math && it;
-    };
-    module2.exports = check(typeof globalThis == "object" && globalThis) || check(typeof window == "object" && window) || check(typeof self == "object" && self) || check(typeof global == "object" && global) || function() {
-      return this;
-    }() || Function("return this")();
-  }
-});
-
-// ../../node_modules/core-js/internals/fails.js
-var require_fails = __commonJS({
-  "../../node_modules/core-js/internals/fails.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    module2.exports = function(exec) {
-      try {
-        return !!exec();
-      } catch (error) {
-        return true;
-      }
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/descriptors.js
-var require_descriptors = __commonJS({
-  "../../node_modules/core-js/internals/descriptors.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var fails2 = require_fails();
-    module2.exports = !fails2(function() {
-      return Object.defineProperty({}, 1, {
-        get: function get() {
-          return 7;
-        }
-      })[1] != 7;
-    });
-  }
-});
-
-// ../../node_modules/core-js/internals/function-bind-native.js
-var require_function_bind_native = __commonJS({
-  "../../node_modules/core-js/internals/function-bind-native.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var fails2 = require_fails();
-    module2.exports = !fails2(function() {
-      var test = function() {
-      }.bind();
-      return typeof test != "function" || test.hasOwnProperty("prototype");
-    });
-  }
-});
-
-// ../../node_modules/core-js/internals/function-call.js
-var require_function_call = __commonJS({
-  "../../node_modules/core-js/internals/function-call.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var NATIVE_BIND = require_function_bind_native();
-    var call2 = Function.prototype.call;
-    module2.exports = NATIVE_BIND ? call2.bind(call2) : function() {
-      return call2.apply(call2, arguments);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/object-property-is-enumerable.js
-var require_object_property_is_enumerable = __commonJS({
-  "../../node_modules/core-js/internals/object-property-is-enumerable.js": function(exports2) {
-    "use strict";
-    init_kolmafia_polyfill();
-    var $propertyIsEnumerable = {}.propertyIsEnumerable;
-    var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-    var NASHORN_BUG = getOwnPropertyDescriptor && !$propertyIsEnumerable.call({
-      1: 2
-    }, 1);
-    exports2.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
-      var descriptor = getOwnPropertyDescriptor(this, V);
-      return !!descriptor && descriptor.enumerable;
-    } : $propertyIsEnumerable;
-  }
-});
-
-// ../../node_modules/core-js/internals/create-property-descriptor.js
-var require_create_property_descriptor = __commonJS({
-  "../../node_modules/core-js/internals/create-property-descriptor.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    module2.exports = function(bitmap, value) {
-      return {
-        enumerable: !(bitmap & 1),
-        configurable: !(bitmap & 2),
-        writable: !(bitmap & 4),
-        value: value
-      };
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/function-uncurry-this.js
-var require_function_uncurry_this = __commonJS({
-  "../../node_modules/core-js/internals/function-uncurry-this.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var NATIVE_BIND = require_function_bind_native();
-    var FunctionPrototype = Function.prototype;
-    var bind = FunctionPrototype.bind;
-    var call2 = FunctionPrototype.call;
-    var uncurryThis2 = NATIVE_BIND && bind.bind(call2, call2);
-    module2.exports = NATIVE_BIND ? function(fn) {
-      return fn && uncurryThis2(fn);
-    } : function(fn) {
-      return fn && function() {
-        return call2.apply(fn, arguments);
-      };
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/classof-raw.js
-var require_classof_raw = __commonJS({
-  "../../node_modules/core-js/internals/classof-raw.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var uncurryThis2 = require_function_uncurry_this();
-    var toString2 = uncurryThis2({}.toString);
-    var stringSlice = uncurryThis2("".slice);
-    module2.exports = function(it) {
-      return stringSlice(toString2(it), 8, -1);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/indexed-object.js
-var require_indexed_object = __commonJS({
-  "../../node_modules/core-js/internals/indexed-object.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var uncurryThis2 = require_function_uncurry_this();
-    var fails2 = require_fails();
-    var classof2 = require_classof_raw();
-    var $Object = Object;
-    var split = uncurryThis2("".split);
-    module2.exports = fails2(function() {
-      return !$Object("z").propertyIsEnumerable(0);
-    }) ? function(it) {
-      return classof2(it) == "String" ? split(it, "") : $Object(it);
-    } : $Object;
-  }
-});
-
-// ../../node_modules/core-js/internals/require-object-coercible.js
-var require_require_object_coercible = __commonJS({
-  "../../node_modules/core-js/internals/require-object-coercible.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var $TypeError2 = TypeError;
-    module2.exports = function(it) {
-      if (it == void 0)
-        throw $TypeError2("Can't call method on " + it);
-      return it;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/to-indexed-object.js
-var require_to_indexed_object = __commonJS({
-  "../../node_modules/core-js/internals/to-indexed-object.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var IndexedObject = require_indexed_object();
-    var requireObjectCoercible2 = require_require_object_coercible();
-    module2.exports = function(it) {
-      return IndexedObject(requireObjectCoercible2(it));
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/is-callable.js
-var require_is_callable = __commonJS({
-  "../../node_modules/core-js/internals/is-callable.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    module2.exports = function(argument) {
-      return typeof argument == "function";
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/is-object.js
-var require_is_object = __commonJS({
-  "../../node_modules/core-js/internals/is-object.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var isCallable = require_is_callable();
-    module2.exports = function(it) {
-      return typeof it == "object" ? it !== null : isCallable(it);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/get-built-in.js
-var require_get_built_in = __commonJS({
-  "../../node_modules/core-js/internals/get-built-in.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var global2 = require_global();
-    var isCallable = require_is_callable();
-    var aFunction = function aFunction2(argument) {
-      return isCallable(argument) ? argument : void 0;
-    };
-    module2.exports = function(namespace, method) {
-      return arguments.length < 2 ? aFunction(global2[namespace]) : global2[namespace] && global2[namespace][method];
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/object-is-prototype-of.js
-var require_object_is_prototype_of = __commonJS({
-  "../../node_modules/core-js/internals/object-is-prototype-of.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var uncurryThis2 = require_function_uncurry_this();
-    module2.exports = uncurryThis2({}.isPrototypeOf);
-  }
-});
-
-// ../../node_modules/core-js/internals/engine-user-agent.js
-var require_engine_user_agent = __commonJS({
-  "../../node_modules/core-js/internals/engine-user-agent.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var getBuiltIn = require_get_built_in();
-    module2.exports = getBuiltIn("navigator", "userAgent") || "";
-  }
-});
-
-// ../../node_modules/core-js/internals/engine-v8-version.js
-var require_engine_v8_version = __commonJS({
-  "../../node_modules/core-js/internals/engine-v8-version.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var global2 = require_global();
-    var userAgent = require_engine_user_agent();
-    var process = global2.process;
-    var Deno = global2.Deno;
-    var versions = process && process.versions || Deno && Deno.version;
-    var v8 = versions && versions.v8;
-    var match;
-    var version;
-    if (v8) {
-      match = v8.split(".");
-      version = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);
-    }
-    if (!version && userAgent) {
-      match = userAgent.match(/Edge\/(\d+)/);
-      if (!match || match[1] >= 74) {
-        match = userAgent.match(/Chrome\/(\d+)/);
-        if (match)
-          version = +match[1];
-      }
-    }
-    module2.exports = version;
-  }
-});
-
-// ../../node_modules/core-js/internals/native-symbol.js
-var require_native_symbol = __commonJS({
-  "../../node_modules/core-js/internals/native-symbol.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var V8_VERSION = require_engine_v8_version();
-    var fails2 = require_fails();
-    module2.exports = !!Object.getOwnPropertySymbols && !fails2(function() {
-      var symbol = Symbol();
-      return !String(symbol) || !(Object(symbol) instanceof Symbol) || !Symbol.sham && V8_VERSION && V8_VERSION < 41;
-    });
-  }
-});
-
-// ../../node_modules/core-js/internals/use-symbol-as-uid.js
-var require_use_symbol_as_uid = __commonJS({
-  "../../node_modules/core-js/internals/use-symbol-as-uid.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var NATIVE_SYMBOL = require_native_symbol();
-    module2.exports = NATIVE_SYMBOL && !Symbol.sham && typeof Symbol.iterator == "symbol";
-  }
-});
-
-// ../../node_modules/core-js/internals/is-symbol.js
-var require_is_symbol = __commonJS({
-  "../../node_modules/core-js/internals/is-symbol.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var getBuiltIn = require_get_built_in();
-    var isCallable = require_is_callable();
-    var isPrototypeOf = require_object_is_prototype_of();
-    var USE_SYMBOL_AS_UID = require_use_symbol_as_uid();
-    var $Object = Object;
-    module2.exports = USE_SYMBOL_AS_UID ? function(it) {
-      return typeof it == "symbol";
-    } : function(it) {
-      var $Symbol = getBuiltIn("Symbol");
-      return isCallable($Symbol) && isPrototypeOf($Symbol.prototype, $Object(it));
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/try-to-string.js
-var require_try_to_string = __commonJS({
-  "../../node_modules/core-js/internals/try-to-string.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var $String = String;
-    module2.exports = function(argument) {
-      try {
-        return $String(argument);
-      } catch (error) {
-        return "Object";
-      }
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/a-callable.js
-var require_a_callable = __commonJS({
-  "../../node_modules/core-js/internals/a-callable.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var isCallable = require_is_callable();
-    var tryToString = require_try_to_string();
-    var $TypeError2 = TypeError;
-    module2.exports = function(argument) {
-      if (isCallable(argument))
-        return argument;
-      throw $TypeError2(tryToString(argument) + " is not a function");
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/get-method.js
-var require_get_method = __commonJS({
-  "../../node_modules/core-js/internals/get-method.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var aCallable = require_a_callable();
-    module2.exports = function(V, P) {
-      var func = V[P];
-      return func == null ? void 0 : aCallable(func);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/ordinary-to-primitive.js
-var require_ordinary_to_primitive = __commonJS({
-  "../../node_modules/core-js/internals/ordinary-to-primitive.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var call2 = require_function_call();
-    var isCallable = require_is_callable();
-    var isObject = require_is_object();
-    var $TypeError2 = TypeError;
-    module2.exports = function(input, pref) {
-      var fn, val;
-      if (pref === "string" && isCallable(fn = input.toString) && !isObject(val = call2(fn, input)))
-        return val;
-      if (isCallable(fn = input.valueOf) && !isObject(val = call2(fn, input)))
-        return val;
-      if (pref !== "string" && isCallable(fn = input.toString) && !isObject(val = call2(fn, input)))
-        return val;
-      throw $TypeError2("Can't convert object to primitive value");
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/is-pure.js
-var require_is_pure = __commonJS({
-  "../../node_modules/core-js/internals/is-pure.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    module2.exports = false;
-  }
-});
-
-// ../../node_modules/core-js/internals/define-global-property.js
-var require_define_global_property = __commonJS({
-  "../../node_modules/core-js/internals/define-global-property.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var global2 = require_global();
-    var defineProperty = Object.defineProperty;
-    module2.exports = function(key, value) {
-      try {
-        defineProperty(global2, key, {
-          value: value,
-          configurable: true,
-          writable: true
-        });
-      } catch (error) {
-        global2[key] = value;
-      }
-      return value;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/shared-store.js
-var require_shared_store = __commonJS({
-  "../../node_modules/core-js/internals/shared-store.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var global2 = require_global();
-    var defineGlobalProperty = require_define_global_property();
-    var SHARED = "__core-js_shared__";
-    var store = global2[SHARED] || defineGlobalProperty(SHARED, {});
-    module2.exports = store;
-  }
-});
-
-// ../../node_modules/core-js/internals/shared.js
-var require_shared = __commonJS({
-  "../../node_modules/core-js/internals/shared.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var IS_PURE2 = require_is_pure();
-    var store = require_shared_store();
-    (module2.exports = function(key, value) {
-      return store[key] || (store[key] = value !== void 0 ? value : {});
-    })("versions", []).push({
-      version: "3.24.1",
-      mode: IS_PURE2 ? "pure" : "global",
-      copyright: "\xA9 2014-2022 Denis Pushkarev (zloirock.ru)",
-      license: "https://github.com/zloirock/core-js/blob/v3.24.1/LICENSE",
-      source: "https://github.com/zloirock/core-js"
-    });
-  }
-});
-
-// ../../node_modules/core-js/internals/to-object.js
-var require_to_object = __commonJS({
-  "../../node_modules/core-js/internals/to-object.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var requireObjectCoercible2 = require_require_object_coercible();
-    var $Object = Object;
-    module2.exports = function(argument) {
-      return $Object(requireObjectCoercible2(argument));
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/has-own-property.js
-var require_has_own_property = __commonJS({
-  "../../node_modules/core-js/internals/has-own-property.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var uncurryThis2 = require_function_uncurry_this();
-    var toObject = require_to_object();
-    var hasOwnProperty = uncurryThis2({}.hasOwnProperty);
-    module2.exports = Object.hasOwn || function hasOwn(it, key) {
-      return hasOwnProperty(toObject(it), key);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/uid.js
-var require_uid = __commonJS({
-  "../../node_modules/core-js/internals/uid.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var uncurryThis2 = require_function_uncurry_this();
-    var id = 0;
-    var postfix = Math.random();
-    var toString2 = uncurryThis2(1 .toString);
-    module2.exports = function(key) {
-      return "Symbol(" + (key === void 0 ? "" : key) + ")_" + toString2(++id + postfix, 36);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/well-known-symbol.js
-var require_well_known_symbol = __commonJS({
-  "../../node_modules/core-js/internals/well-known-symbol.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var global2 = require_global();
-    var shared = require_shared();
-    var hasOwn = require_has_own_property();
-    var uid = require_uid();
-    var NATIVE_SYMBOL = require_native_symbol();
-    var USE_SYMBOL_AS_UID = require_use_symbol_as_uid();
-    var WellKnownSymbolsStore = shared("wks");
-    var Symbol2 = global2.Symbol;
-    var symbolFor = Symbol2 && Symbol2["for"];
-    var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol2 : Symbol2 && Symbol2.withoutSetter || uid;
-    module2.exports = function(name) {
-      if (!hasOwn(WellKnownSymbolsStore, name) || !(NATIVE_SYMBOL || typeof WellKnownSymbolsStore[name] == "string")) {
-        var description = "Symbol." + name;
-        if (NATIVE_SYMBOL && hasOwn(Symbol2, name)) {
-          WellKnownSymbolsStore[name] = Symbol2[name];
-        } else if (USE_SYMBOL_AS_UID && symbolFor) {
-          WellKnownSymbolsStore[name] = symbolFor(description);
-        } else {
-          WellKnownSymbolsStore[name] = createWellKnownSymbol(description);
-        }
-      }
-      return WellKnownSymbolsStore[name];
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/to-primitive.js
-var require_to_primitive = __commonJS({
-  "../../node_modules/core-js/internals/to-primitive.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var call2 = require_function_call();
-    var isObject = require_is_object();
-    var isSymbol = require_is_symbol();
-    var getMethod2 = require_get_method();
-    var ordinaryToPrimitive = require_ordinary_to_primitive();
-    var wellKnownSymbol2 = require_well_known_symbol();
-    var $TypeError2 = TypeError;
-    var TO_PRIMITIVE = wellKnownSymbol2("toPrimitive");
-    module2.exports = function(input, pref) {
-      if (!isObject(input) || isSymbol(input))
-        return input;
-      var exoticToPrim = getMethod2(input, TO_PRIMITIVE);
-      var result;
-      if (exoticToPrim) {
-        if (pref === void 0)
-          pref = "default";
-        result = call2(exoticToPrim, input, pref);
-        if (!isObject(result) || isSymbol(result))
-          return result;
-        throw $TypeError2("Can't convert object to primitive value");
-      }
-      if (pref === void 0)
-        pref = "number";
-      return ordinaryToPrimitive(input, pref);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/to-property-key.js
-var require_to_property_key = __commonJS({
-  "../../node_modules/core-js/internals/to-property-key.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var toPrimitive = require_to_primitive();
-    var isSymbol = require_is_symbol();
-    module2.exports = function(argument) {
-      var key = toPrimitive(argument, "string");
-      return isSymbol(key) ? key : key + "";
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/document-create-element.js
-var require_document_create_element = __commonJS({
-  "../../node_modules/core-js/internals/document-create-element.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var global2 = require_global();
-    var isObject = require_is_object();
-    var document2 = global2.document;
-    var EXISTS = isObject(document2) && isObject(document2.createElement);
-    module2.exports = function(it) {
-      return EXISTS ? document2.createElement(it) : {};
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/ie8-dom-define.js
-var require_ie8_dom_define = __commonJS({
-  "../../node_modules/core-js/internals/ie8-dom-define.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var DESCRIPTORS = require_descriptors();
-    var fails2 = require_fails();
-    var createElement = require_document_create_element();
-    module2.exports = !DESCRIPTORS && !fails2(function() {
-      return Object.defineProperty(createElement("div"), "a", {
-        get: function get() {
-          return 7;
-        }
-      }).a != 7;
-    });
-  }
-});
-
-// ../../node_modules/core-js/internals/object-get-own-property-descriptor.js
-var require_object_get_own_property_descriptor = __commonJS({
-  "../../node_modules/core-js/internals/object-get-own-property-descriptor.js": function(exports2) {
-    init_kolmafia_polyfill();
-    var DESCRIPTORS = require_descriptors();
-    var call2 = require_function_call();
-    var propertyIsEnumerableModule = require_object_property_is_enumerable();
-    var createPropertyDescriptor = require_create_property_descriptor();
-    var toIndexedObject = require_to_indexed_object();
-    var toPropertyKey = require_to_property_key();
-    var hasOwn = require_has_own_property();
-    var IE8_DOM_DEFINE = require_ie8_dom_define();
-    var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-    exports2.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
-      O = toIndexedObject(O);
-      P = toPropertyKey(P);
-      if (IE8_DOM_DEFINE)
-        try {
-          return $getOwnPropertyDescriptor(O, P);
-        } catch (error) {
-        }
-      if (hasOwn(O, P))
-        return createPropertyDescriptor(!call2(propertyIsEnumerableModule.f, O, P), O[P]);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/v8-prototype-define-bug.js
-var require_v8_prototype_define_bug = __commonJS({
-  "../../node_modules/core-js/internals/v8-prototype-define-bug.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var DESCRIPTORS = require_descriptors();
-    var fails2 = require_fails();
-    module2.exports = DESCRIPTORS && fails2(function() {
-      return Object.defineProperty(function() {
-      }, "prototype", {
-        value: 42,
-        writable: false
-      }).prototype != 42;
-    });
-  }
-});
-
-// ../../node_modules/core-js/internals/an-object.js
-var require_an_object = __commonJS({
-  "../../node_modules/core-js/internals/an-object.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var isObject = require_is_object();
-    var $String = String;
-    var $TypeError2 = TypeError;
-    module2.exports = function(argument) {
-      if (isObject(argument))
-        return argument;
-      throw $TypeError2($String(argument) + " is not an object");
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/object-define-property.js
-var require_object_define_property = __commonJS({
-  "../../node_modules/core-js/internals/object-define-property.js": function(exports2) {
-    init_kolmafia_polyfill();
-    var DESCRIPTORS = require_descriptors();
-    var IE8_DOM_DEFINE = require_ie8_dom_define();
-    var V8_PROTOTYPE_DEFINE_BUG = require_v8_prototype_define_bug();
-    var anObject2 = require_an_object();
-    var toPropertyKey = require_to_property_key();
-    var $TypeError2 = TypeError;
-    var $defineProperty = Object.defineProperty;
-    var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-    var ENUMERABLE = "enumerable";
-    var CONFIGURABLE = "configurable";
-    var WRITABLE = "writable";
-    exports2.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P, Attributes) {
-      anObject2(O);
-      P = toPropertyKey(P);
-      anObject2(Attributes);
-      if (typeof O === "function" && P === "prototype" && "value" in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {
-        var current = $getOwnPropertyDescriptor(O, P);
-        if (current && current[WRITABLE]) {
-          O[P] = Attributes.value;
-          Attributes = {
-            configurable: CONFIGURABLE in Attributes ? Attributes[CONFIGURABLE] : current[CONFIGURABLE],
-            enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],
-            writable: false
-          };
-        }
-      }
-      return $defineProperty(O, P, Attributes);
-    } : $defineProperty : function defineProperty(O, P, Attributes) {
-      anObject2(O);
-      P = toPropertyKey(P);
-      anObject2(Attributes);
-      if (IE8_DOM_DEFINE)
-        try {
-          return $defineProperty(O, P, Attributes);
-        } catch (error) {
-        }
-      if ("get" in Attributes || "set" in Attributes)
-        throw $TypeError2("Accessors not supported");
-      if ("value" in Attributes)
-        O[P] = Attributes.value;
-      return O;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/create-non-enumerable-property.js
-var require_create_non_enumerable_property = __commonJS({
-  "../../node_modules/core-js/internals/create-non-enumerable-property.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var DESCRIPTORS = require_descriptors();
-    var definePropertyModule = require_object_define_property();
-    var createPropertyDescriptor = require_create_property_descriptor();
-    module2.exports = DESCRIPTORS ? function(object, key, value) {
-      return definePropertyModule.f(object, key, createPropertyDescriptor(1, value));
-    } : function(object, key, value) {
-      object[key] = value;
-      return object;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/function-name.js
-var require_function_name = __commonJS({
-  "../../node_modules/core-js/internals/function-name.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var DESCRIPTORS = require_descriptors();
-    var hasOwn = require_has_own_property();
-    var FunctionPrototype = Function.prototype;
-    var getDescriptor = DESCRIPTORS && Object.getOwnPropertyDescriptor;
-    var EXISTS = hasOwn(FunctionPrototype, "name");
-    var PROPER = EXISTS && function something() {
-    }.name === "something";
-    var CONFIGURABLE = EXISTS && (!DESCRIPTORS || DESCRIPTORS && getDescriptor(FunctionPrototype, "name").configurable);
-    module2.exports = {
-      EXISTS: EXISTS,
-      PROPER: PROPER,
-      CONFIGURABLE: CONFIGURABLE
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/inspect-source.js
-var require_inspect_source = __commonJS({
-  "../../node_modules/core-js/internals/inspect-source.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var uncurryThis2 = require_function_uncurry_this();
-    var isCallable = require_is_callable();
-    var store = require_shared_store();
-    var functionToString = uncurryThis2(Function.toString);
-    if (!isCallable(store.inspectSource)) {
-      store.inspectSource = function(it) {
-        return functionToString(it);
-      };
-    }
-    module2.exports = store.inspectSource;
-  }
-});
-
-// ../../node_modules/core-js/internals/native-weak-map.js
-var require_native_weak_map = __commonJS({
-  "../../node_modules/core-js/internals/native-weak-map.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var global2 = require_global();
-    var isCallable = require_is_callable();
-    var inspectSource = require_inspect_source();
-    var WeakMap = global2.WeakMap;
-    module2.exports = isCallable(WeakMap) && /native code/.test(inspectSource(WeakMap));
-  }
-});
-
-// ../../node_modules/core-js/internals/shared-key.js
-var require_shared_key = __commonJS({
-  "../../node_modules/core-js/internals/shared-key.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var shared = require_shared();
-    var uid = require_uid();
-    var keys = shared("keys");
-    module2.exports = function(key) {
-      return keys[key] || (keys[key] = uid(key));
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/hidden-keys.js
-var require_hidden_keys = __commonJS({
-  "../../node_modules/core-js/internals/hidden-keys.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    module2.exports = {};
-  }
-});
-
-// ../../node_modules/core-js/internals/internal-state.js
-var require_internal_state = __commonJS({
-  "../../node_modules/core-js/internals/internal-state.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var NATIVE_WEAK_MAP = require_native_weak_map();
-    var global2 = require_global();
-    var uncurryThis2 = require_function_uncurry_this();
-    var isObject = require_is_object();
-    var createNonEnumerableProperty = require_create_non_enumerable_property();
-    var hasOwn = require_has_own_property();
-    var shared = require_shared_store();
-    var sharedKey = require_shared_key();
-    var hiddenKeys = require_hidden_keys();
-    var OBJECT_ALREADY_INITIALIZED = "Object already initialized";
-    var TypeError2 = global2.TypeError;
-    var WeakMap = global2.WeakMap;
-    var set;
-    var get;
-    var has;
-    var enforce = function enforce2(it) {
-      return has(it) ? get(it) : set(it, {});
-    };
-    var getterFor = function getterFor2(TYPE) {
-      return function(it) {
-        var state;
-        if (!isObject(it) || (state = get(it)).type !== TYPE) {
-          throw TypeError2("Incompatible receiver, " + TYPE + " required");
-        }
-        return state;
-      };
-    };
-    if (NATIVE_WEAK_MAP || shared.state) {
-      store = shared.state || (shared.state = new WeakMap());
-      wmget = uncurryThis2(store.get);
-      wmhas = uncurryThis2(store.has);
-      wmset = uncurryThis2(store.set);
-      set = function set2(it, metadata) {
-        if (wmhas(store, it))
-          throw new TypeError2(OBJECT_ALREADY_INITIALIZED);
-        metadata.facade = it;
-        wmset(store, it, metadata);
-        return metadata;
-      };
-      get = function get2(it) {
-        return wmget(store, it) || {};
-      };
-      has = function has2(it) {
-        return wmhas(store, it);
-      };
-    } else {
-      STATE = sharedKey("state");
-      hiddenKeys[STATE] = true;
-      set = function set2(it, metadata) {
-        if (hasOwn(it, STATE))
-          throw new TypeError2(OBJECT_ALREADY_INITIALIZED);
-        metadata.facade = it;
-        createNonEnumerableProperty(it, STATE, metadata);
-        return metadata;
-      };
-      get = function get2(it) {
-        return hasOwn(it, STATE) ? it[STATE] : {};
-      };
-      has = function has2(it) {
-        return hasOwn(it, STATE);
-      };
-    }
-    var store;
-    var wmget;
-    var wmhas;
-    var wmset;
-    var STATE;
-    module2.exports = {
-      set: set,
-      get: get,
-      has: has,
-      enforce: enforce,
-      getterFor: getterFor
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/make-built-in.js
-var require_make_built_in = __commonJS({
-  "../../node_modules/core-js/internals/make-built-in.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var fails2 = require_fails();
-    var isCallable = require_is_callable();
-    var hasOwn = require_has_own_property();
-    var DESCRIPTORS = require_descriptors();
-    var CONFIGURABLE_FUNCTION_NAME = require_function_name().CONFIGURABLE;
-    var inspectSource = require_inspect_source();
-    var InternalStateModule2 = require_internal_state();
-    var enforceInternalState = InternalStateModule2.enforce;
-    var getInternalState2 = InternalStateModule2.get;
-    var defineProperty = Object.defineProperty;
-    var CONFIGURABLE_LENGTH = DESCRIPTORS && !fails2(function() {
-      return defineProperty(function() {
-      }, "length", {
-        value: 8
-      }).length !== 8;
-    });
-    var TEMPLATE = String(String).split("String");
-    var makeBuiltIn = module2.exports = function(value, name, options) {
-      if (String(name).slice(0, 7) === "Symbol(") {
-        name = "[" + String(name).replace(/^Symbol\(([^)]*)\)/, "$1") + "]";
-      }
-      if (options && options.getter)
-        name = "get " + name;
-      if (options && options.setter)
-        name = "set " + name;
-      if (!hasOwn(value, "name") || CONFIGURABLE_FUNCTION_NAME && value.name !== name) {
-        if (DESCRIPTORS)
-          defineProperty(value, "name", {
-            value: name,
-            configurable: true
-          });
-        else
-          value.name = name;
-      }
-      if (CONFIGURABLE_LENGTH && options && hasOwn(options, "arity") && value.length !== options.arity) {
-        defineProperty(value, "length", {
-          value: options.arity
-        });
-      }
-      try {
-        if (options && hasOwn(options, "constructor") && options.constructor) {
-          if (DESCRIPTORS)
-            defineProperty(value, "prototype", {
-              writable: false
-            });
-        } else if (value.prototype)
-          value.prototype = void 0;
-      } catch (error) {
-      }
-      var state = enforceInternalState(value);
-      if (!hasOwn(state, "source")) {
-        state.source = TEMPLATE.join(typeof name == "string" ? name : "");
-      }
-      return value;
-    };
-    Function.prototype.toString = makeBuiltIn(function toString2() {
-      return isCallable(this) && getInternalState2(this).source || inspectSource(this);
-    }, "toString");
-  }
-});
-
-// ../../node_modules/core-js/internals/define-built-in.js
-var require_define_built_in = __commonJS({
-  "../../node_modules/core-js/internals/define-built-in.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var isCallable = require_is_callable();
-    var definePropertyModule = require_object_define_property();
-    var makeBuiltIn = require_make_built_in();
-    var defineGlobalProperty = require_define_global_property();
-    module2.exports = function(O, key, value, options) {
-      if (!options)
-        options = {};
-      var simple = options.enumerable;
-      var name = options.name !== void 0 ? options.name : key;
-      if (isCallable(value))
-        makeBuiltIn(value, name, options);
-      if (options.global) {
-        if (simple)
-          O[key] = value;
-        else
-          defineGlobalProperty(key, value);
-      } else {
-        try {
-          if (!options.unsafe)
-            delete O[key];
-          else if (O[key])
-            simple = true;
-        } catch (error) {
-        }
-        if (simple)
-          O[key] = value;
-        else
-          definePropertyModule.f(O, key, {
-            value: value,
-            enumerable: false,
-            configurable: !options.nonConfigurable,
-            writable: !options.nonWritable
-          });
-      }
-      return O;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/math-trunc.js
-var require_math_trunc = __commonJS({
-  "../../node_modules/core-js/internals/math-trunc.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var ceil = Math.ceil;
-    var floor = Math.floor;
-    module2.exports = Math.trunc || function trunc(x) {
-      var n = +x;
-      return (n > 0 ? floor : ceil)(n);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/to-integer-or-infinity.js
-var require_to_integer_or_infinity = __commonJS({
-  "../../node_modules/core-js/internals/to-integer-or-infinity.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var trunc = require_math_trunc();
-    module2.exports = function(argument) {
-      var number = +argument;
-      return number !== number || number === 0 ? 0 : trunc(number);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/to-absolute-index.js
-var require_to_absolute_index = __commonJS({
-  "../../node_modules/core-js/internals/to-absolute-index.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var toIntegerOrInfinity = require_to_integer_or_infinity();
-    var max = Math.max;
-    var min = Math.min;
-    module2.exports = function(index, length) {
-      var integer = toIntegerOrInfinity(index);
-      return integer < 0 ? max(integer + length, 0) : min(integer, length);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/to-length.js
-var require_to_length = __commonJS({
-  "../../node_modules/core-js/internals/to-length.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var toIntegerOrInfinity = require_to_integer_or_infinity();
-    var min = Math.min;
-    module2.exports = function(argument) {
-      return argument > 0 ? min(toIntegerOrInfinity(argument), 9007199254740991) : 0;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/length-of-array-like.js
-var require_length_of_array_like = __commonJS({
-  "../../node_modules/core-js/internals/length-of-array-like.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var toLength2 = require_to_length();
-    module2.exports = function(obj) {
-      return toLength2(obj.length);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/array-includes.js
-var require_array_includes = __commonJS({
-  "../../node_modules/core-js/internals/array-includes.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var toIndexedObject = require_to_indexed_object();
-    var toAbsoluteIndex = require_to_absolute_index();
-    var lengthOfArrayLike = require_length_of_array_like();
-    var createMethod = function createMethod2(IS_INCLUDES) {
-      return function($this, el, fromIndex) {
-        var O = toIndexedObject($this);
-        var length = lengthOfArrayLike(O);
-        var index = toAbsoluteIndex(fromIndex, length);
-        var value;
-        if (IS_INCLUDES && el != el)
-          while (length > index) {
-            value = O[index++];
-            if (value != value)
-              return true;
-          }
-        else
-          for (; length > index; index++) {
-            if ((IS_INCLUDES || index in O) && O[index] === el)
-              return IS_INCLUDES || index || 0;
-          }
-        return !IS_INCLUDES && -1;
-      };
-    };
-    module2.exports = {
-      includes: createMethod(true),
-      indexOf: createMethod(false)
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/object-keys-internal.js
-var require_object_keys_internal = __commonJS({
-  "../../node_modules/core-js/internals/object-keys-internal.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var uncurryThis2 = require_function_uncurry_this();
-    var hasOwn = require_has_own_property();
-    var toIndexedObject = require_to_indexed_object();
-    var indexOf = require_array_includes().indexOf;
-    var hiddenKeys = require_hidden_keys();
-    var push = uncurryThis2([].push);
-    module2.exports = function(object, names) {
-      var O = toIndexedObject(object);
-      var i = 0;
-      var result = [];
-      var key;
-      for (key in O) {
-        !hasOwn(hiddenKeys, key) && hasOwn(O, key) && push(result, key);
-      }
-      while (names.length > i) {
-        if (hasOwn(O, key = names[i++])) {
-          ~indexOf(result, key) || push(result, key);
-        }
-      }
-      return result;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/enum-bug-keys.js
-var require_enum_bug_keys = __commonJS({
-  "../../node_modules/core-js/internals/enum-bug-keys.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    module2.exports = ["constructor", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "toLocaleString", "toString", "valueOf"];
-  }
-});
-
-// ../../node_modules/core-js/internals/object-get-own-property-names.js
-var require_object_get_own_property_names = __commonJS({
-  "../../node_modules/core-js/internals/object-get-own-property-names.js": function(exports2) {
-    init_kolmafia_polyfill();
-    var internalObjectKeys = require_object_keys_internal();
-    var enumBugKeys = require_enum_bug_keys();
-    var hiddenKeys = enumBugKeys.concat("length", "prototype");
-    exports2.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-      return internalObjectKeys(O, hiddenKeys);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/object-get-own-property-symbols.js
-var require_object_get_own_property_symbols = __commonJS({
-  "../../node_modules/core-js/internals/object-get-own-property-symbols.js": function(exports2) {
-    init_kolmafia_polyfill();
-    exports2.f = Object.getOwnPropertySymbols;
-  }
-});
-
-// ../../node_modules/core-js/internals/own-keys.js
-var require_own_keys = __commonJS({
-  "../../node_modules/core-js/internals/own-keys.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var getBuiltIn = require_get_built_in();
-    var uncurryThis2 = require_function_uncurry_this();
-    var getOwnPropertyNamesModule = require_object_get_own_property_names();
-    var getOwnPropertySymbolsModule = require_object_get_own_property_symbols();
-    var anObject2 = require_an_object();
-    var concat = uncurryThis2([].concat);
-    module2.exports = getBuiltIn("Reflect", "ownKeys") || function ownKeys3(it) {
-      var keys = getOwnPropertyNamesModule.f(anObject2(it));
-      var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
-      return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/copy-constructor-properties.js
-var require_copy_constructor_properties = __commonJS({
-  "../../node_modules/core-js/internals/copy-constructor-properties.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var hasOwn = require_has_own_property();
-    var ownKeys3 = require_own_keys();
-    var getOwnPropertyDescriptorModule = require_object_get_own_property_descriptor();
-    var definePropertyModule = require_object_define_property();
-    module2.exports = function(target, source, exceptions) {
-      var keys = ownKeys3(source);
-      var defineProperty = definePropertyModule.f;
-      var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
-      for (var i = 0; i < keys.length; i++) {
-        var key = keys[i];
-        if (!hasOwn(target, key) && !(exceptions && hasOwn(exceptions, key))) {
-          defineProperty(target, key, getOwnPropertyDescriptor(source, key));
-        }
-      }
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/is-forced.js
-var require_is_forced = __commonJS({
-  "../../node_modules/core-js/internals/is-forced.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var fails2 = require_fails();
-    var isCallable = require_is_callable();
-    var replacement = /#|\.prototype\./;
-    var isForced = function isForced2(feature, detection) {
-      var value = data[normalize(feature)];
-      return value == POLYFILL ? true : value == NATIVE ? false : isCallable(detection) ? fails2(detection) : !!detection;
-    };
-    var normalize = isForced.normalize = function(string) {
-      return String(string).replace(replacement, ".").toLowerCase();
-    };
-    var data = isForced.data = {};
-    var NATIVE = isForced.NATIVE = "N";
-    var POLYFILL = isForced.POLYFILL = "P";
-    module2.exports = isForced;
-  }
-});
-
-// ../../node_modules/core-js/internals/export.js
-var require_export = __commonJS({
-  "../../node_modules/core-js/internals/export.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var global2 = require_global();
-    var getOwnPropertyDescriptor = require_object_get_own_property_descriptor().f;
-    var createNonEnumerableProperty = require_create_non_enumerable_property();
-    var defineBuiltIn2 = require_define_built_in();
-    var defineGlobalProperty = require_define_global_property();
-    var copyConstructorProperties = require_copy_constructor_properties();
-    var isForced = require_is_forced();
-    module2.exports = function(options, source) {
-      var TARGET = options.target;
-      var GLOBAL = options.global;
-      var STATIC = options.stat;
-      var FORCED, target, key, targetProperty, sourceProperty, descriptor;
-      if (GLOBAL) {
-        target = global2;
-      } else if (STATIC) {
-        target = global2[TARGET] || defineGlobalProperty(TARGET, {});
-      } else {
-        target = (global2[TARGET] || {}).prototype;
-      }
-      if (target)
-        for (key in source) {
-          sourceProperty = source[key];
-          if (options.dontCallGetSet) {
-            descriptor = getOwnPropertyDescriptor(target, key);
-            targetProperty = descriptor && descriptor.value;
-          } else
-            targetProperty = target[key];
-          FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? "." : "#") + key, options.forced);
-          if (!FORCED && targetProperty !== void 0) {
-            if (typeof sourceProperty == typeof targetProperty)
-              continue;
-            copyConstructorProperties(sourceProperty, targetProperty);
-          }
-          if (options.sham || targetProperty && targetProperty.sham) {
-            createNonEnumerableProperty(sourceProperty, "sham", true);
-          }
-          defineBuiltIn2(target, key, sourceProperty, options);
-        }
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/object-keys.js
-var require_object_keys = __commonJS({
-  "../../node_modules/core-js/internals/object-keys.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var internalObjectKeys = require_object_keys_internal();
-    var enumBugKeys = require_enum_bug_keys();
-    module2.exports = Object.keys || function keys(O) {
-      return internalObjectKeys(O, enumBugKeys);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/object-define-properties.js
-var require_object_define_properties = __commonJS({
-  "../../node_modules/core-js/internals/object-define-properties.js": function(exports2) {
-    init_kolmafia_polyfill();
-    var DESCRIPTORS = require_descriptors();
-    var V8_PROTOTYPE_DEFINE_BUG = require_v8_prototype_define_bug();
-    var definePropertyModule = require_object_define_property();
-    var anObject2 = require_an_object();
-    var toIndexedObject = require_to_indexed_object();
-    var objectKeys = require_object_keys();
-    exports2.f = DESCRIPTORS && !V8_PROTOTYPE_DEFINE_BUG ? Object.defineProperties : function defineProperties(O, Properties) {
-      anObject2(O);
-      var props = toIndexedObject(Properties);
-      var keys = objectKeys(Properties);
-      var length = keys.length;
-      var index = 0;
-      var key;
-      while (length > index) {
-        definePropertyModule.f(O, key = keys[index++], props[key]);
-      }
-      return O;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/html.js
-var require_html = __commonJS({
-  "../../node_modules/core-js/internals/html.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var getBuiltIn = require_get_built_in();
-    module2.exports = getBuiltIn("document", "documentElement");
-  }
-});
-
-// ../../node_modules/core-js/internals/object-create.js
-var require_object_create = __commonJS({
-  "../../node_modules/core-js/internals/object-create.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var anObject2 = require_an_object();
-    var definePropertiesModule = require_object_define_properties();
-    var enumBugKeys = require_enum_bug_keys();
-    var hiddenKeys = require_hidden_keys();
-    var html = require_html();
-    var documentCreateElement = require_document_create_element();
-    var sharedKey = require_shared_key();
-    var GT = ">";
-    var LT = "<";
-    var PROTOTYPE = "prototype";
-    var SCRIPT = "script";
-    var IE_PROTO = sharedKey("IE_PROTO");
-    var EmptyConstructor = function EmptyConstructor2() {
-    };
-    var scriptTag = function scriptTag2(content) {
-      return LT + SCRIPT + GT + content + LT + "/" + SCRIPT + GT;
-    };
-    var NullProtoObjectViaActiveX = function NullProtoObjectViaActiveX2(activeXDocument2) {
-      activeXDocument2.write(scriptTag(""));
-      activeXDocument2.close();
-      var temp = activeXDocument2.parentWindow.Object;
-      activeXDocument2 = null;
-      return temp;
-    };
-    var NullProtoObjectViaIFrame = function NullProtoObjectViaIFrame2() {
-      var iframe = documentCreateElement("iframe");
-      var JS = "java" + SCRIPT + ":";
-      var iframeDocument;
-      iframe.style.display = "none";
-      html.appendChild(iframe);
-      iframe.src = String(JS);
-      iframeDocument = iframe.contentWindow.document;
-      iframeDocument.open();
-      iframeDocument.write(scriptTag("document.F=Object"));
-      iframeDocument.close();
-      return iframeDocument.F;
-    };
-    var activeXDocument;
-    var _NullProtoObject = function NullProtoObject() {
-      try {
-        activeXDocument = new ActiveXObject("htmlfile");
-      } catch (error) {
-      }
-      _NullProtoObject = typeof document != "undefined" ? document.domain && activeXDocument ? NullProtoObjectViaActiveX(activeXDocument) : NullProtoObjectViaIFrame() : NullProtoObjectViaActiveX(activeXDocument);
-      var length = enumBugKeys.length;
-      while (length--) {
-        delete _NullProtoObject[PROTOTYPE][enumBugKeys[length]];
-      }
-      return _NullProtoObject();
-    };
-    hiddenKeys[IE_PROTO] = true;
-    module2.exports = Object.create || function create(O, Properties) {
-      var result;
-      if (O !== null) {
-        EmptyConstructor[PROTOTYPE] = anObject2(O);
-        result = new EmptyConstructor();
-        EmptyConstructor[PROTOTYPE] = null;
-        result[IE_PROTO] = O;
-      } else
-        result = _NullProtoObject();
-      return Properties === void 0 ? result : definePropertiesModule.f(result, Properties);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/correct-prototype-getter.js
-var require_correct_prototype_getter = __commonJS({
-  "../../node_modules/core-js/internals/correct-prototype-getter.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var fails2 = require_fails();
-    module2.exports = !fails2(function() {
-      function F() {
-      }
-      F.prototype.constructor = null;
-      return Object.getPrototypeOf(new F()) !== F.prototype;
-    });
-  }
-});
-
-// ../../node_modules/core-js/internals/object-get-prototype-of.js
-var require_object_get_prototype_of = __commonJS({
-  "../../node_modules/core-js/internals/object-get-prototype-of.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var hasOwn = require_has_own_property();
-    var isCallable = require_is_callable();
-    var toObject = require_to_object();
-    var sharedKey = require_shared_key();
-    var CORRECT_PROTOTYPE_GETTER = require_correct_prototype_getter();
-    var IE_PROTO = sharedKey("IE_PROTO");
-    var $Object = Object;
-    var ObjectPrototype = $Object.prototype;
-    module2.exports = CORRECT_PROTOTYPE_GETTER ? $Object.getPrototypeOf : function(O) {
-      var object = toObject(O);
-      if (hasOwn(object, IE_PROTO))
-        return object[IE_PROTO];
-      var constructor = object.constructor;
-      if (isCallable(constructor) && object instanceof constructor) {
-        return constructor.prototype;
-      }
-      return object instanceof $Object ? ObjectPrototype : null;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/iterators-core.js
-var require_iterators_core = __commonJS({
-  "../../node_modules/core-js/internals/iterators-core.js": function(exports2, module2) {
-    "use strict";
-    init_kolmafia_polyfill();
-    var fails2 = require_fails();
-    var isCallable = require_is_callable();
-    var create = require_object_create();
-    var getPrototypeOf = require_object_get_prototype_of();
-    var defineBuiltIn2 = require_define_built_in();
-    var wellKnownSymbol2 = require_well_known_symbol();
-    var IS_PURE2 = require_is_pure();
-    var ITERATOR = wellKnownSymbol2("iterator");
-    var BUGGY_SAFARI_ITERATORS = false;
-    var IteratorPrototype;
-    var PrototypeOfArrayIteratorPrototype;
-    var arrayIterator;
-    if ([].keys) {
-      arrayIterator = [].keys();
-      if (!("next" in arrayIterator))
-        BUGGY_SAFARI_ITERATORS = true;
-      else {
-        PrototypeOfArrayIteratorPrototype = getPrototypeOf(getPrototypeOf(arrayIterator));
-        if (PrototypeOfArrayIteratorPrototype !== Object.prototype)
-          IteratorPrototype = PrototypeOfArrayIteratorPrototype;
-      }
-    }
-    var NEW_ITERATOR_PROTOTYPE = IteratorPrototype == void 0 || fails2(function() {
-      var test = {};
-      return IteratorPrototype[ITERATOR].call(test) !== test;
-    });
-    if (NEW_ITERATOR_PROTOTYPE)
-      IteratorPrototype = {};
-    else if (IS_PURE2)
-      IteratorPrototype = create(IteratorPrototype);
-    if (!isCallable(IteratorPrototype[ITERATOR])) {
-      defineBuiltIn2(IteratorPrototype, ITERATOR, function() {
-        return this;
-      });
-    }
-    module2.exports = {
-      IteratorPrototype: IteratorPrototype,
-      BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/set-to-string-tag.js
-var require_set_to_string_tag = __commonJS({
-  "../../node_modules/core-js/internals/set-to-string-tag.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var defineProperty = require_object_define_property().f;
-    var hasOwn = require_has_own_property();
-    var wellKnownSymbol2 = require_well_known_symbol();
-    var TO_STRING_TAG = wellKnownSymbol2("toStringTag");
-    module2.exports = function(target, TAG, STATIC) {
-      if (target && !STATIC)
-        target = target.prototype;
-      if (target && !hasOwn(target, TO_STRING_TAG)) {
-        defineProperty(target, TO_STRING_TAG, {
-          configurable: true,
-          value: TAG
-        });
-      }
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/iterators.js
-var require_iterators = __commonJS({
-  "../../node_modules/core-js/internals/iterators.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    module2.exports = {};
-  }
-});
-
-// ../../node_modules/core-js/internals/create-iterator-constructor.js
-var require_create_iterator_constructor = __commonJS({
-  "../../node_modules/core-js/internals/create-iterator-constructor.js": function(exports2, module2) {
-    "use strict";
-    init_kolmafia_polyfill();
-    var IteratorPrototype = require_iterators_core().IteratorPrototype;
-    var create = require_object_create();
-    var createPropertyDescriptor = require_create_property_descriptor();
-    var setToStringTag = require_set_to_string_tag();
-    var Iterators = require_iterators();
-    var returnThis = function returnThis2() {
-      return this;
-    };
-    module2.exports = function(IteratorConstructor, NAME, next2, ENUMERABLE_NEXT) {
-      var TO_STRING_TAG = NAME + " Iterator";
-      IteratorConstructor.prototype = create(IteratorPrototype, {
-        next: createPropertyDescriptor(+!ENUMERABLE_NEXT, next2)
-      });
-      setToStringTag(IteratorConstructor, TO_STRING_TAG, false, true);
-      Iterators[TO_STRING_TAG] = returnThis;
-      return IteratorConstructor;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/to-string-tag-support.js
-var require_to_string_tag_support = __commonJS({
-  "../../node_modules/core-js/internals/to-string-tag-support.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var wellKnownSymbol2 = require_well_known_symbol();
-    var TO_STRING_TAG = wellKnownSymbol2("toStringTag");
-    var test = {};
-    test[TO_STRING_TAG] = "z";
-    module2.exports = String(test) === "[object z]";
-  }
-});
-
-// ../../node_modules/core-js/internals/classof.js
-var require_classof = __commonJS({
-  "../../node_modules/core-js/internals/classof.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var TO_STRING_TAG_SUPPORT = require_to_string_tag_support();
-    var isCallable = require_is_callable();
-    var classofRaw = require_classof_raw();
-    var wellKnownSymbol2 = require_well_known_symbol();
-    var TO_STRING_TAG = wellKnownSymbol2("toStringTag");
-    var $Object = Object;
-    var CORRECT_ARGUMENTS = classofRaw(function() {
-      return arguments;
-    }()) == "Arguments";
-    var tryGet = function tryGet2(it, key) {
-      try {
-        return it[key];
-      } catch (error) {
-      }
-    };
-    module2.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function(it) {
-      var O, tag, result;
-      return it === void 0 ? "Undefined" : it === null ? "Null" : typeof (tag = tryGet(O = $Object(it), TO_STRING_TAG)) == "string" ? tag : CORRECT_ARGUMENTS ? classofRaw(O) : (result = classofRaw(O)) == "Object" && isCallable(O.callee) ? "Arguments" : result;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/to-string.js
-var require_to_string = __commonJS({
-  "../../node_modules/core-js/internals/to-string.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var classof2 = require_classof();
-    var $String = String;
-    module2.exports = function(argument) {
-      if (classof2(argument) === "Symbol")
-        throw TypeError("Cannot convert a Symbol value to a string");
-      return $String(argument);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/is-regexp.js
-var require_is_regexp = __commonJS({
-  "../../node_modules/core-js/internals/is-regexp.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var isObject = require_is_object();
-    var classof2 = require_classof_raw();
-    var wellKnownSymbol2 = require_well_known_symbol();
-    var MATCH = wellKnownSymbol2("match");
-    module2.exports = function(it) {
-      var isRegExp2;
-      return isObject(it) && ((isRegExp2 = it[MATCH]) !== void 0 ? !!isRegExp2 : classof2(it) == "RegExp");
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/regexp-flags.js
-var require_regexp_flags = __commonJS({
-  "../../node_modules/core-js/internals/regexp-flags.js": function(exports2, module2) {
-    "use strict";
-    init_kolmafia_polyfill();
-    var anObject2 = require_an_object();
-    module2.exports = function() {
-      var that = anObject2(this);
-      var result = "";
-      if (that.hasIndices)
-        result += "d";
-      if (that.global)
-        result += "g";
-      if (that.ignoreCase)
-        result += "i";
-      if (that.multiline)
-        result += "m";
-      if (that.dotAll)
-        result += "s";
-      if (that.unicode)
-        result += "u";
-      if (that.unicodeSets)
-        result += "v";
-      if (that.sticky)
-        result += "y";
-      return result;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/regexp-get-flags.js
-var require_regexp_get_flags = __commonJS({
-  "../../node_modules/core-js/internals/regexp-get-flags.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var call2 = require_function_call();
-    var hasOwn = require_has_own_property();
-    var isPrototypeOf = require_object_is_prototype_of();
-    var regExpFlags = require_regexp_flags();
-    var RegExpPrototype2 = RegExp.prototype;
-    module2.exports = function(R) {
-      var flags = R.flags;
-      return flags === void 0 && !("flags" in RegExpPrototype2) && !hasOwn(R, "flags") && isPrototypeOf(RegExpPrototype2, R) ? call2(regExpFlags, R) : flags;
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/is-constructor.js
-var require_is_constructor = __commonJS({
-  "../../node_modules/core-js/internals/is-constructor.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var uncurryThis2 = require_function_uncurry_this();
-    var fails2 = require_fails();
-    var isCallable = require_is_callable();
-    var classof2 = require_classof();
-    var getBuiltIn = require_get_built_in();
-    var inspectSource = require_inspect_source();
-    var noop = function noop2() {
-    };
-    var empty = [];
-    var construct = getBuiltIn("Reflect", "construct");
-    var constructorRegExp = /^\s*(?:class|function)\b/;
-    var exec = uncurryThis2(constructorRegExp.exec);
-    var INCORRECT_TO_STRING = !constructorRegExp.exec(noop);
-    var isConstructorModern = function isConstructor(argument) {
-      if (!isCallable(argument))
-        return false;
-      try {
-        construct(noop, empty, argument);
-        return true;
-      } catch (error) {
-        return false;
-      }
-    };
-    var isConstructorLegacy = function isConstructor(argument) {
-      if (!isCallable(argument))
-        return false;
-      switch (classof2(argument)) {
-        case "AsyncFunction":
-        case "GeneratorFunction":
-        case "AsyncGeneratorFunction":
-          return false;
-      }
-      try {
-        return INCORRECT_TO_STRING || !!exec(constructorRegExp, inspectSource(argument));
-      } catch (error) {
-        return true;
-      }
-    };
-    isConstructorLegacy.sham = true;
-    module2.exports = !construct || fails2(function() {
-      var called;
-      return isConstructorModern(isConstructorModern.call) || !isConstructorModern(Object) || !isConstructorModern(function() {
-        called = true;
-      }) || called;
-    }) ? isConstructorLegacy : isConstructorModern;
-  }
-});
-
-// ../../node_modules/core-js/internals/a-constructor.js
-var require_a_constructor = __commonJS({
-  "../../node_modules/core-js/internals/a-constructor.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var isConstructor = require_is_constructor();
-    var tryToString = require_try_to_string();
-    var $TypeError2 = TypeError;
-    module2.exports = function(argument) {
-      if (isConstructor(argument))
-        return argument;
-      throw $TypeError2(tryToString(argument) + " is not a constructor");
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/species-constructor.js
-var require_species_constructor = __commonJS({
-  "../../node_modules/core-js/internals/species-constructor.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var anObject2 = require_an_object();
-    var aConstructor = require_a_constructor();
-    var wellKnownSymbol2 = require_well_known_symbol();
-    var SPECIES = wellKnownSymbol2("species");
-    module2.exports = function(O, defaultConstructor) {
-      var C = anObject2(O).constructor;
-      var S;
-      return C === void 0 || (S = anObject2(C)[SPECIES]) == void 0 ? defaultConstructor : aConstructor(S);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/string-multibyte.js
-var require_string_multibyte = __commonJS({
-  "../../node_modules/core-js/internals/string-multibyte.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var uncurryThis2 = require_function_uncurry_this();
-    var toIntegerOrInfinity = require_to_integer_or_infinity();
-    var toString2 = require_to_string();
-    var requireObjectCoercible2 = require_require_object_coercible();
-    var charAt = uncurryThis2("".charAt);
-    var charCodeAt = uncurryThis2("".charCodeAt);
-    var stringSlice = uncurryThis2("".slice);
-    var createMethod = function createMethod2(CONVERT_TO_STRING) {
-      return function($this, pos) {
-        var S = toString2(requireObjectCoercible2($this));
-        var position = toIntegerOrInfinity(pos);
-        var size = S.length;
-        var first, second;
-        if (position < 0 || position >= size)
-          return CONVERT_TO_STRING ? "" : void 0;
-        first = charCodeAt(S, position);
-        return first < 55296 || first > 56319 || position + 1 === size || (second = charCodeAt(S, position + 1)) < 56320 || second > 57343 ? CONVERT_TO_STRING ? charAt(S, position) : first : CONVERT_TO_STRING ? stringSlice(S, position, position + 2) : (first - 55296 << 10) + (second - 56320) + 65536;
-      };
-    };
-    module2.exports = {
-      codeAt: createMethod(false),
-      charAt: createMethod(true)
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/advance-string-index.js
-var require_advance_string_index = __commonJS({
-  "../../node_modules/core-js/internals/advance-string-index.js": function(exports2, module2) {
-    "use strict";
-    init_kolmafia_polyfill();
-    var charAt = require_string_multibyte().charAt;
-    module2.exports = function(S, index, unicode) {
-      return index + (unicode ? charAt(S, index).length : 1);
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/regexp-sticky-helpers.js
-var require_regexp_sticky_helpers = __commonJS({
-  "../../node_modules/core-js/internals/regexp-sticky-helpers.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var fails2 = require_fails();
-    var global2 = require_global();
-    var $RegExp = global2.RegExp;
-    var UNSUPPORTED_Y = fails2(function() {
-      var re = $RegExp("a", "y");
-      re.lastIndex = 2;
-      return re.exec("abcd") != null;
-    });
-    var MISSED_STICKY = UNSUPPORTED_Y || fails2(function() {
-      return !$RegExp("a", "y").sticky;
-    });
-    var BROKEN_CARET = UNSUPPORTED_Y || fails2(function() {
-      var re = $RegExp("^r", "gy");
-      re.lastIndex = 2;
-      return re.exec("str") != null;
-    });
-    module2.exports = {
-      BROKEN_CARET: BROKEN_CARET,
-      MISSED_STICKY: MISSED_STICKY,
-      UNSUPPORTED_Y: UNSUPPORTED_Y
-    };
-  }
-});
-
-// ../../node_modules/core-js/internals/regexp-unsupported-dot-all.js
-var require_regexp_unsupported_dot_all = __commonJS({
-  "../../node_modules/core-js/internals/regexp-unsupported-dot-all.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var fails2 = require_fails();
-    var global2 = require_global();
-    var $RegExp = global2.RegExp;
-    module2.exports = fails2(function() {
-      var re = $RegExp(".", "s");
-      return !(re.dotAll && re.exec("\n") && re.flags === "s");
-    });
-  }
-});
-
-// ../../node_modules/core-js/internals/regexp-unsupported-ncg.js
-var require_regexp_unsupported_ncg = __commonJS({
-  "../../node_modules/core-js/internals/regexp-unsupported-ncg.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var fails2 = require_fails();
-    var global2 = require_global();
-    var $RegExp = global2.RegExp;
-    module2.exports = fails2(function() {
-      var re = $RegExp("(?<a>b)", "g");
-      return re.exec("b").groups.a !== "b" || "b".replace(re, "$<a>c") !== "bc";
-    });
-  }
-});
-
-// ../../node_modules/core-js/internals/regexp-exec.js
-var require_regexp_exec = __commonJS({
-  "../../node_modules/core-js/internals/regexp-exec.js": function(exports2, module2) {
-    "use strict";
-    init_kolmafia_polyfill();
-    var call2 = require_function_call();
-    var uncurryThis2 = require_function_uncurry_this();
-    var toString2 = require_to_string();
-    var regexpFlags = require_regexp_flags();
-    var stickyHelpers = require_regexp_sticky_helpers();
-    var shared = require_shared();
-    var create = require_object_create();
-    var getInternalState2 = require_internal_state().get;
-    var UNSUPPORTED_DOT_ALL = require_regexp_unsupported_dot_all();
-    var UNSUPPORTED_NCG = require_regexp_unsupported_ncg();
-    var nativeReplace = shared("native-string-replace", String.prototype.replace);
-    var nativeExec = RegExp.prototype.exec;
-    var patchedExec = nativeExec;
-    var charAt = uncurryThis2("".charAt);
-    var indexOf = uncurryThis2("".indexOf);
-    var replace = uncurryThis2("".replace);
-    var stringSlice = uncurryThis2("".slice);
-    var UPDATES_LAST_INDEX_WRONG = function() {
-      var re1 = /a/;
-      var re2 = /b*/g;
-      call2(nativeExec, re1, "a");
-      call2(nativeExec, re2, "a");
-      return re1.lastIndex !== 0 || re2.lastIndex !== 0;
-    }();
-    var UNSUPPORTED_Y = stickyHelpers.BROKEN_CARET;
-    var NPCG_INCLUDED = /()??/.exec("")[1] !== void 0;
-    var PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED || UNSUPPORTED_Y || UNSUPPORTED_DOT_ALL || UNSUPPORTED_NCG;
-    if (PATCH) {
-      patchedExec = function exec(string) {
-        var re = this;
-        var state = getInternalState2(re);
-        var str = toString2(string);
-        var raw = state.raw;
-        var result, reCopy, lastIndex, match, i, object, group;
-        if (raw) {
-          raw.lastIndex = re.lastIndex;
-          result = call2(patchedExec, raw, str);
-          re.lastIndex = raw.lastIndex;
-          return result;
-        }
-        var groups = state.groups;
-        var sticky = UNSUPPORTED_Y && re.sticky;
-        var flags = call2(regexpFlags, re);
-        var source = re.source;
-        var charsAdded = 0;
-        var strCopy = str;
-        if (sticky) {
-          flags = replace(flags, "y", "");
-          if (indexOf(flags, "g") === -1) {
-            flags += "g";
-          }
-          strCopy = stringSlice(str, re.lastIndex);
-          if (re.lastIndex > 0 && (!re.multiline || re.multiline && charAt(str, re.lastIndex - 1) !== "\n")) {
-            source = "(?: " + source + ")";
-            strCopy = " " + strCopy;
-            charsAdded++;
-          }
-          reCopy = new RegExp("^(?:" + source + ")", flags);
-        }
-        if (NPCG_INCLUDED) {
-          reCopy = new RegExp("^" + source + "$(?!\\s)", flags);
-        }
-        if (UPDATES_LAST_INDEX_WRONG)
-          lastIndex = re.lastIndex;
-        match = call2(nativeExec, sticky ? reCopy : re, strCopy);
-        if (sticky) {
-          if (match) {
-            match.input = stringSlice(match.input, charsAdded);
-            match[0] = stringSlice(match[0], charsAdded);
-            match.index = re.lastIndex;
-            re.lastIndex += match[0].length;
-          } else
-            re.lastIndex = 0;
-        } else if (UPDATES_LAST_INDEX_WRONG && match) {
-          re.lastIndex = re.global ? match.index + match[0].length : lastIndex;
-        }
-        if (NPCG_INCLUDED && match && match.length > 1) {
-          call2(nativeReplace, match[0], reCopy, function() {
-            for (i = 1; i < arguments.length - 2; i++) {
-              if (arguments[i] === void 0)
-                match[i] = void 0;
-            }
-          });
-        }
-        if (match && groups) {
-          match.groups = object = create(null);
-          for (i = 0; i < groups.length; i++) {
-            group = groups[i];
-            object[group[0]] = match[group[1]];
-          }
-        }
-        return match;
-      };
-    }
-    module2.exports = patchedExec;
-  }
-});
-
-// ../../node_modules/core-js/internals/regexp-exec-abstract.js
-var require_regexp_exec_abstract = __commonJS({
-  "../../node_modules/core-js/internals/regexp-exec-abstract.js": function(exports2, module2) {
-    init_kolmafia_polyfill();
-    var call2 = require_function_call();
-    var anObject2 = require_an_object();
-    var isCallable = require_is_callable();
-    var classof2 = require_classof_raw();
-    var regexpExec = require_regexp_exec();
-    var $TypeError2 = TypeError;
-    module2.exports = function(R, S) {
-      var exec = R.exec;
-      if (isCallable(exec)) {
-        var result = call2(exec, R, S);
-        if (result !== null)
-          anObject2(result);
-        return result;
-      }
-      if (classof2(R) === "RegExp")
-        return call2(regexpExec, R, S);
-      throw $TypeError2("RegExp#exec called on incompatible receiver");
-    };
-  }
-});
-
 // ../../node_modules/he/he.js
 var require_he = __commonJS({
   "../../node_modules/he/he.js": function(exports2, module2) {
@@ -5860,22 +3979,22 @@ var require_he = __commonJS({
         if (strict && regexInvalidEntity.test(html)) {
           parseError("malformed character reference");
         }
-        return html.replace(regexDecode, function($0, $1, $22, $32, $4, $5, $6, $7, $8) {
+        return html.replace(regexDecode, function($0, $1, $22, $3, $4, $5, $6, $7, $8) {
           var codePoint;
           var semicolon;
           var decDigits;
           var hexDigits;
           var reference;
-          var next2;
+          var next;
           if ($1) {
             reference = $1;
             return decodeMap[reference];
           }
           if ($22) {
             reference = $22;
-            next2 = $32;
-            if (next2 && options.isAttributeValue) {
-              if (strict && next2 == "=") {
+            next = $3;
+            if (next && options.isAttributeValue) {
+              if (strict && next == "=") {
                 parseError("`&` did not start a character reference");
               }
               return $0;
@@ -5883,7 +4002,7 @@ var require_he = __commonJS({
               if (strict) {
                 parseError("named character reference was not terminated by a semicolon");
               }
-              return decodeMapLegacy[reference] + (next2 || "");
+              return decodeMapLegacy[reference] + (next || "");
             }
           }
           if ($4) {
@@ -5945,17 +4064,1233 @@ var require_he = __commonJS({
   }
 });
 
+// ../../node_modules/core-js/internals/global.js
+var require_global = __commonJS({
+  "../../node_modules/core-js/internals/global.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var check = function check2(it) {
+      return it && it.Math == Math && it;
+    };
+    module2.exports = check(typeof globalThis == "object" && globalThis) || check(typeof window == "object" && window) || check(typeof self == "object" && self) || check(typeof global == "object" && global) || function() {
+      return this;
+    }() || Function("return this")();
+  }
+});
+
+// ../../node_modules/core-js/internals/fails.js
+var require_fails = __commonJS({
+  "../../node_modules/core-js/internals/fails.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    module2.exports = function(exec) {
+      try {
+        return !!exec();
+      } catch (error) {
+        return true;
+      }
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/descriptors.js
+var require_descriptors = __commonJS({
+  "../../node_modules/core-js/internals/descriptors.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var fails = require_fails();
+    module2.exports = !fails(function() {
+      return Object.defineProperty({}, 1, {
+        get: function get() {
+          return 7;
+        }
+      })[1] != 7;
+    });
+  }
+});
+
+// ../../node_modules/core-js/internals/function-bind-native.js
+var require_function_bind_native = __commonJS({
+  "../../node_modules/core-js/internals/function-bind-native.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var fails = require_fails();
+    module2.exports = !fails(function() {
+      var test = function() {
+      }.bind();
+      return typeof test != "function" || test.hasOwnProperty("prototype");
+    });
+  }
+});
+
+// ../../node_modules/core-js/internals/function-call.js
+var require_function_call = __commonJS({
+  "../../node_modules/core-js/internals/function-call.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var NATIVE_BIND = require_function_bind_native();
+    var call = Function.prototype.call;
+    module2.exports = NATIVE_BIND ? call.bind(call) : function() {
+      return call.apply(call, arguments);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/object-property-is-enumerable.js
+var require_object_property_is_enumerable = __commonJS({
+  "../../node_modules/core-js/internals/object-property-is-enumerable.js": function(exports2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    var $propertyIsEnumerable = {}.propertyIsEnumerable;
+    var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+    var NASHORN_BUG = getOwnPropertyDescriptor && !$propertyIsEnumerable.call({
+      1: 2
+    }, 1);
+    exports2.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
+      var descriptor = getOwnPropertyDescriptor(this, V);
+      return !!descriptor && descriptor.enumerable;
+    } : $propertyIsEnumerable;
+  }
+});
+
+// ../../node_modules/core-js/internals/create-property-descriptor.js
+var require_create_property_descriptor = __commonJS({
+  "../../node_modules/core-js/internals/create-property-descriptor.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    module2.exports = function(bitmap, value) {
+      return {
+        enumerable: !(bitmap & 1),
+        configurable: !(bitmap & 2),
+        writable: !(bitmap & 4),
+        value: value
+      };
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/function-uncurry-this.js
+var require_function_uncurry_this = __commonJS({
+  "../../node_modules/core-js/internals/function-uncurry-this.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var NATIVE_BIND = require_function_bind_native();
+    var FunctionPrototype = Function.prototype;
+    var bind = FunctionPrototype.bind;
+    var call = FunctionPrototype.call;
+    var uncurryThis = NATIVE_BIND && bind.bind(call, call);
+    module2.exports = NATIVE_BIND ? function(fn) {
+      return fn && uncurryThis(fn);
+    } : function(fn) {
+      return fn && function() {
+        return call.apply(fn, arguments);
+      };
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/classof-raw.js
+var require_classof_raw = __commonJS({
+  "../../node_modules/core-js/internals/classof-raw.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var uncurryThis = require_function_uncurry_this();
+    var toString = uncurryThis({}.toString);
+    var stringSlice = uncurryThis("".slice);
+    module2.exports = function(it) {
+      return stringSlice(toString(it), 8, -1);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/indexed-object.js
+var require_indexed_object = __commonJS({
+  "../../node_modules/core-js/internals/indexed-object.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var uncurryThis = require_function_uncurry_this();
+    var fails = require_fails();
+    var classof = require_classof_raw();
+    var $Object = Object;
+    var split = uncurryThis("".split);
+    module2.exports = fails(function() {
+      return !$Object("z").propertyIsEnumerable(0);
+    }) ? function(it) {
+      return classof(it) == "String" ? split(it, "") : $Object(it);
+    } : $Object;
+  }
+});
+
+// ../../node_modules/core-js/internals/require-object-coercible.js
+var require_require_object_coercible = __commonJS({
+  "../../node_modules/core-js/internals/require-object-coercible.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var $TypeError = TypeError;
+    module2.exports = function(it) {
+      if (it == void 0)
+        throw $TypeError("Can't call method on " + it);
+      return it;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/to-indexed-object.js
+var require_to_indexed_object = __commonJS({
+  "../../node_modules/core-js/internals/to-indexed-object.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var IndexedObject = require_indexed_object();
+    var requireObjectCoercible = require_require_object_coercible();
+    module2.exports = function(it) {
+      return IndexedObject(requireObjectCoercible(it));
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/is-callable.js
+var require_is_callable = __commonJS({
+  "../../node_modules/core-js/internals/is-callable.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    module2.exports = function(argument) {
+      return typeof argument == "function";
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/is-object.js
+var require_is_object = __commonJS({
+  "../../node_modules/core-js/internals/is-object.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var isCallable = require_is_callable();
+    module2.exports = function(it) {
+      return typeof it == "object" ? it !== null : isCallable(it);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/get-built-in.js
+var require_get_built_in = __commonJS({
+  "../../node_modules/core-js/internals/get-built-in.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var global2 = require_global();
+    var isCallable = require_is_callable();
+    var aFunction = function aFunction2(argument) {
+      return isCallable(argument) ? argument : void 0;
+    };
+    module2.exports = function(namespace, method) {
+      return arguments.length < 2 ? aFunction(global2[namespace]) : global2[namespace] && global2[namespace][method];
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/object-is-prototype-of.js
+var require_object_is_prototype_of = __commonJS({
+  "../../node_modules/core-js/internals/object-is-prototype-of.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var uncurryThis = require_function_uncurry_this();
+    module2.exports = uncurryThis({}.isPrototypeOf);
+  }
+});
+
+// ../../node_modules/core-js/internals/engine-user-agent.js
+var require_engine_user_agent = __commonJS({
+  "../../node_modules/core-js/internals/engine-user-agent.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var getBuiltIn = require_get_built_in();
+    module2.exports = getBuiltIn("navigator", "userAgent") || "";
+  }
+});
+
+// ../../node_modules/core-js/internals/engine-v8-version.js
+var require_engine_v8_version = __commonJS({
+  "../../node_modules/core-js/internals/engine-v8-version.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var global2 = require_global();
+    var userAgent = require_engine_user_agent();
+    var process = global2.process;
+    var Deno = global2.Deno;
+    var versions = process && process.versions || Deno && Deno.version;
+    var v8 = versions && versions.v8;
+    var match;
+    var version;
+    if (v8) {
+      match = v8.split(".");
+      version = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);
+    }
+    if (!version && userAgent) {
+      match = userAgent.match(/Edge\/(\d+)/);
+      if (!match || match[1] >= 74) {
+        match = userAgent.match(/Chrome\/(\d+)/);
+        if (match)
+          version = +match[1];
+      }
+    }
+    module2.exports = version;
+  }
+});
+
+// ../../node_modules/core-js/internals/native-symbol.js
+var require_native_symbol = __commonJS({
+  "../../node_modules/core-js/internals/native-symbol.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var V8_VERSION = require_engine_v8_version();
+    var fails = require_fails();
+    module2.exports = !!Object.getOwnPropertySymbols && !fails(function() {
+      var symbol = Symbol();
+      return !String(symbol) || !(Object(symbol) instanceof Symbol) || !Symbol.sham && V8_VERSION && V8_VERSION < 41;
+    });
+  }
+});
+
+// ../../node_modules/core-js/internals/use-symbol-as-uid.js
+var require_use_symbol_as_uid = __commonJS({
+  "../../node_modules/core-js/internals/use-symbol-as-uid.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var NATIVE_SYMBOL = require_native_symbol();
+    module2.exports = NATIVE_SYMBOL && !Symbol.sham && typeof Symbol.iterator == "symbol";
+  }
+});
+
+// ../../node_modules/core-js/internals/is-symbol.js
+var require_is_symbol = __commonJS({
+  "../../node_modules/core-js/internals/is-symbol.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var getBuiltIn = require_get_built_in();
+    var isCallable = require_is_callable();
+    var isPrototypeOf = require_object_is_prototype_of();
+    var USE_SYMBOL_AS_UID = require_use_symbol_as_uid();
+    var $Object = Object;
+    module2.exports = USE_SYMBOL_AS_UID ? function(it) {
+      return typeof it == "symbol";
+    } : function(it) {
+      var $Symbol = getBuiltIn("Symbol");
+      return isCallable($Symbol) && isPrototypeOf($Symbol.prototype, $Object(it));
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/try-to-string.js
+var require_try_to_string = __commonJS({
+  "../../node_modules/core-js/internals/try-to-string.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var $String = String;
+    module2.exports = function(argument) {
+      try {
+        return $String(argument);
+      } catch (error) {
+        return "Object";
+      }
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/a-callable.js
+var require_a_callable = __commonJS({
+  "../../node_modules/core-js/internals/a-callable.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var isCallable = require_is_callable();
+    var tryToString = require_try_to_string();
+    var $TypeError = TypeError;
+    module2.exports = function(argument) {
+      if (isCallable(argument))
+        return argument;
+      throw $TypeError(tryToString(argument) + " is not a function");
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/get-method.js
+var require_get_method = __commonJS({
+  "../../node_modules/core-js/internals/get-method.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var aCallable = require_a_callable();
+    module2.exports = function(V, P) {
+      var func = V[P];
+      return func == null ? void 0 : aCallable(func);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/ordinary-to-primitive.js
+var require_ordinary_to_primitive = __commonJS({
+  "../../node_modules/core-js/internals/ordinary-to-primitive.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var call = require_function_call();
+    var isCallable = require_is_callable();
+    var isObject = require_is_object();
+    var $TypeError = TypeError;
+    module2.exports = function(input, pref) {
+      var fn, val;
+      if (pref === "string" && isCallable(fn = input.toString) && !isObject(val = call(fn, input)))
+        return val;
+      if (isCallable(fn = input.valueOf) && !isObject(val = call(fn, input)))
+        return val;
+      if (pref !== "string" && isCallable(fn = input.toString) && !isObject(val = call(fn, input)))
+        return val;
+      throw $TypeError("Can't convert object to primitive value");
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/is-pure.js
+var require_is_pure = __commonJS({
+  "../../node_modules/core-js/internals/is-pure.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    module2.exports = false;
+  }
+});
+
+// ../../node_modules/core-js/internals/define-global-property.js
+var require_define_global_property = __commonJS({
+  "../../node_modules/core-js/internals/define-global-property.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var global2 = require_global();
+    var defineProperty = Object.defineProperty;
+    module2.exports = function(key, value) {
+      try {
+        defineProperty(global2, key, {
+          value: value,
+          configurable: true,
+          writable: true
+        });
+      } catch (error) {
+        global2[key] = value;
+      }
+      return value;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/shared-store.js
+var require_shared_store = __commonJS({
+  "../../node_modules/core-js/internals/shared-store.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var global2 = require_global();
+    var defineGlobalProperty = require_define_global_property();
+    var SHARED = "__core-js_shared__";
+    var store = global2[SHARED] || defineGlobalProperty(SHARED, {});
+    module2.exports = store;
+  }
+});
+
+// ../../node_modules/core-js/internals/shared.js
+var require_shared = __commonJS({
+  "../../node_modules/core-js/internals/shared.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var IS_PURE = require_is_pure();
+    var store = require_shared_store();
+    (module2.exports = function(key, value) {
+      return store[key] || (store[key] = value !== void 0 ? value : {});
+    })("versions", []).push({
+      version: "3.24.1",
+      mode: IS_PURE ? "pure" : "global",
+      copyright: "\xA9 2014-2022 Denis Pushkarev (zloirock.ru)",
+      license: "https://github.com/zloirock/core-js/blob/v3.24.1/LICENSE",
+      source: "https://github.com/zloirock/core-js"
+    });
+  }
+});
+
+// ../../node_modules/core-js/internals/to-object.js
+var require_to_object = __commonJS({
+  "../../node_modules/core-js/internals/to-object.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var requireObjectCoercible = require_require_object_coercible();
+    var $Object = Object;
+    module2.exports = function(argument) {
+      return $Object(requireObjectCoercible(argument));
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/has-own-property.js
+var require_has_own_property = __commonJS({
+  "../../node_modules/core-js/internals/has-own-property.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var uncurryThis = require_function_uncurry_this();
+    var toObject = require_to_object();
+    var hasOwnProperty = uncurryThis({}.hasOwnProperty);
+    module2.exports = Object.hasOwn || function hasOwn(it, key) {
+      return hasOwnProperty(toObject(it), key);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/uid.js
+var require_uid = __commonJS({
+  "../../node_modules/core-js/internals/uid.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var uncurryThis = require_function_uncurry_this();
+    var id = 0;
+    var postfix = Math.random();
+    var toString = uncurryThis(1 .toString);
+    module2.exports = function(key) {
+      return "Symbol(" + (key === void 0 ? "" : key) + ")_" + toString(++id + postfix, 36);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/well-known-symbol.js
+var require_well_known_symbol = __commonJS({
+  "../../node_modules/core-js/internals/well-known-symbol.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var global2 = require_global();
+    var shared = require_shared();
+    var hasOwn = require_has_own_property();
+    var uid = require_uid();
+    var NATIVE_SYMBOL = require_native_symbol();
+    var USE_SYMBOL_AS_UID = require_use_symbol_as_uid();
+    var WellKnownSymbolsStore = shared("wks");
+    var Symbol2 = global2.Symbol;
+    var symbolFor = Symbol2 && Symbol2["for"];
+    var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol2 : Symbol2 && Symbol2.withoutSetter || uid;
+    module2.exports = function(name) {
+      if (!hasOwn(WellKnownSymbolsStore, name) || !(NATIVE_SYMBOL || typeof WellKnownSymbolsStore[name] == "string")) {
+        var description = "Symbol." + name;
+        if (NATIVE_SYMBOL && hasOwn(Symbol2, name)) {
+          WellKnownSymbolsStore[name] = Symbol2[name];
+        } else if (USE_SYMBOL_AS_UID && symbolFor) {
+          WellKnownSymbolsStore[name] = symbolFor(description);
+        } else {
+          WellKnownSymbolsStore[name] = createWellKnownSymbol(description);
+        }
+      }
+      return WellKnownSymbolsStore[name];
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/to-primitive.js
+var require_to_primitive = __commonJS({
+  "../../node_modules/core-js/internals/to-primitive.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var call = require_function_call();
+    var isObject = require_is_object();
+    var isSymbol = require_is_symbol();
+    var getMethod = require_get_method();
+    var ordinaryToPrimitive = require_ordinary_to_primitive();
+    var wellKnownSymbol = require_well_known_symbol();
+    var $TypeError = TypeError;
+    var TO_PRIMITIVE = wellKnownSymbol("toPrimitive");
+    module2.exports = function(input, pref) {
+      if (!isObject(input) || isSymbol(input))
+        return input;
+      var exoticToPrim = getMethod(input, TO_PRIMITIVE);
+      var result;
+      if (exoticToPrim) {
+        if (pref === void 0)
+          pref = "default";
+        result = call(exoticToPrim, input, pref);
+        if (!isObject(result) || isSymbol(result))
+          return result;
+        throw $TypeError("Can't convert object to primitive value");
+      }
+      if (pref === void 0)
+        pref = "number";
+      return ordinaryToPrimitive(input, pref);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/to-property-key.js
+var require_to_property_key = __commonJS({
+  "../../node_modules/core-js/internals/to-property-key.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var toPrimitive = require_to_primitive();
+    var isSymbol = require_is_symbol();
+    module2.exports = function(argument) {
+      var key = toPrimitive(argument, "string");
+      return isSymbol(key) ? key : key + "";
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/document-create-element.js
+var require_document_create_element = __commonJS({
+  "../../node_modules/core-js/internals/document-create-element.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var global2 = require_global();
+    var isObject = require_is_object();
+    var document2 = global2.document;
+    var EXISTS = isObject(document2) && isObject(document2.createElement);
+    module2.exports = function(it) {
+      return EXISTS ? document2.createElement(it) : {};
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/ie8-dom-define.js
+var require_ie8_dom_define = __commonJS({
+  "../../node_modules/core-js/internals/ie8-dom-define.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var DESCRIPTORS = require_descriptors();
+    var fails = require_fails();
+    var createElement = require_document_create_element();
+    module2.exports = !DESCRIPTORS && !fails(function() {
+      return Object.defineProperty(createElement("div"), "a", {
+        get: function get() {
+          return 7;
+        }
+      }).a != 7;
+    });
+  }
+});
+
+// ../../node_modules/core-js/internals/object-get-own-property-descriptor.js
+var require_object_get_own_property_descriptor = __commonJS({
+  "../../node_modules/core-js/internals/object-get-own-property-descriptor.js": function(exports2) {
+    init_kolmafia_polyfill();
+    var DESCRIPTORS = require_descriptors();
+    var call = require_function_call();
+    var propertyIsEnumerableModule = require_object_property_is_enumerable();
+    var createPropertyDescriptor = require_create_property_descriptor();
+    var toIndexedObject = require_to_indexed_object();
+    var toPropertyKey = require_to_property_key();
+    var hasOwn = require_has_own_property();
+    var IE8_DOM_DEFINE = require_ie8_dom_define();
+    var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+    exports2.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
+      O = toIndexedObject(O);
+      P = toPropertyKey(P);
+      if (IE8_DOM_DEFINE)
+        try {
+          return $getOwnPropertyDescriptor(O, P);
+        } catch (error) {
+        }
+      if (hasOwn(O, P))
+        return createPropertyDescriptor(!call(propertyIsEnumerableModule.f, O, P), O[P]);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/v8-prototype-define-bug.js
+var require_v8_prototype_define_bug = __commonJS({
+  "../../node_modules/core-js/internals/v8-prototype-define-bug.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var DESCRIPTORS = require_descriptors();
+    var fails = require_fails();
+    module2.exports = DESCRIPTORS && fails(function() {
+      return Object.defineProperty(function() {
+      }, "prototype", {
+        value: 42,
+        writable: false
+      }).prototype != 42;
+    });
+  }
+});
+
+// ../../node_modules/core-js/internals/an-object.js
+var require_an_object = __commonJS({
+  "../../node_modules/core-js/internals/an-object.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var isObject = require_is_object();
+    var $String = String;
+    var $TypeError = TypeError;
+    module2.exports = function(argument) {
+      if (isObject(argument))
+        return argument;
+      throw $TypeError($String(argument) + " is not an object");
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/object-define-property.js
+var require_object_define_property = __commonJS({
+  "../../node_modules/core-js/internals/object-define-property.js": function(exports2) {
+    init_kolmafia_polyfill();
+    var DESCRIPTORS = require_descriptors();
+    var IE8_DOM_DEFINE = require_ie8_dom_define();
+    var V8_PROTOTYPE_DEFINE_BUG = require_v8_prototype_define_bug();
+    var anObject = require_an_object();
+    var toPropertyKey = require_to_property_key();
+    var $TypeError = TypeError;
+    var $defineProperty = Object.defineProperty;
+    var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+    var ENUMERABLE = "enumerable";
+    var CONFIGURABLE = "configurable";
+    var WRITABLE = "writable";
+    exports2.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P, Attributes) {
+      anObject(O);
+      P = toPropertyKey(P);
+      anObject(Attributes);
+      if (typeof O === "function" && P === "prototype" && "value" in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {
+        var current = $getOwnPropertyDescriptor(O, P);
+        if (current && current[WRITABLE]) {
+          O[P] = Attributes.value;
+          Attributes = {
+            configurable: CONFIGURABLE in Attributes ? Attributes[CONFIGURABLE] : current[CONFIGURABLE],
+            enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],
+            writable: false
+          };
+        }
+      }
+      return $defineProperty(O, P, Attributes);
+    } : $defineProperty : function defineProperty(O, P, Attributes) {
+      anObject(O);
+      P = toPropertyKey(P);
+      anObject(Attributes);
+      if (IE8_DOM_DEFINE)
+        try {
+          return $defineProperty(O, P, Attributes);
+        } catch (error) {
+        }
+      if ("get" in Attributes || "set" in Attributes)
+        throw $TypeError("Accessors not supported");
+      if ("value" in Attributes)
+        O[P] = Attributes.value;
+      return O;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/create-non-enumerable-property.js
+var require_create_non_enumerable_property = __commonJS({
+  "../../node_modules/core-js/internals/create-non-enumerable-property.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var DESCRIPTORS = require_descriptors();
+    var definePropertyModule = require_object_define_property();
+    var createPropertyDescriptor = require_create_property_descriptor();
+    module2.exports = DESCRIPTORS ? function(object, key, value) {
+      return definePropertyModule.f(object, key, createPropertyDescriptor(1, value));
+    } : function(object, key, value) {
+      object[key] = value;
+      return object;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/function-name.js
+var require_function_name = __commonJS({
+  "../../node_modules/core-js/internals/function-name.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var DESCRIPTORS = require_descriptors();
+    var hasOwn = require_has_own_property();
+    var FunctionPrototype = Function.prototype;
+    var getDescriptor = DESCRIPTORS && Object.getOwnPropertyDescriptor;
+    var EXISTS = hasOwn(FunctionPrototype, "name");
+    var PROPER = EXISTS && function something() {
+    }.name === "something";
+    var CONFIGURABLE = EXISTS && (!DESCRIPTORS || DESCRIPTORS && getDescriptor(FunctionPrototype, "name").configurable);
+    module2.exports = {
+      EXISTS: EXISTS,
+      PROPER: PROPER,
+      CONFIGURABLE: CONFIGURABLE
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/inspect-source.js
+var require_inspect_source = __commonJS({
+  "../../node_modules/core-js/internals/inspect-source.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var uncurryThis = require_function_uncurry_this();
+    var isCallable = require_is_callable();
+    var store = require_shared_store();
+    var functionToString = uncurryThis(Function.toString);
+    if (!isCallable(store.inspectSource)) {
+      store.inspectSource = function(it) {
+        return functionToString(it);
+      };
+    }
+    module2.exports = store.inspectSource;
+  }
+});
+
+// ../../node_modules/core-js/internals/native-weak-map.js
+var require_native_weak_map = __commonJS({
+  "../../node_modules/core-js/internals/native-weak-map.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var global2 = require_global();
+    var isCallable = require_is_callable();
+    var inspectSource = require_inspect_source();
+    var WeakMap = global2.WeakMap;
+    module2.exports = isCallable(WeakMap) && /native code/.test(inspectSource(WeakMap));
+  }
+});
+
+// ../../node_modules/core-js/internals/shared-key.js
+var require_shared_key = __commonJS({
+  "../../node_modules/core-js/internals/shared-key.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var shared = require_shared();
+    var uid = require_uid();
+    var keys = shared("keys");
+    module2.exports = function(key) {
+      return keys[key] || (keys[key] = uid(key));
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/hidden-keys.js
+var require_hidden_keys = __commonJS({
+  "../../node_modules/core-js/internals/hidden-keys.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    module2.exports = {};
+  }
+});
+
+// ../../node_modules/core-js/internals/internal-state.js
+var require_internal_state = __commonJS({
+  "../../node_modules/core-js/internals/internal-state.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var NATIVE_WEAK_MAP = require_native_weak_map();
+    var global2 = require_global();
+    var uncurryThis = require_function_uncurry_this();
+    var isObject = require_is_object();
+    var createNonEnumerableProperty = require_create_non_enumerable_property();
+    var hasOwn = require_has_own_property();
+    var shared = require_shared_store();
+    var sharedKey = require_shared_key();
+    var hiddenKeys = require_hidden_keys();
+    var OBJECT_ALREADY_INITIALIZED = "Object already initialized";
+    var TypeError2 = global2.TypeError;
+    var WeakMap = global2.WeakMap;
+    var set;
+    var get;
+    var has;
+    var enforce = function enforce2(it) {
+      return has(it) ? get(it) : set(it, {});
+    };
+    var getterFor = function getterFor2(TYPE) {
+      return function(it) {
+        var state;
+        if (!isObject(it) || (state = get(it)).type !== TYPE) {
+          throw TypeError2("Incompatible receiver, " + TYPE + " required");
+        }
+        return state;
+      };
+    };
+    if (NATIVE_WEAK_MAP || shared.state) {
+      store = shared.state || (shared.state = new WeakMap());
+      wmget = uncurryThis(store.get);
+      wmhas = uncurryThis(store.has);
+      wmset = uncurryThis(store.set);
+      set = function set2(it, metadata) {
+        if (wmhas(store, it))
+          throw new TypeError2(OBJECT_ALREADY_INITIALIZED);
+        metadata.facade = it;
+        wmset(store, it, metadata);
+        return metadata;
+      };
+      get = function get2(it) {
+        return wmget(store, it) || {};
+      };
+      has = function has2(it) {
+        return wmhas(store, it);
+      };
+    } else {
+      STATE = sharedKey("state");
+      hiddenKeys[STATE] = true;
+      set = function set2(it, metadata) {
+        if (hasOwn(it, STATE))
+          throw new TypeError2(OBJECT_ALREADY_INITIALIZED);
+        metadata.facade = it;
+        createNonEnumerableProperty(it, STATE, metadata);
+        return metadata;
+      };
+      get = function get2(it) {
+        return hasOwn(it, STATE) ? it[STATE] : {};
+      };
+      has = function has2(it) {
+        return hasOwn(it, STATE);
+      };
+    }
+    var store;
+    var wmget;
+    var wmhas;
+    var wmset;
+    var STATE;
+    module2.exports = {
+      set: set,
+      get: get,
+      has: has,
+      enforce: enforce,
+      getterFor: getterFor
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/make-built-in.js
+var require_make_built_in = __commonJS({
+  "../../node_modules/core-js/internals/make-built-in.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var fails = require_fails();
+    var isCallable = require_is_callable();
+    var hasOwn = require_has_own_property();
+    var DESCRIPTORS = require_descriptors();
+    var CONFIGURABLE_FUNCTION_NAME = require_function_name().CONFIGURABLE;
+    var inspectSource = require_inspect_source();
+    var InternalStateModule = require_internal_state();
+    var enforceInternalState = InternalStateModule.enforce;
+    var getInternalState = InternalStateModule.get;
+    var defineProperty = Object.defineProperty;
+    var CONFIGURABLE_LENGTH = DESCRIPTORS && !fails(function() {
+      return defineProperty(function() {
+      }, "length", {
+        value: 8
+      }).length !== 8;
+    });
+    var TEMPLATE = String(String).split("String");
+    var makeBuiltIn = module2.exports = function(value, name, options) {
+      if (String(name).slice(0, 7) === "Symbol(") {
+        name = "[" + String(name).replace(/^Symbol\(([^)]*)\)/, "$1") + "]";
+      }
+      if (options && options.getter)
+        name = "get " + name;
+      if (options && options.setter)
+        name = "set " + name;
+      if (!hasOwn(value, "name") || CONFIGURABLE_FUNCTION_NAME && value.name !== name) {
+        if (DESCRIPTORS)
+          defineProperty(value, "name", {
+            value: name,
+            configurable: true
+          });
+        else
+          value.name = name;
+      }
+      if (CONFIGURABLE_LENGTH && options && hasOwn(options, "arity") && value.length !== options.arity) {
+        defineProperty(value, "length", {
+          value: options.arity
+        });
+      }
+      try {
+        if (options && hasOwn(options, "constructor") && options.constructor) {
+          if (DESCRIPTORS)
+            defineProperty(value, "prototype", {
+              writable: false
+            });
+        } else if (value.prototype)
+          value.prototype = void 0;
+      } catch (error) {
+      }
+      var state = enforceInternalState(value);
+      if (!hasOwn(state, "source")) {
+        state.source = TEMPLATE.join(typeof name == "string" ? name : "");
+      }
+      return value;
+    };
+    Function.prototype.toString = makeBuiltIn(function toString() {
+      return isCallable(this) && getInternalState(this).source || inspectSource(this);
+    }, "toString");
+  }
+});
+
+// ../../node_modules/core-js/internals/define-built-in.js
+var require_define_built_in = __commonJS({
+  "../../node_modules/core-js/internals/define-built-in.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var isCallable = require_is_callable();
+    var definePropertyModule = require_object_define_property();
+    var makeBuiltIn = require_make_built_in();
+    var defineGlobalProperty = require_define_global_property();
+    module2.exports = function(O, key, value, options) {
+      if (!options)
+        options = {};
+      var simple = options.enumerable;
+      var name = options.name !== void 0 ? options.name : key;
+      if (isCallable(value))
+        makeBuiltIn(value, name, options);
+      if (options.global) {
+        if (simple)
+          O[key] = value;
+        else
+          defineGlobalProperty(key, value);
+      } else {
+        try {
+          if (!options.unsafe)
+            delete O[key];
+          else if (O[key])
+            simple = true;
+        } catch (error) {
+        }
+        if (simple)
+          O[key] = value;
+        else
+          definePropertyModule.f(O, key, {
+            value: value,
+            enumerable: false,
+            configurable: !options.nonConfigurable,
+            writable: !options.nonWritable
+          });
+      }
+      return O;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/math-trunc.js
+var require_math_trunc = __commonJS({
+  "../../node_modules/core-js/internals/math-trunc.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var ceil = Math.ceil;
+    var floor = Math.floor;
+    module2.exports = Math.trunc || function trunc(x) {
+      var n = +x;
+      return (n > 0 ? floor : ceil)(n);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/to-integer-or-infinity.js
+var require_to_integer_or_infinity = __commonJS({
+  "../../node_modules/core-js/internals/to-integer-or-infinity.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var trunc = require_math_trunc();
+    module2.exports = function(argument) {
+      var number = +argument;
+      return number !== number || number === 0 ? 0 : trunc(number);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/to-absolute-index.js
+var require_to_absolute_index = __commonJS({
+  "../../node_modules/core-js/internals/to-absolute-index.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var toIntegerOrInfinity = require_to_integer_or_infinity();
+    var max = Math.max;
+    var min = Math.min;
+    module2.exports = function(index, length) {
+      var integer = toIntegerOrInfinity(index);
+      return integer < 0 ? max(integer + length, 0) : min(integer, length);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/to-length.js
+var require_to_length = __commonJS({
+  "../../node_modules/core-js/internals/to-length.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var toIntegerOrInfinity = require_to_integer_or_infinity();
+    var min = Math.min;
+    module2.exports = function(argument) {
+      return argument > 0 ? min(toIntegerOrInfinity(argument), 9007199254740991) : 0;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/length-of-array-like.js
+var require_length_of_array_like = __commonJS({
+  "../../node_modules/core-js/internals/length-of-array-like.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var toLength = require_to_length();
+    module2.exports = function(obj) {
+      return toLength(obj.length);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/array-includes.js
+var require_array_includes = __commonJS({
+  "../../node_modules/core-js/internals/array-includes.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var toIndexedObject = require_to_indexed_object();
+    var toAbsoluteIndex = require_to_absolute_index();
+    var lengthOfArrayLike = require_length_of_array_like();
+    var createMethod = function createMethod2(IS_INCLUDES) {
+      return function($this, el, fromIndex) {
+        var O = toIndexedObject($this);
+        var length = lengthOfArrayLike(O);
+        var index = toAbsoluteIndex(fromIndex, length);
+        var value;
+        if (IS_INCLUDES && el != el)
+          while (length > index) {
+            value = O[index++];
+            if (value != value)
+              return true;
+          }
+        else
+          for (; length > index; index++) {
+            if ((IS_INCLUDES || index in O) && O[index] === el)
+              return IS_INCLUDES || index || 0;
+          }
+        return !IS_INCLUDES && -1;
+      };
+    };
+    module2.exports = {
+      includes: createMethod(true),
+      indexOf: createMethod(false)
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/object-keys-internal.js
+var require_object_keys_internal = __commonJS({
+  "../../node_modules/core-js/internals/object-keys-internal.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var uncurryThis = require_function_uncurry_this();
+    var hasOwn = require_has_own_property();
+    var toIndexedObject = require_to_indexed_object();
+    var indexOf = require_array_includes().indexOf;
+    var hiddenKeys = require_hidden_keys();
+    var push = uncurryThis([].push);
+    module2.exports = function(object, names) {
+      var O = toIndexedObject(object);
+      var i = 0;
+      var result = [];
+      var key;
+      for (key in O) {
+        !hasOwn(hiddenKeys, key) && hasOwn(O, key) && push(result, key);
+      }
+      while (names.length > i) {
+        if (hasOwn(O, key = names[i++])) {
+          ~indexOf(result, key) || push(result, key);
+        }
+      }
+      return result;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/enum-bug-keys.js
+var require_enum_bug_keys = __commonJS({
+  "../../node_modules/core-js/internals/enum-bug-keys.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    module2.exports = ["constructor", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "toLocaleString", "toString", "valueOf"];
+  }
+});
+
+// ../../node_modules/core-js/internals/object-get-own-property-names.js
+var require_object_get_own_property_names = __commonJS({
+  "../../node_modules/core-js/internals/object-get-own-property-names.js": function(exports2) {
+    init_kolmafia_polyfill();
+    var internalObjectKeys = require_object_keys_internal();
+    var enumBugKeys = require_enum_bug_keys();
+    var hiddenKeys = enumBugKeys.concat("length", "prototype");
+    exports2.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+      return internalObjectKeys(O, hiddenKeys);
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/object-get-own-property-symbols.js
+var require_object_get_own_property_symbols = __commonJS({
+  "../../node_modules/core-js/internals/object-get-own-property-symbols.js": function(exports2) {
+    init_kolmafia_polyfill();
+    exports2.f = Object.getOwnPropertySymbols;
+  }
+});
+
+// ../../node_modules/core-js/internals/own-keys.js
+var require_own_keys = __commonJS({
+  "../../node_modules/core-js/internals/own-keys.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var getBuiltIn = require_get_built_in();
+    var uncurryThis = require_function_uncurry_this();
+    var getOwnPropertyNamesModule = require_object_get_own_property_names();
+    var getOwnPropertySymbolsModule = require_object_get_own_property_symbols();
+    var anObject = require_an_object();
+    var concat = uncurryThis([].concat);
+    module2.exports = getBuiltIn("Reflect", "ownKeys") || function ownKeys3(it) {
+      var keys = getOwnPropertyNamesModule.f(anObject(it));
+      var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
+      return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/copy-constructor-properties.js
+var require_copy_constructor_properties = __commonJS({
+  "../../node_modules/core-js/internals/copy-constructor-properties.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var hasOwn = require_has_own_property();
+    var ownKeys3 = require_own_keys();
+    var getOwnPropertyDescriptorModule = require_object_get_own_property_descriptor();
+    var definePropertyModule = require_object_define_property();
+    module2.exports = function(target, source, exceptions) {
+      var keys = ownKeys3(source);
+      var defineProperty = definePropertyModule.f;
+      var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
+      for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        if (!hasOwn(target, key) && !(exceptions && hasOwn(exceptions, key))) {
+          defineProperty(target, key, getOwnPropertyDescriptor(source, key));
+        }
+      }
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/is-forced.js
+var require_is_forced = __commonJS({
+  "../../node_modules/core-js/internals/is-forced.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var fails = require_fails();
+    var isCallable = require_is_callable();
+    var replacement = /#|\.prototype\./;
+    var isForced = function isForced2(feature, detection) {
+      var value = data[normalize(feature)];
+      return value == POLYFILL ? true : value == NATIVE ? false : isCallable(detection) ? fails(detection) : !!detection;
+    };
+    var normalize = isForced.normalize = function(string) {
+      return String(string).replace(replacement, ".").toLowerCase();
+    };
+    var data = isForced.data = {};
+    var NATIVE = isForced.NATIVE = "N";
+    var POLYFILL = isForced.POLYFILL = "P";
+    module2.exports = isForced;
+  }
+});
+
+// ../../node_modules/core-js/internals/export.js
+var require_export = __commonJS({
+  "../../node_modules/core-js/internals/export.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var global2 = require_global();
+    var getOwnPropertyDescriptor = require_object_get_own_property_descriptor().f;
+    var createNonEnumerableProperty = require_create_non_enumerable_property();
+    var defineBuiltIn = require_define_built_in();
+    var defineGlobalProperty = require_define_global_property();
+    var copyConstructorProperties = require_copy_constructor_properties();
+    var isForced = require_is_forced();
+    module2.exports = function(options, source) {
+      var TARGET = options.target;
+      var GLOBAL = options.global;
+      var STATIC = options.stat;
+      var FORCED, target, key, targetProperty, sourceProperty, descriptor;
+      if (GLOBAL) {
+        target = global2;
+      } else if (STATIC) {
+        target = global2[TARGET] || defineGlobalProperty(TARGET, {});
+      } else {
+        target = (global2[TARGET] || {}).prototype;
+      }
+      if (target)
+        for (key in source) {
+          sourceProperty = source[key];
+          if (options.dontCallGetSet) {
+            descriptor = getOwnPropertyDescriptor(target, key);
+            targetProperty = descriptor && descriptor.value;
+          } else
+            targetProperty = target[key];
+          FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? "." : "#") + key, options.forced);
+          if (!FORCED && targetProperty !== void 0) {
+            if (typeof sourceProperty == typeof targetProperty)
+              continue;
+            copyConstructorProperties(sourceProperty, targetProperty);
+          }
+          if (options.sham || targetProperty && targetProperty.sham) {
+            createNonEnumerableProperty(sourceProperty, "sham", true);
+          }
+          defineBuiltIn(target, key, sourceProperty, options);
+        }
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/object-keys.js
+var require_object_keys = __commonJS({
+  "../../node_modules/core-js/internals/object-keys.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var internalObjectKeys = require_object_keys_internal();
+    var enumBugKeys = require_enum_bug_keys();
+    module2.exports = Object.keys || function keys(O) {
+      return internalObjectKeys(O, enumBugKeys);
+    };
+  }
+});
+
 // ../../node_modules/core-js/internals/object-to-array.js
 var require_object_to_array = __commonJS({
   "../../node_modules/core-js/internals/object-to-array.js": function(exports2, module2) {
     init_kolmafia_polyfill();
     var DESCRIPTORS = require_descriptors();
-    var uncurryThis2 = require_function_uncurry_this();
+    var uncurryThis = require_function_uncurry_this();
     var objectKeys = require_object_keys();
     var toIndexedObject = require_to_indexed_object();
     var $propertyIsEnumerable = require_object_property_is_enumerable().f;
-    var propertyIsEnumerable = uncurryThis2($propertyIsEnumerable);
-    var push = uncurryThis2([].push);
+    var propertyIsEnumerable = uncurryThis($propertyIsEnumerable);
+    var push = uncurryThis([].push);
     var createMethod = function createMethod2(TO_ENTRIES) {
       return function(it) {
         var O = toIndexedObject(it);
@@ -5984,9 +5319,9 @@ var require_object_to_array = __commonJS({
 var require_is_array = __commonJS({
   "../../node_modules/core-js/internals/is-array.js": function(exports2, module2) {
     init_kolmafia_polyfill();
-    var classof2 = require_classof_raw();
+    var classof = require_classof_raw();
     module2.exports = Array.isArray || function isArray(argument) {
-      return classof2(argument) == "Array";
+      return classof(argument) == "Array";
     };
   }
 });
@@ -5995,11 +5330,11 @@ var require_is_array = __commonJS({
 var require_does_not_exceed_safe_integer = __commonJS({
   "../../node_modules/core-js/internals/does-not-exceed-safe-integer.js": function(exports2, module2) {
     init_kolmafia_polyfill();
-    var $TypeError2 = TypeError;
+    var $TypeError = TypeError;
     var MAX_SAFE_INTEGER = 9007199254740991;
     module2.exports = function(it) {
       if (it > MAX_SAFE_INTEGER)
-        throw $TypeError2("Maximum allowed index exceeded");
+        throw $TypeError("Maximum allowed index exceeded");
       return it;
     };
   }
@@ -6009,10 +5344,10 @@ var require_does_not_exceed_safe_integer = __commonJS({
 var require_function_bind_context = __commonJS({
   "../../node_modules/core-js/internals/function-bind-context.js": function(exports2, module2) {
     init_kolmafia_polyfill();
-    var uncurryThis2 = require_function_uncurry_this();
+    var uncurryThis = require_function_uncurry_this();
     var aCallable = require_a_callable();
     var NATIVE_BIND = require_function_bind_native();
-    var bind = uncurryThis2(uncurryThis2.bind);
+    var bind = uncurryThis(uncurryThis.bind);
     module2.exports = function(fn, that) {
       aCallable(fn);
       return that === void 0 ? fn : NATIVE_BIND ? bind(fn, that) : function() {
@@ -6056,6 +5391,96 @@ var require_flatten_into_array = __commonJS({
   }
 });
 
+// ../../node_modules/core-js/internals/to-string-tag-support.js
+var require_to_string_tag_support = __commonJS({
+  "../../node_modules/core-js/internals/to-string-tag-support.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var wellKnownSymbol = require_well_known_symbol();
+    var TO_STRING_TAG = wellKnownSymbol("toStringTag");
+    var test = {};
+    test[TO_STRING_TAG] = "z";
+    module2.exports = String(test) === "[object z]";
+  }
+});
+
+// ../../node_modules/core-js/internals/classof.js
+var require_classof = __commonJS({
+  "../../node_modules/core-js/internals/classof.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var TO_STRING_TAG_SUPPORT = require_to_string_tag_support();
+    var isCallable = require_is_callable();
+    var classofRaw = require_classof_raw();
+    var wellKnownSymbol = require_well_known_symbol();
+    var TO_STRING_TAG = wellKnownSymbol("toStringTag");
+    var $Object = Object;
+    var CORRECT_ARGUMENTS = classofRaw(function() {
+      return arguments;
+    }()) == "Arguments";
+    var tryGet = function tryGet2(it, key) {
+      try {
+        return it[key];
+      } catch (error) {
+      }
+    };
+    module2.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function(it) {
+      var O, tag, result;
+      return it === void 0 ? "Undefined" : it === null ? "Null" : typeof (tag = tryGet(O = $Object(it), TO_STRING_TAG)) == "string" ? tag : CORRECT_ARGUMENTS ? classofRaw(O) : (result = classofRaw(O)) == "Object" && isCallable(O.callee) ? "Arguments" : result;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/is-constructor.js
+var require_is_constructor = __commonJS({
+  "../../node_modules/core-js/internals/is-constructor.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var uncurryThis = require_function_uncurry_this();
+    var fails = require_fails();
+    var isCallable = require_is_callable();
+    var classof = require_classof();
+    var getBuiltIn = require_get_built_in();
+    var inspectSource = require_inspect_source();
+    var noop = function noop2() {
+    };
+    var empty = [];
+    var construct = getBuiltIn("Reflect", "construct");
+    var constructorRegExp = /^\s*(?:class|function)\b/;
+    var exec = uncurryThis(constructorRegExp.exec);
+    var INCORRECT_TO_STRING = !constructorRegExp.exec(noop);
+    var isConstructorModern = function isConstructor(argument) {
+      if (!isCallable(argument))
+        return false;
+      try {
+        construct(noop, empty, argument);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    };
+    var isConstructorLegacy = function isConstructor(argument) {
+      if (!isCallable(argument))
+        return false;
+      switch (classof(argument)) {
+        case "AsyncFunction":
+        case "GeneratorFunction":
+        case "AsyncGeneratorFunction":
+          return false;
+      }
+      try {
+        return INCORRECT_TO_STRING || !!exec(constructorRegExp, inspectSource(argument));
+      } catch (error) {
+        return true;
+      }
+    };
+    isConstructorLegacy.sham = true;
+    module2.exports = !construct || fails(function() {
+      var called;
+      return isConstructorModern(isConstructorModern.call) || !isConstructorModern(Object) || !isConstructorModern(function() {
+        called = true;
+      }) || called;
+    }) ? isConstructorLegacy : isConstructorModern;
+  }
+});
+
 // ../../node_modules/core-js/internals/array-species-constructor.js
 var require_array_species_constructor = __commonJS({
   "../../node_modules/core-js/internals/array-species-constructor.js": function(exports2, module2) {
@@ -6063,8 +5488,8 @@ var require_array_species_constructor = __commonJS({
     var isArray = require_is_array();
     var isConstructor = require_is_constructor();
     var isObject = require_is_object();
-    var wellKnownSymbol2 = require_well_known_symbol();
-    var SPECIES = wellKnownSymbol2("species");
+    var wellKnownSymbol = require_well_known_symbol();
+    var SPECIES = wellKnownSymbol("species");
     var $Array = Array;
     module2.exports = function(originalArray) {
       var C;
@@ -6099,13 +5524,13 @@ var require_es_array_flat = __commonJS({
   "../../node_modules/core-js/modules/es.array.flat.js": function() {
     "use strict";
     init_kolmafia_polyfill();
-    var $4 = require_export();
+    var $3 = require_export();
     var flattenIntoArray = require_flatten_into_array();
     var toObject = require_to_object();
     var lengthOfArrayLike = require_length_of_array_like();
     var toIntegerOrInfinity = require_to_integer_or_infinity();
     var arraySpeciesCreate = require_array_species_create();
-    $4({
+    $3({
       target: "Array",
       proto: true
     }, {
@@ -6121,14 +5546,117 @@ var require_es_array_flat = __commonJS({
   }
 });
 
+// ../../node_modules/core-js/internals/object-define-properties.js
+var require_object_define_properties = __commonJS({
+  "../../node_modules/core-js/internals/object-define-properties.js": function(exports2) {
+    init_kolmafia_polyfill();
+    var DESCRIPTORS = require_descriptors();
+    var V8_PROTOTYPE_DEFINE_BUG = require_v8_prototype_define_bug();
+    var definePropertyModule = require_object_define_property();
+    var anObject = require_an_object();
+    var toIndexedObject = require_to_indexed_object();
+    var objectKeys = require_object_keys();
+    exports2.f = DESCRIPTORS && !V8_PROTOTYPE_DEFINE_BUG ? Object.defineProperties : function defineProperties(O, Properties) {
+      anObject(O);
+      var props = toIndexedObject(Properties);
+      var keys = objectKeys(Properties);
+      var length = keys.length;
+      var index = 0;
+      var key;
+      while (length > index) {
+        definePropertyModule.f(O, key = keys[index++], props[key]);
+      }
+      return O;
+    };
+  }
+});
+
+// ../../node_modules/core-js/internals/html.js
+var require_html = __commonJS({
+  "../../node_modules/core-js/internals/html.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var getBuiltIn = require_get_built_in();
+    module2.exports = getBuiltIn("document", "documentElement");
+  }
+});
+
+// ../../node_modules/core-js/internals/object-create.js
+var require_object_create = __commonJS({
+  "../../node_modules/core-js/internals/object-create.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    var anObject = require_an_object();
+    var definePropertiesModule = require_object_define_properties();
+    var enumBugKeys = require_enum_bug_keys();
+    var hiddenKeys = require_hidden_keys();
+    var html = require_html();
+    var documentCreateElement = require_document_create_element();
+    var sharedKey = require_shared_key();
+    var GT = ">";
+    var LT = "<";
+    var PROTOTYPE = "prototype";
+    var SCRIPT = "script";
+    var IE_PROTO = sharedKey("IE_PROTO");
+    var EmptyConstructor = function EmptyConstructor2() {
+    };
+    var scriptTag = function scriptTag2(content) {
+      return LT + SCRIPT + GT + content + LT + "/" + SCRIPT + GT;
+    };
+    var NullProtoObjectViaActiveX = function NullProtoObjectViaActiveX2(activeXDocument2) {
+      activeXDocument2.write(scriptTag(""));
+      activeXDocument2.close();
+      var temp = activeXDocument2.parentWindow.Object;
+      activeXDocument2 = null;
+      return temp;
+    };
+    var NullProtoObjectViaIFrame = function NullProtoObjectViaIFrame2() {
+      var iframe = documentCreateElement("iframe");
+      var JS = "java" + SCRIPT + ":";
+      var iframeDocument;
+      iframe.style.display = "none";
+      html.appendChild(iframe);
+      iframe.src = String(JS);
+      iframeDocument = iframe.contentWindow.document;
+      iframeDocument.open();
+      iframeDocument.write(scriptTag("document.F=Object"));
+      iframeDocument.close();
+      return iframeDocument.F;
+    };
+    var activeXDocument;
+    var _NullProtoObject = function NullProtoObject() {
+      try {
+        activeXDocument = new ActiveXObject("htmlfile");
+      } catch (error) {
+      }
+      _NullProtoObject = typeof document != "undefined" ? document.domain && activeXDocument ? NullProtoObjectViaActiveX(activeXDocument) : NullProtoObjectViaIFrame() : NullProtoObjectViaActiveX(activeXDocument);
+      var length = enumBugKeys.length;
+      while (length--) {
+        delete _NullProtoObject[PROTOTYPE][enumBugKeys[length]];
+      }
+      return _NullProtoObject();
+    };
+    hiddenKeys[IE_PROTO] = true;
+    module2.exports = Object.create || function create(O, Properties) {
+      var result;
+      if (O !== null) {
+        EmptyConstructor[PROTOTYPE] = anObject(O);
+        result = new EmptyConstructor();
+        EmptyConstructor[PROTOTYPE] = null;
+        result[IE_PROTO] = O;
+      } else
+        result = _NullProtoObject();
+      return Properties === void 0 ? result : definePropertiesModule.f(result, Properties);
+    };
+  }
+});
+
 // ../../node_modules/core-js/internals/add-to-unscopables.js
 var require_add_to_unscopables = __commonJS({
   "../../node_modules/core-js/internals/add-to-unscopables.js": function(exports2, module2) {
     init_kolmafia_polyfill();
-    var wellKnownSymbol2 = require_well_known_symbol();
+    var wellKnownSymbol = require_well_known_symbol();
     var create = require_object_create();
     var defineProperty = require_object_define_property().f;
-    var UNSCOPABLES = wellKnownSymbol2("unscopables");
+    var UNSCOPABLES = wellKnownSymbol("unscopables");
     var ArrayPrototype = Array.prototype;
     if (ArrayPrototype[UNSCOPABLES] == void 0) {
       defineProperty(ArrayPrototype, UNSCOPABLES, {
@@ -6156,9 +5684,9 @@ var require_entry_unbind = __commonJS({
   "../../node_modules/core-js/internals/entry-unbind.js": function(exports2, module2) {
     init_kolmafia_polyfill();
     var global2 = require_global();
-    var uncurryThis2 = require_function_uncurry_this();
+    var uncurryThis = require_function_uncurry_this();
     module2.exports = function(CONSTRUCTOR, METHOD) {
-      return uncurryThis2(global2[CONSTRUCTOR].prototype[METHOD]);
+      return uncurryThis(global2[CONSTRUCTOR].prototype[METHOD]);
     };
   }
 });
@@ -6209,13 +5737,21 @@ var require_flat5 = __commonJS({
   }
 });
 
+// ../../node_modules/core-js/internals/iterators.js
+var require_iterators = __commonJS({
+  "../../node_modules/core-js/internals/iterators.js": function(exports2, module2) {
+    init_kolmafia_polyfill();
+    module2.exports = {};
+  }
+});
+
 // ../../node_modules/core-js/internals/is-array-iterator-method.js
 var require_is_array_iterator_method = __commonJS({
   "../../node_modules/core-js/internals/is-array-iterator-method.js": function(exports2, module2) {
     init_kolmafia_polyfill();
-    var wellKnownSymbol2 = require_well_known_symbol();
+    var wellKnownSymbol = require_well_known_symbol();
     var Iterators = require_iterators();
-    var ITERATOR = wellKnownSymbol2("iterator");
+    var ITERATOR = wellKnownSymbol("iterator");
     var ArrayPrototype = Array.prototype;
     module2.exports = function(it) {
       return it !== void 0 && (Iterators.Array === it || ArrayPrototype[ITERATOR] === it);
@@ -6227,14 +5763,14 @@ var require_is_array_iterator_method = __commonJS({
 var require_get_iterator_method = __commonJS({
   "../../node_modules/core-js/internals/get-iterator-method.js": function(exports2, module2) {
     init_kolmafia_polyfill();
-    var classof2 = require_classof();
-    var getMethod2 = require_get_method();
+    var classof = require_classof();
+    var getMethod = require_get_method();
     var Iterators = require_iterators();
-    var wellKnownSymbol2 = require_well_known_symbol();
-    var ITERATOR = wellKnownSymbol2("iterator");
+    var wellKnownSymbol = require_well_known_symbol();
+    var ITERATOR = wellKnownSymbol("iterator");
     module2.exports = function(it) {
       if (it != void 0)
-        return getMethod2(it, ITERATOR) || getMethod2(it, "@@iterator") || Iterators[classof2(it)];
+        return getMethod(it, ITERATOR) || getMethod(it, "@@iterator") || Iterators[classof(it)];
     };
   }
 });
@@ -6243,17 +5779,17 @@ var require_get_iterator_method = __commonJS({
 var require_get_iterator = __commonJS({
   "../../node_modules/core-js/internals/get-iterator.js": function(exports2, module2) {
     init_kolmafia_polyfill();
-    var call2 = require_function_call();
+    var call = require_function_call();
     var aCallable = require_a_callable();
-    var anObject2 = require_an_object();
+    var anObject = require_an_object();
     var tryToString = require_try_to_string();
     var getIteratorMethod = require_get_iterator_method();
-    var $TypeError2 = TypeError;
+    var $TypeError = TypeError;
     module2.exports = function(argument, usingIterator) {
       var iteratorMethod = arguments.length < 2 ? getIteratorMethod(argument) : usingIterator;
       if (aCallable(iteratorMethod))
-        return anObject2(call2(iteratorMethod, argument));
-      throw $TypeError2(tryToString(argument) + " is not iterable");
+        return anObject(call(iteratorMethod, argument));
+      throw $TypeError(tryToString(argument) + " is not iterable");
     };
   }
 });
@@ -6262,20 +5798,20 @@ var require_get_iterator = __commonJS({
 var require_iterator_close = __commonJS({
   "../../node_modules/core-js/internals/iterator-close.js": function(exports2, module2) {
     init_kolmafia_polyfill();
-    var call2 = require_function_call();
-    var anObject2 = require_an_object();
-    var getMethod2 = require_get_method();
+    var call = require_function_call();
+    var anObject = require_an_object();
+    var getMethod = require_get_method();
     module2.exports = function(iterator, kind, value) {
       var innerResult, innerError;
-      anObject2(iterator);
+      anObject(iterator);
       try {
-        innerResult = getMethod2(iterator, "return");
+        innerResult = getMethod(iterator, "return");
         if (!innerResult) {
           if (kind === "throw")
             throw value;
           return value;
         }
-        innerResult = call2(innerResult, iterator);
+        innerResult = call(innerResult, iterator);
       } catch (error) {
         innerError = true;
         innerResult = error;
@@ -6284,7 +5820,7 @@ var require_iterator_close = __commonJS({
         throw value;
       if (innerError)
         throw innerResult;
-      anObject2(innerResult);
+      anObject(innerResult);
       return value;
     };
   }
@@ -6295,8 +5831,8 @@ var require_iterate = __commonJS({
   "../../node_modules/core-js/internals/iterate.js": function(exports2, module2) {
     init_kolmafia_polyfill();
     var bind = require_function_bind_context();
-    var call2 = require_function_call();
-    var anObject2 = require_an_object();
+    var call = require_function_call();
+    var anObject = require_an_object();
     var tryToString = require_try_to_string();
     var isArrayIteratorMethod = require_is_array_iterator_method();
     var lengthOfArrayLike = require_length_of_array_like();
@@ -6304,7 +5840,7 @@ var require_iterate = __commonJS({
     var getIterator = require_get_iterator();
     var getIteratorMethod = require_get_iterator_method();
     var iteratorClose = require_iterator_close();
-    var $TypeError2 = TypeError;
+    var $TypeError = TypeError;
     var Result = function Result2(stopped, result) {
       this.stopped = stopped;
       this.result = result;
@@ -6317,7 +5853,7 @@ var require_iterate = __commonJS({
       var IS_ITERATOR = !!(options && options.IS_ITERATOR);
       var INTERRUPTED = !!(options && options.INTERRUPTED);
       var fn = bind(unboundFunction, that);
-      var iterator, iterFn, index, length, result, next2, step;
+      var iterator, iterFn, index, length, result, next, step;
       var stop = function stop2(condition) {
         if (iterator)
           iteratorClose(iterator, "normal", condition);
@@ -6325,7 +5861,7 @@ var require_iterate = __commonJS({
       };
       var callFn = function callFn2(value) {
         if (AS_ENTRIES) {
-          anObject2(value);
+          anObject(value);
           return INTERRUPTED ? fn(value[0], value[1], stop) : fn(value[0], value[1]);
         }
         return INTERRUPTED ? fn(value, stop) : fn(value);
@@ -6337,7 +5873,7 @@ var require_iterate = __commonJS({
       } else {
         iterFn = getIteratorMethod(iterable);
         if (!iterFn)
-          throw $TypeError2(tryToString(iterable) + " is not iterable");
+          throw $TypeError(tryToString(iterable) + " is not iterable");
         if (isArrayIteratorMethod(iterFn)) {
           for (index = 0, length = lengthOfArrayLike(iterable); length > index; index++) {
             result = callFn(iterable[index]);
@@ -6348,8 +5884,8 @@ var require_iterate = __commonJS({
         }
         iterator = getIterator(iterable, iterFn);
       }
-      next2 = IS_RECORD ? iterable.next : iterator.next;
-      while (!(step = call2(next2, iterator)).done) {
+      next = IS_RECORD ? iterable.next : iterator.next;
+      while (!(step = call(next, iterator)).done) {
         try {
           result = callFn(step.value);
         } catch (error) {
@@ -6383,120 +5919,6 @@ var require_create_property = __commonJS({
 
 // src/greenbox.ts
 init_kolmafia_polyfill();
-
-// ../../node_modules/core-js/modules/es.string.match-all.js
-init_kolmafia_polyfill();
-var $ = require_export();
-var call = require_function_call();
-var uncurryThis = require_function_uncurry_this();
-var createIteratorConstructor = require_create_iterator_constructor();
-var requireObjectCoercible = require_require_object_coercible();
-var toLength = require_to_length();
-var toString = require_to_string();
-var anObject = require_an_object();
-var classof = require_classof_raw();
-var isRegExp = require_is_regexp();
-var getRegExpFlags = require_regexp_get_flags();
-var getMethod = require_get_method();
-var defineBuiltIn = require_define_built_in();
-var fails = require_fails();
-var wellKnownSymbol = require_well_known_symbol();
-var speciesConstructor = require_species_constructor();
-var advanceStringIndex = require_advance_string_index();
-var regExpExec = require_regexp_exec_abstract();
-var InternalStateModule = require_internal_state();
-var IS_PURE = require_is_pure();
-var MATCH_ALL = wellKnownSymbol("matchAll");
-var REGEXP_STRING = "RegExp String";
-var REGEXP_STRING_ITERATOR = REGEXP_STRING + " Iterator";
-var setInternalState = InternalStateModule.set;
-var getInternalState = InternalStateModule.getterFor(REGEXP_STRING_ITERATOR);
-var RegExpPrototype = RegExp.prototype;
-var $TypeError = TypeError;
-var stringIndexOf = uncurryThis("".indexOf);
-var un$MatchAll = uncurryThis("".matchAll);
-var WORKS_WITH_NON_GLOBAL_REGEX = !!un$MatchAll && !fails(function() {
-  un$MatchAll("a", /./);
-});
-var $RegExpStringIterator = createIteratorConstructor(function RegExpStringIterator(regexp, string, $global, fullUnicode) {
-  setInternalState(this, {
-    type: REGEXP_STRING_ITERATOR,
-    regexp: regexp,
-    string: string,
-    global: $global,
-    unicode: fullUnicode,
-    done: false
-  });
-}, REGEXP_STRING, function next() {
-  var state = getInternalState(this);
-  if (state.done)
-    return {
-      value: void 0,
-      done: true
-    };
-  var R = state.regexp;
-  var S = state.string;
-  var match = regExpExec(R, S);
-  if (match === null)
-    return {
-      value: void 0,
-      done: state.done = true
-    };
-  if (state.global) {
-    if (toString(match[0]) === "")
-      R.lastIndex = advanceStringIndex(S, toLength(R.lastIndex), state.unicode);
-    return {
-      value: match,
-      done: false
-    };
-  }
-  state.done = true;
-  return {
-    value: match,
-    done: false
-  };
-});
-var $matchAll = function $matchAll2(string) {
-  var R = anObject(this);
-  var S = toString(string);
-  var C = speciesConstructor(R, RegExp);
-  var flags = toString(getRegExpFlags(R));
-  var matcher, $global, fullUnicode;
-  matcher = new C(C === RegExp ? R.source : R, flags);
-  $global = !!~stringIndexOf(flags, "g");
-  fullUnicode = !!~stringIndexOf(flags, "u");
-  matcher.lastIndex = toLength(R.lastIndex);
-  return new $RegExpStringIterator(matcher, S, $global, fullUnicode);
-};
-$({
-  target: "String",
-  proto: true,
-  forced: WORKS_WITH_NON_GLOBAL_REGEX
-}, {
-  matchAll: function matchAll(regexp) {
-    var O = requireObjectCoercible(this);
-    var flags, S, matcher, rx;
-    if (regexp != null) {
-      if (isRegExp(regexp)) {
-        flags = toString(requireObjectCoercible(getRegExpFlags(regexp)));
-        if (!~stringIndexOf(flags, "g"))
-          throw $TypeError("`.matchAll` does not allow non-global regexes");
-      }
-      if (WORKS_WITH_NON_GLOBAL_REGEX)
-        return un$MatchAll(O, regexp);
-      matcher = getMethod(regexp, MATCH_ALL);
-      if (matcher === void 0 && IS_PURE && classof(regexp) == "RegExp")
-        matcher = $matchAll;
-      if (matcher)
-        return call(matcher, regexp, O);
-    } else if (WORKS_WITH_NON_GLOBAL_REGEX)
-      return un$MatchAll(O, regexp);
-    S = toString(O);
-    rx = new RegExp(regexp, "g");
-    return IS_PURE ? call($matchAll, rx, S) : rx[MATCH_ALL](S);
-  }
-});
-IS_PURE || MATCH_ALL in RegExpPrototype || defineBuiltIn(RegExpPrototype, MATCH_ALL, $matchAll);
 
 // ../greenbox-data/lib/index.ts
 init_kolmafia_polyfill();
@@ -10547,9 +9969,9 @@ init_kolmafia_polyfill();
 
 // ../../node_modules/core-js/modules/es.object.entries.js
 init_kolmafia_polyfill();
-var $2 = require_export();
+var $ = require_export();
 var $entries = require_object_to_array().entries;
-$2({
+$({
   target: "Object",
   stat: true
 }, {
@@ -10567,10 +9989,10 @@ init_kolmafia_polyfill();
 
 // ../../node_modules/core-js/modules/es.object.from-entries.js
 init_kolmafia_polyfill();
-var $3 = require_export();
+var $2 = require_export();
 var iterate = require_iterate();
 var createProperty = require_create_property();
-$3({
+$2({
   target: "Object",
   stat: true
 }, {
@@ -11046,41 +10468,6 @@ function _defineProperty2(obj, key, value) {
   }
   return obj;
 }
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray7(arr) || _nonIterableSpread();
-}
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _unsupportedIterableToArray7(o, minLen) {
-  if (!o)
-    return;
-  if (typeof o === "string")
-    return _arrayLikeToArray7(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
-    return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray7(o, minLen);
-}
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
-    return Array.from(iter);
-}
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr))
-    return _arrayLikeToArray7(arr);
-}
-function _arrayLikeToArray7(arr, len) {
-  if (len == null || len > arr.length)
-    len = arr.length;
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-  return arr2;
-}
 function checkIotMs() {
   var _loadIotMs$data, _loadIotMs;
   return ((_loadIotMs$data = (_loadIotMs = loadIotMs()) === null || _loadIotMs === void 0 ? void 0 : _loadIotMs.data) !== null && _loadIotMs$data !== void 0 ? _loadIotMs$data : []).map(function(iotm) {
@@ -11113,9 +10500,12 @@ function checkSkills() {
 }
 function getHundredPercentFamiliars() {
   var history = (0, import_kolmafia6.visitUrl)("ascensionhistory.php?back=self&who=".concat((0, import_kolmafia6.myId)()), false) + (0, import_kolmafia6.visitUrl)("ascensionhistory.php?back=self&prens13=1&who=".concat((0, import_kolmafia6.myId)()), false);
-  return new Set(_toConsumableArray(history.matchAll(/alt="([^"]*?) \(100%\)/gm)).map(function(m) {
-    return (0, import_kolmafia6.toFamiliar)(m[1]);
-  }));
+  var set = /* @__PURE__ */ new Set();
+  var m;
+  while ((m = /alt="([^"]*?) \(100%\)/gm.exec(history)) !== null) {
+    set.add(import_kolmafia6.Familiar.get(m[1]));
+  }
+  return set;
 }
 function checkFamiliars() {
   var hundredPercentFamiliars = getHundredPercentFamiliars();
