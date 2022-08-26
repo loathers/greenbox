@@ -14,6 +14,7 @@ build({
     // generateIotmList: "src/generateIotms.ts",
   },
   bundle: true,
+  minifySyntax: true,
   platform: "node",
   target: "rhino1.7.14",
   external: ["kolmafia"],
