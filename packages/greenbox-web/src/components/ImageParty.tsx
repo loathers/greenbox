@@ -15,7 +15,7 @@ export default function ImageParty({ titles, images, active, overlap = 10 }: Pro
           display="inline-block"
           position="relative"
           zIndex={i === active ? 2 : 1}
-          filter={`brightness(${i === active ? 1 : 0.7})`}
+          filter={`brightness(${i === active ? 1 : 0.8})`}
         >
           <AlphaImage src={`itemimages/${image}`} sourceWidth={30} />
         </Box>
