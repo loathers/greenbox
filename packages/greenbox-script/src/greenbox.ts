@@ -1,4 +1,3 @@
-import "core-js/modules/es.string.match-all";
 import {
   loadTrophies,
   isPermable,
@@ -90,7 +89,10 @@ function getHundredPercentFamiliars() {
   const history =
     visitUrl(`ascensionhistory.php?back=self&who=${myId()}`, false) +
     visitUrl(`ascensionhistory.php?back=self&prens13=1&who=${myId()}`, false);
-  return new Set([...history.matchAll(/alt="([^"]*?) \(100%\)/gm)].map((m) => toFamiliar(m[1])));
+  const set = new Set();
+  let m;
+  while ((m = /alt="([^"]*?) \(100%\)/gm.exec(history)) !== null) set.add(Familiar.get(m[1]));
+  return set;
 }
 
 /**
