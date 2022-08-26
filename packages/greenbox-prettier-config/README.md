@@ -1,3 +1,3 @@
 # `prettier-config`
 
-Shared prettier config
+This is a shared config for [prettier](https://prettier.io/), an automatic formatter for saved greenbox code. When developing for greenbox (across the board; whether to **greenbox-data**, **greenbox-script**, or **greenbox-web**), the rules set in this repo will allow VSCode to reformat your code to match the overall standards being enforced across projects. It is quite unlikely that any PR will touch this unless there is a considerable change in formatting we would like to enforce as an overarching project.
