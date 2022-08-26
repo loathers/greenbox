@@ -19,6 +19,7 @@ The same is true of many of the items within components, but not all. For instan
 
 Within `greenbox-web/src/store`, you will find the .ts files that are used to combine all the myriad components into a final website. The primary file here is (fittingly) `index.ts`, which imports essentially everything from `components` and plops them all down into a file that users can view. 
 
+## Example Pull Requests
 I will be completely straight-up with you: if you don't know React, you probably should not touch **greenbox-web**. It is harder to test your changes in **greenbox-web**, and features relatively disparate syntax from the sort of development that an average KOL scripter generally does. 
 
 However, if you feel familiarity and comfort with React, PRs that would warrant touching **greenbox-web** would be things like this:
