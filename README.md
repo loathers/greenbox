@@ -1,23 +1,20 @@
-# greenbox
+<img src="https://user-images.githubusercontent.com/8014761/186810254-65a2a81d-4976-405f-ac00-23fa3222924b.png" alt="greenbox logo" style="width: 50%;">
 
-`greenbox` is a script meant to examine a Kingdom of Loathing player's overall loadout and return a set of green boxes. In KOL's community, green boxes are a reference to a profile snapshot script [once owned by BumCheekCity](http://forums.kingdomofloathing.com/vb/showthread.php?t=179109) and more [recently owned by CheeseCookie](http://forums.kingdomofloathing.com/vb/showthread.php?t=218735). In the parlance of these snapshots, a green box means you own the thing that's in the box. The boxes represent a whole lot of things about your KOL account -- what premium items you own from Mr. Store, what skills you have permed, what familiars you have in your terrarium, et cetera. LASS_Greenbox is a modernized version of these snapshot scripts, allowing Discord connectivity and examination of a player's "green boxes" to figure out what that player needs to buy next, or what kind of premium items the player is on the lookout for.
+`greenbox` is a script meant to examine a [Kingdom of Loathing](https://www.kingdomofloathing.com/) player's overall loadout and return a graphical interface showing the user what they own and do not own, among some of the coolest items, tattoos, and trophies in the kingdom.
 
-## Current Task List
+To install, run the following command on an up-to-date [KolMafia](https://github.com/kolmafia/kolmafia) version:
 
-- [x] A prototype script that generates a JSON document of what an account has
-  - [x] Lists out skills split by HC/SC
-  - [x] Lists levels of skills like slime skills & PVP rewards
-    - [ ] Show maximum level for skills with a maximum level
-  - [x] Lists out owned familiars
-  - [x] Lists out owned but unused familiar hatchlings
-  - [x] list out <strike>90 &</strike> 100% Familiar Percentages
-  - [x] Lists out IOTMs split by ownership & usage
-  - [x] Lists out tattoos
-  - [x] Lists out trophies
-  - [x] Lists out ascension rewards
-- [x] A single page application
-- [ ] Add different sorting/filtering/display options to the JSON (show only what a user has, sort based on most recent tier list, only show standard iotm/skills, et cetera)
+```git checkout loathers/greenbox release ```
 
-# Possible future tasks
-- [ ] Integration with [oaf-js](https://github.com/Loathing-Associates-Scripting-Society/oaf-js). `greenbox` would kmail JSON to OAF, OAF would store to a db, users could be queried by name and shown the results from that database
-- [ ] Ship SPA as a relay script 
+Once installed, you can run greenbox at any time by running `greenbox` in the GCLI. 
+
+## Development
+We have constructed greenbox as a monorepo -- this means that there are three distinct scripts that live inside a single repo. To assist in the development of this script, we have added a series of readmes that should help walk through code structure and describe PRs that would touch each specific section.
+
+- For more information on the overall structure, [click here](packages/README.md).
+- For more information on the backend data of greenbox, [click here](packages/greenbox-data/README.md).
+- For more information on the script run within KOLMafia to assess your greenboxen, [click here](packages/greenbox-script/README.md).
+- For more information on the frontend of the script that ingests the aforementioned data, [click here](packages/greenbox-web/README.md).
+
+## History 
+In KOL's community, green boxes are a reference to a profile snapshot script [once owned by BumCheekCity](http://forums.kingdomofloathing.com/vb/showthread.php?t=179109) and more [recently owned by CheeseCookie](http://forums.kingdomofloathing.com/vb/showthread.php?t=218735). In the parlance of these snapshots, a green box means you own the thing that's in the box. Hence the name of this script. While this script was coded from scratch, the general structure (and the community impact of the script) owes a substantial amount to BumCheekCity and CheeseCookie, and we are thankful for their contributions to KOL.
