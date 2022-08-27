@@ -1,5 +1,6 @@
 import { Box, LinkBox, LinkOverlay } from "@chakra-ui/react";
-import { forwardRef } from "react";
+import he from "he";
+import { forwardRef, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../store";
@@ -47,8 +48,8 @@ export function guessWikiLink(
   type: Props["type"],
   clashes: string[]
 ) {
-  if (link) return link;
-  const n = name.replaceAll(" ", "_");
+  if (link) return he.decode(link);
+  const n = he.decode(name).replaceAll(" ", "_");
   if (clashes.includes(name) || otherClashes.includes(name)) return `${n}_(${type})`;
   return n;
 }
@@ -107,7 +108,7 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
         href={`https://kol.coldfront.net/thekolwiki/index.php/${wikiLink}`}
         isExternal
       >
-        {name}
+        {he.decode(name)}
       </LinkOverlay>
     </LinkBox>
   );

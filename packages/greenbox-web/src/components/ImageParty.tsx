@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+import he from "he";
 
 import AlphaImage from "./AlphaImage";
 
@@ -9,7 +10,7 @@ export default function ImageParty({ titles, images, active, overlap = 10 }: Pro
     <Box ml={`${overlap}px`}>
       {images.map((image, i) => (
         <Box
-          title={titles[i]}
+          title={he.decode(titles[i])}
           key={image}
           ml={`-${overlap}px`}
           display="inline-block"

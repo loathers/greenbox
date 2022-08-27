@@ -1,5 +1,3 @@
-import he from "he";
-
 import { loadMafiaData } from "./utils";
 
 export type EffectDef = {
@@ -10,7 +8,7 @@ export type EffectDef = {
 
 const parseEffect = (parts: string[]): EffectDef => ({
   id: Number(parts[0]),
-  name: he.decode(parts[1]),
+  name: parts[1],
   image: parts[2],
 });
 

@@ -1,5 +1,3 @@
-import he from "he";
-
 import { loadMafiaData } from "./utils";
 
 export const enum FamiliarStatus {
@@ -21,7 +19,7 @@ const isPokefam = (familiarId: number) => {
 
 const parseFamiliar = (parts: string[]): FamiliarDef => ({
   id: Number(parts[0]),
-  name: he.decode(parts[1]),
+  name: parts[1],
   image: parts[2],
   pokefam: isPokefam(Number(parts[0])),
 });

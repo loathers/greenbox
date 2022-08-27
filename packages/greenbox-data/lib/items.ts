@@ -1,5 +1,3 @@
-import he from "he";
-
 import { loadMafiaData } from "./utils";
 
 export type ItemDef = {
@@ -15,7 +13,7 @@ export const enum ItemStatus {
 
 const parseItem = (parts: string[]): ItemDef => ({
   id: Number(parts[0]),
-  name: he.decode(parts[1]),
+  name: parts[1],
   image: parts[3],
 });
 

@@ -1,5 +1,3 @@
-import he from "he";
-
 import { loadMafiaData } from "./utils";
 
 export const enum SkillStatus {
@@ -139,7 +137,7 @@ export const isPermable = (id: number) => {
 
 const parseSkill = (parts: string[]): SkillDef => ({
   id: Number(parts[0]),
-  name: he.decode(parts[1]),
+  name: parts[1],
   image: parts[2],
   permable: isPermable(Number(parts[0])),
 });

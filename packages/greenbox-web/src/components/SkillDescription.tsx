@@ -23,13 +23,17 @@ export default function SkillDescription({ skill }: Props) {
 
   useEffect(() => {
     async function load() {
-      const response = await fetch(`https://l8sdqazjji.execute-api.us-east-1.amazonaws.com/?action=parse&page=${wikiLink}&prop=text&format=json`);
+      const response = await fetch(
+        `https://l8sdqazjji.execute-api.us-east-1.amazonaws.com/?action=parse&page=${wikiLink}&prop=text&format=json`
+      );
       const result = await response.json();
       const match = /<table width="100%"><tr><td>(.*?)<\/td>/s.exec(result.parse.text["*"]);
       if (match == null) {
         setContents("Cannot load wiki page (this is an experimental feature!)");
       } else {
-        setContents(match[0].replaceAll("href=\"/", "href=\"https://kol.coldfront.net/") + "</tr></table>");
+        setContents(
+          match[0].replaceAll('href="/', 'href="https://kol.coldfront.net/') + "</tr></table>"
+        );
       }
     }
 
