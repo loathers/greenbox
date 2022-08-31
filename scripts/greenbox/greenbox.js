@@ -5606,7 +5606,7 @@ function checkMeta() {
   };
 }
 function main() {
-  (0, import_kolmafia6.printHtml)("Deciding your fate...");
+  (0, import_kolmafia6.printHtml)("Deciding your fate..."), getBoolean("kingLiberated") || (0, import_kolmafia6.printHtml)("<b><font color=red>You are still in run so your greenboxes will probably be wrong</font></b>");
   var tattoos = (0, import_kolmafia6.visitUrl)("account_tattoos.php"), code = compress(_objectSpread2(_objectSpread2({
     meta: checkMeta(),
     skills: checkSkills(),
