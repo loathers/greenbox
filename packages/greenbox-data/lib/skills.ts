@@ -160,7 +160,8 @@ export const compressSkills = (skills: RawSkill[]) =>
     .sort((a, b) => a[0] - b[0])
     .reduce(
       (acc, skill) => {
-        let [r, currentBlock] = acc;
+        let r = acc[0];
+        let currentBlock = acc[1];
         const block = Math.floor(skill[0] / 1000);
         // Add a comma between 1000 breaks
         if (block > currentBlock) {
@@ -215,8 +216,9 @@ export const expandSkills = (s = "") => {
         break;
       default:
         const status = Number(c) as SkillStatus;
-        // We can just drop any references to skills we do not have at this stage
-        if (status !== SkillStatus.NONE) {
+        // We can just drop any references to skills we do not have permed
+        // or levelled at this stage
+        if (status !== SkillStatus.NONE || s[i + 1] === "(") {
           result.push([id, status, 0]);
         }
         id++;
