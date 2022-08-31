@@ -1,25 +1,25 @@
 import {
-  loadTrophies,
-  isPermable,
-  loadTattoos,
-  getOutfitTattoos,
-  loadIotMs,
-  SkillStatus,
-  FamiliarStatus,
-  TrophyStatus,
-  TattooStatus,
-  TattooDef,
   compress,
-  RawOutfitTattoo,
-  RawTrophy,
-  RawSkill,
-  RawFamiliar,
-  TrophyDef,
-  loadPaths,
+  FamiliarStatus,
+  getOutfitTattoos,
+  isPermable,
   ItemStatus,
-  RawPath,
+  loadIotMs,
+  loadPaths,
+  loadTattoos,
+  loadTrophies,
   PathDef,
+  RawFamiliar,
   RawIotM,
+  RawOutfitTattoo,
+  RawPath,
+  RawSkill,
+  RawTrophy,
+  SkillStatus,
+  TattooDef,
+  TattooStatus,
+  TrophyDef,
+  TrophyStatus,
 } from "greenbox-data";
 import {
   Familiar,
@@ -35,7 +35,7 @@ import {
   toInt,
   visitUrl,
 } from "kolmafia";
-import { getNumber } from "libram/dist/property";
+import { getNumber, getBoolean } from "libram/dist/property";
 
 import { getIotMStatus } from "./iotms";
 import { haveItem } from "./utils";
@@ -201,6 +201,10 @@ function checkMeta() {
 
 function main(): void {
   printHtml(`Deciding your fate...`);
+
+  if (!getBoolean("kingLiberated")) {
+    printHtml(`<b><font color=red>You are still in run so your greenboxes will probably be wrong</font></b>`);
+  }
 
   const tattoos = visitUrl("account_tattoos.php");
 
