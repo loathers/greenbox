@@ -186,7 +186,7 @@ const enum Thwaitgold {
 
 export default [
   {
-    id: -2,
+    id: -3,
     name: "Softcore",
     image: "itemimages/karma.gif",
     items: [],
@@ -269,7 +269,7 @@ export default [
     maxPoints: 0,
   },
   {
-    id: -1,
+    id: -2,
     name: "Hardcore",
     image: "otherimages/sigils/staintat.gif",
     items: [],
@@ -358,7 +358,7 @@ export default [
     maxPoints: 0,
   },
   {
-    id: 999,
+    id: -1,
     name: "Bad Moon",
     image: "otherimages/sigils/brimtat.gif",
     items: [],
