@@ -13,7 +13,13 @@ const enum ItemId {
   LoofahSA = 10133,
   LoofahDB = 10134,
   LoofahAT = 10135,
-  // TODO: Softcore Standard 2021
+  // Softcore Standard 2021
+  VelourSC = 10114, 
+  VelourTT = 10115, 
+  VelourPM = 10116, 
+  VelourSA = 10117, 
+  VelourDB = 10118, 
+  VelourAT = 10119, 
   // TODO: Softcore Standard 2020
   // TODO: Softcore Standard 2019
   // TODO: Softcore Standard 2018
@@ -34,7 +40,13 @@ const enum ItemId {
   FlagstoneSA = 10141,
   FlagstoneDB = 10142,
   FlagstoneAT = 10143,
-  // TODO: Hardcore Standard 2021
+  // Hardcore Standard 2021
+  StainedGlassSC = 10122,
+  StainedGlassTT = 10123,
+  StainedGlassPM = 10124,
+  StainedGlassSA = 10125,
+  StainedGlassDB = 10126,
+  StainedGlassAT = 10127,
   // TODO: Hardcore Standard 2020
   // TODO: Hardcore Standard 2019
   // TODO: Hardcore Standard 2018
@@ -113,6 +125,12 @@ export default [
       ItemId.LoofahSA,
       ItemId.LoofahDB,
       ItemId.LoofahAT,
+      ItemId.VelourSC,
+      ItemId.VelourTT,
+      ItemId.VelourPM,
+      ItemId.VelourSA,
+      ItemId.VelourDB,
+      ItemId.VelourAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1" },
@@ -160,6 +178,12 @@ export default [
       ItemId.FlagstoneSA,
       ItemId.FlagstoneDB,
       ItemId.FlagstoneAT,
+      ItemId.StainedGlassSC,
+      ItemId.StainedGlassTT,
+      ItemId.StainedGlassPM,
+      ItemId.StainedGlassSA,
+      ItemId.StainedGlassDB,
+      ItemId.StainedGlassAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1hc" },
