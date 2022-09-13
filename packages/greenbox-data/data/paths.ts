@@ -36,11 +36,11 @@ const enum ItemId {
   ChalkAT = 10087,
   // Softcore Standard 2018
   GabardineSC = 8120,
-  GabardineTT = 8120,
-  GabardinePM = 8120,
-  GabardineSA = 8120,
-  GabardineDB = 8120,
-  GabardineAT = 8120,
+  GabardineTT = 8121,
+  GabardinePM = 8122,
+  GabardineSA = 8123,
+  GabardineDB = 8124,
+  GabardineAT = 8125,
   // TODO: Softcore Standard 2017
   // TODO: Softcore Standard 2016
   // TODO: Softcore Standard 2015
