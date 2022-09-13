@@ -60,7 +60,7 @@ export const compressPaths = (paths: RawPath[]) =>
 
         return [r, currentId] as [string, number];
       },
-      ["", -2] as [string, number]
+      ["", -3] as [string, number]
     )[0]
     .replace(/0+($|,)/, "$1");
 
@@ -68,7 +68,7 @@ export const expandPaths = (s = "") => {
   const parts = s.split(",");
 
   return paths.map((path) => {
-    let part = (parts[path.id + 2] || "").padEnd(
+    let part = (parts[path.id + 3] || "").padEnd(
       path.items.length + path.equipment.length + path.tattoos.length,
       "0"
     );
