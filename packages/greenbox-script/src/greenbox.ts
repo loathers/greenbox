@@ -203,7 +203,9 @@ function main(): void {
   printHtml(`Deciding your fate...`);
 
   if (!getBoolean("kingLiberated")) {
-    printHtml(`<b><font color=red>You are still in run so your greenboxes will probably be wrong</font></b>`);
+    printHtml(
+      `<b><font color=red>You are still in run so your greenboxes will probably be wrong</font></b>`
+    );
   }
 
   const tattoos = visitUrl("account_tattoos.php");
