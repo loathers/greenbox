@@ -34,7 +34,13 @@ const enum ItemId {
   ChalkSA = 10085,
   ChalkDB = 10086,
   ChalkAT = 10087,
-  // TODO: Softcore Standard 2018
+  // Softcore Standard 2018
+  GabardineSC = 8120,
+  GabardineTT = 8120,
+  GabardinePM = 8120,
+  GabardineSA = 8120,
+  GabardineDB = 8120,
+  GabardineAT = 8120,
   // TODO: Softcore Standard 2017
   // TODO: Softcore Standard 2016
   // TODO: Softcore Standard 2015
@@ -73,7 +79,13 @@ const enum ItemId {
   MarbleSA = 10093,
   MarbleDB = 10094,
   MarbleAT = 10095,
-  // TODO: Hardcore Standard 2018
+  // Hardcore Standard 2018
+  FiberglassSC = 8127,
+  FiberglassTT = 8128,
+  FiberglassPM = 8129,
+  FiberglassSA = 8130,
+  FiberglassDB = 8131,
+  FiberglassAT = 8132,
   // TODO: Hardcore Standard 2017
   // TODO: Hardcore Standard 2016
   // TODO: Hardcore Standard 2015
@@ -167,6 +179,12 @@ export default [
       ItemId.ChalkSA,
       ItemId.ChalkDB,
       ItemId.ChalkAT,
+      ItemId.GabardineSC,
+      ItemId.GabardineTT,
+      ItemId.GabardinePM,
+      ItemId.GabardineSA,
+      ItemId.GabardineDB,
+      ItemId.GabardineAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1" },
@@ -232,6 +250,12 @@ export default [
       ItemId.MarbleSA,
       ItemId.MarbleDB,
       ItemId.MarbleAT,
+      ItemId.FiberglassSC,
+      ItemId.FiberglassTT,
+      ItemId.FiberglassPM,
+      ItemId.FiberglassSA,
+      ItemId.FiberglassDB,
+      ItemId.FiberglassAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1hc" },
