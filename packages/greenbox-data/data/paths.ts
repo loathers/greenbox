@@ -14,13 +14,19 @@ const enum ItemId {
   LoofahDB = 10134,
   LoofahAT = 10135,
   // Softcore Standard 2021
-  VelourSC = 10114, 
-  VelourTT = 10115, 
-  VelourPM = 10116, 
-  VelourSA = 10117, 
-  VelourDB = 10118, 
-  VelourAT = 10119, 
-  // TODO: Softcore Standard 2020
+  VelourSC = 10114,
+  VelourTT = 10115,
+  VelourPM = 10116,
+  VelourSA = 10117,
+  VelourDB = 10118,
+  VelourAT = 10119,
+  // Softcore Standard 2020
+  ParaffinSC = 10098,
+  ParaffinTT = 10099,
+  ParaffinPM = 10100,
+  ParaffinSA = 10101,
+  ParaffinDB = 10102,
+  ParaffinAT = 10103,
   // TODO: Softcore Standard 2019
   // TODO: Softcore Standard 2018
   // TODO: Softcore Standard 2017
@@ -47,7 +53,13 @@ const enum ItemId {
   StainedGlassSA = 10125,
   StainedGlassDB = 10126,
   StainedGlassAT = 10127,
-  // TODO: Hardcore Standard 2020
+  // Hardcore Standard 2020
+  TerraCottaSC = 10106,
+  TerraCottaTT = 10107,
+  TerraCottaPM = 10108,
+  TerraCottaSA = 10109,
+  TerraCottaDB = 10110,
+  TerraCottaAT = 10111,
   // TODO: Hardcore Standard 2019
   // TODO: Hardcore Standard 2018
   // TODO: Hardcore Standard 2017
@@ -131,6 +143,12 @@ export default [
       ItemId.VelourSA,
       ItemId.VelourDB,
       ItemId.VelourAT,
+      ItemId.ParaffinSC,
+      ItemId.ParaffinTT,
+      ItemId.ParaffinPM,
+      ItemId.ParaffinSA,
+      ItemId.ParaffinDB,
+      ItemId.ParaffinAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1" },
@@ -184,6 +202,12 @@ export default [
       ItemId.StainedGlassSA,
       ItemId.StainedGlassDB,
       ItemId.StainedGlassAT,
+      ItemId.TerraCottaSC,
+      ItemId.TerraCottaTT,
+      ItemId.TerraCottaPM,
+      ItemId.TerraCottaSA,
+      ItemId.TerraCottaDB,
+      ItemId.TerraCottaAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1hc" },
