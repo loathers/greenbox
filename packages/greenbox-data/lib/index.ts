@@ -17,7 +17,7 @@ export * from "./tattoos";
 export * from "./trophies";
 export * from "./iotms";
 
-export type Meta = { name: string; id: string; revision: number; timestamp: string };
+export type Meta = { name: string; id: string; revision: number; timestamp: number };
 
 export interface RawSnapshotData {
   meta: Meta;
