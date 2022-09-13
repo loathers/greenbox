@@ -332,6 +332,7 @@ const iotms: IotMDef[] = [
   { id: 10919, month: 6, year: 2022, type: "item", item: "June cleaver" }, // packaged June cleaver
   { id: 10928, month: 7, year: 2022, type: "item", item: "designer sweatpants" }, // designer sweatpants (new old stock)
   { id: 10931, month: 8, year: 2022, type: "item", item: "tiny stillsuit" }, // unopened tiny stillsuit
+  { id: 10951, month: 9, year: 2022, type: "item", item: "Jurassic Parka"}, // packaged Jurassic Parka
 ];
 
 export default iotms;
