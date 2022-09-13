@@ -1,22 +1,54 @@
 const enum ItemId {
+  // Softcore Unrestricted
   StainlessSC = 1224,
   StainlessTT = 1225,
   StainlessPM = 1226,
   StainlessSA = 1227,
   StainlessDB = 1228,
   StainlessAT = 1229,
+  // Softcore Standard 2022
+  LoofahSC = 10130,
+  LoofahTT = 10131,
+  LoofahPM = 10132,
+  LoofahSA = 10133,
+  LoofahDB = 10134,
+  LoofahAT = 10135,
+  // TODO: Softcore Standard 2021
+  // TODO: Softcore Standard 2020
+  // TODO: Softcore Standard 2019
+  // TODO: Softcore Standard 2018
+  // TODO: Softcore Standard 2017
+  // TODO: Softcore Standard 2016
+  // TODO: Softcore Standard 2015
+  // Hardcore Unrestricted
   PlexiSC = 1230,
   PlexiTT = 1231,
   PlexiPM = 1232,
   PlexiSA = 1233,
   PlexiDB = 1234,
   PlexiAT = 1235,
+  // Hardcore Standard 2022
+  FlagstoneSC = 10138,
+  FlagstoneTT = 10139,
+  FlagstonePM = 10140,
+  FlagstoneSA = 10141,
+  FlagstoneDB = 10142,
+  FlagstoneAT = 10143,
+  // TODO: Hardcore Standard 2021
+  // TODO: Hardcore Standard 2020
+  // TODO: Hardcore Standard 2019
+  // TODO: Hardcore Standard 2018
+  // TODO: Hardcore Standard 2017
+  // TODO: Hardcore Standard 2016
+  // TODO: Hardcore Standard 2015
+  // Bad Moon
   BrimstoneSC = 2814,
   BrimstoneTT = 2815,
   BrimstonePM = 2817,
   BrimstoneSA = 2818,
   BrimstoneDB = 2816,
   BrimstoneAT = 2813,
+  // Challenge Paths
   PickyTweezers = 7936,
   AdventurerBobblehead = 9084,
   PerfectlyFairCoin = 9526,
@@ -74,7 +106,14 @@ export default [
     name: "Softcore",
     image: "itemimages/karma.gif",
     items: [],
-    equipment: [],
+    equipment: [
+      ItemId.LoofahSC,
+      ItemId.LoofahTT,
+      ItemId.LoofahPM,
+      ItemId.LoofahSA,
+      ItemId.LoofahDB,
+      ItemId.LoofahAT,
+    ],
     tattoos: [
       { name: "Seal Clubber", image: "class1" },
       { name: "Turtle Tamer", image: "class2" },
@@ -115,6 +154,12 @@ export default [
       ItemId.StainlessSA,
       ItemId.StainlessDB,
       ItemId.StainlessAT,
+      ItemId.FlagstoneSC,
+      ItemId.FlagstoneTT,
+      ItemId.FlagstonePM,
+      ItemId.FlagstoneSA,
+      ItemId.FlagstoneDB,
+      ItemId.FlagstoneAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1hc" },
