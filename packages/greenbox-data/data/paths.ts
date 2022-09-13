@@ -55,7 +55,13 @@ const enum ItemId {
   WickerSA = 8095,
   WickerDB = 8096,
   WickerAT = 8097,
-  // TODO: Softcore Standard 2015
+  // Softcore Standard 2015
+  PolyesterSC = 7985,
+  PolyesterTT = 7986,
+  PolyesterPM = 7987,
+  PolyesterSA = 7988,
+  PolyesterDB = 7989,
+  PolyesterAT = 7990,
   // Hardcore Unrestricted
   PlexiSC = 1230,
   PlexiTT = 1231,
@@ -112,7 +118,13 @@ const enum ItemId {
   BakeliteSA = 8102,
   BakeliteDB = 8103,
   BakeliteAT = 8104,
-  // TODO: Hardcore Standard 2015
+  // Hardcore Standard 2015
+  PorcelainSC = 7991,
+  PorcelainTT = 7992,
+  PorcelainPM = 7993,
+  PorcelainSA = 7994,
+  PorcelainDB = 7995,
+  PorcelainAT = 7996,
   // Bad Moon
   BrimstoneSC = 2814,
   BrimstoneTT = 2815,
@@ -221,6 +233,12 @@ export default [
       ItemId.WickerSA,
       ItemId.WickerDB,
       ItemId.WickerAT,
+      ItemId.PolyesterSC,
+      ItemId.PolyesterTT,
+      ItemId.PolyesterPM,
+      ItemId.PolyesterSA,
+      ItemId.PolyesterDB,
+      ItemId.PolyesterAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1" },
@@ -304,6 +322,12 @@ export default [
       ItemId.BakeliteSA,
       ItemId.BakeliteDB,
       ItemId.BakeliteAT,
+      ItemId.PorcelainSC,
+      ItemId.PorcelainTT,
+      ItemId.PorcelainPM,
+      ItemId.PorcelainSA,
+      ItemId.PorcelainDB,
+      ItemId.PorcelainAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1hc" },
