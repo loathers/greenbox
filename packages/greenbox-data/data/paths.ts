@@ -41,7 +41,13 @@ const enum ItemId {
   GabardineSA = 8123,
   GabardineDB = 8124,
   GabardineAT = 8125,
-  // TODO: Softcore Standard 2017
+  // Softcore Standard 2017
+  AerogelSC = 8106,
+  AerogelTT = 8107,
+  AerogelPM = 8108,
+  AerogelSA = 8109,
+  AerogelDB = 8110,
+  AerogelAT = 8111,
   // TODO: Softcore Standard 2016
   // TODO: Softcore Standard 2015
   // Hardcore Unrestricted
@@ -86,7 +92,13 @@ const enum ItemId {
   FiberglassSA = 8130,
   FiberglassDB = 8131,
   FiberglassAT = 8132,
-  // TODO: Hardcore Standard 2017
+  // Hardcore Standard 2017
+  WroughtIronSC = 8113,
+  WroughtIronTT = 8114,
+  WroughtIronPM = 8115,
+  WroughtIronSA = 8116,
+  WroughtIronDB = 8117,
+  WroughtIronAT = 8118,
   // TODO: Hardcore Standard 2016
   // TODO: Hardcore Standard 2015
   // Bad Moon
@@ -185,6 +197,12 @@ export default [
       ItemId.GabardineSA,
       ItemId.GabardineDB,
       ItemId.GabardineAT,
+      ItemId.AerogelSC,
+      ItemId.AerogelTT,
+      ItemId.AerogelPM,
+      ItemId.AerogelSA,
+      ItemId.AerogelDB,
+      ItemId.AerogelAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1" },
@@ -256,6 +274,12 @@ export default [
       ItemId.FiberglassSA,
       ItemId.FiberglassDB,
       ItemId.FiberglassAT,
+      ItemId.WroughtIronSC,
+      ItemId.WroughtIronTT,
+      ItemId.WroughtIronPM,
+      ItemId.WroughtIronSA,
+      ItemId.WroughtIronDB,
+      ItemId.WroughtIronAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1hc" },
