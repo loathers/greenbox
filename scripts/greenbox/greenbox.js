@@ -3707,7 +3707,7 @@ var pointsRadix = 32, tattooLevelRadix = 16, compressPaths = function(paths) {
     return path[0] > currentId && (r += ",".repeat(path[0] - currentId), currentId = path[0]), r += path[1].toString(pointsRadix), r += path[2].join(""), r += path[3].join(""), r += path[4].map(function(i) {
       return i.toString(tattooLevelRadix);
     }).join(""), [r, currentId];
-  }, ["", -2])[0].replace(/0+($|,)/, "$1");
+  }, ["", -3])[0].replace(/0+($|,)/, "$1");
 };
 
 // ../greenbox-data/lib/skills.ts
