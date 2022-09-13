@@ -27,7 +27,13 @@ const enum ItemId {
   ParaffinSA = 10101,
   ParaffinDB = 10102,
   ParaffinAT = 10103,
-  // TODO: Softcore Standard 2019
+  // Softcore Standard 2019
+  ChalkSC = 10082,
+  ChalkTT = 10083,
+  ChalkPM = 10084,
+  ChalkSA = 10085,
+  ChalkDB = 10086,
+  ChalkAT = 10087,
   // TODO: Softcore Standard 2018
   // TODO: Softcore Standard 2017
   // TODO: Softcore Standard 2016
@@ -60,7 +66,13 @@ const enum ItemId {
   TerraCottaSA = 10109,
   TerraCottaDB = 10110,
   TerraCottaAT = 10111,
-  // TODO: Hardcore Standard 2019
+  // Hardcore Standard 2019
+  MarbleSC = 10090,
+  MarbleTT = 10091,
+  MarblePM = 10092,
+  MarbleSA = 10093,
+  MarbleDB = 10094,
+  MarbleAT = 10095,
   // TODO: Hardcore Standard 2018
   // TODO: Hardcore Standard 2017
   // TODO: Hardcore Standard 2016
@@ -149,6 +161,12 @@ export default [
       ItemId.ParaffinSA,
       ItemId.ParaffinDB,
       ItemId.ParaffinAT,
+      ItemId.ChalkSC,
+      ItemId.ChalkTT,
+      ItemId.ChalkPM,
+      ItemId.ChalkSA,
+      ItemId.ChalkDB,
+      ItemId.ChalkAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1" },
@@ -208,6 +226,12 @@ export default [
       ItemId.TerraCottaSA,
       ItemId.TerraCottaDB,
       ItemId.TerraCottaAT,
+      ItemId.MarbleSC,
+      ItemId.MarbleTT,
+      ItemId.MarblePM,
+      ItemId.MarbleSA,
+      ItemId.MarbleDB,
+      ItemId.MarbleAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1hc" },
