@@ -5432,7 +5432,7 @@ var telescopeStats = /* @__PURE__ */ new Map([["standing around flexing their mu
 init_kolmafia_polyfill();
 var import_kolmafia4 = require("kolmafia");
 function haveItem(item) {
-  return [import_kolmafia4.closetAmount, import_kolmafia4.displayAmount, import_kolmafia4.equippedAmount, import_kolmafia4.itemAmount, import_kolmafia4.storageAmount].map(function(f) {
+  return [import_kolmafia4.availableAmount, import_kolmafia4.closetAmount, import_kolmafia4.displayAmount, import_kolmafia4.equippedAmount, import_kolmafia4.itemAmount, import_kolmafia4.storageAmount].map(function(f) {
     return f(item);
   }).some(function(q) {
     return q > 0;
