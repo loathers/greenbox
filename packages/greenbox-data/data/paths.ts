@@ -141,6 +141,7 @@ const enum ItemId {
   RedPlumbersBoots = 10501,
   QuantumOfFamiliar = 10758,
   TheBigBookOfEverySkill = 10917,
+  StuffedDinosaur = 10949,
 }
 
 const enum Thwaitgold {
@@ -182,6 +183,7 @@ const enum Thwaitgold {
   FireBeetle = 10791,
   Protozoa = 10894,
   Harvestman = 10918,
+  MosquitoInAmber = 10950,
 }
 
 export default [
@@ -835,4 +837,14 @@ export default [
     points: null,
     maxPoints: 0,
   },
+  {
+    id: 46,
+    name: "Fall of the Dinosaurs",
+    image: "itemimages/dinostuffy.gif",
+    items: [Thwaitgold.MosquitoInAmber, ItemId.StuffedDinosaur],
+    equipment: [],
+    tattoos: [],
+    points: null,
+    maxPoints: 0,
+  }
 ] as const;
