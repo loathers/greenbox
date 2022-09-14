@@ -1,5 +1,5 @@
 import { Text } from "@chakra-ui/react";
-import { format, formatDistance, intlFormat, parseISO } from "date-fns";
+import { format, formatDistance, intlFormat } from "date-fns";
 import { Meta } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
@@ -9,7 +9,7 @@ type Props = {
 
 export default function MetaInfo({ meta }: Props) {
   const [now, setNow] = useState(new Date());
-  const date = useMemo(() => parseISO(meta.timestamp), [meta.timestamp]);
+  const date = useMemo(() => new Date(meta.timestamp));
   const humanDate = useMemo(
     () =>
       intlFormat(date, {

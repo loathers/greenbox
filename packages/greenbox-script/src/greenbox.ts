@@ -194,7 +194,7 @@ function checkMeta() {
   return {
     name: myName(),
     id: myId(),
-    timestamp: new Date().toISOString(),
+    timestamp: new Date().getTime(),
     revision: getRevision(),
   };
 }
