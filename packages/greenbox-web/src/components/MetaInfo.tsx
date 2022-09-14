@@ -9,7 +9,7 @@ type Props = {
 
 export default function MetaInfo({ meta }: Props) {
   const [now, setNow] = useState(new Date());
-  const date = useMemo(() => new Date(meta.timestamp));
+  const date = useMemo(() => new Date(meta.timestamp), [meta.timestamp]);
   const humanDate = useMemo(
     () =>
       intlFormat(date, {

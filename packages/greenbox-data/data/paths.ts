@@ -846,5 +846,5 @@ export default [
     tattoos: [],
     points: null,
     maxPoints: 0,
-  }
+  },
 ] as const;
