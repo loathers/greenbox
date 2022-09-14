@@ -5621,7 +5621,7 @@ function checkMeta() {
   return {
     name: (0, import_kolmafia6.myName)(),
     id: (0, import_kolmafia6.myId)(),
-    timestamp: new Date().toISOString(),
+    timestamp: new Date().getTime(),
     revision: (0, import_kolmafia6.getRevision)()
   };
 }
