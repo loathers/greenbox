@@ -47,9 +47,9 @@ export const getMaxSkillLevel = (id: number) => {
     // Bear Essence
     case 134:
       return 6;
-    // Calculate The universe
+    // Calculate the Universe
     case 144:
-      return 4;
+      return 5;
     // Experience Safari
     case 180:
       return 4;
