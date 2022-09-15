@@ -12,7 +12,7 @@ import {
   Text,
   Tooltip,
 } from "@chakra-ui/react";
-import { Meta } from "greenbox-data";
+import { RawSnapshotData } from "greenbox-data";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
@@ -21,7 +21,7 @@ import { fetchAll, store } from "../store";
 import MetaInfo from "./MetaInfo";
 
 type Props = {
-  meta?: Meta;
+  meta?: RawSnapshotData['meta'];
 };
 
 const forceRefreshInfo = `
