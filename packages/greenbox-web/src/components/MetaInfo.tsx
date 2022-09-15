@@ -1,10 +1,10 @@
 import { Text } from "@chakra-ui/react";
-import { format, formatDistance, intlFormat } from "date-fns";
-import { Meta } from "greenbox-data";
+import { formatDistance, intlFormat } from "date-fns";
+import { RawSnapshotData } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
 type Props = {
-  meta: Meta;
+  meta: RawSnapshotData["meta"];
 };
 
 export default function MetaInfo({ meta }: Props) {
