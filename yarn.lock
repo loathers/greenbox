@@ -5423,10 +5423,10 @@ kind-of@^6.0.2, kind-of@^6.0.3:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-kolmafia@^3.0.3, kolmafia@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/kolmafia/-/kolmafia-3.1.0.tgz#84d06e8959b34d8350ad11572c51c8cbd74cd71a"
-  integrity sha512-RKwywL5Xb1RBitt5vXR/HA8KShxVPcpKyJk0g0jec8uFRKZFi3rfqEKJiJTqkD0uIBUo06ZDFXXMKanJTRsxnA==
+kolmafia@^5.26891.0:
+  version "5.26891.0"
+  resolved "https://registry.yarnpkg.com/kolmafia/-/kolmafia-5.26891.0.tgz#a3b1a91822c0fef87b0054a2546af967fcc02ac5"
+  integrity sha512-FcWMBvLODWHO41xTpQ432dfli5AEFyK9RGeqDuxVMhiXWSu5OTu15rBTuZrNkWd+XIj955xjr97EYk2VRcQNrA==
 
 lerna@^5.3.0:
   version "5.3.0"
@@ -5490,6 +5490,15 @@ libram@^0.6.23:
     "@babel/runtime-corejs3" "^7.17.2"
     core-js "^3.21.0"
     kolmafia "^3.0.3"
+    lodash "^4.17.21"
+
+libram@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/libram/-/libram-0.7.4.tgz#ce3cfb5c52133e161bbf738b490ca576a38e743c"
+  integrity sha512-dLTwHVy9DR8nosCrWNijja7B1RTNIJCktAGscMRGPCvz/1ZSXaLjYrSbO72m4TesjzckBAXlVaEfUFgVyZiLug==
+  dependencies:
+    "@babel/runtime-corejs3" "^7.17.2"
+    core-js "^3.21.0"
     lodash "^4.17.21"
 
 lines-and-columns@^1.1.6:
