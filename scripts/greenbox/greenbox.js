@@ -2444,7 +2444,7 @@ var iotms = [
     id: 8260,
     month: 5,
     year: 2015,
-    type: "item",
+    type: "campground",
     item: "portable Mayo Clinic"
   },
   {
