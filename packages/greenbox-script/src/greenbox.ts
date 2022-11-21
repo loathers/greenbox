@@ -22,10 +22,13 @@ import {
   TrophyStatus,
 } from "greenbox-data";
 import {
+  currentRound,
   Familiar,
   getPermedSkills,
   getRevision,
+  handlingChoice,
   haveFamiliar,
+  inMultiFight,
   Item,
   myId,
   myName,
@@ -201,6 +204,13 @@ function checkMeta() {
 
 function main(): void {
   printHtml(`Deciding your fate...`);
+
+  if (inMultiFight() || handlingChoice() || currentRound() != 0) {
+    printHtml(
+      `<b><font color=red>You are in a combat or a choice adventure so your greenboxes will fail. Exiting...</font></b>`
+    );
+    return;
+  }
 
   if (!getBoolean("kingLiberated")) {
     printHtml(
