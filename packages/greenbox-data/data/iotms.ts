@@ -232,7 +232,7 @@ const iotms: IotMDef[] = [
   { id: 8134, month: 2, year: 2015, type: "preference", preference: "lovebugsUnlocked" }, // bottle of lovebug pheromones
   { id: 8184, month: 3, year: 2015, type: "item", item: "The Crown of Ed the Undying" }, // Ed the Undying exhibit crate
   { id: 8203, month: 4, year: 2015, type: "preference", preference: "stenchAirportAlways" }, // airplane charter: Dinseylandfill
-  { id: 8260, month: 5, year: 2015, type: "item", item: "portable Mayo Clinic" }, // portable Mayo Clinic
+  { id: 8260, month: 5, year: 2015, type: "campground", item: "portable Mayo Clinic" }, // portable Mayo Clinic
   { id: 8287, month: 6, year: 2015, type: "familiar", familiar: ["Puck Man", "Ms Puck Man"] }, // yellow puck
   { id: 8381, month: 7, year: 2015, type: "item", item: "Deck of Every Card" }, // Pack of Every Card
   { id: 8487, month: 8, year: 2015, type: "preference", preference: "hotAirportAlways" }, // airplane charter: That 70s Volcano
