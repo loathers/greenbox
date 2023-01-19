@@ -3070,6 +3070,20 @@ var iotms = [
     year: 2022,
     type: "familiar",
     familiar: "Cookbookbat"
+  },
+  {
+    id: 11045,
+    month: 12,
+    year: 2022,
+    type: "campground",
+    item: "model train set"
+  },
+  {
+    id: 11100,
+    month: 1,
+    year: 2023,
+    type: "campground",
+    item: "packet of rock seeds"
   }
 ], iotms_default = iotms;
 
