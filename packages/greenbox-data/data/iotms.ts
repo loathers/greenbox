@@ -334,9 +334,10 @@ const iotms: IotMDef[] = [
   { id: 10931, month: 8, year: 2022, type: "item", item: "tiny stillsuit" }, // unopened tiny stillsuit
   { id: 10951, month: 9, year: 2022, type: "item", item: "Jurassic Parka" }, // packaged Jurassic Parka
   { id: 10953, month: 10, year: 2022, type: "preference", preference: "hasAutumnaton" }, // boxed autumn-aton
-  { id: 10966, month: 11, year: 2022, type: "familiar", familiar: "Cookbookbat"}, // mummified entombed cookbookbat
-  { id: 11045, month: 12, year: 2022, type: "campground", item: "model train set"}, // packaged model train set
-  { id: 11100, month: 1, year: 2023, type: "campground", item: "packet of rock seeds"}, // rock garden guide
+  { id: 10966, month: 11, year: 2022, type: "familiar", familiar: "Cookbookbat" }, // mummified entombed cookbookbat
+  { id: 11044, month: 12, year: 2022, type: "campground", item: "model train set" }, // packaged model train set
+  { id: 11099, month: 1, year: 2023, type: "campground", item: "packet of rock seeds" }, // rock garden guide
+  { id: 11115, month: 2, year: 2023, type: "item", item: "S.I.T. Course Completion Certificate" }, // S.I.T. Course Voucher
 ];
 
 export default iotms;
