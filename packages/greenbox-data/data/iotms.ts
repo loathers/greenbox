@@ -338,6 +338,7 @@ const iotms: IotMDef[] = [
   { id: 11044, month: 12, year: 2022, type: "campground", item: "model train set" }, // packaged model train set
   { id: 11099, month: 1, year: 2023, type: "campground", item: "packet of rock seeds" }, // rock garden guide
   { id: 11115, month: 2, year: 2023, type: "item", item: "S.I.T. Course Completion Certificate" }, // S.I.T. Course Voucher
+  { id: 11168, month: 3, year: 2023, type: "item", item: "closed-circuit pay phone" }, // closed-circuit phone system
 ];
 
 export default iotms;
