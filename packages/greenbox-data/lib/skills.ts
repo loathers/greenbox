@@ -106,6 +106,12 @@ export const isPermable = (id: number) => {
     case 174: // SkillPool.INCREDIBLE_SELF_ESTEEM:
       return false;
 
+    // S.I.T. Course certificate skills
+    case 218: // Cryptobotanist
+    case 219: // Insectologist
+    case 220: // Psychogeologist
+      return false;
+
     // Permable from PvP
     case 7254: // SkillPool.TOGGLE_OPTIMALITY
       return true;
