@@ -3844,6 +3844,10 @@ var isPermable = function(id) {
       return !1;
     case 174:
       return !1;
+    case 218:
+    case 219:
+    case 220:
+      return !1;
     case 7254:
       return !0;
   }
