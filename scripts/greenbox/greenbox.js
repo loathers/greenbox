@@ -3091,6 +3091,13 @@ var iotms = [
     year: 2023,
     type: "item",
     item: "S.I.T. Course Completion Certificate"
+  },
+  {
+    id: 11168,
+    month: 3,
+    year: 2023,
+    type: "item",
+    item: "closed-circuit pay phone"
   }
 ], iotms_default = iotms;
 
