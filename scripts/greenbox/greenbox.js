@@ -3098,6 +3098,13 @@ var iotms = [
     year: 2023,
     type: "item",
     item: "closed-circuit pay phone"
+  },
+  {
+    id: 11187,
+    month: 4,
+    year: 2023,
+    type: "item",
+    item: "cursed monkey's paw"
   }
 ], iotms_default = iotms;
 
@@ -3876,6 +3883,9 @@ var isPermable = function(id) {
     case 24:
     case 25:
     case 27:
+    case 28:
+    case 29:
+    case 30:
       return !1;
   }
   return !0;
