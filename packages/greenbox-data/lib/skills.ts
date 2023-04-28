@@ -135,6 +135,9 @@ export const isPermable = (id: number) => {
     case 24: // Vampyre skills
     case 25: // Plumber skills
     case 27: // Grey Goo skills
+    case 28: // AoSOL; Pig Skinner skills
+    case 29: // AoSOL; Cheese Wizard skills
+    case 30: // AoSOL; Jazz Agent skills
       return false;
   }
 
