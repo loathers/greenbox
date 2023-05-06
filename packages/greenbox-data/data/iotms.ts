@@ -340,6 +340,7 @@ const iotms: IotMDef[] = [
   { id: 11115, month: 2, year: 2023, type: "item", item: "S.I.T. Course Completion Certificate" }, // S.I.T. Course Voucher
   { id: 11168, month: 3, year: 2023, type: "item", item: "closed-circuit pay phone" }, // closed-circuit phone system
   { id: 11187, month: 4, year: 2023, type: "item", item: "cursed monkey's paw" }, // cursed monkey glove
+  { id: 11222, month: 5, year: 2023, type: "item", item: "Cincho de Mayo" }, // shrink-wrapped Cincho de Mayo
 ];
 
 export default iotms;
