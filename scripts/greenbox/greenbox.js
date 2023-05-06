@@ -3105,6 +3105,13 @@ var iotms = [
     year: 2023,
     type: "item",
     item: "cursed monkey's paw"
+  },
+  {
+    id: 11222,
+    month: 5,
+    year: 2023,
+    type: "item",
+    item: "Cincho de Mayo"
   }
 ], iotms_default = iotms;
 
