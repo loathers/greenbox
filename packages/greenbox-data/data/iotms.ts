@@ -341,6 +341,7 @@ const iotms: IotMDef[] = [
   { id: 11168, month: 3, year: 2023, type: "item", item: "closed-circuit pay phone" }, // closed-circuit phone system
   { id: 11187, month: 4, year: 2023, type: "item", item: "cursed monkey's paw" }, // cursed monkey glove
   { id: 11222, month: 5, year: 2023, type: "item", item: "Cincho de Mayo" }, // shrink-wrapped Cincho de Mayo
+  { id: 11256, month: 6, year: 2023, type: "item", item: "2002 Mr. Store Catalog" }, // shrink-wrapped 2002 Mr. Store Catalog
 ];
 
 export default iotms;
