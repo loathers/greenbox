@@ -26,7 +26,9 @@ export default function MainPage() {
     async function loadValue() {
       const response = await fetch(`https://oaf-discord.herokuapp.com/api/greenbox/${playerId}`);
 
-      if (response.status === 404) {
+      if (response.status !== 200) {
+        const error = await response.json();
+        console.error(error);
         return;
       }
 
