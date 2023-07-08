@@ -9,7 +9,7 @@ import {
   floristAvailable,
   haveSkill,
 } from "kolmafia";
-import { haveInCampground, getFoldGroup } from "libram";
+import { haveInCampground, getFoldGroup, flat } from "libram";
 import { getBoolean } from "libram/dist/property";
 
 import { haveItem } from "./utils";
@@ -48,14 +48,14 @@ function haveBound(iotm: IotMDef): boolean {
         .map((f) => Familiar.get(f))
         .some((f) => haveFamiliar(f));
     case "item":
-      return arrayOf(iotm.item)
-        .map((i) => Item.get(i))
-        .map((i) => {
-          const group = getFoldGroup(i);
-          return group.length > 0 ? group : i;
-        })
-        .flat()
-        .some((i) => haveItem(i));
+      return flat(
+        arrayOf(iotm.item)
+          .map((i) => Item.get(i))
+          .map((i) => {
+            const group = getFoldGroup(i);
+            return group.length > 0 ? group : i;
+          })
+      ).some((i) => haveItem(i));
     case "preference":
       return getBoolean(iotm.preference);
     case "skill":

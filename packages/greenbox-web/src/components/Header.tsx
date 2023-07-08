@@ -55,8 +55,8 @@ export default function Header({ meta }: Props) {
             git checkout loathers/greenbox release
           </Code>
           <Text>
-            in KoLmafia's Graphical CLI. Once that's done, you can get an up-to-date link whenever
-            you like by running <Code>greenbox</Code>.
+            in KoLmafia's Graphical CLI. Once that's done, you can update the data at this link
+            whenever you like by running <Code>greenbox</Code>.
           </Text>
           <Stack direction="row-reverse" pt={3}>
             <Tooltip p={2} label={forceRefreshInfo}>

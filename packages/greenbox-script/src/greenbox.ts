@@ -38,6 +38,7 @@ import {
   toInt,
   visitUrl,
 } from "kolmafia";
+import { Kmail } from "libram";
 import { getNumber, getBoolean } from "libram/dist/property";
 
 import { getIotMStatus } from "./iotms";
@@ -230,8 +231,10 @@ function main(): void {
     iotms: checkIotMs(),
   });
 
+  Kmail.send(3501234, `GREENBOX:${code}`);
+
   printHtml(
-    `All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?d=${code}">https://greenbox.loathers.net/?d=${code}</a>`
+    `All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?u=${myId()}">https://greenbox.loathers.net/?u=${myId()}</a>`
   );
 }
 

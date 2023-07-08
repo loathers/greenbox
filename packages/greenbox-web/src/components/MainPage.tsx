@@ -2,7 +2,7 @@ import { Accordion, Container, ToastId, useToast } from "@chakra-ui/react";
 import { expand, RawSnapshotData } from "greenbox-data";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StringParam, useQueryParam } from "use-query-params";
+import { NumberParam, StringParam, useQueryParam } from "use-query-params";
 
 import { fetchAll, RootState, store } from "../store";
 
@@ -15,8 +15,31 @@ import Tattoos from "./Tattoos";
 import Trophies from "./Trophies";
 
 export default function MainPage() {
-  const [value] = useQueryParam("d", StringParam);
+  const [directValue] = useQueryParam("d", StringParam);
+  const [playerId] = useQueryParam("u", NumberParam);
+  const [value, setValue] = useState<string | null>(null);
+
   const [data, setData] = useState<RawSnapshotData | null>(null);
+
+  useEffect(() => {
+    if (!playerId) return;
+    async function loadValue() {
+      const response = await fetch(`https://oaf-discord.herokuapp.com/api/greenbox/${playerId}`);
+
+      if (response.status === 404) {
+        return;
+      }
+
+      const { greenboxString } = await response.json();
+      setValue(greenboxString);
+    }
+    loadValue();
+  }, [playerId]);
+
+  useEffect(() => {
+    if (!directValue) return;
+    setValue(directValue);
+  }, [directValue]);
 
   useEffect(() => {
     if (!value) return;
