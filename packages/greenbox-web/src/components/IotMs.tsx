@@ -36,11 +36,11 @@ export default function IotMs({ iotms: playerIotMs }: Props) {
 
   const numberOfIotMs = useMemo(
     () => playerIotMs.filter((i) => i[1] == IotMStatus.BOUND).length,
-    [playerIotMs]
+    [playerIotMs],
   );
   const idToIotM = useMemo(
     () => playerIotMs.reduce((acc, i) => ({ ...acc, [i[0]]: i }), {} as { [id: number]: RawIotM }),
-    [playerIotMs]
+    [playerIotMs],
   );
 
   const iotmChunks = useMemo(() => chunk([...Array(9).map((_) => null), ...iotms], 12), [iotms]);
@@ -77,7 +77,7 @@ export default function IotMs({ iotms: playerIotMs }: Props) {
                 />
               ) : (
                 <Box key={`blank-${i}`} />
-              )
+              ),
             ),
           ];
         })}

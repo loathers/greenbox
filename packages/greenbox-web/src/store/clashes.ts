@@ -60,5 +60,5 @@ export const processWikiClashes = createAsyncThunk(
   "wikiClashes/process",
   async (names: string[]) => {
     return await WrappedDuplicateFinderWorker(names);
-  }
+  },
 );

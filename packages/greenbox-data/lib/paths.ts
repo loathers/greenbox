@@ -29,7 +29,7 @@ export type RawPath = [
   level: number,
   items: ItemStatus[],
   equipment: ItemStatus[],
-  tattoos: number[]
+  tattoos: number[],
 ];
 
 const pointsRadix = 32;
@@ -60,7 +60,7 @@ export const compressPaths = (paths: RawPath[]) =>
 
         return [r, currentId] as [string, number];
       },
-      ["", -3] as [string, number]
+      ["", -3] as [string, number],
     )[0]
     .replace(/0+($|,)/, "$1");
 
@@ -70,7 +70,7 @@ export const expandPaths = (s = "") => {
   return paths.map((path) => {
     let part = (parts[path.id + 3] || "").padEnd(
       path.items.length + path.equipment.length + path.tattoos.length,
-      "0"
+      "0",
     );
     const level = parseInt(part.substring(0, 1), pointsRadix);
     part = part.substring(1);

@@ -25,7 +25,7 @@ export default function ItemGrid({ items, playerItems, idToItem, columns = 6 }: 
               image={`itemimages/${idToItem[i].image}`}
               state={itemStatusToThingState(playerItems[index])}
             />
-          )
+          ),
       )}
     </SimpleGrid>
   );

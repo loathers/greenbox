@@ -18,12 +18,12 @@ export default function Tattoos({ trophies: playerTrophies }: Props) {
 
   const numberOfTrophies = useMemo(
     () => playerTrophies.filter((t) => t[1] == TrophyStatus.HAVE).length,
-    [playerTrophies]
+    [playerTrophies],
   );
   const idToTrophy = useMemo(
     () =>
       playerTrophies.reduce((acc, t) => ({ ...acc, [t[0]]: t }), {} as { [id: number]: RawTrophy }),
-    [playerTrophies]
+    [playerTrophies],
   );
 
   return (

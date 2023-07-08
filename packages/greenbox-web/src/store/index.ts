@@ -90,34 +90,35 @@ const initialState: GreenboxState = {
     wikiClashes: false,
   },
   error: { wikiClashes: false },
+  errorMessage: {},
 };
 
 export const fetchClasses = createAsyncThunk("classes/fetch", async (size: number) =>
-  api.loadClasses(size)
+  api.loadClasses(size),
 );
 export const fetchEffects = createAsyncThunk("effects/fetch", async (size: number) =>
-  api.loadEffects(size)
+  api.loadEffects(size),
 );
 export const fetchFamiliars = createAsyncThunk("familiars/fetch", async (size: number) =>
-  api.loadFamiliars(size)
+  api.loadFamiliars(size),
 );
 export const fetchIotMs = createAsyncThunk("iotms/fetch", async (size: number) =>
-  api.loadIotMs(size)
+  api.loadIotMs(size),
 );
 export const fetchItems = createAsyncThunk("items/fetch", async (size: number) =>
-  api.loadItems(size)
+  api.loadItems(size),
 );
 export const fetchPaths = createAsyncThunk("paths/fetch", async (size: number) =>
-  api.loadPaths(size)
+  api.loadPaths(size),
 );
 export const fetchSkills = createAsyncThunk("skills/fetch", async (size: number) =>
-  api.loadSkills(size)
+  api.loadSkills(size),
 );
 export const fetchTattoos = createAsyncThunk("tattoos/fetch", async (size: number) =>
-  api.loadTattoos(size)
+  api.loadTattoos(size),
 );
 export const fetchTrophies = createAsyncThunk("trophies/fetch", async (size: number) =>
-  api.loadTrophies(size)
+  api.loadTrophies(size),
 );
 
 export const fetchAll = createAsyncThunk(
@@ -264,7 +265,7 @@ const persistedReducer = persistReducer(
     version: 1,
     storage,
   },
-  greenboxSlice.reducer
+  greenboxSlice.reducer,
 );
 
 export const store = configureStore({

@@ -46,7 +46,7 @@ export function guessWikiLink(
   link: string | undefined,
   name: string,
   type: Props["type"],
-  clashes: string[]
+  clashes: string[],
 ) {
   if (link) return he.decode(link);
   const n = he.decode(name).replaceAll(" ", "_");
@@ -66,7 +66,7 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
     link,
     ...rest
   },
-  ref
+  ref,
 ) {
   const style = styleFromStatus(status);
   const clashes = useSelector((state: RootState) => state.wikiClashes);

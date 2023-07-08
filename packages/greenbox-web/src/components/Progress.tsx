@@ -47,7 +47,7 @@ export default function Progress({ values, max }: Props) {
         name: "progress bar",
       }),
     ],
-    [values]
+    [values],
   );
 
   return (

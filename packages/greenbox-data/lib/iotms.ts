@@ -19,12 +19,12 @@ export function loadIotMs(lastKnownSize = 0) {
   };
 }
 
-export type RawIotM = readonly [id: number, status: IotMStatus];
+export type RawIotM = [id: number, status: IotMStatus];
 
 export const compressIotMs = (iotmList: RawIotM[]) => {
   const idToIotM = iotmList.reduce(
     (acc, i) => ({ ...acc, [i[0]]: i }),
-    {} as { [key: number]: RawIotM }
+    {} as { [key: number]: RawIotM },
   );
 
   return iotms

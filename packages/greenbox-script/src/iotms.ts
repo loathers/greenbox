@@ -41,7 +41,7 @@ function haveBound(iotm: IotMDef): boolean {
     case "eudora":
       return xpath(
         visitUrl("account.php?tab=correspondence"),
-        `//select[@name="whichpenpal"]/option/@value`
+        `//select[@name="whichpenpal"]/option/@value`,
       ).includes(iotm.eudoraId.toString());
     case "familiar":
       return arrayOf(iotm.familiar)
@@ -54,7 +54,7 @@ function haveBound(iotm: IotMDef): boolean {
           .map((i) => {
             const group = getFoldGroup(i);
             return group.length > 0 ? group : i;
-          })
+          }),
       ).some((i) => haveItem(i));
     case "preference":
       return getBoolean(iotm.preference);
