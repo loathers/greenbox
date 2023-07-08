@@ -37,7 +37,7 @@ export const entities = [
   "trophies",
 ] as const;
 
-export type EntityTypes = GreenboxState[typeof entities[number]];
+export type EntityTypes = GreenboxState[(typeof entities)[number]];
 
 export interface GreenboxState {
   classes: ClassDef[];
@@ -50,7 +50,7 @@ export interface GreenboxState {
   tattoos: TattooDef[];
   trophies: TrophyDef[];
   wikiClashes: string[];
-  sizeAtLastFetch: { [K in typeof entities[number]]: number };
+  sizeAtLastFetch: { [K in (typeof entities)[number]]: number };
   loading: Partial<{ [K in keyof GreenboxState]: boolean }>;
   error: Partial<{ [K in keyof GreenboxState]: boolean }>;
 }

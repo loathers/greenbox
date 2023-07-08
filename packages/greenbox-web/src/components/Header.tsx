@@ -21,7 +21,7 @@ import { fetchAll, store } from "../store";
 import MetaInfo from "./MetaInfo";
 
 type Props = {
-  meta?: RawSnapshotData['meta'];
+  meta?: RawSnapshotData["meta"];
 };
 
 const forceRefreshInfo = `
