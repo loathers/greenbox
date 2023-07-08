@@ -1,10 +1,9 @@
 import { Accordion, Container, ToastId, useToast } from "@chakra-ui/react";
-import { expand, RawSnapshotData } from "greenbox-data";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NumberParam, StringParam, useQueryParam } from "use-query-params";
 
-import { fetchAll, RootState, store } from "../store";
+import { fetchAll, fetchPlayerData, loadPlayerData, RootState, store } from "../store";
 
 import Familiars from "./Familiars";
 import Header from "./Header";
@@ -17,44 +16,18 @@ import Trophies from "./Trophies";
 export default function MainPage() {
   const [directValue] = useQueryParam("d", StringParam);
   const [playerId] = useQueryParam("u", NumberParam);
-  const [value, setValue] = useState<string | null>(null);
 
-  const [data, setData] = useState<RawSnapshotData | null>(null);
+  const dispatch = useDispatch<typeof store.dispatch>();
 
   useEffect(() => {
     if (!playerId) return;
-    async function loadValue() {
-      const response = await fetch(`https://oaf-discord.herokuapp.com/api/greenbox/${playerId}`);
-
-      if (response.status !== 200) {
-        const error = await response.json();
-        console.error(error);
-        return;
-      }
-
-      const { greenboxString } = await response.json();
-      setValue(greenboxString);
-    }
-    loadValue();
-  }, [playerId]);
+    dispatch(fetchPlayerData(playerId));
+  }, [playerId, dispatch]);
 
   useEffect(() => {
     if (!directValue) return;
-    setValue(directValue);
-  }, [directValue]);
-
-  useEffect(() => {
-    if (!value) return;
-    try {
-      setData(expand(value));
-    } catch (e) {
-      if (!(e instanceof SyntaxError)) throw e;
-      console.error(e);
-      setData(null);
-    }
-  }, [value]);
-
-  const dispatch = useDispatch<typeof store.dispatch>();
+    dispatch(loadPlayerData(directValue));
+  }, [directValue, dispatch]);
 
   useEffect(() => {
     dispatch(fetchAll(false));
@@ -62,6 +35,7 @@ export default function MainPage() {
 
   const toast = useToast();
   const clashToast = useRef<ToastId>();
+  const data = useSelector((state: RootState) => state.playerData);
   const loading = useSelector((state: RootState) => state.loading);
   const error = useSelector((state: RootState) => state.error);
 

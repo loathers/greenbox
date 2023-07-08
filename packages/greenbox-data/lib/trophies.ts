@@ -22,7 +22,7 @@ export function loadTrophies(lastKnownSize = 0) {
   };
 }
 
-export type RawTrophy = readonly [id: number, status: TrophyStatus];
+export type RawTrophy = [id: number, status: TrophyStatus];
 
 export const compressTrophies = (trophies: RawTrophy[]) =>
   trophies

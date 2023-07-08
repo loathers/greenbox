@@ -40,6 +40,7 @@ export const entities = [
 export type EntityTypes = GreenboxState[(typeof entities)[number]];
 
 export interface GreenboxState {
+  playerData: api.RawSnapshotData | null;
   classes: ClassDef[];
   effects: EffectDef[];
   familiars: FamiliarDef[];
@@ -53,9 +54,11 @@ export interface GreenboxState {
   sizeAtLastFetch: { [K in (typeof entities)[number]]: number };
   loading: Partial<{ [K in keyof GreenboxState]: boolean }>;
   error: Partial<{ [K in keyof GreenboxState]: boolean }>;
+  errorMessage: Partial<{ [K in keyof GreenboxState]: string }>;
 }
 
 const initialState: GreenboxState = {
+  playerData: null,
   classes: [],
   effects: [],
   familiars: [],
@@ -134,8 +137,17 @@ export const fetchAll = createAsyncThunk(
     dispatch(fetchSkills(force ? 0 : state.sizeAtLastFetch.skills));
     dispatch(fetchTattoos(force ? 0 : state.sizeAtLastFetch.tattoos));
     dispatch(fetchTrophies(force ? 0 : state.sizeAtLastFetch.trophies));
-  }
+  },
 );
+
+export const fetchPlayerData = createAsyncThunk("playerData/fetch", async (playerId: number) => {
+  const response = await fetch(`https://oaf-discord.herokuapp.com/api/greenbox/${playerId}`);
+  const json = await response.json();
+  if (response.status !== 200) {
+    throw new Error(json.error);
+  }
+  return json as { greenboxString: string; greenboxLastUpdated: string };
+});
 
 export const greenboxSlice = createSlice({
   name: "greenbox",
@@ -252,6 +264,20 @@ export const greenboxSlice = createSlice({
       })
       .addCase(processWikiClashes.rejected, (state) => {
         state.error.wikiClashes = true;
+      })
+      .addCase(fetchPlayerData.pending, (state) => {
+        state.loading.playerData = true;
+      })
+      .addCase(fetchPlayerData.fulfilled, (state, action) => {
+        const { greenboxString } = action.payload;
+        state.playerData = api.expand(greenboxString);
+        state.loading.playerData = false;
+        state.error.playerData = false;
+        state.errorMessage.playerData = undefined;
+      })
+      .addCase(fetchPlayerData.rejected, (state, action) => {
+        state.error.playerData = true;
+        state.errorMessage.playerData = action.error.message;
       });
   },
 });

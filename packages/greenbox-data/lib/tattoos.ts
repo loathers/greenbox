@@ -27,7 +27,7 @@ export function getOutfitTattoos(tattoos: readonly TattooDef[]) {
   return tattoos.filter((t) => t.outfit !== undefined).sort((a, b) => a.outfit! - b.outfit!);
 }
 
-export type RawOutfitTattoo = readonly [id: number, status: TattooStatus];
+export type RawOutfitTattoo = [id: number, status: TattooStatus];
 
 export const compressOutfitTattoos = (tattoos: RawOutfitTattoo[]) =>
   tattoos
