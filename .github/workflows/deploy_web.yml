@@ -18,9 +18,8 @@ jobs:
 
       - name: Build
         run: |
-          yarn
-          yarn run lerna bootstrap
-          yarn run lerna run build --scope=greenbox-web
+          yarn install --frozen-lockfile
+          yarn workspace greenbox-web run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

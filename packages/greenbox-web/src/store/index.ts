@@ -1,4 +1,4 @@
-import { configureStore, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { configureStore, createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import * as api from "greenbox-data";
 import {
   EffectDef,
@@ -146,8 +146,10 @@ export const fetchPlayerData = createAsyncThunk("playerData/fetch", async (playe
   if (response.status !== 200) {
     throw new Error(json.error);
   }
-  return json as { greenboxString: string; greenboxLastUpdated: string };
+  return json.greenboxString as string;
 });
+
+export const loadPlayerData = createAction<string>("playerData/load");
 
 export const greenboxSlice = createSlice({
   name: "greenbox",
@@ -269,11 +271,15 @@ export const greenboxSlice = createSlice({
         state.loading.playerData = true;
       })
       .addCase(fetchPlayerData.fulfilled, (state, action) => {
-        const { greenboxString } = action.payload;
+        const greenboxString = action.payload;
         state.playerData = api.expand(greenboxString);
         state.loading.playerData = false;
         state.error.playerData = false;
         state.errorMessage.playerData = undefined;
+      })
+      .addCase(loadPlayerData, (state, action) => {
+        const greenboxString = action.payload;
+        state.playerData = api.expand(greenboxString);
       })
       .addCase(fetchPlayerData.rejected, (state, action) => {
         state.error.playerData = true;
