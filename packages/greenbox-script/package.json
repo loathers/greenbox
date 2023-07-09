@@ -12,7 +12,7 @@
     "watch": "node build.mjs --watch"
   },
   "dependencies": {
-    "kolmafia": "^5.27455.0",
+    "kolmafia": "^5.27461.0",
     "libram": "^0.8.3"
   },
   "devDependencies": {
