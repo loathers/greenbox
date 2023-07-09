@@ -282,6 +282,7 @@ export const greenboxSlice = createSlice({
         state.playerData = api.expand(greenboxString);
       })
       .addCase(fetchPlayerData.rejected, (state, action) => {
+        state.loading.playerData = false;
         state.error.playerData = true;
         state.errorMessage.playerData = action.error.message;
       });

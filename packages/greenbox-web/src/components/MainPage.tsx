@@ -38,6 +38,7 @@ export default function MainPage() {
   const data = useSelector((state: RootState) => state.playerData);
   const loading = useSelector((state: RootState) => state.loading);
   const error = useSelector((state: RootState) => state.error);
+  const errorMessage = useSelector((state: RootState) => state.errorMessage);
 
   const id = "clash-toast";
 
@@ -68,7 +69,12 @@ export default function MainPage() {
   return (
     <Container maxWidth="1000px" width="100%">
       <Accordion allowMultiple allowToggle defaultIndex={0}>
-        <Header meta={data?.meta} />
+        <Header
+          meta={data?.meta}
+          loading={loading.playerData}
+          error={error.playerData}
+          errorMessage={errorMessage.playerData}
+        />
         <IotMs iotms={data?.iotms ?? []} />
         <Skills skills={data?.skills ?? []} />
         <Paths paths={data?.paths ?? []} />
