@@ -1942,8 +1942,16 @@ var iotms = [
     year: 2023,
     type: "item",
     item: "2002 Mr. Store Catalog"
-  }
+  },
   // shrink-wrapped 2002 Mr. Store Catalog
+  {
+    id: 11300,
+    month: 7,
+    year: 2023,
+    type: "familiar",
+    familiar: "Patriotic Eagle"
+  }
+  // sleeping patriotic eagle
 ], iotms_default = iotms;
 
 // ../greenbox-data/lib/iotms.ts
@@ -2715,6 +2723,8 @@ var isPermable = function(id) {
     case 218:
     case 219:
     case 220:
+      return !1;
+    case 222:
       return !1;
     case 7254:
       return !0;
@@ -4057,6 +4067,10 @@ var trophies_default = [{
   id: 162,
   name: "Dreaming of a Bland Crimbo",
   image: "every_christmas_is_like_sunday"
+}, {
+  id: 163,
+  name: "HIGH SCORE",
+  image: "no_religion_too"
 }];
 
 // ../greenbox-data/lib/trophies.ts
@@ -4804,7 +4818,7 @@ function getHundredPercentFamiliars() {
 function checkFamiliars() {
   var hundredPercentFamiliars = getHundredPercentFamiliars();
   function getStatus(familiar) {
-    return (0, import_kolmafia7.haveFamiliar)(familiar) ? FamiliarStatus.TERRARIUM : haveItem(familiar.hatchling) ? FamiliarStatus.HATCHLING : FamiliarStatus.NONE;
+    return (0, import_kolmafia7.haveFamiliar)(familiar) ? FamiliarStatus.TERRARIUM : familiar.hatchling !== import_kolmafia7.Item.none && haveItem(familiar.hatchling) ? FamiliarStatus.HATCHLING : FamiliarStatus.NONE;
   }
   function getHundredPercent(familiar) {
     return hundredPercentFamiliars.has(familiar);
