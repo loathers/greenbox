@@ -184,6 +184,8 @@ const enum Thwaitgold {
   Protozoa = 10894,
   Harvestman = 10918,
   MosquitoInAmber = 10950,
+  AntiMoth = 11166,
+  SplendorBeetle = 11255,
 }
 
 export default [
@@ -842,6 +844,33 @@ export default [
     name: "Fall of the Dinosaurs",
     image: "itemimages/dinostuffy.gif",
     items: [Thwaitgold.MosquitoInAmber, ItemId.StuffedDinosaur],
+    equipment: [],
+    tattoos: [],
+    points: null,
+    maxPoints: 0,
+  },
+  {
+    id: 47,
+    name: "Avatar of Shadows Over Loathing",
+    image: "itemimages/aosol.gif",
+    items: [Thwaitgold.AntiMoth],
+    equipment: [],
+    tattoos: [
+      { name: "Pig Skinner", image: "class28" },
+      { name: "Hardcore Pig Skinner", image: "class28hc" },
+      { name: "Cheese Wizard", image: "class29" },
+      { name: "Hardcore Cheese Wizard", image: "class29hc" },
+      { name: "Jazz Agent", image: "class30" },
+      { name: "Hardcore Jazz Agent", image: "class30hc" },
+    ],
+    points: ["asolPointsPigSkinner", "asolPointsCheeseWizard", "asolPointsJazzAgent"],
+    maxPoints: 11,
+  },
+  {
+    id: 46,
+    name: "Legacy of Loathing",
+    image: "itemimages/xx_small.gif",
+    items: [Thwaitgold.SplendorBeetle],
     equipment: [],
     tattoos: [],
     points: null,
