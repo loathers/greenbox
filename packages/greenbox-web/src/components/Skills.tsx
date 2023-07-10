@@ -82,42 +82,46 @@ export default function Skills({ skills: playerSkills }: Props) {
       max={skills.length}
     >
       <Stack spacing={4}>
-        {bucketedSkills.map(([bucket, contents]) => (
-          <Stack spacing={4} key={bucket}>
-            <SkillClassHeading bucket={Number(bucket)} cls={idToClass[Number(bucket)]} />
-            <SimpleGrid columns={6} spacing={1}>
-              {contents.map((s) => {
-                switch (s.id) {
-                  case 191:
-                  case 192:
-                  case 193:
-                    skillGroup.push(s);
-                    if (s.id !== 193) return null;
+        {bucketedSkills.map(([bucket, contents]) => {
+          const allHardcorePermed = contents.every(s => idToSkill[s.id]?.[1] === SkillStatus.HARDCORE);
 
-                    const group = [...skillGroup];
-                    skillGroup.length = 0;
-                    return (
-                      <MutexSkills
-                        key={s.id}
-                        groupName="Drippy Skill"
-                        skills={group}
-                        statuses={group.map((s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE)}
-                      />
-                    );
-                  default:
-                    return (
-                      <Skill
-                        key={s.id}
-                        skill={s}
-                        status={idToSkill[s.id]?.[1] ?? SkillStatus.NONE}
-                        level={idToSkill[s.id]?.[2] ?? 0}
-                      />
-                    );
-                }
-              })}
-            </SimpleGrid>
-          </Stack>
-        ))}
+          return (
+            <Stack spacing={4} key={bucket}>
+              <SkillClassHeading bucket={Number(bucket)} cls={idToClass[Number(bucket)]} medal={allHardcorePermed} />
+              <SimpleGrid columns={6} spacing={1}>
+                {contents.map((s) => {
+                  switch (s.id) {
+                    case 191:
+                    case 192:
+                    case 193:
+                      skillGroup.push(s);
+                      if (s.id !== 193) return null;
+
+                      const group = [...skillGroup];
+                      skillGroup.length = 0;
+                      return (
+                        <MutexSkills
+                          key={s.id}
+                          groupName="Drippy Skill"
+                          skills={group}
+                          statuses={group.map((s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE)}
+                        />
+                      );
+                    default:
+                      return (
+                        <Skill
+                          key={s.id}
+                          skill={s}
+                          status={idToSkill[s.id]?.[1] ?? SkillStatus.NONE}
+                          level={idToSkill[s.id]?.[2] ?? 0}
+                        />
+                      );
+                  }
+                })}
+              </SimpleGrid>
+            </Stack>
+          );
+        })}
       </Stack>
     </Section>
   );
