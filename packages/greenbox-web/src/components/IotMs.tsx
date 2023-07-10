@@ -34,10 +34,21 @@ export default function IotMs({ iotms: playerIotMs }: Props) {
   // Put together a map of item ids to item definitions for this Path
   const idToItem = useItemMap(iotms.map((i) => i.id));
 
-  const numberOfIotMs = useMemo(
-    () => playerIotMs.filter((i) => i[1] == IotMStatus.BOUND).length,
+  const vipIotMs = useMemo(() => iotms.filter((i) => i.type === "vip").map((i) => i.id), [iotms]);
+  const ownsVipKey = useMemo(
+    () => playerIotMs.findIndex((i) => vipIotMs.includes(i[0])) > -1,
+    [playerIotMs, vipIotMs],
+  );
+
+  const numberOfIotms = useMemo(() => iotms.length - (vipIotMs.length - 1), [iotms]);
+
+  const numberofIotMsBound = useMemo(
+    () =>
+      playerIotMs.filter((i) => i[1] == IotMStatus.BOUND).map((i) => i[0]).length -
+      (ownsVipKey ? vipIotMs.length - 1 : 0),
     [playerIotMs],
   );
+
   const idToIotM = useMemo(
     () => playerIotMs.reduce((acc, i) => ({ ...acc, [i[0]]: i }), {} as { [id: number]: RawIotM }),
     [playerIotMs],
@@ -53,8 +64,8 @@ export default function IotMs({ iotms: playerIotMs }: Props) {
       values={[
         {
           color: "complete",
-          value: numberOfIotMs,
-          name: `${numberOfIotMs} / ${iotms.length} IotMs bound`,
+          value: numberofIotMsBound,
+          name: `${numberofIotMsBound} / ${numberOfIotms} IotMs bound`,
         },
       ]}
       max={iotms.length}
