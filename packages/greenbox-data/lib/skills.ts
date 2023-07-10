@@ -32,35 +32,38 @@ export const getMaxSkillLevel = (id: number) => {
     // Belch The Rainbow
     case 117:
       return 11;
+    // Implode Universe
+    case 188:
+      return 13;
+    default:
+      return 0;
 
     // Will change in future
 
     // Pirate Bellow
     case 118:
-      return 6;
+      return 7;
     // Summon Holiday Fun
     case 121:
       return 6;
     // Summon Carrot
     case 128:
-      return 5;
+      return 6;
     // Bear Essence
     case 134:
       return 6;
+    // Summon Kokomo Resort Pass
+    case 135:
+      return 2;
     // Calculate the Universe
     case 144:
       return 5;
     // Experience Safari
     case 180:
       return 4;
-    // Implode Universe
-    case 188:
-      return 13;
     // Toggle Optimality
     case 7254:
       return 3;
-    default:
-      return 0;
   }
 };
 

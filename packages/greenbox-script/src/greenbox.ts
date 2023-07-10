@@ -62,6 +62,7 @@ function checkSkills() {
   const permedSkills = getPermedSkills();
 
   function getStatus(skill: Skill) {
+    // Toggle Optimality is hardcore permanent if the player has any skill level
     if (toInt(skill) == 7254 && getNumber(`skillLevel7254`) > 0) {
       return SkillStatus.HARDCORE;
     }
