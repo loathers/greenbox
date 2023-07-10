@@ -869,11 +869,11 @@ export default [
   {
     id: 46,
     name: "Legacy of Loathing",
-    image: "itemimages/xx_small.gif",
+    image: "itemimages/xx.gif",
     items: [Thwaitgold.SplendorBeetle],
     equipment: [],
     tattoos: [],
-    points: null,
-    maxPoints: 0,
+    points: "legacyPoints",
+    maxPoints: 19,
   },
 ] as const;
