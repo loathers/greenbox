@@ -1,10 +1,9 @@
 import { Accordion, Container, ToastId, useToast } from "@chakra-ui/react";
-import { expand, RawSnapshotData } from "greenbox-data";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StringParam, useQueryParam } from "use-query-params";
+import { NumberParam, StringParam, useQueryParam } from "use-query-params";
 
-import { fetchAll, RootState, store } from "../store";
+import { fetchAll, fetchPlayerData, loadPlayerData, RootState, store } from "../store";
 
 import Familiars from "./Familiars";
 import Header from "./Header";
@@ -15,21 +14,20 @@ import Tattoos from "./Tattoos";
 import Trophies from "./Trophies";
 
 export default function MainPage() {
-  const [value] = useQueryParam("d", StringParam);
-  const [data, setData] = useState<RawSnapshotData | null>(null);
-
-  useEffect(() => {
-    if (!value) return;
-    try {
-      setData(expand(value));
-    } catch (e) {
-      if (!(e instanceof SyntaxError)) throw e;
-      console.error(e);
-      setData(null);
-    }
-  }, [value]);
+  const [directValue] = useQueryParam("d", StringParam);
+  const [playerId] = useQueryParam("u", NumberParam);
 
   const dispatch = useDispatch<typeof store.dispatch>();
+
+  useEffect(() => {
+    if (!playerId) return;
+    dispatch(fetchPlayerData(playerId));
+  }, [playerId, dispatch]);
+
+  useEffect(() => {
+    if (!directValue) return;
+    dispatch(loadPlayerData(directValue));
+  }, [directValue, dispatch]);
 
   useEffect(() => {
     dispatch(fetchAll(false));
@@ -37,8 +35,10 @@ export default function MainPage() {
 
   const toast = useToast();
   const clashToast = useRef<ToastId>();
+  const data = useSelector((state: RootState) => state.playerData);
   const loading = useSelector((state: RootState) => state.loading);
   const error = useSelector((state: RootState) => state.error);
+  const errorMessage = useSelector((state: RootState) => state.errorMessage);
 
   const id = "clash-toast";
 
@@ -69,7 +69,12 @@ export default function MainPage() {
   return (
     <Container maxWidth="1000px" width="100%">
       <Accordion allowMultiple allowToggle defaultIndex={0}>
-        <Header meta={data?.meta} />
+        <Header
+          meta={data?.meta}
+          loading={loading.playerData}
+          error={error.playerData}
+          errorMessage={errorMessage.playerData}
+        />
         <IotMs iotms={data?.iotms ?? []} />
         <Skills skills={data?.skills ?? []} />
         <Paths paths={data?.paths ?? []} />

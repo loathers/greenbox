@@ -38,6 +38,7 @@ import {
   toInt,
   visitUrl,
 } from "kolmafia";
+import { Kmail } from "libram";
 import { getNumber, getBoolean } from "libram/dist/property";
 
 import { getIotMStatus } from "./iotms";
@@ -116,7 +117,8 @@ function checkFamiliars() {
   }
 
   return Familiar.all().map(
-    (familiar) => [toInt(familiar), getStatus(familiar), getHundredPercent(familiar)] as RawFamiliar
+    (familiar) =>
+      [toInt(familiar), getStatus(familiar), getHundredPercent(familiar)] as RawFamiliar,
   );
 }
 
@@ -147,7 +149,7 @@ function checkOutfitTattoos(page: string) {
   }
 
   return getOutfitTattoos(loadTattoos()?.data || []).map(
-    (tattoo) => [tattoo.outfit, getStatus(tattoo)] as RawOutfitTattoo
+    (tattoo) => [tattoo.outfit, getStatus(tattoo)] as RawOutfitTattoo,
   );
 }
 
@@ -163,7 +165,7 @@ function getPathLevel(path: PathDef) {
     (Array.isArray(path.points) ? path.points : [path.points])
       .map((k) => getNumber(k))
       .reduce((sum, v) => sum + v, 0),
-    path.maxPoints
+    path.maxPoints,
   );
 }
 
@@ -171,10 +173,10 @@ function checkPaths(tattoos: string) {
   return (loadPaths()?.data ?? []).map((path) => {
     const level = getPathLevel(path);
     const items = path.items.map((i) =>
-      haveItem(Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE
+      haveItem(Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE,
     );
     const equipment = path.equipment.map((i) =>
-      haveItem(Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE
+      haveItem(Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE,
     );
     const tats = path.tattoos.map((tattoo) => {
       if (Array.isArray(tattoo.image)) {
@@ -207,14 +209,14 @@ function main(): void {
 
   if (inMultiFight() || handlingChoice() || currentRound() != 0) {
     printHtml(
-      `<b><font color=red>You are in a combat or a choice adventure so your greenboxes will fail. Exiting...</font></b>`
+      `<b><font color=red>You are in a combat or a choice adventure so your greenboxes will fail. Exiting...</font></b>`,
     );
     return;
   }
 
   if (!getBoolean("kingLiberated")) {
     printHtml(
-      `<b><font color=red>You are still in run so your greenboxes will probably be wrong</font></b>`
+      `<b><font color=red>You are still in run so your greenboxes will probably be wrong</font></b>`,
     );
   }
 
@@ -230,8 +232,10 @@ function main(): void {
     iotms: checkIotMs(),
   });
 
+  Kmail.send(3501234, `GREENBOX:${code}`);
+
   printHtml(
-    `All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?d=${code}">https://greenbox.loathers.net/?d=${code}</a>`
+    `All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?u=${myId()}">https://greenbox.loathers.net/?u=${myId()}</a>`,
   );
 }
 

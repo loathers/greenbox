@@ -16,7 +16,7 @@ export default function SkillDescription({ skill }: Props) {
   const clashes = useSelector((state: RootState) => state.wikiClashes);
   const wikiLink = useMemo(
     () => guessWikiLink(undefined, skill.name, "skill", clashes),
-    [skill, clashes]
+    [skill, clashes],
   );
   const [contents, setContents] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ export default function SkillDescription({ skill }: Props) {
   useEffect(() => {
     async function load() {
       const response = await fetch(
-        `https://l8sdqazjji.execute-api.us-east-1.amazonaws.com/?action=parse&page=${wikiLink}&prop=text&format=json`
+        `https://l8sdqazjji.execute-api.us-east-1.amazonaws.com/?action=parse&page=${wikiLink}&prop=text&format=json`,
       );
       const result = await response.json();
       const match = /<table width="100%"><tr><td>(.*?)<\/td>/s.exec(result.parse.text["*"]);
@@ -32,7 +32,7 @@ export default function SkillDescription({ skill }: Props) {
         setContents("Cannot load wiki page (this is an experimental feature!)");
       } else {
         setContents(
-          match[0].replaceAll('href="/', 'href="https://kol.coldfront.net/') + "</tr></table>"
+          match[0].replaceAll('href="/', 'href="https://kol.coldfront.net/') + "</tr></table>",
         );
       }
     }

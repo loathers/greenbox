@@ -10,5 +10,5 @@ export const expandMeta = (s: string) =>
     s
       .split(",")
       .map((s) => s.split(":"))
-      .map(([k, v]) => [k, k === "timestamp" ? Number(v) : v])
+      .map(([k, v]) => [k, k === "timestamp" ? Number(v) : v]),
   ) as Meta;

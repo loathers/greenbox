@@ -1,4 +1,4 @@
-import { configureStore, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { configureStore, createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import * as api from "greenbox-data";
 import {
   EffectDef,
@@ -37,9 +37,10 @@ export const entities = [
   "trophies",
 ] as const;
 
-export type EntityTypes = GreenboxState[typeof entities[number]];
+export type EntityTypes = GreenboxState[(typeof entities)[number]];
 
 export interface GreenboxState {
+  playerData: api.RawSnapshotData | null;
   classes: ClassDef[];
   effects: EffectDef[];
   familiars: FamiliarDef[];
@@ -50,12 +51,14 @@ export interface GreenboxState {
   tattoos: TattooDef[];
   trophies: TrophyDef[];
   wikiClashes: string[];
-  sizeAtLastFetch: { [K in typeof entities[number]]: number };
+  sizeAtLastFetch: { [K in (typeof entities)[number]]: number };
   loading: Partial<{ [K in keyof GreenboxState]: boolean }>;
   error: Partial<{ [K in keyof GreenboxState]: boolean }>;
+  errorMessage: Partial<{ [K in keyof GreenboxState]: string }>;
 }
 
 const initialState: GreenboxState = {
+  playerData: null,
   classes: [],
   effects: [],
   familiars: [],
@@ -90,34 +93,35 @@ const initialState: GreenboxState = {
     wikiClashes: false,
   },
   error: { wikiClashes: false },
+  errorMessage: {},
 };
 
 export const fetchClasses = createAsyncThunk("classes/fetch", async (size: number) =>
-  api.loadClasses(size)
+  api.loadClasses(size),
 );
 export const fetchEffects = createAsyncThunk("effects/fetch", async (size: number) =>
-  api.loadEffects(size)
+  api.loadEffects(size),
 );
 export const fetchFamiliars = createAsyncThunk("familiars/fetch", async (size: number) =>
-  api.loadFamiliars(size)
+  api.loadFamiliars(size),
 );
 export const fetchIotMs = createAsyncThunk("iotms/fetch", async (size: number) =>
-  api.loadIotMs(size)
+  api.loadIotMs(size),
 );
 export const fetchItems = createAsyncThunk("items/fetch", async (size: number) =>
-  api.loadItems(size)
+  api.loadItems(size),
 );
 export const fetchPaths = createAsyncThunk("paths/fetch", async (size: number) =>
-  api.loadPaths(size)
+  api.loadPaths(size),
 );
 export const fetchSkills = createAsyncThunk("skills/fetch", async (size: number) =>
-  api.loadSkills(size)
+  api.loadSkills(size),
 );
 export const fetchTattoos = createAsyncThunk("tattoos/fetch", async (size: number) =>
-  api.loadTattoos(size)
+  api.loadTattoos(size),
 );
 export const fetchTrophies = createAsyncThunk("trophies/fetch", async (size: number) =>
-  api.loadTrophies(size)
+  api.loadTrophies(size),
 );
 
 export const fetchAll = createAsyncThunk(
@@ -133,8 +137,19 @@ export const fetchAll = createAsyncThunk(
     dispatch(fetchSkills(force ? 0 : state.sizeAtLastFetch.skills));
     dispatch(fetchTattoos(force ? 0 : state.sizeAtLastFetch.tattoos));
     dispatch(fetchTrophies(force ? 0 : state.sizeAtLastFetch.trophies));
-  }
+  },
 );
+
+export const fetchPlayerData = createAsyncThunk("playerData/fetch", async (playerId: number) => {
+  const response = await fetch(`https://oaf-discord.herokuapp.com/api/greenbox/${playerId}`);
+  const json = await response.json();
+  if (response.status !== 200) {
+    throw new Error(json.error);
+  }
+  return json.greenboxString as string;
+});
+
+export const loadPlayerData = createAction<string>("playerData/load");
 
 export const greenboxSlice = createSlice({
   name: "greenbox",
@@ -251,6 +266,25 @@ export const greenboxSlice = createSlice({
       })
       .addCase(processWikiClashes.rejected, (state) => {
         state.error.wikiClashes = true;
+      })
+      .addCase(fetchPlayerData.pending, (state) => {
+        state.loading.playerData = true;
+      })
+      .addCase(fetchPlayerData.fulfilled, (state, action) => {
+        const greenboxString = action.payload;
+        state.playerData = api.expand(greenboxString);
+        state.loading.playerData = false;
+        state.error.playerData = false;
+        state.errorMessage.playerData = undefined;
+      })
+      .addCase(loadPlayerData, (state, action) => {
+        const greenboxString = action.payload;
+        state.playerData = api.expand(greenboxString);
+      })
+      .addCase(fetchPlayerData.rejected, (state, action) => {
+        state.loading.playerData = false;
+        state.error.playerData = true;
+        state.errorMessage.playerData = action.error.message;
       });
   },
 });
@@ -264,7 +298,7 @@ const persistedReducer = persistReducer(
     version: 1,
     storage,
   },
-  greenboxSlice.reducer
+  greenboxSlice.reducer,
 );
 
 export const store = configureStore({

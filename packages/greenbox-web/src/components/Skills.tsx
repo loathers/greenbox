@@ -21,39 +21,42 @@ export default function Skills({ skills: playerSkills }: Props) {
 
   const totalHardcorePermed = useMemo(
     () => playerSkills.filter((s) => s[1] === SkillStatus.HARDCORE).length,
-    [playerSkills]
+    [playerSkills],
   );
   const totalSoftcorePermed = useMemo(
     () => playerSkills.filter((s) => s[1] === SkillStatus.SOFTCORE).length,
-    [playerSkills]
+    [playerSkills],
   );
   const idToSkill = useMemo(
     () =>
       playerSkills.reduce((acc, s) => ({ ...acc, [s[0]]: s }), {} as { [id: number]: RawSkill }),
-    [playerSkills]
+    [playerSkills],
   );
   const idToClass = useMemo(
     () => classes.reduce((acc, c) => ({ ...acc, [c.id]: c }), {} as { [id: number]: ClassDef }),
-    [classes]
+    [classes],
   );
 
   const groupedSkills = useMemo(
     () =>
-      skills.reduce((acc, s) => {
-        let bucket = Math.floor(s.id / 1000);
-        // This is just for Toggle Optimality :)
-        if (bucket === 7) bucket = 0;
-        return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
-      }, {} as { [key: number]: SkillDef[] }),
-    [skills]
+      skills.reduce(
+        (acc, s) => {
+          let bucket = Math.floor(s.id / 1000);
+          // This is just for Toggle Optimality :)
+          if (bucket === 7) bucket = 0;
+          return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
+        },
+        {} as { [key: number]: SkillDef[] },
+      ),
+    [skills],
   );
 
   const bucketedSkills = useMemo(
     () =>
       Object.entries(groupedSkills).sort((a, b) =>
-        Number(a[0]) === 0 ? 1 : Number(a[0]) - Number(b[0])
+        Number(a[0]) === 0 ? 1 : Number(a[0]) - Number(b[0]),
       ),
-    [groupedSkills]
+    [groupedSkills],
   );
 
   // Not ideal but we accumulate mutually exclusive groups of skills in this array as we traverse the skills array (if necessary).

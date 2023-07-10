@@ -23,9 +23,9 @@ export default function Paths({ paths: playerPaths }: Props) {
           ...acc,
           [p.id]: p.tattoos.map((t) => (Array.isArray(t.image) ? t.image.length : 1)),
         }),
-        {} as { [id: number]: number[] }
+        {} as { [id: number]: number[] },
       ),
-    [paths]
+    [paths],
   );
 
   const max = useMemo(
@@ -36,11 +36,11 @@ export default function Paths({ paths: playerPaths }: Props) {
           [...p[2], ...p[3]].length +
           (maxTattooLevel?.[p[0]] ?? []).reduce(
             (maxLevelSum, maxLevel) => maxLevelSum + maxLevel,
-            0
+            0,
           ),
-        0
+        0,
       ),
-    [playerPaths, maxTattooLevel]
+    [playerPaths, maxTattooLevel],
   );
 
   const totalComplete = useMemo(
@@ -50,9 +50,9 @@ export default function Paths({ paths: playerPaths }: Props) {
           sum +
           [...p[2], ...p[3]].reduce((itemSum, item) => itemSum + item, 0) +
           p[3].reduce((tattooSum, tattooLevel, i) => tattooSum + tattooLevel, 0),
-        0
+        0,
       ),
-    [playerPaths]
+    [playerPaths],
   );
 
   const totalPartial = useMemo(
@@ -63,16 +63,16 @@ export default function Paths({ paths: playerPaths }: Props) {
           p[3].reduce(
             (tattooSum, tattooLevel, i) =>
               tattooSum + ((maxTattooLevel?.[p[0]]?.[i] ?? 0) - (tattooLevel + 1)),
-            0
+            0,
           ),
-        0
+        0,
       ),
-    [playerPaths, maxTattooLevel]
+    [playerPaths, maxTattooLevel],
   );
 
   const idToPath = useMemo(
     () => playerPaths.reduce((acc, p) => ({ ...acc, [p[0]]: p }), {} as { [id: number]: RawPath }),
-    [playerPaths]
+    [playerPaths],
   );
 
   return (

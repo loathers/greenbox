@@ -20,7 +20,7 @@ export default function MetaInfo({ meta }: Props) {
         hour: "numeric",
         minute: "numeric",
       }),
-    [date]
+    [date],
   );
 
   useEffect(() => {

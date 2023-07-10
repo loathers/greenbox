@@ -4,9 +4,12 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Alert,
+  AlertIcon,
   Box,
   Button,
   Code,
+  Flex,
   Heading,
   Stack,
   Text,
@@ -19,9 +22,13 @@ import { useDispatch } from "react-redux";
 import { fetchAll, store } from "../store";
 
 import MetaInfo from "./MetaInfo";
+import Spinner from "./Spinner";
 
 type Props = {
-  meta?: RawSnapshotData['meta'];
+  meta?: RawSnapshotData["meta"];
+  loading?: boolean;
+  error?: boolean;
+  errorMessage?: string;
 };
 
 const forceRefreshInfo = `
@@ -30,7 +37,7 @@ Press it if some new content is not appearing at all.
 It will not collect any new information about you specifically - you still need to run the command in KoLmafia!
 `;
 
-export default function Header({ meta }: Props) {
+export default function Header({ meta, loading, error, errorMessage }: Props) {
   const dispatch = useDispatch<typeof store.dispatch>();
 
   const forceUpdate = useCallback(() => {
@@ -41,10 +48,21 @@ export default function Header({ meta }: Props) {
     <AccordionItem>
       <Heading as="h1">
         <AccordionButton fontSize="4xl">
-          <Box flex="1" textAlign="left">
-            Greenbox
-          </Box>
-          <Box flex="1">{meta && <MetaInfo meta={meta} />}</Box>
+          <Flex justifyContent="space-between" alignItems="center" flex={1}>
+            <Box textAlign="left">Greenbox</Box>
+            <Box textAlign="right">
+              {meta ? (
+                <MetaInfo meta={meta} />
+              ) : loading ? (
+                <Spinner />
+              ) : error ? (
+                <Alert status="error" fontSize="md">
+                  <AlertIcon />
+                  {errorMessage}
+                </Alert>
+              ) : null}
+            </Box>
+          </Flex>
           <AccordionIcon />
         </AccordionButton>
       </Heading>
@@ -55,8 +73,8 @@ export default function Header({ meta }: Props) {
             git checkout loathers/greenbox release
           </Code>
           <Text>
-            in KoLmafia's Graphical CLI. Once that's done, you can get an up-to-date link whenever
-            you like by running <Code>greenbox</Code>.
+            in KoLmafia's Graphical CLI. Once that's done, you can update the data at this link
+            whenever you like by running <Code>greenbox</Code>.
           </Text>
           <Stack direction="row-reverse" pt={3}>
             <Tooltip p={2} label={forceRefreshInfo}>

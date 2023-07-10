@@ -18,19 +18,19 @@ export default function Familiars({ familiars: playerFamiliars }: Props) {
 
   const totalInTerrarium = useMemo(
     () => playerFamiliars.filter((f) => f[1] === FamiliarStatus.TERRARIUM).length,
-    [playerFamiliars]
+    [playerFamiliars],
   );
   const totalAsHatchlings = useMemo(
     () => playerFamiliars.filter((f) => f[1] === FamiliarStatus.HATCHLING).length,
-    [playerFamiliars]
+    [playerFamiliars],
   );
   const idToFamiliar = useMemo(
     () =>
       playerFamiliars.reduce(
         (acc, f) => ({ ...acc, [f[0]]: f }),
-        {} as { [id: number]: RawFamiliar }
+        {} as { [id: number]: RawFamiliar },
       ),
-    [playerFamiliars]
+    [playerFamiliars],
   );
 
   return (

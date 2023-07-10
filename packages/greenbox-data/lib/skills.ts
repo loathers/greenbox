@@ -186,8 +186,8 @@ export const compressSkills = (skills: RawSkill[]) =>
             skill[0] -
               block * 1000 -
               blockContents.replace(/\(\d+\)/g, "").length -
-              (block === 0 ? 1 : 0)
-          )
+              (block === 0 ? 1 : 0),
+          ),
         );
         r += zeros;
 
@@ -201,7 +201,7 @@ export const compressSkills = (skills: RawSkill[]) =>
 
         return [r, currentBlock] as [string, number];
       },
-      ["", 0] as [string, number]
+      ["", 0] as [string, number],
     )[0]
     .replace(/0+($|,)/, "$1");
 

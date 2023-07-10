@@ -14,25 +14,25 @@ type Props = {
 
 export default function Tattoos({ outfitTattoos: playerOutfitTattoos }: Props) {
   const tattoos = useSelector((state: RootState) => state.tattoos).filter(
-    (t) => t.outfit !== undefined
+    (t) => t.outfit !== undefined,
   );
   const loading = useSelector((state: RootState) => state.loading.tattoos || false);
 
   const totalOutfitTattos = useMemo(
     () => playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE).length,
-    [playerOutfitTattoos]
+    [playerOutfitTattoos],
   );
   const totalOutfits = useMemo(
     () => playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE_OUTFIT).length,
-    [playerOutfitTattoos]
+    [playerOutfitTattoos],
   );
   const idToOutfitTattoo = useMemo(
     () =>
       playerOutfitTattoos.reduce(
         (acc, t) => ({ ...acc, [t[0]]: t }),
-        {} as { [id: number]: RawOutfitTattoo }
+        {} as { [id: number]: RawOutfitTattoo },
       ),
-    [playerOutfitTattoos]
+    [playerOutfitTattoos],
   );
 
   return (
