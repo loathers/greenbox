@@ -79,31 +79,31 @@ export const isPermable = (id: number) => {
 
   switch (id) {
     // VIP lounge skills
-    case 91: // SkillPool.DOG_TIRED:
-    case 116: // SkillPool.HOLLOW_LEG:
+    case 91: // Dog Tired
+    case 116: // Hollow Leg
       return false;
 
     // Nemesis skills
-    case 49: // SkillPool.GOTHY_HANDWAVE:
-    case 50: // SkillPool.BREAK_IT_ON_DOWN:
-    case 51: // SkillPool.POP_AND_LOCK:
-    case 52: // SkillPool.RUN_LIKE_THE_WIND:
-    case 3024: // SkillPool.CARBOLOADING:
+    case 49: // Gothy Handwave
+    case 50: // Break It On Down
+    case 51: // Pop and Lock
+    case 52: // Run Like the Wind
+    case 3024: // Carboloading
       return false;
 
-    case 6019: // SkillPool.GEMELLIS_MARCH_OF_TESTERY:
+    case 6019: // Gemlli's March of Testery
       return false;
 
     // Other skills from this class are not permable
-    case 17047: // SkillPool.MILD_CURSE:
+    case 17047: // Mild Curs
       return true;
 
     // Avatar of West of Loathing skills
-    case 156: // SkillPool.SHOOT:
+    case 156: // Shoot
       return false;
 
     // Not permable but granted every ascension
-    case 174: // SkillPool.INCREDIBLE_SELF_ESTEEM:
+    case 174: // Incrdible Self-Estem
       return false;
 
     // S.I.T. Course certificate skills
@@ -112,8 +112,12 @@ export const isPermable = (id: number) => {
     case 220: // Psychogeologist
       return false;
 
+    // Replica skills
+    case 222: // Replica Emotionally Chipped
+      return false;
+
     // Permable from PvP
-    case 7254: // SkillPool.TOGGLE_OPTIMALITY
+    case 7254: // Toggle Optimality
       return true;
   }
 
