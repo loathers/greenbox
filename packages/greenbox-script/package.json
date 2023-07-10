@@ -12,6 +12,7 @@
     "watch": "node build.mjs --watch"
   },
   "dependencies": {
+    "greenbox-data": "^0.0.0",
     "kolmafia": "^5.27461.0",
     "libram": "^0.8.3"
   },
