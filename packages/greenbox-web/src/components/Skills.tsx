@@ -83,11 +83,17 @@ export default function Skills({ skills: playerSkills }: Props) {
     >
       <Stack spacing={4}>
         {bucketedSkills.map(([bucket, contents]) => {
-          const allHardcorePermed = contents.every(s => idToSkill[s.id]?.[1] === SkillStatus.HARDCORE);
+          const allHardcorePermed = contents.every(
+            (s) => idToSkill[s.id]?.[1] === SkillStatus.HARDCORE,
+          );
 
           return (
             <Stack spacing={4} key={bucket}>
-              <SkillClassHeading bucket={Number(bucket)} cls={idToClass[Number(bucket)]} medal={allHardcorePermed} />
+              <SkillClassHeading
+                bucket={Number(bucket)}
+                cls={idToClass[Number(bucket)]}
+                medal={allHardcorePermed}
+              />
               <SimpleGrid columns={6} spacing={1}>
                 {contents.map((s) => {
                   switch (s.id) {
