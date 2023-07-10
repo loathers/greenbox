@@ -2181,7 +2181,7 @@ var ItemId = /* @__PURE__ */ function(ItemId2) {
   items: [],
   equipment: [ItemId.PlexiSC, ItemId.PlexiTT, ItemId.PlexiPM, ItemId.PlexiSA, ItemId.PlexiDB, ItemId.PlexiAT],
   tattoos: [{
-    name: "Hardocre Oxygenarian",
+    name: "Hardcore Oxygenarian",
     image: "oxy"
   }],
   points: null,
