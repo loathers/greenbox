@@ -411,7 +411,7 @@ export default [
       ItemId.PlexiDB,
       ItemId.PlexiAT,
     ],
-    tattoos: [{ name: "Hardocre Oxygenarian", image: "oxy" }],
+    tattoos: [{ name: "Hardcore Oxygenarian", image: "oxy" }],
     points: null,
     maxPoints: 0,
   },
