@@ -17,4 +17,7 @@ export default [
   { name: "Vampyre", id: 24, image: "vampirefangs" },
   { name: "Plumber", id: 25, image: "mario_hammer2" },
   { name: "Grey Goo", id: 27, image: "greygooring" },
+  { name: "Pig Skinner", id: 28, image: "football2" },
+  { name: "Cheese Wizard", id: 29, image: "jarl_cheeseslice" },
+  { name: "Jazz Agent", id: 30, image: "motif" },
 ] as const;
