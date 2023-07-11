@@ -1,4 +1,4 @@
-import { Box, LinkBox, LinkOverlay } from "@chakra-ui/react";
+import { Box, LinkBox, LinkOverlay, useToken } from "@chakra-ui/react";
 import he from "he";
 import { forwardRef, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
@@ -20,7 +20,7 @@ type Props = {
   link?: string;
 };
 
-function styleFromStatus(state: StateType) {
+function styleFromStatus(state: StateType, bg: string) {
   switch (state) {
     case "complete": {
       return { backgroundColor: "complete" };
@@ -28,14 +28,15 @@ function styleFromStatus(state: StateType) {
     case "partial": {
       return {
         backgroundColor: "partial",
-        backgroundImage:
-          "repeating-linear-gradient(45deg, white 25%, transparent 25%, transparent 75%, white 75%, white), repeating-linear-gradient(45deg, white 25%, transparent 25%, transparent 75%, white 75%, white)",
+        backgroundImage: `repeating-linear-gradient(45deg, ${bg} 25%, transparent 25%, transparent 75%, ${bg} 75%, ${bg}), repeating-linear-gradient(45deg, ${bg} 25%, transparent 25%, transparent 75%, ${bg} 75%, ${bg})`,
         backgroundPosition: "0 0, 5px 5px",
         backgroundSize: "10px 10px",
       };
     }
     default: {
-      return {};
+      return {
+        backgroundColor: bg,
+      };
     }
   }
 }
@@ -68,7 +69,8 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
   },
   ref,
 ) {
-  const style = styleFromStatus(status);
+  const [bg] = useToken("colors", ["accent"]);
+  const style = styleFromStatus(status, bg);
   const clashes = useSelector((state: RootState) => state.wikiClashes);
 
   const wikiLink = guessWikiLink(link, name, type, clashes);
@@ -92,7 +94,7 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
       }}
       _hover={{
         filter: style.backgroundColor ? "brightness(90%)" : undefined,
-        backgroundColor: style.backgroundColor || "#efefef",
+        backgroundColor: style.backgroundColor || "blackAlpha.50",
       }}
       {...rest}
     >

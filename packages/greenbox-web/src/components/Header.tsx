@@ -9,11 +9,14 @@ import {
   Box,
   Button,
   Code,
-  Flex,
+  HStack,
   Heading,
+  Image,
   Stack,
   Text,
   Tooltip,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { RawSnapshotData } from "greenbox-data";
 import { useCallback } from "react";
@@ -23,6 +26,7 @@ import { fetchAll, store } from "../store";
 
 import MetaInfo from "./MetaInfo";
 import Spinner from "./Spinner";
+import SwitchButton from "./SwitchButton";
 
 type Props = {
   meta?: RawSnapshotData["meta"];
@@ -48,8 +52,12 @@ export default function Header({ meta, loading, error, errorMessage }: Props) {
     <AccordionItem>
       <Heading as="h1">
         <AccordionButton fontSize="4xl">
-          <Flex justifyContent="space-between" alignItems="center" flex={1}>
+          <HStack alignItems="center" flex={1}>
             <Box textAlign="left">Greenbox</Box>
+            <Box>
+              <SwitchButton />
+            </Box>
+            <Box flex={1} />
             <Box textAlign="right">
               {meta ? (
                 <MetaInfo meta={meta} />
@@ -62,7 +70,7 @@ export default function Header({ meta, loading, error, errorMessage }: Props) {
                 </Alert>
               ) : null}
             </Box>
-          </Flex>
+          </HStack>
           <AccordionIcon />
         </AccordionButton>
       </Heading>
