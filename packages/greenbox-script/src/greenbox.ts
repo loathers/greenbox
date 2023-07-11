@@ -206,7 +206,35 @@ function checkMeta() {
   };
 }
 
-function main(): void {
+const hasFlag = (args: string, ...flags: string[]) => flags.some((f) => args.includes(f));
+
+function main(args = ""): void {
+  if (hasFlag(args, "--help", "-h")) {
+    printHtml(`
+      Usage:
+      <table border=0>
+      <tr><td>greenbox [--help|-h|--wipe|-w|--private|-p]</td></tr>
+      </table>
+      Options:
+      <table border=0>
+      <tr><td>--help -h</td><td>See this message</td></tr>
+      <tr><td>--wipe -w</td><td>Wipe your public profile</td></tr>
+      <tr><td>--private -w</td><td>Generate a link without updating your public profile</td></tr>
+      </table>
+    `);
+    return;
+  }
+
+  if (hasFlag(args, "--wipe", "-w")) {
+    Kmail.send(3501234, `GREENBOX:WIPE`);
+    printHtml(
+      `Your request to wipe your public profile has been sent, you'll receive a Kmail confirming success soon!`,
+    );
+    return;
+  }
+
+  const keepPrivate = hasFlag(args, "--private", "-p");
+
   printHtml(`Deciding your fate...`);
 
   if (inMultiFight() || handlingChoice() || currentRound() != 0) {
@@ -234,11 +262,13 @@ function main(): void {
     iotms: checkIotMs(),
   });
 
-  Kmail.send(3501234, `GREENBOX:${code}`);
+  const link = `https://greenbox.loathers.net/?${keepPrivate ? `d=${code}` : `u=${myId()}`}`;
 
-  printHtml(
-    `All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?u=${myId()}">https://greenbox.loathers.net/?u=${myId()}</a>`,
-  );
+  if (!keepPrivate) {
+    Kmail.send(3501234, `GREENBOX:${code}`);
+  }
+
+  printHtml(`All done! To see your greenboxes, visit: <a href="${link}">${link}</a>`);
 }
 
 module.exports.main = main;
