@@ -4941,7 +4941,24 @@ function checkMeta() {
     revision: (0, import_kolmafia7.getRevision)()
   };
 }
+var hasFlag = function(args) {
+  for (var _len = arguments.length, flags = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++)
+    flags[_key - 1] = arguments[_key];
+  return flags.some(function(f) {
+    return args.includes(f);
+  });
+};
 function main() {
+  var args = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "";
+  if (hasFlag(args, "--help", "-h")) {
+    (0, import_kolmafia7.printHtml)("\n      Usage:\n      <table border=0>\n      <tr><td>greenbox [--help|-h|--wipe|-w|--private|-p]</td></tr>\n      </table>\n      Options:\n      <table border=0>\n      <tr><td>--help -h</td><td>See this message</td></tr>\n      <tr><td>--wipe -w</td><td>Wipe your public profile</td></tr>\n      <tr><td>--private -w</td><td>Generate a link without updating your public profile</td></tr>\n      </table>\n    ");
+    return;
+  }
+  if (hasFlag(args, "--wipe", "-w")) {
+    Kmail.send(3501234, "GREENBOX:WIPE"), (0, import_kolmafia7.printHtml)("Your request to wipe your public profile has been sent, you'll receive a Kmail confirming success soon!");
+    return;
+  }
+  var keepPrivate = hasFlag(args, "--private", "-p");
   if ((0, import_kolmafia7.printHtml)("Deciding your fate..."), (0, import_kolmafia7.inMultiFight)() || (0, import_kolmafia7.handlingChoice)() || (0, import_kolmafia7.currentRound)() != 0) {
     (0, import_kolmafia7.printHtml)("<b><font color=red>You are in a combat or a choice adventure so your greenboxes will fail. Exiting...</font></b>");
     return;
@@ -4955,7 +4972,7 @@ function main() {
   }, checkTattoos(tattoos)), {}, {
     paths: checkPaths(tattoos),
     iotms: checkIotMs()
-  }));
-  Kmail.send(3501234, "GREENBOX:".concat(code)), (0, import_kolmafia7.printHtml)('All done! To see your greenboxes, visit: <a href="https://greenbox.loathers.net/?u='.concat((0, import_kolmafia7.myId)(), '">https://greenbox.loathers.net/?u=').concat((0, import_kolmafia7.myId)(), "</a>"));
+  })), link = "https://greenbox.loathers.net/?".concat(keepPrivate ? "d=".concat(code) : "u=".concat((0, import_kolmafia7.myId)()));
+  keepPrivate || Kmail.send(3501234, "GREENBOX:".concat(code)), (0, import_kolmafia7.printHtml)('All done! To see your greenboxes, visit: <a href="'.concat(link, '">').concat(link, "</a>"));
 }
 module.exports.main = main;
