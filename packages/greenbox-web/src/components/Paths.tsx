@@ -16,6 +16,8 @@ export default function Paths({ paths: playerPaths }: Props) {
   const paths = useSelector((state: RootState) => state.paths);
   const loading = useSelector((state: RootState) => state.loading.paths || false);
 
+  // A map of path id to array, where the index represents a tattoo for that path
+  // and the value represents the maximum level for that tattoo
   const maxTattooLevel = useMemo(
     () =>
       paths.reduce(
@@ -28,41 +30,46 @@ export default function Paths({ paths: playerPaths }: Props) {
     [paths],
   );
 
+  // The total score available across all paths
   const max = useMemo(
     () =>
       playerPaths.reduce(
         (sum, p) =>
           sum +
+          // Number of items and equipment (whether player has them or not)
           [...p[2], ...p[3]].length +
-          (maxTattooLevel?.[p[0]] ?? []).reduce(
-            (maxLevelSum, maxLevel) => maxLevelSum + maxLevel,
-            0,
-          ),
+          // Sum of max possible tattoo level for each tattoo this path offers
+          (maxTattooLevel[p[0]] ?? []).reduce((maxLevelSum, maxLevel) => maxLevelSum + maxLevel, 0),
         0,
       ),
     [playerPaths, maxTattooLevel],
   );
 
+  // The score of "complete" achievements across all paths
   const totalComplete = useMemo(
     () =>
       playerPaths.reduce(
         (sum, p) =>
           sum +
+          // Number of items and equipment that the player owns (ItemStatus.HAVE equals 1)
           [...p[2], ...p[3]].reduce((itemSum, item) => itemSum + item, 0) +
-          p[3].reduce((tattooSum, tattooLevel, i) => tattooSum + tattooLevel, 0),
+          // Sum of acquired tattoo level for each tattoo this path offers
+          p[4].reduce((tattooSum, tattooLevel, i) => tattooSum + tattooLevel, 0),
         0,
       ),
     [playerPaths],
   );
 
+  // The score of "complete" achievements across all paths (i.e. unachieved tattoo levels)
   const totalPartial = useMemo(
     () =>
       playerPaths.reduce(
         (sum, p) =>
           sum +
-          p[3].reduce(
+          p[4].reduce(
+            // Total tattoo level minus current tattoo level across each tattoo this path offers
             (tattooSum, tattooLevel, i) =>
-              tattooSum + ((maxTattooLevel?.[p[0]]?.[i] ?? 0) - (tattooLevel + 1)),
+              tattooSum + Math.max(0, (maxTattooLevel[p[0]]?.[i] ?? 0) - (tattooLevel + 1)),
             0,
           ),
         0,
