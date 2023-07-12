@@ -2649,7 +2649,7 @@ var ItemId = /* @__PURE__ */ function(ItemId2) {
   points: ["asolPointsPigSkinner", "asolPointsCheeseWizard", "asolPointsJazzAgent"],
   maxPoints: 11
 }, {
-  id: 46,
+  id: 48,
   name: "Legacy of Loathing",
   image: "itemimages/xx.gif",
   items: [Thwaitgold.SplendorBeetle],
