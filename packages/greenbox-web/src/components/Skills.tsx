@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../store";
+import { getSkillBucket } from "../utils";
 
 import MutexSkills from "./MutexSkills";
 import Section from "./Section";
@@ -41,9 +42,7 @@ export default function Skills({ skills: playerSkills }: Props) {
     () =>
       skills.reduce(
         (acc, s) => {
-          let bucket = Math.floor(s.id / 1000);
-          // This is just for Toggle Optimality :)
-          if (bucket === 7) bucket = 0;
+          const bucket = getSkillBucket(s);
           return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
         },
         {} as { [key: number]: SkillDef[] },
@@ -53,9 +52,14 @@ export default function Skills({ skills: playerSkills }: Props) {
 
   const bucketedSkills = useMemo(
     () =>
-      Object.entries(groupedSkills).sort((a, b) =>
-        Number(a[0]) === 0 ? 1 : Number(a[0]) - Number(b[0]),
-      ),
+      Object.entries(groupedSkills)
+        .map(([bucket, skills]) => [Number(bucket), skills] as const)
+        .sort((a, b) => {
+          // Order should be x >= 1 in order, then 0 < x < 1, then 0
+          if (a[0] === 0 || (a[0] < 1 && b[0] >= 1)) return 1;
+          if (b[0] === 0 || (b[0] < 1 && a[0] >= 1)) return -1;
+          return a[0] - b[0];
+        }),
     [groupedSkills],
   );
 
