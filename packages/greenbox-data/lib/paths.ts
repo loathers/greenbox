@@ -72,6 +72,7 @@ export const expandPaths = (s = "") => {
       path.items.length + path.equipment.length + path.tattoos.length,
       "0",
     );
+
     const level = parseInt(part.substring(0, 1), pointsRadix);
     part = part.substring(1);
     const items = part
