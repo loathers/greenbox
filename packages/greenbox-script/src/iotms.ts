@@ -16,7 +16,13 @@ import { haveItem } from "./utils";
 
 const arrayOf = <T>(items: T | T[]) => (Array.isArray(items) ? items : [items]);
 
-function haveBound(iotm: IotMDef): boolean {
+export type IotMOptions = Partial<{
+  force: number[];
+}>;
+
+function haveBound(iotm: IotMDef, options: IotMOptions): boolean {
+  if (options.force?.includes(iotm.id)) return true;
+
   const boxed = Item.get(iotm.id);
 
   switch (iotm.type) {
@@ -66,8 +72,8 @@ function haveBound(iotm: IotMDef): boolean {
   }
 }
 
-export function getIotMStatus(iotm: IotMDef): IotMStatus {
-  if (haveBound(iotm)) return IotMStatus.BOUND;
+export function getIotMStatus(iotm: IotMDef, options: IotMOptions = {}): IotMStatus {
+  if (haveBound(iotm, options)) return IotMStatus.BOUND;
   const boxed = Item.get(iotm.id);
   if (haveItem(boxed)) return IotMStatus.BOXED;
   return IotMStatus.NONE;

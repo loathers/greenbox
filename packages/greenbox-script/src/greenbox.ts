@@ -41,7 +41,7 @@ import {
 import { Kmail } from "libram";
 import { getNumber, getBoolean } from "libram/dist/property";
 
-import { getIotMStatus } from "./iotms";
+import { getIotMStatus, IotMOptions } from "./iotms";
 import { haveItem } from "./utils";
 
 /**
@@ -49,8 +49,10 @@ import { haveItem } from "./utils";
  * @returns large string of IOTM ownership
  */
 
-function checkIotMs() {
-  return (loadIotMs()?.data ?? []).map((iotm) => [iotm.id, getIotMStatus(iotm)] as RawIotM);
+function checkIotMs(options: IotMOptions) {
+  return (loadIotMs()?.data ?? []).map(
+    (iotm) => [iotm.id, getIotMStatus(iotm, options)] as RawIotM,
+  );
 }
 
 /**
@@ -213,13 +215,14 @@ function main(args = ""): void {
     printHtml(`
       Usage:
       <table border=0>
-      <tr><td>greenbox [--help|-h|--wipe|-w|--private|-p]</td></tr>
+      <tr><td>greenbox [...options]</td></tr>
       </table>
       Options:
       <table border=0>
       <tr><td>--help -h</td><td>See this message</td></tr>
       <tr><td>--wipe -w</td><td>Wipe your public profile</td></tr>
       <tr><td>--private -w</td><td>Generate a link without updating your public profile</td></tr>
+      <tr><td>--force-florist</td><td>Report that you have an Order of the Green Thumb Order Form bound, even if KoLmafia says otherwise</td></tr>
       </table>
     `);
     return;
@@ -252,6 +255,9 @@ function main(args = ""): void {
 
   const tattoos = visitUrl("account_tattoos.php");
 
+  const forceIotMs = [];
+  if (hasFlag(args, "--force-florist")) forceIotMs.push(6413);
+
   const code = compress({
     meta: checkMeta(),
     skills: checkSkills(),
@@ -259,7 +265,7 @@ function main(args = ""): void {
     trophies: checkTrophies(),
     ...checkTattoos(tattoos),
     paths: checkPaths(tattoos),
-    iotms: checkIotMs(),
+    iotms: checkIotMs({ force: forceIotMs }),
   });
 
   const link = `https://greenbox.loathers.net/?${keepPrivate ? `d=${code}` : `u=${myId()}`}`;
