@@ -11,12 +11,9 @@ import {
   Code,
   HStack,
   Heading,
-  Image,
   Stack,
   Text,
   Tooltip,
-  useColorMode,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { RawSnapshotData } from "greenbox-data";
 import { useCallback } from "react";
@@ -50,30 +47,28 @@ export default function Header({ meta, loading, error, errorMessage }: Props) {
 
   return (
     <AccordionItem>
-      <Heading as="h1">
-        <AccordionButton fontSize="4xl">
-          <HStack alignItems="center" flex={1}>
-            <Box textAlign="left">Greenbox</Box>
-            <Box>
-              <SwitchButton />
-            </Box>
-            <Box flex={1} />
-            <Box textAlign="right">
-              {meta ? (
-                <MetaInfo meta={meta} />
-              ) : loading ? (
-                <Spinner />
-              ) : error ? (
-                <Alert status="error" fontSize="md">
-                  <AlertIcon />
-                  {errorMessage}
-                </Alert>
-              ) : null}
-            </Box>
-          </HStack>
-          <AccordionIcon />
-        </AccordionButton>
-      </Heading>
+      <AccordionButton fontSize="4xl" as="section">
+        <HStack alignItems="center" flex={1}>
+          <Heading as="h1">Greenbox</Heading>
+          <Box>
+            <SwitchButton />
+          </Box>
+          <Box flex={1} />
+          <Box textAlign="right">
+            {meta ? (
+              <MetaInfo meta={meta} />
+            ) : loading ? (
+              <Spinner />
+            ) : error ? (
+              <Alert status="error" fontSize="md">
+                <AlertIcon />
+                {errorMessage}
+              </Alert>
+            ) : null}
+          </Box>
+        </HStack>
+        <AccordionIcon />
+      </AccordionButton>
       <AccordionPanel>
         <Stack>
           <Text>To get the data from your account, first install the script by running</Text>

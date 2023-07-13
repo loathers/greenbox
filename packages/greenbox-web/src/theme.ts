@@ -9,18 +9,18 @@ export const theme = extendTheme({
     colors: {
       "chakra-body-bg": {
         _light: "#f6f8fa",
-        _dark: "#010409",
+        _dark: "#2a292a",
       },
       accent: {
-        default: "#ffffff",
-        _dark: "#161b22",
+        _light: "#ffffff",
+        _dark: "#46454a",
       },
       complete: {
-        default: "#afa",
+        _light: "#afa",
         _dark: "green.800",
       },
       partial: {
-        default: "#eea",
+        _light: "#eea",
         _dark: "yellow.800",
       },
     },

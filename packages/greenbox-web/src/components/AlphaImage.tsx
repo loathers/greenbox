@@ -1,7 +1,8 @@
-import { Image as ChakraImage, useColorModeValue } from "@chakra-ui/react";
 import { CSSObject } from "@emotion/react";
 import Color from "color";
 import { useEffect, useMemo, useState } from "react";
+
+import Image from "./Image";
 
 function createAlphaMask(data: Uint8ClampedArray, width: number) {
   const mask = new Uint8ClampedArray(data.length).fill(255);
@@ -52,8 +53,6 @@ export default function AlphaImage({
   sourceHeight = sourceWidth,
 }: Props) {
   const [maskImage, setMaskImage] = useState({} as CSSObject);
-  const invert = useColorModeValue(0, 100);
-
   const url = useMemo(() => `https://s3.amazonaws.com/images.kingdomofloathing.com/${src}`, [src]);
 
   useEffect(() => {
@@ -92,7 +91,5 @@ export default function AlphaImage({
     storeMask();
   }, [url, src]);
 
-  return (
-    <ChakraImage alt={title} src={url} width={sourceWidth} height={sourceHeight} sx={maskImage} />
-  );
+  return <Image alt={title} src={url} width={sourceWidth} height={sourceHeight} sx={maskImage} />;
 }

@@ -68,7 +68,7 @@ export default function MainPage() {
 
   return (
     <Container maxWidth="1000px" width="100%">
-      <Accordion allowMultiple allowToggle defaultIndex={0}>
+      <Accordion allowMultiple defaultIndex={[0]}>
         <Header
           meta={data?.meta}
           loading={loading.playerData}

@@ -1,4 +1,6 @@
-import { Box, Image, keyframes, useColorModeValue } from "@chakra-ui/react";
+import { Box, keyframes, useColorModeValue } from "@chakra-ui/react";
+
+import Image from "./Image";
 
 const spin = keyframes({
   "0%": {
