@@ -1,4 +1,8 @@
-import { StyleFunctionProps, extendTheme } from "@chakra-ui/react";
+import { extendTheme, useColorModeValue } from "@chakra-ui/react";
+
+export function useColorModeFilter() {
+  return useColorModeValue("", "contrast(0.6666) invert(1) hue-rotate(180deg)");
+}
 
 export const theme = extendTheme({
   config: {
@@ -15,6 +19,11 @@ export const theme = extendTheme({
       accent: {
         _light: "#ffffff",
         _dark: "#46454a",
+      },
+      // This is the colour that KoL images backgrounds are when considering useColorModeFilter
+      imagebg: {
+        _light: "#ffffff",
+        _dark: "#2a292a",
       },
       complete: {
         _light: "#afa",

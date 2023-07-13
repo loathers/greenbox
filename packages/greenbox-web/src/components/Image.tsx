@@ -1,8 +1,6 @@
-import { Image as ChakraImage, ImageProps, useColorModeValue } from "@chakra-ui/react";
+import { Image as ChakraImage, ImageProps } from "@chakra-ui/react";
 
-export function useColorModeFilter() {
-  return useColorModeValue("", "contrast(0.6666) invert(1) hue-rotate(180deg)");
-}
+import { useColorModeFilter } from "../theme";
 
 export default function Image(props: ImageProps) {
   const filter = useColorModeFilter();
