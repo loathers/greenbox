@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 import { RootState } from "../store";
 
+import { useColorModeFilter } from "./Image";
 import Spinner from "./Spinner";
 import { guessWikiLink } from "./Thing";
 
@@ -32,7 +33,9 @@ export default function SkillDescription({ skill }: Props) {
         setContents("Cannot load wiki page (this is an experimental feature!)");
       } else {
         setContents(
-          match[0].replaceAll('href="/', 'href="https://kol.coldfront.net/') + "</tr></table>",
+          match[0]
+            .replaceAll('href="/', 'href="https://kol.coldfront.net/')
+            .replaceAll('p style="color:', 'p class="colortext" style="color:') + "</tr></table>",
         );
       }
     }
@@ -46,8 +49,10 @@ export default function SkillDescription({ skill }: Props) {
     }
   }, [ref, contents]);
 
+  const filter = useColorModeFilter();
+
   return (
-    <Flex ref={ref} justifyContent="center">
+    <Flex sx={{ img: { filter }, "p.colortext": { filter } }} ref={ref} justifyContent="center">
       <Spinner />
     </Flex>
   );

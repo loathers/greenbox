@@ -40,7 +40,7 @@ export default function Skill({ skill, status, level }: Props) {
           }
         />
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent style={{ ["--popper-bg" as any]: "var(--chakra-colors-chakra-body-bg)" }}>
         <PopoverArrow />
         <PopoverBody>
           <SkillDescription skill={skill} />
