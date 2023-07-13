@@ -41,6 +41,8 @@ export type EntityTypes = GreenboxState[(typeof entities)[number]];
 
 export interface GreenboxState {
   playerData: api.RawSnapshotData | null;
+  playerId: number | null;
+  favouritePlayerId: number | null;
   classes: ClassDef[];
   effects: EffectDef[];
   familiars: FamiliarDef[];
@@ -58,6 +60,8 @@ export interface GreenboxState {
 }
 
 const initialState: GreenboxState = {
+  playerId: null,
+  favouritePlayerId: null,
   playerData: null,
   classes: [],
   effects: [],
@@ -150,6 +154,8 @@ export const fetchPlayerData = createAsyncThunk("playerData/fetch", async (playe
 });
 
 export const loadPlayerData = createAction<string>("playerData/load");
+
+export const updateFavouritePlayerId = createAction<number | null>("favouritePlayerId/update");
 
 export const greenboxSlice = createSlice({
   name: "greenbox",
@@ -267,10 +273,13 @@ export const greenboxSlice = createSlice({
       .addCase(processWikiClashes.rejected, (state) => {
         state.error.wikiClashes = true;
       })
-      .addCase(fetchPlayerData.pending, (state) => {
+      .addCase(fetchPlayerData.pending, (state, action) => {
         state.loading.playerData = true;
       })
       .addCase(fetchPlayerData.fulfilled, (state, action) => {
+        // Set current player id
+        state.playerId = action.meta.arg;
+        // Parse and load greenbox string
         const greenboxString = action.payload;
         state.playerData = api.expand(greenboxString);
         state.loading.playerData = false;
@@ -278,6 +287,7 @@ export const greenboxSlice = createSlice({
         state.errorMessage.playerData = undefined;
       })
       .addCase(loadPlayerData, (state, action) => {
+        state.playerId = null;
         const greenboxString = action.payload;
         state.playerData = api.expand(greenboxString);
       })
@@ -285,11 +295,19 @@ export const greenboxSlice = createSlice({
         state.loading.playerData = false;
         state.error.playerData = true;
         state.errorMessage.playerData = action.error.message;
+      })
+      .addCase(updateFavouritePlayerId, (state, action) => {
+        state.favouritePlayerId = action.payload;
       });
   },
 });
 
-const whitelist: (keyof GreenboxState)[] = [...entities, "wikiClashes", "sizeAtLastFetch"];
+const whitelist: (keyof GreenboxState)[] = [
+  ...entities,
+  "wikiClashes",
+  "sizeAtLastFetch",
+  "favouritePlayerId",
+];
 
 const persistedReducer = persistReducer(
   {

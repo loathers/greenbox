@@ -27,6 +27,7 @@ import SwitchButton from "./SwitchButton";
 
 type Props = {
   meta?: RawSnapshotData["meta"];
+  direct?: boolean;
   loading?: boolean;
   error?: boolean;
   errorMessage?: string;
@@ -38,7 +39,7 @@ Press it if some new content is not appearing at all.
 It will not collect any new information about you specifically - you still need to run the command in KoLmafia!
 `;
 
-export default function Header({ meta, loading, error, errorMessage }: Props) {
+export default function Header({ meta, direct, loading, error, errorMessage }: Props) {
   const dispatch = useDispatch<typeof store.dispatch>();
 
   const forceUpdate = useCallback(() => {
@@ -56,7 +57,7 @@ export default function Header({ meta, loading, error, errorMessage }: Props) {
           <Box flex={1} />
           <Box textAlign="right">
             {meta ? (
-              <MetaInfo meta={meta} />
+              <MetaInfo direct={direct} meta={meta} />
             ) : loading ? (
               <Spinner />
             ) : error ? (

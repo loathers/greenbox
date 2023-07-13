@@ -44,6 +44,8 @@ type Props = {
   sourceWidth?: number;
   sourceHeight?: number;
   title?: string;
+  width?: string | number;
+  height?: string | number;
 };
 
 export default function AlphaImage({
@@ -51,6 +53,8 @@ export default function AlphaImage({
   title,
   sourceWidth = 30,
   sourceHeight = sourceWidth,
+  width = sourceWidth,
+  height = sourceHeight,
 }: Props) {
   const [maskImage, setMaskImage] = useState({} as CSSObject);
   const url = useMemo(() => `https://s3.amazonaws.com/images.kingdomofloathing.com/${src}`, [src]);
@@ -91,5 +95,5 @@ export default function AlphaImage({
     storeMask();
   }, [url, src]);
 
-  return <Image alt={title} src={url} width={sourceWidth} height={sourceHeight} sx={maskImage} />;
+  return <Image alt={title} src={url} width={width} height={height} sx={maskImage} />;
 }

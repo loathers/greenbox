@@ -16,13 +16,14 @@ import Trophies from "./Trophies";
 export default function MainPage() {
   const [directValue] = useQueryParam("d", StringParam);
   const [playerId] = useQueryParam("u", NumberParam);
+  const favouritePlayerId = useSelector((state: RootState) => state.favouritePlayerId);
 
   const dispatch = useDispatch<typeof store.dispatch>();
 
   useEffect(() => {
-    if (!playerId) return;
-    dispatch(fetchPlayerData(playerId));
-  }, [playerId, dispatch]);
+    const id = playerId || favouritePlayerId;
+    if (id) dispatch(fetchPlayerData(id));
+  }, [playerId, dispatch, favouritePlayerId]);
 
   useEffect(() => {
     if (!directValue) return;
@@ -70,6 +71,7 @@ export default function MainPage() {
     <Container maxWidth="1000px" width="100%">
       <Accordion allowMultiple defaultIndex={[0]}>
         <Header
+          direct={!!directValue}
           meta={data?.meta}
           loading={loading.playerData}
           error={error.playerData}
