@@ -1,10 +1,9 @@
-import { HStack, IconButton, Text } from "@chakra-ui/react";
+import { HStack, Text } from "@chakra-ui/react";
 import { formatDistance, intlFormat } from "date-fns";
 import { RawSnapshotData } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
 import { FavouriteButton } from "./FavouriteButton";
-import Image from "./Image";
 
 type Props = {
   meta: RawSnapshotData["meta"];
@@ -35,15 +34,13 @@ export default function MetaInfo({ meta, direct }: Props) {
   const timeago = useMemo(() => formatDistance(date, now, { addSuffix: true }), [now, date]);
 
   return (
-    <Text fontSize="large">
-      <HStack spacing="0.25em">
-        <span title={`r${meta.revision}`}>{direct ? "Private s" : "S"}napshot</span>
-        <span>by</span>
-        <b title={`Player #${meta.id}`}>{meta.name}</b>
-        <span>from</span>
-        <span title={humanDate}>{timeago}</span>
-        {!direct && <FavouriteButton />}
-      </HStack>
-    </Text>
+    <HStack fontSize="large" spacing="0.25em" wrap="wrap">
+      <Text title={`r${meta.revision}`}>{`${direct ? "Private s" : "S"}napshot`}</Text>{" "}
+      <Text>by</Text>{" "}
+      <Text fontWeight="bold" title={`Player #${meta.id}`}>
+        {meta.name}
+      </Text>{" "}
+      <Text>from</Text> <Text title={humanDate}>{timeago}</Text> {!direct && <FavouriteButton />}
+    </HStack>
   );
 }

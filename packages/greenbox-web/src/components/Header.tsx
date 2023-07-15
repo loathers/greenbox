@@ -48,8 +48,8 @@ export default function Header({ meta, direct, loading, error, errorMessage }: P
 
   return (
     <AccordionItem>
-      <AccordionButton fontSize="4xl" as="section">
-        <HStack alignItems="center" flex={1}>
+      <AccordionButton fontSize="4xl" as="section" alignItems="start">
+        <HStack alignItems="center" flex={1} maxWidth="100%" wrap="wrap">
           <Heading as="h1">Greenbox</Heading>
           <Box>
             <SwitchButton />
@@ -68,7 +68,7 @@ export default function Header({ meta, direct, loading, error, errorMessage }: P
             ) : null}
           </Box>
         </HStack>
-        <AccordionIcon />
+        <AccordionIcon height="1.1em" />
       </AccordionButton>
       <AccordionPanel>
         <Stack>

@@ -23,18 +23,18 @@ interface Props extends React.PropsWithChildren {
 export default function Section({ title, icon, loading = false, values, max, children }: Props) {
   return (
     <AccordionItem isDisabled={loading}>
-      <Heading>
-        <AccordionButton fontSize="3xl">
-          <Stack direction="row" flex="1" textAlign="left">
-            <AlphaImage src={icon} />
-            <Box>{title}</Box>
-          </Stack>
-          <Box alignSelf="stretch" flex="1">
-            <Progress values={values} max={max} />
-          </Box>
-          {loading ? <Spinner /> : <AccordionIcon />}
-        </AccordionButton>
-      </Heading>
+      <AccordionButton fontSize="3xl">
+        <Stack direction="row" flex="1" textAlign="left">
+          <AlphaImage src={icon} />
+          <Heading fontSize={["xl", null, "3xl"]} fontWeight="normal">
+            {title}
+          </Heading>
+        </Stack>
+        <Box alignSelf="stretch" flex="1 1">
+          <Progress values={values} max={max} />
+        </Box>
+        {loading ? <Spinner /> : <AccordionIcon />}
+      </AccordionButton>
       <AccordionPanel>{children}</AccordionPanel>
     </AccordionItem>
   );

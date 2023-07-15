@@ -1,5 +1,5 @@
 import { Badge, Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
-import { IotMStatus, ItemStatus, RawIotM } from "greenbox-data";
+import { IotMStatus, RawIotM } from "greenbox-data";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
@@ -11,9 +11,14 @@ import Section from "./Section";
 
 function Year({ year, complete }: { year: number; complete: boolean }) {
   return (
-    <Flex key={`year-${year}`} alignItems="center" justifyContent="flex-end">
+    <Flex
+      gridColumn={["1 / span 3", null, 1]}
+      key={`year-${year}`}
+      alignItems="center"
+      justifyContent={[null, null, "flex-end"]}
+    >
       <Badge
-        sx={{ transform: "rotate(270deg)" }}
+        transform={[null, null, "rotate(270deg)"]}
         fontSize="sm"
         bg={complete ? "complete" : undefined}
       >
@@ -70,7 +75,11 @@ export default function IotMs({ iotms: playerIotMs }: Props) {
       ]}
       max={iotms.length}
     >
-      <SimpleGrid columns={[13]} spacing={1} gridTemplateColumns="auto repeat(12, minmax(0, 1fr))">
+      <SimpleGrid
+        spacing={1}
+        columns={[3, null, 13]}
+        gridTemplateColumns={[null, null, "auto repeat(12, minmax(0, 1fr))"]}
+      >
         {iotmChunks.map((yearChunk, year) => {
           const all = yearChunk
             .filter(notNullOrUndefined)
@@ -87,7 +96,7 @@ export default function IotMs({ iotms: playerIotMs }: Props) {
                   status={idToIotM[iotm.id]?.[1] ?? 0}
                 />
               ) : (
-                <Box key={`blank-${i}`} />
+                <Box display={["none", null, "block"]} key={`blank-${i}`} />
               ),
             ),
           ];
