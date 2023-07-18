@@ -2015,7 +2015,127 @@ var compressIotMs = function(iotmList) {
   }).join("").replace(/0+$/, "");
 };
 
-// ../greenbox-data/lib/meta.ts
+// ../greenbox-data/data/items.ts
+var specialItems = [
+  3138,
+  // Hodgman's whackin' stick
+  3139,
+  // Hodgman's imaginary hamster
+  3140,
+  // old soft shoes
+  3246,
+  // Ol' Scratch's ol' britches
+  3247,
+  // Ol' Scratch's stovepipe hat
+  3248,
+  // Ol' Scratch's ash can
+  3251,
+  // Frosty's old silk hat
+  3252,
+  // Frosty's carrot
+  3253,
+  // Frosty's nailbat
+  3254,
+  // Oscus's pelt
+  3255,
+  // Wand of Oscus
+  3256,
+  // Oscus's dumpster waders
+  3257,
+  // Zombo's skullcap
+  3258,
+  // Zombo's shield
+  3259,
+  // Zombo's grievous greaves
+  3260,
+  // Chester's moustache
+  3261,
+  // Chester's bag of candy
+  3262,
+  // Chester's cutoffs
+  3286,
+  // Frosty's snowball sack
+  3310,
+  // sealskin drum
+  3311,
+  // washboard shield
+  3312,
+  // spaghetti-box banjo
+  3313,
+  // marinara jug
+  3314,
+  // makeshift castanets
+  3315,
+  // left-handed melodica
+  3328,
+  // crumpled felt fedora
+  3329,
+  // battered old top-hat
+  3330,
+  // shapeless wide-brimmed hat
+  3331,
+  // mostly rat-hide
+  3332,
+  // hobo dungarees
+  3333,
+  // old patched suit-pants
+  3334,
+  // hobo stogie
+  3335,
+  // rope with some soap on it
+  3380,
+  // Ol' Scratch's infernal pitchfork
+  3381,
+  // Ol' Scratch's stove door
+  3382,
+  // Ol' Scratch's manacles
+  3383,
+  // Chester's sunglasses
+  3384,
+  // Chester's muscle shirt
+  3385,
+  // Chester's Aquarius medallion
+  3386,
+  // Zombo's shoulder blade
+  3387,
+  // Zombo's skull ring
+  3388,
+  // Zombo's empty eye
+  3389,
+  // Frosty's arm
+  3390,
+  // Staff of the Deepest Freeze
+  3391,
+  // Frosty's iceball
+  3392,
+  // Oscus's garbage can lid
+  3393,
+  // Oscus's neverending soda
+  3394,
+  // Oscus's flypaper pants
+  3395,
+  // Hodgman's porkpie hat
+  3396,
+  // Hodgman's lobsterskin pants
+  3397,
+  // Hodgman's bow tie
+  3405,
+  // Hodgman's lucky sock
+  3406,
+  // Hodgman's varcolac paw
+  3407,
+  // Hodgman's almanac
+  3408,
+  // Hodgman's harmonica
+  3409,
+  // Hodgman's garbage sticker
+  3410,
+  // Hodgman's metal detector
+  3411
+  // Hodgman's cane
+];
+
+// ../greenbox-data/lib/items.ts
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray2(arr, i) || _nonIterableRest();
 }
@@ -2069,9 +2189,76 @@ function _arrayWithHoles(arr) {
   if (Array.isArray(arr))
     return arr;
 }
+var ItemStatus = /* @__PURE__ */ function(ItemStatus2) {
+  return ItemStatus2[ItemStatus2.NONE = 0] = "NONE", ItemStatus2[ItemStatus2.HAVE = 1] = "HAVE", ItemStatus2;
+}({});
+var compressItems = function(items) {
+  return items.filter(function(_ref2) {
+    var _ref3 = _slicedToArray(_ref2, 2), q = _ref3[1];
+    return q > 0;
+  }).map(function(_ref4) {
+    var _ref5 = _slicedToArray(_ref4, 2), id = _ref5[0], q = _ref5[1];
+    return "".concat(id).concat(q > 1 ? ":".concat(q) : "");
+  }).sort().join(",");
+};
+
+// ../greenbox-data/lib/meta.ts
+function _slicedToArray2(arr, i) {
+  return _arrayWithHoles2(arr) || _iterableToArrayLimit2(arr, i) || _unsupportedIterableToArray3(arr, i) || _nonIterableRest2();
+}
+function _nonIterableRest2() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray3(o, minLen) {
+  if (o) {
+    if (typeof o == "string")
+      return _arrayLikeToArray3(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor && (n = o.constructor.name), n === "Map" || n === "Set")
+      return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+      return _arrayLikeToArray3(o, minLen);
+  }
+}
+function _arrayLikeToArray3(arr, len) {
+  (len == null || len > arr.length) && (len = arr.length);
+  for (var i = 0, arr2 = new Array(len); i < len; i++)
+    arr2[i] = arr[i];
+  return arr2;
+}
+function _iterableToArrayLimit2(arr, i) {
+  var _i = arr == null ? null : typeof Symbol < "u" && arr[Symbol.iterator] || arr["@@iterator"];
+  if (_i != null) {
+    var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1;
+    try {
+      if (_x = (_i = _i.call(arr)).next, i === 0) {
+        if (Object(_i) !== _i)
+          return;
+        _n = !1;
+      } else
+        for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0)
+          ;
+    } catch (err) {
+      _d = !0, _e = err;
+    } finally {
+      try {
+        if (!_n && _i.return != null && (_r = _i.return(), Object(_r) !== _r))
+          return;
+      } finally {
+        if (_d)
+          throw _e;
+      }
+    }
+    return _arr;
+  }
+}
+function _arrayWithHoles2(arr) {
+  if (Array.isArray(arr))
+    return arr;
+}
 var compressMeta = function(meta) {
   return Object.entries(meta).map(function(_ref) {
-    var _ref2 = _slicedToArray(_ref, 2), k = _ref2[0], v = _ref2[1];
+    var _ref2 = _slicedToArray2(_ref, 2), k = _ref2[0], v = _ref2[1];
     return "".concat(k, ":").concat(v);
   }).join(",");
 };
@@ -2660,30 +2847,30 @@ var ItemId = /* @__PURE__ */ function(ItemId2) {
 }];
 
 // ../greenbox-data/lib/paths.ts
-function _slicedToArray2(arr, i) {
-  return _arrayWithHoles2(arr) || _iterableToArrayLimit2(arr, i) || _unsupportedIterableToArray3(arr, i) || _nonIterableRest2();
+function _slicedToArray3(arr, i) {
+  return _arrayWithHoles3(arr) || _iterableToArrayLimit3(arr, i) || _unsupportedIterableToArray4(arr, i) || _nonIterableRest3();
 }
-function _nonIterableRest2() {
+function _nonIterableRest3() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _unsupportedIterableToArray3(o, minLen) {
+function _unsupportedIterableToArray4(o, minLen) {
   if (o) {
     if (typeof o == "string")
-      return _arrayLikeToArray3(o, minLen);
+      return _arrayLikeToArray4(o, minLen);
     var n = Object.prototype.toString.call(o).slice(8, -1);
     if (n === "Object" && o.constructor && (n = o.constructor.name), n === "Map" || n === "Set")
       return Array.from(o);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-      return _arrayLikeToArray3(o, minLen);
+      return _arrayLikeToArray4(o, minLen);
   }
 }
-function _arrayLikeToArray3(arr, len) {
+function _arrayLikeToArray4(arr, len) {
   (len == null || len > arr.length) && (len = arr.length);
   for (var i = 0, arr2 = new Array(len); i < len; i++)
     arr2[i] = arr[i];
   return arr2;
 }
-function _iterableToArrayLimit2(arr, i) {
+function _iterableToArrayLimit3(arr, i) {
   var _i = arr == null ? null : typeof Symbol < "u" && arr[Symbol.iterator] || arr["@@iterator"];
   if (_i != null) {
     var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1;
@@ -2709,7 +2896,7 @@ function _iterableToArrayLimit2(arr, i) {
     return _arr;
   }
 }
-function _arrayWithHoles2(arr) {
+function _arrayWithHoles3(arr) {
   if (Array.isArray(arr))
     return arr;
 }
@@ -2724,7 +2911,7 @@ var pointsRadix = 32, tattooLevelRadix = 16, compressPaths = function(paths) {
   return paths.sort(function(a, b) {
     return a[0] - b[0];
   }).reduce(function(acc, path) {
-    var _acc = _slicedToArray2(acc, 2), r = _acc[0], currentId = _acc[1];
+    var _acc = _slicedToArray3(acc, 2), r = _acc[0], currentId = _acc[1];
     return path[0] > currentId && (r += ",".repeat(path[0] - currentId), currentId = path[0]), r += path[1].toString(pointsRadix), r += path[2].join(""), r += path[3].join(""), r += path[4].map(function(i) {
       return i.toString(tattooLevelRadix);
     }).join(""), [r, currentId];
@@ -4144,11 +4331,6 @@ var compressTrophies = function(trophies) {
   }, "").replace(/0+$/, "");
 };
 
-// ../greenbox-data/lib/items.ts
-var ItemStatus = /* @__PURE__ */ function(ItemStatus2) {
-  return ItemStatus2[ItemStatus2.NONE = 0] = "NONE", ItemStatus2[ItemStatus2.HAVE = 1] = "HAVE", ItemStatus2;
-}({});
-
 // ../greenbox-data/lib/index.ts
 function compress(raw) {
   var compressed = {
@@ -4158,7 +4340,8 @@ function compress(raw) {
     trophies: compressTrophies(raw.trophies),
     outfitTattoos: compressOutfitTattoos(raw.outfitTattoos),
     paths: compressPaths(raw.paths),
-    iotms: compressIotMs(raw.iotms)
+    iotms: compressIotMs(raw.iotms),
+    items: compressItems(raw.items)
   }, compressedString = JSON.stringify(compressed);
   return encodeURIComponent(JSONCrush_default.crush(compressedString));
 }
@@ -4200,7 +4383,7 @@ var import_kolmafia2 = require("kolmafia");
 function _createForOfIteratorHelper2(o, allowArrayLike) {
   var it = typeof Symbol < "u" && o[Symbol.iterator] || o["@@iterator"];
   if (!it) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray4(o)) || allowArrayLike && o && typeof o.length == "number") {
+    if (Array.isArray(o) || (it = _unsupportedIterableToArray5(o)) || allowArrayLike && o && typeof o.length == "number") {
       it && (o = it);
       var i = 0, F = function() {
       };
@@ -4229,18 +4412,18 @@ function _createForOfIteratorHelper2(o, allowArrayLike) {
     }
   } };
 }
-function _unsupportedIterableToArray4(o, minLen) {
+function _unsupportedIterableToArray5(o, minLen) {
   if (o) {
     if (typeof o == "string")
-      return _arrayLikeToArray4(o, minLen);
+      return _arrayLikeToArray5(o, minLen);
     var n = Object.prototype.toString.call(o).slice(8, -1);
     if (n === "Object" && o.constructor && (n = o.constructor.name), n === "Map" || n === "Set")
       return Array.from(o);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-      return _arrayLikeToArray4(o, minLen);
+      return _arrayLikeToArray5(o, minLen);
   }
 }
-function _arrayLikeToArray4(arr, len) {
+function _arrayLikeToArray5(arr, len) {
   (len == null || len > arr.length) && (len = arr.length);
   for (var i = 0, arr2 = new Array(len); i < len; i++)
     arr2[i] = arr[i];
@@ -4342,137 +4525,6 @@ var concatTemplateString = function(literals) {
 
 // ../../node_modules/libram/dist/lib.js
 var _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31, _templateObject32, _templateObject33, _templateObject34;
-function _slicedToArray3(arr, i) {
-  return _arrayWithHoles3(arr) || _iterableToArrayLimit3(arr, i) || _unsupportedIterableToArray5(arr, i) || _nonIterableRest3();
-}
-function _nonIterableRest3() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _unsupportedIterableToArray5(o, minLen) {
-  if (o) {
-    if (typeof o == "string")
-      return _arrayLikeToArray5(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor && (n = o.constructor.name), n === "Map" || n === "Set")
-      return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-      return _arrayLikeToArray5(o, minLen);
-  }
-}
-function _arrayLikeToArray5(arr, len) {
-  (len == null || len > arr.length) && (len = arr.length);
-  for (var i = 0, arr2 = new Array(len); i < len; i++)
-    arr2[i] = arr[i];
-  return arr2;
-}
-function _iterableToArrayLimit3(arr, i) {
-  var _i = arr == null ? null : typeof Symbol < "u" && arr[Symbol.iterator] || arr["@@iterator"];
-  if (_i != null) {
-    var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1;
-    try {
-      if (_x = (_i = _i.call(arr)).next, i === 0) {
-        if (Object(_i) !== _i)
-          return;
-        _n = !1;
-      } else
-        for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0)
-          ;
-    } catch (err) {
-      _d = !0, _e = err;
-    } finally {
-      try {
-        if (!_n && _i.return != null && (_r = _i.return(), Object(_r) !== _r))
-          return;
-      } finally {
-        if (_d)
-          throw _e;
-      }
-    }
-    return _arr;
-  }
-}
-function _arrayWithHoles3(arr) {
-  if (Array.isArray(arr))
-    return arr;
-}
-function _taggedTemplateLiteral(strings, raw) {
-  return raw || (raw = strings.slice(0)), Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
-}
-function haveInCampground(item) {
-  return Object.keys((0, import_kolmafia3.getCampground)()).map(function(i) {
-    return import_kolmafia3.Item.get(i);
-  }).includes(item);
-}
-var Wanderer;
-(function(Wanderer2) {
-  Wanderer2.Digitize = "Digitize Monster", Wanderer2.Enamorang = "Enamorang Monster", Wanderer2.Familiar = "Familiar", Wanderer2.Holiday = "Holiday Monster", Wanderer2.Kramco = "Kramco", Wanderer2.Nemesis = "Nemesis Assassin", Wanderer2.Portscan = "portscan.edu", Wanderer2.Romantic = "Romantic Monster", Wanderer2.Vote = "Vote Monster";
-})(Wanderer || (Wanderer = {}));
-var deterministicWanderers = [Wanderer.Digitize, Wanderer.Portscan];
-function getFoldGroup(item) {
-  return Object.entries((0, import_kolmafia3.getRelated)(item, "fold")).sort(function(_ref, _ref2) {
-    var _ref3 = _slicedToArray3(_ref, 2), a = _ref3[1], _ref4 = _slicedToArray3(_ref2, 2), b = _ref4[1];
-    return a - b;
-  }).map(function(_ref5) {
-    var _ref6 = _slicedToArray3(_ref5, 1), i = _ref6[0];
-    return import_kolmafia3.Item.get(i);
-  });
-}
-var holidayWanderers = /* @__PURE__ */ new Map([["El Dia De Los Muertos Borrachos", $monsters(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["Novia Cad\xE1ver, Novio Cad\xE1ver, Padre Cad\xE1ver, Persona Inocente Cad\xE1ver"])))], ["Feast of Boris", $monsters(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["Candied Yam Golem, Malevolent Tofurkey, Possessed Can of Cranberry Sauce, Stuffing Golem"])))], ["Talk Like a Pirate Day", $monsters(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["ambulatory pirate, migratory pirate, peripatetic pirate"])))]]);
-var telescopeStats = /* @__PURE__ */ new Map([["standing around flexing their muscles and using grip exercisers", $stat(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["Muscle"])))], ["sitting around playing chess and solving complicated-looking logic puzzles", $stat(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["Mysticality"])))], ["all wearing sunglasses and dancing", $stat(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["Moxie"])))]]), telescopeElements = /* @__PURE__ */ new Map([["people, all of whom appear to be on fire", $element(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["hot"])))], ["people, surrounded by a cloud of eldritch mist", $element(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["spooky"])))], ["greasy-looking people furtively skulking around", $element(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["sleaze"])))], ["people, surrounded by garbage and clouds of flies", $element(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["stench"])))], ["people, clustered around a group of igloos", $element(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["cold"])))]]), hedgeTrap1 = /* @__PURE__ */ new Map([["smoldering bushes on the outskirts of a hedge maze", $element(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["hot"])))], ["creepy-looking black bushes on the outskirts of a hedge maze", $element(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["spooky"])))], ["purplish, greasy-looking hedges", $element(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["sleaze"])))], ["nasty-looking, dripping green bushes on the outskirts of a hedge maze", $element(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["stench"])))], ["frost-rimed bushes on the outskirts of a hedge maze", $element(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["cold"])))]]), hedgeTrap2 = /* @__PURE__ */ new Map([["smoke rising from deeper within the maze", $element(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["hot"])))], ["a miasma of eldritch vapors rising from deeper within the maze", $element(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["spooky"])))], ["a greasy purple cloud hanging over the center of the maze", $element(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["sleaze"])))], ["a cloud of green gas hovering over the maze", $element(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["stench"])))], ["wintry mists rising from deeper within the maze", $element(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["cold"])))]]), hedgeTrap3 = /* @__PURE__ */ new Map([["with lava slowly oozing out of it", $element(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["hot"])))], ["surrounded by creepy black mist", $element(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["spooky"])))], ["that occasionally vomits out a greasy ball of hair", $element(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["sleaze"])))], ["disgorging a really surprising amount of sewage", $element(_templateObject33 || (_templateObject33 = _taggedTemplateLiteral(["stench"])))], ["occasionally disgorging a bunch of ice cubes", $element(_templateObject34 || (_templateObject34 = _taggedTemplateLiteral(["cold"])))]]);
-var byStat = makeByXFunction(function() {
-  return (0, import_kolmafia3.myPrimestat)().toString();
-}), byClass = makeByXFunction(function() {
-  return (0, import_kolmafia3.myClass)().toString();
-});
-
-// ../../node_modules/libram/dist/Kmail.js
-var import_kolmafia4 = require("kolmafia");
-function _createForOfIteratorHelper3(o, allowArrayLike) {
-  var it = typeof Symbol < "u" && o[Symbol.iterator] || o["@@iterator"];
-  if (!it) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray6(o)) || allowArrayLike && o && typeof o.length == "number") {
-      it && (o = it);
-      var i = 0, F = function() {
-      };
-      return { s: F, n: function() {
-        return i >= o.length ? { done: !0 } : { done: !1, value: o[i++] };
-      }, e: function(_e2) {
-        throw _e2;
-      }, f: F };
-    }
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  var normalCompletion = !0, didErr = !1, err;
-  return { s: function() {
-    it = it.call(o);
-  }, n: function() {
-    var step = it.next();
-    return normalCompletion = step.done, step;
-  }, e: function(_e3) {
-    didErr = !0, err = _e3;
-  }, f: function() {
-    try {
-      !normalCompletion && it.return != null && it.return();
-    } finally {
-      if (didErr)
-        throw err;
-    }
-  } };
-}
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray6(arr) || _nonIterableSpread();
-}
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _iterableToArray(iter) {
-  if (typeof Symbol < "u" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
-    return Array.from(iter);
-}
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr))
-    return _arrayLikeToArray6(arr);
-}
 function _slicedToArray4(arr, i) {
   return _arrayWithHoles4(arr) || _iterableToArrayLimit4(arr, i) || _unsupportedIterableToArray6(arr, i) || _nonIterableRest4();
 }
@@ -4523,6 +4575,137 @@ function _iterableToArrayLimit4(arr, i) {
   }
 }
 function _arrayWithHoles4(arr) {
+  if (Array.isArray(arr))
+    return arr;
+}
+function _taggedTemplateLiteral(strings, raw) {
+  return raw || (raw = strings.slice(0)), Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
+}
+function haveInCampground(item) {
+  return Object.keys((0, import_kolmafia3.getCampground)()).map(function(i) {
+    return import_kolmafia3.Item.get(i);
+  }).includes(item);
+}
+var Wanderer;
+(function(Wanderer2) {
+  Wanderer2.Digitize = "Digitize Monster", Wanderer2.Enamorang = "Enamorang Monster", Wanderer2.Familiar = "Familiar", Wanderer2.Holiday = "Holiday Monster", Wanderer2.Kramco = "Kramco", Wanderer2.Nemesis = "Nemesis Assassin", Wanderer2.Portscan = "portscan.edu", Wanderer2.Romantic = "Romantic Monster", Wanderer2.Vote = "Vote Monster";
+})(Wanderer || (Wanderer = {}));
+var deterministicWanderers = [Wanderer.Digitize, Wanderer.Portscan];
+function getFoldGroup(item) {
+  return Object.entries((0, import_kolmafia3.getRelated)(item, "fold")).sort(function(_ref, _ref2) {
+    var _ref3 = _slicedToArray4(_ref, 2), a = _ref3[1], _ref4 = _slicedToArray4(_ref2, 2), b = _ref4[1];
+    return a - b;
+  }).map(function(_ref5) {
+    var _ref6 = _slicedToArray4(_ref5, 1), i = _ref6[0];
+    return import_kolmafia3.Item.get(i);
+  });
+}
+var holidayWanderers = /* @__PURE__ */ new Map([["El Dia De Los Muertos Borrachos", $monsters(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["Novia Cad\xE1ver, Novio Cad\xE1ver, Padre Cad\xE1ver, Persona Inocente Cad\xE1ver"])))], ["Feast of Boris", $monsters(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["Candied Yam Golem, Malevolent Tofurkey, Possessed Can of Cranberry Sauce, Stuffing Golem"])))], ["Talk Like a Pirate Day", $monsters(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["ambulatory pirate, migratory pirate, peripatetic pirate"])))]]);
+var telescopeStats = /* @__PURE__ */ new Map([["standing around flexing their muscles and using grip exercisers", $stat(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["Muscle"])))], ["sitting around playing chess and solving complicated-looking logic puzzles", $stat(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["Mysticality"])))], ["all wearing sunglasses and dancing", $stat(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["Moxie"])))]]), telescopeElements = /* @__PURE__ */ new Map([["people, all of whom appear to be on fire", $element(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["hot"])))], ["people, surrounded by a cloud of eldritch mist", $element(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["spooky"])))], ["greasy-looking people furtively skulking around", $element(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["sleaze"])))], ["people, surrounded by garbage and clouds of flies", $element(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["stench"])))], ["people, clustered around a group of igloos", $element(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["cold"])))]]), hedgeTrap1 = /* @__PURE__ */ new Map([["smoldering bushes on the outskirts of a hedge maze", $element(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["hot"])))], ["creepy-looking black bushes on the outskirts of a hedge maze", $element(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["spooky"])))], ["purplish, greasy-looking hedges", $element(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["sleaze"])))], ["nasty-looking, dripping green bushes on the outskirts of a hedge maze", $element(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["stench"])))], ["frost-rimed bushes on the outskirts of a hedge maze", $element(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["cold"])))]]), hedgeTrap2 = /* @__PURE__ */ new Map([["smoke rising from deeper within the maze", $element(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["hot"])))], ["a miasma of eldritch vapors rising from deeper within the maze", $element(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["spooky"])))], ["a greasy purple cloud hanging over the center of the maze", $element(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["sleaze"])))], ["a cloud of green gas hovering over the maze", $element(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["stench"])))], ["wintry mists rising from deeper within the maze", $element(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["cold"])))]]), hedgeTrap3 = /* @__PURE__ */ new Map([["with lava slowly oozing out of it", $element(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["hot"])))], ["surrounded by creepy black mist", $element(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["spooky"])))], ["that occasionally vomits out a greasy ball of hair", $element(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["sleaze"])))], ["disgorging a really surprising amount of sewage", $element(_templateObject33 || (_templateObject33 = _taggedTemplateLiteral(["stench"])))], ["occasionally disgorging a bunch of ice cubes", $element(_templateObject34 || (_templateObject34 = _taggedTemplateLiteral(["cold"])))]]);
+var byStat = makeByXFunction(function() {
+  return (0, import_kolmafia3.myPrimestat)().toString();
+}), byClass = makeByXFunction(function() {
+  return (0, import_kolmafia3.myClass)().toString();
+});
+
+// ../../node_modules/libram/dist/Kmail.js
+var import_kolmafia4 = require("kolmafia");
+function _createForOfIteratorHelper3(o, allowArrayLike) {
+  var it = typeof Symbol < "u" && o[Symbol.iterator] || o["@@iterator"];
+  if (!it) {
+    if (Array.isArray(o) || (it = _unsupportedIterableToArray7(o)) || allowArrayLike && o && typeof o.length == "number") {
+      it && (o = it);
+      var i = 0, F = function() {
+      };
+      return { s: F, n: function() {
+        return i >= o.length ? { done: !0 } : { done: !1, value: o[i++] };
+      }, e: function(_e2) {
+        throw _e2;
+      }, f: F };
+    }
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  var normalCompletion = !0, didErr = !1, err;
+  return { s: function() {
+    it = it.call(o);
+  }, n: function() {
+    var step = it.next();
+    return normalCompletion = step.done, step;
+  }, e: function(_e3) {
+    didErr = !0, err = _e3;
+  }, f: function() {
+    try {
+      !normalCompletion && it.return != null && it.return();
+    } finally {
+      if (didErr)
+        throw err;
+    }
+  } };
+}
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray7(arr) || _nonIterableSpread();
+}
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _iterableToArray(iter) {
+  if (typeof Symbol < "u" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
+    return Array.from(iter);
+}
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr))
+    return _arrayLikeToArray7(arr);
+}
+function _slicedToArray5(arr, i) {
+  return _arrayWithHoles5(arr) || _iterableToArrayLimit5(arr, i) || _unsupportedIterableToArray7(arr, i) || _nonIterableRest5();
+}
+function _nonIterableRest5() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray7(o, minLen) {
+  if (o) {
+    if (typeof o == "string")
+      return _arrayLikeToArray7(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor && (n = o.constructor.name), n === "Map" || n === "Set")
+      return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+      return _arrayLikeToArray7(o, minLen);
+  }
+}
+function _arrayLikeToArray7(arr, len) {
+  (len == null || len > arr.length) && (len = arr.length);
+  for (var i = 0, arr2 = new Array(len); i < len; i++)
+    arr2[i] = arr[i];
+  return arr2;
+}
+function _iterableToArrayLimit5(arr, i) {
+  var _i = arr == null ? null : typeof Symbol < "u" && arr[Symbol.iterator] || arr["@@iterator"];
+  if (_i != null) {
+    var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1;
+    try {
+      if (_x = (_i = _i.call(arr)).next, i === 0) {
+        if (Object(_i) !== _i)
+          return;
+        _n = !1;
+      } else
+        for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0)
+          ;
+    } catch (err) {
+      _d = !0, _e = err;
+    } finally {
+      try {
+        if (!_n && _i.return != null && (_r = _i.return(), Object(_r) !== _r))
+          return;
+      } finally {
+        if (_d)
+          throw _e;
+      }
+    }
+    return _arr;
+  }
+}
+function _arrayWithHoles5(arr) {
   if (Array.isArray(arr))
     return arr;
 }
@@ -4589,7 +4772,7 @@ var Kmail = /* @__PURE__ */ function() {
     key: "items",
     value: function() {
       return new Map(Object.entries((0, import_kolmafia4.extractItems)(this.rawMessage)).map(function(_ref) {
-        var _ref2 = _slicedToArray4(_ref, 2), itemName = _ref2[0], quantity = _ref2[1];
+        var _ref2 = _slicedToArray5(_ref, 2), itemName = _ref2[0], quantity = _ref2[1];
         return [import_kolmafia4.Item.get(itemName), quantity];
       }));
     }
@@ -4661,13 +4844,13 @@ var Kmail = /* @__PURE__ */ function() {
     key: "_genericSend",
     value: function(to, message, items, meat, chunkSize, constructUrl, successString) {
       var m = meat, sendableItems = _toConsumableArray(arrayToCountedMap(items).entries()).filter(function(_ref3) {
-        var _ref4 = _slicedToArray4(_ref3, 1), item = _ref4[0];
+        var _ref4 = _slicedToArray5(_ref3, 1), item = _ref4[0];
         return (0, import_kolmafia4.isGiftable)(item);
       }), result = !0, chunks = chunk(sendableItems, chunkSize), _iterator = _createForOfIteratorHelper3(chunks.length > 0 ? chunks : [null]), _step;
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done; ) {
           var c = _step.value, itemsQuery = c === null ? [] : c.map(function(_ref5, index) {
-            var _ref6 = _slicedToArray4(_ref5, 2), item = _ref6[0], quantity = _ref6[1];
+            var _ref6 = _slicedToArray5(_ref5, 2), item = _ref6[0], quantity = _ref6[1];
             return "whichitem".concat(index + 1, "=").concat(item.id, "&howmany").concat(index + 1, "=").concat(quantity);
           }), r = (0, import_kolmafia4.visitUrl)(constructUrl(m, itemsQuery.join("&"), itemsQuery.length));
           if (r.includes("That player cannot receive Meat or items"))
@@ -4843,6 +5026,11 @@ function checkIotMs(options) {
     return [iotm.id, getIotMStatus(iotm, options)];
   });
 }
+function checkItems(options) {
+  return specialItems.map(function(id) {
+    return [id, options.force.includes(id) || haveItem(import_kolmafia7.Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE];
+  });
+}
 function checkSkills() {
   var permedSkills = (0, import_kolmafia7.getPermedSkills)();
   function getStatus(skill) {
@@ -4968,8 +5156,8 @@ function main() {
     return;
   }
   getBoolean("kingLiberated") || (0, import_kolmafia7.printHtml)("<b><font color=red>You are still in run so your greenboxes will probably be wrong</font></b>");
-  var tattoos = (0, import_kolmafia7.visitUrl)("account_tattoos.php"), forceIotMs = [];
-  hasFlag(args, "--force-florist") && forceIotMs.push(6413);
+  var tattoos = (0, import_kolmafia7.visitUrl)("account_tattoos.php"), forceItems = [];
+  hasFlag(args, "--force-florist") && forceItems.push(6413);
   var code = compress(_objectSpread2(_objectSpread2({
     meta: checkMeta(),
     skills: checkSkills(),
@@ -4978,7 +5166,10 @@ function main() {
   }, checkTattoos(tattoos)), {}, {
     paths: checkPaths(tattoos),
     iotms: checkIotMs({
-      force: forceIotMs
+      force: forceItems
+    }),
+    items: checkItems({
+      force: forceItems
     })
   })), link = "https://greenbox.loathers.net/?".concat(keepPrivate ? "d=".concat(code) : "u=".concat((0, import_kolmafia7.myId)()));
   keepPrivate || Kmail.send(3501234, "GREENBOX:".concat(code)), (0, import_kolmafia7.printHtml)('All done! To see your greenboxes, visit: <a href="'.concat(link, '">').concat(link, "</a>"));
