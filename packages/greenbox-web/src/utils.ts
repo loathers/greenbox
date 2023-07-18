@@ -1,12 +1,8 @@
 import { ClassDef, ItemStatus, SkillDef, SkillStatus } from "greenbox-data";
 
 export function itemStatusToThingState(status: ItemStatus) {
-  switch (status) {
-    case ItemStatus.HAVE:
-      return "complete";
-    default:
-      return null;
-  }
+  if (status > 0) return "complete";
+  return null;
 }
 
 export function skillStatusToThingState(status: SkillStatus) {

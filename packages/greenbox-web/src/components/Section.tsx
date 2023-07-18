@@ -35,7 +35,9 @@ export default function Section({ title, icon, loading = false, values, max, chi
         </Box>
         {loading ? <Spinner /> : <AccordionIcon />}
       </AccordionButton>
-      <AccordionPanel>{children}</AccordionPanel>
+      <AccordionPanel>
+        <Stack spacing={4}>{children}</Stack>
+      </AccordionPanel>
     </AccordionItem>
   );
 }

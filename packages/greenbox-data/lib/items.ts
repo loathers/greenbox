@@ -1,3 +1,5 @@
+import { specialItems } from "../data/items";
+
 import { loadMafiaData } from "./utils";
 
 export type ItemDef = {
@@ -27,3 +29,21 @@ export const loadItems = async (lastKnownSize: number) => {
     data: raw.data.filter((p) => p.length > 2).map(parseItem),
   };
 };
+
+export type RawItem = [id: number, quantity: number];
+
+export const compressItems = (items: RawItem[]) => {
+  return items
+    .filter(([, q]) => q > 0)
+    .map(([id, q]) => `${id}${q > 1 ? `:${q}` : ""}`)
+    .sort()
+    .join(",");
+};
+
+export const expandItems = (s = "") =>
+  s.split(",").map((l) => {
+    const parts = l.split(":");
+    return [Number(parts[0]), parts[1] ? Number(parts[1]) : 1] as RawItem;
+  });
+
+export { specialItems };

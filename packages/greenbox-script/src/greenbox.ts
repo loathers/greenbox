@@ -11,11 +11,13 @@ import {
   PathDef,
   RawFamiliar,
   RawIotM,
+  RawItem,
   RawOutfitTattoo,
   RawPath,
   RawSkill,
   RawTrophy,
   SkillStatus,
+  specialItems,
   TattooDef,
   TattooStatus,
   TrophyDef,
@@ -52,6 +54,21 @@ import { haveItem } from "./utils";
 function checkIotMs(options: IotMOptions) {
   return (loadIotMs()?.data ?? []).map(
     (iotm) => [iotm.id, getIotMStatus(iotm, options)] as RawIotM,
+  );
+}
+
+/**
+ * Generates a list of items and ownership status.
+ * @returns array of 2-tuples of item id and status
+ */
+
+function checkItems(options: { force: number[] }) {
+  return specialItems.map(
+    (id) =>
+      [
+        id,
+        options.force.includes(id) || haveItem(Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE,
+      ] as RawItem,
   );
 }
 
@@ -255,8 +272,8 @@ function main(args = ""): void {
 
   const tattoos = visitUrl("account_tattoos.php");
 
-  const forceIotMs = [];
-  if (hasFlag(args, "--force-florist")) forceIotMs.push(6413);
+  const forceItems = [];
+  if (hasFlag(args, "--force-florist")) forceItems.push(6413);
 
   const code = compress({
     meta: checkMeta(),
@@ -265,7 +282,8 @@ function main(args = ""): void {
     trophies: checkTrophies(),
     ...checkTattoos(tattoos),
     paths: checkPaths(tattoos),
-    iotms: checkIotMs({ force: forceIotMs }),
+    iotms: checkIotMs({ force: forceItems }),
+    items: checkItems({ force: forceItems }),
   });
 
   const link = `https://greenbox.loathers.net/?${keepPrivate ? `d=${code}` : `u=${myId()}`}`;

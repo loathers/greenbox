@@ -103,19 +103,17 @@ export default function Paths() {
       ]}
       max={max}
     >
-      <Stack>
-        {paths.map((p) => (
-          <Path
-            key={p.name}
-            path={p}
-            points={idToPath[p.id]?.[1] ?? 0}
-            items={idToPath[p.id]?.[2] ?? []}
-            equipment={idToPath[p.id]?.[3] ?? []}
-            tattoos={idToPath[p.id]?.[4] ?? []}
-            maxTattooLevel={maxTattooLevel?.[p.id] ?? []}
-          />
-        ))}
-      </Stack>
+      {paths.map((p) => (
+        <Path
+          key={p.name}
+          path={p}
+          points={idToPath[p.id]?.[1] ?? 0}
+          items={idToPath[p.id]?.[2] ?? []}
+          equipment={idToPath[p.id]?.[3] ?? []}
+          tattoos={idToPath[p.id]?.[4] ?? []}
+          maxTattooLevel={maxTattooLevel?.[p.id] ?? []}
+        />
+      ))}
     </Section>
   );
 }

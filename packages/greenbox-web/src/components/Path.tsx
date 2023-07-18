@@ -1,11 +1,11 @@
-import { Badge, Box, Heading, HStack, Stack } from "@chakra-ui/react";
+import { Badge, Box, Heading } from "@chakra-ui/react";
 import { ItemStatus, PathDef } from "greenbox-data";
 
-import { useItemMap } from "../hooks";
+import { useAppSelector } from "../hooks";
 
-import AlphaImage from "./AlphaImage";
 import ItemGrid from "./ItemGrid";
 import PathTattoos from "./PathTattoos";
+import Subsection from "./Subsection";
 
 type Props = {
   path: PathDef;
@@ -17,17 +17,14 @@ type Props = {
 };
 
 export default function Path({ path, points, items, equipment, tattoos, maxTattooLevel }: Props) {
-  // Put together a map of item ids to item definitions for this Path
-  const idToItem = useItemMap([...path.items, ...path.equipment]);
+  const idToItem = useAppSelector((state) => state.items);
 
   return (
-    <Stack>
-      <HStack>
-        <AlphaImage src={path.image} sourceWidth={path.image.startsWith("sigils") ? 50 : 30} />
-        <Heading as="h3" fontWeight="normal" fontSize="2xl">
-          {path.name}
-        </Heading>
-        {path.maxPoints > 0 && (
+    <Subsection
+      title={path.name}
+      image={path.image}
+      right={
+        path.maxPoints > 0 && (
           <Box alignSelf="start" position="relative">
             <Badge
               title={`${points} points out of a possible ${path.maxPoints}`}
@@ -37,14 +34,15 @@ export default function Path({ path, points, items, equipment, tattoos, maxTatto
               {points} / {path.maxPoints}
             </Badge>
           </Box>
-        )}
-      </HStack>
+        )
+      }
+    >
       {path.items.length > 0 && (
         <>
           <Heading as="h4" textTransform="uppercase" fontSize="xs">
             Items
           </Heading>
-          <ItemGrid items={path.items} playerItems={items} idToItem={idToItem} />
+          <ItemGrid items={path.items} playerItems={items} />
         </>
       )}
       {path.equipment.length > 0 && (
@@ -52,7 +50,7 @@ export default function Path({ path, points, items, equipment, tattoos, maxTatto
           <Heading as="h4" textTransform="uppercase" fontSize="xs">
             Equipment
           </Heading>
-          <ItemGrid items={path.equipment} playerItems={equipment} idToItem={idToItem} />
+          <ItemGrid items={path.equipment} playerItems={equipment} />
         </>
       )}
       {path.tattoos.length > 0 && (
@@ -67,6 +65,6 @@ export default function Path({ path, points, items, equipment, tattoos, maxTatto
           />
         </>
       )}
-    </Stack>
+    </Subsection>
   );
 }

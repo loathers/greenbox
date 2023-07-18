@@ -2,7 +2,7 @@ import { Box, SimpleGrid } from "@chakra-ui/react";
 import { IotMStatus } from "greenbox-data";
 import { useMemo } from "react";
 
-import { useAppSelector, useItemMap } from "../hooks";
+import { useAppSelector } from "../hooks";
 import { createPlayerDataSelector } from "../store";
 import { chunk, notNullOrUndefined } from "../utils";
 
@@ -16,9 +16,7 @@ export default function IotMs() {
   const playerIotMs = useAppSelector(selectPlayerIotMs);
   const iotms = useAppSelector((state) => state.iotms);
   const loading = useAppSelector((state) => state.loading.iotms || false);
-
-  // Put together a map of item ids to item definitions for this Path
-  const idToItem = useItemMap(iotms.map((i) => i.id));
+  const idToItem = useAppSelector((state) => state.items);
 
   const vipIotMs = useMemo(() => iotms.filter((i) => i.type === "vip").map((i) => i.id), [iotms]);
   const ownsVipKey = useMemo(
