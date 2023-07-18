@@ -1,22 +1,20 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import { RawOutfitTattoo, TattooStatus } from "greenbox-data";
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 
-import { RootState } from "../store";
+import { useAppSelector } from "../hooks";
+import { createPlayerDataSelector } from "../store";
 
 import Section from "./Section";
 import Tattoo from "./Tattoo";
 
-type Props = {
-  outfitTattoos: RawOutfitTattoo[];
-};
+const selectPlayerOutfitTattoos = createPlayerDataSelector("outfitTattoos");
 
-export default function Tattoos({ outfitTattoos: playerOutfitTattoos }: Props) {
-  const tattoos = useSelector((state: RootState) => state.tattoos).filter(
-    (t) => t.outfit !== undefined,
-  );
-  const loading = useSelector((state: RootState) => state.loading.tattoos || false);
+export default function Tattoos() {
+  const playerOutfitTattoos = useAppSelector(selectPlayerOutfitTattoos);
+  const tattoos = useAppSelector((state) => state.tattoos);
+  const outfitTattoos = useMemo(() => tattoos.filter((t) => t.outfit !== undefined), [tattoos]);
+  const loading = useAppSelector((state) => state.loading.tattoos || false);
 
   const totalOutfitTattos = useMemo(
     () => playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE).length,
@@ -44,18 +42,18 @@ export default function Tattoos({ outfitTattoos: playerOutfitTattoos }: Props) {
         {
           color: "partial",
           value: totalOutfits,
-          name: `${totalOutfits} / ${tattoos.length} tattoos unlocked`,
+          name: `${totalOutfits} / ${outfitTattoos.length} tattoos unlocked`,
         },
         {
           color: "complete",
           value: totalOutfitTattos,
-          name: `${totalOutfitTattos} / ${tattoos.length} tattoos unlocked`,
+          name: `${totalOutfitTattos} / ${outfitTattoos.length} tattoos unlocked`,
         },
       ]}
-      max={tattoos.length}
+      max={outfitTattoos.length}
     >
       <SimpleGrid columns={[4, null, 6]} spacing={1}>
-        {tattoos.map((t) => (
+        {outfitTattoos.map((t) => (
           <Tattoo
             key={Array.isArray(t.image) ? t.image[0] : t.image}
             tattoo={t}

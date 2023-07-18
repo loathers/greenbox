@@ -1,40 +1,21 @@
-import { Badge, Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import { IotMStatus, RawIotM } from "greenbox-data";
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 
-import { RootState } from "../store";
-import { chunk, notNullOrUndefined, useItemMap } from "../utils";
+import { useAppSelector, useItemMap } from "../hooks";
+import { createPlayerDataSelector } from "../store";
+import { chunk, notNullOrUndefined } from "../utils";
 
 import IotM from "./IotM";
 import Section from "./Section";
+import Year from "./Year";
 
-function Year({ year, complete }: { year: number; complete: boolean }) {
-  return (
-    <Flex
-      gridColumn={["1 / span 3", null, 1]}
-      key={`year-${year}`}
-      alignItems="center"
-      justifyContent={[null, null, "flex-end"]}
-    >
-      <Badge
-        transform={[null, null, "rotate(270deg)"]}
-        fontSize="sm"
-        bg={complete ? "complete" : undefined}
-      >
-        {year}
-      </Badge>
-    </Flex>
-  );
-}
+const selectPlayerIotMs = createPlayerDataSelector("iotms");
 
-type Props = {
-  iotms: RawIotM[];
-};
-
-export default function IotMs({ iotms: playerIotMs }: Props) {
-  const iotms = useSelector((state: RootState) => state.iotms);
-  const loading = useSelector((state: RootState) => state.loading.iotms || false);
+export default function IotMs() {
+  const playerIotMs = useAppSelector(selectPlayerIotMs);
+  const iotms = useAppSelector((state) => state.iotms);
+  const loading = useAppSelector((state) => state.loading.iotms || false);
 
   // Put together a map of item ids to item definitions for this Path
   const idToItem = useItemMap(iotms.map((i) => i.id));

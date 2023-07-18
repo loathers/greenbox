@@ -1,15 +1,14 @@
 import { IconButton } from "@chakra-ui/react";
 import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
-import { RootState, updateFavouritePlayerId } from "../store";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { updateFavouritePlayerId } from "../store";
 
 import Image from "./Image";
 
 export function FavouriteButton() {
-  const playerId = useSelector((state: RootState) => state.playerId);
-
-  const favouritePlayerId = useSelector((state: RootState) => state.favouritePlayerId);
+  const playerId = useAppSelector((state) => state.playerId);
+  const favouritePlayerId = useAppSelector((state) => state.favouritePlayerId);
 
   const current = favouritePlayerId === playerId;
 
@@ -21,7 +20,7 @@ export function FavouriteButton() {
         favouritePlayerId ? ` (currently your favourite is #${favouritePlayerId})` : ""
       }`;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const toggle = useCallback(
     (event: React.MouseEvent) => {
       event.preventDefault();

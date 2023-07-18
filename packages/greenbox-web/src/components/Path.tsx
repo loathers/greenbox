@@ -1,9 +1,7 @@
 import { Badge, Box, Heading, Stack } from "@chakra-ui/react";
-import { ItemDef, ItemStatus, PathDef } from "greenbox-data";
-import { useSelector } from "react-redux";
+import { ItemStatus, PathDef } from "greenbox-data";
 
-import { RootState } from "../store";
-import { useItemMap } from "../utils";
+import { useItemMap } from "../hooks";
 
 import AlphaImage from "./AlphaImage";
 import ItemGrid from "./ItemGrid";

@@ -1,20 +1,19 @@
 import { Stack } from "@chakra-ui/react";
 import { RawPath } from "greenbox-data";
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 
-import { RootState } from "../store";
+import { useAppSelector } from "../hooks";
+import { createPlayerDataSelector } from "../store";
 
 import Path from "./Path";
 import Section from "./Section";
 
-type Props = {
-  paths: RawPath[];
-};
+const selectPlayerPaths = createPlayerDataSelector("paths");
 
-export default function Paths({ paths: playerPaths }: Props) {
-  const paths = useSelector((state: RootState) => state.paths);
-  const loading = useSelector((state: RootState) => state.loading.paths || false);
+export default function Paths() {
+  const playerPaths = useAppSelector(selectPlayerPaths);
+  const paths = useAppSelector((state) => state.paths);
+  const loading = useAppSelector((state) => state.loading.paths || false);
 
   // A map of path id to array, where the index represents a tattoo for that path
   // and the value represents the maximum level for that tattoo

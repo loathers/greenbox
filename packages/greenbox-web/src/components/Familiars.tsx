@@ -1,20 +1,20 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import { RawFamiliar, FamiliarStatus } from "greenbox-data";
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 
-import { RootState } from "../store";
+import { useAppSelector } from "../hooks";
+import { createPlayerDataSelector } from "../store";
 
 import Familiar from "./Familiar";
 import Section from "./Section";
 
-type Props = {
-  familiars: RawFamiliar[];
-};
+const selectPlayerFamiliars = createPlayerDataSelector("familiars");
 
-export default function Familiars({ familiars: playerFamiliars }: Props) {
-  const familiars = useSelector((state: RootState) => state.familiars.filter((s) => !s.pokefam));
-  const loading = useSelector((state: RootState) => state.loading.familiars || false);
+export default function Familiars() {
+  const playerFamiliars = useAppSelector(selectPlayerFamiliars);
+  const allFamiliars = useAppSelector((state) => state.familiars);
+  const familiars = useMemo(() => allFamiliars.filter((s) => !s.pokefam), [allFamiliars]);
+  const loading = useAppSelector((state) => state.loading.familiars || false);
 
   const totalInTerrarium = useMemo(
     () => playerFamiliars.filter((f) => f[1] === FamiliarStatus.TERRARIUM).length,

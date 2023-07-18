@@ -1,9 +1,8 @@
 import { Flex } from "@chakra-ui/react";
 import { SkillDef } from "greenbox-data";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useSelector } from "react-redux";
 
-import { RootState } from "../store";
+import { useAppSelector } from "../hooks";
 import { useColorModeFilter } from "../theme";
 
 import Spinner from "./Spinner";
@@ -14,7 +13,7 @@ type Props = {
 };
 
 export default function SkillDescription({ skill }: Props) {
-  const clashes = useSelector((state: RootState) => state.wikiClashes);
+  const clashes = useAppSelector((state) => state.wikiClashes);
   const wikiLink = useMemo(
     () => guessWikiLink(undefined, skill.name, "skill", clashes),
     [skill, clashes],

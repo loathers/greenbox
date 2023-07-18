@@ -1,9 +1,9 @@
 import { Accordion, Container, ToastId, useToast } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { NumberParam, StringParam, useQueryParam } from "use-query-params";
 
-import { fetchAll, fetchPlayerData, loadPlayerData, RootState, store } from "../store";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { fetchAll, fetchPlayerData, loadPlayerData } from "../store";
 
 import Familiars from "./Familiars";
 import Header from "./Header";
@@ -16,9 +16,9 @@ import Trophies from "./Trophies";
 export default function MainPage() {
   const [directValue] = useQueryParam("d", StringParam);
   const [playerId] = useQueryParam("u", NumberParam);
-  const favouritePlayerId = useSelector((state: RootState) => state.favouritePlayerId);
+  const favouritePlayerId = useAppSelector((state) => state.favouritePlayerId);
 
-  const dispatch = useDispatch<typeof store.dispatch>();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const id = playerId || favouritePlayerId;
@@ -36,10 +36,10 @@ export default function MainPage() {
 
   const toast = useToast();
   const clashToast = useRef<ToastId>();
-  const data = useSelector((state: RootState) => state.playerData);
-  const loading = useSelector((state: RootState) => state.loading);
-  const error = useSelector((state: RootState) => state.error);
-  const errorMessage = useSelector((state: RootState) => state.errorMessage);
+  const data = useAppSelector((state) => state.playerData);
+  const loading = useAppSelector((state) => state.loading);
+  const error = useAppSelector((state) => state.error);
+  const errorMessage = useAppSelector((state) => state.errorMessage);
 
   const id = "clash-toast";
 
@@ -69,20 +69,20 @@ export default function MainPage() {
 
   return (
     <Container maxWidth="1000px" width="100%">
-      <Accordion allowMultiple defaultIndex={[0]}>
-        <Header
-          direct={!!directValue}
-          meta={data?.meta}
-          loading={loading.playerData}
-          error={error.playerData}
-          errorMessage={errorMessage.playerData}
-        />
-        <IotMs iotms={data?.iotms ?? []} />
-        <Skills skills={data?.skills ?? []} />
-        <Paths paths={data?.paths ?? []} />
-        <Familiars familiars={data?.familiars ?? []} />
-        <Tattoos outfitTattoos={data?.outfitTattoos ?? []} />
-        <Trophies trophies={data?.trophies ?? []} />
+      <Header
+        direct={!!directValue}
+        meta={data?.meta}
+        loading={loading.playerData}
+        error={error.playerData}
+        errorMessage={errorMessage.playerData}
+      />
+      <Accordion allowMultiple>
+        <IotMs />
+        <Skills />
+        <Paths />
+        <Familiars />
+        <Tattoos />
+        <Trophies />
       </Accordion>
     </Container>
   );

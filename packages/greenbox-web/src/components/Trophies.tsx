@@ -1,20 +1,19 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import { RawTrophy, TrophyStatus } from "greenbox-data";
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 
-import { RootState } from "../store";
+import { useAppSelector } from "../hooks";
+import { createPlayerDataSelector } from "../store";
 
 import Section from "./Section";
 import Trophy from "./Trophy";
 
-type Props = {
-  trophies: RawTrophy[];
-};
+const selectPlayerTrophies = createPlayerDataSelector("trophies");
 
-export default function Tattoos({ trophies: playerTrophies }: Props) {
-  const trophies = useSelector((state: RootState) => state.trophies);
-  const loading = useSelector((state: RootState) => state.loading.trophies || false);
+export default function Tattoos() {
+  const playerTrophies = useAppSelector(selectPlayerTrophies);
+  const trophies = useAppSelector((state) => state.trophies);
+  const loading = useAppSelector((state) => state.loading.trophies || false);
 
   const numberOfTrophies = useMemo(
     () => playerTrophies.filter((t) => t[1] == TrophyStatus.HAVE).length,

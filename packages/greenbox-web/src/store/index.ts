@@ -1,4 +1,10 @@
-import { configureStore, createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  createSlice,
+  createAsyncThunk,
+  createAction,
+  createSelector,
+} from "@reduxjs/toolkit";
 import * as api from "greenbox-data";
 import {
   EffectDef,
@@ -331,3 +337,10 @@ export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export const createPlayerDataSelector = <K extends Exclude<keyof api.RawSnapshotData, "meta">>(
+  key: K,
+) => {
+  const selectPlayerData = (state: RootState) => state.playerData?.[key];
+  return createSelector([selectPlayerData], (data) => data ?? ([] as api.RawSnapshotData[K]));
+};

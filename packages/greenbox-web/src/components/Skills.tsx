@@ -1,9 +1,9 @@
 import { SimpleGrid, Stack } from "@chakra-ui/react";
 import { ClassDef, RawSkill, SkillDef, SkillStatus } from "greenbox-data";
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 
-import { RootState } from "../store";
+import { useAppSelector } from "../hooks";
+import { createPlayerDataSelector } from "../store";
 import { getSkillBucket } from "../utils";
 
 import MutexSkills from "./MutexSkills";
@@ -11,14 +11,14 @@ import Section from "./Section";
 import Skill from "./Skill";
 import SkillClassHeading from "./SkillClassHeading";
 
-type Props = {
-  skills: RawSkill[];
-};
+const selectPlayerSkills = createPlayerDataSelector("skills");
 
-export default function Skills({ skills: playerSkills }: Props) {
-  const skills = useSelector((state: RootState) => state.skills.filter((s) => s.permable));
-  const classes = useSelector((state: RootState) => state.classes);
-  const loading = useSelector((state: RootState) => state.loading.skills || false);
+export default function Skills() {
+  const playerSkills = useAppSelector(selectPlayerSkills);
+  const allSkills = useAppSelector((state) => state.skills);
+  const skills = useMemo(() => allSkills.filter((s) => s.permable), [allSkills]);
+  const classes = useAppSelector((state) => state.classes);
+  const loading = useAppSelector((state) => state.loading.skills || false);
 
   const totalHardcorePermed = useMemo(
     () => playerSkills.filter((s) => s[1] === SkillStatus.HARDCORE).length,

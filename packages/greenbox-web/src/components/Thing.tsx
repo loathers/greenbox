@@ -1,9 +1,8 @@
 import { Box, LinkBox, LinkOverlay, useToken } from "@chakra-ui/react";
 import he from "he";
-import { forwardRef, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
+import { forwardRef } from "react";
 
-import { RootState } from "../store";
+import { useAppSelector } from "../hooks";
 
 import AlphaImage from "./AlphaImage";
 
@@ -71,7 +70,7 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
 ) {
   const [bg] = useToken("colors", ["accent"]);
   const style = styleFromStatus(status, bg);
-  const clashes = useSelector((state: RootState) => state.wikiClashes);
+  const clashes = useAppSelector((state) => state.wikiClashes);
 
   const wikiLink = guessWikiLink(link, name, type, clashes);
 

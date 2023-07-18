@@ -1,9 +1,5 @@
 import { QuestionOutlineIcon } from "@chakra-ui/icons";
 import {
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Alert,
   AlertIcon,
   Box,
@@ -17,9 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { RawSnapshotData } from "greenbox-data";
 import { useCallback } from "react";
-import { useDispatch } from "react-redux";
 
-import { fetchAll, store } from "../store";
+import { useAppDispatch } from "../hooks";
+import { fetchAll } from "../store";
 
 import MetaInfo from "./MetaInfo";
 import Spinner from "./Spinner";
@@ -40,55 +36,50 @@ It will not collect any new information about you specifically - you still need 
 `;
 
 export default function Header({ meta, direct, loading, error, errorMessage }: Props) {
-  const dispatch = useDispatch<typeof store.dispatch>();
+  const dispatch = useAppDispatch();
 
   const forceUpdate = useCallback(() => {
     dispatch(fetchAll(true));
   }, [dispatch]);
 
   return (
-    <AccordionItem>
-      <AccordionButton fontSize="4xl" as="section" alignItems="start">
-        <HStack alignItems="center" flex={1} maxWidth="100%" wrap="wrap">
-          <Heading as="h1">Greenbox</Heading>
-          <Box>
-            <SwitchButton />
-          </Box>
-          <Box flex={1} />
-          <Box textAlign="right">
-            {meta ? (
-              <MetaInfo direct={direct} meta={meta} />
-            ) : loading ? (
-              <Spinner />
-            ) : error ? (
-              <Alert status="error" fontSize="md">
-                <AlertIcon />
-                {errorMessage}
-              </Alert>
-            ) : null}
-          </Box>
-        </HStack>
-        <AccordionIcon height="1.1em" />
-      </AccordionButton>
-      <AccordionPanel>
-        <Stack>
-          <Text>To get the data from your account, first install the script by running</Text>
-          <Code p={2} borderRadius={5}>
-            git checkout loathers/greenbox release
-          </Code>
-          <Text>
-            in KoLmafia's Graphical CLI. Once that's done, you can update the data at this link
-            whenever you like by running <Code>greenbox</Code>.
-          </Text>
-          <Stack direction="row-reverse" pt={3}>
-            <Tooltip p={2} label={forceRefreshInfo}>
-              <Button size="xs" colorScheme="red" onClick={forceUpdate}>
-                Force update game data <QuestionOutlineIcon ml={1} />
-              </Button>
-            </Tooltip>
-          </Stack>
+    <Stack as="section" alignItems="stretch" py={2}>
+      <HStack alignItems="center" flex={1} maxWidth="100%" wrap="wrap">
+        <Heading as="h1">Greenbox</Heading>
+        <Box>
+          <SwitchButton />
+        </Box>
+        <Box flex={1} />
+        <Box textAlign="right">
+          {meta ? (
+            <MetaInfo direct={direct} meta={meta} />
+          ) : loading ? (
+            <Spinner />
+          ) : error ? (
+            <Alert status="error" fontSize="md">
+              <AlertIcon />
+              {errorMessage}
+            </Alert>
+          ) : null}
+        </Box>
+      </HStack>
+      <Stack>
+        <Text>To get the data from your account, first install the script by running</Text>
+        <Code p={2} borderRadius={5}>
+          git checkout loathers/greenbox release
+        </Code>
+        <Text>
+          in KoLmafia's Graphical CLI. Once that's done, you can update the data at this link
+          whenever you like by running <Code>greenbox</Code>.
+        </Text>
+        <Stack direction="row-reverse" pt={3}>
+          <Tooltip p={2} label={forceRefreshInfo}>
+            <Button size="xs" colorScheme="red" onClick={forceUpdate}>
+              Force update game data <QuestionOutlineIcon ml={1} />
+            </Button>
+          </Tooltip>
         </Stack>
-      </AccordionPanel>
-    </AccordionItem>
+      </Stack>
+    </Stack>
   );
 }
