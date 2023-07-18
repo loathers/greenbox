@@ -6,7 +6,7 @@ import SlimeTubeSection from "./SlimeTubeSection";
 
 export default function ClanDungeons() {
   return (
-    <Accordion>
+    <Accordion allowMultiple>
       <HobopoliSection />
       <DreadsylvaniaSection />
       <SlimeTubeSection />
