@@ -1,5 +1,5 @@
 import { SimpleGrid, Stack } from "@chakra-ui/react";
-import { ClassDef, RawSkill, SkillDef, SkillStatus } from "greenbox-data";
+import { SkillDef, SkillStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -30,11 +30,18 @@ export default function Skills() {
   );
   const idToSkill = useMemo(
     () =>
-      playerSkills.reduce((acc, s) => ({ ...acc, [s[0]]: s }), {} as { [id: number]: RawSkill }),
+      playerSkills.reduce(
+        (acc, s) => ({ ...acc, [s[0]]: s }),
+        {} as { [id: number]: (typeof playerSkills)[number] },
+      ),
     [playerSkills],
   );
   const idToClass = useMemo(
-    () => classes.reduce((acc, c) => ({ ...acc, [c.id]: c }), {} as { [id: number]: ClassDef }),
+    () =>
+      classes.reduce(
+        (acc, c) => ({ ...acc, [c.id]: c }),
+        {} as { [id: number]: (typeof classes)[number] },
+      ),
     [classes],
   );
 

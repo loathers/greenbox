@@ -1,5 +1,4 @@
 import { Stack } from "@chakra-ui/react";
-import { RawPath } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -77,7 +76,11 @@ export default function Paths() {
   );
 
   const idToPath = useMemo(
-    () => playerPaths.reduce((acc, p) => ({ ...acc, [p[0]]: p }), {} as { [id: number]: RawPath }),
+    () =>
+      playerPaths.reduce(
+        (acc, p) => ({ ...acc, [p[0]]: p }),
+        {} as { [id: number]: (typeof playerPaths)[number] },
+      ),
     [playerPaths],
   );
 

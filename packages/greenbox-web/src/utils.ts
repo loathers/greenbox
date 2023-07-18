@@ -83,7 +83,7 @@ export function getSkillHeader(bucket: number, cls: ClassDef) {
     case SkillBuckets.PvP:
       return ["PvP", "swords"];
     case SkillBuckets.Dreadsylvania:
-      return ["Dreadsylvania", "dv_skullcap"];
+      return ["Dreadsylvania", "dvtat"];
     case SkillBuckets.Hobopolis:
       return ["Hobopolis", "stuffhodg"];
     case SkillBuckets.SlimeTube:

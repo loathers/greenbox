@@ -1,4 +1,4 @@
-import { Badge, Box, Heading, Stack } from "@chakra-ui/react";
+import { Badge, Box, Heading, HStack, Stack } from "@chakra-ui/react";
 import { ItemStatus, PathDef } from "greenbox-data";
 
 import { useItemMap } from "../hooks";
@@ -22,23 +22,23 @@ export default function Path({ path, points, items, equipment, tattoos, maxTatto
 
   return (
     <Stack>
-      <Heading as="h3" fontWeight="normal" fontSize="2xl">
-        <Stack direction="row">
-          <AlphaImage src={path.image} sourceWidth={path.image.startsWith("sigils") ? 50 : 30} />
-          <Box>{path.name}</Box>
-          {path.maxPoints > 0 && (
-            <Box position="relative">
-              <Badge
-                title={`${points} points out of a possible ${path.maxPoints}`}
-                position="absolute"
-                top={0}
-              >
-                {points} / {path.maxPoints}
-              </Badge>
-            </Box>
-          )}
-        </Stack>
-      </Heading>
+      <HStack>
+        <AlphaImage src={path.image} sourceWidth={path.image.startsWith("sigils") ? 50 : 30} />
+        <Heading as="h3" fontWeight="normal" fontSize="2xl">
+          {path.name}
+        </Heading>
+        {path.maxPoints > 0 && (
+          <Box alignSelf="start" position="relative">
+            <Badge
+              title={`${points} points out of a possible ${path.maxPoints}`}
+              position="absolute"
+              top={0}
+            >
+              {points} / {path.maxPoints}
+            </Badge>
+          </Box>
+        )}
+      </HStack>
       {path.items.length > 0 && (
         <>
           <Heading as="h4" textTransform="uppercase" fontSize="xs">

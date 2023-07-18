@@ -18,10 +18,10 @@ import Thing from "./Thing";
 type Props = {
   skill: SkillDef;
   status: SkillStatus;
-  level: number;
+  level?: number;
 };
 
-export default function Skill({ skill, status, level }: Props) {
+export default function Skill({ skill, status, level = 0 }: Props) {
   return (
     <Popover trigger="hover" isLazy>
       <PopoverTrigger>
@@ -40,7 +40,10 @@ export default function Skill({ skill, status, level }: Props) {
           }
         />
       </PopoverTrigger>
-      <PopoverContent style={{ ["--popper-bg" as any]: "var(--chakra-colors-imagebg)" }}>
+      <PopoverContent
+        style={{ ["--popper-bg" as any]: "var(--chakra-colors-imagebg)" }}
+        whiteSpace="normal"
+      >
         <PopoverArrow />
         <PopoverBody>
           <SkillDescription skill={skill} />

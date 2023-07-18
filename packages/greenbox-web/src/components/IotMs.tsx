@@ -1,5 +1,5 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
-import { IotMStatus, RawIotM } from "greenbox-data";
+import { IotMStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector, useItemMap } from "../hooks";
@@ -36,7 +36,11 @@ export default function IotMs() {
   );
 
   const idToIotM = useMemo(
-    () => playerIotMs.reduce((acc, i) => ({ ...acc, [i[0]]: i }), {} as { [id: number]: RawIotM }),
+    () =>
+      playerIotMs.reduce(
+        (acc, i) => ({ ...acc, [i[0]]: i }),
+        {} as { [id: number]: (typeof playerIotMs)[number] },
+      ),
     [playerIotMs],
   );
 

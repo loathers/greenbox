@@ -45,8 +45,8 @@ import { getIotMStatus, IotMOptions } from "./iotms";
 import { haveItem } from "./utils";
 
 /**
- * Generates an object with a list of IOTMs & ownership stats.
- * @returns large string of IOTM ownership
+ * Generates a list of IotMs and status.
+ * @returns array of 2-tuples of item id (of the packaged item) and status
  */
 
 function checkIotMs(options: IotMOptions) {
@@ -56,8 +56,8 @@ function checkIotMs(options: IotMOptions) {
 }
 
 /**
- * Generates an object with a list of HC & SC skill perms.
- * @returns large numeric list of skills, comma delimited, in two sections
+ * Generates a list of all permable skills and their status.
+ * @returns list of 3-tuples of skill id, perm status and skill level, if any
  */
 function checkSkills() {
   // Key existence means permed in some way, true is HC, false is SC
