@@ -1,5 +1,5 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import { RawFamiliar, FamiliarStatus } from "greenbox-data";
+import { FamiliarStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -28,7 +28,7 @@ export default function Familiars() {
     () =>
       playerFamiliars.reduce(
         (acc, f) => ({ ...acc, [f[0]]: f }),
-        {} as { [id: number]: RawFamiliar },
+        {} as { [id: number]: (typeof playerFamiliars)[number] },
       ),
     [playerFamiliars],
   );

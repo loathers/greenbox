@@ -53,7 +53,7 @@ export interface GreenboxState {
   effects: EffectDef[];
   familiars: FamiliarDef[];
   iotms: IotMDef[];
-  items: ItemDef[];
+  items: { [id: number]: ItemDef };
   paths: PathDef[];
   skills: SkillDef[];
   tattoos: TattooDef[];
@@ -218,7 +218,11 @@ export const greenboxSlice = createSlice({
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
         if (action.payload !== null) {
-          state.items = action.payload.data;
+          const items = action.payload.data;
+          state.items = items.reduce(
+            (acc, i) => ({ ...acc, [i.id]: i }),
+            {} as { [id: number]: (typeof items)[number] },
+          );
           state.sizeAtLastFetch.items = action.payload.size;
         }
 
@@ -344,3 +348,30 @@ export const createPlayerDataSelector = <K extends Exclude<keyof api.RawSnapshot
   const selectPlayerData = (state: RootState) => state.playerData?.[key];
   return createSelector([selectPlayerData], (data) => data ?? ([] as api.RawSnapshotData[K]));
 };
+
+export const selectPlayerSkills = createPlayerDataSelector("skills");
+
+export const selectIdToPlayerSkills = createSelector(selectPlayerSkills, (playerSkills) =>
+  playerSkills.reduce(
+    (acc, s) => ({ ...acc, [s[0]]: s }),
+    {} as { [id: number]: (typeof playerSkills)[number] },
+  ),
+);
+
+export const selectIdToSkills = createSelector(
+  (state: RootState) => state.skills,
+  (skills) =>
+    skills.reduce(
+      (acc, s) => ({ ...acc, [s.id]: s }),
+      {} as { [id: number]: (typeof skills)[number] },
+    ),
+);
+
+export const selectPlayerItems = createPlayerDataSelector("items");
+
+export const selectIdToPlayerItems = createSelector(selectPlayerItems, (playerItems) =>
+  playerItems.reduce(
+    (acc, s) => ({ ...acc, [s[0]]: s }),
+    {} as { [id: number]: (typeof playerItems)[number] },
+  ),
+);

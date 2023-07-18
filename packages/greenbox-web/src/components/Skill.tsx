@@ -8,20 +8,27 @@ import {
   PopoverTrigger,
   Portal,
 } from "@chakra-ui/react";
-import { getMaxSkillLevel, SkillDef, SkillStatus } from "greenbox-data";
+import { SkillStatus, getMaxSkillLevel } from "greenbox-data";
 
+import { useAppSelector } from "../hooks";
+import { selectIdToPlayerSkills, selectIdToSkills } from "../store";
 import { skillStatusToThingState, skillStatusToTitle } from "../utils";
 
 import SkillDescription from "./SkillDescription";
 import Thing from "./Thing";
 
 type Props = {
-  skill: SkillDef;
-  status: SkillStatus;
-  level: number;
+  id: number;
 };
 
-export default function Skill({ skill, status, level }: Props) {
+export default function Skill({ id }: Props) {
+  const playerSkills = useAppSelector(selectIdToPlayerSkills);
+  const skills = useAppSelector(selectIdToSkills);
+
+  const skill = skills[id];
+
+  const [, status, level] = playerSkills[id] || [id, SkillStatus.NONE, 0];
+
   return (
     <Popover trigger="hover" isLazy>
       <PopoverTrigger>
@@ -40,7 +47,10 @@ export default function Skill({ skill, status, level }: Props) {
           }
         />
       </PopoverTrigger>
-      <PopoverContent style={{ ["--popper-bg" as any]: "var(--chakra-colors-imagebg)" }}>
+      <PopoverContent
+        style={{ ["--popper-bg" as any]: "var(--chakra-colors-imagebg)" }}
+        whiteSpace="normal"
+      >
         <PopoverArrow />
         <PopoverBody>
           <SkillDescription skill={skill} />

@@ -1,12 +1,8 @@
 import { ClassDef, ItemStatus, SkillDef, SkillStatus } from "greenbox-data";
 
 export function itemStatusToThingState(status: ItemStatus) {
-  switch (status) {
-    case ItemStatus.HAVE:
-      return "complete";
-    default:
-      return null;
-  }
+  if (status > 0) return "complete";
+  return null;
 }
 
 export function skillStatusToThingState(status: SkillStatus) {
@@ -83,7 +79,7 @@ export function getSkillHeader(bucket: number, cls: ClassDef) {
     case SkillBuckets.PvP:
       return ["PvP", "swords"];
     case SkillBuckets.Dreadsylvania:
-      return ["Dreadsylvania", "dv_skullcap"];
+      return ["Dreadsylvania", "dvtat"];
     case SkillBuckets.Hobopolis:
       return ["Hobopolis", "stuffhodg"];
     case SkillBuckets.SlimeTube:

@@ -1,5 +1,5 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import { RawTrophy, TrophyStatus } from "greenbox-data";
+import { TrophyStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -21,7 +21,10 @@ export default function Tattoos() {
   );
   const idToTrophy = useMemo(
     () =>
-      playerTrophies.reduce((acc, t) => ({ ...acc, [t[0]]: t }), {} as { [id: number]: RawTrophy }),
+      playerTrophies.reduce(
+        (acc, t) => ({ ...acc, [t[0]]: t }),
+        {} as { [id: number]: (typeof playerTrophies)[number] },
+      ),
     [playerTrophies],
   );
 

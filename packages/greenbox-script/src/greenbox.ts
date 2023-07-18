@@ -11,11 +11,13 @@ import {
   PathDef,
   RawFamiliar,
   RawIotM,
+  RawItem,
   RawOutfitTattoo,
   RawPath,
   RawSkill,
   RawTrophy,
   SkillStatus,
+  specialItems,
   TattooDef,
   TattooStatus,
   TrophyDef,
@@ -45,8 +47,8 @@ import { getIotMStatus, IotMOptions } from "./iotms";
 import { haveItem } from "./utils";
 
 /**
- * Generates an object with a list of IOTMs & ownership stats.
- * @returns large string of IOTM ownership
+ * Generates a list of IotMs and status.
+ * @returns array of 2-tuples of item id (of the packaged item) and status
  */
 
 function checkIotMs(options: IotMOptions) {
@@ -56,8 +58,23 @@ function checkIotMs(options: IotMOptions) {
 }
 
 /**
- * Generates an object with a list of HC & SC skill perms.
- * @returns large numeric list of skills, comma delimited, in two sections
+ * Generates a list of items and ownership status.
+ * @returns array of 2-tuples of item id and status
+ */
+
+function checkItems(options: { force: number[] }) {
+  return specialItems.map(
+    (id) =>
+      [
+        id,
+        options.force.includes(id) || haveItem(Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE,
+      ] as RawItem,
+  );
+}
+
+/**
+ * Generates a list of all permable skills and their status.
+ * @returns list of 3-tuples of skill id, perm status and skill level, if any
  */
 function checkSkills() {
   // Key existence means permed in some way, true is HC, false is SC
@@ -255,8 +272,8 @@ function main(args = ""): void {
 
   const tattoos = visitUrl("account_tattoos.php");
 
-  const forceIotMs = [];
-  if (hasFlag(args, "--force-florist")) forceIotMs.push(6413);
+  const forceItems = [];
+  if (hasFlag(args, "--force-florist")) forceItems.push(6413);
 
   const code = compress({
     meta: checkMeta(),
@@ -265,7 +282,8 @@ function main(args = ""): void {
     trophies: checkTrophies(),
     ...checkTattoos(tattoos),
     paths: checkPaths(tattoos),
-    iotms: checkIotMs({ force: forceIotMs }),
+    iotms: checkIotMs({ force: forceItems }),
+    items: checkItems({ force: forceItems }),
   });
 
   const link = `https://greenbox.loathers.net/?${keepPrivate ? `d=${code}` : `u=${myId()}`}`;

@@ -1,20 +1,20 @@
-import { SimpleGrid, Stack } from "@chakra-ui/react";
-import { ClassDef, RawSkill, SkillDef, SkillStatus } from "greenbox-data";
+import { SimpleGrid } from "@chakra-ui/react";
+import { SkillDef, SkillStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
-import { createPlayerDataSelector } from "../store";
+import { selectIdToPlayerSkills, selectPlayerSkills } from "../store";
 import { getSkillBucket } from "../utils";
 
 import MutexSkills from "./MutexSkills";
 import Section from "./Section";
 import Skill from "./Skill";
-import SkillClassHeading from "./SkillClassHeading";
-
-const selectPlayerSkills = createPlayerDataSelector("skills");
+import SkillBucket from "./SkillBucket";
 
 export default function Skills() {
   const playerSkills = useAppSelector(selectPlayerSkills);
+  const idToSkill = useAppSelector(selectIdToPlayerSkills);
+
   const allSkills = useAppSelector((state) => state.skills);
   const skills = useMemo(() => allSkills.filter((s) => s.permable), [allSkills]);
   const classes = useAppSelector((state) => state.classes);
@@ -28,13 +28,13 @@ export default function Skills() {
     () => playerSkills.filter((s) => s[1] === SkillStatus.SOFTCORE).length,
     [playerSkills],
   );
-  const idToSkill = useMemo(
-    () =>
-      playerSkills.reduce((acc, s) => ({ ...acc, [s[0]]: s }), {} as { [id: number]: RawSkill }),
-    [playerSkills],
-  );
+
   const idToClass = useMemo(
-    () => classes.reduce((acc, c) => ({ ...acc, [c.id]: c }), {} as { [id: number]: ClassDef }),
+    () =>
+      classes.reduce(
+        (acc, c) => ({ ...acc, [c.id]: c }),
+        {} as { [id: number]: (typeof classes)[number] },
+      ),
     [classes],
   );
 
@@ -85,54 +85,45 @@ export default function Skills() {
       ]}
       max={skills.length}
     >
-      <Stack spacing={4}>
-        {bucketedSkills.map(([bucket, contents]) => {
-          const allHardcorePermed = contents.every(
-            (s) => idToSkill[s.id]?.[1] === SkillStatus.HARDCORE,
-          );
+      {bucketedSkills.map(([bucket, contents]) => {
+        const allHardcorePermed = contents.every(
+          (s) => idToSkill[s.id]?.[1] === SkillStatus.HARDCORE,
+        );
 
-          return (
-            <Stack spacing={4} key={bucket}>
-              <SkillClassHeading
-                bucket={Number(bucket)}
-                cls={idToClass[Number(bucket)]}
-                medal={allHardcorePermed}
-              />
-              <SimpleGrid columns={6} spacing={1}>
-                {contents.map((s) => {
-                  switch (s.id) {
-                    case 191:
-                    case 192:
-                    case 193:
-                      skillGroup.push(s);
-                      if (s.id !== 193) return null;
+        return (
+          <SkillBucket
+            key={bucket}
+            bucket={Number(bucket)}
+            cls={idToClass[Number(bucket)]}
+            medal={allHardcorePermed}
+          >
+            <SimpleGrid columns={6} spacing={1}>
+              {contents.map((s) => {
+                switch (s.id) {
+                  case 191:
+                  case 192:
+                  case 193:
+                    skillGroup.push(s);
+                    if (s.id !== 193) return null;
 
-                      const group = [...skillGroup];
-                      skillGroup.length = 0;
-                      return (
-                        <MutexSkills
-                          key={s.id}
-                          groupName="Drippy Skill"
-                          skills={group}
-                          statuses={group.map((s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE)}
-                        />
-                      );
-                    default:
-                      return (
-                        <Skill
-                          key={s.id}
-                          skill={s}
-                          status={idToSkill[s.id]?.[1] ?? SkillStatus.NONE}
-                          level={idToSkill[s.id]?.[2] ?? 0}
-                        />
-                      );
-                  }
-                })}
-              </SimpleGrid>
-            </Stack>
-          );
-        })}
-      </Stack>
+                    const group = [...skillGroup];
+                    skillGroup.length = 0;
+                    return (
+                      <MutexSkills
+                        key={s.id}
+                        groupName="Drippy Skill"
+                        skills={group}
+                        statuses={group.map((s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE)}
+                      />
+                    );
+                  default:
+                    return <Skill key={s.id} id={s.id} />;
+                }
+              })}
+            </SimpleGrid>
+          </SkillBucket>
+        );
+      })}
     </Section>
   );
 }

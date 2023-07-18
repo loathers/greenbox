@@ -1,17 +1,22 @@
-import { Accordion, Container, ToastId, useToast } from "@chakra-ui/react";
+import {
+  Container,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  ToastId,
+  useToast,
+} from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 import { NumberParam, StringParam, useQueryParam } from "use-query-params";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { fetchAll, fetchPlayerData, loadPlayerData } from "../store";
 
-import Familiars from "./Familiars";
+import ClanDungeons from "./ClanDungeons";
+import General from "./General";
 import Header from "./Header";
-import IotMs from "./IotMs";
-import Paths from "./Paths";
-import Skills from "./Skills";
-import Tattoos from "./Tattoos";
-import Trophies from "./Trophies";
 
 export default function MainPage() {
   const [directValue] = useQueryParam("d", StringParam);
@@ -76,14 +81,20 @@ export default function MainPage() {
         error={error.playerData}
         errorMessage={errorMessage.playerData}
       />
-      <Accordion allowMultiple>
-        <IotMs />
-        <Skills />
-        <Paths />
-        <Familiars />
-        <Tattoos />
-        <Trophies />
-      </Accordion>
+      <Tabs isLazy variant="enclosed">
+        <TabList>
+          <Tab>General</Tab>
+          <Tab>Clan Dungeons</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel p={0}>
+            <General />
+          </TabPanel>
+          <TabPanel>
+            <ClanDungeons />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </Container>
   );
 }
