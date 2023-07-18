@@ -82,7 +82,13 @@ export default function HobopolisSection() {
   const playerItems = useAppSelector(selectIdToPlayerItems);
 
   return (
-    <Section title="Hobopolis" icon="itemimages/stuffhodg.gif" loading={false} values={[]} max={1}>
+    <Section
+      title="Hobopolis"
+      icon="otherimages/sigils/hobotat19.gif"
+      loading={false}
+      values={[]}
+      max={1}
+    >
       <Subsection title="Hogdman's Journal Skills" image="itemimages/blacknotebook.gif">
         <SimpleGrid columns={6} spacing={1}>
           {JOURNAL_SKILLS.map((id) => (

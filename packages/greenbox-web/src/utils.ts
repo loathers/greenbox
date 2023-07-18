@@ -69,22 +69,22 @@ export function getSkillBucket(s: SkillDef) {
 }
 
 export function getSkillHeader(bucket: number, cls: ClassDef) {
-  if (cls) return [cls.name, cls.image];
+  if (cls) return [cls.name, `itemimages/${cls.image}.gif`];
 
   switch (bucket) {
     case 0:
-      return ["Other", "book"];
+      return ["Other", "itemimages/book.gif"];
     case SkillBuckets.Gnome:
-      return ["Gnomish Gnomad Camp", "tinygnome"];
+      return ["Gnomish Gnomad Camp", "itemimages/tinygnome.gif"];
     case SkillBuckets.PvP:
-      return ["PvP", "swords"];
+      return ["PvP", "itemimages/swords.gif"];
     case SkillBuckets.Dreadsylvania:
-      return ["Dreadsylvania", "dvtat"];
+      return ["Dreadsylvania", "itemimages/dvtat.gif"];
     case SkillBuckets.Hobopolis:
-      return ["Hobopolis", "stuffhodg"];
+      return ["Hobopolis", "otherimages/sigils/hobotat19.gif"];
     case SkillBuckets.SlimeTube:
-      return ["Slime Tube", "slimeling"];
+      return ["Slime Tube", "itemimages/slimeling.gif"];
     default:
-      return ["Unknown", "book"];
+      return ["Unknown", "itemimages/book.gif"];
   }
 }

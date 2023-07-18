@@ -12,7 +12,12 @@ export default function Subsection({ image, title, right = null, children }: Pro
   return (
     <Stack spacing={4}>
       <HStack>
-        <AlphaImage src={image} />
+        <AlphaImage
+          src={image}
+          sourceWidth={image.includes("sigils/") ? 50 : 30}
+          width={30}
+          height={30}
+        />
         <Heading as="h3" fontWeight="normal" fontSize="2xl">
           {title}
         </Heading>

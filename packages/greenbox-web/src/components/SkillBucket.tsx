@@ -13,7 +13,7 @@ export default function SkillBucket({ bucket, cls, medal, children }: Props) {
   return (
     <Subsection
       title={name}
-      image={`itemimages/${image}.gif`}
+      image={image}
       right={medal && cls && <Medal title="100% marked hardcore permanent" />}
     >
       {children}
