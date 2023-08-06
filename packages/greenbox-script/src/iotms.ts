@@ -1,15 +1,6 @@
 import { IotMDef, IotMStatus } from "greenbox-data";
-import {
-  Familiar,
-  xpath,
-  haveFamiliar,
-  Item,
-  Skill,
-  visitUrl,
-  floristAvailable,
-  haveSkill,
-} from "kolmafia";
-import { haveInCampground, getFoldGroup, flat } from "libram";
+import { Familiar, haveFamiliar, haveSkill, Item, Skill, visitUrl, xpath } from "kolmafia";
+import { flat, getFoldGroup, haveInCampground } from "libram";
 import { getBoolean } from "libram/dist/property";
 
 import { haveItem } from "./utils";
@@ -38,9 +29,6 @@ function haveBound(iotm: IotMDef, options: IotMOptions): boolean {
             (haveItem(Item.get("right bear arm")) && haveItem(Item.get("left bear arm")))
           );
         }
-        case 6413: {
-          return floristAvailable();
-        }
       }
       return false;
     }
@@ -64,9 +52,10 @@ function haveBound(iotm: IotMDef, options: IotMOptions): boolean {
       ).some((i) => haveItem(i));
     case "preference":
       return getBoolean(iotm.preference);
-    case "skill":
+    case "skill": {
       const skill = Skill.get(iotm.skill);
       return haveSkill(skill);
+    }
     case "vip":
       return haveItem(Item.get("Clan VIP Lounge Key"));
   }
