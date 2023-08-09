@@ -343,7 +343,7 @@ const iotms: IotMDef[] = [
   { id: 11222, month: 5, year: 2023, type: "item", item: "Cincho de Mayo" }, // shrink-wrapped Cincho de Mayo
   { id: 11256, month: 6, year: 2023, type: "item", item: "2002 Mr. Store Catalog" }, // shrink-wrapped 2002 Mr. Store Catalog
   { id: 11300, month: 7, year: 2023, type: "familiar", familiar: "Patriotic Eagle" }, // sleeping patriotic eagle
-  { id: 11305, month: 9, year: 2023, type: "item", item: "august scepter" } // boxed august scepter
+  { id: 11305, month: 8, year: 2023, type: "item", item: "august scepter" }, // boxed august scepter
 ];
 
 export default iotms;
