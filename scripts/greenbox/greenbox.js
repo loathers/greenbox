@@ -1,11 +1,29 @@
 "use strict";
-
-// kolmafia-polyfill.js
-var kolmafia = require("kolmafia"), console = {
-  log: kolmafia.print
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __esm = function(fn, res) {
+  return function() {
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+  };
 };
 
+// kolmafia-polyfill.js
+var kolmafia, console, init_kolmafia_polyfill = __esm({
+  "kolmafia-polyfill.js": function() {
+    "use strict";
+    kolmafia = require("kolmafia"), console = {
+      log: kolmafia.print
+    };
+  }
+});
+
+// src/greenbox.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/lib/index.ts
+init_kolmafia_polyfill();
+
 // ../../node_modules/jsoncrush/JSONCrush.js
+init_kolmafia_polyfill();
 function _createForOfIteratorHelper(o, allowArrayLike) {
   var it = typeof Symbol < "u" && o[Symbol.iterator] || o["@@iterator"];
   if (!it) {
@@ -145,6 +163,12 @@ var JSONCrush_default = {
 };
 
 // ../greenbox-data/lib/familiars.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/lib/utils.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/lib/familiars.ts
 var FamiliarStatus = /* @__PURE__ */ function(FamiliarStatus2) {
   return FamiliarStatus2[FamiliarStatus2.NONE = 0] = "NONE", FamiliarStatus2[FamiliarStatus2.HATCHLING = 1] = "HATCHLING", FamiliarStatus2[FamiliarStatus2.TERRARIUM = 2] = "TERRARIUM", FamiliarStatus2;
 }({});
@@ -156,7 +180,11 @@ var compressFamiliars = function(familiars) {
   }, "").replace(/0+$/, "");
 };
 
+// ../greenbox-data/lib/iotms.ts
+init_kolmafia_polyfill();
+
 // ../greenbox-data/data/iotms.ts
+init_kolmafia_polyfill();
 var iotms = [
   {
     id: 894,
@@ -981,7 +1009,8 @@ var iotms = [
     id: 6413,
     month: 5,
     year: 2013,
-    type: "custom"
+    type: "preference",
+    preference: "ownsFloristFriar"
   },
   // Order of the Green Thumb Order Form
   {
@@ -1950,8 +1979,16 @@ var iotms = [
     year: 2023,
     type: "familiar",
     familiar: "Patriotic Eagle"
-  }
+  },
   // sleeping patriotic eagle
+  {
+    id: 11305,
+    month: 8,
+    year: 2023,
+    type: "item",
+    item: "august scepter"
+  }
+  // boxed august scepter
 ], iotms_default = iotms;
 
 // ../greenbox-data/lib/iotms.ts
@@ -2015,7 +2052,11 @@ var compressIotMs = function(iotmList) {
   }).join("").replace(/0+$/, "");
 };
 
+// ../greenbox-data/lib/items.ts
+init_kolmafia_polyfill();
+
 // ../greenbox-data/data/items.ts
+init_kolmafia_polyfill();
 var specialItems = [
   3138,
   // Hodgman's whackin' stick
@@ -2203,6 +2244,7 @@ var compressItems = function(items) {
 };
 
 // ../greenbox-data/lib/meta.ts
+init_kolmafia_polyfill();
 function _slicedToArray2(arr, i) {
   return _arrayWithHoles2(arr) || _iterableToArrayLimit2(arr, i) || _unsupportedIterableToArray3(arr, i) || _nonIterableRest2();
 }
@@ -2263,7 +2305,11 @@ var compressMeta = function(meta) {
   }).join(",");
 };
 
+// ../greenbox-data/lib/paths.ts
+init_kolmafia_polyfill();
+
 // ../greenbox-data/data/paths.ts
+init_kolmafia_polyfill();
 var ItemId = /* @__PURE__ */ function(ItemId2) {
   return ItemId2[ItemId2.StainlessSC = 1224] = "StainlessSC", ItemId2[ItemId2.StainlessTT = 1225] = "StainlessTT", ItemId2[ItemId2.StainlessPM = 1226] = "StainlessPM", ItemId2[ItemId2.StainlessSA = 1227] = "StainlessSA", ItemId2[ItemId2.StainlessDB = 1228] = "StainlessDB", ItemId2[ItemId2.StainlessAT = 1229] = "StainlessAT", ItemId2[ItemId2.LoofahSC = 10130] = "LoofahSC", ItemId2[ItemId2.LoofahTT = 10131] = "LoofahTT", ItemId2[ItemId2.LoofahPM = 10132] = "LoofahPM", ItemId2[ItemId2.LoofahSA = 10133] = "LoofahSA", ItemId2[ItemId2.LoofahDB = 10134] = "LoofahDB", ItemId2[ItemId2.LoofahAT = 10135] = "LoofahAT", ItemId2[ItemId2.VelourSC = 10114] = "VelourSC", ItemId2[ItemId2.VelourTT = 10115] = "VelourTT", ItemId2[ItemId2.VelourPM = 10116] = "VelourPM", ItemId2[ItemId2.VelourSA = 10117] = "VelourSA", ItemId2[ItemId2.VelourDB = 10118] = "VelourDB", ItemId2[ItemId2.VelourAT = 10119] = "VelourAT", ItemId2[ItemId2.ParaffinSC = 10098] = "ParaffinSC", ItemId2[ItemId2.ParaffinTT = 10099] = "ParaffinTT", ItemId2[ItemId2.ParaffinPM = 10100] = "ParaffinPM", ItemId2[ItemId2.ParaffinSA = 10101] = "ParaffinSA", ItemId2[ItemId2.ParaffinDB = 10102] = "ParaffinDB", ItemId2[ItemId2.ParaffinAT = 10103] = "ParaffinAT", ItemId2[ItemId2.ChalkSC = 10082] = "ChalkSC", ItemId2[ItemId2.ChalkTT = 10083] = "ChalkTT", ItemId2[ItemId2.ChalkPM = 10084] = "ChalkPM", ItemId2[ItemId2.ChalkSA = 10085] = "ChalkSA", ItemId2[ItemId2.ChalkDB = 10086] = "ChalkDB", ItemId2[ItemId2.ChalkAT = 10087] = "ChalkAT", ItemId2[ItemId2.GabardineSC = 8120] = "GabardineSC", ItemId2[ItemId2.GabardineTT = 8121] = "GabardineTT", ItemId2[ItemId2.GabardinePM = 8122] = "GabardinePM", ItemId2[ItemId2.GabardineSA = 8123] = "GabardineSA", ItemId2[ItemId2.GabardineDB = 8124] = "GabardineDB", ItemId2[ItemId2.GabardineAT = 8125] = "GabardineAT", ItemId2[ItemId2.AerogelSC = 8106] = "AerogelSC", ItemId2[ItemId2.AerogelTT = 8107] = "AerogelTT", ItemId2[ItemId2.AerogelPM = 8108] = "AerogelPM", ItemId2[ItemId2.AerogelSA = 8109] = "AerogelSA", ItemId2[ItemId2.AerogelDB = 8110] = "AerogelDB", ItemId2[ItemId2.AerogelAT = 8111] = "AerogelAT", ItemId2[ItemId2.WickerSC = 8092] = "WickerSC", ItemId2[ItemId2.WickerTT = 8093] = "WickerTT", ItemId2[ItemId2.WickerPM = 8094] = "WickerPM", ItemId2[ItemId2.WickerSA = 8095] = "WickerSA", ItemId2[ItemId2.WickerDB = 8096] = "WickerDB", ItemId2[ItemId2.WickerAT = 8097] = "WickerAT", ItemId2[ItemId2.PolyesterSC = 7985] = "PolyesterSC", ItemId2[ItemId2.PolyesterTT = 7986] = "PolyesterTT", ItemId2[ItemId2.PolyesterPM = 7987] = "PolyesterPM", ItemId2[ItemId2.PolyesterSA = 7988] = "PolyesterSA", ItemId2[ItemId2.PolyesterDB = 7989] = "PolyesterDB", ItemId2[ItemId2.PolyesterAT = 7990] = "PolyesterAT", ItemId2[ItemId2.PlexiSC = 1230] = "PlexiSC", ItemId2[ItemId2.PlexiTT = 1231] = "PlexiTT", ItemId2[ItemId2.PlexiPM = 1232] = "PlexiPM", ItemId2[ItemId2.PlexiSA = 1233] = "PlexiSA", ItemId2[ItemId2.PlexiDB = 1234] = "PlexiDB", ItemId2[ItemId2.PlexiAT = 1235] = "PlexiAT", ItemId2[ItemId2.FlagstoneSC = 10138] = "FlagstoneSC", ItemId2[ItemId2.FlagstoneTT = 10139] = "FlagstoneTT", ItemId2[ItemId2.FlagstonePM = 10140] = "FlagstonePM", ItemId2[ItemId2.FlagstoneSA = 10141] = "FlagstoneSA", ItemId2[ItemId2.FlagstoneDB = 10142] = "FlagstoneDB", ItemId2[ItemId2.FlagstoneAT = 10143] = "FlagstoneAT", ItemId2[ItemId2.StainedGlassSC = 10122] = "StainedGlassSC", ItemId2[ItemId2.StainedGlassTT = 10123] = "StainedGlassTT", ItemId2[ItemId2.StainedGlassPM = 10124] = "StainedGlassPM", ItemId2[ItemId2.StainedGlassSA = 10125] = "StainedGlassSA", ItemId2[ItemId2.StainedGlassDB = 10126] = "StainedGlassDB", ItemId2[ItemId2.StainedGlassAT = 10127] = "StainedGlassAT", ItemId2[ItemId2.TerraCottaSC = 10106] = "TerraCottaSC", ItemId2[ItemId2.TerraCottaTT = 10107] = "TerraCottaTT", ItemId2[ItemId2.TerraCottaPM = 10108] = "TerraCottaPM", ItemId2[ItemId2.TerraCottaSA = 10109] = "TerraCottaSA", ItemId2[ItemId2.TerraCottaDB = 10110] = "TerraCottaDB", ItemId2[ItemId2.TerraCottaAT = 10111] = "TerraCottaAT", ItemId2[ItemId2.MarbleSC = 10090] = "MarbleSC", ItemId2[ItemId2.MarbleTT = 10091] = "MarbleTT", ItemId2[ItemId2.MarblePM = 10092] = "MarblePM", ItemId2[ItemId2.MarbleSA = 10093] = "MarbleSA", ItemId2[ItemId2.MarbleDB = 10094] = "MarbleDB", ItemId2[ItemId2.MarbleAT = 10095] = "MarbleAT", ItemId2[ItemId2.FiberglassSC = 8127] = "FiberglassSC", ItemId2[ItemId2.FiberglassTT = 8128] = "FiberglassTT", ItemId2[ItemId2.FiberglassPM = 8129] = "FiberglassPM", ItemId2[ItemId2.FiberglassSA = 8130] = "FiberglassSA", ItemId2[ItemId2.FiberglassDB = 8131] = "FiberglassDB", ItemId2[ItemId2.FiberglassAT = 8132] = "FiberglassAT", ItemId2[ItemId2.WroughtIronSC = 8113] = "WroughtIronSC", ItemId2[ItemId2.WroughtIronTT = 8114] = "WroughtIronTT", ItemId2[ItemId2.WroughtIronPM = 8115] = "WroughtIronPM", ItemId2[ItemId2.WroughtIronSA = 8116] = "WroughtIronSA", ItemId2[ItemId2.WroughtIronDB = 8117] = "WroughtIronDB", ItemId2[ItemId2.WroughtIronAT = 8118] = "WroughtIronAT", ItemId2[ItemId2.BakeliteSC = 8099] = "BakeliteSC", ItemId2[ItemId2.BakeliteTT = 8100] = "BakeliteTT", ItemId2[ItemId2.BakelitePM = 8101] = "BakelitePM", ItemId2[ItemId2.BakeliteSA = 8102] = "BakeliteSA", ItemId2[ItemId2.BakeliteDB = 8103] = "BakeliteDB", ItemId2[ItemId2.BakeliteAT = 8104] = "BakeliteAT", ItemId2[ItemId2.PorcelainSC = 7991] = "PorcelainSC", ItemId2[ItemId2.PorcelainTT = 7992] = "PorcelainTT", ItemId2[ItemId2.PorcelainPM = 7993] = "PorcelainPM", ItemId2[ItemId2.PorcelainSA = 7994] = "PorcelainSA", ItemId2[ItemId2.PorcelainDB = 7995] = "PorcelainDB", ItemId2[ItemId2.PorcelainAT = 7996] = "PorcelainAT", ItemId2[ItemId2.BrimstoneSC = 2814] = "BrimstoneSC", ItemId2[ItemId2.BrimstoneTT = 2815] = "BrimstoneTT", ItemId2[ItemId2.BrimstonePM = 2817] = "BrimstonePM", ItemId2[ItemId2.BrimstoneSA = 2818] = "BrimstoneSA", ItemId2[ItemId2.BrimstoneDB = 2816] = "BrimstoneDB", ItemId2[ItemId2.BrimstoneAT = 2813] = "BrimstoneAT", ItemId2[ItemId2.PickyTweezers = 7936] = "PickyTweezers", ItemId2[ItemId2.AdventurerBobblehead = 9084] = "AdventurerBobblehead", ItemId2[ItemId2.PerfectlyFairCoin = 9526] = "PerfectlyFairCoin", ItemId2[ItemId2.GarlandOfGreatness = 9910] = "GarlandOfGreatness", ItemId2[ItemId2.Ring = 10252] = "Ring", ItemId2[ItemId2.RedPlumbersBoots = 10501] = "RedPlumbersBoots", ItemId2[ItemId2.QuantumOfFamiliar = 10758] = "QuantumOfFamiliar", ItemId2[ItemId2.TheBigBookOfEverySkill = 10917] = "TheBigBookOfEverySkill", ItemId2[ItemId2.StuffedDinosaur = 10949] = "StuffedDinosaur", ItemId2;
 }(ItemId || {}), Thwaitgold = /* @__PURE__ */ function(Thwaitgold2) {
@@ -2919,6 +2965,7 @@ var pointsRadix = 32, tattooLevelRadix = 16, compressPaths = function(paths) {
 };
 
 // ../greenbox-data/lib/skills.ts
+init_kolmafia_polyfill();
 var SkillStatus = /* @__PURE__ */ function(SkillStatus2) {
   return SkillStatus2[SkillStatus2.NONE = 0] = "NONE", SkillStatus2[SkillStatus2.SOFTCORE = 1] = "SOFTCORE", SkillStatus2[SkillStatus2.HARDCORE = 2] = "HARDCORE", SkillStatus2;
 }({});
@@ -2988,7 +3035,11 @@ var compressSkills = function(skills) {
   }, ["", 0])[0].replace(/0+($|,)/, "$1");
 };
 
+// ../greenbox-data/lib/tattoos.ts
+init_kolmafia_polyfill();
+
 // ../greenbox-data/data/tattoos.ts
+init_kolmafia_polyfill();
 var tattoos_default = [{
   name: "8-Bit Finery",
   image: "swordtat",
@@ -3665,7 +3716,11 @@ var compressOutfitTattoos = function(tattoos) {
   }, "").replace(/0+$/, "");
 };
 
+// ../greenbox-data/lib/trophies.ts
+init_kolmafia_polyfill();
+
 // ../greenbox-data/data/trophies.ts
+init_kolmafia_polyfill();
 var trophies_default = [{
   id: 1,
   name: "Little Boat",
@@ -4331,6 +4386,15 @@ var compressTrophies = function(trophies) {
   }, "").replace(/0+$/, "");
 };
 
+// ../greenbox-data/lib/classes.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/data/classes.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/lib/effects.ts
+init_kolmafia_polyfill();
+
 // ../greenbox-data/lib/index.ts
 function compress(raw) {
   var compressed = {
@@ -4349,10 +4413,15 @@ function compress(raw) {
 // src/greenbox.ts
 var import_kolmafia7 = require("kolmafia");
 
+// ../../node_modules/libram/dist/index.js
+init_kolmafia_polyfill();
+
 // ../../node_modules/libram/dist/lib.js
+init_kolmafia_polyfill();
 var import_kolmafia3 = require("kolmafia");
 
 // ../../node_modules/libram/dist/property.js
+init_kolmafia_polyfill();
 var import_kolmafia = require("kolmafia");
 var createPropertyGetter = function(transform) {
   return function(property, default_) {
@@ -4377,9 +4446,11 @@ var createPropertyGetter = function(transform) {
 }), getBounty = createMafiaClassPropertyGetter(import_kolmafia.Bounty, import_kolmafia.toBounty), getClass = createMafiaClassPropertyGetter(import_kolmafia.Class, import_kolmafia.toClass), getCoinmaster = createMafiaClassPropertyGetter(import_kolmafia.Coinmaster, import_kolmafia.toCoinmaster), getEffect = createMafiaClassPropertyGetter(import_kolmafia.Effect, import_kolmafia.toEffect), getElement = createMafiaClassPropertyGetter(import_kolmafia.Element, import_kolmafia.toElement), getFamiliar = createMafiaClassPropertyGetter(import_kolmafia.Familiar, import_kolmafia.toFamiliar), getItem = createMafiaClassPropertyGetter(import_kolmafia.Item, import_kolmafia.toItem), getLocation = createMafiaClassPropertyGetter(import_kolmafia.Location, import_kolmafia.toLocation), getMonster = createMafiaClassPropertyGetter(import_kolmafia.Monster, import_kolmafia.toMonster), getPhylum = createMafiaClassPropertyGetter(import_kolmafia.Phylum, import_kolmafia.toPhylum), getServant = createMafiaClassPropertyGetter(import_kolmafia.Servant, import_kolmafia.toServant), getSkill = createMafiaClassPropertyGetter(import_kolmafia.Skill, import_kolmafia.toSkill), getSlot = createMafiaClassPropertyGetter(import_kolmafia.Slot, import_kolmafia.toSlot), getStat = createMafiaClassPropertyGetter(import_kolmafia.Stat, import_kolmafia.toStat), getThrall = createMafiaClassPropertyGetter(import_kolmafia.Thrall, import_kolmafia.toThrall);
 
 // ../../node_modules/libram/dist/template-string.js
+init_kolmafia_polyfill();
 var import_kolmafia2 = require("kolmafia");
 
 // ../../node_modules/libram/dist/utils.js
+init_kolmafia_polyfill();
 function _createForOfIteratorHelper2(o, allowArrayLike) {
   var it = typeof Symbol < "u" && o[Symbol.iterator] || o["@@iterator"];
   if (!it) {
@@ -4457,7 +4528,9 @@ function splitByCommasWithEscapes(str) {
   return returnValue.push(currentString.trim()), returnValue;
 }
 function undelay(delayedObject) {
-  return typeof delayedObject == "function" ? delayedObject() : delayedObject;
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++)
+    args[_key - 1] = arguments[_key];
+  return typeof delayedObject == "function" ? delayedObject.apply(void 0, args) : delayedObject;
 }
 function makeByXFunction(source) {
   return function(options) {
@@ -4521,7 +4594,7 @@ var concatTemplateString = function(literals) {
   return tagFunction.all = function() {
     return Type.all();
   }, tagFunction;
-}, $bounty = createSingleConstant(import_kolmafia2.Bounty), $bounties = createPluralConstant(import_kolmafia2.Bounty), $class = createSingleConstant(import_kolmafia2.Class), $classes = createPluralConstant(import_kolmafia2.Class), $coinmaster = createSingleConstant(import_kolmafia2.Coinmaster), $coinmasters = createPluralConstant(import_kolmafia2.Coinmaster), $effect = createSingleConstant(import_kolmafia2.Effect), $effects = createPluralConstant(import_kolmafia2.Effect), $element = createSingleConstant(import_kolmafia2.Element), $elements = createPluralConstant(import_kolmafia2.Element), $familiar = createSingleConstant(import_kolmafia2.Familiar), $familiars = createPluralConstant(import_kolmafia2.Familiar), $item = createSingleConstant(import_kolmafia2.Item), $items = createPluralConstant(import_kolmafia2.Item), $location = createSingleConstant(import_kolmafia2.Location), $locations = createPluralConstant(import_kolmafia2.Location), $monster = createSingleConstant(import_kolmafia2.Monster), $monsters = createPluralConstant(import_kolmafia2.Monster), $phylum = createSingleConstant(import_kolmafia2.Phylum), $phyla = createPluralConstant(import_kolmafia2.Phylum), $servant = createSingleConstant(import_kolmafia2.Servant), $servants = createPluralConstant(import_kolmafia2.Servant), $skill = createSingleConstant(import_kolmafia2.Skill), $skills = createPluralConstant(import_kolmafia2.Skill), $slot = createSingleConstant(import_kolmafia2.Slot), $slots = createPluralConstant(import_kolmafia2.Slot), $stat = createSingleConstant(import_kolmafia2.Stat), $stats = createPluralConstant(import_kolmafia2.Stat), $thrall = createSingleConstant(import_kolmafia2.Thrall), $thralls = createPluralConstant(import_kolmafia2.Thrall), $path = createSingleConstant(import_kolmafia2.Path), $paths = createPluralConstant(import_kolmafia2.Path);
+}, $bounty = createSingleConstant(import_kolmafia2.Bounty), $bounties = createPluralConstant(import_kolmafia2.Bounty), $class = createSingleConstant(import_kolmafia2.Class), $classes = createPluralConstant(import_kolmafia2.Class), $coinmaster = createSingleConstant(import_kolmafia2.Coinmaster), $coinmasters = createPluralConstant(import_kolmafia2.Coinmaster), $effect = createSingleConstant(import_kolmafia2.Effect), $effects = createPluralConstant(import_kolmafia2.Effect), $element = createSingleConstant(import_kolmafia2.Element), $elements = createPluralConstant(import_kolmafia2.Element), $familiar = createSingleConstant(import_kolmafia2.Familiar), $familiars = createPluralConstant(import_kolmafia2.Familiar), $item = createSingleConstant(import_kolmafia2.Item), $items = createPluralConstant(import_kolmafia2.Item), $location = createSingleConstant(import_kolmafia2.Location), $locations = createPluralConstant(import_kolmafia2.Location), $modifier = createSingleConstant(import_kolmafia2.Modifier), $modifiers = createPluralConstant(import_kolmafia2.Modifier), $monster = createSingleConstant(import_kolmafia2.Monster), $monsters = createPluralConstant(import_kolmafia2.Monster), $phylum = createSingleConstant(import_kolmafia2.Phylum), $phyla = createPluralConstant(import_kolmafia2.Phylum), $servant = createSingleConstant(import_kolmafia2.Servant), $servants = createPluralConstant(import_kolmafia2.Servant), $skill = createSingleConstant(import_kolmafia2.Skill), $skills = createPluralConstant(import_kolmafia2.Skill), $slot = createSingleConstant(import_kolmafia2.Slot), $slots = createPluralConstant(import_kolmafia2.Slot), $stat = createSingleConstant(import_kolmafia2.Stat), $stats = createPluralConstant(import_kolmafia2.Stat), $thrall = createSingleConstant(import_kolmafia2.Thrall), $thralls = createPluralConstant(import_kolmafia2.Thrall), $path = createSingleConstant(import_kolmafia2.Path), $paths = createPluralConstant(import_kolmafia2.Path);
 
 // ../../node_modules/libram/dist/lib.js
 var _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31, _templateObject32, _templateObject33, _templateObject34;
@@ -4609,6 +4682,7 @@ var byStat = makeByXFunction(function() {
 });
 
 // ../../node_modules/libram/dist/Kmail.js
+init_kolmafia_polyfill();
 var import_kolmafia4 = require("kolmafia");
 function _createForOfIteratorHelper3(o, allowArrayLike) {
   var it = typeof Symbol < "u" && o[Symbol.iterator] || o["@@iterator"];
@@ -4910,9 +4984,11 @@ var Kmail = /* @__PURE__ */ function() {
 }();
 
 // src/iotms.ts
+init_kolmafia_polyfill();
 var import_kolmafia6 = require("kolmafia");
 
 // src/utils.ts
+init_kolmafia_polyfill();
 var import_kolmafia5 = require("kolmafia");
 function haveItem(item) {
   return [import_kolmafia5.availableAmount, import_kolmafia5.closetAmount, import_kolmafia5.displayAmount, import_kolmafia5.equippedAmount, import_kolmafia5.itemAmount, import_kolmafia5.storageAmount].map(function(f) {
@@ -4940,8 +5016,6 @@ function haveBound(iotm, options) {
       switch (iotm.id) {
         case 5790:
           return haveItem(boxed) || haveItem(import_kolmafia6.Item.get("right bear arm")) && haveItem(import_kolmafia6.Item.get("left bear arm"));
-        case 6413:
-          return (0, import_kolmafia6.floristAvailable)();
       }
       return !1;
     }
@@ -4964,9 +5038,10 @@ function haveBound(iotm, options) {
       });
     case "preference":
       return getBoolean(iotm.preference);
-    case "skill":
+    case "skill": {
       var skill = import_kolmafia6.Skill.get(iotm.skill);
       return (0, import_kolmafia6.haveSkill)(skill);
+    }
     case "vip":
       return haveItem(import_kolmafia6.Item.get("Clan VIP Lounge Key"));
   }
