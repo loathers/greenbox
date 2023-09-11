@@ -5095,15 +5095,17 @@ function _toPrimitive3(input, hint) {
   }
   return (hint === "string" ? String : Number)(input);
 }
-function checkIotMs(options) {
-  var _loadIotMs$data, _loadIotMs;
+function checkIotMs() {
+  var _loadIotMs$data, _loadIotMs, options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
   return ((_loadIotMs$data = (_loadIotMs = loadIotMs()) === null || _loadIotMs === void 0 ? void 0 : _loadIotMs.data) !== null && _loadIotMs$data !== void 0 ? _loadIotMs$data : []).map(function(iotm) {
     return [iotm.id, getIotMStatus(iotm, options)];
   });
 }
-function checkItems(options) {
+function checkItems() {
+  var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
   return specialItems.map(function(id) {
-    return [id, options.force.includes(id) || haveItem(import_kolmafia7.Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE];
+    var _options$force;
+    return [id, (_options$force = options.force) !== null && _options$force !== void 0 && _options$force.includes(id) || haveItem(import_kolmafia7.Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE];
   });
 }
 function checkSkills() {
@@ -5218,7 +5220,7 @@ var hasFlag = function(args) {
 function main() {
   var args = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "";
   if (hasFlag(args, "--help", "-h")) {
-    (0, import_kolmafia7.printHtml)("\n      Usage:\n      <table border=0>\n      <tr><td>greenbox [...options]</td></tr>\n      </table>\n      Options:\n      <table border=0>\n      <tr><td>--help -h</td><td>See this message</td></tr>\n      <tr><td>--wipe -w</td><td>Wipe your public profile</td></tr>\n      <tr><td>--private -w</td><td>Generate a link without updating your public profile</td></tr>\n      <tr><td>--force-florist</td><td>Report that you have an Order of the Green Thumb Order Form bound, even if KoLmafia says otherwise</td></tr>\n      </table>\n    ");
+    (0, import_kolmafia7.printHtml)("\n      Usage:\n      <table border=0>\n      <tr><td>greenbox [...options]</td></tr>\n      </table>\n      Options:\n      <table border=0>\n      <tr><td>--help -h</td><td>See this message</td></tr>\n      <tr><td>--wipe -w</td><td>Wipe your public profile</td></tr>\n      <tr><td>--private -w</td><td>Generate a link without updating your public profile</td></tr>\n      </table>\n    ");
     return;
   }
   if (hasFlag(args, "--wipe", "-w")) {
@@ -5231,21 +5233,15 @@ function main() {
     return;
   }
   getBoolean("kingLiberated") || (0, import_kolmafia7.printHtml)("<b><font color=red>You are still in run so your greenboxes will probably be wrong</font></b>");
-  var tattoos = (0, import_kolmafia7.visitUrl)("account_tattoos.php"), forceItems = [];
-  hasFlag(args, "--force-florist") && forceItems.push(6413);
-  var code = compress(_objectSpread2(_objectSpread2({
+  var tattoos = (0, import_kolmafia7.visitUrl)("account_tattoos.php"), code = compress(_objectSpread2(_objectSpread2({
     meta: checkMeta(),
     skills: checkSkills(),
     familiars: checkFamiliars(),
     trophies: checkTrophies()
   }, checkTattoos(tattoos)), {}, {
     paths: checkPaths(tattoos),
-    iotms: checkIotMs({
-      force: forceItems
-    }),
-    items: checkItems({
-      force: forceItems
-    })
+    iotms: checkIotMs(),
+    items: checkItems()
   })), link = "https://greenbox.loathers.net/?".concat(keepPrivate ? "d=".concat(code) : "u=".concat((0, import_kolmafia7.myId)()));
   keepPrivate || Kmail.send(3501234, "GREENBOX:".concat(code)), (0, import_kolmafia7.printHtml)('All done! To see your greenboxes, visit: <a href="'.concat(link, '">').concat(link, "</a>"));
 }
