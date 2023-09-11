@@ -52,7 +52,7 @@ export const compressFamiliars = (familiars: RawFamiliar[]) =>
 export const expandFamiliars = (s = "") => {
   let id = 0;
 
-  let result = [] as RawFamiliar[];
+  const result = [] as RawFamiliar[];
 
   for (const c of s) {
     if (c === "*" && result.length > 0) {

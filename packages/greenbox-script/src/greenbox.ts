@@ -41,7 +41,7 @@ import {
   visitUrl,
 } from "kolmafia";
 import { Kmail } from "libram";
-import { getNumber, getBoolean } from "libram/dist/property";
+import { getBoolean, getNumber } from "libram/dist/property";
 
 import { getIotMStatus, IotMOptions } from "./iotms";
 import { haveItem } from "./utils";
@@ -82,7 +82,7 @@ function checkSkills() {
 
   function getStatus(skill: Skill) {
     // Toggle Optimality is hardcore permanent if the player has any skill level
-    if (toInt(skill) == 7254 && getNumber(`skillLevel7254`) > 0) {
+    if (toInt(skill) === 7254 && getNumber(`skillLevel7254`) > 0) {
       return SkillStatus.HARDCORE;
     }
 
@@ -257,7 +257,7 @@ function main(args = ""): void {
 
   printHtml(`Deciding your fate...`);
 
-  if (inMultiFight() || handlingChoice() || currentRound() != 0) {
+  if (inMultiFight() || handlingChoice() || currentRound() !== 0) {
     printHtml(
       `<b><font color=red>You are in a combat or a choice adventure so your greenboxes will fail. Exiting...</font></b>`,
     );

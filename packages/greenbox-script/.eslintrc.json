@@ -6,6 +6,7 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
+  "ignorePatterns": ["dist"],
   "plugins": ["@typescript-eslint", "libram"],
   "rules": {
     "block-scoped-var": "error",

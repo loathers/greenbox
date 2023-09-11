@@ -215,22 +215,24 @@ export const compressSkills = (skills: RawSkill[]) =>
 export const expandSkills = (s = "") => {
   let id = 1;
 
-  let result = [] as RawSkill[];
+  const result = [] as RawSkill[];
 
   for (let i = 0; i < s.length; i++) {
     const c = s[i];
     switch (c) {
-      case "(":
+      case "(": {
         // If we see brackets, adjust the last skill level
         const end = s.indexOf(")", i);
         result[result.length - 1][2] = Number(s.substring(i + 1, end));
         i = end;
         break;
-      case ",":
+      }
+      case ",": {
         // If we see a comma, jump to the next 1k block
         id = (Math.floor(id / 1000) + 1) * 1000;
         break;
-      default:
+      }
+      default: {
         const status = Number(c) as SkillStatus;
         // We can just drop any references to skills we do not have permed
         // or levelled at this stage
@@ -239,6 +241,7 @@ export const expandSkills = (s = "") => {
         }
         id++;
         break;
+      }
     }
   }
 
