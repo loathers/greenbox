@@ -6,6 +6,7 @@ import { useAppSelector } from "../hooks";
 import { createPlayerDataSelector } from "../store";
 
 import Familiar from "./Familiar";
+import HundredPercentedUnownableFamiliars from "./HundredPercentedUnownableFamiliars";
 import Section from "./Section";
 
 const selectPlayerFamiliars = createPlayerDataSelector("familiars");
@@ -13,7 +14,7 @@ const selectPlayerFamiliars = createPlayerDataSelector("familiars");
 export default function Familiars() {
   const playerFamiliars = useAppSelector(selectPlayerFamiliars);
   const allFamiliars = useAppSelector((state) => state.familiars);
-  const familiars = useMemo(() => allFamiliars.filter((s) => !s.pokefam), [allFamiliars]);
+  const familiars = useMemo(() => allFamiliars.filter((s) => s.ownable), [allFamiliars]);
   const loading = useAppSelector((state) => state.loading.familiars || false);
 
   const totalInTerrarium = useMemo(
@@ -31,6 +32,11 @@ export default function Familiars() {
         {} as { [id: number]: (typeof playerFamiliars)[number] },
       ),
     [playerFamiliars],
+  );
+
+  const hundredPercentedUnownables = useMemo(
+    () => allFamiliars.filter((s) => !s.ownable).filter((f) => idToFamiliar[f.id]?.[2] ?? false),
+    [allFamiliars],
   );
 
   return (
@@ -58,10 +64,11 @@ export default function Familiars() {
             key={f.id}
             familiar={f}
             status={idToFamiliar[f.id]?.[1] ?? 0}
-            hundredPercent={idToFamiliar[f.id]?.[2] ?? 0}
+            hundredPercent={idToFamiliar[f.id]?.[2] ?? false}
           />
         ))}
       </SimpleGrid>
+      <HundredPercentedUnownableFamiliars familiars={hundredPercentedUnownables} />
     </Section>
   );
 }

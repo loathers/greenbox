@@ -10,18 +10,22 @@ export type FamiliarDef = {
   id: number;
   name: string;
   image: string;
-  pokefam: boolean;
+  ownable: boolean;
 };
 
-const isPokefam = (familiarId: number) => {
-  return familiarId >= 215 && familiarId < 260;
+const isOwnable = (familiarId: number) => {
+  // April Fools familiars
+  if (familiarId >= 125 && familiarId < 134) return false;
+  // Pokefams
+  if (familiarId >= 215 && familiarId < 260) return false;
+  return true;
 };
 
 const parseFamiliar = (parts: string[]): FamiliarDef => ({
   id: Number(parts[0]),
   name: parts[1],
   image: parts[2],
-  pokefam: isPokefam(Number(parts[0])),
+  ownable: isOwnable(Number(parts[0])),
 });
 
 export const loadFamiliars = async (lastKnownSize: number) => {
