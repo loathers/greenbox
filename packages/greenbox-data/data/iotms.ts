@@ -202,7 +202,7 @@ const iotms: IotMDef[] = [
   { id: 4712, month: 2, year: 2013, type: "eudora", eudoraId: 2 }, // GameInformPowerDailyPro subscription card
   { id: 6305, month: 3, year: 2013, type: "item", item: "Jarlsberg's Pan" }, // Jarlsberg's pan
   { id: 6360, month: 4, year: 2013, type: "skill", skill: "Summon Taffy" }, // Libram of Pulled Taffy
-  { id: 6413, month: 5, year: 2013, type: "custom" }, // Order of the Green Thumb Order Form
+  { id: 6413, month: 5, year: 2013, type: "preference", preference: "ownsFloristFriar" }, // Order of the Green Thumb Order Form
   { id: 6561, month: 6, year: 2013, type: "familiar", familiar: "Mini-Adventurer" }, // adventurer clone egg
   { id: 6582, month: 7, year: 2013, type: "vip" }, // Clan hot dog stand
   { id: 4930, month: 8, year: 2013, type: "item", item: "over-the-shoulder Folder Holder" }, // Folder Holder
@@ -343,6 +343,7 @@ const iotms: IotMDef[] = [
   { id: 11222, month: 5, year: 2023, type: "item", item: "Cincho de Mayo" }, // shrink-wrapped Cincho de Mayo
   { id: 11256, month: 6, year: 2023, type: "item", item: "2002 Mr. Store Catalog" }, // shrink-wrapped 2002 Mr. Store Catalog
   { id: 11300, month: 7, year: 2023, type: "familiar", familiar: "Patriotic Eagle" }, // sleeping patriotic eagle
+  { id: 11305, month: 8, year: 2023, type: "item", item: "august scepter" }, // boxed august scepter
 ];
 
 export default iotms;

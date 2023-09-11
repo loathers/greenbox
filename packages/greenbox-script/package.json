@@ -14,7 +14,7 @@
   "dependencies": {
     "greenbox-data": "^0.0.0",
     "kolmafia": "^5.27461.0",
-    "libram": "^0.8.3"
+    "libram": "^0.8.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
