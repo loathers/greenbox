@@ -51,7 +51,7 @@ import { haveItem } from "./utils";
  * @returns array of 2-tuples of item id (of the packaged item) and status
  */
 
-function checkIotMs(options: IotMOptions) {
+function checkIotMs(options: IotMOptions = {}) {
   return (loadIotMs()?.data ?? []).map(
     (iotm) => [iotm.id, getIotMStatus(iotm, options)] as RawIotM,
   );
@@ -62,12 +62,12 @@ function checkIotMs(options: IotMOptions) {
  * @returns array of 2-tuples of item id and status
  */
 
-function checkItems(options: { force: number[] }) {
+function checkItems(options: Partial<{ force: number[] }> = {}) {
   return specialItems.map(
     (id) =>
       [
         id,
-        options.force.includes(id) || haveItem(Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE,
+        options.force?.includes(id) || haveItem(Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE,
       ] as RawItem,
   );
 }
@@ -239,7 +239,6 @@ function main(args = ""): void {
       <tr><td>--help -h</td><td>See this message</td></tr>
       <tr><td>--wipe -w</td><td>Wipe your public profile</td></tr>
       <tr><td>--private -w</td><td>Generate a link without updating your public profile</td></tr>
-      <tr><td>--force-florist</td><td>Report that you have an Order of the Green Thumb Order Form bound, even if KoLmafia says otherwise</td></tr>
       </table>
     `);
     return;
@@ -272,9 +271,6 @@ function main(args = ""): void {
 
   const tattoos = visitUrl("account_tattoos.php");
 
-  const forceItems = [];
-  if (hasFlag(args, "--force-florist")) forceItems.push(6413);
-
   const code = compress({
     meta: checkMeta(),
     skills: checkSkills(),
@@ -282,8 +278,8 @@ function main(args = ""): void {
     trophies: checkTrophies(),
     ...checkTattoos(tattoos),
     paths: checkPaths(tattoos),
-    iotms: checkIotMs({ force: forceItems }),
-    items: checkItems({ force: forceItems }),
+    iotms: checkIotMs(),
+    items: checkItems(),
   });
 
   const link = `https://greenbox.loathers.net/?${keepPrivate ? `d=${code}` : `u=${myId()}`}`;
