@@ -1,4 +1,4 @@
-import paths from "../data/paths";
+import paths, { HARDCORE, SOFTCORE } from "../data/paths";
 
 import { ItemStatus } from "./items";
 
@@ -89,3 +89,5 @@ export const expandPaths = (s = "") => {
     return [path.id, level, items, equipment, tattoos] as RawPath;
   });
 };
+
+export { SOFTCORE, HARDCORE };
