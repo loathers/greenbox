@@ -22,6 +22,7 @@ import {
   TattooStatus,
   TrophyDef,
   TrophyStatus,
+  VERSION,
 } from "greenbox-data";
 import {
   currentRound,
@@ -222,6 +223,7 @@ function checkMeta() {
     id: myId(),
     timestamp: new Date().getTime(),
     revision: getRevision(),
+    version: VERSION,
   };
 }
 

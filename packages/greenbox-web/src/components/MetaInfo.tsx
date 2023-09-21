@@ -1,9 +1,10 @@
 import { HStack, Text } from "@chakra-ui/react";
 import { formatDistance, intlFormat } from "date-fns";
-import { RawSnapshotData } from "greenbox-data";
+import { RawSnapshotData, VERSION } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
 import { FavouriteButton } from "./FavouriteButton";
+import VersionWarning from "./VersionWarning";
 
 type Props = {
   meta: RawSnapshotData["meta"];
@@ -40,7 +41,9 @@ export default function MetaInfo({ meta, direct }: Props) {
       <Text fontWeight="bold" title={`Player #${meta.id}`}>
         {meta.name}
       </Text>{" "}
-      <Text>from</Text> <Text title={humanDate}>{timeago}</Text> {!direct && <FavouriteButton />}
+      <Text>from</Text> <Text title={humanDate}>{timeago}</Text>
+      <VersionWarning current={VERSION} data={meta.version} />
+      {!direct && <FavouriteButton />}
     </HStack>
   );
 }

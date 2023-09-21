@@ -19,6 +19,14 @@ export * from "./tattoos";
 export * from "./trophies";
 export * from "./iotms";
 
+/**
+ * Major version number for the snapshot data
+ * ------
+ * Version 1: Initial
+ * Version 2: Inverted the order of standard rewards so they are chronological
+ */
+export const VERSION = 2;
+
 export interface RawSnapshotData {
   meta: Meta;
   skills: RawSkill[];
