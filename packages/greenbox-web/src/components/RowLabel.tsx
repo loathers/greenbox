@@ -1,10 +1,16 @@
 import { Flex, Badge } from "@chakra-ui/react";
 
-export default function Year({ year, complete }: { year: number; complete: boolean }) {
+export default function RowLabel({
+  label,
+  complete,
+}: {
+  label: React.ReactNode;
+  complete: boolean;
+}) {
   return (
     <Flex
       gridColumn={["1 / span 3", null, 1]}
-      key={`year-${year}`}
+      key={`rowlabel-${label}`}
       alignItems="center"
       justifyContent={[null, null, "flex-end"]}
     >
@@ -13,7 +19,7 @@ export default function Year({ year, complete }: { year: number; complete: boole
         fontSize="sm"
         bg={complete ? "complete" : undefined}
       >
-        {year}
+        {label}
       </Badge>
     </Flex>
   );

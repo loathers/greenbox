@@ -1,11 +1,16 @@
 import { Badge, Box, Heading } from "@chakra-ui/react";
-import { ItemStatus, PathDef } from "greenbox-data";
+import { HARDCORE, ItemStatus, PathDef, SOFTCORE } from "greenbox-data";
 
 import { useAppSelector } from "../hooks";
 
 import ItemGrid from "./ItemGrid";
 import PathTattoos from "./PathTattoos";
 import Subsection from "./Subsection";
+
+const ROW_LABEL_RENDERERS: { [id: number]: (i: number) => React.ReactNode } = {
+  [SOFTCORE]: (i: number) => 2015 + i,
+  [HARDCORE]: (i: number) => (i === 0 ? null : 2015 + (i - 1)),
+};
 
 type Props = {
   path: PathDef;
@@ -50,7 +55,11 @@ export default function Path({ path, points, items, equipment, tattoos, maxTatto
           <Heading as="h4" textTransform="uppercase" fontSize="xs">
             Equipment
           </Heading>
-          <ItemGrid items={path.equipment} playerItems={equipment} />
+          <ItemGrid
+            items={path.equipment}
+            playerItems={equipment}
+            getRowLabel={ROW_LABEL_RENDERERS[path.id]}
+          />
         </>
       )}
       {path.tattoos.length > 0 && (

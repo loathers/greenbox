@@ -6,7 +6,7 @@ import { useAppSelector } from "../hooks";
 
 import AlphaImage from "./AlphaImage";
 
-type StateType = "complete" | "partial" | null | undefined;
+export type StateType = "complete" | "partial" | null | undefined;
 
 type Props = {
   type: "skill" | "familiar" | "trophy" | "tattoo" | "item";

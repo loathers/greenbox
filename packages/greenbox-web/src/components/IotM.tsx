@@ -19,7 +19,7 @@ function iotmStatusToThingStatus(status: IotMStatus) {
   }
 }
 
-function itomStatusToTitle(iotm: IotMDef, status: IotMStatus) {
+function iotmStatusToTitle(iotm: IotMDef, status: IotMStatus) {
   switch (status) {
     case IotMStatus.BOUND:
       return iotm.type !== "vip" ? "Have" : "Have access if your clan owns one";
@@ -34,11 +34,11 @@ export default function IotM({ item, status, iotm }: Props) {
   if (!item) return null;
   return (
     <Thing
-      type="trophy"
+      type="item"
       name={item.name}
       image={`itemimages/${item.image}`}
       state={iotmStatusToThingStatus(status)}
-      title={itomStatusToTitle(iotm, status)}
+      title={iotmStatusToTitle(iotm, status)}
     />
   );
 }

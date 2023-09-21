@@ -8,7 +8,7 @@ import { chunk, notNullOrUndefined } from "../utils";
 
 import IotM from "./IotM";
 import Section from "./Section";
-import Year from "./Year";
+import ThingGrid from "./ThingGrid";
 
 const selectPlayerIotMs = createPlayerDataSelector("iotms");
 
@@ -33,16 +33,16 @@ export default function IotMs() {
     [playerIotMs],
   );
 
-  const idToIotM = useMemo(
+  const idToStatus = useMemo(
     () =>
       playerIotMs.reduce(
-        (acc, i) => ({ ...acc, [i[0]]: i }),
-        {} as { [id: number]: (typeof playerIotMs)[number] },
+        (acc, i) => ({ ...acc, [i[0]]: i[1] }),
+        {} as { [id: number]: IotMStatus },
       ),
     [playerIotMs],
   );
 
-  const iotmChunks = useMemo(() => chunk([...Array(9).map((_) => null), ...iotms], 12), [iotms]);
+  const normalizedIotms = useMemo(() => [...Array(9).map((_) => null), ...iotms], [iotms]);
 
   return (
     <Section
@@ -58,33 +58,20 @@ export default function IotMs() {
       ]}
       max={iotms.length}
     >
-      <SimpleGrid
-        spacing={1}
-        columns={[3, null, 13]}
-        gridTemplateColumns={[null, null, "auto repeat(12, minmax(0, 1fr))"]}
-      >
-        {iotmChunks.map((yearChunk, year) => {
-          const all = yearChunk
-            .filter(notNullOrUndefined)
-            .map((i) => idToIotM[i.id]?.[1] ?? IotMStatus.NONE)
-            .every((status) => status !== IotMStatus.NONE);
-          return [
-            <Year key={`year-${year}`} year={year + 2004} complete={all} />,
-            ...yearChunk.map((iotm, i) =>
-              iotm ? (
-                <IotM
-                  key={iotm.id}
-                  item={idToItem[iotm.id]}
-                  iotm={iotm}
-                  status={idToIotM[iotm.id]?.[1] ?? 0}
-                />
-              ) : (
-                <Box display={["none", null, "block"]} key={`blank-${i}`} />
-              ),
-            ),
-          ];
-        })}
-      </SimpleGrid>
+      <ThingGrid
+        idToStatus={idToStatus}
+        items={normalizedIotms}
+        columns={12}
+        getRowLabel={(row) => 2004 + row}
+        renderItem={(iotm) => (
+          <IotM
+            key={iotm.id}
+            item={idToItem[iotm.id]}
+            iotm={iotm}
+            status={idToStatus[iotm.id] ?? 0}
+          />
+        )}
+      />
     </Section>
   );
 }
