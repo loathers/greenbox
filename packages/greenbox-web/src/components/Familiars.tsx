@@ -1,6 +1,6 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import { FamiliarStatus } from "greenbox-data";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks";
 import { createPlayerDataSelector } from "../store";
@@ -8,13 +8,19 @@ import { createPlayerDataSelector } from "../store";
 import Familiar from "./Familiar";
 import HundredPercentedUnownableFamiliars from "./HundredPercentedUnownableFamiliars";
 import Section from "./Section";
+import { SortOrderSelect, sortByKey } from "./SortOrderSelect";
 
 const selectPlayerFamiliars = createPlayerDataSelector("familiars");
 
 export default function Familiars() {
+  const [sortBy, setSortBy] = useState<"name" | "id">("id");
+
   const playerFamiliars = useAppSelector(selectPlayerFamiliars);
   const allFamiliars = useAppSelector((state) => state.familiars);
-  const familiars = useMemo(() => allFamiliars.filter((s) => s.ownable), [allFamiliars]);
+  const familiars = useMemo(
+    () => allFamiliars.filter((s) => s.ownable).toSorted(sortByKey(sortBy)),
+    [allFamiliars, sortBy],
+  );
   const loading = useAppSelector((state) => state.loading.familiars || false);
 
   const totalInTerrarium = useMemo(
@@ -58,6 +64,12 @@ export default function Familiars() {
       ]}
       max={familiars.length}
     >
+      <SortOrderSelect<typeof sortBy>
+        onChange={setSortBy}
+        value={sortBy}
+        alphabeticalKey="name"
+        chronologicalKey="id"
+      />
       <SimpleGrid columns={6} spacing={1}>
         {familiars.map((f) => (
           <Familiar

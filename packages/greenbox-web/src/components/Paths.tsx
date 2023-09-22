@@ -1,17 +1,20 @@
 import { Stack } from "@chakra-ui/react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks";
 import { createPlayerDataSelector } from "../store";
 
 import Path from "./Path";
 import Section from "./Section";
+import { SortOrderSelect, sortByKey } from "./SortOrderSelect";
 
 const selectPlayerPaths = createPlayerDataSelector("paths");
 
 export default function Paths() {
+  const [sortBy, setSortBy] = useState<"name" | "id">("id");
   const playerPaths = useAppSelector(selectPlayerPaths);
-  const paths = useAppSelector((state) => state.paths);
+  const allPaths = useAppSelector((state) => state.paths);
+  const paths = useMemo(() => allPaths.toSorted(sortByKey(sortBy)), [allPaths, sortBy]);
   const loading = useAppSelector((state) => state.loading.paths || false);
 
   // A map of path id to array, where the index represents a tattoo for that path
@@ -103,6 +106,12 @@ export default function Paths() {
       ]}
       max={max}
     >
+      <SortOrderSelect<typeof sortBy>
+        onChange={setSortBy}
+        value={sortBy}
+        alphabeticalKey="name"
+        chronologicalKey="id"
+      />
       {paths.map((p) => (
         <Path
           key={p.name}
