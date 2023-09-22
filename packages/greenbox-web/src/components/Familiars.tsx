@@ -64,7 +64,7 @@ export default function Familiars() {
       ]}
       max={familiars.length}
     >
-      <SortOrderSelect<typeof sortBy>
+      <SortOrderSelect
         onChange={setSortBy}
         value={sortBy}
         alphabeticalKey="name"

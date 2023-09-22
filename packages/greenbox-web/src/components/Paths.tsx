@@ -106,7 +106,7 @@ export default function Paths() {
       ]}
       max={max}
     >
-      <SortOrderSelect<typeof sortBy>
+      <SortOrderSelect
         onChange={setSortBy}
         value={sortBy}
         alphabeticalKey="name"

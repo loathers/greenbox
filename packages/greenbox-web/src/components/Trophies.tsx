@@ -46,7 +46,7 @@ export default function Tattoos() {
       ]}
       max={trophies.length}
     >
-      <SortOrderSelect<typeof sortBy>
+      <SortOrderSelect
         onChange={setSortBy}
         value={sortBy}
         alphabeticalKey="name"
