@@ -36,7 +36,7 @@
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/color": "^3.0.4",
     "@types/he": "^1.1.2",
-    "@types/react": "^18.2.21",
+    "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.4",
     "greenbox-prettier-config": "^0.0.0",
