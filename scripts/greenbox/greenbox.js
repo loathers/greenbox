@@ -185,7 +185,7 @@ init_kolmafia_polyfill();
 
 // ../greenbox-data/data/iotms.ts
 init_kolmafia_polyfill();
-var iotms = [
+var iotms_default = [
   {
     id: 894,
     month: 10,
@@ -1989,7 +1989,7 @@ var iotms = [
     item: "august scepter"
   }
   // boxed august scepter
-], iotms_default = iotms;
+];
 
 // ../greenbox-data/lib/iotms.ts
 function ownKeys(e, r) {
@@ -2895,6 +2895,8 @@ var ItemId = /* @__PURE__ */ function(ItemId2) {
   name: "A Shrunken Adventurer am I",
   image: "itemimages/kiloskull.gif",
   items: [Thwaitgold.Fairyfly],
+  equipment: [],
+  tattoos: [],
   points: "skillLevel227",
   maxPoints: 11
 }];
@@ -4400,6 +4402,9 @@ init_kolmafia_polyfill();
 init_kolmafia_polyfill();
 
 // ../greenbox-data/lib/effects.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/lib/types.ts
 init_kolmafia_polyfill();
 
 // ../greenbox-data/lib/index.ts
