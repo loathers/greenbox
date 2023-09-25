@@ -200,6 +200,7 @@ const enum Thwaitgold {
   MosquitoInAmber = 10950,
   AntiMoth = 11166,
   SplendorBeetle = 11255,
+  Fairyfly = 11326,
 }
 
 export const SOFTCORE = -3;
@@ -905,4 +906,12 @@ export default [
     points: "legacyPoints",
     maxPoints: 19,
   },
+  {
+    id: 49,
+    name: "A Shrunken Adventurer am I",
+    image: "itemimages/kiloskull.gif",
+    items: [Thwaitgold.Fairyfly],
+    points: "skillLevel227",
+    maxPoints: 11,
+  }
 ] as const;
