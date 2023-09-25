@@ -1,4 +1,4 @@
-import tattoos from "../data/tattoos";
+import tattoos, { TattooDef } from "../data/tattoos";
 
 export const enum TattooStatus {
   NONE = 0,
@@ -6,11 +6,7 @@ export const enum TattooStatus {
   HAVE = 2,
 }
 
-export interface TattooDef {
-  name: string;
-  image: string | string[];
-  outfit?: number;
-}
+export { TattooDef };
 
 export function loadTattoos(lastKnownSize = 0) {
   const size = JSON.stringify(tattoos).length;

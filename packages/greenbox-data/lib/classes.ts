@@ -1,10 +1,6 @@
 import classes from "../data/classes";
 
-export type ClassDef = {
-  id: number;
-  name: string;
-  image: string;
-};
+export { ClassDef };
 
 export function loadClasses(lastKnownSize: number) {
   const size = JSON.stringify(classes).length;

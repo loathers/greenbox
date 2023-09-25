@@ -1,3 +1,9 @@
+export type ClassDef = {
+  id: number;
+  name: string;
+  image: string;
+};
+
 export default [
   { name: "Seal Clubber", id: 1, image: "club" },
   { name: "Turtle Tamer", id: 2, image: "turtle" },
@@ -20,4 +26,4 @@ export default [
   { name: "Pig Skinner", id: 28, image: "football2" },
   { name: "Cheese Wizard", id: 29, image: "jarl_cheeseslice" },
   { name: "Jazz Agent", id: 30, image: "motif" },
-] as const;
+] satisfies ClassDef[];

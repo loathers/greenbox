@@ -1,15 +1,11 @@
-import trophies from "../data/trophies";
+import trophies, { TrophyDef } from "../data/trophies";
 
 export const enum TrophyStatus {
   NONE = 0,
   HAVE = 1,
 }
 
-export interface TrophyDef {
-  id: number;
-  image: string;
-  name: string;
-}
+export { TrophyDef };
 
 export function loadTrophies(lastKnownSize = 0) {
   const size = JSON.stringify(trophies).length;

@@ -1,3 +1,9 @@
+export interface TattooDef {
+  name: string;
+  image: string | string[];
+  outfit?: number;
+}
+
 export default [
   { name: "8-Bit Finery", image: "swordtat", outfit: 15 },
   { name: "Aeroutfit", image: "aerotat", outfit: 118 },
@@ -161,4 +167,4 @@ export default [
   { name: "Wumpus-Hair Wardrobe", image: "wumpustat", outfit: 51 },
   { name: "Xiblaxian Stealth Suit", image: "xiblaxtat", outfit: 109 },
   { name: "Yendorian Finery", image: "elbereth", outfit: 16 },
-] as const;
+] satisfies TattooDef[];

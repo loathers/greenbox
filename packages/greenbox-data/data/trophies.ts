@@ -1,3 +1,9 @@
+export interface TrophyDef {
+  id: number;
+  image: string;
+  name: string;
+}
+
 export default [
   { id: 1, name: "Little Boat", image: "gonna_need_a_smaller_boat" },
   { id: 2, name: "Big Boat", image: "party_on_the_big_boat" },
@@ -160,4 +166,4 @@ export default [
   { id: 161, name: "Yule Have a Headache Tomorrow", image: "cuppa_cuppa_burning_goo" },
   { id: 162, name: "Dreaming of a Bland Crimbo", image: "every_christmas_is_like_sunday" },
   { id: 163, name: "HIGH SCORE", image: "no_religion_too" },
-] as const;
+] satisfies TrophyDef[];

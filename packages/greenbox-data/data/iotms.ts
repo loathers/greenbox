@@ -74,7 +74,7 @@ export type IotMDef =
   | SkillIotM
   | VIPIotM;
 
-const iotms: IotMDef[] = [
+export default [
   { id: 894, month: 10, year: 2004, type: "familiar", familiar: "Jill-O-Lantern" }, // Dark Jill-O-Lantern
   { id: 914, month: 11, year: 2004, type: "familiar", familiar: "Hand Turkey" }, // hand turkey outline
   { id: 924, month: 12, year: 2004, type: "familiar", familiar: "Crimbo Elf" }, // crimbo elfling
@@ -344,6 +344,4 @@ const iotms: IotMDef[] = [
   { id: 11256, month: 6, year: 2023, type: "item", item: "2002 Mr. Store Catalog" }, // shrink-wrapped 2002 Mr. Store Catalog
   { id: 11300, month: 7, year: 2023, type: "familiar", familiar: "Patriotic Eagle" }, // sleeping patriotic eagle
   { id: 11305, month: 8, year: 2023, type: "item", item: "august scepter" }, // boxed august scepter
-];
-
-export default iotms;
+] satisfies IotMDef[];

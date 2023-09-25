@@ -1,17 +1,8 @@
-import paths, { HARDCORE, SOFTCORE } from "../data/paths";
+import paths, { HARDCORE, PathDef, SOFTCORE } from "../data/paths";
 
 import { ItemStatus } from "./items";
 
-export interface PathDef {
-  id: number;
-  name: string;
-  image: string;
-  items: number[];
-  equipment: number[];
-  tattoos: { name: string; image: string | string[] }[];
-  points: string | string[] | null;
-  maxPoints: number;
-}
+export { PathDef };
 
 export function loadPaths(lastKnownSize = 0) {
   const size = JSON.stringify(paths).length;

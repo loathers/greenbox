@@ -206,6 +206,17 @@ const enum Thwaitgold {
 export const SOFTCORE = -3;
 export const HARDCORE = -2;
 
+export interface PathDef {
+  id: number;
+  name: string;
+  image: string;
+  items: number[];
+  equipment: number[];
+  tattoos: { name: string; image: string | string[] }[];
+  points: string | string[] | null;
+  maxPoints: number;
+}
+
 export default [
   {
     id: SOFTCORE,
@@ -911,7 +922,9 @@ export default [
     name: "A Shrunken Adventurer am I",
     image: "itemimages/kiloskull.gif",
     items: [Thwaitgold.Fairyfly],
+    equipment: [],
+    tattoos: [],
     points: "skillLevel227",
     maxPoints: 11,
   }
-] as const;
+] satisfies PathDef[];
