@@ -1053,14 +1053,14 @@
   resolved "https://registry.yarnpkg.com/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.21.0", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.21.0":
   version "7.22.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.6.tgz#57d64b9ae3cff1d67eb067ae117dac087f5bd438"
   integrity sha512-wDb5pWm4WDdF6LFUde3Jl8WzPA+3ZbxYqkC6xAXuD3irdEHN1k0NfTRrJD8ZD378SJ61miMLCqIOXYhd8x+AJQ==
   dependencies:
     regenerator-runtime "^0.13.11"
 
-"@babel/runtime@^7.8.4":
+"@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.23.1"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.23.1.tgz#72741dc4d413338a91dcb044a86f3c0bc402646d"
   integrity sha512-hC2v6p8ZSI/W0HUzh3V8C5g+NwSKzKPtJwSpTjwl0o297GP9+ZLQSkdvHz46CM3LqyoXxq+5G9komY+eSqSO0g==
@@ -2776,9 +2776,9 @@
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
 "@reduxjs/toolkit@^1.8.3":
-  version "1.9.5"
-  resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.9.5.tgz#d3987849c24189ca483baa7aa59386c8e52077c4"
-  integrity sha512-Rt97jHmfTeaxL4swLRNPD/zV4OxTes4la07Xc4hetpUW/vc75t5m1ANyxG6ymnEQ2FsLQsoMlYB2vV1sO3m8tQ==
+  version "1.9.6"
+  resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.9.6.tgz#fc968b45fe5b17ff90932c4556960d9c1078365a"
+  integrity sha512-Gc4ikl90ORF4viIdAkY06JNUnODjKfGxZRwATM30EdHq8hLSVoSrwXne5dd739yenP5bJxAX7tLuOWK5RPGtrw==
   dependencies:
     immer "^9.0.21"
     redux "^4.2.1"
@@ -5436,9 +5436,9 @@ kind-of@^6.0.2, kind-of@^6.0.3:
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
 kolmafia@^5.27586.0:
-  version "5.27586.0"
-  resolved "https://registry.yarnpkg.com/kolmafia/-/kolmafia-5.27586.0.tgz#ba5c5e147840c77134121282ba7f7c8ae217b7cf"
-  integrity sha512-5TND63CFB/qu9QMjEvvRSiD0KXHvXA6drVRERiVJV/ljKbKzqVkrhwVPR0odpRmUHu2Bvb9IX1k0TuRwOs2Hzg==
+  version "5.27618.0"
+  resolved "https://registry.yarnpkg.com/kolmafia/-/kolmafia-5.27618.0.tgz#e360a596bd7e21afb9d11c2cc4b5a29c50928748"
+  integrity sha512-pT6nxsF3mwkcSiyNpRK8O44yKB8BHdk4uziChSjrG2xlNaNrt1tVXdfeNxMdmUdBgpH/UrT3Gcwhs8TgfL+aFA==
 
 lerna@^7.2.0:
   version "7.3.0"
@@ -5552,9 +5552,9 @@ libnpmpublish@7.3.0:
     ssri "^10.0.1"
 
 libram@^0.8.9:
-  version "0.8.9"
-  resolved "https://registry.yarnpkg.com/libram/-/libram-0.8.9.tgz#06eec6137b514235f67187ad937ceb9f0858e756"
-  integrity sha512-Qbjz+F/Ij3lFg/eM9fqYJ62rHBFs/TdaGokeVJB2WtO32BQcr3ArtCxWN4UM1/ORqd8Ir8tEMKqFHnJZuGqD9Q==
+  version "0.8.12"
+  resolved "https://registry.yarnpkg.com/libram/-/libram-0.8.12.tgz#72786b58bcf1bc29c964819278c12e2fe26ce11b"
+  integrity sha512-BjZxRy3E+NOCUvhTOS6ceS9ku0Nk6emSCyduPEB/cEdKw7xba7YHWC8sZLALDBnVKnHSLFvjS7Cp8XUxqgYc0w==
   dependencies:
     html-entities "^2.4.0"
 
