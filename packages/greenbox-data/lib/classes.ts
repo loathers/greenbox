@@ -1,4 +1,4 @@
-import classes from "../data/classes";
+import classes, { ClassDef } from "../data/classes";
 
 export { ClassDef };
 
