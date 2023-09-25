@@ -90,7 +90,7 @@ export default function MainPage() {
           <TabPanel p={0}>
             <General />
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={0}>
             <ClanDungeons />
           </TabPanel>
         </TabPanels>
