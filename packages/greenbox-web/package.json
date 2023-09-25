@@ -7,7 +7,7 @@
     "watch": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "format": "prettier --write src/**/*.{ts,tsx} *.{json,ts,html} src/*.ts"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",

@@ -9,7 +9,7 @@
     "prettier-config.js"
   ],
   "scripts": {
-    "format": "prettier --write *.js"
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",

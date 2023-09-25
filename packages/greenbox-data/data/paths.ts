@@ -926,5 +926,5 @@ export default [
     tattoos: [],
     points: "skillLevel227",
     maxPoints: 11,
-  }
+  },
 ] satisfies PathDef[];

@@ -2,7 +2,7 @@ import paths, { HARDCORE, PathDef, SOFTCORE } from "../data/paths";
 
 import { ItemStatus } from "./items";
 
-export { PathDef };
+export { PathDef, SOFTCORE, HARDCORE };
 
 export function loadPaths(lastKnownSize = 0) {
   const size = JSON.stringify(paths).length;
@@ -80,5 +80,3 @@ export const expandPaths = (s = "") => {
     return [path.id, level, items, equipment, tattoos] as RawPath;
   });
 };
-
-export { SOFTCORE, HARDCORE };

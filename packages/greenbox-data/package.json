@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "format": "prettier --write **/*.{ts,json}"
+    "format": "prettier --write ."
   },
   "bugs": {
     "url": "https://github.com/loathers/greenbox/issues"
