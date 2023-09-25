@@ -1,8 +1,4 @@
-export interface TattooDef {
-  name: string;
-  image: string | string[];
-  outfit?: number;
-}
+import { TattooDef } from "../lib/types";
 
 export default [
   { name: "8-Bit Finery", image: "swordtat", outfit: 15 },

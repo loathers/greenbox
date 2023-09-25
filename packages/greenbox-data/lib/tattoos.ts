@@ -1,4 +1,6 @@
-import tattoos, { TattooDef } from "../data/tattoos";
+import tattoos from "../data/tattoos";
+
+import { TattooDef } from "./types";
 
 export const enum TattooStatus {
   NONE = 0,
@@ -6,15 +8,13 @@ export const enum TattooStatus {
   HAVE = 2,
 }
 
-export { TattooDef };
-
 export function loadTattoos(lastKnownSize = 0) {
   const size = JSON.stringify(tattoos).length;
 
   if (size === lastKnownSize) return null;
 
   return {
-    data: tattoos as unknown as TattooDef[],
+    data: tattoos as unknown as typeof tattoos,
     size: size,
   };
 }

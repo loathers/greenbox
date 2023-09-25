@@ -1,3 +1,5 @@
+import { PathDef } from "../lib/types";
+
 const enum ItemId {
   // Softcore Standard 2023
   ChiffonSC = 11028,
@@ -205,17 +207,6 @@ const enum Thwaitgold {
 
 export const SOFTCORE = -3;
 export const HARDCORE = -2;
-
-export interface PathDef {
-  id: number;
-  name: string;
-  image: string;
-  items: number[];
-  equipment: number[];
-  tattoos: { name: string; image: string | string[] }[];
-  points: string | string[] | null;
-  maxPoints: number;
-}
 
 export default [
   {

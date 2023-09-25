@@ -1,11 +1,9 @@
-import trophies, { TrophyDef } from "../data/trophies";
+import trophies from "../data/trophies";
 
 export const enum TrophyStatus {
   NONE = 0,
   HAVE = 1,
 }
-
-export { TrophyDef };
 
 export function loadTrophies(lastKnownSize = 0) {
   const size = JSON.stringify(trophies).length;
@@ -13,7 +11,7 @@ export function loadTrophies(lastKnownSize = 0) {
   if (size === lastKnownSize) return null;
 
   return {
-    data: trophies as unknown as TrophyDef[],
+    data: trophies as unknown as typeof trophies,
     size: size,
   };
 }

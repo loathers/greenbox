@@ -1,8 +1,4 @@
-export interface TrophyDef {
-  id: number;
-  image: string;
-  name: string;
-}
+import { TrophyDef } from "../lib/types";
 
 export default [
   { id: 1, name: "Little Boat", image: "gonna_need_a_smaller_boat" },

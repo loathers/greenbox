@@ -1,8 +1,4 @@
-export type ClassDef = {
-  id: number;
-  name: string;
-  image: string;
-};
+import { ClassDef } from "../lib/types";
 
 export default [
   { name: "Seal Clubber", id: 1, image: "club" },

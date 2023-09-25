@@ -1,6 +1,4 @@
-import classes, { ClassDef } from "../data/classes";
-
-export { ClassDef };
+import classes from "../data/classes";
 
 export function loadClasses(lastKnownSize: number) {
   const size = JSON.stringify(classes).length;
@@ -8,7 +6,7 @@ export function loadClasses(lastKnownSize: number) {
   if (size === lastKnownSize) return null;
 
   return {
-    data: classes as unknown as ClassDef[],
+    data: classes as unknown as typeof classes,
     size: size,
   };
 }

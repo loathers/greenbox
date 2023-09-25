@@ -19,6 +19,8 @@ export * from "./tattoos";
 export * from "./trophies";
 export * from "./iotms";
 
+export * from "./types";
+
 /**
  * Major version number for the snapshot data
  * ------

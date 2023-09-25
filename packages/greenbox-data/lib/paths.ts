@@ -1,8 +1,8 @@
-import paths, { HARDCORE, PathDef, SOFTCORE } from "../data/paths";
+import paths, { HARDCORE, SOFTCORE } from "../data/paths";
 
 import { ItemStatus } from "./items";
 
-export { PathDef, SOFTCORE, HARDCORE };
+export { SOFTCORE, HARDCORE };
 
 export function loadPaths(lastKnownSize = 0) {
   const size = JSON.stringify(paths).length;
@@ -10,7 +10,7 @@ export function loadPaths(lastKnownSize = 0) {
   if (size === lastKnownSize) return null;
 
   return {
-    data: paths as unknown as PathDef[],
+    data: paths as unknown as typeof paths,
     size: size,
   };
 }
