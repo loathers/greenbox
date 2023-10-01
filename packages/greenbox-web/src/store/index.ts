@@ -291,15 +291,26 @@ export const greenboxSlice = createSlice({
         state.playerId = action.meta.arg;
         // Parse and load greenbox string
         const greenboxString = action.payload;
-        state.playerData = api.expand(greenboxString);
+        try {
+          state.playerData = api.expand(greenboxString);
+          state.error.playerData = false;
+          state.errorMessage.playerData = undefined;
+        } catch {
+          state.error.playerData = true;
+          state.errorMessage.playerData = "Error parsing player data";
+        }
+
         state.loading.playerData = false;
-        state.error.playerData = false;
-        state.errorMessage.playerData = undefined;
       })
       .addCase(loadPlayerData, (state, action) => {
         state.playerId = null;
         const greenboxString = action.payload;
-        state.playerData = api.expand(greenboxString);
+        try {
+          state.playerData = api.expand(greenboxString);
+        } catch {
+          state.error.playerData = true;
+          state.errorMessage.playerData = "Error parsing player data";
+        }
       })
       .addCase(fetchPlayerData.rejected, (state, action) => {
         state.loading.playerData = false;
