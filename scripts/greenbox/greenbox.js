@@ -1987,8 +1987,16 @@ var iotms_default = [
     year: 2023,
     type: "item",
     item: "august scepter"
-  }
+  },
   // boxed august scepter
+  {
+    id: 11335,
+    month: 9,
+    year: 2023,
+    type: "familiar",
+    familiar: "Jill-of-All-Trades"
+  }
+  // Dark Jill-of-All-Trades
 ];
 
 // ../greenbox-data/lib/iotms.ts
