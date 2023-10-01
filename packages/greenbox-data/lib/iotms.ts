@@ -34,4 +34,4 @@ export const compressIotMs = (iotmList: RawIotM[]) => {
 };
 
 export const expandIotMs = (s = "") =>
-  s.split("").map((c, i) => [iotms[i].id, Number(c)] as RawIotM);
+  s.split("").map((c, i) => [iotms[i]?.id ?? null, Number(c)] as RawIotM);
