@@ -32,7 +32,6 @@ function determineTitle(tattoo: TattooDef, level: number, max: number) {
 
 export default function Tattoo({ tattoo, level }: Props) {
   const max = getMaxTattooLevel(tattoo);
-  const anchor = guessAnchorFromTattooImage(tattoo);
 
   // Show the current level of the tattoo, or the full version if no levels have been attained yet.
   const image = arrayOf(tattoo.image)[Math.min(max, level > 0 ? level : max) - 1];
@@ -45,19 +44,26 @@ export default function Tattoo({ tattoo, level }: Props) {
       sourceWidth={50}
       state={determineState(tattoo, level, max)}
       title={determineTitle(tattoo, level, max)}
-      link={`Tattoo${anchor}`}
+      link={guessWikiLink(tattoo)}
     />
   );
 }
 
-function guessAnchorFromTattooImage(tattoo: TattooDef) {
-  if (isOutfitTattoo(tattoo)) return "";
+function guessWikiLink(tattoo: TattooDef) {
+  // Outfit tattos can be successfully determined by the Thing wiki resolver.
+  if (isOutfitTattoo(tattoo)) return undefined;
+
   // The two upgradeable miscellaneous tattoos have their own wiki pages... but whatever.
-  if (isMiscTattoo(tattoo)) return "#Miscellaneous_Tattoos";
+  if (isMiscTattoo(tattoo)) return "Tattoo#Miscellaneous_Tattoos";
+
+  // Class tattoo image names follow a pattern.
   const image = arrayOf(tattoo.image)[0];
   if (image.startsWith("class"))
-    return image.endsWith("hc") ? "#Ascension_Tattoos" : "#Class_Tattoos";
+    return image.endsWith("hc") ? "Tattoo#Ascension_Tattoos" : "Tattoo#Class_Tattoos";
+
   // If it is not an outfit or miscellaneous tattoo and it ends in a number, it's probably a "number of ascensions" tattoo.
-  if (!isNaN(parseFloat(image[image.length - 1]))) return "#Ascension_Tattoos";
-  return "";
+  if (!isNaN(parseFloat(image[image.length - 1]))) return "Tattoo#Ascension_Tattoos";
+
+  // Otherwise fall back to the main page on tattoos.
+  return "Tattoo";
 }
