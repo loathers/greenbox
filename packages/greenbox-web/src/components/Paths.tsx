@@ -2,13 +2,11 @@ import { getMaxTattooLevel } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks";
-import { createPlayerDataSelector } from "../store";
+import { selectPlayerPaths } from "../store";
 
 import Path from "./Path";
 import Section from "./Section";
 import { SortOrderSelect, sortByKey } from "./SortOrderSelect";
-
-const selectPlayerPaths = createPlayerDataSelector("paths");
 
 export default function Paths() {
   const [sortBy, setSortBy] = useState<"name" | "id">("id");

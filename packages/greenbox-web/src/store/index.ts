@@ -379,6 +379,9 @@ export const selectIdToSkills = createSelector(
 );
 
 export const selectPlayerItems = createPlayerDataSelector("items");
+export const selectPlayerPaths = createPlayerDataSelector("paths");
+export const selectPlayerOutfitTattoos = createPlayerDataSelector("outfitTattoos");
+export const selectPlayerMiscTattoos = createPlayerDataSelector("miscTattoos");
 
 export const selectIdToPlayerItems = createSelector(selectPlayerItems, (playerItems) =>
   playerItems.reduce(

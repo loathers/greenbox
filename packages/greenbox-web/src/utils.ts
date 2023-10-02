@@ -1,4 +1,4 @@
-import { ClassDef, ItemStatus, SkillDef, SkillStatus } from "greenbox-data";
+import { ClassDef, ItemStatus, SkillDef, SkillStatus, tuple } from "greenbox-data";
 
 export function itemStatusToThingState(status: ItemStatus) {
   if (status > 0) return "complete";
@@ -87,4 +87,15 @@ export function getSkillHeader(bucket: number, cls: ClassDef) {
     default:
       return ["Unknown", "itemimages/book.gif"];
   }
+}
+
+export function unzip<X, Y>(array: [X, Y][]) {
+  return array.reduce(
+    ([x, y], [a, b]) =>
+      tuple([
+        [...x, a],
+        [...y, b],
+      ]),
+    tuple([[] as X[], [] as Y[]]),
+  );
 }

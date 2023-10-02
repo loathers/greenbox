@@ -2,17 +2,15 @@ import { RawTattoo, isMiscTattoo } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks";
+import { selectPlayerMiscTattoos } from "../store";
 
 import { SortOrderSelect, sortByKey } from "./SortOrderSelect";
 import Subsection from "./Subsection";
 import TattooGrid from "./TattooGrid";
 
-type Props = {
-  playerTattoos: RawTattoo[];
-};
-
-export default function OutfitTattoos({ playerTattoos }: Props) {
+export default function OutfitTattoos() {
   const allTattoos = useAppSelector((state) => state.tattoos);
+  const playerTattoos = useAppSelector(selectPlayerMiscTattoos);
 
   const [sortBy, setSortBy] = useState<"name" | "misc">("name");
 

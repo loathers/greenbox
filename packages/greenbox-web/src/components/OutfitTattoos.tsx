@@ -2,23 +2,21 @@ import { RawTattoo, isOutfitTattoo } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks";
+import { selectPlayerOutfitTattoos } from "../store";
 
 import { SortOrderSelect, sortByKey } from "./SortOrderSelect";
 import Subsection from "./Subsection";
 import TattooGrid from "./TattooGrid";
 
-type Props = {
-  playerTattoos: RawTattoo[];
-};
-
-export default function OutfitTattoos({ playerTattoos }: Props) {
+export default function OutfitTattoos() {
   const allTattoos = useAppSelector((state) => state.tattoos);
+  const playerTattoos = useAppSelector(selectPlayerOutfitTattoos);
 
-  const [outfitSortBy, setOutfitSortBy] = useState<"name" | "outfit">("name");
+  const [sortBy, setSortBy] = useState<"name" | "outfit">("name");
 
   const tattoos = useMemo(
-    () => allTattoos.filter(isOutfitTattoo).toSorted(sortByKey(outfitSortBy)),
-    [allTattoos, outfitSortBy],
+    () => allTattoos.filter(isOutfitTattoo).toSorted(sortByKey(sortBy)),
+    [allTattoos, sortBy],
   );
 
   const idToPlayerTattoo = useMemo(
@@ -37,8 +35,8 @@ export default function OutfitTattoos({ playerTattoos }: Props) {
       farRight
       right={
         <SortOrderSelect
-          onChange={setOutfitSortBy}
-          value={outfitSortBy}
+          onChange={setSortBy}
+          value={sortBy}
           alphabeticalKey="name"
           chronologicalKey="outfit"
         />

@@ -3,7 +3,7 @@ import { HARDCORE, ItemStatus, PathDef, SOFTCORE } from "greenbox-data";
 
 import ItemGrid from "./ItemGrid";
 import Subsection from "./Subsection";
-import PathTattoos from "./TattooGrid";
+import TattooGrid from "./TattooGrid";
 
 const ROW_LABEL_RENDERERS: { [id: number]: (i: number) => React.ReactNode } = {
   [SOFTCORE]: (i: number) => 2015 + i,
@@ -62,7 +62,7 @@ export default function Path({ path, points, items, equipment, tattoos }: Props)
           <Heading as="h4" textTransform="uppercase" fontSize="xs">
             Tattoos
           </Heading>
-          <PathTattoos tattoos={path.tattoos} getLevel={(t, i) => tattoos[i] || 0} />
+          <TattooGrid tattoos={path.tattoos} getLevel={(t, i) => tattoos[i] || 0} />
         </>
       )}
     </Subsection>
