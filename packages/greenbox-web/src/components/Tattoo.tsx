@@ -52,7 +52,7 @@ export default function Tattoo({ tattoo, level }: Props) {
 
 function guessAnchorFromTattooImage(tattoo: TattooDef) {
   if (isOutfitTattoo(tattoo)) return "";
-  if (isMiscTattoo(tattoo)) return "Miscellaneous_Tattoos";
+  if (isMiscTattoo(tattoo)) return "#Miscellaneous_Tattoos";
   const image = arrayOf(tattoo.image)[0];
   if (image.startsWith("class"))
     return image.endsWith("hc") ? "#Ascension_Tattoos" : "#Class_Tattoos";
