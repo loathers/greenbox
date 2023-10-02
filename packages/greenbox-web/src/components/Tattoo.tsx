@@ -52,10 +52,12 @@ export default function Tattoo({ tattoo, level }: Props) {
 
 function guessAnchorFromTattooImage(tattoo: TattooDef) {
   if (isOutfitTattoo(tattoo)) return "";
+  // The two upgradeable miscellaneous tattoos have their own wiki pages... but whatever.
   if (isMiscTattoo(tattoo)) return "#Miscellaneous_Tattoos";
   const image = arrayOf(tattoo.image)[0];
   if (image.startsWith("class"))
     return image.endsWith("hc") ? "#Ascension_Tattoos" : "#Class_Tattoos";
+  // If it is not an outfit or miscellaneous tattoo and it ends in a number, it's probably a "number of ascensions" tattoo.
   if (!isNaN(parseFloat(image[image.length - 1]))) return "#Ascension_Tattoos";
   return "";
 }
