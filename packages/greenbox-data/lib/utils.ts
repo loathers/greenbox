@@ -19,3 +19,7 @@ export async function loadMafiaData(fileName: string, lastKnownSize = 0) {
     size: Number(request.headers.get("Content-Length")),
   };
 }
+
+export const tuple = <T extends unknown[]>(args: [...T]): T => args;
+
+export const arrayOf = <T>(items: T | T[]) => (Array.isArray(items) ? items : [items]);

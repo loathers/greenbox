@@ -15,11 +15,20 @@ export interface PathDef {
   maxPoints: number;
 }
 
-export interface TattooDef {
+export interface BaseTattooDef {
   name: string;
   image: string | string[];
-  outfit?: number;
 }
+
+export interface OutfitTattooDef extends BaseTattooDef {
+  outfit: number;
+}
+
+export interface MiscTattooDef extends BaseTattooDef {
+  misc: number;
+}
+
+export type TattooDef = BaseTattooDef | OutfitTattooDef | MiscTattooDef;
 
 export interface TrophyDef {
   id: number;

@@ -1,25 +1,28 @@
 import {
+  arrayOf,
   compress,
   FamiliarStatus,
+  getMiscTattoos,
   getOutfitTattoos,
+  isOutfitTattoo,
   isPermable,
   ItemStatus,
   loadIotMs,
   loadPaths,
   loadTattoos,
   loadTrophies,
+  OutfitTattooStatus,
   PathDef,
   RawFamiliar,
   RawIotM,
   RawItem,
-  RawOutfitTattoo,
   RawPath,
   RawSkill,
+  RawTattoo,
   RawTrophy,
   SkillStatus,
   specialItems,
   TattooDef,
-  TattooStatus,
   TrophyDef,
   TrophyStatus,
   VERSION,
@@ -51,33 +54,26 @@ import { haveItem } from "./utils";
  * Generates a list of IotMs and status.
  * @returns array of 2-tuples of item id (of the packaged item) and status
  */
-
-function checkIotMs(options: IotMOptions = {}) {
-  return (loadIotMs()?.data ?? []).map(
-    (iotm) => [iotm.id, getIotMStatus(iotm, options)] as RawIotM,
-  );
+function checkIotMs(options: IotMOptions = {}): RawIotM[] {
+  return (loadIotMs()?.data ?? []).map((iotm) => [iotm.id, getIotMStatus(iotm, options)]);
 }
 
 /**
  * Generates a list of items and ownership status.
  * @returns array of 2-tuples of item id and status
  */
-
-function checkItems(options: Partial<{ force: number[] }> = {}) {
-  return specialItems.map(
-    (id) =>
-      [
-        id,
-        options.force?.includes(id) || haveItem(Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE,
-      ] as RawItem,
-  );
+function checkItems(options: Partial<{ force: number[] }> = {}): RawItem[] {
+  return specialItems.map((id) => [
+    id,
+    options.force?.includes(id) || haveItem(Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE,
+  ]);
 }
 
 /**
  * Generates a list of all permable skills and their status.
  * @returns list of 3-tuples of skill id, perm status and skill level, if any
  */
-function checkSkills() {
+function checkSkills(): RawSkill[] {
   // Key existence means permed in some way, true is HC, false is SC
   const permedSkills = getPermedSkills();
 
@@ -103,7 +99,7 @@ function checkSkills() {
 
   return Skill.all()
     .filter((skill) => isPermable(toInt(skill)))
-    .map((skill) => [toInt(skill), getStatus(skill), getLevel(skill)] as RawSkill);
+    .map((skill) => [toInt(skill), getStatus(skill), getLevel(skill)]);
 }
 
 /**
@@ -124,7 +120,7 @@ function getHundredPercentFamiliars() {
  * Generates an object with a list of familiars.
  * @returns large numeric list of familiars by fam ID
  */
-function checkFamiliars() {
+function checkFamiliars(): RawFamiliar[] {
   const hundredPercentFamiliars = getHundredPercentFamiliars();
 
   function getStatus(familiar: Familiar) {
@@ -138,45 +134,73 @@ function checkFamiliars() {
     return hundredPercentFamiliars.has(familiar);
   }
 
-  return Familiar.all().map(
-    (familiar) =>
-      [toInt(familiar), getStatus(familiar), getHundredPercent(familiar)] as RawFamiliar,
-  );
+  return Familiar.all().map((familiar) => [
+    toInt(familiar),
+    getStatus(familiar),
+    getHundredPercent(familiar),
+  ]);
 }
 
 /**
  * Generates an object with a list of trophy numbers.
  * @returns large numeric list of trophies by trophy number
  */
-function checkTrophies() {
+function checkTrophies(): RawTrophy[] {
   const page = visitUrl("trophies.php");
 
   function getStatus(trophy: TrophyDef) {
     return page.includes(`"trophy${trophy.id}"`) ? TrophyStatus.HAVE : TrophyStatus.NONE;
   }
 
-  return (loadTrophies()?.data ?? []).map((trophy) => [trophy.id, getStatus(trophy)] as RawTrophy);
+  return (loadTrophies()?.data ?? []).map((trophy) => [trophy.id, getStatus(trophy)]);
 }
 
+/**
+ * @param outfit Name of outfit
+ * @returns Whether the player has every piece of the specified outfit
+ */
 function haveOutfitPieces(outfit: string) {
   return outfitPieces(outfit).every((piece) => haveItem(piece));
 }
 
-function checkOutfitTattoos(page: string) {
-  function getStatus(tattoo: TattooDef) {
-    if (Array.isArray(tattoo.image)) return TattooStatus.NONE;
-    if (page.includes(tattoo.image)) return TattooStatus.HAVE;
-    if (haveOutfitPieces(tattoo.name)) return TattooStatus.HAVE_OUTFIT;
-    return TattooStatus.NONE;
+/**
+ * @param page Contents of account_tattoos.php
+ * @param tattoo The tattoo to check for
+ * @returns Whether the player has that tattoo and, if relevant, to what "level"
+ */
+function getTattooStatus(page: string, tattoo: TattooDef) {
+  const outfit = isOutfitTattoo(tattoo);
+  const images = arrayOf(tattoo.image);
+
+  for (let i = images.length - 1; i >= 0; i--) {
+    if (page.includes(images[i])) {
+      if (outfit && i === images.length - 1) return OutfitTattooStatus.HAVE;
+      return i + 1;
+    }
   }
 
-  return getOutfitTattoos(loadTattoos()?.data || []).map(
-    (tattoo) => [tattoo.outfit, getStatus(tattoo)] as RawOutfitTattoo,
-  );
+  if (outfit && haveOutfitPieces(tattoo.name)) return OutfitTattooStatus.HAVE_OUTFIT;
+
+  return OutfitTattooStatus.NONE;
+}
+
+function checkOutfitTattoos(page: string): RawTattoo[] {
+  return getOutfitTattoos(loadTattoos()?.data ?? []).map((tattoo) => [
+    tattoo.outfit,
+    getTattooStatus(page, tattoo),
+  ]);
+}
+
+function checkMiscTattoos(page: string): RawTattoo[] {
+  return getMiscTattoos(loadTattoos()?.data ?? []).map((tattoo) => [
+    tattoo.misc,
+    getTattooStatus(page, tattoo),
+  ]);
 }
 
 function checkTattoos(tattoos: string) {
   return {
+    miscTattoos: checkMiscTattoos(tattoos),
     outfitTattoos: checkOutfitTattoos(tattoos),
   };
 }
@@ -191,7 +215,8 @@ function getPathLevel(path: PathDef) {
   );
 }
 
-function checkPaths(tattoos: string) {
+function checkPaths(tattoos: string): RawPath[] {
+  const getTattooLevelForPage = (t: TattooDef) => getTattooStatus(tattoos, t);
   return (loadPaths()?.data ?? []).map((path) => {
     const level = getPathLevel(path);
     const items = path.items.map((i) =>
@@ -200,20 +225,9 @@ function checkPaths(tattoos: string) {
     const equipment = path.equipment.map((i) =>
       haveItem(Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE,
     );
-    const tats = path.tattoos.map((tattoo) => {
-      if (Array.isArray(tattoo.image)) {
-        for (let i = tattoo.image.length - 1; i >= 0; i--) {
-          if (tattoos.includes(tattoo.image[i])) {
-            return i + 1;
-          }
-        }
-        return 0;
-      }
+    const tats = path.tattoos.map(getTattooLevelForPage);
 
-      return tattoos.includes(tattoo.image) ? 1 : 0;
-    });
-
-    return [path.id, level, items, equipment, tats] as RawPath;
+    return [path.id, level, items, equipment, tats];
   });
 }
 

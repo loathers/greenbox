@@ -1,11 +1,9 @@
-import { IotMDef, IotMStatus } from "greenbox-data";
+import { arrayOf, IotMDef, IotMStatus } from "greenbox-data";
 import { Familiar, haveFamiliar, haveSkill, Item, Skill, visitUrl, xpath } from "kolmafia";
 import { flat, getFoldGroup, haveInCampground } from "libram";
 import { getBoolean } from "libram/dist/property";
 
 import { haveItem } from "./utils";
-
-const arrayOf = <T>(items: T | T[]) => (Array.isArray(items) ? items : [items]);
 
 export type IotMOptions = Partial<{
   force: number[];

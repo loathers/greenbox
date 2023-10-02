@@ -1,14 +1,21 @@
-import { HStack, Heading, Stack } from "@chakra-ui/react";
+import { Box, HStack, Heading, Stack } from "@chakra-ui/react";
 
 import AlphaImage from "./AlphaImage";
 
 type Props = React.PropsWithChildren<{
   title: string;
   image: string;
+  farRight?: boolean;
   right?: React.ReactNode;
 }>;
 
-export default function Subsection({ image, title, right = null, children }: Props) {
+export default function Subsection({
+  image,
+  title,
+  farRight = false,
+  right = null,
+  children,
+}: Props) {
   return (
     <Stack spacing={4}>
       <HStack>
@@ -21,6 +28,7 @@ export default function Subsection({ image, title, right = null, children }: Pro
         <Heading as="h3" fontWeight="normal" fontSize="2xl">
           {title}
         </Heading>
+        {farRight && <Box flex={1} />}
         {right}
       </HStack>
       {children}

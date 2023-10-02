@@ -40,10 +40,10 @@ export const compressItems = (items: RawItem[]) => {
     .join(",");
 };
 
-export const expandItems = (s = "") =>
+export const expandItems = (s = ""): RawItem[] =>
   s.split(",").map((l) => {
     const parts = l.split(":");
-    return [Number(parts[0]), parts[1] ? Number(parts[1]) : 1] as RawItem;
+    return [Number(parts[0]), parts[1] ? Number(parts[1]) : 1];
   });
 
 export { specialItems };
