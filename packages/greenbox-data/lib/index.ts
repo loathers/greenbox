@@ -23,7 +23,7 @@ export {
   getMaxTattooLevel,
   isOutfitTattoo,
   isMiscTattoo,
-  TattooStatus,
+  OutfitTattooStatus,
 } from "./tattoos";
 export * from "./trophies";
 export * from "./iotms";

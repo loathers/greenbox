@@ -1,8 +1,4 @@
-import {
-  TattooStatus,
-  getMaxTattooLevel,
-  isMiscTattoo,
-} from "greenbox-data";
+import { OutfitTattooStatus, getMaxTattooLevel, isMiscTattoo } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -34,14 +30,14 @@ export default function Tattoos() {
 
   const totalComplete = useMemo(
     () =>
-      playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE).length +
+      playerOutfitTattoos.filter((s) => s[1] === OutfitTattooStatus.HAVE).length +
       playerMiscTattoos.filter((s) => s[1] >= miscIdToMaxTattooLevel[s[0]]).length,
     [playerOutfitTattoos, playerMiscTattoos],
   );
 
   const totalPartial = useMemo(
     () =>
-      playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE_OUTFIT).length +
+      playerOutfitTattoos.filter((s) => s[1] === OutfitTattooStatus.HAVE_OUTFIT).length +
       playerMiscTattoos.filter((s) => s[1] > 0 && s[1] < miscIdToMaxTattooLevel[s[0]]).length,
     [playerOutfitTattoos],
   );

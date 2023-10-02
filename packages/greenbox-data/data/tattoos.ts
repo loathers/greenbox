@@ -168,7 +168,7 @@ export default [
   { name: "Salad", image: "saladtat", misc: 3 },
   {
     name: "Hobo",
-    image: Array(18)
+    image: Array(19)
       .fill(0)
       .map((_, i) => `hobotat${i + 1}`),
     misc: 4,

@@ -3,12 +3,14 @@ import {
   FamiliarStatus,
   getMiscTattoos,
   getOutfitTattoos,
+  isOutfitTattoo,
   isPermable,
   ItemStatus,
   loadIotMs,
   loadPaths,
   loadTattoos,
   loadTrophies,
+  OutfitTattooStatus,
   PathDef,
   RawFamiliar,
   RawIotM,
@@ -20,7 +22,6 @@ import {
   SkillStatus,
   specialItems,
   TattooDef,
-  TattooStatus,
   TrophyDef,
   TrophyStatus,
   VERSION,
@@ -162,22 +163,24 @@ function haveOutfitPieces(outfit: string) {
 }
 
 /**
- * @param page Contents of tattoos.php
+ * @param page Contents of account_tattoos.php
  * @param tattoo The tattoo to check for
  * @returns Whether the player has that tattoo and, if relevant, to what "level"
  */
 function getTattooStatus(page: string, tattoo: TattooDef) {
+  const outfit = isOutfitTattoo(tattoo);
   const images = Array.isArray(tattoo.image) ? tattoo.image : [tattoo.image];
 
   for (let i = images.length - 1; i >= 0; i--) {
     if (page.includes(images[i])) {
+      if (outfit && i === images.length - 1) return OutfitTattooStatus.HAVE;
       return i + 1;
     }
   }
 
-  if ("outfit" in tattoo && haveOutfitPieces(tattoo.name)) return TattooStatus.HAVE_OUTFIT;
+  if (outfit && haveOutfitPieces(tattoo.name)) return OutfitTattooStatus.HAVE_OUTFIT;
 
-  return TattooStatus.NONE;
+  return OutfitTattooStatus.NONE;
 }
 
 function checkOutfitTattoos(page: string): RawTattoo[] {
