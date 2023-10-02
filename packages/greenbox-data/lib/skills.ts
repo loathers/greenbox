@@ -1,4 +1,4 @@
-import { loadMafiaData } from "./utils";
+import { loadMafiaData, tuple } from "./utils";
 
 export const enum SkillStatus {
   NONE = 0,
@@ -206,16 +206,16 @@ export const compressSkills = (skills: RawSkill[]) =>
           r += `(${skill[2]})`;
         }
 
-        return [r, currentBlock] as [string, number];
+        return tuple([r, currentBlock]);
       },
-      ["", 0] as [string, number],
+      tuple(["", 0]),
     )[0]
     .replace(/0+($|,)/, "$1");
 
-export const expandSkills = (s = "") => {
+export const expandSkills = (s = ""): RawSkill[] => {
   let id = 1;
 
-  const result = [] as RawSkill[];
+  const result = [];
 
   for (let i = 0; i < s.length; i++) {
     const c = s[i];
@@ -233,11 +233,11 @@ export const expandSkills = (s = "") => {
         break;
       }
       default: {
-        const status = Number(c) as SkillStatus;
+        const status = Number(c);
         // We can just drop any references to skills we do not have permed
         // or levelled at this stage
         if (status !== SkillStatus.NONE || s[i + 1] === "(") {
-          result.push([id, status, 0]);
+          result.push(tuple([id, status, 0]));
         }
         id++;
         break;

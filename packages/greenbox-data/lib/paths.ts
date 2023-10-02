@@ -1,6 +1,7 @@
 import paths, { HARDCORE, SOFTCORE } from "../data/paths";
 
 import { ItemStatus } from "./items";
+import { tuple } from "./utils";
 
 export { SOFTCORE, HARDCORE };
 
@@ -49,13 +50,13 @@ export const compressPaths = (paths: RawPath[]) =>
         // Add radix encoded number for tattoo level
         r += path[4].map((i) => i.toString(tattooLevelRadix)).join("");
 
-        return [r, currentId] as [string, number];
+        return tuple([r, currentId]);
       },
-      ["", -3] as [string, number],
+      tuple(["", -3]),
     )[0]
     .replace(/0+($|,)/, "$1");
 
-export const expandPaths = (s = "") => {
+export const expandPaths = (s = ""): RawPath[] => {
   const parts = s.split(",");
 
   return paths.map((path) => {
@@ -77,6 +78,6 @@ export const expandPaths = (s = "") => {
       .map((c) => Number(c));
     part = part.substring(path.equipment.length);
     const tattoos = part.split("").map((c) => parseInt(c, tattooLevelRadix));
-    return [path.id, level, items, equipment, tattoos] as RawPath;
+    return [path.id, level, items, equipment, tattoos];
   });
 };

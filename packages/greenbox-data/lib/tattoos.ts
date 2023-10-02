@@ -43,4 +43,4 @@ export const compressTattoos = (tattoos: RawTattoo[]) =>
     .reduce((r, tattoo) => `${r}${"0".repeat(tattoo[0] - r.length - 1)}${tattoo[1]}`, "")
     .replace(/0+$/, "");
 
-export const expandTattoos = (s = "") => s.split("").map((c, i) => [i + 1, Number(c)] as RawTattoo);
+export const expandTattoos = (s = ""): RawTattoo[] => s.split("").map((c, i) => [i + 1, Number(c)]);

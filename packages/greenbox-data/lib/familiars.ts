@@ -1,4 +1,4 @@
-import { loadMafiaData } from "./utils";
+import { loadMafiaData, tuple } from "./utils";
 
 export const enum FamiliarStatus {
   NONE = 0,
@@ -53,10 +53,10 @@ export const compressFamiliars = (familiars: RawFamiliar[]) =>
     )
     .replace(/0+$/, "");
 
-export const expandFamiliars = (s = "") => {
+export const expandFamiliars = (s = ""): RawFamiliar[] => {
   let id = 0;
 
-  const result = [] as RawFamiliar[];
+  const result = [];
 
   for (const c of s) {
     if (c === "*" && result.length > 0) {
@@ -64,7 +64,7 @@ export const expandFamiliars = (s = "") => {
       continue;
     }
 
-    result.push([++id, Number(c), false]);
+    result.push(tuple([++id, Number(c), false]));
   }
 
   return result;
