@@ -2,10 +2,10 @@ import { ItemDef, ItemStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
-import { itemStatusToThingState, notNullOrUndefined } from "../utils";
+import { itemStatusToThingState } from "../utils";
 
 import Thing from "./Thing";
-import ThingGridGrid from "./ThingGrid";
+import ThingGrid from "./ThingGrid";
 
 type Props = {
   items: number[];
@@ -39,7 +39,7 @@ export default function ItemGrid({ items, playerItems, getRowLabel, columns = 6 
   );
 
   return (
-    <ThingGridGrid
+    <ThingGrid
       items={itemObjects}
       idToStatus={idToStatus}
       columns={columns}

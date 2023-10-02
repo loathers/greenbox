@@ -78,6 +78,19 @@ const ZOMBO = [
   3388, // Zombo's empty eye
 ];
 
+const HODGEMAN = [
+  3395, // Hodgman's porkpie hat
+  3396, // Hodgman's lobsterskin pants
+  3397, // Hodgman's bow tie
+  3405, // Hodgman's lucky sock
+  3406, // Hodgman's varcolac paw
+  3407, // Hodgman's almanac
+  3408, // Hodgman's harmonica
+  3409, // Hodgman's garbage sticker
+  3410, // Hodgman's metal detector
+  3411, // Hodgman's cane
+];
+
 export default function HobopolisSection() {
   const playerItems = useAppSelector(selectIdToPlayerItems);
 
@@ -127,6 +140,9 @@ export default function HobopolisSection() {
       </Subsection>
       <Subsection title="Zombo" image="itemimages/zomboshield.gif">
         <ItemGrid items={ZOMBO} playerItems={ZOMBO.map((id) => playerItems[id]?.[1] ?? 0)} />
+      </Subsection>
+      <Subsection title="Hodgman" image="itemimages/stuffhodg.gif">
+        <ItemGrid items={HODGEMAN} playerItems={HODGEMAN.map((id) => playerItems[id]?.[1] ?? 0)} />
       </Subsection>
     </Section>
   );
