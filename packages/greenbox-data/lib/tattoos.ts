@@ -23,6 +23,10 @@ export function isOutfitTattoo(tattoo: TattooDef): tattoo is OutfitTattooDef {
   return "outfit" in tattoo;
 }
 
+export function isMiscTattoo(tattoo: TattooDef): tattoo is MiscTattooDef {
+  return "misc" in tattoo;
+}
+
 export function getMaxTattooLevel(tattoo: TattooDef) {
   return Array.isArray(tattoo.image) ? tattoo.image.length : 1;
 }

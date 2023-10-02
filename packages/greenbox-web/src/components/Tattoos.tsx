@@ -1,58 +1,51 @@
-import { MiscTattooDef, OutfitTattooDef, TattooStatus } from "greenbox-data";
-import { useMemo, useState } from "react";
+import {
+  MiscTattooDef,
+  TattooDef,
+  TattooStatus,
+  getMaxTattooLevel,
+  isMiscTattoo,
+} from "greenbox-data";
+import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
 import { createPlayerDataSelector } from "../store";
 
+import MiscTattoos from "./MiscTattoos";
+import OutfitTattoos from "./OutfitTattoos";
 import Section from "./Section";
-import { SortOrderSelect, sortByKey } from "./SortOrderSelect";
-import Subsection from "./Subsection";
-import TattooGrid from "./TattooGrid";
 
 const selectPlayerOutfitTattoos = createPlayerDataSelector("outfitTattoos");
 const selectPlayerMiscTattoos = createPlayerDataSelector("miscTattoos");
 
 export default function Tattoos() {
-  const [outfitSortBy, setOutfitSortBy] = useState<"name" | "outfit">("name");
-  const [miscSortBy, setMiscSortBy] = useState<"name" | "misc">("name");
-
   const playerOutfitTattoos = useAppSelector(selectPlayerOutfitTattoos);
   const playerMiscTattoos = useAppSelector(selectPlayerMiscTattoos);
   const tattoos = useAppSelector((state) => state.tattoos);
-  const outfitTattoos = useMemo(
-    () =>
-      tattoos.filter((t): t is OutfitTattooDef => "outfit" in t).toSorted(sortByKey(outfitSortBy)),
-    [tattoos, outfitSortBy],
-  );
-  const miscTattoos = useMemo(
-    () => tattoos.filter((t): t is MiscTattooDef => "misc" in t).toSorted(sortByKey(miscSortBy)),
-    [tattoos, miscSortBy],
-  );
   const loading = useAppSelector((state) => state.loading.tattoos || false);
 
-  const totalOutfitTattos = useMemo(
-    () => playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE).length,
-    [playerOutfitTattoos],
-  );
-  const totalOutfits = useMemo(
-    () => playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE_OUTFIT).length,
-    [playerOutfitTattoos],
-  );
-  const idToOutfitTattoo = useMemo(
+  const miscIdToMaxTattooLevel = useMemo(
     () =>
-      playerOutfitTattoos.reduce(
-        (acc, t) => ({ ...acc, [t[0]]: t }),
-        {} as { [id: number]: (typeof playerOutfitTattoos)[number] },
-      ),
-    [playerOutfitTattoos],
+      tattoos
+        .filter(isMiscTattoo)
+        .reduce(
+          (acc, t) => ({ ...acc, [t.misc]: getMaxTattooLevel(t) }),
+          {} as { [id: number]: number },
+        ),
+    [tattoos],
   );
-  const idToMiscTattoo = useMemo(
+
+  const totalComplete = useMemo(
     () =>
-      playerMiscTattoos.reduce(
-        (acc, t) => ({ ...acc, [t[0]]: t }),
-        {} as { [id: number]: (typeof playerMiscTattoos)[number] },
-      ),
-    [playerMiscTattoos],
+      playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE).length +
+      playerMiscTattoos.filter((s) => s[1] >= miscIdToMaxTattooLevel[s[0]]).length,
+    [playerOutfitTattoos, playerMiscTattoos],
+  );
+
+  const totalPartial = useMemo(
+    () =>
+      playerOutfitTattoos.filter((s) => s[1] === TattooStatus.HAVE_OUTFIT).length +
+      playerMiscTattoos.filter((s) => s[1] > 0 && s[1] < miscIdToMaxTattooLevel[s[0]]).length,
+    [playerOutfitTattoos],
   );
 
   return (
@@ -63,38 +56,19 @@ export default function Tattoos() {
       values={[
         {
           color: "partial",
-          value: totalOutfits,
-          name: `${totalOutfits} / ${outfitTattoos.length} tattoos unlocked`,
+          value: totalPartial,
+          name: `${totalPartial} / ${tattoos.length} tattoos either not fully levelled or available but not claimed`,
         },
         {
           color: "complete",
-          value: totalOutfitTattos,
-          name: `${totalOutfitTattos} / ${outfitTattoos.length} tattoos unlocked`,
+          value: totalComplete,
+          name: `${totalComplete} / ${tattoos.length} tattoos unlocked`,
         },
       ]}
-      max={outfitTattoos.length}
+      max={tattoos.length}
     >
-      <Subsection title="Outfits" image="itemimages/palette.gif">
-        <SortOrderSelect
-          onChange={setOutfitSortBy}
-          value={outfitSortBy}
-          alphabeticalKey="name"
-          chronologicalKey="outfit"
-        />
-        <TattooGrid
-          tattoos={outfitTattoos}
-          getLevel={(t) => idToOutfitTattoo[t.outfit]?.[1] ?? 0}
-        />
-      </Subsection>
-      <Subsection title="Miscellaneous" image="itemimages/bgetat.gif">
-        <SortOrderSelect
-          onChange={setMiscSortBy}
-          value={miscSortBy}
-          alphabeticalKey="name"
-          chronologicalKey="misc"
-        />
-        <TattooGrid tattoos={miscTattoos} getLevel={(t) => idToMiscTattoo[t.misc]?.[1] ?? 0} />
-      </Subsection>
+      <OutfitTattoos playerTattoos={playerOutfitTattoos} />
+      <MiscTattoos playerTattoos={playerMiscTattoos} />
     </Section>
   );
 }
