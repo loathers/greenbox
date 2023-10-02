@@ -1,4 +1,4 @@
-import { Stack } from "@chakra-ui/react";
+import { getMaxTattooLevel } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -24,7 +24,7 @@ export default function Paths() {
       paths.reduce(
         (acc, p) => ({
           ...acc,
-          [p.id]: p.tattoos.map((t) => (Array.isArray(t.image) ? t.image.length : 1)),
+          [p.id]: p.tattoos.map(getMaxTattooLevel),
         }),
         {} as { [id: number]: number[] },
       ),
@@ -120,7 +120,6 @@ export default function Paths() {
           items={idToPath[p.id]?.[2] ?? []}
           equipment={idToPath[p.id]?.[3] ?? []}
           tattoos={idToPath[p.id]?.[4] ?? []}
-          maxTattooLevel={maxTattooLevel?.[p.id] ?? []}
         />
       ))}
     </Section>

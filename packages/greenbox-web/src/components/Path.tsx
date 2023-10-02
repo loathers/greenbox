@@ -1,11 +1,9 @@
 import { Badge, Box, Heading } from "@chakra-ui/react";
 import { HARDCORE, ItemStatus, PathDef, SOFTCORE } from "greenbox-data";
 
-import { useAppSelector } from "../hooks";
-
 import ItemGrid from "./ItemGrid";
-import PathTattoos from "./PathTattoos";
 import Subsection from "./Subsection";
+import PathTattoos from "./TattooGrid";
 
 const ROW_LABEL_RENDERERS: { [id: number]: (i: number) => React.ReactNode } = {
   [SOFTCORE]: (i: number) => 2015 + i,
@@ -18,12 +16,9 @@ type Props = {
   items: ItemStatus[];
   equipment: ItemStatus[];
   tattoos: number[];
-  maxTattooLevel: number[];
 };
 
-export default function Path({ path, points, items, equipment, tattoos, maxTattooLevel }: Props) {
-  const idToItem = useAppSelector((state) => state.items);
-
+export default function Path({ path, points, items, equipment, tattoos }: Props) {
   return (
     <Subsection
       title={path.name}
@@ -67,11 +62,7 @@ export default function Path({ path, points, items, equipment, tattoos, maxTatto
           <Heading as="h4" textTransform="uppercase" fontSize="xs">
             Tattoos
           </Heading>
-          <PathTattoos
-            tattoos={path.tattoos}
-            playerTattoos={tattoos}
-            maxTattooLevel={maxTattooLevel}
-          />
+          <PathTattoos tattoos={path.tattoos} getLevel={(t, i) => tattoos[i] || 0} />
         </>
       )}
     </Subsection>

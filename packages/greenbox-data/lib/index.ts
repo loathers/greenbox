@@ -6,7 +6,7 @@ import { compressItems, expandItems, RawItem } from "./items";
 import { compressMeta, expandMeta, Meta } from "./meta";
 import { compressPaths, expandPaths, RawPath } from "./paths";
 import { compressSkills, expandSkills, RawSkill } from "./skills";
-import { compressOutfitTattoos, expandOutfitTattoos, RawOutfitTattoo } from "./tattoos";
+import { compressTattoos, expandTattoos, RawTattoo } from "./tattoos";
 import { compressTrophies, expandTrophies, RawTrophy } from "./trophies";
 
 export * from "./classes";
@@ -15,7 +15,15 @@ export * from "./familiars";
 export * from "./items";
 export * from "./paths";
 export * from "./skills";
-export * from "./tattoos";
+export type { RawTattoo } from "./tattoos";
+export {
+  loadTattoos,
+  getMiscTattoos,
+  getOutfitTattoos,
+  getMaxTattooLevel,
+  isOutfitTattoo,
+  TattooStatus,
+} from "./tattoos";
 export * from "./trophies";
 export * from "./iotms";
 
@@ -34,7 +42,8 @@ export interface RawSnapshotData {
   skills: RawSkill[];
   familiars: RawFamiliar[];
   trophies: RawTrophy[];
-  outfitTattoos: RawOutfitTattoo[];
+  outfitTattoos: RawTattoo[];
+  miscTattoos: RawTattoo[];
   paths: RawPath[];
   iotms: RawIotM[];
   items: RawItem[];
@@ -48,7 +57,8 @@ export function compress(raw: RawSnapshotData): string {
     skills: compressSkills(raw.skills),
     familiars: compressFamiliars(raw.familiars),
     trophies: compressTrophies(raw.trophies),
-    outfitTattoos: compressOutfitTattoos(raw.outfitTattoos),
+    miscTattoos: compressTattoos(raw.miscTattoos),
+    outfitTattoos: compressTattoos(raw.outfitTattoos),
     paths: compressPaths(raw.paths),
     iotms: compressIotMs(raw.iotms),
     items: compressItems(raw.items),
@@ -67,7 +77,8 @@ export function expand(encoded: string): RawSnapshotData {
     skills: expandSkills(compressed.skills),
     familiars: expandFamiliars(compressed.familiars),
     trophies: expandTrophies(compressed.trophies),
-    outfitTattoos: expandOutfitTattoos(compressed.outfitTattoos),
+    outfitTattoos: expandTattoos(compressed.outfitTattoos),
+    miscTattoos: expandTattoos(compressed.miscTattoos),
     paths: expandPaths(compressed.paths),
     iotms: expandIotMs(compressed.iotms),
     items: expandItems(compressed.items),

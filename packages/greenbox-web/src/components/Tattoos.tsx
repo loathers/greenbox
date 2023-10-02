@@ -1,5 +1,4 @@
-import { Radio, RadioGroup, SimpleGrid, Stack } from "@chakra-ui/react";
-import { TattooStatus } from "greenbox-data";
+import { MiscTattooDef, OutfitTattooDef, TattooStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -7,18 +6,27 @@ import { createPlayerDataSelector } from "../store";
 
 import Section from "./Section";
 import { SortOrderSelect, sortByKey } from "./SortOrderSelect";
-import Tattoo from "./Tattoo";
+import Subsection from "./Subsection";
+import TattooGrid from "./TattooGrid";
 
 const selectPlayerOutfitTattoos = createPlayerDataSelector("outfitTattoos");
+const selectPlayerMiscTattoos = createPlayerDataSelector("miscTattoos");
 
 export default function Tattoos() {
-  const [sortBy, setSortBy] = useState<"name" | "outfit">("name");
+  const [outfitSortBy, setOutfitSortBy] = useState<"name" | "outfit">("name");
+  const [miscSortBy, setMiscSortBy] = useState<"name" | "misc">("name");
 
   const playerOutfitTattoos = useAppSelector(selectPlayerOutfitTattoos);
+  const playerMiscTattoos = useAppSelector(selectPlayerMiscTattoos);
   const tattoos = useAppSelector((state) => state.tattoos);
   const outfitTattoos = useMemo(
-    () => tattoos.filter((t) => t.outfit !== undefined).toSorted(sortByKey(sortBy)),
-    [tattoos, sortBy],
+    () =>
+      tattoos.filter((t): t is OutfitTattooDef => "outfit" in t).toSorted(sortByKey(outfitSortBy)),
+    [tattoos, outfitSortBy],
+  );
+  const miscTattoos = useMemo(
+    () => tattoos.filter((t): t is MiscTattooDef => "misc" in t).toSorted(sortByKey(miscSortBy)),
+    [tattoos, miscSortBy],
   );
   const loading = useAppSelector((state) => state.loading.tattoos || false);
 
@@ -38,11 +46,19 @@ export default function Tattoos() {
       ),
     [playerOutfitTattoos],
   );
+  const idToMiscTattoo = useMemo(
+    () =>
+      playerMiscTattoos.reduce(
+        (acc, t) => ({ ...acc, [t[0]]: t }),
+        {} as { [id: number]: (typeof playerMiscTattoos)[number] },
+      ),
+    [playerMiscTattoos],
+  );
 
   return (
     <Section
       title="Tattoos"
-      icon="itemimages/palette.gif"
+      icon="otherimages/sigils/margaraxe.gif"
       loading={loading}
       values={[
         {
@@ -58,21 +74,27 @@ export default function Tattoos() {
       ]}
       max={outfitTattoos.length}
     >
-      <SortOrderSelect
-        onChange={setSortBy}
-        value={sortBy}
-        alphabeticalKey="name"
-        chronologicalKey="outfit"
-      />
-      <SimpleGrid columns={[4, null, 6]} spacing={1}>
-        {outfitTattoos.map((t) => (
-          <Tattoo
-            key={Array.isArray(t.image) ? t.image[0] : t.image}
-            tattoo={t}
-            status={idToOutfitTattoo[t.outfit!]?.[1] ?? 0}
-          />
-        ))}
-      </SimpleGrid>
+      <Subsection title="Outfits" image="itemimages/palette.gif">
+        <SortOrderSelect
+          onChange={setOutfitSortBy}
+          value={outfitSortBy}
+          alphabeticalKey="name"
+          chronologicalKey="outfit"
+        />
+        <TattooGrid
+          tattoos={outfitTattoos}
+          getLevel={(t) => idToOutfitTattoo[t.outfit]?.[1] ?? 0}
+        />
+      </Subsection>
+      <Subsection title="Miscellaneous" image="itemimages/bgetat.gif">
+        <SortOrderSelect
+          onChange={setMiscSortBy}
+          value={miscSortBy}
+          alphabeticalKey="name"
+          chronologicalKey="misc"
+        />
+        <TattooGrid tattoos={miscTattoos} getLevel={(t) => idToMiscTattoo[t.misc]?.[1] ?? 0} />
+      </Subsection>
     </Section>
   );
 }
