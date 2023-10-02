@@ -14,7 +14,12 @@ type Props = {
   getRowLabel?: (row: number) => React.ReactNode;
 };
 
-export default function ItemGrid({ items, playerItems, getRowLabel, columns = 6 }: Props) {
+export default function ItemGrid({
+  items,
+  playerItems,
+  getRowLabel,
+  columns = 6,
+}: Props) {
   const idToItem = useAppSelector((state) => state.items);
 
   const itemObjects = items.map((id) => idToItem[id]);

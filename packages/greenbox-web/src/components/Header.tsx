@@ -35,7 +35,13 @@ Press it if some new content is not appearing at all.
 It will not collect any new information about you specifically - you still need to run the command in KoLmafia!
 `;
 
-export default function Header({ meta, direct, loading, error, errorMessage }: Props) {
+export default function Header({
+  meta,
+  direct,
+  loading,
+  error,
+  errorMessage,
+}: Props) {
   const dispatch = useAppDispatch();
 
   const forceUpdate = useCallback(() => {
@@ -64,13 +70,15 @@ export default function Header({ meta, direct, loading, error, errorMessage }: P
         </Box>
       </HStack>
       <Stack>
-        <Text>To get the data from your account, first install the script by running</Text>
+        <Text>
+          To get the data from your account, first install the script by running
+        </Text>
         <Code p={2} borderRadius={5}>
           git checkout loathers/greenbox release
         </Code>
         <Text>
-          in KoLmafia's Graphical CLI. Once that's done, you can update the data at this link
-          whenever you like by running <Code>greenbox</Code>.
+          in KoLmafia's Graphical CLI. Once that's done, you can update the data
+          at this link whenever you like by running <Code>greenbox</Code>.
         </Text>
         <Stack direction="row-reverse" pt={3}>
           <Tooltip p={2} label={forceRefreshInfo}>

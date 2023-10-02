@@ -596,7 +596,11 @@ export default [
     items: [Thwaitgold.Spider],
     equipment: [],
     tattoos: [],
-    points: ["heavyRainsStartingLightning", "heavyRainsStartingThunder", "heavyRainsStartingRain"],
+    points: [
+      "heavyRainsStartingLightning",
+      "heavyRainsStartingThunder",
+      "heavyRainsStartingRain",
+    ],
     maxPoints: 9,
   },
   {
@@ -666,7 +670,11 @@ export default [
       { name: "Snake Oiler", image: "class20" },
       { name: "Hardcore Snake Oiler", image: "class20hc" },
     ],
-    points: ["awolPointsCowpuncher", "awolPointsBeanslinger", "awolPointsSnakeoiler"],
+    points: [
+      "awolPointsCowpuncher",
+      "awolPointsBeanslinger",
+      "awolPointsSnakeoiler",
+    ],
     maxPoints: 30,
   },
   {
@@ -895,7 +903,11 @@ export default [
       { name: "Jazz Agent", image: "class30" },
       { name: "Hardcore Jazz Agent", image: "class30hc" },
     ],
-    points: ["asolPointsPigSkinner", "asolPointsCheeseWizard", "asolPointsJazzAgent"],
+    points: [
+      "asolPointsPigSkinner",
+      "asolPointsCheeseWizard",
+      "asolPointsJazzAgent",
+    ],
     maxPoints: 11,
   },
   {

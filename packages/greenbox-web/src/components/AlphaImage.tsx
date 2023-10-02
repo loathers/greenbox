@@ -27,7 +27,9 @@ function createAlphaMask(data: Uint8ClampedArray, width: number) {
 
     // And visit neighbours
     try {
-      [i - width * 4, i + 4, i + width * 4, i - 4].filter(valid).forEach(eraser);
+      [i - width * 4, i + 4, i + width * 4, i - 4]
+        .filter(valid)
+        .forEach(eraser);
     } catch (e) {
       return;
     }
@@ -58,7 +60,10 @@ export default function AlphaImage({
   ...props
 }: Props) {
   const [maskImage, setMaskImage] = useState({} as CSSObject);
-  const url = useMemo(() => `https://s3.amazonaws.com/images.kingdomofloathing.com/${src}`, [src]);
+  const url = useMemo(
+    () => `https://s3.amazonaws.com/images.kingdomofloathing.com/${src}`,
+    [src],
+  );
 
   useEffect(() => {
     const key = `alphamask-${src}`;
@@ -96,5 +101,14 @@ export default function AlphaImage({
     storeMask();
   }, [url, src]);
 
-  return <Image alt={title} src={url} width={width} height={height} sx={maskImage} {...props} />;
+  return (
+    <Image
+      alt={title}
+      src={url}
+      width={width}
+      height={height}
+      sx={maskImage}
+      {...props}
+    />
+  );
 }

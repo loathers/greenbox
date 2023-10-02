@@ -50,7 +50,8 @@ export function guessWikiLink(
 ) {
   if (link) return he.decode(link);
   const n = he.decode(name).replaceAll(" ", "_");
-  if (clashes.includes(name) || otherClashes.includes(name)) return `${n}_(${type})`;
+  if (clashes.includes(name) || otherClashes.includes(name))
+    return `${n}_(${type})`;
   return n;
 }
 
@@ -102,7 +103,11 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
           {badges}
         </Box>
       )}
-      {typeof image === "string" ? <AlphaImage src={image} sourceWidth={sourceWidth} /> : image}
+      {typeof image === "string" ? (
+        <AlphaImage src={image} sourceWidth={sourceWidth} />
+      ) : (
+        image
+      )}
       <LinkOverlay
         textAlign="center"
         fontSize="10px"

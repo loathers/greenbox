@@ -42,7 +42,10 @@ export default function OutfitTattoos() {
         />
       }
     >
-      <TattooGrid tattoos={tattoos} getLevel={(t) => idToPlayerTattoo[t.misc]?.[1] ?? 0} />
+      <TattooGrid
+        tattoos={tattoos}
+        getLevel={(t) => idToPlayerTattoo[t.misc]?.[1] ?? 0}
+      />
     </Subsection>
   );
 }

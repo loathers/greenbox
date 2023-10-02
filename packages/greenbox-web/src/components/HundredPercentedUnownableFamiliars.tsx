@@ -9,11 +9,18 @@ type Props = {
   familiars: FamiliarDef[];
 };
 
-export default function HundredPercentedUnownableFamiliars({ familiars }: Props) {
+export default function HundredPercentedUnownableFamiliars({
+  familiars,
+}: Props) {
   if (familiars.length === 0) return null;
 
   return (
-    <SimpleGrid spacingX={3} columns={3} width="30%" templateColumns="repeat(3, max-content)">
+    <SimpleGrid
+      spacingX={3}
+      columns={3}
+      width="30%"
+      templateColumns="repeat(3, max-content)"
+    >
       {familiars.map((familiar) => (
         <Fragment key={familiar.id}>
           <Text>{familiar.name}</Text>

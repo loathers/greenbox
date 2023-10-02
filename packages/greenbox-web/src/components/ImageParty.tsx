@@ -3,9 +3,19 @@ import he from "he";
 
 import AlphaImage from "./AlphaImage";
 
-type Props = { titles: string[]; images: string[]; active: number; overlap?: number };
+type Props = {
+  titles: string[];
+  images: string[];
+  active: number;
+  overlap?: number;
+};
 
-export default function ImageParty({ titles, images, active, overlap = 10 }: Props) {
+export default function ImageParty({
+  titles,
+  images,
+  active,
+  overlap = 10,
+}: Props) {
   return (
     <Box ml={`${overlap}px`}>
       {images.map((image, i) => (

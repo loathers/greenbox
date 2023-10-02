@@ -17,7 +17,9 @@ export function FavouriteButton() {
   const title = current
     ? "Stop remembering this player"
     : `Remember this player${
-        favouritePlayerId ? ` (currently your favourite is #${favouritePlayerId})` : ""
+        favouritePlayerId
+          ? ` (currently your favourite is #${favouritePlayerId})`
+          : ""
       }`;
 
   const dispatch = useAppDispatch();

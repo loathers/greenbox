@@ -55,7 +55,10 @@ import { haveItem } from "./utils";
  * @returns array of 2-tuples of item id (of the packaged item) and status
  */
 function checkIotMs(options: IotMOptions = {}): RawIotM[] {
-  return (loadIotMs()?.data ?? []).map((iotm) => [iotm.id, getIotMStatus(iotm, options)]);
+  return (loadIotMs()?.data ?? []).map((iotm) => [
+    iotm.id,
+    getIotMStatus(iotm, options),
+  ]);
 }
 
 /**
@@ -65,7 +68,9 @@ function checkIotMs(options: IotMOptions = {}): RawIotM[] {
 function checkItems(options: Partial<{ force: number[] }> = {}): RawItem[] {
   return specialItems.map((id) => [
     id,
-    options.force?.includes(id) || haveItem(Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE,
+    options.force?.includes(id) || haveItem(Item.get(id))
+      ? ItemStatus.HAVE
+      : ItemStatus.NONE,
   ]);
 }
 
@@ -149,10 +154,15 @@ function checkTrophies(): RawTrophy[] {
   const page = visitUrl("trophies.php");
 
   function getStatus(trophy: TrophyDef) {
-    return page.includes(`"trophy${trophy.id}"`) ? TrophyStatus.HAVE : TrophyStatus.NONE;
+    return page.includes(`"trophy${trophy.id}"`)
+      ? TrophyStatus.HAVE
+      : TrophyStatus.NONE;
   }
 
-  return (loadTrophies()?.data ?? []).map((trophy) => [trophy.id, getStatus(trophy)]);
+  return (loadTrophies()?.data ?? []).map((trophy) => [
+    trophy.id,
+    getStatus(trophy),
+  ]);
 }
 
 /**
@@ -179,7 +189,8 @@ function getTattooStatus(page: string, tattoo: TattooDef) {
     }
   }
 
-  if (outfit && haveOutfitPieces(tattoo.name)) return OutfitTattooStatus.HAVE_OUTFIT;
+  if (outfit && haveOutfitPieces(tattoo.name))
+    return OutfitTattooStatus.HAVE_OUTFIT;
 
   return OutfitTattooStatus.NONE;
 }
@@ -241,7 +252,8 @@ function checkMeta() {
   };
 }
 
-const hasFlag = (args: string, ...flags: string[]) => flags.some((f) => args.includes(f));
+const hasFlag = (args: string, ...flags: string[]) =>
+  flags.some((f) => args.includes(f));
 
 function main(args = ""): void {
   if (hasFlag(args, "--help", "-h")) {
@@ -298,13 +310,17 @@ function main(args = ""): void {
     items: checkItems(),
   });
 
-  const link = `https://greenbox.loathers.net/?${keepPrivate ? `d=${code}` : `u=${myId()}`}`;
+  const link = `https://greenbox.loathers.net/?${
+    keepPrivate ? `d=${code}` : `u=${myId()}`
+  }`;
 
   if (!keepPrivate) {
     Kmail.send(3501234, `GREENBOX:${code}`);
   }
 
-  printHtml(`All done! To see your greenboxes, visit: <a href="${link}">${link}</a>`);
+  printHtml(
+    `All done! To see your greenboxes, visit: <a href="${link}">${link}</a>`,
+  );
 }
 
 module.exports.main = main;

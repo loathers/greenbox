@@ -16,7 +16,10 @@ export default function Skills() {
   const idToSkill = useAppSelector(selectIdToPlayerSkills);
 
   const allSkills = useAppSelector((state) => state.skills);
-  const skills = useMemo(() => allSkills.filter((s) => s.permable), [allSkills]);
+  const skills = useMemo(
+    () => allSkills.filter((s) => s.permable),
+    [allSkills],
+  );
   const classes = useAppSelector((state) => state.classes);
   const loading = useAppSelector((state) => state.loading.skills || false);
 
@@ -113,7 +116,9 @@ export default function Skills() {
                         key={s.id}
                         groupName="Drippy Skill"
                         skills={group}
-                        statuses={group.map((s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE)}
+                        statuses={group.map(
+                          (s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE,
+                        )}
                       />
                     );
                   default:

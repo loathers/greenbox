@@ -5,7 +5,11 @@ import { getSkillHeader } from "../utils";
 import Medal from "./Medal";
 import Subsection from "./Subsection";
 
-type Props = React.PropsWithChildren<{ bucket: number; cls: ClassDef; medal: boolean }>;
+type Props = React.PropsWithChildren<{
+  bucket: number;
+  cls: ClassDef;
+  medal: boolean;
+}>;
 
 export default function SkillBucket({ bucket, cls, medal, children }: Props) {
   const [name, image] = getSkillHeader(bucket, cls);

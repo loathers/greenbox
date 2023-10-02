@@ -14,7 +14,9 @@ const watchPlugin = {
     build.onEnd((result) => {
       const date = new Date();
       console.log(
-        `[${date.toISOString()}] Build ${result.errors.length ? "failed" : "succeeded"}.`,
+        `[${date.toISOString()}] Build ${
+          result.errors.length ? "failed" : "succeeded"
+        }.`,
       );
     });
   },

@@ -20,7 +20,14 @@ interface Props extends React.PropsWithChildren {
   max: number;
 }
 
-export default function Section({ title, icon, loading = false, values, max, children }: Props) {
+export default function Section({
+  title,
+  icon,
+  loading = false,
+  values,
+  max,
+  children,
+}: Props) {
   return (
     <AccordionItem isDisabled={loading}>
       <AccordionButton fontSize="3xl">

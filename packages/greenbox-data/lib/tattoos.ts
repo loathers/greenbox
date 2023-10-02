@@ -50,7 +50,9 @@ export const compressTattoos = (tattoos: RawTattoo[]) =>
     .sort((a, b) => a[0] - b[0])
     .reduce(
       (r, tattoo) =>
-        `${r}${"0".repeat(tattoo[0] - r.length - 1)}${tattoo[1].toString(tattooLevelRadix)}`,
+        `${r}${"0".repeat(tattoo[0] - r.length - 1)}${tattoo[1].toString(
+          tattooLevelRadix,
+        )}`,
       "",
     )
     .replace(/0+$/, "");

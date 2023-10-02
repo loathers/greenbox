@@ -8,7 +8,11 @@ import {
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
-import { selectPlayerMiscTattoos, selectPlayerOutfitTattoos, selectPlayerPaths } from "../store";
+import {
+  selectPlayerMiscTattoos,
+  selectPlayerOutfitTattoos,
+  selectPlayerPaths,
+} from "../store";
 
 import MiscTattoos from "./MiscTattoos";
 import OutfitTattoos from "./OutfitTattoos";
@@ -26,7 +30,11 @@ export default function Tattoos() {
   const totalPathTattoos = paths.flatMap((p) => p.tattoos).length;
 
   const idToPath = useMemo(
-    () => paths.reduce((acc, p) => ({ ...acc, [p.id]: p }), {} as { [id: number]: PathDef }),
+    () =>
+      paths.reduce(
+        (acc, p) => ({ ...acc, [p.id]: p }),
+        {} as { [id: number]: PathDef },
+      ),
     [paths],
   );
 
@@ -43,22 +51,32 @@ export default function Tattoos() {
 
   const totalComplete = useMemo(
     () =>
-      playerOutfitTattoos.filter((s) => s[1] === OutfitTattooStatus.HAVE).length +
-      playerMiscTattoos.filter((s) => s[1] >= miscIdToMaxTattooLevel[s[0]]).length +
+      playerOutfitTattoos.filter((s) => s[1] === OutfitTattooStatus.HAVE)
+        .length +
+      playerMiscTattoos.filter((s) => s[1] >= miscIdToMaxTattooLevel[s[0]])
+        .length +
       playerPaths.flatMap(
-        (p) => idToPath[p[0]]?.tattoos.filter((t, i) => p[4][i] >= arrayOf(t.image).length),
+        (p) =>
+          idToPath[p[0]]?.tattoos.filter(
+            (t, i) => p[4][i] >= arrayOf(t.image).length,
+          ),
       ).length,
     [playerOutfitTattoos, playerMiscTattoos],
   );
 
   const totalPartial = useMemo(
     () =>
-      playerOutfitTattoos.filter((s) => s[1] === OutfitTattooStatus.HAVE_OUTFIT).length +
-      playerMiscTattoos.filter((s) => s[1] > 0 && s[1] < miscIdToMaxTattooLevel[s[0]]).length +
+      playerOutfitTattoos.filter((s) => s[1] === OutfitTattooStatus.HAVE_OUTFIT)
+        .length +
+      playerMiscTattoos.filter(
+        (s) => s[1] > 0 && s[1] < miscIdToMaxTattooLevel[s[0]],
+      ).length +
       playerPaths.flatMap(
         ([pathId, , , , playerPathTats]) =>
           idToPath[pathId]?.tattoos.filter(
-            (t, i) => playerPathTats[i] > 0 && playerPathTats[i] < arrayOf(t.image).length,
+            (t, i) =>
+              playerPathTats[i] > 0 &&
+              playerPathTats[i] < arrayOf(t.image).length,
           ),
       ).length,
     [playerOutfitTattoos],

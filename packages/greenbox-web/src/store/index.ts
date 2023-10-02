@@ -106,32 +106,41 @@ const initialState: GreenboxState = {
   errorMessage: {},
 };
 
-export const fetchClasses = createAsyncThunk("classes/fetch", async (size: number) =>
-  api.loadClasses(size),
+export const fetchClasses = createAsyncThunk(
+  "classes/fetch",
+  async (size: number) => api.loadClasses(size),
 );
-export const fetchEffects = createAsyncThunk("effects/fetch", async (size: number) =>
-  api.loadEffects(size),
+export const fetchEffects = createAsyncThunk(
+  "effects/fetch",
+  async (size: number) => api.loadEffects(size),
 );
-export const fetchFamiliars = createAsyncThunk("familiars/fetch", async (size: number) =>
-  api.loadFamiliars(size),
+export const fetchFamiliars = createAsyncThunk(
+  "familiars/fetch",
+  async (size: number) => api.loadFamiliars(size),
 );
-export const fetchIotMs = createAsyncThunk("iotms/fetch", async (size: number) =>
-  api.loadIotMs(size),
+export const fetchIotMs = createAsyncThunk(
+  "iotms/fetch",
+  async (size: number) => api.loadIotMs(size),
 );
-export const fetchItems = createAsyncThunk("items/fetch", async (size: number) =>
-  api.loadItems(size),
+export const fetchItems = createAsyncThunk(
+  "items/fetch",
+  async (size: number) => api.loadItems(size),
 );
-export const fetchPaths = createAsyncThunk("paths/fetch", async (size: number) =>
-  api.loadPaths(size),
+export const fetchPaths = createAsyncThunk(
+  "paths/fetch",
+  async (size: number) => api.loadPaths(size),
 );
-export const fetchSkills = createAsyncThunk("skills/fetch", async (size: number) =>
-  api.loadSkills(size),
+export const fetchSkills = createAsyncThunk(
+  "skills/fetch",
+  async (size: number) => api.loadSkills(size),
 );
-export const fetchTattoos = createAsyncThunk("tattoos/fetch", async (size: number) =>
-  api.loadTattoos(size),
+export const fetchTattoos = createAsyncThunk(
+  "tattoos/fetch",
+  async (size: number) => api.loadTattoos(size),
 );
-export const fetchTrophies = createAsyncThunk("trophies/fetch", async (size: number) =>
-  api.loadTrophies(size),
+export const fetchTrophies = createAsyncThunk(
+  "trophies/fetch",
+  async (size: number) => api.loadTrophies(size),
 );
 
 export const fetchAll = createAsyncThunk(
@@ -150,18 +159,25 @@ export const fetchAll = createAsyncThunk(
   },
 );
 
-export const fetchPlayerData = createAsyncThunk("playerData/fetch", async (playerId: number) => {
-  const response = await fetch(`https://oaf-discord.herokuapp.com/api/greenbox/${playerId}`);
-  const json = await response.json();
-  if (response.status !== 200) {
-    throw new Error(json.error);
-  }
-  return json.greenboxString as string;
-});
+export const fetchPlayerData = createAsyncThunk(
+  "playerData/fetch",
+  async (playerId: number) => {
+    const response = await fetch(
+      `https://oaf-discord.herokuapp.com/api/greenbox/${playerId}`,
+    );
+    const json = await response.json();
+    if (response.status !== 200) {
+      throw new Error(json.error);
+    }
+    return json.greenboxString as string;
+  },
+);
 
 export const loadPlayerData = createAction<string>("playerData/load");
 
-export const updateFavouritePlayerId = createAction<number | null>("favouritePlayerId/update");
+export const updateFavouritePlayerId = createAction<number | null>(
+  "favouritePlayerId/update",
+);
 
 export const greenboxSlice = createSlice({
   name: "greenbox",
@@ -344,7 +360,9 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: { ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER] },
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
     }).prepend(wikiClashMiddleware.middleware),
 });
 
@@ -353,20 +371,27 @@ export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export const createPlayerDataSelector = <K extends Exclude<keyof api.RawSnapshotData, "meta">>(
+export const createPlayerDataSelector = <
+  K extends Exclude<keyof api.RawSnapshotData, "meta">,
+>(
   key: K,
 ) => {
   const selectPlayerData = (state: RootState) => state.playerData?.[key];
-  return createSelector([selectPlayerData], (data) => data ?? ([] as api.RawSnapshotData[K]));
+  return createSelector(
+    [selectPlayerData],
+    (data) => data ?? ([] as api.RawSnapshotData[K]),
+  );
 };
 
 export const selectPlayerSkills = createPlayerDataSelector("skills");
 
-export const selectIdToPlayerSkills = createSelector(selectPlayerSkills, (playerSkills) =>
-  playerSkills.reduce(
-    (acc, s) => ({ ...acc, [s[0]]: s }),
-    {} as { [id: number]: (typeof playerSkills)[number] },
-  ),
+export const selectIdToPlayerSkills = createSelector(
+  selectPlayerSkills,
+  (playerSkills) =>
+    playerSkills.reduce(
+      (acc, s) => ({ ...acc, [s[0]]: s }),
+      {} as { [id: number]: (typeof playerSkills)[number] },
+    ),
 );
 
 export const selectIdToSkills = createSelector(
@@ -380,12 +405,15 @@ export const selectIdToSkills = createSelector(
 
 export const selectPlayerItems = createPlayerDataSelector("items");
 export const selectPlayerPaths = createPlayerDataSelector("paths");
-export const selectPlayerOutfitTattoos = createPlayerDataSelector("outfitTattoos");
+export const selectPlayerOutfitTattoos =
+  createPlayerDataSelector("outfitTattoos");
 export const selectPlayerMiscTattoos = createPlayerDataSelector("miscTattoos");
 
-export const selectIdToPlayerItems = createSelector(selectPlayerItems, (playerItems) =>
-  playerItems.reduce(
-    (acc, s) => ({ ...acc, [s[0]]: s }),
-    {} as { [id: number]: (typeof playerItems)[number] },
-  ),
+export const selectIdToPlayerItems = createSelector(
+  selectPlayerItems,
+  (playerItems) =>
+    playerItems.reduce(
+      (acc, s) => ({ ...acc, [s[0]]: s }),
+      {} as { [id: number]: (typeof playerItems)[number] },
+    ),
 );

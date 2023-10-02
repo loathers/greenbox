@@ -32,11 +32,16 @@ export default function MetaInfo({ meta, direct }: Props) {
     return () => clearInterval(timer);
   }, []);
 
-  const timeago = useMemo(() => formatDistance(date, now, { addSuffix: true }), [now, date]);
+  const timeago = useMemo(
+    () => formatDistance(date, now, { addSuffix: true }),
+    [now, date],
+  );
 
   return (
     <HStack fontSize="large" spacing="0.25em" wrap="wrap">
-      <Text title={`r${meta.revision}`}>{`${direct ? "Private s" : "S"}napshot`}</Text>{" "}
+      <Text title={`r${meta.revision}`}>{`${
+        direct ? "Private s" : "S"
+      }napshot`}</Text>{" "}
       <Text>by</Text>{" "}
       <Text fontWeight="bold" title={`Player #${meta.id}`}>
         {meta.name}

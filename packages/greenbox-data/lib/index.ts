@@ -72,7 +72,9 @@ export function compress(raw: RawSnapshotData): string {
 }
 
 export function expand(encoded: string): RawSnapshotData {
-  const decoded = jsoncrush.uncrush(decodeURIComponent(encoded.replace(/\n/g, "")));
+  const decoded = jsoncrush.uncrush(
+    decodeURIComponent(encoded.replace(/\n/g, "")),
+  );
   const compressed = JSON.parse(decoded) as CompressedSnapshotData;
 
   return {

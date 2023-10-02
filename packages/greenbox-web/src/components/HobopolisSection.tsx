@@ -102,7 +102,10 @@ export default function HobopolisSection() {
       values={[]}
       max={1}
     >
-      <Subsection title="Hogdman's Journal Skills" image="itemimages/blacknotebook.gif">
+      <Subsection
+        title="Hogdman's Journal Skills"
+        image="itemimages/blacknotebook.gif"
+      >
         <SimpleGrid columns={6} spacing={1}>
           {JOURNAL_SKILLS.map((id) => (
             <Skill key={id} id={id} />
@@ -124,10 +127,16 @@ export default function HobopolisSection() {
         </SimpleGrid>
       </Subsection>
       <Subsection title="Chester" image="itemimages/chestache.gif">
-        <ItemGrid items={CHESTER} playerItems={CHESTER.map((id) => playerItems[id]?.[1] ?? 0)} />
+        <ItemGrid
+          items={CHESTER}
+          playerItems={CHESTER.map((id) => playerItems[id]?.[1] ?? 0)}
+        />
       </Subsection>
       <Subsection title="Frosty" image="itemimages/frostyhat.gif">
-        <ItemGrid items={FROSTY} playerItems={FROSTY.map((id) => playerItems[id]?.[1] ?? 0)} />
+        <ItemGrid
+          items={FROSTY}
+          playerItems={FROSTY.map((id) => playerItems[id]?.[1] ?? 0)}
+        />
       </Subsection>
       <Subsection title="Ol' Scratch" image="itemimages/pitchfork2.gif">
         <ItemGrid
@@ -136,13 +145,22 @@ export default function HobopolisSection() {
         />
       </Subsection>
       <Subsection title="Oscus" image="itemimages/oscuswand.gif">
-        <ItemGrid items={OSCUS} playerItems={OSCUS.map((id) => playerItems[id]?.[1] ?? 0)} />
+        <ItemGrid
+          items={OSCUS}
+          playerItems={OSCUS.map((id) => playerItems[id]?.[1] ?? 0)}
+        />
       </Subsection>
       <Subsection title="Zombo" image="itemimages/zomboshield.gif">
-        <ItemGrid items={ZOMBO} playerItems={ZOMBO.map((id) => playerItems[id]?.[1] ?? 0)} />
+        <ItemGrid
+          items={ZOMBO}
+          playerItems={ZOMBO.map((id) => playerItems[id]?.[1] ?? 0)}
+        />
       </Subsection>
       <Subsection title="Hodgman" image="itemimages/stuffhodg.gif">
-        <ItemGrid items={HODGEMAN} playerItems={HODGEMAN.map((id) => playerItems[id]?.[1] ?? 0)} />
+        <ItemGrid
+          items={HODGEMAN}
+          playerItems={HODGEMAN.map((id) => playerItems[id]?.[1] ?? 0)}
+        />
       </Subsection>
     </Section>
   );

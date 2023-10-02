@@ -1,6 +1,13 @@
 import { chakra, useTheme, useToken } from "@chakra-ui/react";
 import { useMemo } from "react";
-import { BarChart, Bar, YAxis, XAxis, ResponsiveContainer, LabelProps } from "recharts";
+import {
+  BarChart,
+  Bar,
+  YAxis,
+  XAxis,
+  ResponsiveContainer,
+  LabelProps,
+} from "recharts";
 
 const Label = ({
   width,
@@ -40,7 +47,10 @@ type Props = {
 };
 
 export default function Progress({ values, max }: Props) {
-  const [complete, accent] = useToken("colors", ["colors.complete", "colors.accent"]);
+  const [complete, accent] = useToken("colors", [
+    "colors.complete",
+    "colors.accent",
+  ]);
 
   const data = useMemo(
     () => [
@@ -53,14 +63,43 @@ export default function Progress({ values, max }: Props) {
 
   return (
     <ResponsiveContainer>
-      <BarChart data={data} layout="vertical" margin={{ top: 0, left: 0, right: 0, bottom: 0 }}>
+      <BarChart
+        data={data}
+        layout="vertical"
+        margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+      >
         <XAxis type="number" hide domain={[0, max]} />
         <YAxis type="category" dataKey="name" hide />
         <defs>
-          <pattern id="partial" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-            <chakra.rect fill="chakra-body-bg" x="0" y="0" width="10" height="10"></chakra.rect>
-            <chakra.rect fill="partial" x="0" width="5px" height="5px" y="0"></chakra.rect>
-            <chakra.rect fill="partial" x="5" width="5px" height="5px" y="5"></chakra.rect>
+          <pattern
+            id="partial"
+            x="0"
+            y="0"
+            width="10"
+            height="10"
+            patternUnits="userSpaceOnUse"
+          >
+            <chakra.rect
+              fill="chakra-body-bg"
+              x="0"
+              y="0"
+              width="10"
+              height="10"
+            ></chakra.rect>
+            <chakra.rect
+              fill="partial"
+              x="0"
+              width="5px"
+              height="5px"
+              y="0"
+            ></chakra.rect>
+            <chakra.rect
+              fill="partial"
+              x="5"
+              width="5px"
+              height="5px"
+              y="5"
+            ></chakra.rect>
           </pattern>
         </defs>
         {values.map((v, i) => (

@@ -18,7 +18,13 @@ type Props = {
   tattoos: number[];
 };
 
-export default function Path({ path, points, items, equipment, tattoos }: Props) {
+export default function Path({
+  path,
+  points,
+  items,
+  equipment,
+  tattoos,
+}: Props) {
   return (
     <Subsection
       title={path.name}
@@ -62,7 +68,10 @@ export default function Path({ path, points, items, equipment, tattoos }: Props)
           <Heading as="h4" textTransform="uppercase" fontSize="xs">
             Tattoos
           </Heading>
-          <TattooGrid tattoos={path.tattoos} getLevel={(t, i) => tattoos[i] || 0} />
+          <TattooGrid
+            tattoos={path.tattoos}
+            getLevel={(t, i) => tattoos[i] || 0}
+          />
         </>
       )}
     </Subsection>

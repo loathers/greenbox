@@ -39,16 +39,20 @@ export const loadFamiliars = async (lastKnownSize: number) => {
   };
 };
 
-export type RawFamiliar = [id: number, status: FamiliarStatus, hundredPercent: boolean];
+export type RawFamiliar = [
+  id: number,
+  status: FamiliarStatus,
+  hundredPercent: boolean,
+];
 
 export const compressFamiliars = (familiars: RawFamiliar[]) =>
   familiars
     .sort((a, b) => a[0] - b[0])
     .reduce(
       (r, familiar) =>
-        `${r}${"0".repeat(familiar[0] - r.replace(/\*/g, "").length - 1)}${familiar[1]}${
-          familiar[2] ? "*" : ""
-        }`,
+        `${r}${"0".repeat(familiar[0] - r.replace(/\*/g, "").length - 1)}${
+          familiar[1]
+        }${familiar[2] ? "*" : ""}`,
       "",
     )
     .replace(/0+$/, "");

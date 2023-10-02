@@ -26,7 +26,10 @@ export default function PathTattoos() {
       unzip(
         paths.flatMap((p) =>
           p.tattoos.map((t, i) =>
-            tuple([{ ...t, name: `${p.name} - ${t.name}` }, idToPlayerTattoo[p.id]?.[4][i]]),
+            tuple([
+              { ...t, name: `${p.name} - ${t.name}` },
+              idToPlayerTattoo[p.id]?.[4][i],
+            ]),
           ),
         ),
       ),
@@ -35,7 +38,10 @@ export default function PathTattoos() {
 
   return (
     <Subsection title="Ascension" image="itemimages/rip.gif">
-      <TattooGrid tattoos={tattoos} getLevel={(t, i) => playerTattoos[i] ?? 0} />
+      <TattooGrid
+        tattoos={tattoos}
+        getLevel={(t, i) => playerTattoos[i] ?? 0}
+      />
     </Subsection>
   );
 }

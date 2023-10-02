@@ -18,18 +18,24 @@ export default function IotMs() {
   const loading = useAppSelector((state) => state.loading.iotms || false);
   const idToItem = useAppSelector((state) => state.items);
 
-  const vipIotMs = useMemo(() => iotms.filter((i) => i.type === "vip").map((i) => i.id), [iotms]);
+  const vipIotMs = useMemo(
+    () => iotms.filter((i) => i.type === "vip").map((i) => i.id),
+    [iotms],
+  );
   const ownsVipKey = useMemo(
     () => playerIotMs.findIndex((i) => vipIotMs.includes(i[0])) > -1,
     [playerIotMs, vipIotMs],
   );
 
-  const numberOfIotms = useMemo(() => iotms.length - (vipIotMs.length - 1), [iotms]);
+  const numberOfIotms = useMemo(
+    () => iotms.length - (vipIotMs.length - 1),
+    [iotms],
+  );
 
   const numberofIotMsBound = useMemo(
     () =>
-      playerIotMs.filter((i) => i[1] == IotMStatus.BOUND).map((i) => i[0]).length -
-      (ownsVipKey ? vipIotMs.length - 1 : 0),
+      playerIotMs.filter((i) => i[1] == IotMStatus.BOUND).map((i) => i[0])
+        .length - (ownsVipKey ? vipIotMs.length - 1 : 0),
     [playerIotMs],
   );
 
@@ -42,7 +48,10 @@ export default function IotMs() {
     [playerIotMs],
   );
 
-  const normalizedIotms = useMemo(() => [...Array(9).map((_) => null), ...iotms], [iotms]);
+  const normalizedIotms = useMemo(
+    () => [...Array(9).map((_) => null), ...iotms],
+    [iotms],
+  );
 
   return (
     <Section

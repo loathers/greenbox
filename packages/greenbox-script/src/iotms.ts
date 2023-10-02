@@ -1,5 +1,13 @@
 import { arrayOf, IotMDef, IotMStatus } from "greenbox-data";
-import { Familiar, haveFamiliar, haveSkill, Item, Skill, visitUrl, xpath } from "kolmafia";
+import {
+  Familiar,
+  haveFamiliar,
+  haveSkill,
+  Item,
+  Skill,
+  visitUrl,
+  xpath,
+} from "kolmafia";
 import { flat, getFoldGroup, haveInCampground } from "libram";
 import { getBoolean } from "libram/dist/property";
 
@@ -17,14 +25,18 @@ function haveBound(iotm: IotMDef, options: IotMOptions): boolean {
   switch (iotm.type) {
     case "campground": {
       const bound = iotm.item ? Item.get(iotm.item) : null;
-      return (bound && (haveItem(bound) || haveInCampground(bound))) || haveInCampground(boxed);
+      return (
+        (bound && (haveItem(bound) || haveInCampground(bound))) ||
+        haveInCampground(boxed)
+      );
     }
     case "custom": {
       switch (iotm.id) {
         case 5790: {
           return (
             haveItem(boxed) ||
-            (haveItem(Item.get("right bear arm")) && haveItem(Item.get("left bear arm")))
+            (haveItem(Item.get("right bear arm")) &&
+              haveItem(Item.get("left bear arm")))
           );
         }
       }
@@ -59,7 +71,10 @@ function haveBound(iotm: IotMDef, options: IotMOptions): boolean {
   }
 }
 
-export function getIotMStatus(iotm: IotMDef, options: IotMOptions = {}): IotMStatus {
+export function getIotMStatus(
+  iotm: IotMDef,
+  options: IotMOptions = {},
+): IotMStatus {
   if (haveBound(iotm, options)) return IotMStatus.BOUND;
   const boxed = Item.get(iotm.id);
   if (haveItem(boxed)) return IotMStatus.BOXED;

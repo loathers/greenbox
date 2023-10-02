@@ -21,7 +21,10 @@ export type RawTrophy = [id: number, status: TrophyStatus];
 export const compressTrophies = (trophies: RawTrophy[]) =>
   trophies
     .sort((a, b) => a[0] - b[0])
-    .reduce((r, trophy) => `${r}${"0".repeat(trophy[0] - r.length - 1)}${trophy[1]}`, "")
+    .reduce(
+      (r, trophy) => `${r}${"0".repeat(trophy[0] - r.length - 1)}${trophy[1]}`,
+      "",
+    )
     .replace(/0+$/, "");
 
 export const expandTrophies = (s = ""): RawTrophy[] =>

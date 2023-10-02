@@ -1,4 +1,5 @@
-const MAFIA_DATA_BASE = "https://raw.githubusercontent.com/kolmafia/kolmafia/main/src/data";
+const MAFIA_DATA_BASE =
+  "https://raw.githubusercontent.com/kolmafia/kolmafia/main/src/data";
 
 export async function loadMafiaData(fileName: string, lastKnownSize = 0) {
   const url = `${MAFIA_DATA_BASE}/${fileName}.txt`;
@@ -22,4 +23,5 @@ export async function loadMafiaData(fileName: string, lastKnownSize = 0) {
 
 export const tuple = <T extends unknown[]>(args: [...T]): T => args;
 
-export const arrayOf = <T>(items: T | T[]) => (Array.isArray(items) ? items : [items]);
+export const arrayOf = <T>(items: T | T[]) =>
+  Array.isArray(items) ? items : [items];

@@ -16,7 +16,10 @@ export default function Tattoos() {
 
   const playerTrophies = useAppSelector(selectPlayerTrophies);
   const allTrophies = useAppSelector((state) => state.trophies);
-  const trophies = useMemo(() => allTrophies.toSorted(sortByKey(sortBy)), [allTrophies, sortBy]);
+  const trophies = useMemo(
+    () => allTrophies.toSorted(sortByKey(sortBy)),
+    [allTrophies, sortBy],
+  );
   const loading = useAppSelector((state) => state.loading.trophies || false);
 
   const numberOfTrophies = useMemo(

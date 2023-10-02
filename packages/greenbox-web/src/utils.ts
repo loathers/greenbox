@@ -1,4 +1,10 @@
-import { ClassDef, ItemStatus, SkillDef, SkillStatus, tuple } from "greenbox-data";
+import {
+  ClassDef,
+  ItemStatus,
+  SkillDef,
+  SkillStatus,
+  tuple,
+} from "greenbox-data";
 
 export function itemStatusToThingState(status: ItemStatus) {
   if (status > 0) return "complete";

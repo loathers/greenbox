@@ -27,14 +27,19 @@ export default function SkillDescription({ skill }: Props) {
         `https://l8sdqazjji.execute-api.us-east-1.amazonaws.com/?action=parse&page=${wikiLink}&prop=text&format=json`,
       );
       const result = await response.json();
-      const match = /<table width="100%"><tr><td>(.*?)<\/td>/s.exec(result.parse.text["*"]);
+      const match = /<table width="100%"><tr><td>(.*?)<\/td>/s.exec(
+        result.parse.text["*"],
+      );
       if (match == null) {
         setContents("Cannot load wiki page (this is an experimental feature!)");
       } else {
         setContents(
           match[0]
             .replaceAll('href="/', 'href="https://kol.coldfront.net/')
-            .replaceAll('p style="color:', 'p class="colortext" style="color:') + "</tr></table>",
+            .replaceAll(
+              'p style="color:',
+              'p class="colortext" style="color:',
+            ) + "</tr></table>",
         );
       }
     }
@@ -51,7 +56,11 @@ export default function SkillDescription({ skill }: Props) {
   const filter = useColorModeFilter();
 
   return (
-    <Flex sx={{ img: { filter }, "p.colortext": { filter } }} ref={ref} justifyContent="center">
+    <Flex
+      sx={{ img: { filter }, "p.colortext": { filter } }}
+      ref={ref}
+      justifyContent="center"
+    >
       <Spinner />
     </Flex>
   );

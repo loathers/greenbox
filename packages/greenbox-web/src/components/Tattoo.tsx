@@ -15,7 +15,8 @@ type Props = {
 };
 
 function determineState(tattoo: TattooDef, level: number, max: number) {
-  if (isOutfitTattoo(tattoo) && level == OutfitTattooStatus.HAVE_OUTFIT) return "partial";
+  if (isOutfitTattoo(tattoo) && level == OutfitTattooStatus.HAVE_OUTFIT)
+    return "partial";
   if (level >= max) return "complete";
   if (level > 0) return "partial";
   return null;
@@ -34,7 +35,9 @@ export default function Tattoo({ tattoo, level }: Props) {
   const max = getMaxTattooLevel(tattoo);
 
   // Show the current level of the tattoo, or the full version if no levels have been attained yet.
-  const image = arrayOf(tattoo.image)[Math.min(max, level > 0 ? level : max) - 1];
+  const image = arrayOf(tattoo.image)[
+    Math.min(max, level > 0 ? level : max) - 1
+  ];
 
   return (
     <Thing
@@ -59,10 +62,13 @@ function guessWikiLink(tattoo: TattooDef) {
   // Class tattoo image names follow a pattern.
   const image = arrayOf(tattoo.image)[0];
   if (image.startsWith("class"))
-    return image.endsWith("hc") ? "Tattoo#Ascension_Tattoos" : "Tattoo#Class_Tattoos";
+    return image.endsWith("hc")
+      ? "Tattoo#Ascension_Tattoos"
+      : "Tattoo#Class_Tattoos";
 
   // If it is not an outfit or miscellaneous tattoo and it ends in a number, it's probably a "number of ascensions" tattoo.
-  if (!isNaN(parseFloat(image[image.length - 1]))) return "Tattoo#Ascension_Tattoos";
+  if (!isNaN(parseFloat(image[image.length - 1])))
+    return "Tattoo#Ascension_Tattoos";
 
   // Otherwise fall back to the main page on tattoos.
   return "Tattoo";

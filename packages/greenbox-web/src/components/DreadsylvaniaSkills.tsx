@@ -1,4 +1,12 @@
-import { TableContainer, Table, Tbody, Th, Thead, Td, Tr } from "@chakra-ui/react";
+import {
+  TableContainer,
+  Table,
+  Tbody,
+  Th,
+  Thead,
+  Td,
+  Tr,
+} from "@chakra-ui/react";
 
 import AlphaImage from "./AlphaImage";
 import Skill from "./Skill";
@@ -16,7 +24,10 @@ export default function DreadsylvaniaSkills() {
           <Thead>
             <Tr textAlign="center">
               <Th width="80px">
-                <AlphaImage src="itemimages/brain.gif" alt="Class of the brains in The Machine" />
+                <AlphaImage
+                  src="itemimages/brain.gif"
+                  alt="Class of the brains in The Machine"
+                />
               </Th>
               <Th title="Seal Clubber">SC</Th>
               <Th title="Turtle Tamer">TT</Th>

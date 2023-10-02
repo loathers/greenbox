@@ -51,14 +51,16 @@ export default function MainPage() {
   useEffect(() => {
     if (loading.wikiClashes && !toast.isActive(id)) {
       clashToast.current = toast({
-        description: "Detecting name clashes for wiki links (takes a few seconds)...",
+        description:
+          "Detecting name clashes for wiki links (takes a few seconds)...",
         duration: null,
         id,
       });
     } else if (clashToast.current) {
       if (error.wikiClashes) {
         toast.update(clashToast.current, {
-          description: "Clash detection errored (probably don't support web workers)",
+          description:
+            "Clash detection errored (probably don't support web workers)",
           status: "error",
           duration: 2000,
         });

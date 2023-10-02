@@ -24,11 +24,13 @@ export default function Familiars() {
   const loading = useAppSelector((state) => state.loading.familiars || false);
 
   const totalInTerrarium = useMemo(
-    () => playerFamiliars.filter((f) => f[1] === FamiliarStatus.TERRARIUM).length,
+    () =>
+      playerFamiliars.filter((f) => f[1] === FamiliarStatus.TERRARIUM).length,
     [playerFamiliars],
   );
   const totalAsHatchlings = useMemo(
-    () => playerFamiliars.filter((f) => f[1] === FamiliarStatus.HATCHLING).length,
+    () =>
+      playerFamiliars.filter((f) => f[1] === FamiliarStatus.HATCHLING).length,
     [playerFamiliars],
   );
   const idToFamiliar = useMemo(
@@ -41,7 +43,10 @@ export default function Familiars() {
   );
 
   const hundredPercentedUnownables = useMemo(
-    () => allFamiliars.filter((s) => !s.ownable).filter((f) => idToFamiliar[f.id]?.[2] ?? false),
+    () =>
+      allFamiliars
+        .filter((s) => !s.ownable)
+        .filter((f) => idToFamiliar[f.id]?.[2] ?? false),
     [allFamiliars],
   );
 
@@ -80,7 +85,9 @@ export default function Familiars() {
           />
         ))}
       </SimpleGrid>
-      <HundredPercentedUnownableFamiliars familiars={hundredPercentedUnownables} />
+      <HundredPercentedUnownableFamiliars
+        familiars={hundredPercentedUnownables}
+      />
     </Section>
   );
 }

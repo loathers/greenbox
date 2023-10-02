@@ -1,4 +1,8 @@
-import { createAsyncThunk, createListenerMiddleware, TypedStartListening } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createListenerMiddleware,
+  TypedStartListening,
+} from "@reduxjs/toolkit";
 import * as Comlink from "comlink";
 
 import { DuplicateFinder } from "../workers/duplicateFinder";
@@ -17,10 +21,11 @@ import {
 } from "./index";
 
 export const wikiClashMiddleware = createListenerMiddleware();
-const startAppListening = wikiClashMiddleware.startListening as TypedStartListening<
-  RootState,
-  AppDispatch
->;
+const startAppListening =
+  wikiClashMiddleware.startListening as TypedStartListening<
+    RootState,
+    AppDispatch
+  >;
 
 startAppListening({
   predicate: (action, state) => {
@@ -48,13 +53,18 @@ startAppListening({
     const names = entities
       .map((e) => state[e])
       .flat()
-      .reduce((acc, e) => ("name" in e ? [...acc, e.name] : acc), [] as string[]);
+      .reduce(
+        (acc, e) => ("name" in e ? [...acc, e.name] : acc),
+        [] as string[],
+      );
 
     dispatch(processWikiClashes(names));
   },
 });
 
-const WrappedDuplicateFinderWorker = Comlink.wrap<DuplicateFinder>(new DuplicateFinderWorker());
+const WrappedDuplicateFinderWorker = Comlink.wrap<DuplicateFinder>(
+  new DuplicateFinderWorker(),
+);
 
 export const processWikiClashes = createAsyncThunk(
   "wikiClashes/process",

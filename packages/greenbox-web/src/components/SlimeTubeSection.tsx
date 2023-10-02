@@ -12,7 +12,13 @@ const SKILLS = [
 
 export default function SlimeTubeSection() {
   return (
-    <Section title="Slime Tube" icon="itemimages/slimeling.gif" loading={false} values={[]} max={1}>
+    <Section
+      title="Slime Tube"
+      icon="itemimages/slimeling.gif"
+      loading={false}
+      values={[]}
+      max={1}
+    >
       <Subsection title="Skills" image="itemimages/slimehypo.gif">
         <SimpleGrid columns={6} spacing={1}>
           {SKILLS.map((id) => (

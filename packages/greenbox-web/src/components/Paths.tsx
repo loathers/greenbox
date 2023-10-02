@@ -12,7 +12,10 @@ export default function Paths() {
   const [sortBy, setSortBy] = useState<"name" | "id">("id");
   const playerPaths = useAppSelector(selectPlayerPaths);
   const allPaths = useAppSelector((state) => state.paths);
-  const paths = useMemo(() => allPaths.toSorted(sortByKey(sortBy)), [allPaths, sortBy]);
+  const paths = useMemo(
+    () => allPaths.toSorted(sortByKey(sortBy)),
+    [allPaths, sortBy],
+  );
   const loading = useAppSelector((state) => state.loading.paths || false);
 
   // A map of path id to array, where the index represents a tattoo for that path
@@ -38,7 +41,10 @@ export default function Paths() {
           // Number of items and equipment (whether player has them or not)
           [...p[2], ...p[3]].length +
           // Sum of max possible tattoo level for each tattoo this path offers
-          (maxTattooLevel[p[0]] ?? []).reduce((maxLevelSum, maxLevel) => maxLevelSum + maxLevel, 0),
+          (maxTattooLevel[p[0]] ?? []).reduce(
+            (maxLevelSum, maxLevel) => maxLevelSum + maxLevel,
+            0,
+          ),
         0,
       ),
     [playerPaths, maxTattooLevel],
@@ -53,7 +59,10 @@ export default function Paths() {
           // Number of items and equipment that the player owns (ItemStatus.HAVE equals 1)
           [...p[2], ...p[3]].reduce((itemSum, item) => itemSum + item, 0) +
           // Sum of acquired tattoo level for each tattoo this path offers
-          p[4].reduce((tattooSum, tattooLevel, i) => tattooSum + tattooLevel, 0),
+          p[4].reduce(
+            (tattooSum, tattooLevel, i) => tattooSum + tattooLevel,
+            0,
+          ),
         0,
       ),
     [playerPaths],
@@ -68,7 +77,8 @@ export default function Paths() {
           p[4].reduce(
             // Total tattoo level minus current tattoo level across each tattoo this path offers
             (tattooSum, tattooLevel, i) =>
-              tattooSum + Math.max(0, (maxTattooLevel[p[0]]?.[i] ?? 0) - (tattooLevel + 1)),
+              tattooSum +
+              Math.max(0, (maxTattooLevel[p[0]]?.[i] ?? 0) - (tattooLevel + 1)),
             0,
           ),
         0,
