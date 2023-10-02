@@ -30,6 +30,8 @@ export * from "./iotms";
 
 export * from "./types";
 
+export { arrayOf } from "./utils";
+
 /**
  * Major version number for the snapshot data
  * ------

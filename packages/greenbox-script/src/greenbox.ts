@@ -1,4 +1,5 @@
 import {
+  arrayOf,
   compress,
   FamiliarStatus,
   getMiscTattoos,
@@ -169,7 +170,7 @@ function haveOutfitPieces(outfit: string) {
  */
 function getTattooStatus(page: string, tattoo: TattooDef) {
   const outfit = isOutfitTattoo(tattoo);
-  const images = Array.isArray(tattoo.image) ? tattoo.image : [tattoo.image];
+  const images = arrayOf(tattoo.image);
 
   for (let i = images.length - 1; i >= 0; i--) {
     if (page.includes(images[i])) {

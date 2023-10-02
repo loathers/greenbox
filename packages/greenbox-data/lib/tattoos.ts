@@ -1,6 +1,7 @@
 import tattoos from "../data/tattoos";
 
 import { MiscTattooDef, OutfitTattooDef, TattooDef } from "./types";
+import { arrayOf } from "./utils";
 
 export const enum OutfitTattooStatus {
   NONE = 0,
@@ -28,7 +29,7 @@ export function isMiscTattoo(tattoo: TattooDef): tattoo is MiscTattooDef {
 }
 
 export function getMaxTattooLevel(tattoo: TattooDef) {
-  return Array.isArray(tattoo.image) ? tattoo.image.length : 1;
+  return arrayOf(tattoo.image).length;
 }
 
 export function getOutfitTattoos(tattoos: readonly TattooDef[]) {

@@ -1,4 +1,11 @@
-import { OutfitTattooStatus, TattooDef, getMaxTattooLevel, isOutfitTattoo } from "greenbox-data";
+import {
+  arrayOf,
+  OutfitTattooStatus,
+  TattooDef,
+  getMaxTattooLevel,
+  isMiscTattoo,
+  isOutfitTattoo,
+} from "greenbox-data";
 
 import Thing from "./Thing";
 
@@ -25,12 +32,10 @@ function determineTitle(tattoo: TattooDef, level: number, max: number) {
 
 export default function Tattoo({ tattoo, level }: Props) {
   const max = getMaxTattooLevel(tattoo);
+  const anchor = guessAnchorFromTattooImage(tattoo);
 
   // Show the current level of the tattoo, or the full version if no levels have been attained yet.
-  const image = Array.isArray(tattoo.image)
-    ? tattoo.image[(level > 0 ? level : max) - 1]
-    : tattoo.image;
-  const anchor = guessAnchorFromTattooImage(image);
+  const image = arrayOf(tattoo.image)[Math.min(max, level > 0 ? level : max) - 1];
 
   return (
     <Thing
@@ -45,8 +50,12 @@ export default function Tattoo({ tattoo, level }: Props) {
   );
 }
 
-function guessAnchorFromTattooImage(i: string) {
-  if (i.startsWith("class")) return i.endsWith("hc") ? "#Ascension_Tattoos" : "#Class_Tattoos";
-  if (!isNaN(parseFloat(i[i.length - 1]))) return "#Ascension_Tattoos";
+function guessAnchorFromTattooImage(tattoo: TattooDef) {
+  if (isOutfitTattoo(tattoo)) return "";
+  if (isMiscTattoo(tattoo)) return "Miscellaneous_Tattoos";
+  const image = arrayOf(tattoo.image)[0];
+  if (image.startsWith("class"))
+    return image.endsWith("hc") ? "#Ascension_Tattoos" : "#Class_Tattoos";
+  if (!isNaN(parseFloat(image[image.length - 1]))) return "#Ascension_Tattoos";
   return "";
 }
