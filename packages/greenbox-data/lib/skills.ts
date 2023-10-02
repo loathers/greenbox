@@ -35,8 +35,6 @@ export const getMaxSkillLevel = (id: number) => {
     // Implode Universe
     case 188:
       return 13;
-    default:
-      return 0;
 
     // Will change in future
 
@@ -64,6 +62,9 @@ export const getMaxSkillLevel = (id: number) => {
     // Toggle Optimality
     case 7254:
       return 3;
+
+    default:
+      return 0;
   }
 };
 

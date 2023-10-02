@@ -181,14 +181,14 @@ function getTattooStatus(page: string, tattoo: TattooDef) {
 }
 
 function checkOutfitTattoos(page: string): RawTattoo[] {
-  return getOutfitTattoos(loadTattoos()?.data || []).map((tattoo) => [
+  return getOutfitTattoos(loadTattoos()?.data ?? []).map((tattoo) => [
     tattoo.outfit,
     getTattooStatus(page, tattoo),
   ]);
 }
 
 function checkMiscTattoos(page: string): RawTattoo[] {
-  return getMiscTattoos(loadTattoos()?.data || []).map((tattoo) => [
+  return getMiscTattoos(loadTattoos()?.data ?? []).map((tattoo) => [
     tattoo.misc,
     getTattooStatus(page, tattoo),
   ]);

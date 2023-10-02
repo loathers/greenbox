@@ -1,6 +1,4 @@
 import {
-  MiscTattooDef,
-  TattooDef,
   TattooStatus,
   getMaxTattooLevel,
   isMiscTattoo,
@@ -21,7 +19,7 @@ export default function Tattoos() {
   const playerOutfitTattoos = useAppSelector(selectPlayerOutfitTattoos);
   const playerMiscTattoos = useAppSelector(selectPlayerMiscTattoos);
   const tattoos = useAppSelector((state) => state.tattoos);
-  const loading = useAppSelector((state) => state.loading.tattoos || false);
+  const loading = useAppSelector((state) => state.loading.tattoos ?? false);
 
   const miscIdToMaxTattooLevel = useMemo(
     () =>
