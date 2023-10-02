@@ -167,6 +167,11 @@ init_kolmafia_polyfill();
 
 // ../greenbox-data/lib/utils.ts
 init_kolmafia_polyfill();
+var tuple = function(args) {
+  return args;
+}, arrayOf = function(items) {
+  return Array.isArray(items) ? items : [items];
+};
 
 // ../greenbox-data/lib/familiars.ts
 var FamiliarStatus = /* @__PURE__ */ function(FamiliarStatus2) {
@@ -2977,8 +2982,8 @@ var pointsRadix = 32, tattooLevelRadix = 16, compressPaths = function(paths) {
     var _acc = _slicedToArray3(acc, 2), r = _acc[0], currentId = _acc[1];
     return path[0] > currentId && (r += ",".repeat(path[0] - currentId), currentId = path[0]), r += path[1].toString(pointsRadix), r += path[2].join(""), r += path[3].join(""), r += path[4].map(function(i) {
       return i.toString(tattooLevelRadix);
-    }).join(""), [r, currentId];
-  }, ["", -3])[0].replace(/0+($|,)/, "$1");
+    }).join(""), tuple([r, currentId]);
+  }, tuple(["", -3]))[0].replace(/0+($|,)/, "$1");
 };
 
 // ../greenbox-data/lib/skills.ts
@@ -3048,8 +3053,8 @@ var compressSkills = function(skills) {
     var r = acc[0], currentBlock = acc[1], block = Math.floor(skill[0] / 1e3);
     block > currentBlock && (r += ",".repeat(block - currentBlock), currentBlock = block);
     var blockContents = r.substring(r.lastIndexOf(",") + 1), zeros = "0".repeat(Math.max(0, skill[0] - block * 1e3 - blockContents.replace(/\(\d+\)/g, "").length - (block === 0 ? 1 : 0)));
-    return r += zeros, r += skill[1], skill[2] > 0 && (r += "(".concat(skill[2], ")")), [r, currentBlock];
-  }, ["", 0])[0].replace(/0+($|,)/, "$1");
+    return r += zeros, r += skill[1], skill[2] > 0 && (r += "(".concat(skill[2], ")")), tuple([r, currentBlock]);
+  }, tuple(["", 0]))[0].replace(/0+($|,)/, "$1");
 };
 
 // ../greenbox-data/lib/tattoos.ts
@@ -3705,11 +3710,197 @@ var tattoos_default = [{
   name: "Yendorian Finery",
   image: "elbereth",
   outfit: 16
+}, {
+  name: "Palette",
+  image: "palette",
+  misc: 1
+}, {
+  name: "Martini",
+  image: "martini",
+  misc: 2
+}, {
+  name: "Salad",
+  image: "saladtat",
+  misc: 3
+}, {
+  name: "Hobo",
+  image: Array(19).fill(0).map(function(_, i) {
+    return "hobotat".concat(i + 1);
+  }),
+  misc: 4
+}, {
+  name: "St. Sneaky Pete's Day",
+  image: ["sspdtat1", "sspdpook2", "sspdfipp3", "sspd4plunk", "sspdfi5if"],
+  misc: 5
+}, {
+  name: "Demon",
+  image: "demontat",
+  misc: 6
+}, {
+  name: "Best Game Ever",
+  image: "margaraxe",
+  misc: 7
+}, {
+  name: "Loathing Legion",
+  image: "lltat",
+  misc: 8
+}, {
+  name: "Alice's Army Foil",
+  image: "foilheart",
+  misc: 9
+}, {
+  name: "Corrupted Data",
+  image: "datatat",
+  misc: 10
+}, {
+  name: "Mark of the Bugbear",
+  image: "dv_tat1",
+  misc: 11
+}, {
+  name: "Mark of the Ghost",
+  image: "dv_tat2",
+  misc: 12
+}, {
+  name: "Mark of the Skeleton",
+  image: "dv_tat3",
+  misc: 13
+}, {
+  name: "Mark of the Vampire",
+  image: "dv_tat4",
+  misc: 14
+}, {
+  name: "Mark of the Werewolf",
+  image: "dv_tat5",
+  misc: 15
+}, {
+  name: "Mark of the Zombie",
+  image: "dv_tat6",
+  misc: 16
+}, {
+  name: "Official Seal of Dreadsylvania",
+  image: "dvinntat",
+  misc: 17
+}, {
+  name: "Spring Break",
+  image: "sbreaktat",
+  misc: 18
+}, {
+  name: "Merc Core",
+  image: "merctat",
+  misc: 19
+}, {
+  name: "Dinsey",
+  image: "dinseytat",
+  misc: 20
+}, {
+  name: "DEBBIE",
+  image: "debbietat",
+  misc: 21
+}, {
+  name: "Wal-Mart",
+  image: "walmarttat",
+  misc: 22
+}, {
+  name: "LT&T",
+  image: "ltttat",
+  misc: 23
+}, {
+  name: "Airplane",
+  image: "planetat",
+  misc: 24
+}, {
+  name: "White Rabbit",
+  image: "sourcetat",
+  misc: 25
+}, {
+  name: "Detective Badge",
+  image: "detbadge",
+  misc: 26
+}, {
+  name: "Proton",
+  image: "protontat",
+  misc: 27
+}, {
+  name: "Twitch Television",
+  image: "twitchtat",
+  misc: 28
+}, {
+  name: "Eternal Knot",
+  image: "eternaltat",
+  misc: 29
+}, {
+  name: "Spacegate Initiative",
+  image: "sgtat",
+  misc: 30
+}, {
+  name: "New You",
+  image: "newyou",
+  misc: 31
+}, {
+  name: "Battoo",
+  image: "batmantat",
+  misc: 32
+}, {
+  name: "I \u2764\uFE0F Gingerbread City",
+  image: "gingercitytat",
+  misc: 33
+}, {
+  name: "KGB",
+  image: "kgbtat",
+  misc: 34
+}, {
+  name: "FantasyRealm",
+  image: "frtat",
+  misc: 35
+}, {
+  name: "Bastille Battalion",
+  image: "bbatttat",
+  misc: 36
+}, {
+  name: "Gattoo",
+  image: "gtat",
+  misc: 37
+}, {
+  name: "Party Tattoo\u2122",
+  image: "partytat",
+  misc: 38
+}, {
+  name: "Crimbo 2018",
+  image: "c18tat",
+  misc: 39
+}, {
+  name: "Red Roger",
+  image: "redrogertat",
+  misc: 40
+}, {
+  name: "Guzzlr",
+  image: "guzzlrtat2",
+  misc: 41
+}, {
+  name: "Yeg",
+  image: "yegtat",
+  misc: 42
+}, {
+  name: "Crimbo Cheer",
+  image: "c20cheer",
+  misc: 43
+}, {
+  name: "Crimbo Carol",
+  image: "c20carols",
+  misc: 44
+}, {
+  name: "Crimbo Commerce",
+  image: "c20commerce",
+  misc: 45
+}, {
+  name: "Shadow",
+  image: "shadowtat",
+  misc: 46
 }];
 
 // ../greenbox-data/lib/tattoos.ts
-var TattooStatus = /* @__PURE__ */ function(TattooStatus2) {
-  return TattooStatus2[TattooStatus2.NONE = 0] = "NONE", TattooStatus2[TattooStatus2.HAVE_OUTFIT = 1] = "HAVE_OUTFIT", TattooStatus2[TattooStatus2.HAVE = 2] = "HAVE", TattooStatus2;
+var OutfitTattooStatus = /* @__PURE__ */ function(OutfitTattooStatus2) {
+  return OutfitTattooStatus2[OutfitTattooStatus2.NONE = 0] = "NONE", OutfitTattooStatus2[OutfitTattooStatus2.HAVE_OUTFIT = 1] = "HAVE_OUTFIT", OutfitTattooStatus2[OutfitTattooStatus2.HAVE = 2] = "HAVE", OutfitTattooStatus2;
 }({});
 function loadTattoos() {
   var lastKnownSize = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0, size = JSON.stringify(tattoos_default).length;
@@ -3718,18 +3909,27 @@ function loadTattoos() {
     size: size
   };
 }
+function isOutfitTattoo(tattoo) {
+  return "outfit" in tattoo;
+}
+function isMiscTattoo(tattoo) {
+  return "misc" in tattoo;
+}
 function getOutfitTattoos(tattoos) {
-  return tattoos.filter(function(t) {
-    return t.outfit !== void 0;
-  }).sort(function(a, b) {
+  return tattoos.filter(isOutfitTattoo).sort(function(a, b) {
     return a.outfit - b.outfit;
   });
 }
-var compressOutfitTattoos = function(tattoos) {
+function getMiscTattoos(tattoos) {
+  return tattoos.filter(isMiscTattoo).sort(function(a, b) {
+    return a.misc - b.misc;
+  });
+}
+var tattooLevelRadix2 = 32, compressTattoos = function(tattoos) {
   return tattoos.sort(function(a, b) {
     return a[0] - b[0];
   }).reduce(function(r, tattoo) {
-    return "".concat(r).concat("0".repeat(tattoo[0] - r.length - 1)).concat(tattoo[1]);
+    return "".concat(r).concat("0".repeat(tattoo[0] - r.length - 1)).concat(tattoo[1].toString(tattooLevelRadix2));
   }, "").replace(/0+$/, "");
 };
 
@@ -4423,7 +4623,8 @@ function compress(raw) {
     skills: compressSkills(raw.skills),
     familiars: compressFamiliars(raw.familiars),
     trophies: compressTrophies(raw.trophies),
-    outfitTattoos: compressOutfitTattoos(raw.outfitTattoos),
+    miscTattoos: compressTattoos(raw.miscTattoos),
+    outfitTattoos: compressTattoos(raw.outfitTattoos),
     paths: compressPaths(raw.paths),
     iotms: compressIotMs(raw.iotms),
     items: compressItems(raw.items)
@@ -5020,9 +5221,6 @@ function haveItem(item) {
 }
 
 // src/iotms.ts
-var arrayOf = function(items) {
-  return Array.isArray(items) ? items : [items];
-};
 function haveBound(iotm, options) {
   var _options$force;
   if ((_options$force = options.force) !== null && _options$force !== void 0 && _options$force.includes(iotm.id))
@@ -5183,17 +5381,27 @@ function haveOutfitPieces(outfit) {
     return haveItem(piece);
   });
 }
+function getTattooStatus(page, tattoo) {
+  for (var outfit = isOutfitTattoo(tattoo), images = arrayOf(tattoo.image), i = images.length - 1; i >= 0; i--)
+    if (page.includes(images[i]))
+      return outfit && i === images.length - 1 ? OutfitTattooStatus.HAVE : i + 1;
+  return outfit && haveOutfitPieces(tattoo.name) ? OutfitTattooStatus.HAVE_OUTFIT : OutfitTattooStatus.NONE;
+}
 function checkOutfitTattoos(page) {
-  var _loadTattoos;
-  function getStatus(tattoo) {
-    return Array.isArray(tattoo.image) ? TattooStatus.NONE : page.includes(tattoo.image) ? TattooStatus.HAVE : haveOutfitPieces(tattoo.name) ? TattooStatus.HAVE_OUTFIT : TattooStatus.NONE;
-  }
-  return getOutfitTattoos(((_loadTattoos = loadTattoos()) === null || _loadTattoos === void 0 ? void 0 : _loadTattoos.data) || []).map(function(tattoo) {
-    return [tattoo.outfit, getStatus(tattoo)];
+  var _loadTattoos$data, _loadTattoos;
+  return getOutfitTattoos((_loadTattoos$data = (_loadTattoos = loadTattoos()) === null || _loadTattoos === void 0 ? void 0 : _loadTattoos.data) !== null && _loadTattoos$data !== void 0 ? _loadTattoos$data : []).map(function(tattoo) {
+    return [tattoo.outfit, getTattooStatus(page, tattoo)];
+  });
+}
+function checkMiscTattoos(page) {
+  var _loadTattoos$data2, _loadTattoos2;
+  return getMiscTattoos((_loadTattoos$data2 = (_loadTattoos2 = loadTattoos()) === null || _loadTattoos2 === void 0 ? void 0 : _loadTattoos2.data) !== null && _loadTattoos$data2 !== void 0 ? _loadTattoos$data2 : []).map(function(tattoo) {
+    return [tattoo.misc, getTattooStatus(page, tattoo)];
   });
 }
 function checkTattoos(tattoos) {
   return {
+    miscTattoos: checkMiscTattoos(tattoos),
     outfitTattoos: checkOutfitTattoos(tattoos)
   };
 }
@@ -5205,21 +5413,15 @@ function getPathLevel(path) {
   }, 0), path.maxPoints);
 }
 function checkPaths(tattoos) {
-  var _loadPaths$data, _loadPaths;
+  var _loadPaths$data, _loadPaths, getTattooLevelForPage = function(t) {
+    return getTattooStatus(tattoos, t);
+  };
   return ((_loadPaths$data = (_loadPaths = loadPaths()) === null || _loadPaths === void 0 ? void 0 : _loadPaths.data) !== null && _loadPaths$data !== void 0 ? _loadPaths$data : []).map(function(path) {
     var level = getPathLevel(path), items = path.items.map(function(i) {
       return haveItem(import_kolmafia7.Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE;
     }), equipment = path.equipment.map(function(i) {
       return haveItem(import_kolmafia7.Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE;
-    }), tats = path.tattoos.map(function(tattoo) {
-      if (Array.isArray(tattoo.image)) {
-        for (var i = tattoo.image.length - 1; i >= 0; i--)
-          if (tattoos.includes(tattoo.image[i]))
-            return i + 1;
-        return 0;
-      }
-      return tattoos.includes(tattoo.image) ? 1 : 0;
-    });
+    }), tats = path.tattoos.map(getTattooLevelForPage);
     return [path.id, level, items, equipment, tats];
   });
 }
