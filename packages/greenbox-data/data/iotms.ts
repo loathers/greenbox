@@ -1187,8 +1187,15 @@ export default [
   }, // sleeping patriotic eagle
   { id: 11305, month: 8, year: 2023, type: "item", item: "august scepter" }, // boxed august scepter
   {
-    id: 11335,
+    id: 11333,
     month: 9,
+    year: 2023,
+    type: "skill",
+    skill: "Just the Facts",
+  }, // Book of Facts
+  {
+    id: 11335,
+    month: 10,
     year: 2023,
     type: "familiar",
     familiar: "Jill-of-All-Trades",
