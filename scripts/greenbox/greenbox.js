@@ -3211,6 +3211,10 @@ var tattoos_default = [{
   image: "necbrotat",
   outfit: 83
 }, {
+  name: "Dental Drip",
+  image: "dentaltat",
+  outfit: 165
+}, {
   name: "Dinsey's Exoskeleton",
   image: "wdbraintat",
   outfit: 123
