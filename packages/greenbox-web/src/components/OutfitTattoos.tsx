@@ -1,4 +1,4 @@
-import { RawTattoo, isOutfitTattoo } from "greenbox-data";
+import { isOutfitTattoo } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks";

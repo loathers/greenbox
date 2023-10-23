@@ -17,6 +17,11 @@ export const theme = extendTheme({
     useSystemColorMode: true,
     disableTransitionOnChange: false,
   },
+  styles: {
+    html: {
+      marginLeft: "calc(100vw - 100%)",
+    },
+  },
   semanticTokens: {
     colors: {
       "chakra-body-bg": {
