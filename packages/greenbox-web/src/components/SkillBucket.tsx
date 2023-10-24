@@ -1,4 +1,4 @@
-import { ClassDef } from "greenbox-data";
+import type { ClassType } from "data-of-loathing";
 
 import { getSkillHeader } from "../utils";
 
@@ -7,7 +7,7 @@ import Subsection from "./Subsection";
 
 type Props = React.PropsWithChildren<{
   bucket: number;
-  cls: ClassDef;
+  cls: ClassType;
   medal: boolean;
 }>;
 

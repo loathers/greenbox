@@ -1,9 +1,3 @@
-export type ClassDef = {
-  id: number;
-  name: string;
-  image: string;
-};
-
 export interface PathDef {
   id: number;
   name: string;

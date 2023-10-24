@@ -1,4 +1,5 @@
-import { SkillType, SkillStatus } from "greenbox-data";
+import { SkillType } from "data-of-loathing";
+import { SkillStatus } from "greenbox-data";
 
 import { skillStatusToThingState, skillStatusToTitle } from "../utils";
 

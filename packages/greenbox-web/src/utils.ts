@@ -1,10 +1,5 @@
-import {
-  ClassDef,
-  ItemStatus,
-  SkillType,
-  SkillStatus,
-  tuple,
-} from "greenbox-data";
+import type { ClassType, SkillType } from "data-of-loathing";
+import { ItemStatus, SkillStatus, tuple } from "greenbox-data";
 
 export function itemStatusToThingState(status: ItemStatus) {
   if (status > 0) return "complete";
@@ -74,7 +69,7 @@ export function getSkillBucket(s: SkillType) {
   return Math.floor(s.id / 1000);
 }
 
-export function getSkillHeader(bucket: number, cls: ClassDef) {
+export function getSkillHeader(bucket: number, cls: ClassType) {
   if (cls) return [cls.name, `itemimages/${cls.image}.gif`];
 
   switch (bucket) {

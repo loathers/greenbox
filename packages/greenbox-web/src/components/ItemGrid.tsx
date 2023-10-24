@@ -1,4 +1,5 @@
-import { ItemStatus, ItemType } from "greenbox-data";
+import { ItemType } from "data-of-loathing";
+import { ItemStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";

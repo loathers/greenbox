@@ -5,18 +5,20 @@ import {
   createAction,
   createSelector,
 } from "@reduxjs/toolkit";
-import * as api from "greenbox-data";
-import type {
+import {
+  ClassType,
   EffectType,
   FamiliarType,
   ItemType,
   SkillType,
-  TattooDef,
-  TrophyDef,
-  ClassDef,
-  PathDef,
-  IotMDef,
-} from "greenbox-data";
+  loadClasses,
+  loadEffects,
+  loadFamiliars,
+  loadItems,
+  loadSkills,
+} from "data-of-loathing";
+import * as api from "greenbox-data";
+import type { TattooDef, TrophyDef, PathDef, IotMDef } from "greenbox-data";
 import {
   persistStore,
   persistReducer,
@@ -49,7 +51,7 @@ export interface GreenboxState {
   playerData: api.RawSnapshotData | null;
   playerId: number | null;
   favouritePlayerId: number | null;
-  classes: ClassDef[];
+  classes: ClassType[];
   effects: EffectType[];
   familiars: FamiliarType[];
   iotms: IotMDef[];
@@ -108,15 +110,15 @@ const initialState: GreenboxState = {
 
 export const fetchClasses = createAsyncThunk(
   "classes/fetch",
-  async (size: number) => api.loadClasses(size),
+  async (size: number) => loadClasses(size),
 );
 export const fetchEffects = createAsyncThunk(
   "effects/fetch",
-  async (size: number) => api.loadEffects(size),
+  async (size: number) => loadEffects(size),
 );
 export const fetchFamiliars = createAsyncThunk(
   "familiars/fetch",
-  async (size: number) => api.loadFamiliars(size),
+  async (size: number) => loadFamiliars(size),
 );
 export const fetchIotMs = createAsyncThunk(
   "iotms/fetch",
@@ -124,7 +126,7 @@ export const fetchIotMs = createAsyncThunk(
 );
 export const fetchItems = createAsyncThunk(
   "items/fetch",
-  async (size: number) => api.loadItems(size),
+  async (size: number) => loadItems(size),
 );
 export const fetchPaths = createAsyncThunk(
   "paths/fetch",
@@ -132,7 +134,7 @@ export const fetchPaths = createAsyncThunk(
 );
 export const fetchSkills = createAsyncThunk(
   "skills/fetch",
-  async (size: number) => api.loadSkills(size),
+  async (size: number) => loadSkills(size),
 );
 export const fetchTattoos = createAsyncThunk(
   "tattoos/fetch",
