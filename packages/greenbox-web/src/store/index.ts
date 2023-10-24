@@ -6,11 +6,11 @@ import {
   createSelector,
 } from "@reduxjs/toolkit";
 import * as api from "greenbox-data";
-import {
-  EffectDef,
-  FamiliarDef,
-  ItemDef,
-  SkillDef,
+import type {
+  EffectType,
+  FamiliarType,
+  ItemType,
+  SkillType,
   TattooDef,
   TrophyDef,
   ClassDef,
@@ -50,12 +50,12 @@ export interface GreenboxState {
   playerId: number | null;
   favouritePlayerId: number | null;
   classes: ClassDef[];
-  effects: EffectDef[];
-  familiars: FamiliarDef[];
+  effects: EffectType[];
+  familiars: FamiliarType[];
   iotms: IotMDef[];
-  items: { [id: number]: ItemDef };
+  items: Record<number, ItemType>;
   paths: PathDef[];
-  skills: SkillDef[];
+  skills: SkillType[];
   tattoos: TattooDef[];
   trophies: TrophyDef[];
   wikiClashes: string[];
@@ -237,7 +237,7 @@ export const greenboxSlice = createSlice({
           const items = action.payload.data;
           state.items = items.reduce(
             (acc, i) => ({ ...acc, [i.id]: i }),
-            {} as { [id: number]: (typeof items)[number] },
+            {} as Record<number, (typeof items)[number]>,
           );
           state.sizeAtLastFetch.items = action.payload.size;
         }
@@ -390,7 +390,7 @@ export const selectIdToPlayerSkills = createSelector(
   (playerSkills) =>
     playerSkills.reduce(
       (acc, s) => ({ ...acc, [s[0]]: s }),
-      {} as { [id: number]: (typeof playerSkills)[number] },
+      {} as Record<number, (typeof playerSkills)[number]>,
     ),
 );
 
@@ -399,7 +399,7 @@ export const selectIdToSkills = createSelector(
   (skills) =>
     skills.reduce(
       (acc, s) => ({ ...acc, [s.id]: s }),
-      {} as { [id: number]: (typeof skills)[number] },
+      {} as Record<number, (typeof skills)[number]>,
     ),
 );
 
@@ -414,6 +414,6 @@ export const selectIdToPlayerItems = createSelector(
   (playerItems) =>
     playerItems.reduce(
       (acc, s) => ({ ...acc, [s[0]]: s }),
-      {} as { [id: number]: (typeof playerItems)[number] },
+      {} as Record<number, (typeof playerItems)[number]>,
     ),
 );

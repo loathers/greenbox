@@ -38,6 +38,7 @@
   },
   "prettier": "greenbox-prettier-config",
   "dependencies": {
+    "data-of-loathing": "^1.2.0",
     "jsoncrush": "^1.1.8"
   }
 }

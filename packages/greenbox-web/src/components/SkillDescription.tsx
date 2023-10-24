@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import { SkillDef } from "greenbox-data";
+import type { SkillType } from "greenbox-data";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -9,7 +9,7 @@ import Spinner from "./Spinner";
 import { guessWikiLink } from "./Thing";
 
 type Props = {
-  skill: SkillDef;
+  skill: SkillType;
 };
 
 export default function SkillDescription({ skill }: Props) {

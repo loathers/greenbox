@@ -1,5 +1,5 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import { SkillDef, SkillStatus } from "greenbox-data";
+import { SkillType, SkillStatus, isSkillPermable } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -17,7 +17,7 @@ export default function Skills() {
 
   const allSkills = useAppSelector((state) => state.skills);
   const skills = useMemo(
-    () => allSkills.filter((s) => s.permable),
+    () => allSkills.filter((s) => isSkillPermable(s)),
     [allSkills],
   );
   const classes = useAppSelector((state) => state.classes);
@@ -36,7 +36,7 @@ export default function Skills() {
     () =>
       classes.reduce(
         (acc, c) => ({ ...acc, [c.id]: c }),
-        {} as { [id: number]: (typeof classes)[number] },
+        {} as Record<number, (typeof classes)[number]>,
       ),
     [classes],
   );
@@ -48,7 +48,7 @@ export default function Skills() {
           const bucket = getSkillBucket(s);
           return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
         },
-        {} as { [key: number]: SkillDef[] },
+        {} as Record<number, SkillType[]>,
       ),
     [skills],
   );
@@ -67,7 +67,7 @@ export default function Skills() {
   );
 
   // Not ideal but we accumulate mutually exclusive groups of skills in this array as we traverse the skills array (if necessary).
-  const skillGroup = [] as SkillDef[];
+  const skillGroup = [] as SkillType[];
 
   return (
     <Section

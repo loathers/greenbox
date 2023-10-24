@@ -1,7 +1,7 @@
 import {
   ClassDef,
   ItemStatus,
-  SkillDef,
+  SkillType,
   SkillStatus,
   tuple,
 } from "greenbox-data";
@@ -50,7 +50,7 @@ export enum SkillBuckets {
   SlimeTube = 0.32,
 }
 
-export function getSkillBucket(s: SkillDef) {
+export function getSkillBucket(s: SkillType) {
   if (s.id >= 10 && s.id <= 14) {
     return SkillBuckets.Gnome;
   }

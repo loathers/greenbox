@@ -1,4 +1,4 @@
-import { SkillDef, SkillStatus } from "greenbox-data";
+import { SkillType, SkillStatus } from "greenbox-data";
 
 import { skillStatusToThingState, skillStatusToTitle } from "../utils";
 
@@ -7,7 +7,7 @@ import Thing from "./Thing";
 
 type Props = {
   groupName: string;
-  skills: SkillDef[];
+  skills: SkillType[];
   statuses: SkillStatus[];
 };
 

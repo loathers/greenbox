@@ -16,7 +16,7 @@ export default function PathTattoos() {
     () =>
       playerPaths.reduce(
         (acc, t) => ({ ...acc, [t[0]]: t }),
-        {} as { [id: number]: (typeof playerPaths)[number] },
+        {} as Record<number, (typeof playerPaths)[number]>,
       ),
     [playerPaths],
   );

@@ -1,12 +1,12 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import { FamiliarDef } from "greenbox-data";
+import type { FamiliarType } from "greenbox-data";
 import { Fragment } from "react";
 
 import AlphaImage from "./AlphaImage";
 import Medal from "./Medal";
 
 type Props = {
-  familiars: FamiliarDef[];
+  familiars: FamiliarType[];
 };
 
 export default function HundredPercentedUnownableFamiliars({

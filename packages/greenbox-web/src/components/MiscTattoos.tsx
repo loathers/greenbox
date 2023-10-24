@@ -23,7 +23,7 @@ export default function OutfitTattoos() {
     () =>
       playerTattoos.reduce(
         (acc, t) => ({ ...acc, [t[0]]: t }),
-        {} as { [id: number]: (typeof playerTattoos)[number] },
+        {} as Record<number, (typeof playerTattoos)[number]>,
       ),
     [playerTattoos],
   );

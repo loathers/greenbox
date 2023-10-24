@@ -33,7 +33,7 @@ export default function Tattoos() {
     () =>
       paths.reduce(
         (acc, p) => ({ ...acc, [p.id]: p }),
-        {} as { [id: number]: PathDef },
+        {} as Record<number, PathDef>,
       ),
     [paths],
   );
@@ -44,7 +44,7 @@ export default function Tattoos() {
         .filter(isMiscTattoo)
         .reduce(
           (acc, t) => ({ ...acc, [t.misc]: getMaxTattooLevel(t) }),
-          {} as { [id: number]: number },
+          {} as Record<number, number>,
         ),
     [tattoos],
   );

@@ -5,7 +5,7 @@ import ItemGrid from "./ItemGrid";
 import Subsection from "./Subsection";
 import TattooGrid from "./TattooGrid";
 
-const ROW_LABEL_RENDERERS: { [id: number]: (i: number) => React.ReactNode } = {
+const ROW_LABEL_RENDERERS: Record<number, (i: number) => React.ReactNode> = {
   [SOFTCORE]: (i: number) => 2015 + i,
   [HARDCORE]: (i: number) => (i === 0 ? null : 2015 + (i - 1)),
 };
