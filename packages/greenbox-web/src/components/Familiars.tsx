@@ -1,5 +1,6 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import { FamiliarStatus, isFamiliarOwnable } from "greenbox-data";
+import { isFamiliarOwnable } from "data-of-loathing";
+import { FamiliarStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks";

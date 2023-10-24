@@ -1,5 +1,7 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import { SkillType, SkillStatus, isSkillPermable } from "greenbox-data";
+import type { SkillType } from "data-of-loathing";
+import { isSkillPermable } from "data-of-loathing";
+import { SkillStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";

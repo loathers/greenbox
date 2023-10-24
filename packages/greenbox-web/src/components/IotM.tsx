@@ -1,4 +1,5 @@
-import { IotMDef, IotMStatus, ItemType } from "greenbox-data";
+import { ItemType } from "data-of-loathing";
+import { IotMDef, IotMStatus } from "greenbox-data";
 
 import Thing from "./Thing";
 

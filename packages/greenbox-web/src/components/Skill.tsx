@@ -1,14 +1,13 @@
 import {
   Badge,
-  Button,
   Popover,
   PopoverArrow,
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-  Portal,
 } from "@chakra-ui/react";
-import { SkillStatus, getMaxSkillLevel } from "greenbox-data";
+import { getMaxSkillLevel } from "data-of-loathing";
+import { SkillStatus } from "greenbox-data";
 
 import { useAppSelector } from "../hooks";
 import { selectIdToPlayerSkills, selectIdToSkills } from "../store";
