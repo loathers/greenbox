@@ -1,9 +1,36 @@
 "use strict";
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf, __hasOwnProp = Object.prototype.hasOwnProperty;
 var __esm = function(fn, res) {
   return function() {
     return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
+};
+var __commonJS = function(cb, mod) {
+  return function() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+};
+var __copyProps = function(to, from, except, desc) {
+  if (from && typeof from == "object" || typeof from == "function")
+    for (var keys = __getOwnPropNames(from), i = 0, n = keys.length, key; i < n; i++)
+      key = keys[i], !__hasOwnProp.call(to, key) && key !== except && __defProp(to, key, { get: function(k) {
+        return from[k];
+      }.bind(null, key), enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  return to;
+};
+var __toESM = function(mod, isNodeMode, target) {
+  return target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: !0 }) : target,
+    mod
+  );
 };
 
 // kolmafia-polyfill.js
@@ -13,6 +40,2262 @@ var kolmafia, console, init_kolmafia_polyfill = __esm({
     kolmafia = require("kolmafia"), console = {
       log: kolmafia.print
     };
+  }
+});
+
+// ../../node_modules/data-of-loathing/dist/utils.js
+var require_utils = __commonJS({
+  "../../node_modules/data-of-loathing/dist/utils.js": function(exports2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    function _regeneratorRuntime() {
+      "use strict";
+      _regeneratorRuntime = function() {
+        return e;
+      };
+      var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function(t2, e2, r2) {
+        t2[e2] = r2.value;
+      }, i = typeof Symbol == "function" ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag";
+      function define(t2, e2, r2) {
+        return Object.defineProperty(t2, e2, { value: r2, enumerable: !0, configurable: !0, writable: !0 }), t2[e2];
+      }
+      try {
+        define({}, "");
+      } catch (t2) {
+        define = function(t3, e2, r2) {
+          return t3[e2] = r2;
+        };
+      }
+      function wrap(t2, e2, r2, n2) {
+        var i2 = e2 && e2.prototype instanceof Generator ? e2 : Generator, a2 = Object.create(i2.prototype), c2 = new Context(n2 || []);
+        return o(a2, "_invoke", { value: makeInvokeMethod(t2, r2, c2) }), a2;
+      }
+      function tryCatch(t2, e2, r2) {
+        try {
+          return { type: "normal", arg: t2.call(e2, r2) };
+        } catch (t3) {
+          return { type: "throw", arg: t3 };
+        }
+      }
+      e.wrap = wrap;
+      var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {};
+      function Generator() {
+      }
+      function GeneratorFunction() {
+      }
+      function GeneratorFunctionPrototype() {
+      }
+      var p = {};
+      define(p, a, function() {
+        return this;
+      });
+      var d = Object.getPrototypeOf, v = d && d(d(values([])));
+      v && v !== r && n.call(v, a) && (p = v);
+      var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+      function defineIteratorMethods(t2) {
+        ["next", "throw", "return"].forEach(function(e2) {
+          define(t2, e2, function(t3) {
+            return this._invoke(e2, t3);
+          });
+        });
+      }
+      function AsyncIterator(t2, e2) {
+        function invoke(r3, o2, i2, a2) {
+          var c2 = tryCatch(t2[r3], t2, o2);
+          if (c2.type !== "throw") {
+            var u2 = c2.arg, h2 = u2.value;
+            return h2 && typeof h2 == "object" && n.call(h2, "__await") ? e2.resolve(h2.__await).then(function(t3) {
+              invoke("next", t3, i2, a2);
+            }, function(t3) {
+              invoke("throw", t3, i2, a2);
+            }) : e2.resolve(h2).then(function(t3) {
+              u2.value = t3, i2(u2);
+            }, function(t3) {
+              return invoke("throw", t3, i2, a2);
+            });
+          }
+          a2(c2.arg);
+        }
+        var r2;
+        o(this, "_invoke", { value: function(t3, n2) {
+          function callInvokeWithMethodAndArg() {
+            return new e2(function(e3, r3) {
+              invoke(t3, n2, e3, r3);
+            });
+          }
+          return r2 = r2 ? r2.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        } });
+      }
+      function makeInvokeMethod(e2, r2, n2) {
+        var o2 = h;
+        return function(i2, a2) {
+          if (o2 === f)
+            throw new Error("Generator is already running");
+          if (o2 === s) {
+            if (i2 === "throw")
+              throw a2;
+            return { value: t, done: !0 };
+          }
+          for (n2.method = i2, n2.arg = a2; ; ) {
+            var c2 = n2.delegate;
+            if (c2) {
+              var u2 = maybeInvokeDelegate(c2, n2);
+              if (u2) {
+                if (u2 === y)
+                  continue;
+                return u2;
+              }
+            }
+            if (n2.method === "next")
+              n2.sent = n2._sent = n2.arg;
+            else if (n2.method === "throw") {
+              if (o2 === h)
+                throw o2 = s, n2.arg;
+              n2.dispatchException(n2.arg);
+            } else
+              n2.method === "return" && n2.abrupt("return", n2.arg);
+            o2 = f;
+            var p2 = tryCatch(e2, r2, n2);
+            if (p2.type === "normal") {
+              if (o2 = n2.done ? s : l, p2.arg === y)
+                continue;
+              return { value: p2.arg, done: n2.done };
+            }
+            p2.type === "throw" && (o2 = s, n2.method = "throw", n2.arg = p2.arg);
+          }
+        };
+      }
+      function maybeInvokeDelegate(e2, r2) {
+        var n2 = r2.method, o2 = e2.iterator[n2];
+        if (o2 === t)
+          return r2.delegate = null, n2 === "throw" && e2.iterator.return && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), r2.method === "throw") || n2 !== "return" && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
+        var i2 = tryCatch(o2, e2.iterator, r2.arg);
+        if (i2.type === "throw")
+          return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y;
+        var a2 = i2.arg;
+        return a2 ? a2.done ? (r2[e2.resultName] = a2.value, r2.next = e2.nextLoc, r2.method !== "return" && (r2.method = "next", r2.arg = t), r2.delegate = null, y) : a2 : (r2.method = "throw", r2.arg = new TypeError("iterator result is not an object"), r2.delegate = null, y);
+      }
+      function pushTryEntry(t2) {
+        var e2 = { tryLoc: t2[0] };
+        1 in t2 && (e2.catchLoc = t2[1]), 2 in t2 && (e2.finallyLoc = t2[2], e2.afterLoc = t2[3]), this.tryEntries.push(e2);
+      }
+      function resetTryEntry(t2) {
+        var e2 = t2.completion || {};
+        e2.type = "normal", delete e2.arg, t2.completion = e2;
+      }
+      function Context(t2) {
+        this.tryEntries = [{ tryLoc: "root" }], t2.forEach(pushTryEntry, this), this.reset(!0);
+      }
+      function values(e2) {
+        if (e2 || e2 === "") {
+          var r2 = e2[a];
+          if (r2)
+            return r2.call(e2);
+          if (typeof e2.next == "function")
+            return e2;
+          if (!isNaN(e2.length)) {
+            var o2 = -1, i2 = function next() {
+              for (; ++o2 < e2.length; )
+                if (n.call(e2, o2))
+                  return next.value = e2[o2], next.done = !1, next;
+              return next.value = t, next.done = !0, next;
+            };
+            return i2.next = i2;
+          }
+        }
+        throw new TypeError(typeof e2 + " is not iterable");
+      }
+      return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function(t2) {
+        var e2 = typeof t2 == "function" && t2.constructor;
+        return !!e2 && (e2 === GeneratorFunction || (e2.displayName || e2.name) === "GeneratorFunction");
+      }, e.mark = function(t2) {
+        return Object.setPrototypeOf ? Object.setPrototypeOf(t2, GeneratorFunctionPrototype) : (t2.__proto__ = GeneratorFunctionPrototype, define(t2, u, "GeneratorFunction")), t2.prototype = Object.create(g), t2;
+      }, e.awrap = function(t2) {
+        return { __await: t2 };
+      }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function() {
+        return this;
+      }), e.AsyncIterator = AsyncIterator, e.async = function(t2, r2, n2, o2, i2) {
+        i2 === void 0 && (i2 = Promise);
+        var a2 = new AsyncIterator(wrap(t2, r2, n2, o2), i2);
+        return e.isGeneratorFunction(r2) ? a2 : a2.next().then(function(t3) {
+          return t3.done ? t3.value : a2.next();
+        });
+      }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function() {
+        return this;
+      }), define(g, "toString", function() {
+        return "[object Generator]";
+      }), e.keys = function(t2) {
+        var e2 = Object(t2), r2 = [];
+        for (var n2 in e2)
+          r2.push(n2);
+        return r2.reverse(), function next() {
+          for (; r2.length; ) {
+            var t3 = r2.pop();
+            if (t3 in e2)
+              return next.value = t3, next.done = !1, next;
+          }
+          return next.done = !0, next;
+        };
+      }, e.values = values, Context.prototype = { constructor: Context, reset: function(e2) {
+        if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e2)
+          for (var r2 in this)
+            r2.charAt(0) === "t" && n.call(this, r2) && !isNaN(+r2.slice(1)) && (this[r2] = t);
+      }, stop: function() {
+        this.done = !0;
+        var t2 = this.tryEntries[0].completion;
+        if (t2.type === "throw")
+          throw t2.arg;
+        return this.rval;
+      }, dispatchException: function(e2) {
+        if (this.done)
+          throw e2;
+        var r2 = this;
+        function handle(n2, o3) {
+          return a2.type = "throw", a2.arg = e2, r2.next = n2, o3 && (r2.method = "next", r2.arg = t), !!o3;
+        }
+        for (var o2 = this.tryEntries.length - 1; o2 >= 0; --o2) {
+          var i2 = this.tryEntries[o2], a2 = i2.completion;
+          if (i2.tryLoc === "root")
+            return handle("end");
+          if (i2.tryLoc <= this.prev) {
+            var c2 = n.call(i2, "catchLoc"), u2 = n.call(i2, "finallyLoc");
+            if (c2 && u2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            } else if (c2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+            } else {
+              if (!u2)
+                throw new Error("try statement without catch or finally");
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            }
+          }
+        }
+      }, abrupt: function(t2, e2) {
+        for (var r2 = this.tryEntries.length - 1; r2 >= 0; --r2) {
+          var o2 = this.tryEntries[r2];
+          if (o2.tryLoc <= this.prev && n.call(o2, "finallyLoc") && this.prev < o2.finallyLoc) {
+            var i2 = o2;
+            break;
+          }
+        }
+        i2 && (t2 === "break" || t2 === "continue") && i2.tryLoc <= e2 && e2 <= i2.finallyLoc && (i2 = null);
+        var a2 = i2 ? i2.completion : {};
+        return a2.type = t2, a2.arg = e2, i2 ? (this.method = "next", this.next = i2.finallyLoc, y) : this.complete(a2);
+      }, complete: function(t2, e2) {
+        if (t2.type === "throw")
+          throw t2.arg;
+        return t2.type === "break" || t2.type === "continue" ? this.next = t2.arg : t2.type === "return" ? (this.rval = this.arg = t2.arg, this.method = "return", this.next = "end") : t2.type === "normal" && e2 && (this.next = e2), y;
+      }, finish: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.finallyLoc === t2)
+            return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y;
+        }
+      }, catch: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.tryLoc === t2) {
+            var n2 = r2.completion;
+            if (n2.type === "throw") {
+              var o2 = n2.arg;
+              resetTryEntry(r2);
+            }
+            return o2;
+          }
+        }
+        throw new Error("illegal catch attempt");
+      }, delegateYield: function(e2, r2, n2) {
+        return this.delegate = { iterator: values(e2), resultName: r2, nextLoc: n2 }, this.method === "next" && (this.arg = t), y;
+      } }, e;
+    }
+    var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+          resolve(value);
+        });
+      }
+      return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+          try {
+            step(generator.next(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function rejected(value) {
+          try {
+            step(generator.throw(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function step(result) {
+          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+      });
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: !0
+    });
+    exports2.isMemberOfEnum = exports2.arrayOf = exports2.tuple = exports2.loadMafiaData = void 0;
+    var MAFIA_DATA_BASE = "https://raw.githubusercontent.com/kolmafia/kolmafia/main/src/data";
+    function loadMafiaData(fileName) {
+      var lastKnownSize = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0, _a;
+      return __awaiter(this, void 0, void 0, /* @__PURE__ */ _regeneratorRuntime().mark(function _callee() {
+        var url, sizeCheck, newSize, request, raw;
+        return _regeneratorRuntime().wrap(function(_context) {
+          for (; ; )
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (url = "".concat(MAFIA_DATA_BASE, "/").concat(fileName, ".txt"), !(lastKnownSize > 0)) {
+                  _context.next = 8;
+                  break;
+                }
+                return _context.next = 4, fetch(url, {
+                  method: "HEAD"
+                });
+              case 4:
+                if (sizeCheck = _context.sent, newSize = Number((_a = sizeCheck.headers.get("Content-Length")) !== null && _a !== void 0 ? _a : 1), newSize !== lastKnownSize) {
+                  _context.next = 8;
+                  break;
+                }
+                return _context.abrupt("return", null);
+              case 8:
+                return _context.next = 10, fetch(url);
+              case 10:
+                return request = _context.sent, _context.next = 13, request.text();
+              case 13:
+                return raw = _context.sent, _context.abrupt("return", {
+                  data: raw.split("\n").slice(1).filter(function(r) {
+                    return r !== "" && !r.startsWith("#");
+                  }).map(function(r) {
+                    return r.split("	");
+                  }),
+                  size: Number(request.headers.get("Content-Length"))
+                });
+              case 15:
+              case "end":
+                return _context.stop();
+            }
+        }, _callee);
+      }));
+    }
+    exports2.loadMafiaData = loadMafiaData;
+    var tuple2 = function(args) {
+      return args;
+    };
+    exports2.tuple = tuple2;
+    var arrayOf2 = function(items) {
+      return Array.isArray(items) ? items : [items];
+    };
+    exports2.arrayOf = arrayOf2;
+    var isMemberOfEnum = function(e) {
+      return function(token) {
+        return Object.values(e).includes(token);
+      };
+    };
+    exports2.isMemberOfEnum = isMemberOfEnum;
+  }
+});
+
+// ../../node_modules/data-of-loathing/dist/entityTypes/effects.js
+var require_effects = __commonJS({
+  "../../node_modules/data-of-loathing/dist/entityTypes/effects.js": function(exports2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    function _regeneratorRuntime() {
+      "use strict";
+      _regeneratorRuntime = function() {
+        return e;
+      };
+      var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function(t2, e2, r2) {
+        t2[e2] = r2.value;
+      }, i = typeof Symbol == "function" ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag";
+      function define(t2, e2, r2) {
+        return Object.defineProperty(t2, e2, { value: r2, enumerable: !0, configurable: !0, writable: !0 }), t2[e2];
+      }
+      try {
+        define({}, "");
+      } catch (t2) {
+        define = function(t3, e2, r2) {
+          return t3[e2] = r2;
+        };
+      }
+      function wrap(t2, e2, r2, n2) {
+        var i2 = e2 && e2.prototype instanceof Generator ? e2 : Generator, a2 = Object.create(i2.prototype), c2 = new Context(n2 || []);
+        return o(a2, "_invoke", { value: makeInvokeMethod(t2, r2, c2) }), a2;
+      }
+      function tryCatch(t2, e2, r2) {
+        try {
+          return { type: "normal", arg: t2.call(e2, r2) };
+        } catch (t3) {
+          return { type: "throw", arg: t3 };
+        }
+      }
+      e.wrap = wrap;
+      var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {};
+      function Generator() {
+      }
+      function GeneratorFunction() {
+      }
+      function GeneratorFunctionPrototype() {
+      }
+      var p = {};
+      define(p, a, function() {
+        return this;
+      });
+      var d = Object.getPrototypeOf, v = d && d(d(values([])));
+      v && v !== r && n.call(v, a) && (p = v);
+      var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+      function defineIteratorMethods(t2) {
+        ["next", "throw", "return"].forEach(function(e2) {
+          define(t2, e2, function(t3) {
+            return this._invoke(e2, t3);
+          });
+        });
+      }
+      function AsyncIterator(t2, e2) {
+        function invoke(r3, o2, i2, a2) {
+          var c2 = tryCatch(t2[r3], t2, o2);
+          if (c2.type !== "throw") {
+            var u2 = c2.arg, h2 = u2.value;
+            return h2 && typeof h2 == "object" && n.call(h2, "__await") ? e2.resolve(h2.__await).then(function(t3) {
+              invoke("next", t3, i2, a2);
+            }, function(t3) {
+              invoke("throw", t3, i2, a2);
+            }) : e2.resolve(h2).then(function(t3) {
+              u2.value = t3, i2(u2);
+            }, function(t3) {
+              return invoke("throw", t3, i2, a2);
+            });
+          }
+          a2(c2.arg);
+        }
+        var r2;
+        o(this, "_invoke", { value: function(t3, n2) {
+          function callInvokeWithMethodAndArg() {
+            return new e2(function(e3, r3) {
+              invoke(t3, n2, e3, r3);
+            });
+          }
+          return r2 = r2 ? r2.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        } });
+      }
+      function makeInvokeMethod(e2, r2, n2) {
+        var o2 = h;
+        return function(i2, a2) {
+          if (o2 === f)
+            throw new Error("Generator is already running");
+          if (o2 === s) {
+            if (i2 === "throw")
+              throw a2;
+            return { value: t, done: !0 };
+          }
+          for (n2.method = i2, n2.arg = a2; ; ) {
+            var c2 = n2.delegate;
+            if (c2) {
+              var u2 = maybeInvokeDelegate(c2, n2);
+              if (u2) {
+                if (u2 === y)
+                  continue;
+                return u2;
+              }
+            }
+            if (n2.method === "next")
+              n2.sent = n2._sent = n2.arg;
+            else if (n2.method === "throw") {
+              if (o2 === h)
+                throw o2 = s, n2.arg;
+              n2.dispatchException(n2.arg);
+            } else
+              n2.method === "return" && n2.abrupt("return", n2.arg);
+            o2 = f;
+            var p2 = tryCatch(e2, r2, n2);
+            if (p2.type === "normal") {
+              if (o2 = n2.done ? s : l, p2.arg === y)
+                continue;
+              return { value: p2.arg, done: n2.done };
+            }
+            p2.type === "throw" && (o2 = s, n2.method = "throw", n2.arg = p2.arg);
+          }
+        };
+      }
+      function maybeInvokeDelegate(e2, r2) {
+        var n2 = r2.method, o2 = e2.iterator[n2];
+        if (o2 === t)
+          return r2.delegate = null, n2 === "throw" && e2.iterator.return && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), r2.method === "throw") || n2 !== "return" && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
+        var i2 = tryCatch(o2, e2.iterator, r2.arg);
+        if (i2.type === "throw")
+          return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y;
+        var a2 = i2.arg;
+        return a2 ? a2.done ? (r2[e2.resultName] = a2.value, r2.next = e2.nextLoc, r2.method !== "return" && (r2.method = "next", r2.arg = t), r2.delegate = null, y) : a2 : (r2.method = "throw", r2.arg = new TypeError("iterator result is not an object"), r2.delegate = null, y);
+      }
+      function pushTryEntry(t2) {
+        var e2 = { tryLoc: t2[0] };
+        1 in t2 && (e2.catchLoc = t2[1]), 2 in t2 && (e2.finallyLoc = t2[2], e2.afterLoc = t2[3]), this.tryEntries.push(e2);
+      }
+      function resetTryEntry(t2) {
+        var e2 = t2.completion || {};
+        e2.type = "normal", delete e2.arg, t2.completion = e2;
+      }
+      function Context(t2) {
+        this.tryEntries = [{ tryLoc: "root" }], t2.forEach(pushTryEntry, this), this.reset(!0);
+      }
+      function values(e2) {
+        if (e2 || e2 === "") {
+          var r2 = e2[a];
+          if (r2)
+            return r2.call(e2);
+          if (typeof e2.next == "function")
+            return e2;
+          if (!isNaN(e2.length)) {
+            var o2 = -1, i2 = function next() {
+              for (; ++o2 < e2.length; )
+                if (n.call(e2, o2))
+                  return next.value = e2[o2], next.done = !1, next;
+              return next.value = t, next.done = !0, next;
+            };
+            return i2.next = i2;
+          }
+        }
+        throw new TypeError(typeof e2 + " is not iterable");
+      }
+      return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function(t2) {
+        var e2 = typeof t2 == "function" && t2.constructor;
+        return !!e2 && (e2 === GeneratorFunction || (e2.displayName || e2.name) === "GeneratorFunction");
+      }, e.mark = function(t2) {
+        return Object.setPrototypeOf ? Object.setPrototypeOf(t2, GeneratorFunctionPrototype) : (t2.__proto__ = GeneratorFunctionPrototype, define(t2, u, "GeneratorFunction")), t2.prototype = Object.create(g), t2;
+      }, e.awrap = function(t2) {
+        return { __await: t2 };
+      }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function() {
+        return this;
+      }), e.AsyncIterator = AsyncIterator, e.async = function(t2, r2, n2, o2, i2) {
+        i2 === void 0 && (i2 = Promise);
+        var a2 = new AsyncIterator(wrap(t2, r2, n2, o2), i2);
+        return e.isGeneratorFunction(r2) ? a2 : a2.next().then(function(t3) {
+          return t3.done ? t3.value : a2.next();
+        });
+      }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function() {
+        return this;
+      }), define(g, "toString", function() {
+        return "[object Generator]";
+      }), e.keys = function(t2) {
+        var e2 = Object(t2), r2 = [];
+        for (var n2 in e2)
+          r2.push(n2);
+        return r2.reverse(), function next() {
+          for (; r2.length; ) {
+            var t3 = r2.pop();
+            if (t3 in e2)
+              return next.value = t3, next.done = !1, next;
+          }
+          return next.done = !0, next;
+        };
+      }, e.values = values, Context.prototype = { constructor: Context, reset: function(e2) {
+        if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e2)
+          for (var r2 in this)
+            r2.charAt(0) === "t" && n.call(this, r2) && !isNaN(+r2.slice(1)) && (this[r2] = t);
+      }, stop: function() {
+        this.done = !0;
+        var t2 = this.tryEntries[0].completion;
+        if (t2.type === "throw")
+          throw t2.arg;
+        return this.rval;
+      }, dispatchException: function(e2) {
+        if (this.done)
+          throw e2;
+        var r2 = this;
+        function handle(n2, o3) {
+          return a2.type = "throw", a2.arg = e2, r2.next = n2, o3 && (r2.method = "next", r2.arg = t), !!o3;
+        }
+        for (var o2 = this.tryEntries.length - 1; o2 >= 0; --o2) {
+          var i2 = this.tryEntries[o2], a2 = i2.completion;
+          if (i2.tryLoc === "root")
+            return handle("end");
+          if (i2.tryLoc <= this.prev) {
+            var c2 = n.call(i2, "catchLoc"), u2 = n.call(i2, "finallyLoc");
+            if (c2 && u2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            } else if (c2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+            } else {
+              if (!u2)
+                throw new Error("try statement without catch or finally");
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            }
+          }
+        }
+      }, abrupt: function(t2, e2) {
+        for (var r2 = this.tryEntries.length - 1; r2 >= 0; --r2) {
+          var o2 = this.tryEntries[r2];
+          if (o2.tryLoc <= this.prev && n.call(o2, "finallyLoc") && this.prev < o2.finallyLoc) {
+            var i2 = o2;
+            break;
+          }
+        }
+        i2 && (t2 === "break" || t2 === "continue") && i2.tryLoc <= e2 && e2 <= i2.finallyLoc && (i2 = null);
+        var a2 = i2 ? i2.completion : {};
+        return a2.type = t2, a2.arg = e2, i2 ? (this.method = "next", this.next = i2.finallyLoc, y) : this.complete(a2);
+      }, complete: function(t2, e2) {
+        if (t2.type === "throw")
+          throw t2.arg;
+        return t2.type === "break" || t2.type === "continue" ? this.next = t2.arg : t2.type === "return" ? (this.rval = this.arg = t2.arg, this.method = "return", this.next = "end") : t2.type === "normal" && e2 && (this.next = e2), y;
+      }, finish: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.finallyLoc === t2)
+            return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y;
+        }
+      }, catch: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.tryLoc === t2) {
+            var n2 = r2.completion;
+            if (n2.type === "throw") {
+              var o2 = n2.arg;
+              resetTryEntry(r2);
+            }
+            return o2;
+          }
+        }
+        throw new Error("illegal catch attempt");
+      }, delegateYield: function(e2, r2, n2) {
+        return this.delegate = { iterator: values(e2), resultName: r2, nextLoc: n2 }, this.method === "next" && (this.arg = t), y;
+      } }, e;
+    }
+    var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+          resolve(value);
+        });
+      }
+      return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+          try {
+            step(generator.next(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function rejected(value) {
+          try {
+            step(generator.throw(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function step(result) {
+          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+      });
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: !0
+    });
+    exports2.loadEffects = exports2.EffectQuality = void 0;
+    var utils_1 = require_utils(), EffectQuality;
+    (function(EffectQuality2) {
+      EffectQuality2.Good = "good", EffectQuality2.Neutral = "neutral", EffectQuality2.Bad = "bad";
+    })(EffectQuality || (exports2.EffectQuality = EffectQuality = {}));
+    var isValidQuality = (0, utils_1.isMemberOfEnum)(EffectQuality), parseEffect = function(parts) {
+      return {
+        id: Number(parts[0]),
+        name: parts[1],
+        image: parts[2],
+        descid: parts[3],
+        quality: isValidQuality(parts[4]) ? parts[4] : EffectQuality.Neutral,
+        attributes: parts[5].split(",").map(function(p) {
+          return p.trim();
+        }).filter(function(p) {
+          return p !== "none";
+        }),
+        actions: parts[6].split("|")
+      };
+    }, loadEffects2 = function(lastKnownSize) {
+      return __awaiter(void 0, void 0, void 0, /* @__PURE__ */ _regeneratorRuntime().mark(function _callee() {
+        var raw;
+        return _regeneratorRuntime().wrap(function(_context) {
+          for (; ; )
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.next = 2, (0, utils_1.loadMafiaData)("statuseffects", lastKnownSize);
+              case 2:
+                if (raw = _context.sent, raw !== null) {
+                  _context.next = 5;
+                  break;
+                }
+                return _context.abrupt("return", null);
+              case 5:
+                return _context.abrupt("return", Object.assign(Object.assign({}, raw), {
+                  data: raw.data.filter(function(p) {
+                    return p.length > 2;
+                  }).map(parseEffect)
+                }));
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+        }, _callee);
+      }));
+    };
+    exports2.loadEffects = loadEffects2;
+  }
+});
+
+// ../../node_modules/data-of-loathing/dist/entityTypes/familiars.js
+var require_familiars = __commonJS({
+  "../../node_modules/data-of-loathing/dist/entityTypes/familiars.js": function(exports2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    function _regeneratorRuntime() {
+      "use strict";
+      _regeneratorRuntime = function() {
+        return e;
+      };
+      var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function(t2, e2, r2) {
+        t2[e2] = r2.value;
+      }, i = typeof Symbol == "function" ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag";
+      function define(t2, e2, r2) {
+        return Object.defineProperty(t2, e2, { value: r2, enumerable: !0, configurable: !0, writable: !0 }), t2[e2];
+      }
+      try {
+        define({}, "");
+      } catch (t2) {
+        define = function(t3, e2, r2) {
+          return t3[e2] = r2;
+        };
+      }
+      function wrap(t2, e2, r2, n2) {
+        var i2 = e2 && e2.prototype instanceof Generator ? e2 : Generator, a2 = Object.create(i2.prototype), c2 = new Context(n2 || []);
+        return o(a2, "_invoke", { value: makeInvokeMethod(t2, r2, c2) }), a2;
+      }
+      function tryCatch(t2, e2, r2) {
+        try {
+          return { type: "normal", arg: t2.call(e2, r2) };
+        } catch (t3) {
+          return { type: "throw", arg: t3 };
+        }
+      }
+      e.wrap = wrap;
+      var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {};
+      function Generator() {
+      }
+      function GeneratorFunction() {
+      }
+      function GeneratorFunctionPrototype() {
+      }
+      var p = {};
+      define(p, a, function() {
+        return this;
+      });
+      var d = Object.getPrototypeOf, v = d && d(d(values([])));
+      v && v !== r && n.call(v, a) && (p = v);
+      var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+      function defineIteratorMethods(t2) {
+        ["next", "throw", "return"].forEach(function(e2) {
+          define(t2, e2, function(t3) {
+            return this._invoke(e2, t3);
+          });
+        });
+      }
+      function AsyncIterator(t2, e2) {
+        function invoke(r3, o2, i2, a2) {
+          var c2 = tryCatch(t2[r3], t2, o2);
+          if (c2.type !== "throw") {
+            var u2 = c2.arg, h2 = u2.value;
+            return h2 && typeof h2 == "object" && n.call(h2, "__await") ? e2.resolve(h2.__await).then(function(t3) {
+              invoke("next", t3, i2, a2);
+            }, function(t3) {
+              invoke("throw", t3, i2, a2);
+            }) : e2.resolve(h2).then(function(t3) {
+              u2.value = t3, i2(u2);
+            }, function(t3) {
+              return invoke("throw", t3, i2, a2);
+            });
+          }
+          a2(c2.arg);
+        }
+        var r2;
+        o(this, "_invoke", { value: function(t3, n2) {
+          function callInvokeWithMethodAndArg() {
+            return new e2(function(e3, r3) {
+              invoke(t3, n2, e3, r3);
+            });
+          }
+          return r2 = r2 ? r2.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        } });
+      }
+      function makeInvokeMethod(e2, r2, n2) {
+        var o2 = h;
+        return function(i2, a2) {
+          if (o2 === f)
+            throw new Error("Generator is already running");
+          if (o2 === s) {
+            if (i2 === "throw")
+              throw a2;
+            return { value: t, done: !0 };
+          }
+          for (n2.method = i2, n2.arg = a2; ; ) {
+            var c2 = n2.delegate;
+            if (c2) {
+              var u2 = maybeInvokeDelegate(c2, n2);
+              if (u2) {
+                if (u2 === y)
+                  continue;
+                return u2;
+              }
+            }
+            if (n2.method === "next")
+              n2.sent = n2._sent = n2.arg;
+            else if (n2.method === "throw") {
+              if (o2 === h)
+                throw o2 = s, n2.arg;
+              n2.dispatchException(n2.arg);
+            } else
+              n2.method === "return" && n2.abrupt("return", n2.arg);
+            o2 = f;
+            var p2 = tryCatch(e2, r2, n2);
+            if (p2.type === "normal") {
+              if (o2 = n2.done ? s : l, p2.arg === y)
+                continue;
+              return { value: p2.arg, done: n2.done };
+            }
+            p2.type === "throw" && (o2 = s, n2.method = "throw", n2.arg = p2.arg);
+          }
+        };
+      }
+      function maybeInvokeDelegate(e2, r2) {
+        var n2 = r2.method, o2 = e2.iterator[n2];
+        if (o2 === t)
+          return r2.delegate = null, n2 === "throw" && e2.iterator.return && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), r2.method === "throw") || n2 !== "return" && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
+        var i2 = tryCatch(o2, e2.iterator, r2.arg);
+        if (i2.type === "throw")
+          return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y;
+        var a2 = i2.arg;
+        return a2 ? a2.done ? (r2[e2.resultName] = a2.value, r2.next = e2.nextLoc, r2.method !== "return" && (r2.method = "next", r2.arg = t), r2.delegate = null, y) : a2 : (r2.method = "throw", r2.arg = new TypeError("iterator result is not an object"), r2.delegate = null, y);
+      }
+      function pushTryEntry(t2) {
+        var e2 = { tryLoc: t2[0] };
+        1 in t2 && (e2.catchLoc = t2[1]), 2 in t2 && (e2.finallyLoc = t2[2], e2.afterLoc = t2[3]), this.tryEntries.push(e2);
+      }
+      function resetTryEntry(t2) {
+        var e2 = t2.completion || {};
+        e2.type = "normal", delete e2.arg, t2.completion = e2;
+      }
+      function Context(t2) {
+        this.tryEntries = [{ tryLoc: "root" }], t2.forEach(pushTryEntry, this), this.reset(!0);
+      }
+      function values(e2) {
+        if (e2 || e2 === "") {
+          var r2 = e2[a];
+          if (r2)
+            return r2.call(e2);
+          if (typeof e2.next == "function")
+            return e2;
+          if (!isNaN(e2.length)) {
+            var o2 = -1, i2 = function next() {
+              for (; ++o2 < e2.length; )
+                if (n.call(e2, o2))
+                  return next.value = e2[o2], next.done = !1, next;
+              return next.value = t, next.done = !0, next;
+            };
+            return i2.next = i2;
+          }
+        }
+        throw new TypeError(typeof e2 + " is not iterable");
+      }
+      return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function(t2) {
+        var e2 = typeof t2 == "function" && t2.constructor;
+        return !!e2 && (e2 === GeneratorFunction || (e2.displayName || e2.name) === "GeneratorFunction");
+      }, e.mark = function(t2) {
+        return Object.setPrototypeOf ? Object.setPrototypeOf(t2, GeneratorFunctionPrototype) : (t2.__proto__ = GeneratorFunctionPrototype, define(t2, u, "GeneratorFunction")), t2.prototype = Object.create(g), t2;
+      }, e.awrap = function(t2) {
+        return { __await: t2 };
+      }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function() {
+        return this;
+      }), e.AsyncIterator = AsyncIterator, e.async = function(t2, r2, n2, o2, i2) {
+        i2 === void 0 && (i2 = Promise);
+        var a2 = new AsyncIterator(wrap(t2, r2, n2, o2), i2);
+        return e.isGeneratorFunction(r2) ? a2 : a2.next().then(function(t3) {
+          return t3.done ? t3.value : a2.next();
+        });
+      }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function() {
+        return this;
+      }), define(g, "toString", function() {
+        return "[object Generator]";
+      }), e.keys = function(t2) {
+        var e2 = Object(t2), r2 = [];
+        for (var n2 in e2)
+          r2.push(n2);
+        return r2.reverse(), function next() {
+          for (; r2.length; ) {
+            var t3 = r2.pop();
+            if (t3 in e2)
+              return next.value = t3, next.done = !1, next;
+          }
+          return next.done = !0, next;
+        };
+      }, e.values = values, Context.prototype = { constructor: Context, reset: function(e2) {
+        if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e2)
+          for (var r2 in this)
+            r2.charAt(0) === "t" && n.call(this, r2) && !isNaN(+r2.slice(1)) && (this[r2] = t);
+      }, stop: function() {
+        this.done = !0;
+        var t2 = this.tryEntries[0].completion;
+        if (t2.type === "throw")
+          throw t2.arg;
+        return this.rval;
+      }, dispatchException: function(e2) {
+        if (this.done)
+          throw e2;
+        var r2 = this;
+        function handle(n2, o3) {
+          return a2.type = "throw", a2.arg = e2, r2.next = n2, o3 && (r2.method = "next", r2.arg = t), !!o3;
+        }
+        for (var o2 = this.tryEntries.length - 1; o2 >= 0; --o2) {
+          var i2 = this.tryEntries[o2], a2 = i2.completion;
+          if (i2.tryLoc === "root")
+            return handle("end");
+          if (i2.tryLoc <= this.prev) {
+            var c2 = n.call(i2, "catchLoc"), u2 = n.call(i2, "finallyLoc");
+            if (c2 && u2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            } else if (c2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+            } else {
+              if (!u2)
+                throw new Error("try statement without catch or finally");
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            }
+          }
+        }
+      }, abrupt: function(t2, e2) {
+        for (var r2 = this.tryEntries.length - 1; r2 >= 0; --r2) {
+          var o2 = this.tryEntries[r2];
+          if (o2.tryLoc <= this.prev && n.call(o2, "finallyLoc") && this.prev < o2.finallyLoc) {
+            var i2 = o2;
+            break;
+          }
+        }
+        i2 && (t2 === "break" || t2 === "continue") && i2.tryLoc <= e2 && e2 <= i2.finallyLoc && (i2 = null);
+        var a2 = i2 ? i2.completion : {};
+        return a2.type = t2, a2.arg = e2, i2 ? (this.method = "next", this.next = i2.finallyLoc, y) : this.complete(a2);
+      }, complete: function(t2, e2) {
+        if (t2.type === "throw")
+          throw t2.arg;
+        return t2.type === "break" || t2.type === "continue" ? this.next = t2.arg : t2.type === "return" ? (this.rval = this.arg = t2.arg, this.method = "return", this.next = "end") : t2.type === "normal" && e2 && (this.next = e2), y;
+      }, finish: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.finallyLoc === t2)
+            return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y;
+        }
+      }, catch: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.tryLoc === t2) {
+            var n2 = r2.completion;
+            if (n2.type === "throw") {
+              var o2 = n2.arg;
+              resetTryEntry(r2);
+            }
+            return o2;
+          }
+        }
+        throw new Error("illegal catch attempt");
+      }, delegateYield: function(e2, r2, n2) {
+        return this.delegate = { iterator: values(e2), resultName: r2, nextLoc: n2 }, this.method === "next" && (this.arg = t), y;
+      } }, e;
+    }
+    var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+          resolve(value);
+        });
+      }
+      return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+          try {
+            step(generator.next(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function rejected(value) {
+          try {
+            step(generator.throw(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function step(result) {
+          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+      });
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: !0
+    });
+    exports2.loadFamiliars = exports2.isFamiliarOwnable = exports2.FamiliarCategory = void 0;
+    var utils_1 = require_utils(), FamiliarCategory;
+    (function(FamiliarCategory2) {
+      FamiliarCategory2.Stat0 = "stat0", FamiliarCategory2.Stat1 = "stat1", FamiliarCategory2.Item0 = "item0", FamiliarCategory2.Item1 = "item1", FamiliarCategory2.Item2 = "item2", FamiliarCategory2.Item3 = "item3", FamiliarCategory2.Meat0 = "meat0", FamiliarCategory2.Combat0 = "combat0", FamiliarCategory2.Combat1 = "combat1", FamiliarCategory2.Drop = "drop", FamiliarCategory2.Block = "block", FamiliarCategory2.Delevel = "delevel", FamiliarCategory2.Hp0 = "hp0", FamiliarCategory2.Mp0 = "mp0", FamiliarCategory2.Meat1 = "meat1", FamiliarCategory2.Stat2 = "stat2", FamiliarCategory2.Other0 = "other0", FamiliarCategory2.Hp1 = "hp1", FamiliarCategory2.Mp1 = "mp1", FamiliarCategory2.Stat3 = "stat3", FamiliarCategory2.Other1 = "other1", FamiliarCategory2.Passive = "passive", FamiliarCategory2.Underwater = "underwater", FamiliarCategory2.Variable = "variable";
+    })(FamiliarCategory || (exports2.FamiliarCategory = FamiliarCategory = {}));
+    var isValidCategory = (0, utils_1.isMemberOfEnum)(FamiliarCategory), isFamiliarOwnable2 = function(_ref) {
+      var id = _ref.id;
+      return !(id >= 125 && id < 134 || id >= 215 && id < 260);
+    };
+    exports2.isFamiliarOwnable = isFamiliarOwnable2;
+    var parseFamiliar = function(parts) {
+      var _a, _b;
+      return {
+        id: Number(parts[0]),
+        name: parts[1],
+        image: parts[2],
+        categories: parts[3].split(",").map(function(p) {
+          return p.trim();
+        }).filter(isValidCategory),
+        larva: parts[4],
+        equipment: parts[5] || null,
+        arenaStats: {
+          cageMatch: Number(parts[6]),
+          scavengerHunt: Number(parts[7]),
+          obstacleCourse: Number(parts[8]),
+          hideAndSeek: Number(parts[9])
+        },
+        attributes: (_b = (_a = parts[10]) === null || _a === void 0 ? void 0 : _a.split(",")) !== null && _b !== void 0 ? _b : []
+      };
+    }, loadFamiliars2 = function(lastKnownSize) {
+      return __awaiter(void 0, void 0, void 0, /* @__PURE__ */ _regeneratorRuntime().mark(function _callee() {
+        var raw;
+        return _regeneratorRuntime().wrap(function(_context) {
+          for (; ; )
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.next = 2, (0, utils_1.loadMafiaData)("familiars", lastKnownSize);
+              case 2:
+                if (raw = _context.sent, raw !== null) {
+                  _context.next = 5;
+                  break;
+                }
+                return _context.abrupt("return", null);
+              case 5:
+                return _context.abrupt("return", Object.assign(Object.assign({}, raw), {
+                  data: raw.data.filter(function(p) {
+                    return p.length > 2;
+                  }).map(parseFamiliar)
+                }));
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+        }, _callee);
+      }));
+    };
+    exports2.loadFamiliars = loadFamiliars2;
+  }
+});
+
+// ../../node_modules/data-of-loathing/dist/entityTypes/items.js
+var require_items = __commonJS({
+  "../../node_modules/data-of-loathing/dist/entityTypes/items.js": function(exports2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    function _regeneratorRuntime() {
+      "use strict";
+      _regeneratorRuntime = function() {
+        return e;
+      };
+      var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function(t2, e2, r2) {
+        t2[e2] = r2.value;
+      }, i = typeof Symbol == "function" ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag";
+      function define(t2, e2, r2) {
+        return Object.defineProperty(t2, e2, { value: r2, enumerable: !0, configurable: !0, writable: !0 }), t2[e2];
+      }
+      try {
+        define({}, "");
+      } catch (t2) {
+        define = function(t3, e2, r2) {
+          return t3[e2] = r2;
+        };
+      }
+      function wrap(t2, e2, r2, n2) {
+        var i2 = e2 && e2.prototype instanceof Generator ? e2 : Generator, a2 = Object.create(i2.prototype), c2 = new Context(n2 || []);
+        return o(a2, "_invoke", { value: makeInvokeMethod(t2, r2, c2) }), a2;
+      }
+      function tryCatch(t2, e2, r2) {
+        try {
+          return { type: "normal", arg: t2.call(e2, r2) };
+        } catch (t3) {
+          return { type: "throw", arg: t3 };
+        }
+      }
+      e.wrap = wrap;
+      var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {};
+      function Generator() {
+      }
+      function GeneratorFunction() {
+      }
+      function GeneratorFunctionPrototype() {
+      }
+      var p = {};
+      define(p, a, function() {
+        return this;
+      });
+      var d = Object.getPrototypeOf, v = d && d(d(values([])));
+      v && v !== r && n.call(v, a) && (p = v);
+      var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+      function defineIteratorMethods(t2) {
+        ["next", "throw", "return"].forEach(function(e2) {
+          define(t2, e2, function(t3) {
+            return this._invoke(e2, t3);
+          });
+        });
+      }
+      function AsyncIterator(t2, e2) {
+        function invoke(r3, o2, i2, a2) {
+          var c2 = tryCatch(t2[r3], t2, o2);
+          if (c2.type !== "throw") {
+            var u2 = c2.arg, h2 = u2.value;
+            return h2 && typeof h2 == "object" && n.call(h2, "__await") ? e2.resolve(h2.__await).then(function(t3) {
+              invoke("next", t3, i2, a2);
+            }, function(t3) {
+              invoke("throw", t3, i2, a2);
+            }) : e2.resolve(h2).then(function(t3) {
+              u2.value = t3, i2(u2);
+            }, function(t3) {
+              return invoke("throw", t3, i2, a2);
+            });
+          }
+          a2(c2.arg);
+        }
+        var r2;
+        o(this, "_invoke", { value: function(t3, n2) {
+          function callInvokeWithMethodAndArg() {
+            return new e2(function(e3, r3) {
+              invoke(t3, n2, e3, r3);
+            });
+          }
+          return r2 = r2 ? r2.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        } });
+      }
+      function makeInvokeMethod(e2, r2, n2) {
+        var o2 = h;
+        return function(i2, a2) {
+          if (o2 === f)
+            throw new Error("Generator is already running");
+          if (o2 === s) {
+            if (i2 === "throw")
+              throw a2;
+            return { value: t, done: !0 };
+          }
+          for (n2.method = i2, n2.arg = a2; ; ) {
+            var c2 = n2.delegate;
+            if (c2) {
+              var u2 = maybeInvokeDelegate(c2, n2);
+              if (u2) {
+                if (u2 === y)
+                  continue;
+                return u2;
+              }
+            }
+            if (n2.method === "next")
+              n2.sent = n2._sent = n2.arg;
+            else if (n2.method === "throw") {
+              if (o2 === h)
+                throw o2 = s, n2.arg;
+              n2.dispatchException(n2.arg);
+            } else
+              n2.method === "return" && n2.abrupt("return", n2.arg);
+            o2 = f;
+            var p2 = tryCatch(e2, r2, n2);
+            if (p2.type === "normal") {
+              if (o2 = n2.done ? s : l, p2.arg === y)
+                continue;
+              return { value: p2.arg, done: n2.done };
+            }
+            p2.type === "throw" && (o2 = s, n2.method = "throw", n2.arg = p2.arg);
+          }
+        };
+      }
+      function maybeInvokeDelegate(e2, r2) {
+        var n2 = r2.method, o2 = e2.iterator[n2];
+        if (o2 === t)
+          return r2.delegate = null, n2 === "throw" && e2.iterator.return && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), r2.method === "throw") || n2 !== "return" && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
+        var i2 = tryCatch(o2, e2.iterator, r2.arg);
+        if (i2.type === "throw")
+          return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y;
+        var a2 = i2.arg;
+        return a2 ? a2.done ? (r2[e2.resultName] = a2.value, r2.next = e2.nextLoc, r2.method !== "return" && (r2.method = "next", r2.arg = t), r2.delegate = null, y) : a2 : (r2.method = "throw", r2.arg = new TypeError("iterator result is not an object"), r2.delegate = null, y);
+      }
+      function pushTryEntry(t2) {
+        var e2 = { tryLoc: t2[0] };
+        1 in t2 && (e2.catchLoc = t2[1]), 2 in t2 && (e2.finallyLoc = t2[2], e2.afterLoc = t2[3]), this.tryEntries.push(e2);
+      }
+      function resetTryEntry(t2) {
+        var e2 = t2.completion || {};
+        e2.type = "normal", delete e2.arg, t2.completion = e2;
+      }
+      function Context(t2) {
+        this.tryEntries = [{ tryLoc: "root" }], t2.forEach(pushTryEntry, this), this.reset(!0);
+      }
+      function values(e2) {
+        if (e2 || e2 === "") {
+          var r2 = e2[a];
+          if (r2)
+            return r2.call(e2);
+          if (typeof e2.next == "function")
+            return e2;
+          if (!isNaN(e2.length)) {
+            var o2 = -1, i2 = function next() {
+              for (; ++o2 < e2.length; )
+                if (n.call(e2, o2))
+                  return next.value = e2[o2], next.done = !1, next;
+              return next.value = t, next.done = !0, next;
+            };
+            return i2.next = i2;
+          }
+        }
+        throw new TypeError(typeof e2 + " is not iterable");
+      }
+      return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function(t2) {
+        var e2 = typeof t2 == "function" && t2.constructor;
+        return !!e2 && (e2 === GeneratorFunction || (e2.displayName || e2.name) === "GeneratorFunction");
+      }, e.mark = function(t2) {
+        return Object.setPrototypeOf ? Object.setPrototypeOf(t2, GeneratorFunctionPrototype) : (t2.__proto__ = GeneratorFunctionPrototype, define(t2, u, "GeneratorFunction")), t2.prototype = Object.create(g), t2;
+      }, e.awrap = function(t2) {
+        return { __await: t2 };
+      }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function() {
+        return this;
+      }), e.AsyncIterator = AsyncIterator, e.async = function(t2, r2, n2, o2, i2) {
+        i2 === void 0 && (i2 = Promise);
+        var a2 = new AsyncIterator(wrap(t2, r2, n2, o2), i2);
+        return e.isGeneratorFunction(r2) ? a2 : a2.next().then(function(t3) {
+          return t3.done ? t3.value : a2.next();
+        });
+      }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function() {
+        return this;
+      }), define(g, "toString", function() {
+        return "[object Generator]";
+      }), e.keys = function(t2) {
+        var e2 = Object(t2), r2 = [];
+        for (var n2 in e2)
+          r2.push(n2);
+        return r2.reverse(), function next() {
+          for (; r2.length; ) {
+            var t3 = r2.pop();
+            if (t3 in e2)
+              return next.value = t3, next.done = !1, next;
+          }
+          return next.done = !0, next;
+        };
+      }, e.values = values, Context.prototype = { constructor: Context, reset: function(e2) {
+        if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e2)
+          for (var r2 in this)
+            r2.charAt(0) === "t" && n.call(this, r2) && !isNaN(+r2.slice(1)) && (this[r2] = t);
+      }, stop: function() {
+        this.done = !0;
+        var t2 = this.tryEntries[0].completion;
+        if (t2.type === "throw")
+          throw t2.arg;
+        return this.rval;
+      }, dispatchException: function(e2) {
+        if (this.done)
+          throw e2;
+        var r2 = this;
+        function handle(n2, o3) {
+          return a2.type = "throw", a2.arg = e2, r2.next = n2, o3 && (r2.method = "next", r2.arg = t), !!o3;
+        }
+        for (var o2 = this.tryEntries.length - 1; o2 >= 0; --o2) {
+          var i2 = this.tryEntries[o2], a2 = i2.completion;
+          if (i2.tryLoc === "root")
+            return handle("end");
+          if (i2.tryLoc <= this.prev) {
+            var c2 = n.call(i2, "catchLoc"), u2 = n.call(i2, "finallyLoc");
+            if (c2 && u2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            } else if (c2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+            } else {
+              if (!u2)
+                throw new Error("try statement without catch or finally");
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            }
+          }
+        }
+      }, abrupt: function(t2, e2) {
+        for (var r2 = this.tryEntries.length - 1; r2 >= 0; --r2) {
+          var o2 = this.tryEntries[r2];
+          if (o2.tryLoc <= this.prev && n.call(o2, "finallyLoc") && this.prev < o2.finallyLoc) {
+            var i2 = o2;
+            break;
+          }
+        }
+        i2 && (t2 === "break" || t2 === "continue") && i2.tryLoc <= e2 && e2 <= i2.finallyLoc && (i2 = null);
+        var a2 = i2 ? i2.completion : {};
+        return a2.type = t2, a2.arg = e2, i2 ? (this.method = "next", this.next = i2.finallyLoc, y) : this.complete(a2);
+      }, complete: function(t2, e2) {
+        if (t2.type === "throw")
+          throw t2.arg;
+        return t2.type === "break" || t2.type === "continue" ? this.next = t2.arg : t2.type === "return" ? (this.rval = this.arg = t2.arg, this.method = "return", this.next = "end") : t2.type === "normal" && e2 && (this.next = e2), y;
+      }, finish: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.finallyLoc === t2)
+            return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y;
+        }
+      }, catch: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.tryLoc === t2) {
+            var n2 = r2.completion;
+            if (n2.type === "throw") {
+              var o2 = n2.arg;
+              resetTryEntry(r2);
+            }
+            return o2;
+          }
+        }
+        throw new Error("illegal catch attempt");
+      }, delegateYield: function(e2, r2, n2) {
+        return this.delegate = { iterator: values(e2), resultName: r2, nextLoc: n2 }, this.method === "next" && (this.arg = t), y;
+      } }, e;
+    }
+    var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+          resolve(value);
+        });
+      }
+      return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+          try {
+            step(generator.next(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function rejected(value) {
+          try {
+            step(generator.throw(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function step(result) {
+          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+      });
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: !0
+    });
+    exports2.loadItems = exports2.ItemUse = void 0;
+    var utils_1 = require_utils(), ItemUse;
+    (function(ItemUse2) {
+      ItemUse2.Food = "food", ItemUse2.Drink = "drink", ItemUse2.Spleen = "spleen", ItemUse2.Potion = "potion", ItemUse2.Avatar = "avatar", ItemUse2.Usable = "usable", ItemUse2.Multiple = "multiple", ItemUse2.Reusable = "reusable", ItemUse2.Message = "message", ItemUse2.Grow = "grow", ItemUse2.PokePill = "pokepill", ItemUse2.Hat = "hat", ItemUse2.Weapon = "weapon", ItemUse2.Sixgun = "sixgun", ItemUse2.Offhand = "offhand", ItemUse2.Container = "container", ItemUse2.Shirt = "shirt", ItemUse2.Pants = "pants", ItemUse2.Accessory = "accessory", ItemUse2.Familiar = "familiar", ItemUse2.Sticker = "sticker", ItemUse2.Card = "card", ItemUse2.Folder = "folder", ItemUse2.Bootspur = "bootspur", ItemUse2.Bootskin = "bootskin", ItemUse2.FoodHelper = "food helper", ItemUse2.DrinkHelper = "drink helper", ItemUse2.Zap = "zap", ItemUse2.Sphere = "sphere", ItemUse2.Guardian = "guardian", ItemUse2.Combat = "combat", ItemUse2.CombatReusable = "combat reusable", ItemUse2.Single = "single", ItemUse2.Solo = "solo", ItemUse2.Curse = "curse", ItemUse2.Bounty = "bounty", ItemUse2.Package = "package", ItemUse2.Candy = "candy", ItemUse2.Candy1 = "candy1", ItemUse2.Candy2 = "candy2", ItemUse2.Chocolate = "chocolate", ItemUse2.Fancy = "fancy", ItemUse2.Paste = "paste", ItemUse2.Smith = "smith", ItemUse2.Cook = "cook", ItemUse2.Mix = "mix", ItemUse2.Matchable = "matchable";
+    })(ItemUse || (exports2.ItemUse = ItemUse = {}));
+    var isValidItemUse = (0, utils_1.isMemberOfEnum)(ItemUse), parseAccess = function(accessString) {
+      var access = accessString.split(",").map(function(p) {
+        return p.trim();
+      });
+      return {
+        quest: access.includes("q"),
+        gift: access.includes("g"),
+        tradeable: access.includes("t"),
+        discardable: access.includes("d")
+      };
+    }, parseItem = function(parts) {
+      return Object.assign(Object.assign({
+        id: Number(parts[0]),
+        name: parts[1],
+        descid: parts[2],
+        image: parts[3],
+        uses: parts[4].split(", ").filter(isValidItemUse)
+      }, parseAccess(parts[5])), {
+        autosell: Number(parts[6]),
+        plural: parts[7]
+      });
+    }, loadItems2 = function(lastKnownSize) {
+      return __awaiter(void 0, void 0, void 0, /* @__PURE__ */ _regeneratorRuntime().mark(function _callee() {
+        var raw;
+        return _regeneratorRuntime().wrap(function(_context) {
+          for (; ; )
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.next = 2, (0, utils_1.loadMafiaData)("items", lastKnownSize);
+              case 2:
+                if (raw = _context.sent, raw !== null) {
+                  _context.next = 5;
+                  break;
+                }
+                return _context.abrupt("return", null);
+              case 5:
+                return _context.abrupt("return", Object.assign(Object.assign({}, raw), {
+                  data: raw.data.filter(function(p) {
+                    return p.length > 2;
+                  }).map(parseItem)
+                }));
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+        }, _callee);
+      }));
+    };
+    exports2.loadItems = loadItems2;
+  }
+});
+
+// ../../node_modules/data-of-loathing/dist/entityTypes/outfits.js
+var require_outfits = __commonJS({
+  "../../node_modules/data-of-loathing/dist/entityTypes/outfits.js": function(exports2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    function _regeneratorRuntime() {
+      "use strict";
+      _regeneratorRuntime = function() {
+        return e;
+      };
+      var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function(t2, e2, r2) {
+        t2[e2] = r2.value;
+      }, i = typeof Symbol == "function" ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag";
+      function define(t2, e2, r2) {
+        return Object.defineProperty(t2, e2, { value: r2, enumerable: !0, configurable: !0, writable: !0 }), t2[e2];
+      }
+      try {
+        define({}, "");
+      } catch (t2) {
+        define = function(t3, e2, r2) {
+          return t3[e2] = r2;
+        };
+      }
+      function wrap(t2, e2, r2, n2) {
+        var i2 = e2 && e2.prototype instanceof Generator ? e2 : Generator, a2 = Object.create(i2.prototype), c2 = new Context(n2 || []);
+        return o(a2, "_invoke", { value: makeInvokeMethod(t2, r2, c2) }), a2;
+      }
+      function tryCatch(t2, e2, r2) {
+        try {
+          return { type: "normal", arg: t2.call(e2, r2) };
+        } catch (t3) {
+          return { type: "throw", arg: t3 };
+        }
+      }
+      e.wrap = wrap;
+      var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {};
+      function Generator() {
+      }
+      function GeneratorFunction() {
+      }
+      function GeneratorFunctionPrototype() {
+      }
+      var p = {};
+      define(p, a, function() {
+        return this;
+      });
+      var d = Object.getPrototypeOf, v = d && d(d(values([])));
+      v && v !== r && n.call(v, a) && (p = v);
+      var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+      function defineIteratorMethods(t2) {
+        ["next", "throw", "return"].forEach(function(e2) {
+          define(t2, e2, function(t3) {
+            return this._invoke(e2, t3);
+          });
+        });
+      }
+      function AsyncIterator(t2, e2) {
+        function invoke(r3, o2, i2, a2) {
+          var c2 = tryCatch(t2[r3], t2, o2);
+          if (c2.type !== "throw") {
+            var u2 = c2.arg, h2 = u2.value;
+            return h2 && typeof h2 == "object" && n.call(h2, "__await") ? e2.resolve(h2.__await).then(function(t3) {
+              invoke("next", t3, i2, a2);
+            }, function(t3) {
+              invoke("throw", t3, i2, a2);
+            }) : e2.resolve(h2).then(function(t3) {
+              u2.value = t3, i2(u2);
+            }, function(t3) {
+              return invoke("throw", t3, i2, a2);
+            });
+          }
+          a2(c2.arg);
+        }
+        var r2;
+        o(this, "_invoke", { value: function(t3, n2) {
+          function callInvokeWithMethodAndArg() {
+            return new e2(function(e3, r3) {
+              invoke(t3, n2, e3, r3);
+            });
+          }
+          return r2 = r2 ? r2.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        } });
+      }
+      function makeInvokeMethod(e2, r2, n2) {
+        var o2 = h;
+        return function(i2, a2) {
+          if (o2 === f)
+            throw new Error("Generator is already running");
+          if (o2 === s) {
+            if (i2 === "throw")
+              throw a2;
+            return { value: t, done: !0 };
+          }
+          for (n2.method = i2, n2.arg = a2; ; ) {
+            var c2 = n2.delegate;
+            if (c2) {
+              var u2 = maybeInvokeDelegate(c2, n2);
+              if (u2) {
+                if (u2 === y)
+                  continue;
+                return u2;
+              }
+            }
+            if (n2.method === "next")
+              n2.sent = n2._sent = n2.arg;
+            else if (n2.method === "throw") {
+              if (o2 === h)
+                throw o2 = s, n2.arg;
+              n2.dispatchException(n2.arg);
+            } else
+              n2.method === "return" && n2.abrupt("return", n2.arg);
+            o2 = f;
+            var p2 = tryCatch(e2, r2, n2);
+            if (p2.type === "normal") {
+              if (o2 = n2.done ? s : l, p2.arg === y)
+                continue;
+              return { value: p2.arg, done: n2.done };
+            }
+            p2.type === "throw" && (o2 = s, n2.method = "throw", n2.arg = p2.arg);
+          }
+        };
+      }
+      function maybeInvokeDelegate(e2, r2) {
+        var n2 = r2.method, o2 = e2.iterator[n2];
+        if (o2 === t)
+          return r2.delegate = null, n2 === "throw" && e2.iterator.return && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), r2.method === "throw") || n2 !== "return" && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
+        var i2 = tryCatch(o2, e2.iterator, r2.arg);
+        if (i2.type === "throw")
+          return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y;
+        var a2 = i2.arg;
+        return a2 ? a2.done ? (r2[e2.resultName] = a2.value, r2.next = e2.nextLoc, r2.method !== "return" && (r2.method = "next", r2.arg = t), r2.delegate = null, y) : a2 : (r2.method = "throw", r2.arg = new TypeError("iterator result is not an object"), r2.delegate = null, y);
+      }
+      function pushTryEntry(t2) {
+        var e2 = { tryLoc: t2[0] };
+        1 in t2 && (e2.catchLoc = t2[1]), 2 in t2 && (e2.finallyLoc = t2[2], e2.afterLoc = t2[3]), this.tryEntries.push(e2);
+      }
+      function resetTryEntry(t2) {
+        var e2 = t2.completion || {};
+        e2.type = "normal", delete e2.arg, t2.completion = e2;
+      }
+      function Context(t2) {
+        this.tryEntries = [{ tryLoc: "root" }], t2.forEach(pushTryEntry, this), this.reset(!0);
+      }
+      function values(e2) {
+        if (e2 || e2 === "") {
+          var r2 = e2[a];
+          if (r2)
+            return r2.call(e2);
+          if (typeof e2.next == "function")
+            return e2;
+          if (!isNaN(e2.length)) {
+            var o2 = -1, i2 = function next() {
+              for (; ++o2 < e2.length; )
+                if (n.call(e2, o2))
+                  return next.value = e2[o2], next.done = !1, next;
+              return next.value = t, next.done = !0, next;
+            };
+            return i2.next = i2;
+          }
+        }
+        throw new TypeError(typeof e2 + " is not iterable");
+      }
+      return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function(t2) {
+        var e2 = typeof t2 == "function" && t2.constructor;
+        return !!e2 && (e2 === GeneratorFunction || (e2.displayName || e2.name) === "GeneratorFunction");
+      }, e.mark = function(t2) {
+        return Object.setPrototypeOf ? Object.setPrototypeOf(t2, GeneratorFunctionPrototype) : (t2.__proto__ = GeneratorFunctionPrototype, define(t2, u, "GeneratorFunction")), t2.prototype = Object.create(g), t2;
+      }, e.awrap = function(t2) {
+        return { __await: t2 };
+      }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function() {
+        return this;
+      }), e.AsyncIterator = AsyncIterator, e.async = function(t2, r2, n2, o2, i2) {
+        i2 === void 0 && (i2 = Promise);
+        var a2 = new AsyncIterator(wrap(t2, r2, n2, o2), i2);
+        return e.isGeneratorFunction(r2) ? a2 : a2.next().then(function(t3) {
+          return t3.done ? t3.value : a2.next();
+        });
+      }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function() {
+        return this;
+      }), define(g, "toString", function() {
+        return "[object Generator]";
+      }), e.keys = function(t2) {
+        var e2 = Object(t2), r2 = [];
+        for (var n2 in e2)
+          r2.push(n2);
+        return r2.reverse(), function next() {
+          for (; r2.length; ) {
+            var t3 = r2.pop();
+            if (t3 in e2)
+              return next.value = t3, next.done = !1, next;
+          }
+          return next.done = !0, next;
+        };
+      }, e.values = values, Context.prototype = { constructor: Context, reset: function(e2) {
+        if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e2)
+          for (var r2 in this)
+            r2.charAt(0) === "t" && n.call(this, r2) && !isNaN(+r2.slice(1)) && (this[r2] = t);
+      }, stop: function() {
+        this.done = !0;
+        var t2 = this.tryEntries[0].completion;
+        if (t2.type === "throw")
+          throw t2.arg;
+        return this.rval;
+      }, dispatchException: function(e2) {
+        if (this.done)
+          throw e2;
+        var r2 = this;
+        function handle(n2, o3) {
+          return a2.type = "throw", a2.arg = e2, r2.next = n2, o3 && (r2.method = "next", r2.arg = t), !!o3;
+        }
+        for (var o2 = this.tryEntries.length - 1; o2 >= 0; --o2) {
+          var i2 = this.tryEntries[o2], a2 = i2.completion;
+          if (i2.tryLoc === "root")
+            return handle("end");
+          if (i2.tryLoc <= this.prev) {
+            var c2 = n.call(i2, "catchLoc"), u2 = n.call(i2, "finallyLoc");
+            if (c2 && u2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            } else if (c2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+            } else {
+              if (!u2)
+                throw new Error("try statement without catch or finally");
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            }
+          }
+        }
+      }, abrupt: function(t2, e2) {
+        for (var r2 = this.tryEntries.length - 1; r2 >= 0; --r2) {
+          var o2 = this.tryEntries[r2];
+          if (o2.tryLoc <= this.prev && n.call(o2, "finallyLoc") && this.prev < o2.finallyLoc) {
+            var i2 = o2;
+            break;
+          }
+        }
+        i2 && (t2 === "break" || t2 === "continue") && i2.tryLoc <= e2 && e2 <= i2.finallyLoc && (i2 = null);
+        var a2 = i2 ? i2.completion : {};
+        return a2.type = t2, a2.arg = e2, i2 ? (this.method = "next", this.next = i2.finallyLoc, y) : this.complete(a2);
+      }, complete: function(t2, e2) {
+        if (t2.type === "throw")
+          throw t2.arg;
+        return t2.type === "break" || t2.type === "continue" ? this.next = t2.arg : t2.type === "return" ? (this.rval = this.arg = t2.arg, this.method = "return", this.next = "end") : t2.type === "normal" && e2 && (this.next = e2), y;
+      }, finish: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.finallyLoc === t2)
+            return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y;
+        }
+      }, catch: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.tryLoc === t2) {
+            var n2 = r2.completion;
+            if (n2.type === "throw") {
+              var o2 = n2.arg;
+              resetTryEntry(r2);
+            }
+            return o2;
+          }
+        }
+        throw new Error("illegal catch attempt");
+      }, delegateYield: function(e2, r2, n2) {
+        return this.delegate = { iterator: values(e2), resultName: r2, nextLoc: n2 }, this.method === "next" && (this.arg = t), y;
+      } }, e;
+    }
+    var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+          resolve(value);
+        });
+      }
+      return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+          try {
+            step(generator.next(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function rejected(value) {
+          try {
+            step(generator.throw(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function step(result) {
+          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+      });
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: !0
+    });
+    exports2.loadOutfits = void 0;
+    var utils_1 = require_utils(), parseEquipment = function() {
+      var equipmentList = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "";
+      return equipmentList.trim().split(", ");
+    }, parseTreats = function() {
+      var treatList = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "";
+      return treatList.trim().split(", ").filter(function(t) {
+        return t !== "none";
+      }).map(function(treat) {
+        var m = treat.match(/^(.*?) \((\d*\.?\d+)\)$/);
+        return m ? {
+          item: m[1],
+          chance: Number(m[2])
+        } : {
+          item: treat,
+          chance: 1
+        };
+      });
+    }, parseOutfit = function(parts) {
+      var _a, _b;
+      return {
+        id: Number(parts[0]),
+        name: parts[1],
+        image: parts[2],
+        equipment: parseEquipment((_a = parts[3]) !== null && _a !== void 0 ? _a : ""),
+        treats: parseTreats(parts[0] === "80" ? "double-ice gum" : (_b = parts[4]) !== null && _b !== void 0 ? _b : "")
+      };
+    }, loadOutfits = function(lastKnownSize) {
+      return __awaiter(void 0, void 0, void 0, /* @__PURE__ */ _regeneratorRuntime().mark(function _callee() {
+        var raw;
+        return _regeneratorRuntime().wrap(function(_context) {
+          for (; ; )
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.next = 2, (0, utils_1.loadMafiaData)("outfits", lastKnownSize);
+              case 2:
+                if (raw = _context.sent, raw !== null) {
+                  _context.next = 5;
+                  break;
+                }
+                return _context.abrupt("return", null);
+              case 5:
+                return _context.abrupt("return", Object.assign(Object.assign({}, raw), {
+                  data: raw.data.filter(function(p) {
+                    return p.length > 2;
+                  }).map(parseOutfit)
+                }));
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+        }, _callee);
+      }));
+    };
+    exports2.loadOutfits = loadOutfits;
+  }
+});
+
+// ../../node_modules/data-of-loathing/dist/entityTypes/skills.js
+var require_skills = __commonJS({
+  "../../node_modules/data-of-loathing/dist/entityTypes/skills.js": function(exports2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    function _regeneratorRuntime() {
+      "use strict";
+      _regeneratorRuntime = function() {
+        return e;
+      };
+      var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function(t2, e2, r2) {
+        t2[e2] = r2.value;
+      }, i = typeof Symbol == "function" ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag";
+      function define(t2, e2, r2) {
+        return Object.defineProperty(t2, e2, { value: r2, enumerable: !0, configurable: !0, writable: !0 }), t2[e2];
+      }
+      try {
+        define({}, "");
+      } catch (t2) {
+        define = function(t3, e2, r2) {
+          return t3[e2] = r2;
+        };
+      }
+      function wrap(t2, e2, r2, n2) {
+        var i2 = e2 && e2.prototype instanceof Generator ? e2 : Generator, a2 = Object.create(i2.prototype), c2 = new Context(n2 || []);
+        return o(a2, "_invoke", { value: makeInvokeMethod(t2, r2, c2) }), a2;
+      }
+      function tryCatch(t2, e2, r2) {
+        try {
+          return { type: "normal", arg: t2.call(e2, r2) };
+        } catch (t3) {
+          return { type: "throw", arg: t3 };
+        }
+      }
+      e.wrap = wrap;
+      var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {};
+      function Generator() {
+      }
+      function GeneratorFunction() {
+      }
+      function GeneratorFunctionPrototype() {
+      }
+      var p = {};
+      define(p, a, function() {
+        return this;
+      });
+      var d = Object.getPrototypeOf, v = d && d(d(values([])));
+      v && v !== r && n.call(v, a) && (p = v);
+      var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+      function defineIteratorMethods(t2) {
+        ["next", "throw", "return"].forEach(function(e2) {
+          define(t2, e2, function(t3) {
+            return this._invoke(e2, t3);
+          });
+        });
+      }
+      function AsyncIterator(t2, e2) {
+        function invoke(r3, o2, i2, a2) {
+          var c2 = tryCatch(t2[r3], t2, o2);
+          if (c2.type !== "throw") {
+            var u2 = c2.arg, h2 = u2.value;
+            return h2 && typeof h2 == "object" && n.call(h2, "__await") ? e2.resolve(h2.__await).then(function(t3) {
+              invoke("next", t3, i2, a2);
+            }, function(t3) {
+              invoke("throw", t3, i2, a2);
+            }) : e2.resolve(h2).then(function(t3) {
+              u2.value = t3, i2(u2);
+            }, function(t3) {
+              return invoke("throw", t3, i2, a2);
+            });
+          }
+          a2(c2.arg);
+        }
+        var r2;
+        o(this, "_invoke", { value: function(t3, n2) {
+          function callInvokeWithMethodAndArg() {
+            return new e2(function(e3, r3) {
+              invoke(t3, n2, e3, r3);
+            });
+          }
+          return r2 = r2 ? r2.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        } });
+      }
+      function makeInvokeMethod(e2, r2, n2) {
+        var o2 = h;
+        return function(i2, a2) {
+          if (o2 === f)
+            throw new Error("Generator is already running");
+          if (o2 === s) {
+            if (i2 === "throw")
+              throw a2;
+            return { value: t, done: !0 };
+          }
+          for (n2.method = i2, n2.arg = a2; ; ) {
+            var c2 = n2.delegate;
+            if (c2) {
+              var u2 = maybeInvokeDelegate(c2, n2);
+              if (u2) {
+                if (u2 === y)
+                  continue;
+                return u2;
+              }
+            }
+            if (n2.method === "next")
+              n2.sent = n2._sent = n2.arg;
+            else if (n2.method === "throw") {
+              if (o2 === h)
+                throw o2 = s, n2.arg;
+              n2.dispatchException(n2.arg);
+            } else
+              n2.method === "return" && n2.abrupt("return", n2.arg);
+            o2 = f;
+            var p2 = tryCatch(e2, r2, n2);
+            if (p2.type === "normal") {
+              if (o2 = n2.done ? s : l, p2.arg === y)
+                continue;
+              return { value: p2.arg, done: n2.done };
+            }
+            p2.type === "throw" && (o2 = s, n2.method = "throw", n2.arg = p2.arg);
+          }
+        };
+      }
+      function maybeInvokeDelegate(e2, r2) {
+        var n2 = r2.method, o2 = e2.iterator[n2];
+        if (o2 === t)
+          return r2.delegate = null, n2 === "throw" && e2.iterator.return && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), r2.method === "throw") || n2 !== "return" && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
+        var i2 = tryCatch(o2, e2.iterator, r2.arg);
+        if (i2.type === "throw")
+          return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y;
+        var a2 = i2.arg;
+        return a2 ? a2.done ? (r2[e2.resultName] = a2.value, r2.next = e2.nextLoc, r2.method !== "return" && (r2.method = "next", r2.arg = t), r2.delegate = null, y) : a2 : (r2.method = "throw", r2.arg = new TypeError("iterator result is not an object"), r2.delegate = null, y);
+      }
+      function pushTryEntry(t2) {
+        var e2 = { tryLoc: t2[0] };
+        1 in t2 && (e2.catchLoc = t2[1]), 2 in t2 && (e2.finallyLoc = t2[2], e2.afterLoc = t2[3]), this.tryEntries.push(e2);
+      }
+      function resetTryEntry(t2) {
+        var e2 = t2.completion || {};
+        e2.type = "normal", delete e2.arg, t2.completion = e2;
+      }
+      function Context(t2) {
+        this.tryEntries = [{ tryLoc: "root" }], t2.forEach(pushTryEntry, this), this.reset(!0);
+      }
+      function values(e2) {
+        if (e2 || e2 === "") {
+          var r2 = e2[a];
+          if (r2)
+            return r2.call(e2);
+          if (typeof e2.next == "function")
+            return e2;
+          if (!isNaN(e2.length)) {
+            var o2 = -1, i2 = function next() {
+              for (; ++o2 < e2.length; )
+                if (n.call(e2, o2))
+                  return next.value = e2[o2], next.done = !1, next;
+              return next.value = t, next.done = !0, next;
+            };
+            return i2.next = i2;
+          }
+        }
+        throw new TypeError(typeof e2 + " is not iterable");
+      }
+      return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function(t2) {
+        var e2 = typeof t2 == "function" && t2.constructor;
+        return !!e2 && (e2 === GeneratorFunction || (e2.displayName || e2.name) === "GeneratorFunction");
+      }, e.mark = function(t2) {
+        return Object.setPrototypeOf ? Object.setPrototypeOf(t2, GeneratorFunctionPrototype) : (t2.__proto__ = GeneratorFunctionPrototype, define(t2, u, "GeneratorFunction")), t2.prototype = Object.create(g), t2;
+      }, e.awrap = function(t2) {
+        return { __await: t2 };
+      }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function() {
+        return this;
+      }), e.AsyncIterator = AsyncIterator, e.async = function(t2, r2, n2, o2, i2) {
+        i2 === void 0 && (i2 = Promise);
+        var a2 = new AsyncIterator(wrap(t2, r2, n2, o2), i2);
+        return e.isGeneratorFunction(r2) ? a2 : a2.next().then(function(t3) {
+          return t3.done ? t3.value : a2.next();
+        });
+      }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function() {
+        return this;
+      }), define(g, "toString", function() {
+        return "[object Generator]";
+      }), e.keys = function(t2) {
+        var e2 = Object(t2), r2 = [];
+        for (var n2 in e2)
+          r2.push(n2);
+        return r2.reverse(), function next() {
+          for (; r2.length; ) {
+            var t3 = r2.pop();
+            if (t3 in e2)
+              return next.value = t3, next.done = !1, next;
+          }
+          return next.done = !0, next;
+        };
+      }, e.values = values, Context.prototype = { constructor: Context, reset: function(e2) {
+        if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e2)
+          for (var r2 in this)
+            r2.charAt(0) === "t" && n.call(this, r2) && !isNaN(+r2.slice(1)) && (this[r2] = t);
+      }, stop: function() {
+        this.done = !0;
+        var t2 = this.tryEntries[0].completion;
+        if (t2.type === "throw")
+          throw t2.arg;
+        return this.rval;
+      }, dispatchException: function(e2) {
+        if (this.done)
+          throw e2;
+        var r2 = this;
+        function handle(n2, o3) {
+          return a2.type = "throw", a2.arg = e2, r2.next = n2, o3 && (r2.method = "next", r2.arg = t), !!o3;
+        }
+        for (var o2 = this.tryEntries.length - 1; o2 >= 0; --o2) {
+          var i2 = this.tryEntries[o2], a2 = i2.completion;
+          if (i2.tryLoc === "root")
+            return handle("end");
+          if (i2.tryLoc <= this.prev) {
+            var c2 = n.call(i2, "catchLoc"), u2 = n.call(i2, "finallyLoc");
+            if (c2 && u2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            } else if (c2) {
+              if (this.prev < i2.catchLoc)
+                return handle(i2.catchLoc, !0);
+            } else {
+              if (!u2)
+                throw new Error("try statement without catch or finally");
+              if (this.prev < i2.finallyLoc)
+                return handle(i2.finallyLoc);
+            }
+          }
+        }
+      }, abrupt: function(t2, e2) {
+        for (var r2 = this.tryEntries.length - 1; r2 >= 0; --r2) {
+          var o2 = this.tryEntries[r2];
+          if (o2.tryLoc <= this.prev && n.call(o2, "finallyLoc") && this.prev < o2.finallyLoc) {
+            var i2 = o2;
+            break;
+          }
+        }
+        i2 && (t2 === "break" || t2 === "continue") && i2.tryLoc <= e2 && e2 <= i2.finallyLoc && (i2 = null);
+        var a2 = i2 ? i2.completion : {};
+        return a2.type = t2, a2.arg = e2, i2 ? (this.method = "next", this.next = i2.finallyLoc, y) : this.complete(a2);
+      }, complete: function(t2, e2) {
+        if (t2.type === "throw")
+          throw t2.arg;
+        return t2.type === "break" || t2.type === "continue" ? this.next = t2.arg : t2.type === "return" ? (this.rval = this.arg = t2.arg, this.method = "return", this.next = "end") : t2.type === "normal" && e2 && (this.next = e2), y;
+      }, finish: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.finallyLoc === t2)
+            return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y;
+        }
+      }, catch: function(t2) {
+        for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
+          var r2 = this.tryEntries[e2];
+          if (r2.tryLoc === t2) {
+            var n2 = r2.completion;
+            if (n2.type === "throw") {
+              var o2 = n2.arg;
+              resetTryEntry(r2);
+            }
+            return o2;
+          }
+        }
+        throw new Error("illegal catch attempt");
+      }, delegateYield: function(e2, r2, n2) {
+        return this.delegate = { iterator: values(e2), resultName: r2, nextLoc: n2 }, this.method === "next" && (this.arg = t), y;
+      } }, e;
+    }
+    var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+          resolve(value);
+        });
+      }
+      return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+          try {
+            step(generator.next(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function rejected(value) {
+          try {
+            step(generator.throw(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function step(result) {
+          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+      });
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: !0
+    });
+    exports2.loadSkills = exports2.isSkillPermable = exports2.getMaxSkillLevel = exports2.SkillCategory = void 0;
+    var utils_1 = require_utils(), SkillCategory;
+    (function(SkillCategory2) {
+      SkillCategory2[SkillCategory2.Passive = 0] = "Passive", SkillCategory2[SkillCategory2.NoncombatItemSummon = 1] = "NoncombatItemSummon", SkillCategory2[SkillCategory2.NoncombatHealing = 2] = "NoncombatHealing", SkillCategory2[SkillCategory2.NoncombatNonShruggableEffect = 3] = "NoncombatNonShruggableEffect", SkillCategory2[SkillCategory2.NoncombatShruggableEffect = 4] = "NoncombatShruggableEffect", SkillCategory2[SkillCategory2.Combat = 5] = "Combat", SkillCategory2[SkillCategory2.OneAtATimeNoncombatSong = 6] = "OneAtATimeNoncombatSong", SkillCategory2[SkillCategory2.CombatNoncombatHealing = 7] = "CombatNoncombatHealing", SkillCategory2[SkillCategory2.CombatPassive = 8] = "CombatPassive", SkillCategory2[SkillCategory2.OneAtATimeNoncombatExpression = 9] = "OneAtATimeNoncombatExpression", SkillCategory2[SkillCategory2.OneAtATimeNoncombatWalk = 10] = "OneAtATimeNoncombatWalk", SkillCategory2[SkillCategory2.NoncombatHealingPassive = 11] = "NoncombatHealingPassive";
+    })(SkillCategory || (exports2.SkillCategory = SkillCategory = {}));
+    var isValidType = (0, utils_1.isMemberOfEnum)(SkillCategory), getMaxSkillLevel2 = function(_ref) {
+      var id = _ref.id;
+      switch (id) {
+        case 46:
+          return 10;
+        case 47:
+          return 10;
+        case 48:
+          return 10;
+        case 107:
+          return 9;
+        case 117:
+          return 11;
+        case 188:
+          return 13;
+        case 118:
+          return 7;
+        case 121:
+          return 6;
+        case 128:
+          return 6;
+        case 134:
+          return 6;
+        case 135:
+          return 2;
+        case 144:
+          return 5;
+        case 180:
+          return 4;
+        case 7254:
+          return 3;
+        default:
+          return 0;
+      }
+    };
+    exports2.getMaxSkillLevel = getMaxSkillLevel2;
+    var isSkillPermable2 = function(_ref2) {
+      var id = _ref2.id;
+      if (id < 10 || id > 20 && id <= 27 || id > 63 && id <= 73 || id > 7175 && id < 7181)
+        return !1;
+      switch (id) {
+        case 91:
+        case 116:
+          return !1;
+        case 49:
+        case 50:
+        case 51:
+        case 52:
+        case 3024:
+          return !1;
+        case 6019:
+          return !1;
+        case 17047:
+          return !0;
+        case 156:
+          return !1;
+        case 174:
+          return !1;
+        case 218:
+        case 219:
+        case 220:
+          return !1;
+        case 222:
+          return !1;
+        case 7254:
+          return !0;
+      }
+      switch (Math.floor(id / 1e3)) {
+        case 7:
+        case 8:
+        case 11:
+        case 12:
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+        case 21:
+        case 22:
+        case 23:
+        case 24:
+        case 25:
+        case 27:
+        case 28:
+        case 29:
+        case 30:
+          return !1;
+      }
+      return !0;
+    };
+    exports2.isSkillPermable = isSkillPermable2;
+    var parseSkill = function(parts) {
+      return {
+        id: Number(parts[0]),
+        name: parts[1],
+        image: parts[2],
+        category: isValidType(Number(parts[3])) ? Number(parts[3]) : SkillCategory.Passive,
+        mpCost: Number(parts[4]),
+        duration: Number(parts[5]),
+        level: parts[6] ? Number(parts[6]) : 0
+      };
+    }, loadSkills2 = function(lastKnownSize) {
+      return __awaiter(void 0, void 0, void 0, /* @__PURE__ */ _regeneratorRuntime().mark(function _callee() {
+        var raw;
+        return _regeneratorRuntime().wrap(function(_context) {
+          for (; ; )
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.next = 2, (0, utils_1.loadMafiaData)("classskills", lastKnownSize);
+              case 2:
+                if (raw = _context.sent, raw !== null) {
+                  _context.next = 5;
+                  break;
+                }
+                return _context.abrupt("return", null);
+              case 5:
+                return _context.abrupt("return", Object.assign(Object.assign({}, raw), {
+                  data: raw.data.filter(function(p) {
+                    return p.length > 2;
+                  }).map(parseSkill)
+                }));
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+        }, _callee);
+      }));
+    };
+    exports2.loadSkills = loadSkills2;
+  }
+});
+
+// ../../node_modules/data-of-loathing/dist/index.js
+var require_dist = __commonJS({
+  "../../node_modules/data-of-loathing/dist/index.js": function(exports2) {
+    "use strict";
+    init_kolmafia_polyfill();
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+      k2 === void 0 && (k2 = k);
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) && (desc = {
+        enumerable: !0,
+        get: function() {
+          return m[k];
+        }
+      }), Object.defineProperty(o, k2, desc);
+    } : function(o, m, k, k2) {
+      k2 === void 0 && (k2 = k), o[k2] = m[k];
+    }), __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
+      for (var p in m)
+        p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p) && __createBinding(exports3, m, p);
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: !0
+    });
+    __exportStar(require_effects(), exports2);
+    __exportStar(require_familiars(), exports2);
+    __exportStar(require_items(), exports2);
+    __exportStar(require_outfits(), exports2);
+    __exportStar(require_skills(), exports2);
   }
 });
 
@@ -176,8 +2459,7 @@ var tuple = function(args) {
 // ../greenbox-data/lib/familiars.ts
 var FamiliarStatus = /* @__PURE__ */ function(FamiliarStatus2) {
   return FamiliarStatus2[FamiliarStatus2.NONE = 0] = "NONE", FamiliarStatus2[FamiliarStatus2.HATCHLING = 1] = "HATCHLING", FamiliarStatus2[FamiliarStatus2.TERRARIUM = 2] = "TERRARIUM", FamiliarStatus2;
-}({});
-var compressFamiliars = function(familiars) {
+}({}), compressFamiliars = function(familiars) {
   return familiars.sort(function(a, b) {
     return a[0] - b[0];
   }).reduce(function(r, familiar) {
@@ -2253,13 +4535,12 @@ function _arrayWithHoles(arr) {
 }
 var ItemStatus = /* @__PURE__ */ function(ItemStatus2) {
   return ItemStatus2[ItemStatus2.NONE = 0] = "NONE", ItemStatus2[ItemStatus2.HAVE = 1] = "HAVE", ItemStatus2;
-}({});
-var compressItems = function(items) {
-  return items.filter(function(_ref2) {
-    var _ref3 = _slicedToArray(_ref2, 2), q = _ref3[1];
+}({}), compressItems = function(items) {
+  return items.filter(function(_ref) {
+    var _ref2 = _slicedToArray(_ref, 2), q = _ref2[1];
     return q > 0;
-  }).map(function(_ref4) {
-    var _ref5 = _slicedToArray(_ref4, 2), id = _ref5[0], q = _ref5[1];
+  }).map(function(_ref3) {
+    var _ref4 = _slicedToArray(_ref3, 2), id = _ref4[0], q = _ref4[1];
     return "".concat(id).concat(q > 1 ? ":".concat(q) : "");
   }).sort().join(",");
 };
@@ -2998,63 +5279,7 @@ var pointsRadix = 32, tattooLevelRadix = 16, compressPaths = function(paths) {
 init_kolmafia_polyfill();
 var SkillStatus = /* @__PURE__ */ function(SkillStatus2) {
   return SkillStatus2[SkillStatus2.NONE = 0] = "NONE", SkillStatus2[SkillStatus2.SOFTCORE = 1] = "SOFTCORE", SkillStatus2[SkillStatus2.HARDCORE = 2] = "HARDCORE", SkillStatus2;
-}({});
-var isPermable = function(id) {
-  if (id < 10 || id > 20 && id <= 27 || id > 63 && id <= 73 || id > 7175 && id < 7181)
-    return !1;
-  switch (id) {
-    case 91:
-    case 116:
-      return !1;
-    case 49:
-    case 50:
-    case 51:
-    case 52:
-    case 3024:
-      return !1;
-    case 6019:
-      return !1;
-    case 17047:
-      return !0;
-    case 156:
-      return !1;
-    case 174:
-      return !1;
-    case 218:
-    case 219:
-    case 220:
-      return !1;
-    case 222:
-      return !1;
-    case 7254:
-      return !0;
-  }
-  switch (Math.floor(id / 1e3)) {
-    case 7:
-    case 8:
-    case 11:
-    case 12:
-    case 14:
-    case 15:
-    case 16:
-    case 17:
-    case 18:
-    case 19:
-    case 20:
-    case 21:
-    case 22:
-    case 23:
-    case 24:
-    case 25:
-    case 27:
-    case 28:
-    case 29:
-    case 30:
-      return !1;
-  }
-  return !0;
-};
-var compressSkills = function(skills) {
+}({}), compressSkills = function(skills) {
   return skills.sort(function(a, b) {
     return a[0] - b[0];
   }).reduce(function(acc, skill) {
@@ -4615,13 +6840,13 @@ var compressTrophies = function(trophies) {
   }, "").replace(/0+$/, "");
 };
 
+// ../greenbox-data/lib/index.ts
+var import_data_of_loathing = __toESM(require_dist());
+
 // ../greenbox-data/lib/classes.ts
 init_kolmafia_polyfill();
 
 // ../greenbox-data/data/classes.ts
-init_kolmafia_polyfill();
-
-// ../greenbox-data/lib/effects.ts
 init_kolmafia_polyfill();
 
 // ../greenbox-data/lib/types.ts
@@ -5357,7 +7582,7 @@ function checkSkills() {
     return getNumber("skillLevel".concat((0, import_kolmafia7.toInt)(skill)));
   }
   return import_kolmafia7.Skill.all().filter(function(skill) {
-    return isPermable((0, import_kolmafia7.toInt)(skill));
+    return (0, import_data_of_loathing.isSkillPermable)(skill);
   }).map(function(skill) {
     return [(0, import_kolmafia7.toInt)(skill), getStatus(skill), getLevel(skill)];
   });
@@ -5482,3 +7707,23 @@ function main() {
   keepPrivate || Kmail.send(3501234, "GREENBOX:".concat(code)), (0, import_kolmafia7.printHtml)('All done! To see your greenboxes, visit: <a href="'.concat(link, '">').concat(link, "</a>"));
 }
 module.exports.main = main;
+/*! Bundled license information:
+
+data-of-loathing/dist/utils.js:
+  (*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE *)
+
+data-of-loathing/dist/entityTypes/effects.js:
+  (*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE *)
+
+data-of-loathing/dist/entityTypes/familiars.js:
+  (*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE *)
+
+data-of-loathing/dist/entityTypes/items.js:
+  (*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE *)
+
+data-of-loathing/dist/entityTypes/outfits.js:
+  (*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE *)
+
+data-of-loathing/dist/entityTypes/skills.js:
+  (*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE *)
+*/
