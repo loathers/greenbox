@@ -1,5 +1,5 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import { FamiliarStatus } from "greenbox-data";
+import { FamiliarStatus, isFamiliarOwnable } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -18,7 +18,10 @@ export default function Familiars() {
   const playerFamiliars = useAppSelector(selectPlayerFamiliars);
   const allFamiliars = useAppSelector((state) => state.familiars);
   const familiars = useMemo(
-    () => allFamiliars.filter((s) => s.ownable).toSorted(sortByKey(sortBy)),
+    () =>
+      allFamiliars
+        .filter((s) => isFamiliarOwnable(s))
+        .toSorted(sortByKey(sortBy)),
     [allFamiliars, sortBy],
   );
   const loading = useAppSelector((state) => state.loading.familiars || false);
@@ -45,7 +48,7 @@ export default function Familiars() {
   const hundredPercentedUnownables = useMemo(
     () =>
       allFamiliars
-        .filter((s) => !s.ownable)
+        .filter((s) => !isFamiliarOwnable(s))
         .filter((f) => idToFamiliar[f.id]?.[2] ?? false),
     [allFamiliars],
   );

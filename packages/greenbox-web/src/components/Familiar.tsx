@@ -1,10 +1,10 @@
-import { FamiliarDef, FamiliarStatus } from "greenbox-data";
+import { FamiliarType, FamiliarStatus } from "greenbox-data";
 
 import Medal from "./Medal.js";
 import Thing from "./Thing";
 
 type Props = {
-  familiar: FamiliarDef;
+  familiar: FamiliarType;
   status: FamiliarStatus;
   hundredPercent: boolean;
 };

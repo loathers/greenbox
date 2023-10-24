@@ -1,9 +1,9 @@
-import { IotMDef, IotMStatus, ItemDef } from "greenbox-data";
+import { IotMDef, IotMStatus, ItemType } from "greenbox-data";
 
 import Thing from "./Thing";
 
 type Props = {
-  item: ItemDef;
+  item: ItemType;
   iotm: IotMDef;
   status: IotMStatus;
 };

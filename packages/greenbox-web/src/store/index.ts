@@ -6,11 +6,11 @@ import {
   createSelector,
 } from "@reduxjs/toolkit";
 import * as api from "greenbox-data";
-import {
-  EffectDef,
-  FamiliarDef,
-  ItemDef,
-  SkillDef,
+import type {
+  EffectType,
+  FamiliarType,
+  ItemType,
+  SkillType,
   TattooDef,
   TrophyDef,
   ClassDef,
@@ -50,12 +50,12 @@ export interface GreenboxState {
   playerId: number | null;
   favouritePlayerId: number | null;
   classes: ClassDef[];
-  effects: EffectDef[];
-  familiars: FamiliarDef[];
+  effects: EffectType[];
+  familiars: FamiliarType[];
   iotms: IotMDef[];
-  items: { [id: number]: ItemDef };
+  items: { [id: number]: ItemType };
   paths: PathDef[];
-  skills: SkillDef[];
+  skills: SkillType[];
   tattoos: TattooDef[];
   trophies: TrophyDef[];
   wikiClashes: string[];

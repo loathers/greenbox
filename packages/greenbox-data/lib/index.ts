@@ -9,8 +9,24 @@ import { compressSkills, expandSkills, RawSkill } from "./skills";
 import { compressTattoos, expandTattoos, RawTattoo } from "./tattoos";
 import { compressTrophies, expandTrophies, RawTrophy } from "./trophies";
 
+export {
+  loadSkills,
+  isSkillPermable,
+  loadItems,
+  loadEffects,
+  loadFamiliars,
+  isFamiliarOwnable,
+  getMaxSkillLevel,
+} from "data-of-loathing";
+
+export type {
+  FamiliarType,
+  SkillType,
+  ItemType,
+  EffectType,
+} from "data-of-loathing";
+
 export * from "./classes";
-export * from "./effects";
 export * from "./familiars";
 export * from "./items";
 export * from "./paths";

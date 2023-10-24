@@ -2589,7 +2589,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@^18.2.7", "@types/react@*":
+"@types/react@*", "@types/react@^18.2.7":
   version "18.2.22"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.22.tgz#abe778a1c95a07fa70df40a52d7300a40b949ccb"
   integrity sha512-60fLTOLqzarLED2O3UQImc/lsNRgG0jE/a1mPW9KjMemY0LMITWEsbS4VvZ4p6rorEHd5YKxxmMKSDK505GHpA==
@@ -3087,6 +3087,11 @@ d3-timer@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/d3-timer/-/d3-timer-3.0.1.tgz#6284d2a2708285b1abb7e201eda4380af35e63b0"
   integrity sha512-ndfJ/JxxMd3nw31uyKoY2naivF+r29V+Lc0svZxe1JvvIRmi8hUsrMvdOwgS1o6uBHmiz91geQ0ylPP0aj1VUA==
+
+data-of-loathing@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/data-of-loathing/-/data-of-loathing-1.2.0.tgz#48a03f536f9f9862f28c1f76aa65938909372643"
+  integrity sha512-bhq2Dpmt90K3bB8DVVUeWUSHAlBF+FYl0izb587D4bfmvDIUvH4tJBLlbrO3tNy6WMqfAUfGZhM9Yj8+d3VqsA==
 
 date-fns@^2.29.2:
   version "2.30.0"

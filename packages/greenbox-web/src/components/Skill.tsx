@@ -41,7 +41,7 @@ export default function Skill({ id }: Props) {
           badges={
             level ? (
               <Badge mr={1} title={`Skill at level ${level}`}>
-                {level} / {getMaxSkillLevel(skill.id)}
+                {level} / {getMaxSkillLevel(skill)}
               </Badge>
             ) : null
           }

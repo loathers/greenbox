@@ -1,4 +1,4 @@
-import { ItemDef, ItemStatus } from "greenbox-data";
+import { ItemStatus, ItemType } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -33,7 +33,7 @@ export default function ItemGrid({
     [items, playerItems],
   );
 
-  const renderItem = (item: ItemDef) => (
+  const renderItem = (item: ItemType) => (
     <Thing
       key={item.id}
       type="item"
