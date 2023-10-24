@@ -43,7 +43,7 @@ export default function IotMs() {
     () =>
       playerIotMs.reduce(
         (acc, i) => ({ ...acc, [i[0]]: i[1] }),
-        {} as { [id: number]: IotMStatus },
+        {} as Record<number, IotMStatus>,
       ),
     [playerIotMs],
   );

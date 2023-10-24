@@ -7,7 +7,7 @@ import RowLabel from "./RowLabel";
 
 type Props<T> = {
   items: (T | null)[];
-  idToStatus: { [id: number]: number };
+  idToStatus: Record<number, number>;
   renderItem: (item: T) => React.ReactNode;
   columns?: number;
   getRowLabel?: (row: number) => React.ReactNode;

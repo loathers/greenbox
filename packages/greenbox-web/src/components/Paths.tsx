@@ -27,7 +27,7 @@ export default function Paths() {
           ...acc,
           [p.id]: p.tattoos.map(getMaxTattooLevel),
         }),
-        {} as { [id: number]: number[] },
+        {} as Record<number, number[]>,
       ),
     [paths],
   );
@@ -90,7 +90,7 @@ export default function Paths() {
     () =>
       playerPaths.reduce(
         (acc, p) => ({ ...acc, [p[0]]: p }),
-        {} as { [id: number]: (typeof playerPaths)[number] },
+        {} as Record<number, (typeof playerPaths)[number]>,
       ),
     [playerPaths],
   );

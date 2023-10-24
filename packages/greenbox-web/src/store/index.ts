@@ -53,7 +53,7 @@ export interface GreenboxState {
   effects: EffectType[];
   familiars: FamiliarType[];
   iotms: IotMDef[];
-  items: { [id: number]: ItemType };
+  items: Record<number, ItemType>;
   paths: PathDef[];
   skills: SkillType[];
   tattoos: TattooDef[];
@@ -237,7 +237,7 @@ export const greenboxSlice = createSlice({
           const items = action.payload.data;
           state.items = items.reduce(
             (acc, i) => ({ ...acc, [i.id]: i }),
-            {} as { [id: number]: (typeof items)[number] },
+            {} as Record<number, (typeof items)[number]>,
           );
           state.sizeAtLastFetch.items = action.payload.size;
         }
@@ -390,7 +390,7 @@ export const selectIdToPlayerSkills = createSelector(
   (playerSkills) =>
     playerSkills.reduce(
       (acc, s) => ({ ...acc, [s[0]]: s }),
-      {} as { [id: number]: (typeof playerSkills)[number] },
+      {} as Record<number, (typeof playerSkills)[number]>,
     ),
 );
 
@@ -399,7 +399,7 @@ export const selectIdToSkills = createSelector(
   (skills) =>
     skills.reduce(
       (acc, s) => ({ ...acc, [s.id]: s }),
-      {} as { [id: number]: (typeof skills)[number] },
+      {} as Record<number, (typeof skills)[number]>,
     ),
 );
 
@@ -414,6 +414,6 @@ export const selectIdToPlayerItems = createSelector(
   (playerItems) =>
     playerItems.reduce(
       (acc, s) => ({ ...acc, [s[0]]: s }),
-      {} as { [id: number]: (typeof playerItems)[number] },
+      {} as Record<number, (typeof playerItems)[number]>,
     ),
 );

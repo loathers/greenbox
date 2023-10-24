@@ -36,7 +36,7 @@ export default function Skills() {
     () =>
       classes.reduce(
         (acc, c) => ({ ...acc, [c.id]: c }),
-        {} as { [id: number]: (typeof classes)[number] },
+        {} as Record<number, (typeof classes)[number]>,
       ),
     [classes],
   );
@@ -48,7 +48,7 @@ export default function Skills() {
           const bucket = getSkillBucket(s);
           return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
         },
-        {} as { [key: number]: SkillType[] },
+        {} as Record<number, SkillType[]>,
       ),
     [skills],
   );

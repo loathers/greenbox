@@ -28,7 +28,7 @@ export default function ItemGrid({
     () =>
       items.reduce(
         (acc, item, index) => ({ ...acc, [item]: playerItems[index] }),
-        {} as { [id: number]: ItemStatus },
+        {} as Record<number, ItemStatus>,
       ),
     [items, playerItems],
   );

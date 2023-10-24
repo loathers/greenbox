@@ -7,7 +7,7 @@ const duplicateFinder = (strings: string[]) => {
       ...acc,
       [string]: (acc[string] || 0) + 1,
     }),
-    {} as { [string: string]: number },
+    {} as Record<string, number>,
   );
 
   // Filter down this map to only strings appearing more than once

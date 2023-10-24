@@ -40,7 +40,7 @@ export default function Familiars() {
     () =>
       playerFamiliars.reduce(
         (acc, f) => ({ ...acc, [f[0]]: f }),
-        {} as { [id: number]: (typeof playerFamiliars)[number] },
+        {} as Record<number, (typeof playerFamiliars)[number]>,
       ),
     [playerFamiliars],
   );

@@ -24,7 +24,7 @@ export type RawIotM = [id: number, status: IotMStatus];
 export const compressIotMs = (iotmList: RawIotM[]) => {
   const idToIotM = iotmList.reduce(
     (acc, i) => ({ ...acc, [i[0]]: i }),
-    {} as { [key: number]: RawIotM },
+    {} as Record<number, RawIotM>,
   );
 
   return iotms

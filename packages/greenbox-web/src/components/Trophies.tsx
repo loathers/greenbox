@@ -30,7 +30,7 @@ export default function Tattoos() {
     () =>
       playerTrophies.reduce(
         (acc, t) => ({ ...acc, [t[0]]: t }),
-        {} as { [id: number]: (typeof playerTrophies)[number] },
+        {} as Record<number, (typeof playerTrophies)[number]>,
       ),
     [playerTrophies],
   );
