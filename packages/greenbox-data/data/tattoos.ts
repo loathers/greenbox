@@ -248,4 +248,5 @@ export default [
   { name: "Crimbo Carol", image: "c20carols", misc: 44 },
   { name: "Crimbo Commerce", image: "c20commerce", misc: 45 },
   { name: "Shadow", image: "shadowtat", misc: 46 },
+  { name: "Super-Heated Leaf", image: "al_tat", misc: 47 },
 ] satisfies TattooDef[];
