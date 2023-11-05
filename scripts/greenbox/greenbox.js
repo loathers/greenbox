@@ -17760,8 +17760,15 @@ var iotms_default = [
     year: 2023,
     type: "familiar",
     familiar: "Jill-of-All-Trades"
-  }
+  },
   // Dark Jill-of-All-Trades
+  {
+    id: 11340,
+    month: 11,
+    year: 2023,
+    type: "campground"
+  }
+  // A Guide to Burning Leaves
 ];
 
 // ../greenbox-data/lib/iotms.ts
