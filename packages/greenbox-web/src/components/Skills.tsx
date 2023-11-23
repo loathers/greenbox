@@ -68,6 +68,20 @@ export default function Skills() {
     [groupedSkills],
   );
 
+  const mutexSkillGroups = [
+    {
+      skillIds: [191, 192, 193],
+      groupName: "Drippy Skill",
+    },
+  ];
+
+  const impossibleSkillCount = mutexSkillGroups.reduce(
+    (accumulator, mutexSkillGroup) =>
+      accumulator + mutexSkillGroup.skillIds.length - 1,
+    0,
+  );
+  const skillsPermable = skills.length - impossibleSkillCount;
+
   // Not ideal but we accumulate mutually exclusive groups of skills in this array as we traverse the skills array (if necessary).
   const skillGroup = [] as SkillType[];
 
@@ -80,15 +94,15 @@ export default function Skills() {
         {
           color: "partial",
           value: totalSoftcorePermed,
-          name: `${totalSoftcorePermed} / ${skills.length} softcore permed`,
+          name: `${totalSoftcorePermed} / ${skillsPermable} softcore permed`,
         },
         {
           color: "complete",
           value: totalHardcorePermed,
-          name: `${totalHardcorePermed} / ${skills.length} hardcore permed`,
+          name: `${totalHardcorePermed} / ${skillsPermable} hardcore permed`,
         },
       ]}
-      max={skills.length}
+      max={skillsPermable}
     >
       {bucketedSkills.map(([bucket, contents]) => {
         const allHardcorePermed = contents.every(
@@ -104,28 +118,32 @@ export default function Skills() {
           >
             <SimpleGrid columns={6} spacing={1}>
               {contents.map((s) => {
-                switch (s.id) {
-                  case 191:
-                  case 192:
-                  case 193:
-                    skillGroup.push(s);
-                    if (s.id !== 193) return null;
-
-                    const group = [...skillGroup];
-                    skillGroup.length = 0;
-                    return (
-                      <MutexSkills
-                        key={s.id}
-                        groupName="Drippy Skill"
-                        skills={group}
-                        statuses={group.map(
-                          (s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE,
-                        )}
-                      />
-                    );
-                  default:
-                    return <Skill key={s.id} id={s.id} />;
+                const matchingMutexSkillGroup = mutexSkillGroups.find(
+                  (mutexSkillGroup) => mutexSkillGroup.skillIds.includes(s.id),
+                );
+                if (matchingMutexSkillGroup) {
+                  skillGroup.push(s);
+                  if (
+                    matchingMutexSkillGroup.skillIds[
+                      matchingMutexSkillGroup.skillIds.length - 1
+                    ] !== s.id
+                  ) {
+                    return null;
+                  }
+                  const group = [...skillGroup];
+                  skillGroup.length = 0;
+                  return (
+                    <MutexSkills
+                      key={s.id}
+                      groupName={matchingMutexSkillGroup.groupName}
+                      skills={group}
+                      statuses={group.map(
+                        (s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE,
+                      )}
+                    />
+                  );
                 }
+                return <Skill key={s.id} id={s.id} />;
               })}
             </SimpleGrid>
           </SkillBucket>
