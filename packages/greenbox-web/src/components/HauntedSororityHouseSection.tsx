@@ -24,8 +24,8 @@ export default function HauntedSororityHouseSection() {
 
   return (
     <Section
-      title="Slime Tube"
-      icon="itemimages/slimeling.gif"
+      title="The Haunted Sorority House"
+      icon="itemimages/ghosttrap.gif"
       loading={false}
       values={[]}
       max={1}
