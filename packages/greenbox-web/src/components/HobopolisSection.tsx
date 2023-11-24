@@ -159,9 +159,7 @@ export default function HobopolisSection() {
       <Subsection title="Hobo Nickles" image="itemimages/nickel.gif">
         <ItemGrid
           items={NICKLE_EQUIPMENT}
-          playerItems={NICKLE_EQUIPMENT.map(
-            (id) => playerItems[id]?.[1] ?? 0,
-          )}
+          playerItems={NICKLE_EQUIPMENT.map((id) => playerItems[id]?.[1] ?? 0)}
         />
       </Subsection>
       <Subsection title="Hobo Instruments" image="itemimages/triangle.gif">
