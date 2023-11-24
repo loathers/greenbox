@@ -1205,5 +1205,5 @@ export default [
     month: 11,
     year: 2023,
     type: "campground",
-  } // A Guide to Burning Leaves
+  }, // A Guide to Burning Leaves
 ] satisfies IotMDef[];
