@@ -99,6 +99,7 @@ const ZOMBO = [
   3388, // Zombo's empty eye
 ];
 
+/* Enable if Elf Alley is available again
 const UNCLE_HOBO = [
   4845, // Uncle Hobo's stocking cap
   4846, // Uncle Hobo's epic beard
@@ -107,6 +108,14 @@ const UNCLE_HOBO = [
   4849, // Uncle Hobo's highest bough
   4850, // Uncle Hobo's belt
 ];
+
+<Subsection title="Uncle Hobo" image="itemimages/litcigar.gif">
+<ItemGrid
+  items={UNCLE_HOBO}
+  playerItems={UNCLE_HOBO.map((id) => playerItems[id]?.[1] ?? 0)}
+/>
+</Subsection>
+*/
 
 const HODGEMAN = [
   3395, // Hodgman's porkpie hat
@@ -196,12 +205,6 @@ export default function HobopolisSection() {
         <ItemGrid
           items={ZOMBO}
           playerItems={ZOMBO.map((id) => playerItems[id]?.[1] ?? 0)}
-        />
-      </Subsection>
-      <Subsection title="Uncle Hobo" image="itemimages/litcigar.gif">
-        <ItemGrid
-          items={UNCLE_HOBO}
-          playerItems={UNCLE_HOBO.map((id) => playerItems[id]?.[1] ?? 0)}
         />
       </Subsection>
       <Subsection title="Hodgman" image="itemimages/stuffhodg.gif">
