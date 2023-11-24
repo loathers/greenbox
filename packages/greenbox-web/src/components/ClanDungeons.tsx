@@ -8,8 +8,8 @@ export default function ClanDungeons() {
   return (
     <Accordion allowMultiple>
       <HobopoliSection />
+      <SlimeTubeSection />s
       <DreadsylvaniaSection />
-      <SlimeTubeSection />
     </Accordion>
   );
 }
