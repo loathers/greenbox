@@ -112,6 +112,13 @@ export const specialItems = [
   4128, // hardened slime pants
   4129, // hardened slime belt
 
+  //// The Haunted Sorority House
+  // The Necbromancer
+  5337, // The Necbromancer's Hat
+  5338, // The Necbromancer's Stein
+  5339, // The Necbromancer's Shorts
+  5340, // The Necbromancer's Wizard Staff
+
   //// Dreadsylvania
   // The Terrified Eagle Inn
   6423, // Tales of Dread
