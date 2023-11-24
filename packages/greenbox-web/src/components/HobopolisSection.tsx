@@ -31,7 +31,7 @@ const STRONG_ELEMENTAL = [
   42, // Raise Backup Dancer
 ] as const;
 
-const TOWN_SQUARE_EQUIPMENT = [
+const NICKLE_EQUIPMENT = [
   3220, // hobo code binder
   3328, // crumpled felt fedora
   3329, // battered old top-hat
@@ -42,6 +42,7 @@ const TOWN_SQUARE_EQUIPMENT = [
   3140, // old soft shoes
   3334, // hobo stogie
   3335, // rope with some soap on it
+  3404, // deck of lewd playing cards
 ];
 
 const HOBO_INSTRUMENTS = [
@@ -98,6 +99,15 @@ const ZOMBO = [
   3388, // Zombo's empty eye
 ];
 
+const UNCLE_HOBO = [
+  4845, // Uncle Hobo's stocking cap
+  4846, // Uncle Hobo's epic beard
+  4847, // Uncle Hobo's gift baggy pants
+  4848, // Uncle Hobo's fingerless tinsel gloves
+  4849, // Uncle Hobo's highest bough
+  4850, // Uncle Hobo's belt
+];
+
 const HODGEMAN = [
   3395, // Hodgman's porkpie hat
   3396, // Hodgman's lobsterskin pants
@@ -146,10 +156,10 @@ export default function HobopolisSection() {
           ))}
         </SimpleGrid>
       </Subsection>
-      <Subsection title="Town Square Equipment" image="itemimages/nickel.gif">
+      <Subsection title="Hobo Nickles" image="itemimages/nickel.gif">
         <ItemGrid
-          items={TOWN_SQUARE_EQUIPMENT}
-          playerItems={TOWN_SQUARE_EQUIPMENT.map(
+          items={NICKLE_EQUIPMENT}
+          playerItems={NICKLE_EQUIPMENT.map(
             (id) => playerItems[id]?.[1] ?? 0,
           )}
         />
@@ -188,6 +198,12 @@ export default function HobopolisSection() {
         <ItemGrid
           items={ZOMBO}
           playerItems={ZOMBO.map((id) => playerItems[id]?.[1] ?? 0)}
+        />
+      </Subsection>
+      <Subsection title="Uncle Hobo" image="itemimages/litcigar.gif">
+        <ItemGrid
+          items={UNCLE_HOBO}
+          playerItems={UNCLE_HOBO.map((id) => playerItems[id]?.[1] ?? 0)}
         />
       </Subsection>
       <Subsection title="Hodgman" image="itemimages/stuffhodg.gif">

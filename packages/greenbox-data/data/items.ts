@@ -1,6 +1,6 @@
 export const specialItems = [
   //// Hobopolis
-  // Town Square Equipment
+  // Hobo Nickles
   3220, // hobo code binder
   3328, // crumpled felt fedora
   3329, // battered old top-hat
@@ -11,6 +11,7 @@ export const specialItems = [
   3140, // old soft shoes
   3334, // hobo stogie
   3335, // rope with some soap on it
+  3404, // deck of lewd playing cards
   // Hobo Instruments
   3310, // sealskin drum
   3311, // washboard shield
@@ -77,6 +78,13 @@ export const specialItems = [
   3409, // Hodgman's garbage sticker
   3410, // Hodgman's metal detector
   3411, // Hodgman's cane
+  // Uncle Hobo
+  4845, // Uncle Hobo's stocking cap
+  4846, // Uncle Hobo's epic beard
+  4847, // Uncle Hobo's gift baggy pants
+  4848, // Uncle Hobo's fingerless tinsel gloves
+  4849, // Uncle Hobo's highest bough
+  4850, // Uncle Hobo's belt
 
   //// Slime Tube
   // slime-covered
