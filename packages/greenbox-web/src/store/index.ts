@@ -165,7 +165,7 @@ export const fetchPlayerData = createAsyncThunk(
   "playerData/fetch",
   async (playerId: number) => {
     const response = await fetch(
-      `https://oaf-discord.herokuapp.com/api/greenbox/${playerId}`,
+      `https://oaf.loathers.net/api/greenbox/${playerId}`,
     );
     const json = await response.json();
     if (response.status !== 200) {
