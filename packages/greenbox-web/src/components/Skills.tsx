@@ -1,7 +1,7 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import type { SkillType } from "data-of-loathing";
 import { isSkillPermable } from "data-of-loathing";
-import { SkillStatus } from "greenbox-data";
+import { SkillStatus, mutexSkillGroups } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
@@ -12,6 +12,12 @@ import MutexSkills from "./MutexSkills";
 import Section from "./Section";
 import Skill from "./Skill";
 import SkillBucket from "./SkillBucket";
+
+const IMPOSSIBLE_SKILL_COUNT = mutexSkillGroups.reduce(
+  (accumulator, mutexSkillGroup) =>
+    accumulator + mutexSkillGroup.skillIds.length - 1,
+  0,
+);
 
 export default function Skills() {
   const playerSkills = useAppSelector(selectPlayerSkills);
@@ -68,22 +74,45 @@ export default function Skills() {
     [groupedSkills],
   );
 
-  const mutexSkillGroups = [
-    {
-      skillIds: [191, 192, 193],
-      groupName: "Drippy Skill",
-    },
-  ];
-
-  const impossibleSkillCount = mutexSkillGroups.reduce(
-    (accumulator, mutexSkillGroup) =>
-      accumulator + mutexSkillGroup.skillIds.length - 1,
-    0,
-  );
-  const skillsPermable = skills.length - impossibleSkillCount;
+  const skillsPermable = skills.length - IMPOSSIBLE_SKILL_COUNT;
 
   // Not ideal but we accumulate mutually exclusive groups of skills in this array as we traverse the skills array (if necessary).
-  const skillGroup = [] as SkillType[];
+  const mutexGroup = [] as SkillType[];
+
+  function handleMutex(s: SkillType) {
+    const matchingMutexSkillGroup = mutexSkillGroups.find(
+      (mutexSkillGroup) => mutexSkillGroup.skillIds.includes(s.id),
+    );
+    // Is this skill part of a mutex?
+    if (!matchingMutexSkillGroup) return false;
+
+    // Accumulate the skill
+    mutexGroup.push(s);
+
+    // Are we mid-group? If so, allow accumulation to continue
+    if (
+      matchingMutexSkillGroup.skillIds[
+        matchingMutexSkillGroup.skillIds.length - 1
+      ] !== s.id
+    ) {
+      return null;
+    }
+
+    // Otherwise, spit out accumulated group
+    const group = [...mutexGroup];
+    mutexGroup.length = 0;
+
+    return (
+      <MutexSkills
+        key={s.id}
+        groupName={matchingMutexSkillGroup.groupName}
+        skills={group}
+        statuses={group.map(
+          (s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE,
+        )}
+      />
+    );
+  }
 
   return (
     <Section
@@ -118,31 +147,8 @@ export default function Skills() {
           >
             <SimpleGrid columns={6} spacing={1}>
               {contents.map((s) => {
-                const matchingMutexSkillGroup = mutexSkillGroups.find(
-                  (mutexSkillGroup) => mutexSkillGroup.skillIds.includes(s.id),
-                );
-                if (matchingMutexSkillGroup) {
-                  skillGroup.push(s);
-                  if (
-                    matchingMutexSkillGroup.skillIds[
-                      matchingMutexSkillGroup.skillIds.length - 1
-                    ] !== s.id
-                  ) {
-                    return null;
-                  }
-                  const group = [...skillGroup];
-                  skillGroup.length = 0;
-                  return (
-                    <MutexSkills
-                      key={s.id}
-                      groupName={matchingMutexSkillGroup.groupName}
-                      skills={group}
-                      statuses={group.map(
-                        (s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE,
-                      )}
-                    />
-                  );
-                }
+                const mutexHandler = handleMutex(s);
+                if (mutexHandler !== false) return mutexHandler;
                 return <Skill key={s.id} id={s.id} />;
               })}
             </SimpleGrid>

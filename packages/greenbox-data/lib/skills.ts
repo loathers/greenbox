@@ -6,6 +6,13 @@ export const enum SkillStatus {
   HARDCORE = 2,
 }
 
+export const mutexSkillGroups = [
+  {
+    skillIds: [191, 192, 193],
+    groupName: "Drippy Skill",
+  },
+];
+
 export type RawSkill = [id: number, status: SkillStatus, level: number];
 
 export const compressSkills = (skills: RawSkill[]) =>
