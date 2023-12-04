@@ -78,13 +78,6 @@ export const specialItems = [
   3409, // Hodgman's garbage sticker
   3410, // Hodgman's metal detector
   3411, // Hodgman's cane
-  // Uncle Hobo
-  4845, // Uncle Hobo's stocking cap
-  4846, // Uncle Hobo's epic beard
-  4847, // Uncle Hobo's gift baggy pants
-  4848, // Uncle Hobo's fingerless tinsel gloves
-  4849, // Uncle Hobo's highest bough
-  4850, // Uncle Hobo's belt
 
   //// Slime Tube
   // slime-covered
@@ -111,13 +104,6 @@ export const specialItems = [
   4127, // hardened slime hat
   4128, // hardened slime pants
   4129, // hardened slime belt
-
-  //// The Haunted Sorority House
-  // The Necbromancer
-  5337, // The Necbromancer's Hat
-  5338, // The Necbromancer's Stein
-  5339, // The Necbromancer's Shorts
-  5340, // The Necbromancer's Wizard Staff
 
   //// Dreadsylvania
   // The Terrified Eagle Inn

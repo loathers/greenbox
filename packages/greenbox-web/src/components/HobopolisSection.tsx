@@ -99,24 +99,6 @@ const ZOMBO = [
   3388, // Zombo's empty eye
 ];
 
-/* Enable if Elf Alley is available again
-const UNCLE_HOBO = [
-  4845, // Uncle Hobo's stocking cap
-  4846, // Uncle Hobo's epic beard
-  4847, // Uncle Hobo's gift baggy pants
-  4848, // Uncle Hobo's fingerless tinsel gloves
-  4849, // Uncle Hobo's highest bough
-  4850, // Uncle Hobo's belt
-];
-
-<Subsection title="Uncle Hobo" image="itemimages/litcigar.gif">
-<ItemGrid
-  items={UNCLE_HOBO}
-  playerItems={UNCLE_HOBO.map((id) => playerItems[id]?.[1] ?? 0)}
-/>
-</Subsection>
-*/
-
 const HODGEMAN = [
   3395, // Hodgman's porkpie hat
   3396, // Hodgman's lobsterskin pants
