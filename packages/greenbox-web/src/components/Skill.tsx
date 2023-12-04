@@ -28,6 +28,10 @@ export default function Skill({ id }: Props) {
 
   const [, status, level] = playerSkills[id] || [id, SkillStatus.NONE, 0];
 
+  const knownMaxLevel = getMaxSkillLevel(skill);
+
+  const maxLevel = knownMaxLevel === 0 ? level : knownMaxLevel;
+
   return (
     <Popover trigger="hover" isLazy>
       <PopoverTrigger>
@@ -40,7 +44,7 @@ export default function Skill({ id }: Props) {
           badges={
             level ? (
               <Badge mr={1} title={`Skill at level ${level}`}>
-                {level} / {getMaxSkillLevel(skill)}
+                {level} / {maxLevel}
               </Badge>
             ) : null
           }
