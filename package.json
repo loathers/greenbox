@@ -9,6 +9,7 @@
     "prettier": "^3.0.3"
   },
   "scripts": {
+    "build": "yarn workspace greenbox-script run build && yarn workspace greenbox-web run build",
     "format": "yarn workspaces run format"
   }
 }

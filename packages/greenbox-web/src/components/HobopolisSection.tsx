@@ -1,6 +1,4 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import { SkillStatus } from "greenbox-data";
-import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks";
 import { selectIdToPlayerItems } from "../store";
@@ -32,6 +30,29 @@ const STRONG_ELEMENTAL = [
   36, // Grease Lightning
   42, // Raise Backup Dancer
 ] as const;
+
+const NICKLE_EQUIPMENT = [
+  3220, // hobo code binder
+  3328, // crumpled felt fedora
+  3329, // battered old top-hat
+  3330, // shapeless wide-brimmed hat
+  3331, // mostly rat-hide leggings
+  3332, // hobo dungarees
+  3333, // old patched suit-pants
+  3140, // old soft shoes
+  3334, // hobo stogie
+  3335, // rope with some soap on it
+  3404, // deck of lewd playing cards
+];
+
+const HOBO_INSTRUMENTS = [
+  3310, // sealskin drum
+  3311, // washboard shield
+  3312, // spaghetti-box banjo
+  3313, // marinara jug
+  3314, // makeshift castanets
+  3315, // left-handed melodica
+];
 
 const CHESTER = [
   3260, // Chester's moustache
@@ -103,7 +124,7 @@ export default function HobopolisSection() {
       max={1}
     >
       <Subsection
-        title="Hogdman's Journal Skills"
+        title="Hodgman's Journal Skills"
         image="itemimages/blacknotebook.gif"
       >
         <SimpleGrid columns={6} spacing={1}>
@@ -125,6 +146,18 @@ export default function HobopolisSection() {
             <Skill key={id} id={id} />
           ))}
         </SimpleGrid>
+      </Subsection>
+      <Subsection title="Hobo Nickles" image="itemimages/nickel.gif">
+        <ItemGrid
+          items={NICKLE_EQUIPMENT}
+          playerItems={NICKLE_EQUIPMENT.map((id) => playerItems[id]?.[1] ?? 0)}
+        />
+      </Subsection>
+      <Subsection title="Hobo Instruments" image="itemimages/triangle.gif">
+        <ItemGrid
+          items={HOBO_INSTRUMENTS}
+          playerItems={HOBO_INSTRUMENTS.map((id) => playerItems[id]?.[1] ?? 0)}
+        />
       </Subsection>
       <Subsection title="Chester" image="itemimages/chestache.gif">
         <ItemGrid
