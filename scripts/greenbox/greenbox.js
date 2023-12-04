@@ -18756,7 +18756,8 @@ var pointsRadix = 32, tattooLevelRadix = 16, compressPaths = function(paths) {
 init_kolmafia_polyfill();
 var SkillStatus = /* @__PURE__ */ function(SkillStatus2) {
   return SkillStatus2[SkillStatus2.NONE = 0] = "NONE", SkillStatus2[SkillStatus2.SOFTCORE = 1] = "SOFTCORE", SkillStatus2[SkillStatus2.HARDCORE = 2] = "HARDCORE", SkillStatus2;
-}({}), compressSkills = function(skills) {
+}({});
+var compressSkills = function(skills) {
   return skills.sort(function(a, b) {
     return a[0] - b[0];
   }).reduce(function(acc, skill) {
