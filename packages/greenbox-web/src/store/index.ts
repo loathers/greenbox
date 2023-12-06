@@ -65,6 +65,8 @@ export interface GreenboxState {
   loading: Partial<{ [K in keyof GreenboxState]: boolean }>;
   error: Partial<{ [K in keyof GreenboxState]: boolean }>;
   errorMessage: Partial<{ [K in keyof GreenboxState]: string }>;
+  snapshotNumber: number | null;
+  snapshotsTotal: number | null;
 }
 
 const initialState: GreenboxState = {
@@ -106,6 +108,8 @@ const initialState: GreenboxState = {
   },
   error: { wikiClashes: false },
   errorMessage: {},
+  snapshotNumber: null,
+  snapshotsTotal: null,
 };
 
 export const fetchClasses = createAsyncThunk(
@@ -161,17 +165,27 @@ export const fetchAll = createAsyncThunk(
   },
 );
 
+export interface GreenboxSpecifier {
+  playerId: number
+  snapshotNumber?: number
+}
+
 export const fetchPlayerData = createAsyncThunk(
   "playerData/fetch",
-  async (playerId: number) => {
+  async (specifier: GreenboxSpecifier) => {
     const response = await fetch(
-      `https://oaf.loathers.net/api/greenbox/${playerId}`,
+      specifier.snapshotNumber
+        ? `https://oaf.loathers.net/api/greenbox/${specifier.playerId}/${specifier.snapshotNumber}`
+        : `https://oaf.loathers.net/api/greenbox/${specifier.playerId}`
     );
     const json = await response.json();
     if (response.status !== 200) {
       throw new Error(json.error);
     }
-    return json.greenboxString || json.data as string;
+    return {
+      data: json.greenboxString || json.data as string,
+      total: json.total,
+    };
   },
 );
 
@@ -306,9 +320,14 @@ export const greenboxSlice = createSlice({
       })
       .addCase(fetchPlayerData.fulfilled, (state, action) => {
         // Set current player id
-        state.playerId = action.meta.arg;
+        state.playerId = action.meta.arg.playerId;
         // Parse and load greenbox string
-        const greenboxString = action.payload;
+        const greenboxString = action.payload.data;
+        state.snapshotsTotal = action.payload.total;
+        if (typeof state.snapshotsTotal !== "number") {
+          state.snapshotsTotal = state.snapshotsTotal?.greenbox;
+        }
+        state.snapshotNumber = action.meta.arg.snapshotNumber ?? state.snapshotsTotal
         try {
           state.playerData = api.expand(greenboxString);
           state.error.playerData = false;

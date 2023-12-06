@@ -10,6 +10,7 @@ import {
   Stack,
   Text,
   Tooltip,
+  Link,
 } from "@chakra-ui/react";
 import { RawSnapshotData } from "greenbox-data";
 import { useCallback } from "react";
@@ -27,6 +28,10 @@ type Props = {
   loading?: boolean;
   error?: boolean;
   errorMessage?: string;
+  snapshots: {
+    current: number | null;
+    total: number | null;
+  };
 };
 
 const forceRefreshInfo = `
@@ -41,12 +46,16 @@ export default function Header({
   loading,
   error,
   errorMessage,
+  snapshots,
 }: Props) {
   const dispatch = useAppDispatch();
 
   const forceUpdate = useCallback(() => {
     dispatch(fetchAll(true));
   }, [dispatch]);
+
+  const prevSnapshotLink = snapshots.current && snapshots.current !== 1 && `/?u=${meta?.id}&h=${snapshots.current - 1}`
+  const nextSnapshotLink = snapshots.current && snapshots.total && snapshots.current !== snapshots.total && `/?u=${meta?.id}&h=${snapshots.current + 1}`
 
   return (
     <Stack as="section" alignItems="stretch" py={2}>
@@ -58,7 +67,7 @@ export default function Header({
         <Box flex={1} />
         <Box textAlign="right">
           {meta ? (
-            <MetaInfo direct={direct} meta={meta} />
+            <MetaInfo direct={direct} meta={meta} snapshots={snapshots} />
           ) : loading ? (
             <Spinner />
           ) : error ? (
@@ -70,9 +79,16 @@ export default function Header({
         </Box>
       </HStack>
       <Stack>
-        <Text>
-          To get the data from your account, first install the script by running
-        </Text>
+        <HStack>
+          <Text>
+            To get the data from your account, first install the script by running
+          </Text>
+          <Box flex={1} />
+          <Stack>
+            {prevSnapshotLink && <Link href={prevSnapshotLink}>Previous snapshot</Link>}
+            {nextSnapshotLink && <Link href={nextSnapshotLink}>Next snapshot</Link>}
+          </Stack>
+        </HStack>
         <Code p={2} borderRadius={5}>
           git checkout loathers/greenbox release
         </Code>
