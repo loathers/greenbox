@@ -21,14 +21,18 @@ import Header from "./Header";
 export default function MainPage() {
   const [directValue] = useQueryParam("d", StringParam);
   const [playerId] = useQueryParam("u", NumberParam);
+  const [snapshotNumber] = useQueryParam("h", NumberParam);
   const favouritePlayerId = useAppSelector((state) => state.favouritePlayerId);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const id = playerId || favouritePlayerId;
-    if (id) dispatch(fetchPlayerData(id));
-  }, [playerId, dispatch, favouritePlayerId]);
+    if (id) dispatch(fetchPlayerData({
+      playerId: id,
+      snapshotNumber: snapshotNumber ?? undefined,
+    }));
+  }, [playerId, dispatch, favouritePlayerId, snapshotNumber]);
 
   useEffect(() => {
     if (!directValue) return;
@@ -45,6 +49,8 @@ export default function MainPage() {
   const loading = useAppSelector((state) => state.loading);
   const error = useAppSelector((state) => state.error);
   const errorMessage = useAppSelector((state) => state.errorMessage);
+  const snapshotCurrent = useAppSelector((state) => state.snapshotNumber);
+  const snapshotsTotal = useAppSelector((state) => state.snapshotsTotal);
 
   const id = "clash-toast";
 
@@ -82,6 +88,7 @@ export default function MainPage() {
         loading={loading.playerData}
         error={error.playerData}
         errorMessage={errorMessage.playerData}
+        snapshots={{current: snapshotCurrent, total: snapshotsTotal}}
       />
       <Tabs isLazy variant="enclosed">
         <TabList>
