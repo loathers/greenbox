@@ -171,7 +171,7 @@ export const fetchPlayerData = createAsyncThunk(
     if (response.status !== 200) {
       throw new Error(json.error);
     }
-    return json.greenboxString || json.data as string;
+    return json.greenboxString || (json.data as string);
   },
 );
 

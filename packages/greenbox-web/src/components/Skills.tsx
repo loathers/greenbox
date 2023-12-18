@@ -80,8 +80,8 @@ export default function Skills() {
   const mutexGroup = [] as SkillType[];
 
   function handleMutex(s: SkillType) {
-    const matchingMutexSkillGroup = mutexSkillGroups.find(
-      (mutexSkillGroup) => mutexSkillGroup.skillIds.includes(s.id),
+    const matchingMutexSkillGroup = mutexSkillGroups.find((mutexSkillGroup) =>
+      mutexSkillGroup.skillIds.includes(s.id),
     );
     // Is this skill part of a mutex?
     if (!matchingMutexSkillGroup) return false;
@@ -107,9 +107,7 @@ export default function Skills() {
         key={s.id}
         groupName={matchingMutexSkillGroup.groupName}
         skills={group}
-        statuses={group.map(
-          (s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE,
-        )}
+        statuses={group.map((s) => idToSkill[s.id]?.[1] ?? SkillStatus.NONE)}
       />
     );
   }
