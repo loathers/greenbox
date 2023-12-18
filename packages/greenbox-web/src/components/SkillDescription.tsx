@@ -24,7 +24,7 @@ export default function SkillDescription({ skill }: Props) {
   useEffect(() => {
     async function load() {
       const response = await fetch(
-        `https://l8sdqazjji.execute-api.us-east-1.amazonaws.com/?action=parse&page=${wikiLink}&prop=text&format=json`,
+        `https://corsproxy.io/?${encodeURIComponent(`https://kol.coldfront.net/thekolwiki/api.php?action=parse&page=${wikiLink}&prop=text&format=json`)}`,
       );
       const result = await response.json();
       const match = /<table width="100%"><tr><td>(.*?)<\/td>/s.exec(
