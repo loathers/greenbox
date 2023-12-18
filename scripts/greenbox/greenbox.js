@@ -17767,8 +17767,16 @@ var iotms_default = [
     month: 11,
     year: 2023,
     type: "campground"
-  }
+  },
   // A Guide to Burning Leaves
+  {
+    id: 11363,
+    month: 12,
+    year: 2023,
+    type: "item",
+    item: "candy cane sword cane"
+  }
+  // wrapped candy cane sword cane
 ];
 
 // ../greenbox-data/lib/iotms.ts
