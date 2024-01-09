@@ -33,7 +33,7 @@ export default [
   { name: "Crimbo Duds", image: "pressietat", outfit: 11 },
   { name: "Crimborg Assault Armor", image: "halotat", outfit: 40 },
   { name: "Crimbot Crimboutfit", image: "zaptat", outfit: 111 },
-  {	name: "Crimbuccaneer rigging", image: "crimbuctat1", outfit: 167 },
+  { name: "Crimbuccaneer rigging", image: "crimbuctat1", outfit: 167 },
   {
     name: "Cursed Skeleton Pirate Costume",
     image: "skelepiratetat",
@@ -55,7 +55,7 @@ export default [
   { name: "Dyspepsi-Cola Uniform", image: "cola2tat", outfit: 24 },
   { name: "El Vibrato Relics", image: "elvtat", outfit: 41 },
   { name: "Eldritch Equipage", image: "elditchtat", outfit: 128 },
-  {	name: "Elf Guard Fatigues", image: "elfguardtat1", outfit: 166 },
+  { name: "Elf Guard Fatigues", image: "elfguardtat1", outfit: 166 },
   { name: "Encephalic Ensemble", image: "jfishtat", outfit: 27 },
   { name: "eXtreme Cold-Weather Gear", image: "coldgear", outfit: 7 },
   { name: "Fancy Tux", image: "blacktie", outfit: 72 },
