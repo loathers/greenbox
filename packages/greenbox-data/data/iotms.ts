@@ -1219,5 +1219,5 @@ export default [
     year: 2024,
     type: "familiar",
     familiar: "Chest Mimic",
-  }, // baby chest mimic  
+    }, // baby chest mimic
 ] satisfies IotMDef[];
