@@ -17783,8 +17783,24 @@ var iotms_default = [
     year: 2024,
     type: "familiar",
     familiar: "Chest Mimic"
-  }
+  },
   // baby chest mimic
+  {
+    id: 11546,
+    month: 2,
+    year: 2024,
+    type: "item",
+    item: "spring shoes"
+  },
+  // in-the-box spring shoes
+  {
+    id: 11561,
+    month: 3,
+    year: 2024,
+    type: "item",
+    item: "Everfull Dart Holster"
+  }
+  // packaged Everfull Dart Holster
 ];
 
 // ../greenbox-data/lib/iotms.ts
