@@ -1207,7 +1207,7 @@ export default [
     type: "campground",
   }, // A Guide to Burning Leaves
   {
-    id: 11363,
+    id: 11364,
     month: 12,
     year: 2023,
     type: "item",
@@ -1221,14 +1221,14 @@ export default [
     familiar: "Chest Mimic",
   }, // baby chest mimic
   {
-    id: 11546,
+    id: 11545,
     month: 2,
     year: 2024,
     type: "item",
     item: "spring shoes",
   }, // in-the-box spring shoes
   {
-    id: 11561,
+    id: 11560,
     month: 3,
     year: 2024,
     type: "item",
