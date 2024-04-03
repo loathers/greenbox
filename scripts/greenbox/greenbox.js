@@ -18921,10 +18921,10 @@ var ItemId = /* @__PURE__ */ function(ItemId2) {
   equipment: [],
   tattoos: [{
     name: "WereProfessor",
-    image: "class50"
+    image: "class31"
   }, {
     name: "Hardcore WereProfessor",
-    image: "class50hc"
+    image: "class31hc"
   }],
   points: "wereProfessorPoints",
   maxPoints: 23
