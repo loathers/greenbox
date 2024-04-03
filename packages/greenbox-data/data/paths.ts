@@ -203,6 +203,7 @@ const enum Thwaitgold {
   AntiMoth = 11166,
   SplendorBeetle = 11255,
   Fairyfly = 11326,
+  WolfSpider = 11563,
 }
 
 export const SOFTCORE = -3;
@@ -929,5 +930,18 @@ export default [
     tattoos: [],
     points: "skillLevel227",
     maxPoints: 11,
+  },
+  {
+    id: 50,
+    name: "WereProfessor",
+    image: "itemimages/intrinsic_beast.gif",
+    items: [Thwaitgold.WolfSpider],
+    equipment: [],
+    tattoos: [
+      { name: "WereProfessor", image: "class50" },
+      { name: "Hardcore WereProfessor", image: "class50hc" },
+    ],
+    points: "wereProfessorPoints",
+    maxPoints: 23,
   },
 ] satisfies PathDef[];
