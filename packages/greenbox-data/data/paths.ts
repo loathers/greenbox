@@ -938,8 +938,8 @@ export default [
     items: [Thwaitgold.WolfSpider],
     equipment: [],
     tattoos: [
-      { name: "WereProfessor", image: "class50" },
-      { name: "Hardcore WereProfessor", image: "class50hc" },
+      { name: "WereProfessor", image: "class31" },
+      { name: "Hardcore WereProfessor", image: "class31hc" },
     ],
     points: "wereProfessorPoints",
     maxPoints: 23,
