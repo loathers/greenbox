@@ -1234,4 +1234,11 @@ export default [
     type: "item",
     item: "Everfull Dart Holster",
   }, // packaged Everfull Dart Holster
+  {
+    id: 11564,
+    month: 4,
+    year: 2024,
+    type: "item",
+    item: "Apriling band helmet",
+  }, // boxed Apriling band helmet
 ] satisfies IotMDef[];
