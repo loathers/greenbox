@@ -1,6 +1,13 @@
 import { PathDef } from "../lib/types";
 
 const enum ItemId {
+  // Softcore Standard 2024
+  MossSC = 11504,
+  MossTT = 11505,
+  MossPM = 11506,
+  MossSA = 11507,
+  MossDB = 11508,
+  MossAT = 11509,
   // Softcore Standard 2023
   ChiffonSC = 11028,
   ChiffonTT = 11029,
@@ -64,6 +71,13 @@ const enum ItemId {
   PolyesterSA = 7988,
   PolyesterDB = 7989,
   PolyesterAT = 7990,
+  // Hardcore Standard 2024
+  AdobeSC = 11512,
+  AdobeTT = 11513,
+  AdobePM = 11514,
+  AdobeSA = 11515,
+  AdobeDB = 11516,
+  AdobeAT = 11517,
   // Hardcore Standard 2023
   CeramicSC = 11020,
   CeramicTT = 11021,
@@ -270,6 +284,12 @@ export default [
       ItemId.ChiffonSA,
       ItemId.ChiffonDB,
       ItemId.ChiffonAT,
+      ItemId.MossSC,
+      ItemId.MossTT,
+      ItemId.MossPM,
+      ItemId.MossSA,
+      ItemId.MossDB,
+      ItemId.MossAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1" },
@@ -365,6 +385,12 @@ export default [
       ItemId.CeramicSA,
       ItemId.CeramicDB,
       ItemId.CeramicAT,
+      ItemId.AdobeSC,
+      ItemId.AdobeTT,
+      ItemId.AdobePM,
+      ItemId.AdobeSA,
+      ItemId.AdobeDB,
+      ItemId.AdobeAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1hc" },
