@@ -3,6 +3,7 @@ import { TattooDef } from "../lib/types";
 export default [
   { name: "8-Bit Finery", image: "swordtat", outfit: 15 },
   { name: "Aeroutfit", image: "aerotat", outfit: 118 },
+  { name: "Adobe Armor", image: "adobetat", outfit: 169 },
   { name: "Animelf Apparel", image: "animelftat", outfit: 89 },
   { name: "Antique Arms And Armor", image: "armortat", outfit: 29 },
   { name: "Antique Nutcracker Outfit", image: "nutctat", outfit: 157 },
@@ -129,6 +130,7 @@ export default [
   { name: "Meteor Masquerade", image: "meteortat", outfit: 131 },
   { name: "Miming Paraphernalia", image: "mimetat", outfit: 133 },
   { name: "Mining Gear", image: "miner", outfit: 8 },
+  { name: "Moss Mufti", image: "mosstat", outfit: 168 },
   { name: "Mushroom Masquerade", image: "mushtat", outfit: 158 },
   { name: "Mutant Couture", image: "dnatat", outfit: 49 },
   { name: "Mutant Parts Apparel", image: "vwmuttat", outfit: 142 },
