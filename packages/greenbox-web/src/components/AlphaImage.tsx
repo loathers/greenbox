@@ -1,4 +1,4 @@
-import { CSSObject } from "@emotion/react";
+import { SystemStyleObject } from "@chakra-ui/react";
 import Color from "color";
 import { useEffect, useMemo, useState } from "react";
 
@@ -59,7 +59,7 @@ export default function AlphaImage({
   height = sourceHeight,
   ...props
 }: Props) {
-  const [maskImage, setMaskImage] = useState({} as CSSObject);
+  const [maskImage, setMaskImage] = useState({} as SystemStyleObject);
   const url = useMemo(
     () => `https://s3.amazonaws.com/images.kingdomofloathing.com/${src}`,
     [src],
