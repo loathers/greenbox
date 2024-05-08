@@ -11,5 +11,6 @@
   "scripts": {
     "build": "yarn workspace greenbox-script run build && yarn workspace greenbox-web run build",
     "format": "yarn workspaces run format"
-  }
+  },
+  "packageManager": "yarn@4.2.1"
 }
