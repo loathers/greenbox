@@ -44,11 +44,12 @@ import {
   toInt,
   visitUrl,
 } from "kolmafia";
-import { Kmail } from "libram";
-import { getBoolean, getNumber } from "libram/dist/property";
+import { Kmail, property } from "libram";
 
 import { getIotMStatus, IotMOptions } from "./iotms";
 import { haveItem } from "./utils";
+
+const { getBoolean, getNumber } = property;
 
 /**
  * Generates a list of IotMs and status.

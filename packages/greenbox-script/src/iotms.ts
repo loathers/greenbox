@@ -8,14 +8,15 @@ import {
   visitUrl,
   xpath,
 } from "kolmafia";
-import { flat, getFoldGroup, haveInCampground } from "libram";
-import { getBoolean } from "libram/dist/property";
+import { flat, getFoldGroup, haveInCampground, property } from "libram";
 
 import { haveItem } from "./utils";
 
 export type IotMOptions = Partial<{
   force: number[];
 }>;
+
+const { getBoolean } = property;
 
 function haveBound(iotm: IotMDef, options: IotMOptions): boolean {
   if (options.force?.includes(iotm.id)) return true;

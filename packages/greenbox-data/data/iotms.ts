@@ -1,4 +1,4 @@
-import { BooleanProperty } from "libram/dist/propertyTypes";
+import { KnownProperty } from "libram";
 
 interface BaseIotM {
   id: number;
@@ -49,7 +49,7 @@ interface PreferenceIotM extends BaseIotM {
   /**
    * Preference to check. If it contains "true" the IotM will be considered owned.
    */
-  preference: BooleanProperty;
+  preference: KnownProperty;
 }
 
 interface SkillIotM extends BaseIotM {
