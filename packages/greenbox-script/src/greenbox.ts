@@ -256,7 +256,7 @@ function checkMeta() {
 const hasFlag = (args: string, ...flags: string[]) =>
   flags.some((f) => args.includes(f));
 
-function main(args = ""): void {
+export function main(args = ""): void {
   if (hasFlag(args, "--help", "-h")) {
     printHtml(`
       Usage:
@@ -323,5 +323,3 @@ function main(args = ""): void {
     `All done! To see your greenboxes, visit: <a href="${link}">${link}</a>`,
   );
 }
-
-module.exports.main = main;
