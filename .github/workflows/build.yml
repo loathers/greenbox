@@ -18,5 +18,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.node-version }}
+      - run: corepack enable
       - run: yarn install --immutable
       - run: yarn workspace greenbox-script test
