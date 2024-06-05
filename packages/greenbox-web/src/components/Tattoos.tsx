@@ -55,11 +55,10 @@ export default function Tattoos() {
         .length +
       playerMiscTattoos.filter((s) => s[1] >= miscIdToMaxTattooLevel[s[0]])
         .length +
-      playerPaths.flatMap(
-        (p) =>
-          idToPath[p[0]]?.tattoos.filter(
-            (t, i) => p[4][i] >= arrayOf(t.image).length,
-          ),
+      playerPaths.flatMap((p) =>
+        idToPath[p[0]]?.tattoos.filter(
+          (t, i) => p[4][i] >= arrayOf(t.image).length,
+        ),
       ).length,
     [playerOutfitTattoos, playerMiscTattoos],
   );
@@ -71,13 +70,12 @@ export default function Tattoos() {
       playerMiscTattoos.filter(
         (s) => s[1] > 0 && s[1] < miscIdToMaxTattooLevel[s[0]],
       ).length +
-      playerPaths.flatMap(
-        ([pathId, , , , playerPathTats]) =>
-          idToPath[pathId]?.tattoos.filter(
-            (t, i) =>
-              playerPathTats[i] > 0 &&
-              playerPathTats[i] < arrayOf(t.image).length,
-          ),
+      playerPaths.flatMap(([pathId, , , , playerPathTats]) =>
+        idToPath[pathId]?.tattoos.filter(
+          (t, i) =>
+            playerPathTats[i] > 0 &&
+            playerPathTats[i] < arrayOf(t.image).length,
+        ),
       ).length,
     [playerOutfitTattoos],
   );

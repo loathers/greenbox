@@ -18,6 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/loathers/greenbox.git"
   },
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "format": "prettier --write ."
@@ -26,15 +27,15 @@
     "url": "https://github.com/loathers/greenbox/issues"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
-    "@typescript-eslint/eslint-plugin": "^6.6.0",
-    "@typescript-eslint/parser": "^6.6.0",
-    "eslint": "^8.49.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "@typescript-eslint/parser": "^7.12.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
     "greenbox-prettier-config": "^0.0.0",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "prettier": "^3.3.0",
+    "typescript": "^5.4.5"
   },
   "prettier": "greenbox-prettier-config",
   "dependencies": {

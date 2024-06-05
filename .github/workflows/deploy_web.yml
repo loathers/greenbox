@@ -5,6 +5,9 @@ on:
       branches: [main]
   workflow_dispatch:
 
+env:
+  node-version: "22"
+
 permissions:
   contents: write
 
@@ -13,12 +16,16 @@ jobs:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ env.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.node-version }}
+      - run: corepack enable
 
       - name: Build
         run: |
-          yarn install --frozen-lockfile
+          yarn install --immutable
           yarn workspace greenbox-web run build
 
       - name: Deploy
