@@ -1,4 +1,97 @@
 export const specialItems = [
+  //// Quest Rewards
+  // Marty's Quest
+  2719, // hand-carved bokken
+  2720, // hand-carved bow
+  2721, // hand-carved staff
+
+  // secret from the future
+  4108, // monstrous monocle
+  4109, // musty moccasins
+  4110, // molten medallion
+  4111, // brazen bracelet
+  4112, // bitter bowtie
+  4113, // bewitching boots
+
+  // Reflection of a Map
+  4510, // walrus ice cream
+  4511, // beautiful soup
+  4512, // eggman noodles
+  4513, // Vial of jus de larmes
+  4515, // Lobster qua Grill
+  4516, // missing wine
+  4519, // ittah bittah hookah
+
+  // psychoanalytic jar
+  6057, // Meatcleaver
+  6067, // Truthsayer
+  6108, // Ginsu™
+  6133, // White Dragon Fang
+  6146, // Sword of Procedural Generation
+  6157, // Byte
+  6168, // Bloodbath
+
+  // We All Wear Masks
+  7131, // silver cow creamer
+  7134, // wolf whistle
+  7137, // witch's bra
+  7140, // spinning wheel
+  7143, // hare pin
+
+  //// Other Items
+  // Chefstaves
+  2578, // Staff of the Short Order Cook
+  2601, // Staff of the Midnight Snack
+  2602, // Staff of Blood and Pudding
+  2722, // Staff of the Greasefire
+  2723, // Staff of the Grand Flambé
+  2740, // Staff of the Walk-In Freezer
+  2749, // Staff of the Grease Trap
+  2826, // Staff of the Kitchen Floor
+  3390, // Staff of the Deepest Freeze
+  3436, // Staff of the Teapot Tempest
+  3437, // Staff of the Black Kettle
+  3438, // Staff of the Well-Tempered Cauldron
+  4165, // Staff of the Soupbone
+  5758, // Staff of Holiday Sensations
+  5761, // Staff of the Scummy Sink
+  6482, // Staff of the Roaring Hearth
+  7351, // Staff of the Electric Range
+  9894, // Staff of Kitchen Royalty
+  10035, // Staff of Frozen Lard
+  10424, // Staff of the Peppermint Twist
+
+  // Jack's Swagger Shack
+  5656, // Huggler Radio
+  5659, // insulting hat
+  5660, // offensive moustache
+  5661, // hairshirt
+  5663, // cursed microwave
+  5664, // cursed pony keg
+  5668, // bagged stuffed "L"
+  5669, // stuffed club
+  5674, // stuffed "L"
+  8283, // The Cocktail Shaker
+  9123, // School of Hard Knocks Diploma
+  10207, // [glitch season reward name]
+  10325, // Law of Averages
+  10640, // Universal Seasoning
+
+  // Ultra rares
+  875, // crazy bastard sword
+  876, // incredibly dense meat gem
+  877, // Talisman of Baio
+  878, // hypnodisk
+  1236, // hockey stick of furious angry rage
+  1519, // Talisman of Bakula
+  1687, // Platinum Yendorian Express Card
+  1795, // Counterclockwise Watch
+  2097, // 17-ball
+  2847, // Dallas Dynasty Falcon Crest shield
+  6592, // optimal spreadsheet
+  7201, // The Nuge's favorite crossbow
+  9117, // repaid diaper
+
   //// Hobopolis
   // Hobo Nickles
   3220, // hobo code binder
@@ -63,7 +156,6 @@ export const specialItems = [
   3387, // Zombo's skull ring
   3388, // Zombo's empty eye
   3389, // Frosty's arm
-  3390, // Staff of the Deepest Freeze
   3391, // Frosty's iceball
   3392, // Oscus's garbage can lid
   3393, // Oscus's neverending soda
