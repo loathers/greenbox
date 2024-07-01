@@ -22048,8 +22048,24 @@ var iotms_default = [
     year: 2024,
     type: "item",
     item: "Apriling band helmet"
-  }
+  },
   // boxed Apriling band helmet
+  {
+    id: 11571,
+    month: 5,
+    year: 2024,
+    type: "item",
+    item: "Mayam Calendar"
+  },
+  // boxed Mayam Calendar
+  {
+    id: 11591,
+    month: 6,
+    year: 2024,
+    type: "familiar",
+    familiar: "Mini Kiwi"
+  }
+  // mini kiwi egg
 ];
 
 // ../greenbox-data/lib/iotms.ts
