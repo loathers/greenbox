@@ -17,6 +17,8 @@ import { fetchAll, fetchPlayerData, loadPlayerData } from "../store";
 import ClanDungeons from "./ClanDungeons";
 import General from "./General";
 import Header from "./Header";
+import OtherItems from "./OtherItems";
+import QuestRewards from "./QuestRewards";
 
 export default function MainPage() {
   const [directValue] = useQueryParam("d", StringParam);
@@ -87,6 +89,8 @@ export default function MainPage() {
         <TabList>
           <Tab>General</Tab>
           <Tab>Clan Dungeons</Tab>
+          <Tab>Quest Rewards</Tab>
+          <Tab>Miscellaneous</Tab>
         </TabList>
         <TabPanels>
           <TabPanel p={0}>
@@ -94,6 +98,12 @@ export default function MainPage() {
           </TabPanel>
           <TabPanel p={0}>
             <ClanDungeons />
+          </TabPanel>
+          <TabPanel p={0}>
+            <QuestRewards />
+          </TabPanel>
+          <TabPanel p={0}>
+            <OtherItems />
           </TabPanel>
         </TabPanels>
       </Tabs>
