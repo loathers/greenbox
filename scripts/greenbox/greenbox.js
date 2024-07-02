@@ -22064,8 +22064,16 @@ var iotms_default = [
     year: 2024,
     type: "familiar",
     familiar: "Mini Kiwi"
-  }
+  },
   // mini kiwi egg
+  {
+    id: 11608,
+    month: 7,
+    year: 2024,
+    type: "item",
+    item: "Roman Candelabra"
+  }
+  // packaged Roman Candelabra
 ];
 
 // ../greenbox-data/lib/iotms.ts
