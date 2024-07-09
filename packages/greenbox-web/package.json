@@ -15,12 +15,12 @@
     "@chakra-ui/system": "^2.6.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@reduxjs/toolkit": "^2.2.5",
+    "@reduxjs/toolkit": "^2.2.6",
     "color": "^4.2.3",
     "comlink": "^4.4.1",
     "data-of-loathing": "^1.4.0",
     "date-fns": "^3.6.0",
-    "framer-motion": "^11.2.10",
+    "framer-motion": "^11.2.13",
     "greenbox-data": "^0.0.0",
     "he": "^1.2.0",
     "prop-types": "^15.8.1",
@@ -33,17 +33,17 @@
     "use-query-params": "^2.2.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.6",
+    "@babel/core": "^7.24.7",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/color": "^3.0.6",
     "@types/he": "^1.2.3",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "greenbox-prettier-config": "^0.0.0",
-    "prettier": "^3.3.0",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.12"
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3"
   },
   "prettier": "greenbox-prettier-config"
 }
