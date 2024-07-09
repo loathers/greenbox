@@ -552,7 +552,13 @@ export default [
   }, // Thinknerd's Grimoire of Geeky Gifts
   { id: 6150, month: 1, year: 2013, type: "item", item: "Snow Suit" }, // Snow Suit
   { id: 4712, month: 2, year: 2013, type: "eudora", eudoraId: 2 }, // GameInformPowerDailyPro subscription card
-  { id: 6305, month: 3, year: 2013, type: "item", item: "Jarlsberg's Pan" }, // Jarlsberg's pan
+  {
+    id: 6305,
+    month: 3,
+    year: 2013,
+    type: "item",
+    item: ["Jarlsberg's Pan", "Jarlsberg's pan (Cosmic portal mode)"],
+  }, // Jarlsberg's pan
   { id: 6360, month: 4, year: 2013, type: "skill", skill: "Summon Taffy" }, // Libram of Pulled Taffy
   {
     id: 6413,
