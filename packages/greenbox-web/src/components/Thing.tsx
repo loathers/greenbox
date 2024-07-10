@@ -34,7 +34,7 @@ function styleFromStatus(state: StateType, bg: string) {
     }
     default: {
       return {
-        backgroundColor: "complete",
+        backgroundColor: bg,
       };
     }
   }
