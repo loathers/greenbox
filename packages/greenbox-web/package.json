@@ -20,7 +20,7 @@
     "comlink": "^4.4.1",
     "data-of-loathing": "^1.4.0",
     "date-fns": "^3.6.0",
-    "framer-motion": "^11.2.13",
+    "framer-motion": "^11.3.0",
     "greenbox-data": "^0.0.0",
     "he": "^1.2.0",
     "prop-types": "^15.8.1",
