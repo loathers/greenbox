@@ -215,9 +215,6 @@ function getEraserStartPoints(
       corners.push(24928, 25072);
       break;
     case "otherimages/trophy/garble_varble_zous.gif":
-      corners.push(17560);
-      break;
-    case "otherimages/trophy/garble_varble_zous.gif":
       corners.push(17652, 17968);
       break;
     case "otherimages/trophy/get_oot_eh.gif":
