@@ -1268,4 +1268,11 @@ export default [
     type: "item",
     item: "Roman Candelabra",
   }, // packaged Roman Candelabra
+  {
+    id: 11629,
+    month: 8,
+    year: 2024,
+    type: "item",
+    item: "tearaway pants",
+  }, // untorn tearaway pants package
 ] satisfies IotMDef[];
