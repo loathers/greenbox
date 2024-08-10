@@ -46,7 +46,11 @@ export default function Section({
           </Box>
           {loading ? <Spinner /> : <AccordionIcon />}
         </AccordionButton>
-        <WikiSearchLink page={wiki ?? title} text='?' fontSize="small"></WikiSearchLink>
+        <WikiSearchLink
+          page={wiki ?? title}
+          text="?"
+          fontSize="small"
+        ></WikiSearchLink>
       </Stack>
       <AccordionPanel>
         <Stack spacing={4}>{children}</Stack>
