@@ -5,7 +5,12 @@ export const specialItems = [
   2720, // hand-carved bow
   2721, // hand-carved staff
 
-  // secret from the future
+  // Hyboria? I don't even...
+  4041, // pig-iron helm
+  4042, // pig-iron shinguards
+  4043, // pig-iron bracers
+
+  // Future
   4108, // monstrous monocle
   4109, // musty moccasins
   4110, // molten medallion
@@ -13,7 +18,7 @@ export const specialItems = [
   4112, // bitter bowtie
   4113, // bewitching boots
 
-  // Reflection of a Map
+  // A Moment of Reflection
   4510, // walrus ice cream
   4511, // beautiful soup
   4512, // eggman noodles
@@ -22,7 +27,7 @@ export const specialItems = [
   4516, // missing wine
   4519, // ittah bittah hookah
 
-  // psychoanalytic jar
+  // Psychoanalytic Jar
   6057, // Meatcleaver
   6067, // Truthsayer
   6108, // Ginsu™
