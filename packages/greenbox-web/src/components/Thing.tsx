@@ -1,6 +1,6 @@
 import { Box, LinkBox, LinkOverlay, useToken } from "@chakra-ui/react";
 import he from "he";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 import { useAppSelector } from "../hooks";
 
@@ -70,10 +70,33 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
   ref,
 ) {
   const [bg] = useToken("colors", ["accent"]);
+  const [eraserTags, setEraserTags] = useState<number[]>([]);
   const style = styleFromStatus(status, bg);
   const clashes = useAppSelector((state) => state.wikiClashes);
 
   const wikiLink = guessWikiLink(link, name, type, clashes);
+
+  useEffect(() => {
+    const handle = (event: KeyboardEvent) => {
+      if (event.key !== "Shift") return;
+      if (event.type === "keydown") {
+        setEraserTags([]);
+      }
+      if (event.type === "keyup") {
+        if (!eraserTags.length) return;
+        console.log(
+          `case "${image}": corners.push(${eraserTags.join(", ")}); break;`,
+        );
+      }
+    };
+
+    window.addEventListener("keydown", handle);
+    window.addEventListener("keyup", handle);
+    return () => {
+      window.removeEventListener("keydown", handle);
+      window.removeEventListener("keyup", handle);
+    };
+  }, [eraserTags, image]);
 
   return (
     <LinkBox
@@ -95,6 +118,19 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
       _hover={{
         filter: style.backgroundColor ? "brightness(90%)" : undefined,
         backgroundColor: style.backgroundColor || "blackAlpha.50",
+      }}
+      onClick={(event) => {
+        if (!event.shiftKey) return;
+        const img = event.currentTarget
+          .querySelector("img")
+          ?.getBoundingClientRect();
+        if (!img) return;
+        event.preventDefault();
+        localStorage.removeItem(`alphamask-${image}`);
+        const x = Math.floor(event.clientX - img.left);
+        const y = Math.floor(event.clientY - img.top);
+        setEraserTags([...eraserTags, (y * img.width + x) * 4]);
+        return false;
       }}
       {...rest}
     >
