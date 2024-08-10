@@ -72,7 +72,7 @@ export default function OtherItems() {
         items={SWAGGER}
       />
       <ItemGridSection
-        title="Ultra Rare"
+        title="Ultra Rares"
         icon="itemimages/ribbon.gif"
         items={ULTRA_RARE}
       />
