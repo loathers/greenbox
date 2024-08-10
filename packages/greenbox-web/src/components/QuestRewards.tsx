@@ -12,7 +12,7 @@ const HYBORIA = [
   4041, // pig-iron helm
   4042, // pig-iron shinguards
   4043, // pig-iron bracers
-]
+];
 
 const FUTURE = [
   4108, // monstrous monocle
