@@ -8,6 +8,12 @@ const MARTY = [
   2721, // hand-carved staff
 ];
 
+const HYBORIA = [
+  4041, // pig-iron helm
+  4042, // pig-iron shinguards
+  4043, // pig-iron bracers
+]
+
 const FUTURE = [
   4108, // monstrous monocle
   4109, // musty moccasins
@@ -54,12 +60,17 @@ export default function QuestRewards() {
         items={MARTY}
       />
       <ItemGridSection
-        title="Secret from the Future"
+        title="Hyboria? I don't even..."
+        icon="itemimages/mem_robe.gif"
+        items={HYBORIA}
+      />
+      <ItemGridSection
+        title="Future"
         icon="itemimages/futurebox.gif"
         items={FUTURE}
       />
       <ItemGridSection
-        title="Reflection of a Map"
+        title="A Moment of Reflection"
         icon="itemimages/revmap.gif"
         items={REFLECTION}
       />
