@@ -22072,8 +22072,16 @@ var iotms_default = [
     year: 2024,
     type: "item",
     item: "Roman Candelabra"
-  }
+  },
   // packaged Roman Candelabra
+  {
+    id: 11629,
+    month: 8,
+    year: 2024,
+    type: "item",
+    item: "tearaway pants"
+  }
+  // untorn tearaway pants package
 ];
 
 // ../greenbox-data/lib/iotms.ts
