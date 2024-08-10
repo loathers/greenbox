@@ -57,6 +57,7 @@ export default function Familiars() {
   return (
     <Section
       title="Familiars"
+      wiki="Category:Familiars"
       icon="itemimages/terrarium.gif"
       loading={loading}
       values={[
