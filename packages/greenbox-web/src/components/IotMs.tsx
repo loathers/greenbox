@@ -56,6 +56,7 @@ export default function IotMs() {
   return (
     <Section
       title="IotMs"
+      wiki="Mr. Store"
       icon="itemimages/mracc.gif"
       loading={loading}
       values={[

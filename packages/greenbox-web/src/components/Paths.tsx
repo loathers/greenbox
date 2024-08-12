@@ -98,6 +98,7 @@ export default function Paths() {
   return (
     <Section
       title="Paths"
+      wiki="Special Challenge Path"
       icon="itemimages/map.gif"
       loading={loading}
       values={[

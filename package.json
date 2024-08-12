@@ -10,7 +10,9 @@
   },
   "scripts": {
     "build": "yarn workspace greenbox-script run build && yarn workspace greenbox-web run build",
-    "format": "yarn workspaces foreach --all run format"
+    "format": "yarn workspaces foreach --all run format",
+    "preview": "yarn workspace greenbox-web run preview",
+    "watch": "yarn workspace greenbox-web run watch"
   },
   "packageManager": "yarn@4.2.1"
 }
