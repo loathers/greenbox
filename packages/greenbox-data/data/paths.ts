@@ -218,6 +218,7 @@ const enum Thwaitgold {
   SplendorBeetle = 11255,
   Fairyfly = 11326,
   WolfSpider = 11563,
+  IlliniginaIllinoiensis = 11593,
 }
 
 export const SOFTCORE = -3;
@@ -969,5 +970,15 @@ export default [
     ],
     points: "wereProfessorPoints",
     maxPoints: 23,
+  },
+  {
+    id: 51,
+    name: "11 Things I Hate About U",
+    image: "itemimages/ihatesu.gif",
+    items: [Thwaitgold.IlliniginaIllinoiensis],
+    equipment: [],
+    tattoos: [],
+    points: null,
+    maxPoints: 0,
   },
 ] satisfies PathDef[];
