@@ -1275,4 +1275,11 @@ export default [
     type: "item",
     item: "tearaway pants",
   }, // untorn tearaway pants package
+  {
+    id: 11641,
+    month: 9,
+    year: 2024,
+    type: "item",
+    item: "Sept-Ember Censer",
+  }, // boxed Sept-Ember Censer
 ] satisfies IotMDef[];
