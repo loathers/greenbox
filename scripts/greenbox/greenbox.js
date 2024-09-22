@@ -24168,23 +24168,23 @@ var tattoos_default = [{
   misc: 11
 }, {
   name: "Mark of the Ghost",
-  image: "dv_tat2",
+  image: "dv_tat4",
   misc: 12
 }, {
   name: "Mark of the Skeleton",
-  image: "dv_tat3",
+  image: "dv_tat6",
   misc: 13
 }, {
   name: "Mark of the Vampire",
-  image: "dv_tat4",
+  image: "dv_tat5",
   misc: 14
 }, {
   name: "Mark of the Werewolf",
-  image: "dv_tat5",
+  image: "dv_tat2",
   misc: 15
 }, {
   name: "Mark of the Zombie",
-  image: "dv_tat6",
+  image: "dv_tat3",
   misc: 16
 }, {
   name: "Official Seal of Dreadsylvania",
