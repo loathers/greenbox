@@ -24988,6 +24988,10 @@ var trophies_default = [{
   id: 163,
   name: "HIGH SCORE",
   image: "no_religion_too"
+}, {
+  id: 164,
+  name: "Ultimate Tosser",
+  image: "skysubmarine"
 }];
 
 // ../greenbox-data/lib/trophies.ts
