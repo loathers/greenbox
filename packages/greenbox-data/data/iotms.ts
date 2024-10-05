@@ -190,7 +190,7 @@ export default [
     type: "item",
     item: "plastic pumpkin bucket",
   }, // plastic pumpkin bucket
-  { id: 2090, month: 11, year: 200, type: "item", item: "pilgrim shield" }, // pilgrim shield
+  { id: 2090, month: 11, year: 2006, type: "item", item: "pilgrim shield" }, // pilgrim shield
   {
     id: 2190,
     month: 12,
