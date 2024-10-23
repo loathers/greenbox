@@ -162,6 +162,13 @@ const enum ItemId {
   BrimstoneSA = 2818,
   BrimstoneDB = 2816,
   BrimstoneAT = 2813,
+  // OCRS Gear
+  DiceRing = 8290,
+  DiceBeltBuckle = 8291,
+  DicePrintPajamaPants = 8292,
+  DiceShapedBackpack = 8293,
+  DicePrintDoRag = 8294,
+  DiceSunglasses = 8295,
   // Challenge Paths
   PickyTweezers = 7936,
   AdventurerBobblehead = 9084,
@@ -665,10 +672,17 @@ export default [
   },
   {
     id: 24,
-    name: "Crazy Random Summer",
+    name: "One Crazy Random Summer",
     image: "itemimages/dice.gif",
     items: [Thwaitgold.Caterpillar],
-    equipment: [],
+    equipment: [
+      ItemId.DiceRing,
+      ItemId.DiceBeltBuckle,
+      ItemId.DicePrintPajamaPants,
+      ItemId.DiceShapedBackpack,
+      ItemId.DicePrintDoRag,
+      ItemId.DiceSunglasses,
+    ],
     tattoos: [],
     points: null,
     maxPoints: 0,
