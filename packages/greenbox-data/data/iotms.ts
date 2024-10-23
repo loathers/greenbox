@@ -1282,4 +1282,11 @@ export default [
     type: "item",
     item: "Sept-Ember Censer",
   }, // boxed Sept-Ember Censer
+  {
+    id: 11657,
+    month: 10,
+    year: 2024,
+    type: "item",
+    item: "bat wings",
+  }, // boxed bat wings
 ] satisfies IotMDef[];
