@@ -24310,6 +24310,10 @@ var tattoos_default = [{
   name: "Super-Heated Leaf",
   image: "al_tat",
   misc: 47
+}, {
+  name: "Tattoo Gun",
+  image: "2024raffle",
+  misc: 48
 }];
 
 // ../greenbox-data/lib/tattoos.ts
