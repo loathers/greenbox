@@ -22088,8 +22088,16 @@ var iotms_default = [
     year: 2024,
     type: "item",
     item: "Sept-Ember Censer"
-  }
+  },
   // boxed Sept-Ember Censer
+  {
+    id: 11657,
+    month: 10,
+    year: 2024,
+    type: "item",
+    item: "bat wings"
+  }
+  // boxed bat wings
 ];
 
 // ../greenbox-data/lib/iotms.ts
