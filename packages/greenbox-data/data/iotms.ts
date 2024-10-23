@@ -190,7 +190,7 @@ export default [
     type: "item",
     item: "plastic pumpkin bucket",
   }, // plastic pumpkin bucket
-  { id: 2090, month: 11, year: 200, type: "item", item: "pilgrim shield" }, // pilgrim shield
+  { id: 2090, month: 11, year: 2006, type: "item", item: "pilgrim shield" }, // pilgrim shield
   {
     id: 2190,
     month: 12,
@@ -1275,4 +1275,18 @@ export default [
     type: "item",
     item: "tearaway pants",
   }, // untorn tearaway pants package
+  {
+    id: 11641,
+    month: 9,
+    year: 2024,
+    type: "item",
+    item: "Sept-Ember Censer",
+  }, // boxed Sept-Ember Censer
+  {
+    id: 11657,
+    month: 10,
+    year: 2024,
+    type: "item",
+    item: "bat wings",
+  }, // boxed bat wings
 ] satisfies IotMDef[];

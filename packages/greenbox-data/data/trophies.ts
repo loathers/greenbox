@@ -290,4 +290,5 @@ export default [
     image: "every_christmas_is_like_sunday",
   },
   { id: 163, name: "HIGH SCORE", image: "no_religion_too" },
+  { id: 164, name: "Ultimate Tosser", image: "skysubmarine" },
 ] satisfies TrophyDef[];
