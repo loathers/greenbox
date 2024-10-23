@@ -1283,7 +1283,7 @@ export default [
     item: "Sept-Ember Censer",
   }, // boxed Sept-Ember Censer
   {
-    id: 11658,
+    id: 11657,
     month: 10,
     year: 2024,
     type: "item",
