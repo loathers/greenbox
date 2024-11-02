@@ -1289,4 +1289,11 @@ export default [
     type: "item",
     item: "bat wings",
   }, // boxed bat wings
+  {
+    id: 11672,
+    month: 11,
+    year: 2024,
+    type: "familiar",
+    familiar: "Peace Turkey",
+  }, // peace turkey outline
 ] satisfies IotMDef[];
