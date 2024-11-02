@@ -22096,8 +22096,16 @@ var iotms_default = [
     year: 2024,
     type: "item",
     item: "bat wings"
-  }
+  },
   // boxed bat wings
+  {
+    id: 11672,
+    month: 11,
+    year: 2024,
+    type: "familiar",
+    familiar: "Peace Turkey"
+  }
+  // peace turkey outline
 ];
 
 // ../greenbox-data/lib/iotms.ts
