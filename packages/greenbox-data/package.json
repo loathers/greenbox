@@ -1,6 +1,6 @@
 {
   "name": "greenbox-data",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "> TODO: description",
   "author": "Sam Gaus <sam@gaus.co.uk>",
   "homepage": "https://github.com/loathers/greenbox#readme",
@@ -39,6 +39,7 @@
   },
   "prettier": "greenbox-prettier-config",
   "dependencies": {
+    "data-of-loathing": "^1.4.0",
     "jsoncrush": "^1.1.8"
   }
 }
