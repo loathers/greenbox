@@ -590,7 +590,7 @@ export default [
     equipment: [],
     tattoos: [],
     points: "yearbookCameraAscensions",
-    maxPoints: 20,
+    maxPoints: 21,
   },
   {
     id: 16,
