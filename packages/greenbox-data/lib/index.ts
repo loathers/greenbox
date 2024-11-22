@@ -1,6 +1,10 @@
 import jsoncrush from "jsoncrush";
 
-import { compressFamiliars, expandFamiliars, RawFamiliar } from "./familiars.js";
+import {
+  compressFamiliars,
+  expandFamiliars,
+  RawFamiliar,
+} from "./familiars.js";
 import { compressIotMs, expandIotMs, RawIotM } from "./iotms.js";
 import { compressItems, expandItems, RawItem } from "./items.js";
 import { compressMeta, expandMeta, Meta } from "./meta.js";

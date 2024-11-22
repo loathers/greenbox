@@ -168,10 +168,21 @@ export const fetchPlayerData = createAsyncThunk(
       `https://oaf.loathers.net/api/greenbox/${playerId}`,
     );
     const json = await response.json();
-    if (response.status !== 200) {
+
+    if (response.ok) {
       throw new Error(json.error);
     }
-    return json.greenboxString || (json.data as string);
+
+    if (typeof json.data === "string") {
+      // The server will soon serve the object directly, but this code is to bridge the migration
+      try {
+        return api.expand(json.data);
+      } catch {
+        throw new Error("Error parsing player data");
+      }
+    }
+
+    return json.data;
   },
 );
 
@@ -307,24 +318,15 @@ export const greenboxSlice = createSlice({
       .addCase(fetchPlayerData.fulfilled, (state, action) => {
         // Set current player id
         state.playerId = action.meta.arg;
-        // Parse and load greenbox string
-        const greenboxString = action.payload;
-        try {
-          state.playerData = api.expand(greenboxString);
-          state.error.playerData = false;
-          state.errorMessage.playerData = undefined;
-        } catch {
-          state.error.playerData = true;
-          state.errorMessage.playerData = "Error parsing player data";
-        }
-
-        state.loading.playerData = false;
+        state.playerData = action.payload;
+        state.error.playerData = false;
+        state.errorMessage.playerData = undefined;
       })
       .addCase(loadPlayerData, (state, action) => {
         state.playerId = null;
-        const greenboxString = action.payload;
+
         try {
-          state.playerData = api.expand(greenboxString);
+          state.playerData = api.expand(action.payload);
         } catch {
           state.error.playerData = true;
           state.errorMessage.playerData = "Error parsing player data";
