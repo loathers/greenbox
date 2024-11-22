@@ -1,4 +1,4 @@
-name: Deploy KoLmafia script
+name: Deploy npm package
 
 on:
   push:
