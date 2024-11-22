@@ -5,7 +5,6 @@ import {
   getMiscTattoos,
   getOutfitTattoos,
   isOutfitTattoo,
-  isSkillPermable,
   ItemStatus,
   loadIotMs,
   loadPaths,
@@ -104,7 +103,7 @@ function checkSkills(): RawSkill[] {
   }
 
   return Skill.all()
-    .filter((skill) => isSkillPermable(skill))
+    .filter((skill) => skill.permable)
     .map((skill) => [toInt(skill), getStatus(skill), getLevel(skill)]);
 }
 

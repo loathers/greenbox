@@ -6232,7 +6232,6 @@ __metadata:
     "@trivago/prettier-plugin-sort-imports": "npm:^4.3.0"
     "@typescript-eslint/eslint-plugin": "npm:^7.16.0"
     "@typescript-eslint/parser": "npm:^7.16.0"
-    data-of-loathing: "npm:^1.4.0"
     eslint: "npm:^8.57.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-prettier: "npm:^5.1.3"
