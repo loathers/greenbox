@@ -169,7 +169,7 @@ export const fetchPlayerData = createAsyncThunk(
     );
     const json = await response.json();
 
-    if (response.ok) {
+    if (!response.ok) {
       throw new Error(json.error);
     }
 
