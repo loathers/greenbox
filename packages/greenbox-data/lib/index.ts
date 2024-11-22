@@ -9,7 +9,6 @@ import { compressSkills, expandSkills, RawSkill } from "./skills.js";
 import { compressTattoos, expandTattoos, RawTattoo } from "./tattoos.js";
 import { compressTrophies, expandTrophies, RawTrophy } from "./trophies.js";
 
-export { isSkillPermable } from "data-of-loathing";
 export * from "./familiars.js";
 export * from "./items.js";
 export * from "./paths.js";
