@@ -2,11 +2,11 @@ import { ItemType } from "data-of-loathing";
 import { ItemStatus } from "greenbox-data";
 import { useMemo } from "react";
 
-import { useAppSelector } from "../hooks";
-import { itemStatusToThingState } from "../utils";
+import { useAppSelector } from "../hooks.js";
+import { itemStatusToThingState } from "../utils.js";
 
-import Thing from "./Thing";
-import ThingGrid from "./ThingGrid";
+import Thing from "./Thing.js";
+import ThingGrid from "./ThingGrid.js";
 
 type Props = {
   items: number[];

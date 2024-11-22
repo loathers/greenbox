@@ -14,12 +14,12 @@ import {
 import { RawSnapshotData } from "greenbox-data";
 import { useCallback } from "react";
 
-import { useAppDispatch } from "../hooks";
-import { fetchAll } from "../store";
+import { useAppDispatch } from "../hooks.js";
+import { fetchAll } from "../store/index.js";
 
-import MetaInfo from "./MetaInfo";
-import Spinner from "./Spinner";
-import SwitchButton from "./SwitchButton";
+import MetaInfo from "./MetaInfo.js";
+import Spinner from "./Spinner.js";
+import SwitchButton from "./SwitchButton.js";
 
 type Props = {
   meta?: RawSnapshotData["meta"];

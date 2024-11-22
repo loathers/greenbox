@@ -1,10 +1,10 @@
 import { IconButton } from "@chakra-ui/react";
 import { useCallback } from "react";
 
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { updateFavouritePlayerId } from "../store";
+import { useAppDispatch, useAppSelector } from "../hooks.js";
+import { updateFavouritePlayerId } from "../store/index.js";
 
-import Image from "./Image";
+import Image from "./Image.js";
 
 export function FavouriteButton() {
   const playerId = useAppSelector((state) => state.playerId);

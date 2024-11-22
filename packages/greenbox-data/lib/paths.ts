@@ -1,7 +1,7 @@
-import paths, { HARDCORE, SOFTCORE } from "../data/paths";
+import paths, { HARDCORE, SOFTCORE } from "../data/paths.js";
 
-import { ItemStatus } from "./items";
-import { tuple } from "./utils";
+import { ItemStatus } from "./items.js";
+import { tuple } from "./utils.js";
 
 export { SOFTCORE, HARDCORE };
 

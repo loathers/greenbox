@@ -2,9 +2,9 @@ import { Box, LinkBox, LinkOverlay, useToken } from "@chakra-ui/react";
 import he from "he";
 import { forwardRef, useEffect, useState } from "react";
 
-import { useAppSelector } from "../hooks";
+import { useAppSelector } from "../hooks.js";
 
-import AlphaImage from "./AlphaImage";
+import AlphaImage from "./AlphaImage.js";
 
 export type StateType = "complete" | "partial" | null | undefined;
 

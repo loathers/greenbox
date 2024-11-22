@@ -3,13 +3,13 @@ import { isFamiliarOwnable } from "data-of-loathing";
 import { FamiliarStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
-import { useAppSelector } from "../hooks";
-import { createPlayerDataSelector } from "../store";
+import { useAppSelector } from "../hooks.js";
+import { createPlayerDataSelector } from "../store/index.js";
 
-import Familiar from "./Familiar";
-import HundredPercentedUnownableFamiliars from "./HundredPercentedUnownableFamiliars";
-import Section from "./Section";
-import { SortOrderSelect, sortByKey } from "./SortOrderSelect";
+import Familiar from "./Familiar.js";
+import HundredPercentedUnownableFamiliars from "./HundredPercentedUnownableFamiliars.js";
+import Section from "./Section.js";
+import { SortOrderSelect, sortByKey } from "./SortOrderSelect.js";
 
 const selectPlayerFamiliars = createPlayerDataSelector("familiars");
 

@@ -9,12 +9,12 @@ import {
 import { getMaxSkillLevel } from "data-of-loathing";
 import { SkillStatus } from "greenbox-data";
 
-import { useAppSelector } from "../hooks";
-import { selectIdToPlayerSkills, selectIdToSkills } from "../store";
-import { skillStatusToThingState, skillStatusToTitle } from "../utils";
+import { useAppSelector } from "../hooks.js";
+import { selectIdToPlayerSkills, selectIdToSkills } from "../store/index.js";
+import { skillStatusToThingState, skillStatusToTitle } from "../utils.js";
 
-import SkillDescription from "./SkillDescription";
-import Thing from "./Thing";
+import SkillDescription from "./SkillDescription.js";
+import Thing from "./Thing.js";
 
 type Props = {
   id: number;

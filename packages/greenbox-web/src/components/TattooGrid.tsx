@@ -1,7 +1,7 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import { TattooDef } from "greenbox-data";
 
-import Tattoo from "./Tattoo";
+import Tattoo from "./Tattoo.js";
 
 type Props<T> = {
   tattoos: T[];

@@ -5,8 +5,8 @@ import {
 } from "@reduxjs/toolkit";
 import * as Comlink from "comlink";
 
-import { DuplicateFinder } from "../workers/duplicateFinder";
-import DuplicateFinderWorker from "../workers/duplicateFinder?worker";
+import { DuplicateFinder } from "../workers/duplicateFinder.js";
+import DuplicateFinderWorker from "../workers/duplicateFinder.js?worker";
 
 import {
   RootState,
@@ -18,7 +18,7 @@ import {
   fetchSkills,
   fetchTattoos,
   fetchTrophies,
-} from "./index";
+} from "./index.js";
 
 export const wikiClashMiddleware = createListenerMiddleware();
 const startAppListening =

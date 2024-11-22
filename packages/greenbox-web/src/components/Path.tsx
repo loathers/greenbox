@@ -1,9 +1,9 @@
 import { Badge, Box, Heading } from "@chakra-ui/react";
 import { HARDCORE, ItemStatus, PathDef, SOFTCORE } from "greenbox-data";
 
-import ItemGrid from "./ItemGrid";
-import Subsection from "./Subsection";
-import TattooGrid from "./TattooGrid";
+import ItemGrid from "./ItemGrid.js";
+import Subsection from "./Subsection.js";
+import TattooGrid from "./TattooGrid.js";
 
 const ROW_LABEL_RENDERERS: Record<number, (i: number) => React.ReactNode> = {
   [SOFTCORE]: (i: number) => 2015 + i,

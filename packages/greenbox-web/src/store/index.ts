@@ -31,7 +31,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import { processWikiClashes, wikiClashMiddleware } from "./clashes";
+import { processWikiClashes, wikiClashMiddleware } from "./clashes.js";
 
 export const entities = [
   "classes",

@@ -2,8 +2,8 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import type { FamiliarType } from "data-of-loathing";
 import { Fragment } from "react";
 
-import AlphaImage from "./AlphaImage";
-import Medal from "./Medal";
+import AlphaImage from "./AlphaImage.js";
+import Medal from "./Medal.js";
 
 type Props = {
   familiars: FamiliarType[];

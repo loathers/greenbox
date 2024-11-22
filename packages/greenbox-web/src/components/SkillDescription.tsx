@@ -2,11 +2,11 @@ import { Flex } from "@chakra-ui/react";
 import type { SkillType } from "data-of-loathing";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { useAppSelector } from "../hooks";
-import { useColorModeFilter } from "../theme";
+import { useAppSelector } from "../hooks.js";
+import { useColorModeFilter } from "../theme.js";
 
-import Spinner from "./Spinner";
-import { guessWikiLink } from "./Thing";
+import Spinner from "./Spinner.js";
+import { guessWikiLink } from "./Thing.js";
 
 type Props = {
   skill: SkillType;

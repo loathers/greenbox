@@ -1,8 +1,8 @@
-import { useAppSelector } from "../hooks";
-import { selectIdToPlayerItems } from "../store";
+import { useAppSelector } from "../hooks.js";
+import { selectIdToPlayerItems } from "../store/index.js";
 
-import ItemGrid from "./ItemGrid";
-import Section from "./Section";
+import ItemGrid from "./ItemGrid.js";
+import Section from "./Section.js";
 
 type Props = {
   title: string;

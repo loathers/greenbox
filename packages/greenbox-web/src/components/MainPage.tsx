@@ -11,14 +11,14 @@ import {
 import { useEffect, useRef } from "react";
 import { NumberParam, StringParam, useQueryParam } from "use-query-params";
 
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { fetchAll, fetchPlayerData, loadPlayerData } from "../store";
+import { useAppDispatch, useAppSelector } from "../hooks.js";
+import { fetchAll, fetchPlayerData, loadPlayerData } from "../store/index.js";
 
-import ClanDungeons from "./ClanDungeons";
-import General from "./General";
-import Header from "./Header";
-import OtherItems from "./OtherItems";
-import QuestRewards from "./QuestRewards";
+import ClanDungeons from "./ClanDungeons.js";
+import General from "./General.js";
+import Header from "./Header.js";
+import OtherItems from "./OtherItems.js";
+import QuestRewards from "./QuestRewards.js";
 
 export default function MainPage() {
   const [directValue] = useQueryParam("d", StringParam);

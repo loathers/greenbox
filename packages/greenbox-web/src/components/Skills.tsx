@@ -4,14 +4,14 @@ import { isSkillPermable } from "data-of-loathing";
 import { SkillStatus, mutexSkillGroups } from "greenbox-data";
 import { useMemo } from "react";
 
-import { useAppSelector } from "../hooks";
-import { selectIdToPlayerSkills, selectPlayerSkills } from "../store";
-import { getSkillBucket } from "../utils";
+import { useAppSelector } from "../hooks.js";
+import { selectIdToPlayerSkills, selectPlayerSkills } from "../store/index.js";
+import { getSkillBucket } from "../utils.js";
 
-import MutexSkills from "./MutexSkills";
-import Section from "./Section";
-import Skill from "./Skill";
-import SkillBucket from "./SkillBucket";
+import MutexSkills from "./MutexSkills.js";
+import Section from "./Section.js";
+import Skill from "./Skill.js";
+import SkillBucket from "./SkillBucket.js";
 
 const IMPOSSIBLE_SKILL_COUNT = mutexSkillGroups.reduce(
   (accumulator, mutexSkillGroup) =>

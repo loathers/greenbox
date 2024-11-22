@@ -1,10 +1,10 @@
 import { SkillType } from "data-of-loathing";
 import { SkillStatus } from "greenbox-data";
 
-import { skillStatusToThingState, skillStatusToTitle } from "../utils";
+import { skillStatusToThingState, skillStatusToTitle } from "../utils.js";
 
-import ImageParty from "./ImageParty";
-import Thing from "./Thing";
+import ImageParty from "./ImageParty.js";
+import Thing from "./Thing.js";
 
 type Props = {
   groupName: string;

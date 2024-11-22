@@ -1,9 +1,9 @@
 import type { ClassType } from "data-of-loathing";
 
-import { getSkillHeader } from "../utils";
+import { getSkillHeader } from "../utils.js";
 
-import Medal from "./Medal";
-import Subsection from "./Subsection";
+import Medal from "./Medal.js";
+import Subsection from "./Subsection.js";
 
 type Props = React.PropsWithChildren<{
   bucket: number;

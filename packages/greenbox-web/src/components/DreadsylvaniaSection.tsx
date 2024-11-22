@@ -1,10 +1,10 @@
-import { useAppSelector } from "../hooks";
-import { selectIdToPlayerItems } from "../store";
+import { useAppSelector } from "../hooks.js";
+import { selectIdToPlayerItems } from "../store/index.js";
 
-import DreadsylvaniaSkills from "./DreadsylvaniaSkills";
-import ItemGrid from "./ItemGrid";
-import Section from "./Section";
-import Subsection from "./Subsection";
+import DreadsylvaniaSkills from "./DreadsylvaniaSkills.js";
+import ItemGrid from "./ItemGrid.js";
+import Section from "./Section.js";
+import Subsection from "./Subsection.js";
 
 const THE_TERRIFIED_EAGLE_INN = [
   6423, // Tales of Dread

@@ -1,12 +1,12 @@
 import { tuple } from "greenbox-data";
 import { useMemo } from "react";
 
-import { useAppSelector } from "../hooks";
-import { selectPlayerPaths } from "../store";
-import { unzip } from "../utils";
+import { useAppSelector } from "../hooks.js";
+import { selectPlayerPaths } from "../store/index.js";
+import { unzip } from "../utils.js";
 
-import Subsection from "./Subsection";
-import TattooGrid from "./TattooGrid";
+import Subsection from "./Subsection.js";
+import TattooGrid from "./TattooGrid.js";
 
 export default function PathTattoos() {
   const paths = useAppSelector((state) => state.paths);

@@ -1,4 +1,4 @@
-import { chakra, useTheme, useToken } from "@chakra-ui/react";
+import { chakra, useToken } from "@chakra-ui/react";
 import { useMemo } from "react";
 import {
   BarChart,

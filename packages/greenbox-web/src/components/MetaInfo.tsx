@@ -3,8 +3,8 @@ import { formatDistance, intlFormat } from "date-fns";
 import { RawSnapshotData, VERSION } from "greenbox-data";
 import { useEffect, useMemo, useState } from "react";
 
-import { FavouriteButton } from "./FavouriteButton";
-import VersionWarning from "./VersionWarning";
+import { FavouriteButton } from "./FavouriteButton.js";
+import VersionWarning from "./VersionWarning.js";
 
 type Props = {
   meta: RawSnapshotData["meta"];

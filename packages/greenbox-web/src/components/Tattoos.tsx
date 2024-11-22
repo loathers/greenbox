@@ -7,17 +7,17 @@ import {
 } from "greenbox-data";
 import { useMemo } from "react";
 
-import { useAppSelector } from "../hooks";
+import { useAppSelector } from "../hooks.js";
 import {
   selectPlayerMiscTattoos,
   selectPlayerOutfitTattoos,
   selectPlayerPaths,
-} from "../store";
+} from "../store/index.js";
 
-import MiscTattoos from "./MiscTattoos";
-import OutfitTattoos from "./OutfitTattoos";
-import PathTattoos from "./PathTattoos";
-import Section from "./Section";
+import MiscTattoos from "./MiscTattoos.js";
+import OutfitTattoos from "./OutfitTattoos.js";
+import PathTattoos from "./PathTattoos.js";
+import Section from "./Section.js";
 
 export default function Tattoos() {
   const playerOutfitTattoos = useAppSelector(selectPlayerOutfitTattoos);

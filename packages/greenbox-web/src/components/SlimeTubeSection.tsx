@@ -1,12 +1,12 @@
 import { SimpleGrid } from "@chakra-ui/react";
 
-import { useAppSelector } from "../hooks";
-import { selectIdToPlayerItems } from "../store";
+import { useAppSelector } from "../hooks.js";
+import { selectIdToPlayerItems } from "../store/index.js";
 
-import ItemGrid from "./ItemGrid";
-import Section from "./Section";
-import Skill from "./Skill";
-import Subsection from "./Subsection";
+import ItemGrid from "./ItemGrid.js";
+import Section from "./Section.js";
+import Skill from "./Skill.js";
+import Subsection from "./Subsection.js";
 
 const SKILLS = [
   46, // Slimy Sinews

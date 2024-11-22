@@ -2,7 +2,7 @@ import { SystemStyleObject } from "@chakra-ui/react";
 import Color from "color";
 import { useEffect, useMemo, useState } from "react";
 
-import Image from "./Image";
+import Image from "./Image.js";
 
 function getEraserStartPoints(
   src: string,

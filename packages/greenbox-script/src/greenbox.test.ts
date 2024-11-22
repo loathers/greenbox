@@ -2,7 +2,7 @@ import * as fs from "fs/promises";
 import { loadTattoos, OutfitTattooStatus } from "greenbox-data";
 import { describe, expect, it, vi } from "vitest";
 
-import { getTattooStatus } from "./greenbox";
+import { getTattooStatus } from "./greenbox.js";
 
 vi.mock("libram", () => ({
   property: {

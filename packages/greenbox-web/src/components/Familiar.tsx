@@ -2,7 +2,7 @@ import { FamiliarType } from "data-of-loathing";
 import { FamiliarStatus } from "greenbox-data";
 
 import Medal from "./Medal.js";
-import Thing from "./Thing";
+import Thing from "./Thing.js";
 
 type Props = {
   familiar: FamiliarType;

@@ -1,20 +1,20 @@
 import jsoncrush from "jsoncrush";
 
-import { compressFamiliars, expandFamiliars, RawFamiliar } from "./familiars";
-import { compressIotMs, expandIotMs, RawIotM } from "./iotms";
-import { compressItems, expandItems, RawItem } from "./items";
-import { compressMeta, expandMeta, Meta } from "./meta";
-import { compressPaths, expandPaths, RawPath } from "./paths";
-import { compressSkills, expandSkills, RawSkill } from "./skills";
-import { compressTattoos, expandTattoos, RawTattoo } from "./tattoos";
-import { compressTrophies, expandTrophies, RawTrophy } from "./trophies";
+import { compressFamiliars, expandFamiliars, RawFamiliar } from "./familiars.js";
+import { compressIotMs, expandIotMs, RawIotM } from "./iotms.js";
+import { compressItems, expandItems, RawItem } from "./items.js";
+import { compressMeta, expandMeta, Meta } from "./meta.js";
+import { compressPaths, expandPaths, RawPath } from "./paths.js";
+import { compressSkills, expandSkills, RawSkill } from "./skills.js";
+import { compressTattoos, expandTattoos, RawTattoo } from "./tattoos.js";
+import { compressTrophies, expandTrophies, RawTrophy } from "./trophies.js";
 
 export { isSkillPermable } from "data-of-loathing";
-export * from "./familiars";
-export * from "./items";
-export * from "./paths";
-export * from "./skills";
-export type { RawTattoo } from "./tattoos";
+export * from "./familiars.js";
+export * from "./items.js";
+export * from "./paths.js";
+export * from "./skills.js";
+export type { RawTattoo } from "./tattoos.js";
 export {
   loadTattoos,
   getMiscTattoos,
@@ -23,13 +23,13 @@ export {
   isOutfitTattoo,
   isMiscTattoo,
   OutfitTattooStatus,
-} from "./tattoos";
-export * from "./trophies";
-export * from "./iotms";
+} from "./tattoos.js";
+export * from "./trophies.js";
+export * from "./iotms.js";
 
-export * from "./types";
+export * from "./types.js";
 
-export { arrayOf, tuple } from "./utils";
+export { arrayOf, tuple } from "./utils.js";
 
 /**
  * Major version number for the snapshot data

@@ -1,12 +1,12 @@
 import { isOutfitTattoo } from "greenbox-data";
 import { useMemo, useState } from "react";
 
-import { useAppSelector } from "../hooks";
-import { selectPlayerOutfitTattoos } from "../store";
+import { useAppSelector } from "../hooks.js";
+import { selectPlayerOutfitTattoos } from "../store/index.js";
 
-import { SortOrderSelect, sortByKey } from "./SortOrderSelect";
-import Subsection from "./Subsection";
-import TattooGrid from "./TattooGrid";
+import { SortOrderSelect, sortByKey } from "./SortOrderSelect.js";
+import Subsection from "./Subsection.js";
+import TattooGrid from "./TattooGrid.js";
 
 export default function OutfitTattoos() {
   const allTattoos = useAppSelector((state) => state.tattoos);

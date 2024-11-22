@@ -10,7 +10,7 @@ import {
 } from "kolmafia";
 import { flat, getFoldGroup, haveInCampground, property } from "libram";
 
-import { haveItem } from "./utils";
+import { haveItem } from "./utils.js";
 
 export type IotMOptions = Partial<{
   force: number[];

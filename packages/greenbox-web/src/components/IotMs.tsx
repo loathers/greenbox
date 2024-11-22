@@ -1,14 +1,12 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
 import { IotMStatus } from "greenbox-data";
 import { useMemo } from "react";
 
-import { useAppSelector } from "../hooks";
-import { createPlayerDataSelector } from "../store";
-import { chunk, notNullOrUndefined } from "../utils";
+import { useAppSelector } from "../hooks.js";
+import { createPlayerDataSelector } from "../store/index.js";
 
-import IotM from "./IotM";
-import Section from "./Section";
-import ThingGrid from "./ThingGrid";
+import IotM from "./IotM.js";
+import Section from "./Section.js";
+import ThingGrid from "./ThingGrid.js";
 
 const selectPlayerIotMs = createPlayerDataSelector("iotms");
 

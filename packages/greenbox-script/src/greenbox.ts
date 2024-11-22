@@ -46,8 +46,8 @@ import {
 } from "kolmafia";
 import { Kmail, property } from "libram";
 
-import { getIotMStatus, IotMOptions } from "./iotms";
-import { haveItem } from "./utils";
+import { getIotMStatus, IotMOptions } from "./iotms.js";
+import { haveItem } from "./utils.js";
 
 const { getBoolean, getNumber } = property;
 

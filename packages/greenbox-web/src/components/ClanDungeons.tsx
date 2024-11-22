@@ -1,8 +1,8 @@
 import { Accordion } from "@chakra-ui/react";
 
-import DreadsylvaniaSection from "./DreadsylvaniaSection";
-import HobopoliSection from "./HobopolisSection";
-import SlimeTubeSection from "./SlimeTubeSection";
+import DreadsylvaniaSection from "./DreadsylvaniaSection.js";
+import HobopoliSection from "./HobopolisSection.js";
+import SlimeTubeSection from "./SlimeTubeSection.js";
 
 export default function ClanDungeons() {
   return (

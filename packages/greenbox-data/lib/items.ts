@@ -1,4 +1,4 @@
-import { specialItems } from "../data/items";
+import { specialItems } from "../data/items.js";
 
 export const enum ItemStatus {
   NONE = 0,

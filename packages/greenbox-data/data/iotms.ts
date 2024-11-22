@@ -1,4 +1,4 @@
-import { KnownProperty } from "libram";
+import { type KnownProperty } from "libram";
 
 interface BaseIotM {
   id: number;

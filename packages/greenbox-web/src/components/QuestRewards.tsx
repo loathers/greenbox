@@ -1,6 +1,6 @@
 import { Accordion } from "@chakra-ui/react";
 
-import ItemGridSection from "./ItemGridSection";
+import ItemGridSection from "./ItemGridSection.js";
 
 const MARTY = [
   2719, // hand-carved bokken

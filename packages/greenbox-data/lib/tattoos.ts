@@ -1,7 +1,7 @@
-import tattoos from "../data/tattoos";
+import tattoos from "../data/tattoos.js";
 
-import { MiscTattooDef, OutfitTattooDef, TattooDef } from "./types";
-import { arrayOf } from "./utils";
+import { MiscTattooDef, OutfitTattooDef, TattooDef } from "./types.js";
+import { arrayOf } from "./utils.js";
 
 export const enum OutfitTattooStatus {
   NONE = 0,

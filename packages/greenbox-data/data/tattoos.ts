@@ -1,4 +1,4 @@
-import { TattooDef } from "../lib/types";
+import { TattooDef } from "../lib/types.js";
 
 export default [
   { name: "8-Bit Finery", image: "swordtat", outfit: 15 },

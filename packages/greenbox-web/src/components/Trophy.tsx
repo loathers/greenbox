@@ -1,6 +1,6 @@
 import { TrophyDef, TrophyStatus } from "greenbox-data";
 
-import Thing from "./Thing";
+import Thing from "./Thing.js";
 
 type Props = {
   trophy: TrophyDef;

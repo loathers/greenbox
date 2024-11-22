@@ -1,9 +1,9 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { ItemStatus } from "greenbox-data";
 
-import { chunk, notNullOrUndefined } from "../utils";
+import { chunk, notNullOrUndefined } from "../utils.js";
 
-import RowLabel from "./RowLabel";
+import RowLabel from "./RowLabel.js";
 
 type Props<T> = {
   items: (T | null)[];

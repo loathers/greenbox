@@ -1,7 +1,7 @@
 import { IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { useCallback } from "react";
 
-import Image from "./Image";
+import Image from "./Image.js";
 
 export default function SwitchButton() {
   const { toggleColorMode } = useColorMode();

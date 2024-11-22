@@ -8,10 +8,10 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-import AlphaImage from "./AlphaImage";
-import Progress from "./Progress";
-import Spinner from "./Spinner";
-import WikiSearchLink from "./WikiSearchLink";
+import AlphaImage from "./AlphaImage.js";
+import Progress from "./Progress.js";
+import Spinner from "./Spinner.js";
+import WikiSearchLink from "./WikiSearchLink.js";
 
 interface Props extends React.PropsWithChildren {
   title: string;

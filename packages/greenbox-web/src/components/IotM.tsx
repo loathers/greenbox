@@ -1,7 +1,7 @@
 import { ItemType } from "data-of-loathing";
 import { IotMDef, IotMStatus } from "greenbox-data";
 
-import Thing from "./Thing";
+import Thing from "./Thing.js";
 
 type Props = {
   item: ItemType;

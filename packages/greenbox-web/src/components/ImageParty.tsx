@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import he from "he";
 
-import AlphaImage from "./AlphaImage";
+import AlphaImage from "./AlphaImage.js";
 
 type Props = {
   titles: string[];

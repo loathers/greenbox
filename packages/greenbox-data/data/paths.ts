@@ -1,4 +1,4 @@
-import { PathDef } from "../lib/types";
+import { PathDef } from "../lib/types.js";
 
 const enum ItemId {
   // Softcore Standard 2024

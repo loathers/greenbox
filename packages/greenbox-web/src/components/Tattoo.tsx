@@ -7,7 +7,7 @@ import {
   isOutfitTattoo,
 } from "greenbox-data";
 
-import Thing from "./Thing";
+import Thing from "./Thing.js";
 
 type Props = {
   tattoo: TattooDef;

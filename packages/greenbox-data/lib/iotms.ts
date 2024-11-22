@@ -1,4 +1,4 @@
-import iotms, { IotMDef } from "../data/iotms";
+import iotms, { IotMDef } from "../data/iotms.js";
 
 export const enum IotMStatus {
   NONE = 0,

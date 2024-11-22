@@ -1,4 +1,4 @@
-import { tuple } from "./utils";
+import { tuple } from "./utils.js";
 
 export const enum SkillStatus {
   NONE = 0,

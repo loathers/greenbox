@@ -1,4 +1,4 @@
-import trophies from "../data/trophies";
+import trophies from "../data/trophies.js";
 
 export const enum TrophyStatus {
   NONE = 0,

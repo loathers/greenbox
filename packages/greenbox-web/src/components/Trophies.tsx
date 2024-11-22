@@ -2,12 +2,12 @@ import { SimpleGrid } from "@chakra-ui/react";
 import { TrophyStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
-import { useAppSelector } from "../hooks";
-import { createPlayerDataSelector } from "../store";
+import { useAppSelector } from "../hooks.js";
+import { createPlayerDataSelector } from "../store/index.js";
 
-import Section from "./Section";
-import { SortOrderSelect, sortByKey } from "./SortOrderSelect";
-import Trophy from "./Trophy";
+import Section from "./Section.js";
+import { SortOrderSelect, sortByKey } from "./SortOrderSelect.js";
+import Trophy from "./Trophy.js";
 
 const selectPlayerTrophies = createPlayerDataSelector("trophies");
 

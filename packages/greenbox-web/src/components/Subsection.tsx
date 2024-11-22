@@ -1,6 +1,6 @@
 import { Box, HStack, Heading, Stack } from "@chakra-ui/react";
 
-import AlphaImage from "./AlphaImage";
+import AlphaImage from "./AlphaImage.js";
 
 type Props = React.PropsWithChildren<{
   title: string;

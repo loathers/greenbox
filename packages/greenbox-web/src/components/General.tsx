@@ -1,11 +1,11 @@
 import { Accordion } from "@chakra-ui/react";
 
-import Familiars from "./Familiars";
-import IotMs from "./IotMs";
-import Paths from "./Paths";
-import Skills from "./Skills";
-import Tattoos from "./Tattoos";
-import Trophies from "./Trophies";
+import Familiars from "./Familiars.js";
+import IotMs from "./IotMs.js";
+import Paths from "./Paths.js";
+import Skills from "./Skills.js";
+import Tattoos from "./Tattoos.js";
+import Trophies from "./Trophies.js";
 
 export default function General() {
   return (

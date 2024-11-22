@@ -8,9 +8,9 @@ import {
   Tr,
 } from "@chakra-ui/react";
 
-import AlphaImage from "./AlphaImage";
-import Skill from "./Skill";
-import Subsection from "./Subsection";
+import AlphaImage from "./AlphaImage.js";
+import Skill from "./Skill.js";
+import Subsection from "./Subsection.js";
 
 function BlankCell() {
   return <Td bg="chakra-border-color"></Td>;
