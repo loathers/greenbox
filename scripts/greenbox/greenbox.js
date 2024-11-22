@@ -26465,7 +26465,7 @@ function checkSkills() {
     return getNumber2("skillLevel".concat((0, import_kolmafia8.toInt)(skill)));
   }
   return import_kolmafia8.Skill.all().filter(function(skill) {
-    return (0, import_data_of_loathing.isSkillPermable)(skill);
+    return skill.permable;
   }).map(function(skill) {
     return [(0, import_kolmafia8.toInt)(skill), getStatus(skill), getLevel(skill)];
   });
