@@ -22978,7 +22978,7 @@ var ItemId = /* @__PURE__ */ function(ItemId2) {
   equipment: [],
   tattoos: [],
   points: "yearbookCameraAscensions",
-  maxPoints: 20
+  maxPoints: 21
 }, {
   id: 16,
   name: "Class Act II: A Class For Pigs",
