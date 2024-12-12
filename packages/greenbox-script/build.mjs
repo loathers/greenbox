@@ -1,4 +1,4 @@
-/* eslint-env node */
+/* global console */
 import esbuild from "esbuild";
 import babel from "esbuild-plugin-babel";
 import process from "process";
