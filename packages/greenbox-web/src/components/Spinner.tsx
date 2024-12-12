@@ -1,4 +1,5 @@
-import { Box, keyframes, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
+import { keyframes } from "@emotion/react";
 
 import Image from "./Image.js";
 

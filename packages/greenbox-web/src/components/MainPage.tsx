@@ -42,7 +42,7 @@ export default function MainPage() {
   }, [dispatch]);
 
   const toast = useToast();
-  const clashToast = useRef<ToastId>();
+  const clashToast = useRef<ToastId>(null);
   const data = useAppSelector((state) => state.playerData);
   const loading = useAppSelector((state) => state.loading);
   const error = useAppSelector((state) => state.error);
