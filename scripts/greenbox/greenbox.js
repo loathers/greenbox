@@ -6717,8 +6717,24 @@ var iotms_default = [
     year: 2024,
     type: "familiar",
     familiar: "Peace Turkey"
-  }
+  },
   // peace turkey outline
+  {
+    id: 11686,
+    month: 12,
+    year: 2024,
+    type: "campground",
+    item: "TakerSpace letter of Marque"
+  },
+  // Sealed TakerSpace letter of Marque
+  {
+    id: 11782,
+    month: 1,
+    year: 2025,
+    type: "item",
+    item: "McHugeLarge duffel bag"
+  }
+  // McHugeLarge deluxe ski set
 ];
 
 // ../greenbox-data/lib/iotms.ts
