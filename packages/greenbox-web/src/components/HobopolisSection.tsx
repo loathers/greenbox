@@ -109,7 +109,10 @@ const HODGEMAN = [
   3408, // Hodgman's harmonica
   3409, // Hodgman's garbage sticker
   3410, // Hodgman's metal detector
-  3411, // Hodgman's cane
+  3411, // Hodgman's cane,
+  3143, //  Hodgman's disgusting technicolor overcoat
+  3138, // Hodgman's whackin' stick
+  3139, // Hodgman's imaginary hamster
 ];
 
 export default function HobopolisSection() {
