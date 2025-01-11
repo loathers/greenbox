@@ -121,7 +121,7 @@ export const specialItems = [
   3138, // Hodgman's whackin' stick
   3139, // Hodgman's imaginary hamster
   3140, // old soft shoes
-  3143, //  Hodgman's disgusting technicolor overcoat
+  3143, // Hodgman's disgusting technicolor overcoat
   3246, // Ol' Scratch's ol' britches
   3247, // Ol' Scratch's stovepipe hat
   3248, // Ol' Scratch's ash can
