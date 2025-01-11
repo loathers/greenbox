@@ -7011,8 +7011,8 @@ var specialItems = [
   // Hodgman's whackin' stick
   3139,
   // Hodgman's imaginary hamster
-  3140,
-  // old soft shoes
+  3143,
+  // Hodgman's disgusting technicolor overcoat
   3246,
   // Ol' Scratch's ol' britches
   3247,
