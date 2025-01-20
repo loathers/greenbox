@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "greenbox-data": "*",
-    "kolmafia": "^5.28151.0",
-    "libram": "^0.9.21"
+    "kolmafia": "^5.28299.0",
+    "libram": "^0.9.31"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
@@ -24,19 +24,19 @@
     "@babel/plugin-transform-object-rest-spread": "^7.25.9",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
-    "@eslint/js": "^9.16.0",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.0",
-    "@types/node": "^22.10.2",
-    "esbuild": "^0.24.0",
+    "@eslint/js": "^9.18.0",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.1",
+    "@types/node": "^22.10.7",
+    "esbuild": "^0.24.2",
     "esbuild-plugin-babel": "^0.2.3",
-    "eslint": "^9.16.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-libram": "^0.4.17",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-libram": "^0.4.21",
     "greenbox-prettier-config": "^0.0.0",
     "prettier": "^3.4.2",
-    "typescript": "^5.7.2",
-    "typescript-eslint": "^8.18.0",
-    "vitest": "^2.1.8"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0",
+    "vitest": "^3.0.2"
   },
   "prettier": "greenbox-prettier-config"
 }
