@@ -1,6 +1,13 @@
 import { PathDef } from "../lib/types.js";
 
 const enum ItemId {
+  // Softcore Standard 2025
+  CrepePaperSC = 11520,
+  CrepePaperTT = 11521,
+  CrepePaperPM = 11522,
+  CrepePaperSA = 11523,
+  CrepePaperDB = 11524,
+  CrepePaperAT = 11525,
   // Softcore Standard 2024
   MossSC = 11504,
   MossTT = 11505,
@@ -71,6 +78,13 @@ const enum ItemId {
   PolyesterSA = 7988,
   PolyesterDB = 7989,
   PolyesterAT = 7990,
+  // Hardcore Standard 2025
+  PetrifiedWoodSC = 11528,
+  PetrifiedWoodTT = 11529,
+  PetrifiedWoodPM = 11530,
+  PetrifiedWoodSA = 11531,
+  PetrifiedWoodDB = 11532,
+  PetrifiedWoodAT = 11533,
   // Hardcore Standard 2024
   AdobeSC = 11512,
   AdobeTT = 11513,
@@ -299,6 +313,12 @@ export default [
       ItemId.MossSA,
       ItemId.MossDB,
       ItemId.MossAT,
+      ItemId.CrepePaperSC,
+      ItemId.CrepePaperTT,
+      ItemId.CrepePaperPM,
+      ItemId.CrepePaperSA,
+      ItemId.CrepePaperDB,
+      ItemId.CrepePaperAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1" },
@@ -400,6 +420,12 @@ export default [
       ItemId.AdobeSA,
       ItemId.AdobeDB,
       ItemId.AdobeAT,
+      ItemId.PetrifiedWoodSC,
+      ItemId.PetrifiedWoodTT,
+      ItemId.PetrifiedWoodPM,
+      ItemId.PetrifiedWoodSA,
+      ItemId.PetrifiedWoodDB,
+      ItemId.PetrifiedWoodAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1hc" },
