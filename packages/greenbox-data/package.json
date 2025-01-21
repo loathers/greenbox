@@ -1,6 +1,6 @@
 {
   "name": "greenbox-data",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Data to support Greenbox, an achievement tracker for Kingdom of Loathing",
   "author": "Sam Gaus <sam@gaus.co.uk>",
   "homepage": "https://github.com/loathers/greenbox#readme",
@@ -12,8 +12,7 @@
     "data": "data"
   },
   "files": [
-    "lib",
-    "data"
+    "dist"
   ],
   "exports": {
     "import": "./dist/lib/index.js"
