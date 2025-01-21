@@ -9,7 +9,7 @@ env:
   node-version: "22"
 
 jobs:
-  build:
+  deply-script:
     runs-on: ubuntu-latest
     name: Build and Push
     steps:
@@ -21,7 +21,9 @@ jobs:
       - run: corepack enable
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: |
+          yarn install --immutable
+          yarn workspace greenbox-data run build
 
       - name: Build script
         run: yarn workspace greenbox-script run build

@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  deploy:
+  deploy-web:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +26,7 @@ jobs:
       - name: Build
         run: |
           yarn install --immutable
+          yarn workspace greenbox-data run build
           yarn workspace greenbox-web run build
 
       - name: Deploy

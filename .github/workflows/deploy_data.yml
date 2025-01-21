@@ -32,7 +32,7 @@ jobs:
         run: |
           corepack enable
           yarn workspace greenbox-data install --immutable 
-          yarn workspace greenbox-data build
+          yarn workspace greenbox-data run build
 
       - name: Publish if necessary
         if: ${{ steps.check.outputs.status == '404' }}

@@ -14,10 +14,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.node-version }}
-      - run: corepack enable
-      - run: yarn install --immutable
-      - run: yarn workspace greenbox-script test
+
+      - name: Build and test
+        run: |
+          corepack enable
+          yarn install --immutable
+          yarn workspace greenbox-data run build
+          yarn workspace greenbox-script test
