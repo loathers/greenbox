@@ -15,7 +15,7 @@ export const mutexSkillGroups = [
 
 export type RawSkill = [id: number, status: SkillStatus, level: number];
 
-export const compressSkills = (skills: RawSkill[]) =>
+export const compressSkills = (skills: RawSkill[]): string =>
   skills
     .sort((a, b) => a[0] - b[0])
     .reduce(

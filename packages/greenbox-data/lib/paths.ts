@@ -5,7 +5,9 @@ import { tuple } from "./utils.js";
 
 export { SOFTCORE, HARDCORE };
 
-export function loadPaths(lastKnownSize = 0) {
+export function loadPaths(
+  lastKnownSize = 0,
+): { data: typeof paths; size: number } | null {
   const size = JSON.stringify(paths).length;
 
   if (size === lastKnownSize) return null;
@@ -27,7 +29,7 @@ export type RawPath = [
 const pointsRadix = 32;
 const tattooLevelRadix = 16;
 
-export const compressPaths = (paths: RawPath[]) =>
+export const compressPaths = (paths: RawPath[]): string =>
   paths
     .sort((a, b) => a[0] - b[0])
     .reduce(

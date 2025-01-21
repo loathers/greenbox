@@ -1,6 +1,6 @@
 import { TrophyDef } from "../lib/types.js";
 
-export default [
+const trophies: TrophyDef[] = [
   { id: 1, name: "Little Boat", image: "gonna_need_a_smaller_boat" },
   { id: 2, name: "Big Boat", image: "party_on_the_big_boat" },
   { id: 3, name: "I Heart Canadia", image: "get_oot_eh" },
@@ -291,4 +291,6 @@ export default [
   },
   { id: 163, name: "HIGH SCORE", image: "no_religion_too" },
   { id: 164, name: "Ultimate Tosser", image: "skysubmarine" },
-] satisfies TrophyDef[];
+];
+
+export default trophies;

@@ -246,7 +246,7 @@ const enum Thwaitgold {
 export const SOFTCORE = -3;
 export const HARDCORE = -2;
 
-export default [
+const paths: PathDef[] = [
   {
     id: SOFTCORE,
     name: "Softcore",
@@ -1032,4 +1032,6 @@ export default [
     points: null,
     maxPoints: 0,
   },
-] satisfies PathDef[];
+];
+
+export default paths;

@@ -1,6 +1,6 @@
 import { TattooDef } from "../lib/types.js";
 
-export default [
+const tattoos: TattooDef[] = [
   { name: "8-Bit Finery", image: "swordtat", outfit: 15 },
   { name: "Aeroutfit", image: "aerotat", outfit: 118 },
   { name: "Adobe Armor", image: "adobetat", outfit: 169 },
@@ -254,4 +254,6 @@ export default [
   { name: "Shadow", image: "shadowtat", misc: 46 },
   { name: "Super-Heated Leaf", image: "al_tat", misc: 47 },
   { name: "Tattoo Gun", image: "2024raffle", misc: 48 },
-] satisfies TattooDef[];
+];
+
+export default tattoos;

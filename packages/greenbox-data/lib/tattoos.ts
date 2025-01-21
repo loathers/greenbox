@@ -9,7 +9,9 @@ export const enum OutfitTattooStatus {
   HAVE = 2,
 }
 
-export function loadTattoos(lastKnownSize = 0) {
+export function loadTattoos(
+  lastKnownSize = 0,
+): { data: typeof tattoos; size: number } | null {
   const size = JSON.stringify(tattoos).length;
 
   if (size === lastKnownSize) return null;
@@ -28,15 +30,17 @@ export function isMiscTattoo(tattoo: TattooDef): tattoo is MiscTattooDef {
   return "misc" in tattoo;
 }
 
-export function getMaxTattooLevel(tattoo: TattooDef) {
+export function getMaxTattooLevel(tattoo: TattooDef): number {
   return arrayOf(tattoo.image).length;
 }
 
-export function getOutfitTattoos(tattoos: readonly TattooDef[]) {
+export function getOutfitTattoos(
+  tattoos: readonly TattooDef[],
+): OutfitTattooDef[] {
   return tattoos.filter(isOutfitTattoo).sort((a, b) => a.outfit - b.outfit);
 }
 
-export function getMiscTattoos(tattoos: readonly TattooDef[]) {
+export function getMiscTattoos(tattoos: readonly TattooDef[]): MiscTattooDef[] {
   return tattoos.filter(isMiscTattoo).sort((a, b) => a.misc - b.misc);
 }
 

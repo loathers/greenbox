@@ -12,7 +12,7 @@ export type RawFamiliar = [
   hundredPercent: boolean,
 ];
 
-export const compressFamiliars = (familiars: RawFamiliar[]) =>
+export const compressFamiliars = (familiars: RawFamiliar[]): string =>
   familiars
     .sort((a, b) => a[0] - b[0])
     .reduce(

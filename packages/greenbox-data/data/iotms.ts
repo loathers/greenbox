@@ -74,7 +74,7 @@ export type IotMDef =
   | SkillIotM
   | VIPIotM;
 
-export default [
+const iotms: IotMDef[] = [
   {
     id: 894,
     month: 10,
@@ -1310,4 +1310,6 @@ export default [
     type: "item",
     item: "McHugeLarge duffel bag",
   }, // McHugeLarge deluxe ski set
-] satisfies IotMDef[];
+];
+
+export default iotms;

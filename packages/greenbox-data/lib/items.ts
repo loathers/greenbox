@@ -7,7 +7,7 @@ export const enum ItemStatus {
 
 export type RawItem = [id: number, quantity: number];
 
-export const compressItems = (items: RawItem[]) => {
+export const compressItems = (items: RawItem[]): string => {
   return items
     .filter(([, q]) => q > 0)
     .map(([id, q]) => `${id}${q > 1 ? `:${q}` : ""}`)

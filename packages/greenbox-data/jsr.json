@@ -1,0 +1,6 @@
+{
+  "name": "@loathers/greenbox-data",
+  "version": "0.0.7",
+  "license": "ISC",
+  "exports": "./lib/index.ts"
+}

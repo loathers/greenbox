@@ -5,7 +5,9 @@ export const enum TrophyStatus {
   HAVE = 1,
 }
 
-export function loadTrophies(lastKnownSize = 0) {
+export function loadTrophies(
+  lastKnownSize = 0,
+): { data: typeof trophies; size: number } | null {
   const size = JSON.stringify(trophies).length;
 
   if (size === lastKnownSize) return null;
@@ -18,7 +20,7 @@ export function loadTrophies(lastKnownSize = 0) {
 
 export type RawTrophy = [id: number, status: TrophyStatus];
 
-export const compressTrophies = (trophies: RawTrophy[]) =>
+export const compressTrophies = (trophies: RawTrophy[]): string =>
   trophies
     .sort((a, b) => a[0] - b[0])
     .reduce(

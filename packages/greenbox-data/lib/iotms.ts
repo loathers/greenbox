@@ -8,7 +8,9 @@ export const enum IotMStatus {
 
 export type { IotMDef };
 
-export function loadIotMs(lastKnownSize = 0) {
+export function loadIotMs(
+  lastKnownSize = 0,
+): { data: typeof iotms; size: number } | null {
   const iotmCount = JSON.stringify(iotms).length;
 
   if (iotmCount === lastKnownSize) return null;
@@ -21,7 +23,7 @@ export function loadIotMs(lastKnownSize = 0) {
 
 export type RawIotM = [id: number, status: IotMStatus];
 
-export const compressIotMs = (iotmList: RawIotM[]) => {
+export const compressIotMs = (iotmList: RawIotM[]): string => {
   const idToIotM = iotmList.reduce(
     (acc, i) => ({ ...acc, [i[0]]: i }),
     {} as Record<number, RawIotM>,
