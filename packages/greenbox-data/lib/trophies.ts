@@ -1,6 +1,6 @@
 import trophies from "../data/trophies.js";
 
-export const enum TrophyStatus {
+export enum TrophyStatus {
   NONE = 0,
   HAVE = 1,
 }

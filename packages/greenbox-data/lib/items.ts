@@ -1,6 +1,6 @@
 import { specialItems } from "../data/items.js";
 
-export const enum ItemStatus {
+export enum ItemStatus {
   NONE = 0,
   HAVE = 1,
 }

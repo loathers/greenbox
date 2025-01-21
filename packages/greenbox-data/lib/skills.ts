@@ -1,6 +1,6 @@
 import { tuple } from "./utils.js";
 
-export const enum SkillStatus {
+export enum SkillStatus {
   NONE = 0,
   SOFTCORE = 1,
   HARDCORE = 2,

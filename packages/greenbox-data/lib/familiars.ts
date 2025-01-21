@@ -1,6 +1,6 @@
 import { tuple } from "./utils.js";
 
-export const enum FamiliarStatus {
+export enum FamiliarStatus {
   NONE = 0,
   HATCHLING = 1,
   TERRARIUM = 2,

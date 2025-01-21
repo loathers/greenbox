@@ -14,7 +14,7 @@ const tattoos = loadTattoos()?.data ?? [];
 
 describe("Tattoo parsing", () => {
   it("can detect lack of Gattoo when player has other substring tattoos", async () => {
-    const glover = tattoos.find((t) => t.misc === 37)!;
+    const glover = tattoos.find((t) => "misc" in t && t.misc === 37)!;
 
     expect(glover).not.toBe(undefined);
 
@@ -29,7 +29,9 @@ describe("Tattoo parsing", () => {
   });
 
   it("can detect Guzzlr tattoos", async () => {
-    const guzzlrOutfit = tattoos.find((t) => t.outfit === 159)!;
+    const guzzlrOutfit = tattoos.find(
+      (t) => "outfit" in t && t.outfit === 159,
+    )!;
 
     expect(guzzlrOutfit).not.toBe(undefined);
 

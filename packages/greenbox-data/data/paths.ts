@@ -1,6 +1,6 @@
 import { PathDef } from "../lib/types.js";
 
-const enum ItemId {
+enum ItemId {
   // Softcore Standard 2025
   CrepePaperSC = 11520,
   CrepePaperTT = 11521,
@@ -195,7 +195,7 @@ const enum ItemId {
   StuffedDinosaur = 10949,
 }
 
-const enum Thwaitgold {
+enum Thwaitgold {
   Bee = 5141,
   Grasshopper = 5222,
   Butterfly = 5392,

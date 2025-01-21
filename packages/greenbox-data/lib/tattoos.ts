@@ -3,7 +3,7 @@ import tattoos from "../data/tattoos.js";
 import { MiscTattooDef, OutfitTattooDef, TattooDef } from "./types.js";
 import { arrayOf } from "./utils.js";
 
-export const enum OutfitTattooStatus {
+export enum OutfitTattooStatus {
   NONE = 0,
   HAVE_OUTFIT = 1,
   HAVE = 2,
