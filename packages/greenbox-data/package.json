@@ -1,12 +1,12 @@
 {
   "name": "greenbox-data",
-  "version": "0.0.9",
-  "description": "> TODO: description",
+  "version": "0.0.10",
+  "description": "Data to support Greenbox, an achievement tracker for Kingdom of Loathing",
   "author": "Sam Gaus <sam@gaus.co.uk>",
   "homepage": "https://github.com/loathers/greenbox#readme",
   "license": "ISC",
-  "main": "lib/index.ts",
-  "module": "lib/index.ts",
+  "main": "./dist/lib/index.js",
+  "types": "./dist/lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "data": "data"
@@ -16,7 +16,7 @@
     "data"
   ],
   "exports": {
-    ".": "./lib/index.ts"
+    "import": "./dist/lib/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "tsc",
     "format": "prettier --write ."
   },
   "bugs": {
@@ -45,5 +46,9 @@
   "dependencies": {
     "jsoncrush": "^1.1.8",
     "libram": "^0.9.31"
-  }
+  },
+  "keywords": [
+    "kolmafia",
+    "greenbox"
+  ]
 }
