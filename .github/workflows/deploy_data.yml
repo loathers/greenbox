@@ -36,19 +36,3 @@ jobs:
         env:
           STATUS: ${{ steps.check.outputs.status }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  # jsr:
-  #   runs-on: ubuntu-latest
-
-  #   permissions:
-  #     contents: read
-  #     id-token: write
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - name: Publish package
-  #       run: |
-  #         cd packages/greenbox-data
-  #         npx jsr publish
-
-        
