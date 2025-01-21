@@ -1,11 +1,12 @@
 {
   "name": "greenbox-data",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "> TODO: description",
   "author": "Sam Gaus <sam@gaus.co.uk>",
   "homepage": "https://github.com/loathers/greenbox#readme",
   "license": "ISC",
   "main": "lib/index.ts",
+  "module": "lib/index.ts",
   "directories": {
     "lib": "lib",
     "data": "data"
