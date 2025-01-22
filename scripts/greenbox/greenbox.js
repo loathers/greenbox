@@ -8228,6 +8228,10 @@ var tattoos = [{
   image: "merkintat",
   outfit: 59
 }, {
+  name: "Crepe Paper Participant's Clothes",
+  image: "crepetat",
+  outfit: 1
+}, {
   name: "Crimbo Duds",
   image: "pressietat",
   outfit: 11
@@ -8404,6 +8408,10 @@ var tattoos = [{
   image: "vwgovttat",
   outfit: 143
 }, {
+  name: "Governor's Daughter's Fancy Finery",
+  image: "govtat",
+  outfit: 172
+}, {
   name: "Grass Guise",
   image: "eggtat",
   outfit: 26
@@ -8547,6 +8555,10 @@ var tattoos = [{
   name: "Paraffinalia",
   image: "para_tat",
   outfit: 147
+}, {
+  name: "Petrified Wood Professional Wardrobe",
+  image: "pwoodtat",
+  outfit: 171
 }, {
   name: "Pinata Provisions",
   image: "rad_tat",
