@@ -31,7 +31,7 @@ const tattoos: TattooDef[] = [
   { name: "Cool Irons", image: "dvotat8", outfit: 102 },
   { name: "Cooper's Couture", image: "barreltat", outfit: 126 },
   { name: "Crappy Mer-kin Disguise", image: "merkintat", outfit: 59 },
-  { name: "Crepe Paper Participant's Clothes", image: "crepetat", outfit: 1 },
+  { name: "Crepe Paper Participant's Clothes", image: "crepetat", outfit: 170 },
   { name: "Crimbo Duds", image: "pressietat", outfit: 11 },
   { name: "Crimborg Assault Armor", image: "halotat", outfit: 40 },
   { name: "Crimbot Crimboutfit", image: "zaptat", outfit: 111 },
