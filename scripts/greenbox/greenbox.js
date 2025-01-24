@@ -8230,7 +8230,7 @@ var tattoos = [{
 }, {
   name: "Crepe Paper Participant's Clothes",
   image: "crepetat",
-  outfit: 1
+  outfit: 170
 }, {
   name: "Crimbo Duds",
   image: "pressietat",
