@@ -103,7 +103,7 @@ function checkSkills(): RawSkill[] {
   }
 
   return Skill.all()
-    .filter((skill) => skill.permable)
+    .filter((skill) => skill.permable || toInt(skill) === 7254)
     .map((skill) => [toInt(skill), getStatus(skill), getLevel(skill)]);
 }
 
