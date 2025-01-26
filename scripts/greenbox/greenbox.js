@@ -11205,7 +11205,7 @@ function checkSkills() {
     return getNumber2("skillLevel".concat((0, import_kolmafia8.toInt)(skill)));
   }
   return import_kolmafia8.Skill.all().filter(function(skill) {
-    return skill.permable;
+    return skill.permable || (0, import_kolmafia8.toInt)(skill) === 7254;
   }).map(function(skill) {
     return [(0, import_kolmafia8.toInt)(skill), getStatus(skill), getLevel(skill)];
   });
