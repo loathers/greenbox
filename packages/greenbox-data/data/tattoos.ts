@@ -141,7 +141,11 @@ const tattoos: TattooDef[] = [
   { name: "Palmist Paraphernalia", image: "palmtat", outfit: 36 },
   { name: "Paperclippery", image: "cliptat", outfit: 79 },
   { name: "Paraffinalia", image: "para_tat", outfit: 147 },
-  { name: "Petrified Wood Professional Wardrobe", image: "pwoodtat", outfit: 171 },
+  {
+    name: "Petrified Wood Professional Wardrobe",
+    image: "pwoodtat",
+    outfit: 171,
+  },
   { name: "Pinata Provisions", image: "rad_tat", outfit: 87 },
   { name: "PirateRealm Assortment", image: "prealmtat", outfit: 153 },
   { name: "Pork Elf Prizes", image: "pigirontat", outfit: 52 },
