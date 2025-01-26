@@ -50,7 +50,7 @@ export function getSkillBucket(s: SkillType) {
     return SkillBuckets.Gnome;
   }
 
-  if ([80, 81, 107, 121, 128, 134, 135, 144, 180, 7254].includes(s.id)) {
+  if ([80, 81, 107, 118, 121, 128, 134, 135, 144, 180, 7254].includes(s.id)) {
     return SkillBuckets.PvP;
   }
 
