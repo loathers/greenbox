@@ -1310,6 +1310,13 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "McHugeLarge duffel bag",
   }, // McHugeLarge deluxe ski set
+  {
+    id: 11836,
+    month: 2,
+    year: 2025,
+    type: "item",
+    item: "toy Cupid bow"
+  }, // new-in-box toy Cupid bow
 ];
 
 export default iotms;
