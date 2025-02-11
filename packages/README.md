@@ -39,7 +39,7 @@ Let's say you've built something that you'd like to put in as a PR, and you want
 
 Guess what? You can! Here is the procedure to build your branch locally and see how it works on your own machine without pushing to the loathers.net website.
 
-- Within the root folder of greenbox, run `yarn workspace greenbox-ui run watch` within your terminal of choice.
+- Within the root folder of greenbox, run `yarn run dev` within your terminal of choice.
 - Open up [http://localhost:5173](http://localhost:5173) on your local machine.
 - This web address _should_ show you a locally compiling version of Greenbox. If it doesn't, something has gone wrong.
 - From there, run your compiled piece of TS code after porting it over to your local KoLMafia install.
