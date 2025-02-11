@@ -1,20 +1,17 @@
 import { expose } from "comlink";
 
 const duplicateFinder = (strings: string[]) => {
-  // Count all the instances of every string
-  const counts = strings.reduce(
-    (acc, string) => ({
-      ...acc,
-      [string]: (acc[string] || 0) + 1,
-    }),
-    {} as Record<string, number>,
-  );
-
-  // Filter down this map to only strings appearing more than once
-  return Object.entries(counts)
-    .filter(([k, v]) => v > 1)
-    .map(([k]) => k);
-};
+  const seen = new Set<string>();
+  const duplicates = new Set<string>();
+  for (const string of strings) {
+    if (seen.has(string)) {
+      duplicates.add(string);
+    } else {
+      seen.add(string);
+    }
+  }
+  return [...duplicates];
+}
 
 expose(duplicateFinder);
 
