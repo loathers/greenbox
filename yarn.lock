@@ -4636,13 +4636,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"comlink@npm:^4.4.2":
-  version: 4.4.2
-  resolution: "comlink@npm:4.4.2"
-  checksum: 10c0/38aa1f455cf08e94aaa8fc494fd203cc0ef02ece6c21404b7931ce17567e8a72deacddab98aa5650cfd78332ff24c34610586f6fb27fd19dc77e753ed1980deb
-  languageName: node
-  linkType: hard
-
 "commander@npm:^10.0.0":
   version: 10.0.1
   resolution: "commander@npm:10.0.1"
@@ -6300,7 +6293,6 @@ __metadata:
     "@urql/core": "npm:^5.1.0"
     "@vitejs/plugin-react": "npm:^4.3.4"
     color: "npm:^4.2.3"
-    comlink: "npm:^4.4.2"
     data-of-loathing: "npm:^1.4.0"
     date-fns: "npm:^4.1.0"
     framer-motion: "npm:^11.18.2"

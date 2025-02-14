@@ -119,7 +119,7 @@ export default function MainPage() {
       if (error.wikiClashes) {
         toast.update(clashToast.current, {
           description:
-            "Clash detection errored (probably don't support web workers)",
+            "Clash detection errored",
           status: "error",
           duration: 2000,
         });

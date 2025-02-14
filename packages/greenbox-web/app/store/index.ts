@@ -102,9 +102,8 @@ const initialState: GreenboxState = {
     skills: false,
     tattoos: false,
     trophies: false,
-    wikiClashes: false,
   },
-  error: { wikiClashes: false },
+  error: {},
   errorMessage: {},
 };
 
@@ -280,17 +279,9 @@ export const greenboxSlice = createSlice({
 
         state.loading.trophies = false;
       })
-      .addCase(processWikiClashes.pending, (state) => {
-        state.loading.wikiClashes = true;
-        state.error.wikiClashes = false;
-      })
-      .addCase(processWikiClashes.fulfilled, (state, action) => {
+      .addCase(processWikiClashes, (state, action) => {
         state.wikiClashes = action.payload;
-        state.loading.wikiClashes = false;
       })
-      .addCase(processWikiClashes.rejected, (state) => {
-        state.error.wikiClashes = true;
-      });
   },
 });
 

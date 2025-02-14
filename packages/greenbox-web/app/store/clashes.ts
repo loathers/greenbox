@@ -1,12 +1,9 @@
 import {
+  createAction,
   createAsyncThunk,
   createListenerMiddleware,
   type TypedStartListening,
 } from "@reduxjs/toolkit";
-import * as Comlink from "comlink";
-
-import { type DuplicateFinder } from "../workers/duplicateFinder.js";
-import DuplicateFinderWorker from "../workers/duplicateFinder.js?worker";
 
 import {
   type RootState,
@@ -26,6 +23,20 @@ const startAppListening =
     RootState,
     AppDispatch
   >;
+
+const duplicateFinder = (strings: string[]) => {
+  const seen = new Set<string>();
+  const duplicates = new Set<string>();
+  for (const string of strings) {
+    if (seen.has(string)) {
+      duplicates.add(string);
+    } else {
+      seen.add(string);
+    }
+  }
+  return [...duplicates];
+}
+  
 
 export function startListeningForClashes() {
   startAppListening({
@@ -47,7 +58,7 @@ export function startListeningForClashes() {
       if (state.loading.wikiClashes) return false;
       return true;
     },
-    effect: async (_action, { getState, dispatch }) => {
+    effect: (_action, { getState, dispatch }) => {
       const state = getState();
 
       // Create a list of every entity name
@@ -59,18 +70,12 @@ export function startListeningForClashes() {
           [] as string[],
         );
 
-      dispatch(processWikiClashes(names));
+      // Find the clashes
+      const clashes = duplicateFinder(names)
+
+      dispatch(processWikiClashes(clashes));
     },
   });
 }
 
-const WrappedDuplicateFinderWorker = Comlink.wrap<DuplicateFinder>(
-  new DuplicateFinderWorker(),
-);
-
-export const processWikiClashes = createAsyncThunk(
-  "wikiClashes/process",
-  async (names: string[]) => {
-    return await WrappedDuplicateFinderWorker(names);
-  },
-);
+export const processWikiClashes = createAction<string[]>("wikiClashes/process");
