@@ -12,7 +12,7 @@ const findDuplicates = (strings: string[]) => {
     }
   }
   return duplicates;
-}
+};
 
 const client = new Client({
   url: "https://data.loathers.net/graphql",
@@ -45,9 +45,9 @@ const CLASH_QUERY = graphql(`
 `);
 
 const things = await client.query(CLASH_QUERY, {}).toPromise();
-const thingNames = things.data ?
-  Object.values(things.data)
-    .flatMap((t) => t?.nodes?.map(e => e?.name ?? null) ?? null)
-    .filter((name) => name !== null) :
-  [];
+const thingNames = things.data
+  ? Object.values(things.data)
+      .flatMap((t) => t?.nodes?.map((e) => e?.name ?? null) ?? null)
+      .filter((name) => name !== null)
+  : [];
 const clashes = findDuplicates(thingNames);

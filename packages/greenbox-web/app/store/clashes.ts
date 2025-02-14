@@ -35,8 +35,7 @@ const duplicateFinder = (strings: string[]) => {
     }
   }
   return [...duplicates];
-}
-  
+};
 
 export function startListeningForClashes() {
   startAppListening({
@@ -71,7 +70,7 @@ export function startListeningForClashes() {
         );
 
       // Find the clashes
-      const clashes = duplicateFinder(names)
+      const clashes = duplicateFinder(names);
 
       dispatch(processWikiClashes(clashes));
     },

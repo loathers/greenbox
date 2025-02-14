@@ -1,9 +1,9 @@
 import { IconButton } from "@chakra-ui/react";
+import { Link } from "react-router";
 
 import { useAppSelector } from "../hooks.js";
 
 import Image from "./Image.js";
-import { Link } from "react-router";
 
 export function FavouriteButton() {
   const playerId = useAppSelector((state) => state.playerId);
@@ -22,7 +22,7 @@ export function FavouriteButton() {
       }`;
 
   return (
-    <Link to={`?u=${playerId}&fav=${current ? "true" : "false"}`}>
+    <Link to={`?u=${playerId}&fav=${current ? "false" : "true"}`}>
       <IconButton
         size="xs"
         aria-label={title}

@@ -1,13 +1,7 @@
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import { StrictMode } from "react";
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "react-router";
 import { Provider } from "react-redux";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { persistor, store } from "./store/index.js";

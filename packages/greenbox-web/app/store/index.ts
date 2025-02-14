@@ -28,6 +28,7 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
+  type Storage,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -107,9 +108,13 @@ const initialState: GreenboxState = {
   errorMessage: {},
 };
 
-export const loadPlayerData = createAction<api.RawSnapshotData>("playerData/load");
+export const loadPlayerData =
+  createAction<api.RawSnapshotData>("playerData/load");
 
-export const setFavouritePlayer = createAction<number | null>("favouritePlayer/set");
+export const setFavouritePlayer = createAction<number | null>(
+  "favouritePlayer/set",
+);
+export const setPlayerId = createAction<number | null>("playerId/set");
 
 export const fetchClasses = createAsyncThunk(
   "classes/fetch",
@@ -172,6 +177,9 @@ export const greenboxSlice = createSlice({
     builder
       .addCase(loadPlayerData, (state, action) => {
         state.playerData = action.payload;
+      })
+      .addCase(setPlayerId, (state, action) => {
+        state.playerId = action.payload;
       })
       .addCase(setFavouritePlayer, (state, action) => {
         state.favouritePlayerId = action.payload;
@@ -281,7 +289,7 @@ export const greenboxSlice = createSlice({
       })
       .addCase(processWikiClashes, (state, action) => {
         state.wikiClashes = action.payload;
-      })
+      });
   },
 });
 
@@ -291,12 +299,18 @@ const whitelist: (keyof GreenboxState)[] = [
   "sizeAtLastFetch",
 ];
 
+const fakeStorage: Storage = {
+  getItem: async () => "",
+  setItem: async () => {},
+  removeItem: async () => {},
+};
+
 const persistedReducer = persistReducer(
   {
     whitelist,
     key: "greenbox",
     version: 1,
-    storage,
+    storage: typeof window === "undefined" ? fakeStorage : storage,
   },
   greenboxSlice.reducer,
 );
