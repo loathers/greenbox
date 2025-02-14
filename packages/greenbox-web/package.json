@@ -27,7 +27,7 @@
     "date-fns": "^4.1.0",
     "framer-motion": "^11.18.2",
     "gql.tada": "^1.8.10",
-    "greenbox-data": "*",
+    "greenbox-data": "latest",
     "he": "^1.2.0",
     "isbot": "^5",
     "prop-types": "^15.8.1",
