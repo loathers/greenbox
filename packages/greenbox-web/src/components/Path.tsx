@@ -1,6 +1,11 @@
-import { Badge, Box, Heading } from "@chakra-ui/react";
+import { Badge, Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { HARDCORE, ItemStatus, PathDef, SOFTCORE } from "greenbox-data";
+import { useMemo } from "react";
 
+import { useAppSelector } from "../hooks.js";
+import { selectPlayerFamiliars } from "../store/index.js";
+
+import Familiar from "./Familiar.js";
 import ItemGrid from "./ItemGrid.js";
 import Subsection from "./Subsection.js";
 import TattooGrid from "./TattooGrid.js";
@@ -25,6 +30,24 @@ export default function Path({
   equipment,
   tattoos,
 }: Props) {
+  const allFamiliars = useAppSelector((state) => state.familiars);
+  const playerFamiliars = useAppSelector(selectPlayerFamiliars);
+
+  const familiars = useMemo(() => {
+    const pathFamiliars = path.familiars;
+    if (!pathFamiliars) return [];
+    return allFamiliars.filter((f) => pathFamiliars.includes(f.id));
+  }, [allFamiliars, path]);
+
+  const idToFamiliar = useMemo(
+    () =>
+      playerFamiliars.reduce(
+        (acc, f) => ({ ...acc, [f[0]]: f }),
+        {} as Record<number, (typeof playerFamiliars)[number]>,
+      ),
+    [playerFamiliars],
+  );
+
   return (
     <Subsection
       title={path.name}
@@ -72,6 +95,22 @@ export default function Path({
             tattoos={path.tattoos}
             getLevel={(t, i) => tattoos[i] || 0}
           />
+        </>
+      )}
+      {(path.familiars?.length ?? 0) > 0 && (
+        <>
+          <Heading as="h4" textTransform="uppercase" fontSize="xs">
+            Familiars
+          </Heading>
+          <SimpleGrid columns={6} spacing={1}>
+            {familiars.map((f) => (
+              <Familiar
+                key={f.id}
+                familiar={f}
+                status={idToFamiliar[f.id]?.[1] ?? 0}
+              />
+            ))}
+          </SimpleGrid>
         </>
       )}
     </Subsection>

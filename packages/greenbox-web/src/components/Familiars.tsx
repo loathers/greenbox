@@ -4,7 +4,10 @@ import { FamiliarStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks.js";
-import { createPlayerDataSelector, selectPlayerFamiliars } from "../store/index.js";
+import {
+  createPlayerDataSelector,
+  selectPlayerFamiliars,
+} from "../store/index.js";
 
 import Familiar from "./Familiar.js";
 import HundredPercentedUnownableFamiliars from "./HundredPercentedUnownableFamiliars.js";

@@ -4231,16 +4231,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"greenbox-data@npm:latest":
-  version: 0.0.15
-  resolution: "greenbox-data@npm:0.0.15"
-  dependencies:
-    jsoncrush: "npm:^1.1.8"
-    libram: "npm:^0.9.31"
-  checksum: 10c0/bbf8df7fba6e197d3008ee62253e55d650a4a9ed34ba3c019acdbe9da9118aab393dcfb28eca12f444417a94f82b849570cf1eedde7725cc5b27d939e4d2f517
-  languageName: node
-  linkType: hard
-
 "greenbox-prettier-config@npm:^0.0.0, greenbox-prettier-config@workspace:packages/greenbox-prettier-config":
   version: 0.0.0-use.local
   resolution: "greenbox-prettier-config@workspace:packages/greenbox-prettier-config"
@@ -4307,7 +4297,7 @@ __metadata:
     data-of-loathing: "npm:^1.4.0"
     date-fns: "npm:^4.1.0"
     framer-motion: "npm:^11.18.2"
-    greenbox-data: "npm:latest"
+    greenbox-data: "npm:*"
     greenbox-prettier-config: "npm:^0.0.0"
     he: "npm:^1.2.0"
     prettier: "npm:^3.4.2"

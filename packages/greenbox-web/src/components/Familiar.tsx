@@ -7,7 +7,7 @@ import Thing from "./Thing.js";
 type Props = {
   familiar: FamiliarType;
   status: FamiliarStatus;
-  hundredPercent: boolean;
+  hundredPercent?: boolean;
 };
 
 function familiarStatusToThingState(status: FamiliarStatus) {
