@@ -11,7 +11,7 @@ const duplicateFinder = (strings: string[]) => {
     }
   }
   return [...duplicates];
-}
+};
 
 expose(duplicateFinder);
 

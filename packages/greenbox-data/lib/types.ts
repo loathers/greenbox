@@ -5,6 +5,7 @@ export interface PathDef {
   items: number[];
   equipment: number[];
   tattoos: { name: string; image: string | string[] }[];
+  familiars?: number[];
   points: string | string[] | null;
   maxPoints: number;
 }

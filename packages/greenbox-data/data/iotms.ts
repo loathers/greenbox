@@ -1315,7 +1315,7 @@ const iotms: IotMDef[] = [
     month: 2,
     year: 2025,
     type: "item",
-    item: "toy Cupid bow"
+    item: "toy Cupid bow",
   }, // new-in-box toy Cupid bow
 ];
 
