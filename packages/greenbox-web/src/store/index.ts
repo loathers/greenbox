@@ -407,6 +407,7 @@ export const selectIdToSkills = createSelector(
     ),
 );
 
+export const selectPlayerFamiliars = createPlayerDataSelector("familiars");
 export const selectPlayerItems = createPlayerDataSelector("items");
 export const selectPlayerPaths = createPlayerDataSelector("paths");
 export const selectPlayerOutfitTattoos =
