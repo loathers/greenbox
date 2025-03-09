@@ -241,6 +241,24 @@ enum Thwaitgold {
   WolfSpider = 11563,
   IlliniginaIllinoiensis = 11593,
   ShieldBug = 11637,
+  CordycepsAnt = 11848,
+}
+
+enum Familiar {
+  ReconstitutedCrow = 147,
+  HoveringSkull = 163,
+  QuantumEntangler = 307,
+  HeatWave = 312,
+  ColdCut = 313,
+  ShameSpiral = 314,
+  PhantomLimb = 315,
+  FoulBall = 316,
+  DireCassava = 317,
+  Observer = 318,
+  CoolCucumber = 319,
+  DefectiveChildrensStapler = 320,
+  Glover = 321,
+  ZapperBug = 322,
 }
 
 export const SOFTCORE = -3;
@@ -516,6 +534,7 @@ const paths: PathDef[] = [
     items: [Thwaitgold.Bee],
     equipment: [],
     tattoos: [],
+    familiars: [Familiar.ReconstitutedCrow],
     points: null,
     maxPoints: 0,
   },
@@ -572,6 +591,7 @@ const paths: PathDef[] = [
       { name: "Zombie Slayer", image: "class12" },
       { name: "Hardcore Zombie Slayer", image: "class12hc" },
     ],
+    familiars: [Familiar.HoveringSkull],
     points: "zombiePoints",
     maxPoints: 30,
   },
@@ -912,6 +932,7 @@ const paths: PathDef[] = [
     items: [Thwaitgold.QuantumBug, ItemId.QuantumOfFamiliar],
     equipment: [],
     tattoos: [],
+    familiars: [Familiar.QuantumEntangler],
     points: "quantumPoints",
     maxPoints: 11,
   },
