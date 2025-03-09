@@ -8048,7 +8048,7 @@ var SOFTCORE = -3, HARDCORE = -2, paths = [{
 }, {
   id: 53,
   name: "Z is for Zootomist",
-  image: "itemimages/zootomistitem.gif",
+  image: "itemimages/zootomist.gif",
   items: [Thwaitgold.CordycepsAnt],
   equipment: [],
   tattoos: [{
