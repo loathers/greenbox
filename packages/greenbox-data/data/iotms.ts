@@ -1317,6 +1317,13 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "toy Cupid bow",
   }, // new-in-box toy Cupid bow
+  {
+    id: 11860,
+    month: 3,
+    year: 2025,
+    type: "item",
+    item: "Leprecondo",
+  }, // assemble-it-yourself Leprecondo
 ];
 
 export default iotms;
