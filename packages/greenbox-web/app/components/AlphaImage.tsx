@@ -387,29 +387,33 @@ export default function AlphaImage({
     const ctx = canvas.getContext("2d")!;
 
     async function storeMask() {
-      const image = await fetch(url);
-      const blob = await image.blob();
-      const imageBitmap = await createImageBitmap(blob);
-      ctx.drawImage(imageBitmap, 0, 0);
-      const imageData = ctx.getImageData(0, 0, sourceWidth, sourceHeight);
-      const startingPoints = getEraserStartPoints(
-        src,
-        imageData.data.length,
-        sourceWidth,
-      );
-      const maskData = createAlphaMask(
-        imageData.data,
-        sourceWidth,
-        startingPoints,
-      );
-      const d = new ImageData(maskData, sourceWidth, sourceHeight);
-      ctx.putImageData(d, 0, 0);
-      const data = canvas.toDataURL();
-      localStorage.setItem(key, data);
-      setMaskImage({
-        maskImage: `url(${data})`,
-        maskSize: "100% 100%",
-      });
+      try {
+        const image = await fetch(url);
+        const blob = await image.blob();
+        const imageBitmap = await createImageBitmap(blob);
+        ctx.drawImage(imageBitmap, 0, 0);
+        const imageData = ctx.getImageData(0, 0, sourceWidth, sourceHeight);
+        const startingPoints = getEraserStartPoints(
+          src,
+          imageData.data.length,
+          sourceWidth,
+        );
+        const maskData = createAlphaMask(
+          imageData.data,
+          sourceWidth,
+          startingPoints,
+        );
+        const d = new ImageData(maskData, sourceWidth, sourceHeight);
+        ctx.putImageData(d, 0, 0);
+        const data = canvas.toDataURL();
+        localStorage.setItem(key, data);
+        setMaskImage({
+          maskImage: `url(${data})`,
+          maskSize: "100% 100%",
+        });
+      } catch (error) {
+        console.log("Invalid image", url);
+      }
     }
 
     storeMask();
