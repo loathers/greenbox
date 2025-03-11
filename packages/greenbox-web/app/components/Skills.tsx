@@ -143,7 +143,7 @@ export default function Skills() {
             cls={idToClass[Number(bucket)]}
             medal={allHardcorePermed}
           >
-            <SimpleGrid columns={6} spacing={1}>
+            <SimpleGrid columns={6} gap={1}>
               {contents.map((s) => {
                 const mutexHandler = handleMutex(s);
                 if (mutexHandler !== false) return mutexHandler;

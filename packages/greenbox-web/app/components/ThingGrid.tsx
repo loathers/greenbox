@@ -24,7 +24,7 @@ export default function ThingGrid<T extends { id: number }>({
 
   return (
     <SimpleGrid
-      spacing={1}
+      gap={1}
       columns={[3, null, columns + (getRowLabel ? 1 : 0)]}
       gridTemplateColumns={[
         null,

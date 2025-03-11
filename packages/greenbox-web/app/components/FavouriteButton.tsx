@@ -22,13 +22,10 @@ export function FavouriteButton() {
       }`;
 
   return (
-    <Link to={`?u=${playerId}&fav=${current ? "false" : "true"}`}>
-      <IconButton
-        size="xs"
-        aria-label={title}
-        title={title}
-        icon={<Image height="60%" src={`/${icon}.png`} />}
-      />
-    </Link>
+    <IconButton size="xs" aria-label={title} title={title} asChild variant="subtle">
+      <Link to={`?u=${playerId}&fav=${current ? "false" : "true"}`}>
+        <Image height="60%" src={`/${icon}.png`} />
+      </Link>
+    </IconButton>
   );
 }

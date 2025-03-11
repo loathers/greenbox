@@ -1,4 +1,4 @@
-import { chakra, useToken } from "@chakra-ui/react";
+import { chakra, useChakraContext, useToken } from "@chakra-ui/react";
 import { useMemo } from "react";
 import {
   BarChart,
@@ -48,8 +48,8 @@ type Props = {
 
 export default function Progress({ values, max }: Props) {
   const [complete, accent] = useToken("colors", [
-    "colors.complete",
-    "colors.accent",
+    "complete",
+    "accent",
   ]);
 
   const data = useMemo(
@@ -62,7 +62,7 @@ export default function Progress({ values, max }: Props) {
   );
 
   return (
-    <ResponsiveContainer>
+    <ResponsiveContainer minHeight={30} minWidth={90}>
       <BarChart
         data={data}
         layout="vertical"

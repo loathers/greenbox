@@ -1,11 +1,4 @@
-import {
-  Badge,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-} from "@chakra-ui/react";
+import { Badge, HoverCard, Portal } from "@chakra-ui/react";
 import { getMaxSkillLevel } from "data-of-loathing";
 import { SkillStatus } from "greenbox-data";
 
@@ -33,8 +26,8 @@ export default function Skill({ id }: Props) {
   const maxLevel = knownMaxLevel === 0 ? level : knownMaxLevel;
 
   return (
-    <Popover trigger="hover" isLazy>
-      <PopoverTrigger>
+    <HoverCard.Root lazyMount>
+      <HoverCard.Trigger asChild>
         <Thing
           type="skill"
           name={skill.name}
@@ -49,16 +42,18 @@ export default function Skill({ id }: Props) {
             ) : null
           }
         />
-      </PopoverTrigger>
-      <PopoverContent
-        style={{ ["--popper-bg" as any]: "var(--chakra-colors-imagebg)" }}
-        whiteSpace="normal"
-      >
-        <PopoverArrow />
-        <PopoverBody>
-          <SkillDescription skill={skill} />
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+      </HoverCard.Trigger>
+      <Portal>
+        <HoverCard.Positioner>
+          <HoverCard.Content
+            style={{ ["--popper-bg" as any]: "var(--chakra-colors-imagebg)" }}
+            whiteSpace="normal"
+          >
+            <HoverCard.Arrow />
+            <SkillDescription skill={skill} />
+          </HoverCard.Content>
+        </HoverCard.Positioner>
+      </Portal>
+    </HoverCard.Root>
   );
 }

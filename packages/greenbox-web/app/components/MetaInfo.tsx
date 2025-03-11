@@ -38,7 +38,7 @@ export default function MetaInfo({ meta, direct }: Props) {
   );
 
   return (
-    <HStack fontSize="large" spacing="0.25em" wrap="wrap">
+    <HStack fontSize="large" gap="0.25em" wrap="wrap">
       <Text title={`r${meta.revision}`}>{`${
         direct ? "Private s" : "S"
       }napshot`}</Text>{" "}

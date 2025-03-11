@@ -1,4 +1,4 @@
-import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
+import { RadioGroup, Stack } from "@chakra-ui/react";
 
 export const sortByKey =
   <T extends Record<string, any>>(key: keyof T) =>
@@ -24,11 +24,23 @@ export function SortOrderSelect<T extends string>({
   chronologicalKey,
 }: Props<T>) {
   return (
-    <RadioGroup size="sm" onChange={onChange} value={value}>
+    <RadioGroup.Root
+      size="sm"
+      onValueChange={(e) => onChange(e.value as T)}
+      value={value}
+    >
       <Stack direction="row" justifyContent="end">
-        <Radio value={alphabeticalKey}>Alphabetical</Radio>
-        <Radio value={chronologicalKey}>Chronological</Radio>
+        <RadioGroup.Item value={alphabeticalKey}>
+          <RadioGroup.ItemHiddenInput />
+          <RadioGroup.ItemIndicator />
+          <RadioGroup.ItemText>Alphabetical</RadioGroup.ItemText>
+        </RadioGroup.Item>
+        <RadioGroup.Item value={chronologicalKey}>
+          <RadioGroup.ItemHiddenInput />
+          <RadioGroup.ItemIndicator />
+          <RadioGroup.ItemText>Chronological</RadioGroup.ItemText>
+        </RadioGroup.Item>
       </Stack>
-    </RadioGroup>
+    </RadioGroup.Root>
   );
 }

@@ -13,7 +13,7 @@ export default function TattooGrid<T extends TattooDef>({
   getLevel,
 }: Props<T>) {
   return (
-    <SimpleGrid columns={[4, null, 6]} spacing={1}>
+    <SimpleGrid columns={[4, null, 6]} gap={1}>
       {tattoos.map((tattoo, index) => (
         <Tattoo
           key={tattoo.name}

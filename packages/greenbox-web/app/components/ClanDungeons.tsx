@@ -6,10 +6,10 @@ import SlimeTubeSection from "./SlimeTubeSection.js";
 
 export default function ClanDungeons() {
   return (
-    <Accordion allowMultiple>
+    <Accordion.Root multiple>
       <HobopoliSection />
       <SlimeTubeSection />
       <DreadsylvaniaSection />
-    </Accordion>
+    </Accordion.Root>
   );
 }

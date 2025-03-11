@@ -16,7 +16,7 @@ export default function HundredPercentedUnownableFamiliars({
 
   return (
     <SimpleGrid
-      spacingX={3}
+      gapX={3}
       columns={3}
       width="30%"
       templateColumns="repeat(3, max-content)"

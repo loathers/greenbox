@@ -102,7 +102,7 @@ export default function Path({
           <Heading as="h4" textTransform="uppercase" fontSize="xs">
             Familiars
           </Heading>
-          <SimpleGrid columns={6} spacing={1}>
+          <SimpleGrid columns={6} gap={1}>
             {familiars.map((f) => (
               <Familiar
                 key={f.id}

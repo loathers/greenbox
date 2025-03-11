@@ -1,5 +1,6 @@
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
+import { useTheme } from "next-themes";
 
 import Image from "./Image.js";
 
@@ -13,14 +14,15 @@ const spin = keyframes({
 });
 
 export default function Spinner() {
-  const invert = useColorModeValue(0, 100);
+  const { theme } = useTheme();
+  const invert = theme === "dark" ? "100" : "0";
   return (
     <Box width={37.5} height={37.5} p={1}>
       <Image
         src="/loading.png"
         alt="Loading"
         filter={`invert(${invert})`}
-        sx={{ animation: `${spin} 1.5s infinite linear`, opacity: "0.3" }}
+        css={{ animation: `${spin} 1.5s infinite linear`, opacity: "0.3" }}
       />
     </Box>
   );

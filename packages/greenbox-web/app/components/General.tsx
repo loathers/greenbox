@@ -9,13 +9,13 @@ import Trophies from "./Trophies.js";
 
 export default function General() {
   return (
-    <Accordion allowMultiple>
+    <Accordion.Root multiple>
       <IotMs />
       <Skills />
       <Paths />
       <Familiars />
       <Tattoos />
       <Trophies />
-    </Accordion>
+    </Accordion.Root>
   );
 }

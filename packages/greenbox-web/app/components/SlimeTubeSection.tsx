@@ -56,7 +56,7 @@ export default function SlimeTubeSection() {
       max={1}
     >
       <Subsection title="Skills" image="itemimages/slimehypo.gif">
-        <SimpleGrid columns={6} spacing={1}>
+        <SimpleGrid columns={6} gap={1}>
           {SKILLS.map((id) => (
             <Skill key={id} id={id} />
           ))}

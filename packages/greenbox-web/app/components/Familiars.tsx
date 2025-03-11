@@ -4,10 +4,7 @@ import { FamiliarStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks.js";
-import {
-  createPlayerDataSelector,
-  selectPlayerFamiliars,
-} from "../store/index.js";
+import { selectPlayerFamiliars } from "../store/index.js";
 
 import Familiar from "./Familiar.js";
 import HundredPercentedUnownableFamiliars from "./HundredPercentedUnownableFamiliars.js";
@@ -81,7 +78,7 @@ export default function Familiars() {
         alphabeticalKey="name"
         chronologicalKey="id"
       />
-      <SimpleGrid columns={6} spacing={1}>
+      <SimpleGrid columns={6} gap={1}>
         {familiars.map((f) => (
           <Familiar
             key={f.id}

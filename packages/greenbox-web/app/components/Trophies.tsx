@@ -55,7 +55,7 @@ export default function Tattoos() {
         alphabeticalKey="name"
         chronologicalKey="id"
       />
-      <SimpleGrid columns={[3, null, 6]} spacing={1}>
+      <SimpleGrid columns={[3, null, 6]} gap={1}>
         {trophies.map((t) => (
           <Trophy key={t.id} trophy={t} status={idToTrophy[t.id]?.[1] ?? 0} />
         ))}

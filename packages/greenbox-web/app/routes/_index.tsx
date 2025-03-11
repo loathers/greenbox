@@ -1,16 +1,7 @@
-import {
-  Container,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  type ToastId,
-  useToast,
-} from "@chakra-ui/react";
+import { Container, Tabs } from "@chakra-ui/react";
 import { expand, type RawSnapshotData } from "greenbox-data";
 import { useEffect, useRef } from "react";
-import { data, useLoaderData } from "react-router";
+import { data, useLoaderData, type LinksFunction } from "react-router";
 
 import ClanDungeons from "../components/ClanDungeons.js";
 import General from "../components/General.js";
@@ -18,7 +9,7 @@ import Header from "../components/Header.js";
 import OtherItems from "../components/OtherItems.js";
 import QuestRewards from "../components/QuestRewards.js";
 import { favouritePlayer } from "../cookies.server.js";
-import { useAppDispatch, useAppSelector } from "../hooks.js";
+import { useAppDispatch } from "../hooks.js";
 import { startListeningForClashes } from "../store/clashes.js";
 import {
   fetchAll,
@@ -28,6 +19,14 @@ import {
 } from "../store/index.js";
 
 import type { Route } from "./+types/_index.js";
+
+export const links: LinksFunction = () => [
+  {
+    rel: "icon",
+    href: "/greenbox.png",
+    type: "image/png",
+  }
+];
 
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
@@ -44,6 +43,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       playerId: null,
       direct: true,
       favouritePlayer: favouritePlayerId,
+      errorMessage: null,
     };
   }
 
@@ -69,32 +69,48 @@ export async function loader({ request }: Route.LoaderArgs) {
         data: null,
         favouritePlayer: favouritePlayerId,
         direct: false,
+        errorMessage: null,
       },
       { headers },
     );
 
-  const response = await fetch(
-    `https://oaf.loathers.net/api/greenbox/${playerId}`,
-  );
-  const json = await response.json();
+  try {
+    const response = await fetch(
+      `https://oaf.loathers.net/api/greenbox/${playerId}`,
+    );
+    const json = await response.json();
 
-  if (!response.ok) {
-    throw new Error(json.error);
+    if (!response.ok) {
+      throw new Error(json.error);
+    }
+
+    return data(
+      {
+        data: json.data as RawSnapshotData,
+        playerId: Number(playerId),
+        favouritePlayer: favouritePlayerId,
+        direct: false,
+        errorMessage: null,
+      },
+      { headers },
+    );
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    return data(
+      {
+        playerId: null,
+        data: null,
+        favouritePlayer: favouritePlayerId,
+        direct: false,
+        errorMessage,
+      },
+      { headers },
+    );
   }
-
-  return data(
-    {
-      data: json.data as RawSnapshotData,
-      playerId: Number(playerId),
-      favouritePlayer: favouritePlayerId,
-      direct: false,
-    },
-    { headers },
-  );
 }
 
 export default function MainPage() {
-  const { data, direct, favouritePlayer, playerId } =
+  const { data, direct, favouritePlayer, playerId, errorMessage } =
     useLoaderData<typeof loader>();
 
   const dispatch = useAppDispatch();
@@ -120,63 +136,29 @@ export default function MainPage() {
     dispatch(fetchAll(false));
   }, [dispatch]);
 
-  const toast = useToast();
-  const clashToast = useRef<ToastId>(null);
-  const loading = useAppSelector((state) => state.loading);
-  const error = useAppSelector((state) => state.error);
-
-  const id = "clash-toast";
-
-  useEffect(() => {
-    if (loading.wikiClashes && !toast.isActive(id)) {
-      clashToast.current = toast({
-        description:
-          "Detecting name clashes for wiki links (takes a few seconds)...",
-        duration: null,
-        id,
-      });
-    } else if (clashToast.current) {
-      if (error.wikiClashes) {
-        toast.update(clashToast.current, {
-          description: "Clash detection errored",
-          status: "error",
-          duration: 2000,
-        });
-      } else {
-        toast.update(clashToast.current, {
-          description: "Clash detection complete",
-          status: "success",
-          duration: 2000,
-        });
-      }
-    }
-  }, [loading.wikiClashes]);
-
   return (
     <Container maxWidth="1000px" width="100%">
-      <Header direct={direct} meta={data?.meta} />
-      <Tabs isLazy variant="enclosed">
-        <TabList>
-          <Tab>General</Tab>
-          <Tab>Clan Dungeons</Tab>
-          <Tab>Quest Rewards</Tab>
-          <Tab>Miscellaneous</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel p={0}>
-            <General />
-          </TabPanel>
-          <TabPanel p={0}>
-            <ClanDungeons />
-          </TabPanel>
-          <TabPanel p={0}>
-            <QuestRewards />
-          </TabPanel>
-          <TabPanel p={0}>
-            <OtherItems />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+      <Header direct={direct} meta={data?.meta} error={!!errorMessage} errorMessage={errorMessage ?? undefined} />
+      <Tabs.Root value="general" lazyMount variant="outline">
+        <Tabs.List>
+          <Tabs.Trigger value="general">General</Tabs.Trigger>
+          <Tabs.Trigger value="clan">Clan Dungeons</Tabs.Trigger>
+          <Tabs.Trigger value="quest">Quest Rewards</Tabs.Trigger>
+          <Tabs.Trigger value="misc">Miscellaneous</Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="general">
+          <General />
+        </Tabs.Content>
+        <Tabs.Content value="clan" p={0}>
+          <ClanDungeons />
+        </Tabs.Content>
+        <Tabs.Content value="quest" p={0}>
+          <QuestRewards />
+        </Tabs.Content>
+        <Tabs.Content value="misc" p={0}>
+          <OtherItems />
+        </Tabs.Content>
+      </Tabs.Root>
     </Container>
   );
 }

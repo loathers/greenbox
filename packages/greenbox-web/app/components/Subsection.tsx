@@ -17,7 +17,7 @@ export default function Subsection({
   children,
 }: Props) {
   return (
-    <Stack spacing={4}>
+    <Stack gap={4}>
       <HStack>
         <AlphaImage
           src={image}

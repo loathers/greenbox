@@ -109,7 +109,7 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
       title={title}
       position="relative"
       overflow="hidden"
-      sx={{
+      css={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -135,7 +135,7 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
       {...rest}
     >
       {badges && (
-        <Box position="absolute" sx={{ top: 0, right: 0 }}>
+        <Box position="absolute" css={{ top: 0, right: 0 }}>
           {badges}
         </Box>
       )}
@@ -148,7 +148,6 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
         textAlign="center"
         fontSize="10px"
         href={`https://kol.coldfront.net/thekolwiki/index.php/${wikiLink}`}
-        isExternal
       >
         {he.decode(name)}
       </LinkOverlay>

@@ -1,7 +1,15 @@
-import { extendTheme, useColorModeValue } from "@chakra-ui/react";
+import {
+  createSystem,
+  defaultConfig,
+  defineSemanticTokens,
+} from "@chakra-ui/react";
+import { useTheme } from "next-themes";
 
 export function useColorModeFilter() {
-  return useColorModeValue("", "contrast(0.6666) invert(1) hue-rotate(180deg)");
+  const { theme } = useTheme();
+  return theme === "dark"
+    ? "contrast(0.6666) invert(1) hue-rotate(180deg)"
+    : "";
 }
 
 /**
@@ -11,40 +19,49 @@ export function useColorModeFilter() {
  * `invert (100%) invert(95%) sepia(47%) saturate(465%) hue-rotate(351deg) brightness(104%) contrast(87%)`
  */
 
-export const theme = extendTheme({
-  config: {
-    initialColorMode: "system",
-    useSystemColorMode: true,
-    disableTransitionOnChange: false,
-  },
-  styles: {
-    html: {
-      marginLeft: "calc(100vw - 100%)",
-    },
-  },
-  semanticTokens: {
-    colors: {
-      "chakra-body-bg": {
-        _light: "#f6f8fa",
+const semanticTokens = defineSemanticTokens({
+  colors: {
+    "chakra-body-bg": {
+      value: {
+        base: "#f6f8fa",
         _dark: "#2a292a",
       },
-      accent: {
-        _light: "#ffffff",
+    },
+    accent: {
+      value: {
+        base: "#f6f8fa",
         _dark: "#46454a",
       },
-      // This is the colour that KoL images backgrounds are when considering useColorModeFilter
-      imagebg: {
-        _light: "#ffffff",
+    },
+    // This is the colour that KoL images backgrounds are when considering useColorModeFilter
+    imagebg: {
+      value: {
+        base: "#ffffff",
         _dark: "#2a292a",
       },
-      complete: {
-        _light: "#afa",
-        _dark: "green.800",
+    },
+    complete: {
+      value: {
+        base: "#afa",
+        _dark: "#22543d",
       },
-      partial: {
-        _light: "#eea",
-        _dark: "yellow.800",
+    },
+    partial: {
+      value: {
+        base: "#eea",
+        _dark: "#774210",
       },
+    },
+  },
+});
+
+export const theme = createSystem(defaultConfig, {
+  theme: {
+    semanticTokens,
+  },
+  globalCss: {
+    html: {
+      marginLeft: "calc(100vw - 100%)",
     },
   },
 });

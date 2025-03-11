@@ -1,15 +1,11 @@
-import { QuestionOutlineIcon } from "@chakra-ui/icons";
 import {
   Alert,
-  AlertIcon,
   Box,
-  Button,
   Code,
   HStack,
   Heading,
   Stack,
   Text,
-  Tooltip,
 } from "@chakra-ui/react";
 import { type RawSnapshotData } from "greenbox-data";
 import { useCallback } from "react";
@@ -29,12 +25,6 @@ type Props = {
   errorMessage?: string;
 };
 
-const forceRefreshInfo = `
-This reloads the general information Greenbox needs to know about the Kingdom of Loathing.
-Press it if some new content is not appearing at all.
-It will not collect any new information about you specifically - you still need to run the command in KoLmafia!
-`;
-
 export default function Header({
   meta,
   direct,
@@ -49,7 +39,7 @@ export default function Header({
   }, [dispatch]);
 
   return (
-    <Stack as="section" alignItems="stretch" py={2}>
+    <Stack as="section" alignItems="stretch" py={2} gap={5}>
       <HStack alignItems="center" flex={1} maxWidth="100%" wrap="wrap">
         <Heading as="h1">Greenbox</Heading>
         <Box>
@@ -62,14 +52,14 @@ export default function Header({
           ) : loading ? (
             <Spinner />
           ) : error ? (
-            <Alert status="error" fontSize="md">
-              <AlertIcon />
-              {errorMessage}
-            </Alert>
+            <Alert.Root p={1} status="error" fontSize="md">
+              <Alert.Indicator />
+              <Alert.Description>{errorMessage}</Alert.Description>
+            </Alert.Root>
           ) : null}
         </Box>
       </HStack>
-      <Stack>
+      <Stack gap={3}>
         <Text>
           To get the data from your account, first install the script by running
         </Text>
@@ -80,13 +70,6 @@ export default function Header({
           in KoLmafia's Graphical CLI. Once that's done, you can update the data
           at this link whenever you like by running <Code>greenbox</Code>.
         </Text>
-        <Stack direction="row-reverse" pt={3}>
-          <Tooltip p={2} label={forceRefreshInfo}>
-            <Button size="xs" colorScheme="red" onClick={forceUpdate}>
-              Force update game data <QuestionOutlineIcon ml={1} />
-            </Button>
-          </Tooltip>
-        </Stack>
       </Stack>
     </Stack>
   );

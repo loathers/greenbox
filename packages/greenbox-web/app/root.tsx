@@ -1,6 +1,7 @@
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { ThemeProvider } from "next-themes";
 import { StrictMode } from "react";
-import { Provider } from "react-redux";
+import { Provider as ReduxProvider } from "react-redux";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { PersistGate } from "redux-persist/integration/react";
 
@@ -28,13 +29,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <StrictMode>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <ChakraProvider theme={theme}>
-        <Provider store={store}>
-          <PersistGate persistor={persistor}>
-            <Outlet />
-          </PersistGate>
-        </Provider>
+      <ChakraProvider value={theme}>
+        <ThemeProvider attribute="class" disableTransitionOnChange>
+          <ReduxProvider store={store}>
+            <PersistGate persistor={persistor}>
+              <Outlet />
+            </PersistGate>
+          </ReduxProvider>
+        </ThemeProvider>
       </ChakraProvider>
     </StrictMode>
   );

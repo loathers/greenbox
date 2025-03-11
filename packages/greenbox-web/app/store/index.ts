@@ -335,10 +335,10 @@ export const createPlayerDataSelector = <
 >(
   key: K,
 ) => {
-  const selectPlayerData = (state: RootState) => state.playerData?.[key];
+  const selectPlayerData = (state: RootState) => state.playerData;
   return createSelector(
-    [selectPlayerData],
-    (data) => data ?? ([] as api.RawSnapshotData[K]),
+    selectPlayerData,
+    (data) => data?.[key] ?? ([] as api.RawSnapshotData[K]),
   );
 };
 

@@ -53,7 +53,7 @@ const GRIMSTONE = [
 
 export default function QuestRewards() {
   return (
-    <Accordion allowMultiple>
+    <Accordion.Root>
       <ItemGridSection
         title="Marty's Quest"
         icon="itemimages/balaclava.gif"
@@ -84,6 +84,6 @@ export default function QuestRewards() {
         icon="itemimages/grimstonemask.gif"
         items={GRIMSTONE}
       />
-    </Accordion>
+    </Accordion.Root>
   );
 }

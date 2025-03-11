@@ -60,7 +60,7 @@ const ULTRA_RARE = [
 
 export default function OtherItems() {
   return (
-    <Accordion allowMultiple>
+    <Accordion.Root multiple>
       <ItemGridSection
         title="Rodoric, the Staffcrafter"
         icon="itemimages/meatstaff.gif"
@@ -76,6 +76,6 @@ export default function OtherItems() {
         icon="itemimages/ribbon.gif"
         items={ULTRA_RARE}
       />
-    </Accordion>
+    </Accordion.Root>
   );
 }

@@ -130,21 +130,21 @@ export default function HobopolisSection() {
         title="Hodgman's Journal Skills"
         image="itemimages/blacknotebook.gif"
       >
-        <SimpleGrid columns={6} spacing={1}>
+        <SimpleGrid columns={6} gap={1}>
           {JOURNAL_SKILLS.map((id) => (
             <Skill key={id} id={id} />
           ))}
         </SimpleGrid>
       </Subsection>
       <Subsection title="Weak Elemental Skills" image="itemimages/book3.gif">
-        <SimpleGrid columns={6} spacing={1}>
+        <SimpleGrid columns={6} gap={1}>
           {WEAK_ELEMENTAL.map((id) => (
             <Skill key={id} id={id} />
           ))}
         </SimpleGrid>
       </Subsection>
       <Subsection title="Strong Elemental Skills" image="itemimages/book4.gif">
-        <SimpleGrid columns={6} spacing={1}>
+        <SimpleGrid columns={6} gap={1}>
           {STRONG_ELEMENTAL.map((id) => (
             <Skill key={id} id={id} />
           ))}

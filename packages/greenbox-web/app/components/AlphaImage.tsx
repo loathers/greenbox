@@ -425,7 +425,7 @@ export default function AlphaImage({
       src={url}
       width={width}
       height={height}
-      sx={maskImage}
+      css={maskImage}
       {...props}
     />
   );

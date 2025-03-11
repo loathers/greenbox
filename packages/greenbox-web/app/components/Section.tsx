@@ -1,12 +1,4 @@
-import {
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Heading,
-  Stack,
-} from "@chakra-ui/react";
+import { Accordion, Box, Heading, Stack } from "@chakra-ui/react";
 
 import AlphaImage from "./AlphaImage.js";
 import Progress from "./Progress.js";
@@ -32,9 +24,9 @@ export default function Section({
   children,
 }: Props) {
   return (
-    <AccordionItem isDisabled={loading}>
+    <Accordion.Item value={title} disabled={loading}>
       <Stack direction="row">
-        <AccordionButton fontSize="3xl">
+        <Accordion.ItemTrigger fontSize="3xl">
           <Stack direction="row" flex="1" textAlign="left">
             <AlphaImage src={icon} />
             <Heading fontSize={["xl", null, "3xl"]} fontWeight="normal">
@@ -44,17 +36,17 @@ export default function Section({
           <Box alignSelf="stretch" flex="1 1">
             <Progress values={values} max={max} />
           </Box>
-          {loading ? <Spinner /> : <AccordionIcon />}
-        </AccordionButton>
+          {loading ? <Spinner /> : <Accordion.ItemIndicator />}
+        </Accordion.ItemTrigger>
         <WikiSearchLink
           page={wiki ?? title}
           text="?"
           fontSize="small"
         ></WikiSearchLink>
       </Stack>
-      <AccordionPanel>
-        <Stack spacing={4}>{children}</Stack>
-      </AccordionPanel>
-    </AccordionItem>
+      <Accordion.ItemContent>
+        <Stack gap={4}>{children}</Stack>
+      </Accordion.ItemContent>
+    </Accordion.Item>
   );
 }
