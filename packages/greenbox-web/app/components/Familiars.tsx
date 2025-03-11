@@ -4,14 +4,15 @@ import { FamiliarStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks.js";
-import { createPlayerDataSelector } from "../store/index.js";
+import {
+  createPlayerDataSelector,
+  selectPlayerFamiliars,
+} from "../store/index.js";
 
 import Familiar from "./Familiar.js";
 import HundredPercentedUnownableFamiliars from "./HundredPercentedUnownableFamiliars.js";
 import Section from "./Section.js";
 import { SortOrderSelect, sortByKey } from "./SortOrderSelect.js";
-
-const selectPlayerFamiliars = createPlayerDataSelector("familiars");
 
 export default function Familiars() {
   const [sortBy, setSortBy] = useState<"name" | "id">("id");
