@@ -21,7 +21,7 @@
     "@react-router/serve": "^7.3.0",
     "@reduxjs/toolkit": "^2.6.1",
     "@urql/core": "^5.1.1",
-    "color": "^4.2.3",
+    "color": "^5.0.0",
     "data-of-loathing": "^1.4.0",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.4.12",
