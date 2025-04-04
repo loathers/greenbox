@@ -6751,8 +6751,16 @@ var iotms = [
     year: 2025,
     type: "item",
     item: "Leprecondo"
-  }
+  },
   // assemble-it-yourself Leprecondo
+  {
+    id: 11883,
+    month: 4,
+    year: 2025,
+    type: "item",
+    item: "April Shower Thoughts shield"
+  }
+  // Packaged April Shower Thoughts Calendar
 ], iotms_default = iotms;
 
 // ../greenbox-data/dist/lib/iotms.js
