@@ -6837,6 +6837,22 @@ var specialItems = [
   // hand-carved bow
   2721,
   // hand-carved staff
+  // Going Postal
+  2848,
+  // Gnomitronic Hyperspatial Demodulizer
+  // The Pretty Good Escape
+  4962,
+  // mysterious silver lapel pin
+  // Spookyraven
+  1972,
+  // silver shrimp fork
+  7318,
+  // ghost of a necklace
+  7319,
+  // Elizabeth's Dollie
+  7321,
+  // Stephen's lab coat
+  //// IOTM Quest Rewards
   // Hyboria? I don't even...
   4041,
   // pig-iron helm
