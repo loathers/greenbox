@@ -6844,8 +6844,6 @@ var specialItems = [
   4962,
   // mysterious silver lapel pin
   // Spookyraven
-  1972,
-  // silver shrimp fork
   7318,
   // ghost of a necklace
   7319,
