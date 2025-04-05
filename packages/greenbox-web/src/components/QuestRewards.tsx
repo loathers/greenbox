@@ -9,10 +9,6 @@ const MARTY = [
   2721, // hand-carved staff
 ];
 
-const POSTAL = [
-  2848, // Gnomitronic Hyperspatial Demodulizer
-];
-
 const ESCAPE = [
   4962, // mysterious silver lapel pin
 ];
@@ -74,11 +70,6 @@ export default function QuestRewards() {
         title="Marty's Quest"
         icon="itemimages/balaclava.gif"
         items={MARTY}
-      />
-      <ItemGridSection
-        title="Going Postal"
-        icon="itemimages/comicbooks.gif"
-        items={POSTAL}
       />
       <ItemGridSection
         title="The Pretty Good Escape"

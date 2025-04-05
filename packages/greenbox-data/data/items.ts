@@ -5,9 +5,6 @@ export const specialItems = [
   2720, // hand-carved bow
   2721, // hand-carved staff
 
-  // Going Postal
-  2848, // Gnomitronic Hyperspatial Demodulizer
-
   // The Pretty Good Escape
   4962, // mysterious silver lapel pin
 
