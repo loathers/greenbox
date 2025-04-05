@@ -2,12 +2,29 @@ import { Accordion } from "@chakra-ui/react";
 
 import ItemGridSection from "./ItemGridSection.js";
 
+//// Quest Rewards
 const MARTY = [
   2719, // hand-carved bokken
   2720, // hand-carved bow
   2721, // hand-carved staff
 ];
 
+const POSTAL = [
+  2848, // Gnomitronic Hyperspatial Demodulizer
+];
+
+const ESCAPE = [
+  4962, // mysterious silver lapel pin
+];
+
+const SPOOKYRAVEN = [
+  1972, // silver shrimp fork
+  7318, // ghost of a necklace
+  7319, // Elizabeth's Dollie
+  7321, // Stephen's lab coat
+];
+
+//// IOTM quest rewards
 const HYBORIA = [
   4041, // pig-iron helm
   4042, // pig-iron shinguards
@@ -58,6 +75,21 @@ export default function QuestRewards() {
         title="Marty's Quest"
         icon="itemimages/balaclava.gif"
         items={MARTY}
+      />
+      <ItemGridSection
+        title="Going Postal"
+        icon="itemimages/comicbooks.gif"
+        items={POSTAL}
+      />
+      <ItemGridSection
+        title="The Pretty Good Escape"
+        icon="itemimages/folder.gif"
+        items={ESCAPE}
+      />
+      <ItemGridSection
+        title="Spookyraven Manor"
+        icon="itemimages/dollhouse.gif"
+        items={SPOOKYRAVEN}
       />
       <ItemGridSection
         title="Hyboria? I don't even..."
