@@ -18,7 +18,6 @@ const ESCAPE = [
 ];
 
 const SPOOKYRAVEN = [
-  1972, // silver shrimp fork
   7318, // ghost of a necklace
   7319, // Elizabeth's Dollie
   7321, // Stephen's lab coat
