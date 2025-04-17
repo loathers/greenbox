@@ -1056,7 +1056,7 @@ const paths: PathDef[] = [
   {
     id: 53,
     name: "Z is for Zootomist",
-    image: "adventureimages/zootomist.gif",
+    image: "itemimages/zootomist.gif",
     items: [Thwaitgold.CordycepsAnt],
     equipment: [],
     tattoos: [
