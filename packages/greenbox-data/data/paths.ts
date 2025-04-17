@@ -1077,7 +1077,7 @@ const paths: PathDef[] = [
       FamiliarId.ZapperBug,
     ],
     points: "zootomistPoints",
-    maxPoints: 11,
+    maxPoints: 10,
   },
 ];
 
