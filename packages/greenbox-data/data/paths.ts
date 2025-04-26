@@ -826,7 +826,7 @@ const paths: PathDef[] = [
     items: [Thwaitgold.Metabug],
     equipment: [],
     tattoos: [],
-    points: "todo: make a pref that tracks starting pokedollars",
+    points: "pokefamPoints",
     maxPoints: 10,
   },
   {
