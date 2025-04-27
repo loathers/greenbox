@@ -58,6 +58,19 @@ const ULTRA_RARE = [
   9117, // repaid diaper
 ];
 
+const ANNIVERSARY = [
+  2074, // anniversary chutney sculpture
+  2075, // spandex anniversary shorts
+  2076, // jar of anniversary jam
+  2077, // bucket of anniversary lard
+  2078, // anniversary concrete fedora
+  3837, // anniversary safety glass vest
+  3838, // anniversary burlap belt
+  3839, // anniversary balsa wood socks
+  3840, // anniversary tiny latex mask
+  3841, // anniversary pewter cape
+];
+
 export default function OtherItems() {
   return (
     <Accordion allowMultiple>
@@ -75,6 +88,11 @@ export default function OtherItems() {
         title="Ultra Rares"
         icon="itemimages/ribbon.gif"
         items={ULTRA_RARE}
+      />
+      <ItemGridSection
+        title="Anniversary Gift Box"
+        icon="itemimages/pressie.gif"
+        items={ANNIVERSARY}
       />
     </Accordion>
   );
