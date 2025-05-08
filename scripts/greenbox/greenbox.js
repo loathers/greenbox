@@ -7857,7 +7857,7 @@ var SOFTCORE = -3, HARDCORE = -2, paths = [{
   items: [Thwaitgold.Metabug],
   equipment: [],
   tattoos: [],
-  points: "todo: make a pref that tracks starting pokedollars",
+  points: "pokefamPoints",
   maxPoints: 10
 }, {
   id: 33,
