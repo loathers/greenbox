@@ -6759,8 +6759,16 @@ var iotms = [
     year: 2025,
     type: "item",
     item: "April Shower Thoughts shield"
-  }
+  },
   // Packaged April Shower Thoughts Calendar
+  {
+    id: 11904,
+    month: 5,
+    year: 2025,
+    type: "item",
+    item: "Peridot of Peril"
+  }
+  // Unpeeled Peridot of Peril
 ], iotms_default = iotms;
 
 // ../greenbox-data/dist/lib/iotms.js
