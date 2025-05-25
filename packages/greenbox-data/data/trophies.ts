@@ -292,6 +292,7 @@ const trophies: TrophyDef[] = [
   { id: 163, name: "HIGH SCORE", image: "no_religion_too" },
   { id: 164, name: "Ultimate Tosser", image: "skysubmarine" },
   { id: 165, name: "Zoo Graft-on", image: "godricks_got_nothing_on_you" },
+  { id: 166, name: "Mad Hattest", image: "the_third_time_is_the_chapeau" },
 ];
 
 export default trophies;
