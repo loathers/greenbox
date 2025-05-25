@@ -242,6 +242,7 @@ enum Thwaitgold {
   IlliniginaIllinoiensis = 11593,
   ShieldBug = 11637,
   CordycepsAnt = 11848,
+  MadHatterpillar = 11917,
 }
 
 enum FamiliarId {
@@ -1078,6 +1079,16 @@ const paths: PathDef[] = [
     ],
     points: "zootomistPoints",
     maxPoints: 10,
+  },
+  {
+    id: 54,
+    name: "Hat Trick",
+    image: "itemimages/hat_bycocket.gif",
+    items: [Thwaitgold.MadHatterpillar],
+    equipment: [],
+    tattoos: [],
+    points: null,
+    maxPoints: 0,
   },
 ];
 
