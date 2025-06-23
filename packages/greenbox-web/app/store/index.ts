@@ -5,18 +5,7 @@ import {
   createAction,
   createSelector,
 } from "@reduxjs/toolkit";
-import {
-  type ClassType,
-  type EffectType,
-  type FamiliarType,
-  type ItemType,
-  type SkillType,
-  loadClasses,
-  loadEffects,
-  loadFamiliars,
-  loadItems,
-  loadSkills,
-} from "data-of-loathing";
+import { createClient, everything } from "data-of-loathing";
 import * as api from "greenbox-data";
 import type { TattooDef, TrophyDef, PathDef, IotMDef } from "greenbox-data";
 import {
@@ -34,6 +23,63 @@ import storage from "redux-persist/lib/storage";
 
 import { processWikiClashes, wikiClashMiddleware } from "./clashes.js";
 
+const client = createClient();
+
+const dataQuery = client.query({
+  allClasses: {
+    nodes: {
+      id: true,
+      name: true,
+      image: true,
+    },
+  },
+  allEffects: {
+    nodes: {
+      name: true,
+    },
+  },
+  allFamiliars: {
+    nodes: {
+      id: true,
+      name: true,
+      image: true,
+      categories: true,
+    },
+  },
+  allItems: {
+    nodes: {
+      id: true,
+      name: true,
+      image: true,
+    },
+  },
+  allSkills: {
+    nodes: {
+      id: true,
+      name: true,
+      image: true,
+      permable: true,
+      maxLevel: true,
+    },
+  },
+});
+
+export type ClassType = NonNullable<
+  NonNullable<Awaited<typeof dataQuery>["allClasses"]>["nodes"][number]
+>;
+export type EffectType = NonNullable<
+  NonNullable<Awaited<typeof dataQuery>["allEffects"]>["nodes"][number]
+>;
+export type FamiliarType = NonNullable<
+  NonNullable<Awaited<typeof dataQuery>["allFamiliars"]>["nodes"][number]
+>;
+export type ItemType = NonNullable<
+  NonNullable<Awaited<typeof dataQuery>["allItems"]>["nodes"][number]
+>;
+export type SkillType = NonNullable<
+  NonNullable<Awaited<typeof dataQuery>["allSkills"]>["nodes"][number]
+>;
+
 export const entities = [
   "classes",
   "effects",
@@ -45,8 +91,6 @@ export const entities = [
   "tattoos",
   "trophies",
 ] as const;
-
-export type EntityTypes = GreenboxState[(typeof entities)[number]];
 
 export interface GreenboxState {
   playerData: api.RawSnapshotData | null;
@@ -62,8 +106,8 @@ export interface GreenboxState {
   tattoos: TattooDef[];
   trophies: TrophyDef[];
   wikiClashes: string[];
-  sizeAtLastFetch: { [K in (typeof entities)[number]]: number };
-  loading: Partial<{ [K in keyof GreenboxState]: boolean }>;
+  sizeAtLastFetch: Partial<{ [K in keyof GreenboxState | "data"]: number }>;
+  loading: Partial<{ [K in keyof GreenboxState | "data"]: boolean }>;
   error: Partial<{ [K in keyof GreenboxState]: boolean }>;
   errorMessage: Partial<{ [K in keyof GreenboxState]: string }>;
 }
@@ -83,26 +127,17 @@ const initialState: GreenboxState = {
   trophies: [],
   wikiClashes: [],
   sizeAtLastFetch: {
-    classes: 0,
-    effects: 0,
-    familiars: 0,
     iotms: 0,
-    items: 0,
     paths: 0,
-    skills: 0,
     tattoos: 0,
     trophies: 0,
   },
   loading: {
-    classes: false,
-    effects: false,
-    familiars: false,
     iotms: false,
-    items: false,
     paths: false,
-    skills: false,
     tattoos: false,
     trophies: false,
+    data: false,
   },
   error: {},
   errorMessage: {},
@@ -116,33 +151,14 @@ export const setFavouritePlayer = createAction<number | null>(
 );
 export const setPlayerId = createAction<number | null>("playerId/set");
 
-export const fetchClasses = createAsyncThunk(
-  "classes/fetch",
-  async (size: number) => loadClasses(size),
-);
-export const fetchEffects = createAsyncThunk(
-  "effects/fetch",
-  async (size: number) => loadEffects(size),
-);
-export const fetchFamiliars = createAsyncThunk(
-  "familiars/fetch",
-  async (size: number) => loadFamiliars(size),
-);
+export const fetchData = createAsyncThunk("data/fetch", async () => dataQuery);
 export const fetchIotMs = createAsyncThunk(
   "iotms/fetch",
   async (size: number) => api.loadIotMs(size),
 );
-export const fetchItems = createAsyncThunk(
-  "items/fetch",
-  async (size: number) => loadItems(size),
-);
 export const fetchPaths = createAsyncThunk(
   "paths/fetch",
   async (size: number) => api.loadPaths(size),
-);
-export const fetchSkills = createAsyncThunk(
-  "skills/fetch",
-  async (size: number) => loadSkills(size),
 );
 export const fetchTattoos = createAsyncThunk(
   "tattoos/fetch",
@@ -157,15 +173,11 @@ export const fetchAll = createAsyncThunk(
   "all/fetch",
   async (force: boolean, { getState, dispatch }) => {
     const state = getState() as RootState;
-    dispatch(fetchClasses(force ? 0 : state.sizeAtLastFetch.classes));
-    dispatch(fetchEffects(force ? 0 : state.sizeAtLastFetch.effects));
-    dispatch(fetchFamiliars(force ? 0 : state.sizeAtLastFetch.familiars));
-    dispatch(fetchIotMs(force ? 0 : state.sizeAtLastFetch.iotms));
-    dispatch(fetchItems(force ? 0 : state.sizeAtLastFetch.items));
-    dispatch(fetchPaths(force ? 0 : state.sizeAtLastFetch.paths));
-    dispatch(fetchSkills(force ? 0 : state.sizeAtLastFetch.skills));
-    dispatch(fetchTattoos(force ? 0 : state.sizeAtLastFetch.tattoos));
-    dispatch(fetchTrophies(force ? 0 : state.sizeAtLastFetch.trophies));
+    dispatch(fetchData());
+    dispatch(fetchIotMs(force ? 0 : (state.sizeAtLastFetch.iotms ?? 0)));
+    dispatch(fetchPaths(force ? 0 : (state.sizeAtLastFetch.paths ?? 0)));
+    dispatch(fetchTattoos(force ? 0 : (state.sizeAtLastFetch.tattoos ?? 0)));
+    dispatch(fetchTrophies(force ? 0 : (state.sizeAtLastFetch.trophies ?? 0)));
   },
 );
 
@@ -184,38 +196,21 @@ export const greenboxSlice = createSlice({
       .addCase(setFavouritePlayer, (state, action) => {
         state.favouritePlayerId = action.payload;
       })
-      .addCase(fetchClasses.pending, (state) => {
-        state.loading.classes = true;
+      .addCase(fetchData.pending, (state) => {
+        state.loading.data = true;
       })
-      .addCase(fetchClasses.fulfilled, (state, action) => {
+      .addCase(fetchData.fulfilled, (state, action) => {
         if (action.payload !== null) {
-          state.classes = action.payload.data;
-          state.sizeAtLastFetch.classes = action.payload.size;
+          const data = action.payload;
+          state.items = data.allItems?.nodes.filter((i) => i != null) ?? [];
+          state.classes = data.allClasses?.nodes.filter((c) => c != null) ?? [];
+          state.effects = data.allEffects?.nodes.filter((e) => e != null) ?? [];
+          state.familiars =
+            data.allFamiliars?.nodes.filter((f) => f != null) ?? [];
+          state.skills = data.allSkills?.nodes.filter((s) => s != null) ?? [];
         }
 
-        state.loading.classes = false;
-      })
-      .addCase(fetchEffects.pending, (state) => {
-        state.loading.effects = true;
-      })
-      .addCase(fetchEffects.fulfilled, (state, action) => {
-        if (action.payload !== null) {
-          state.effects = action.payload.data;
-          state.sizeAtLastFetch.effects = action.payload.size;
-        }
-
-        state.loading.effects = false;
-      })
-      .addCase(fetchFamiliars.pending, (state) => {
-        state.loading.familiars = true;
-      })
-      .addCase(fetchFamiliars.fulfilled, (state, action) => {
-        if (action.payload !== null) {
-          state.familiars = action.payload.data;
-          state.sizeAtLastFetch.familiars = action.payload.size;
-        }
-
-        state.loading.familiars = false;
+        state.loading.data = false;
       })
       .addCase(fetchIotMs.pending, (state) => {
         state.loading.iotms = true;
@@ -228,21 +223,6 @@ export const greenboxSlice = createSlice({
 
         state.loading.iotms = false;
       })
-      .addCase(fetchItems.pending, (state) => {
-        state.loading.items = true;
-      })
-      .addCase(fetchItems.fulfilled, (state, action) => {
-        if (action.payload !== null) {
-          const items = action.payload.data;
-          state.items = items.reduce(
-            (acc, i) => ({ ...acc, [i.id]: i }),
-            {} as Record<number, (typeof items)[number]>,
-          );
-          state.sizeAtLastFetch.items = action.payload.size;
-        }
-
-        state.loading.items = false;
-      })
       .addCase(fetchPaths.pending, (state) => {
         state.loading.paths = true;
       })
@@ -253,17 +233,6 @@ export const greenboxSlice = createSlice({
         }
 
         state.loading.paths = false;
-      })
-      .addCase(fetchSkills.pending, (state) => {
-        state.loading.skills = true;
-      })
-      .addCase(fetchSkills.fulfilled, (state, action) => {
-        if (action.payload !== null) {
-          state.skills = action.payload.data;
-          state.sizeAtLastFetch.skills = action.payload.size;
-        }
-
-        state.loading.skills = false;
       })
       .addCase(fetchTattoos.pending, (state) => {
         state.loading.tattoos = true;

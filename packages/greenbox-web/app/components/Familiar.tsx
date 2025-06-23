@@ -1,4 +1,4 @@
-import { type FamiliarType } from "data-of-loathing";
+import type { FamiliarType } from "app/store/index.js";
 import { FamiliarStatus } from "greenbox-data";
 
 import Medal from "./Medal.js";

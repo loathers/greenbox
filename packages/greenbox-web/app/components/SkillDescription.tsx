@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import type { SkillType } from "data-of-loathing";
+import type { SkillType } from "app/store/index.js";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useAppSelector } from "../hooks.js";

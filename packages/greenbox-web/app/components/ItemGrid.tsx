@@ -1,4 +1,4 @@
-import { type ItemType } from "data-of-loathing";
+import type { ItemType } from "app/store/index.js";
 import { ItemStatus } from "greenbox-data";
 import { useMemo } from "react";
 

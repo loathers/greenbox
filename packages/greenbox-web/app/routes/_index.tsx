@@ -145,7 +145,7 @@ export default function MainPage() {
         error={!!errorMessage}
         errorMessage={errorMessage ?? undefined}
       />
-      <Tabs.Root value="general" lazyMount variant="outline">
+      <Tabs.Root defaultValue="general" lazyMount variant="outline">
         <Tabs.List>
           <Tabs.Trigger value="general">General</Tabs.Trigger>
           <Tabs.Trigger value="clan">Clan Dungeons</Tabs.Trigger>

@@ -1,5 +1,5 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import type { FamiliarType } from "data-of-loathing";
+import type { FamiliarType } from "app/store/index.js";
 import { Fragment } from "react";
 
 import AlphaImage from "./AlphaImage.js";

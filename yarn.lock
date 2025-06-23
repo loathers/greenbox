@@ -5570,15 +5570,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chevrotain@npm:6.5.0":
-  version: 6.5.0
-  resolution: "chevrotain@npm:6.5.0"
-  dependencies:
-    regexp-to-ast: "npm:0.4.0"
-  checksum: 10c0/7fa4cf8ac2600f5c08bc4538bb49e0ce88daedbfb9507227251d87e5fa33ab28a39e69418b054299f00809fe9821f32cdebef0c36910b0ee7c15513f98dd609d
-  languageName: node
-  linkType: hard
-
 "chokidar@npm:^4.0.0":
   version: 4.0.3
   resolution: "chokidar@npm:4.0.3"
@@ -6043,12 +6034,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"data-of-loathing@npm:^1.6.1":
-  version: 1.6.1
-  resolution: "data-of-loathing@npm:1.6.1"
-  dependencies:
-    java-parser: "npm:^2.0.5"
-  checksum: 10c0/561579b6c1a75f59f3937a52878bd706ba6247cf6ce058c8844874a9afd2ddf8d9e5b8e62e7d241987f0cbe90c2ca38de852f514f155936117500d70f748817d
+"data-of-loathing@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "data-of-loathing@npm:2.2.0"
+  checksum: 10c0/1870a05dcd02625c744175aa7ab3b415a812d7e8f9144e8b64531f929e3eeebfecea3a4aa494495db4c4f08ebd79dfd4faeca2acef52cf0d83f8ce71eb0d6b60
   languageName: node
   linkType: hard
 
@@ -7227,7 +7216,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"greenbox-data@npm:*, greenbox-data@npm:^0.0.24, greenbox-data@workspace:packages/greenbox-data":
+"greenbox-data@npm:*, greenbox-data@workspace:^, greenbox-data@workspace:packages/greenbox-data":
   version: 0.0.0-use.local
   resolution: "greenbox-data@workspace:packages/greenbox-data"
   dependencies:
@@ -7310,10 +7299,10 @@ __metadata:
     "@urql/core": "npm:^5.1.1"
     "@vitejs/plugin-react": "npm:^4.6.0"
     color: "npm:^5.0.0"
-    data-of-loathing: "npm:^1.6.1"
+    data-of-loathing: "npm:^2.2.0"
     date-fns: "npm:^4.1.0"
     gql.tada: "npm:^1.8.10"
-    greenbox-data: "npm:^0.0.24"
+    greenbox-data: "workspace:^"
     greenbox-prettier-config: "npm:^0.0.0"
     he: "npm:^1.2.0"
     isbot: "npm:^5.1.28"
@@ -7677,16 +7666,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"java-parser@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "java-parser@npm:2.0.5"
-  dependencies:
-    chevrotain: "npm:6.5.0"
-    lodash: "npm:4.17.21"
-  checksum: 10c0/04dc5185b3db52ae5fa0e0a1b02e395a472393b440e1c07883a1f94fc198daae37671abdd5fcf158862eda2b77aec99c27aea829cfe0078a890f9ea4bb9e0d70
-  languageName: node
-  linkType: hard
-
 "javascript-natural-sort@npm:^0.7.1":
   version: 0.7.1
   resolution: "javascript-natural-sort@npm:0.7.1"
@@ -7917,7 +7896,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:4.17.21, lodash@npm:^4.17.21":
+"lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
@@ -9222,13 +9201,6 @@ __metadata:
   version: 0.14.0
   resolution: "regenerator-runtime@npm:0.14.0"
   checksum: 10c0/e25f062c1a183f81c99681691a342760e65c55e8d3a4d4fe347ebe72433b123754b942b70b622959894e11f8a9131dc549bd3c9a5234677db06a4af42add8d12
-  languageName: node
-  linkType: hard
-
-"regexp-to-ast@npm:0.4.0":
-  version: 0.4.0
-  resolution: "regexp-to-ast@npm:0.4.0"
-  checksum: 10c0/56b7148be88ea553e648f5ebba486c951f4c044723e5e34360786c8b5cf0b2a2315b0f145143fb3afe1699b8e44d9586bd1a977693109f7d7ae230d62fa74b61
   languageName: node
   linkType: hard
 

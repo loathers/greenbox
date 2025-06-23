@@ -1,15 +1,20 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import { isFamiliarOwnable } from "data-of-loathing";
 import { FamiliarStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
 import { useAppSelector } from "../hooks.js";
-import { selectPlayerFamiliars } from "../store/index.js";
+import { selectPlayerFamiliars, type FamiliarType } from "../store/index.js";
 
 import Familiar from "./Familiar.js";
 import HundredPercentedUnownableFamiliars from "./HundredPercentedUnownableFamiliars.js";
 import Section from "./Section.js";
 import { SortOrderSelect, sortByKey } from "./SortOrderSelect.js";
+
+function isFamiliarOwnable(familiar: FamiliarType) {
+  if (familiar.categories.includes("POKEFAM")) return false;
+  if (familiar.id >= 125 && familiar.id < 134) return false;
+  return true;
+}
 
 export default function Familiars() {
   const [sortBy, setSortBy] = useState<"name" | "id">("id");

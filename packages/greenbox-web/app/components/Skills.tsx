@@ -1,11 +1,13 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import type { SkillType } from "data-of-loathing";
-import { isSkillPermable } from "data-of-loathing";
 import { SkillStatus, mutexSkillGroups } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks.js";
-import { selectIdToPlayerSkills, selectPlayerSkills } from "../store/index.js";
+import {
+  selectIdToPlayerSkills,
+  selectPlayerSkills,
+  type SkillType,
+} from "../store/index.js";
 import { getSkillBucket } from "../utils.js";
 
 import MutexSkills from "./MutexSkills.js";
@@ -25,7 +27,7 @@ export default function Skills() {
 
   const allSkills = useAppSelector((state) => state.skills);
   const skills = useMemo(
-    () => allSkills.filter((s) => isSkillPermable(s)),
+    () => allSkills.filter((s) => s.permable),
     [allSkills],
   );
   const classes = useAppSelector((state) => state.classes);

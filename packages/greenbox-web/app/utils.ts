@@ -1,5 +1,6 @@
-import type { ClassType, SkillType } from "data-of-loathing";
 import { ItemStatus, SkillStatus, tuple } from "greenbox-data";
+
+import type { ClassType, SkillType } from "./store";
 
 export function itemStatusToThingState(status: ItemStatus) {
   if (status > 0) return "complete";

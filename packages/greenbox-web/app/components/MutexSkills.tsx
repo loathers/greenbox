@@ -1,4 +1,4 @@
-import { type SkillType } from "data-of-loathing";
+import type { SkillType } from "app/store/index.js";
 import { SkillStatus } from "greenbox-data";
 
 import { skillStatusToThingState, skillStatusToTitle } from "../utils.js";

@@ -1,5 +1,4 @@
 import { Badge, HoverCard, Portal } from "@chakra-ui/react";
-import { getMaxSkillLevel } from "data-of-loathing";
 import { SkillStatus } from "greenbox-data";
 
 import { useAppSelector } from "../hooks.js";
@@ -21,9 +20,7 @@ export default function Skill({ id }: Props) {
 
   const [, status, level] = playerSkills[id] || [id, SkillStatus.NONE, 0];
 
-  const knownMaxLevel = getMaxSkillLevel(skill);
-
-  const maxLevel = knownMaxLevel === 0 ? level : knownMaxLevel;
+  const maxLevel = skill.maxLevel ?? level;
 
   return (
     <HoverCard.Root lazyMount>

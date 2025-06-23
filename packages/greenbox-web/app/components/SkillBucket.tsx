@@ -1,4 +1,4 @@
-import type { ClassType } from "data-of-loathing";
+import type { ClassType } from "app/store/index.js";
 
 import { getSkillHeader } from "../utils.js";
 

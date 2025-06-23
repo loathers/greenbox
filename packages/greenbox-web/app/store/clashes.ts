@@ -9,10 +9,7 @@ import {
   type RootState,
   type AppDispatch,
   entities,
-  fetchEffects,
-  fetchFamiliars,
-  fetchItems,
-  fetchSkills,
+  fetchData,
   fetchTattoos,
   fetchTrophies,
 } from "./index.js";
@@ -42,10 +39,7 @@ export function startListeningForClashes() {
     predicate: (action, state) => {
       if (
         ![
-          fetchEffects.fulfilled,
-          fetchFamiliars.fulfilled,
-          fetchItems.fulfilled,
-          fetchSkills.fulfilled,
+          fetchData.fulfilled,
           fetchTattoos.fulfilled,
           fetchTrophies.fulfilled,
         ].some((a) => a.match(action))
