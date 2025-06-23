@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "workspaces": [
+    "packages/greeenbox-data",
     "packages/*"
   ],
   "devDependencies": {
@@ -9,7 +10,7 @@
     "prettier": "^3.5.3"
   },
   "scripts": {
-    "build": "yarn workspace greenbox-script run build && yarn workspace greenbox-web run build",
+    "build": "yarn workspaces foreach --all run build",
     "format": "yarn workspaces foreach --all run format",
     "preview": "yarn workspace greenbox-web run preview",
     "dev": "yarn workspace greenbox-web run dev"

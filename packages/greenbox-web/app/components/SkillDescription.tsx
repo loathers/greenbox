@@ -23,18 +23,13 @@ export default function SkillDescription({ skill }: Props) {
 
   useEffect(() => {
     async function load() {
-      let match = null;
-
-      try {
-        const url = `https://corsproxy.io/?url=${encodeURIComponent(`https://kol.coldfront.net/thekolwiki/api.php?action=parse&page=${wikiLink}&prop=text&format=json`)}`;
-        console.log(url);
-        const response = await fetch(url);
-        const result = await response.json();
-        match = /<table width="100%"><tr><td>(.*?)<\/td>/s.exec(
-          result.parse.text["*"],
-        );
-      } catch (e) { }
-
+      const response = await fetch(
+        `https://corsproxy.io/?https://kol.coldfront.net/thekolwiki/api.php?action=parse&page=${wikiLink}&prop=text&format=json`,
+      );
+      const result = await response.json();
+      const match = /<table width="100%"><tr><td>(.*?)<\/td>/s.exec(
+        result.parse.text["*"],
+      );
       if (match == null) {
         setContents("Cannot load wiki page (this is an experimental feature!)");
       } else {

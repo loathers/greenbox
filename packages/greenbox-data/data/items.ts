@@ -5,6 +5,15 @@ export const specialItems = [
   2720, // hand-carved bow
   2721, // hand-carved staff
 
+  // The Pretty Good Escape
+  4962, // mysterious silver lapel pin
+
+  // Spookyraven
+  7318, // ghost of a necklace
+  7319, // Elizabeth's Dollie
+  7321, // Stephen's lab coat
+
+  //// IOTM Quest Rewards
   // Hyboria? I don't even...
   4041, // pig-iron helm
   4042, // pig-iron shinguards
@@ -96,6 +105,18 @@ export const specialItems = [
   6592, // optimal spreadsheet
   7201, // The Nuge's favorite crossbow
   9117, // repaid diaper
+
+  // Anniversary gift box
+  2074, // anniversary chutney sculpture
+  2075, // spandex anniversary shorts
+  2076, // jar of anniversary jam
+  2077, // bucket of anniversary lard
+  2078, // anniversary concrete fedora
+  3837, // anniversary safety glass vest
+  3838, // anniversary burlap belt
+  3839, // anniversary balsa wood socks
+  3840, // anniversary tiny latex mask
+  3841, // anniversary pewter cape
 
   //// Hobopolis
   // Hobo Nickles

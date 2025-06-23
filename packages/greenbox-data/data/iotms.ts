@@ -1324,6 +1324,20 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "Leprecondo",
   }, // assemble-it-yourself Leprecondo
+  {
+    id: 11883,
+    month: 4,
+    year: 2025,
+    type: "item",
+    item: "April Shower Thoughts shield",
+  }, // Packaged April Shower Thoughts Calendar
+  {
+    id: 11904,
+    month: 5,
+    year: 2025,
+    type: "item",
+    item: "Peridot of Peril",
+  }, // Unpeeled Peridot of Peril
 ];
 
 export default iotms;
