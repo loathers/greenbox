@@ -1,4 +1,4 @@
-import { chakra, useChakraContext, useToken } from "@chakra-ui/react";
+import { chakra, useToken } from "@chakra-ui/react";
 import { useMemo } from "react";
 import {
   BarChart,
@@ -27,8 +27,8 @@ const Label = ({
       name={title}
       fill="chakra-body-text"
       className="recharts-text recharts-label"
-      x={x}
-      y={y}
+      x={`${x}px`}
+      y={`${y}px`}
       offset={offset}
       textAnchor="middle"
       fontSize="40%"
@@ -47,10 +47,7 @@ type Props = {
 };
 
 export default function Progress({ values, max }: Props) {
-  const [complete, accent] = useToken("colors", [
-    "complete",
-    "accent",
-  ]);
+  const [complete, accent] = useToken("colors", ["complete", "accent"]);
 
   const data = useMemo(
     () => [

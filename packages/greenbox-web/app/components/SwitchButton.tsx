@@ -18,7 +18,13 @@ export default function SwitchButton() {
   );
 
   return (
-    <IconButton size="xs" onClick={toggle} aria-label={label} title={label} variant="subtle">
+    <IconButton
+      size="xs"
+      onClick={toggle}
+      aria-label={label}
+      title={label}
+      variant="subtle"
+    >
       <Image height="60%" src={`/${colorIcon}.png`} />
     </IconButton>
   );

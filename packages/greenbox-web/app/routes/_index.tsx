@@ -25,7 +25,7 @@ export const links: LinksFunction = () => [
     rel: "icon",
     href: "/greenbox.png",
     type: "image/png",
-  }
+  },
 ];
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -95,7 +95,8 @@ export async function loader({ request }: Route.LoaderArgs) {
       { headers },
     );
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
     return data(
       {
         playerId: null,
@@ -138,7 +139,12 @@ export default function MainPage() {
 
   return (
     <Container maxWidth="1000px" width="100%">
-      <Header direct={direct} meta={data?.meta} error={!!errorMessage} errorMessage={errorMessage ?? undefined} />
+      <Header
+        direct={direct}
+        meta={data?.meta}
+        error={!!errorMessage}
+        errorMessage={errorMessage ?? undefined}
+      />
       <Tabs.Root value="general" lazyMount variant="outline">
         <Tabs.List>
           <Tabs.Trigger value="general">General</Tabs.Trigger>
