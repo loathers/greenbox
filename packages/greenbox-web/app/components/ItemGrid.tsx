@@ -1,8 +1,8 @@
-import type { ItemType } from "app/store/index.js";
 import { ItemStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks.js";
+import type { ItemType } from "../store/index.js";
 import { itemStatusToThingState } from "../utils.js";
 
 import Thing from "./Thing.js";

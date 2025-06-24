@@ -1,6 +1,6 @@
-import type { SkillType } from "app/store/index.js";
 import { SkillStatus } from "greenbox-data";
 
+import type { SkillType } from "../store/index.js";
 import { skillStatusToThingState, skillStatusToTitle } from "../utils.js";
 
 import ImageParty from "./ImageParty.js";

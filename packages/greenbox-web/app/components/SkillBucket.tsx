@@ -1,5 +1,4 @@
-import type { ClassType } from "app/store/index.js";
-
+import type { ClassType } from "../store/index.js";
 import { getSkillHeader } from "../utils.js";
 
 import Medal from "./Medal.js";

@@ -1,6 +1,5 @@
 import {
   createAction,
-  createAsyncThunk,
   createListenerMiddleware,
   type TypedStartListening,
 } from "@reduxjs/toolkit";

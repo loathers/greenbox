@@ -1,5 +1,6 @@
-import type { ItemType } from "app/store/index.js";
 import { type IotMDef, IotMStatus } from "greenbox-data";
+
+import type { ItemType } from "../store/index.js";
 
 import Thing from "./Thing.js";
 

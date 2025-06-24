@@ -1,8 +1,8 @@
 import { Flex } from "@chakra-ui/react";
-import type { SkillType } from "app/store/index.js";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useAppSelector } from "../hooks.js";
+import type { SkillType } from "../store/index.js";
 import { useColorModeFilter } from "../theme.js";
 
 import Spinner from "./Spinner.js";

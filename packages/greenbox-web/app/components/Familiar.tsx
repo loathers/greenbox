@@ -1,5 +1,6 @@
-import type { FamiliarType } from "app/store/index.js";
 import { FamiliarStatus } from "greenbox-data";
+
+import type { FamiliarType } from "../store/index.js";
 
 import Medal from "./Medal.js";
 import Thing from "./Thing.js";
