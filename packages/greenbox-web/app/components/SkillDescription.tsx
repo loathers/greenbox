@@ -6,13 +6,14 @@ import type { SkillType } from "../store/index.js";
 import { useColorModeFilter } from "../theme.js";
 
 import Spinner from "./Spinner.js";
+import { useWikiLink } from "app/contexts/WikiLinkProvider.js";
 
 type Props = {
   skill: SkillType;
 };
 
 export default function SkillDescription({ skill }: Props) {
-  const wikiLink = ""; // @todo use context
+  const wikiLink = useWikiLink("SKILL", skill.name); // @todo use context
   const [contents, setContents] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 

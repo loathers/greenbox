@@ -5,6 +5,7 @@ import { forwardRef, useEffect, useState } from "react";
 import { useAppSelector } from "../hooks.js";
 
 import AlphaImage from "./AlphaImage.js";
+import { useWikiLink } from "app/contexts/WikiLinkProvider.js";
 
 export type StateType = "complete" | "partial" | null | undefined;
 
@@ -58,7 +59,7 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
   const [eraserTags, setEraserTags] = useState<number[]>([]);
   const style = styleFromStatus(status, bg);
 
-  const wikiLink = link || ""; // @todo use context
+  const wikiLink = useWikiLink(type, name, link);
 
   useEffect(() => {
     const handle = (event: KeyboardEvent) => {

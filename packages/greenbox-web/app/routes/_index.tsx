@@ -16,6 +16,8 @@ import {
   setFavouritePlayer,
   setPlayerId,
 } from "../store/index.js";
+import { WikiLinkProvider } from "../contexts/WikiLinkProvider.js";
+import { prisma } from "../db.js";
 
 import type { Route } from "./+types/_index.js";
 
@@ -36,6 +38,9 @@ export async function loader({ request }: Route.LoaderArgs) {
       (await favouritePlayer.parse(request.headers.get("Cookie")))?.id ?? 0,
     ) || null;
 
+  // Load wiki links from database
+  const wikiLinks = await prisma.wikiLinks.findMany();
+
   if (directData) {
     return {
       data: expand(directData),
@@ -43,6 +48,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       direct: true,
       favouritePlayer: favouritePlayerId,
       errorMessage: null,
+      wikiLinks,
     };
   }
 
@@ -69,6 +75,7 @@ export async function loader({ request }: Route.LoaderArgs) {
         favouritePlayer: favouritePlayerId,
         direct: false,
         errorMessage: null,
+        wikiLinks,
       },
       { headers },
     );
@@ -90,6 +97,7 @@ export async function loader({ request }: Route.LoaderArgs) {
         favouritePlayer: favouritePlayerId,
         direct: false,
         errorMessage: null,
+        wikiLinks,
       },
       { headers },
     );
@@ -103,6 +111,7 @@ export async function loader({ request }: Route.LoaderArgs) {
         favouritePlayer: favouritePlayerId,
         direct: false,
         errorMessage,
+        wikiLinks,
       },
       { headers },
     );
@@ -110,7 +119,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 export default function MainPage() {
-  const { data, direct, favouritePlayer, playerId, errorMessage } =
+  const { data, direct, favouritePlayer, playerId, errorMessage, wikiLinks } =
     useLoaderData<typeof loader>();
 
   const dispatch = useAppDispatch();
@@ -133,33 +142,35 @@ export default function MainPage() {
   }, [dispatch]);
 
   return (
-    <Container maxWidth="1000px" width="100%">
-      <Header
-        direct={direct}
-        meta={data?.meta}
-        error={!!errorMessage}
-        errorMessage={errorMessage ?? undefined}
-      />
-      <Tabs.Root defaultValue="general" lazyMount variant="outline">
-        <Tabs.List>
-          <Tabs.Trigger value="general">General</Tabs.Trigger>
-          <Tabs.Trigger value="clan">Clan Dungeons</Tabs.Trigger>
-          <Tabs.Trigger value="quest">Quest Rewards</Tabs.Trigger>
-          <Tabs.Trigger value="misc">Miscellaneous</Tabs.Trigger>
-        </Tabs.List>
-        <Tabs.Content value="general">
-          <General />
-        </Tabs.Content>
-        <Tabs.Content value="clan" p={0}>
-          <ClanDungeons />
-        </Tabs.Content>
-        <Tabs.Content value="quest" p={0}>
-          <QuestRewards />
-        </Tabs.Content>
-        <Tabs.Content value="misc" p={0}>
-          <OtherItems />
-        </Tabs.Content>
-      </Tabs.Root>
-    </Container>
+    <WikiLinkProvider wikiLinks={wikiLinks}>
+      <Container maxWidth="1000px" width="100%">
+        <Header
+          direct={direct}
+          meta={data?.meta}
+          error={!!errorMessage}
+          errorMessage={errorMessage ?? undefined}
+        />
+        <Tabs.Root defaultValue="general" lazyMount variant="outline">
+          <Tabs.List>
+            <Tabs.Trigger value="general">General</Tabs.Trigger>
+            <Tabs.Trigger value="clan">Clan Dungeons</Tabs.Trigger>
+            <Tabs.Trigger value="quest">Quest Rewards</Tabs.Trigger>
+            <Tabs.Trigger value="misc">Miscellaneous</Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value="general">
+            <General />
+          </Tabs.Content>
+          <Tabs.Content value="clan" p={0}>
+            <ClanDungeons />
+          </Tabs.Content>
+          <Tabs.Content value="quest" p={0}>
+            <QuestRewards />
+          </Tabs.Content>
+          <Tabs.Content value="misc" p={0}>
+            <OtherItems />
+          </Tabs.Content>
+        </Tabs.Root>
+      </Container>
+    </WikiLinkProvider>
   );
 }
