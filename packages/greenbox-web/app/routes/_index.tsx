@@ -10,7 +10,6 @@ import OtherItems from "../components/OtherItems.js";
 import QuestRewards from "../components/QuestRewards.js";
 import { favouritePlayer } from "../cookies.server.js";
 import { useAppDispatch } from "../hooks.js";
-import { startListeningForClashes } from "../store/clashes.js";
 import {
   fetchAll,
   loadPlayerData,
@@ -115,10 +114,6 @@ export default function MainPage() {
     useLoaderData<typeof loader>();
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    startListeningForClashes();
-  });
 
   useEffect(() => {
     if (data) dispatch(setPlayerId(playerId));

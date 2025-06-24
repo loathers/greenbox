@@ -40,21 +40,6 @@ function styleFromStatus(state: StateType, bg: string) {
   }
 }
 
-const otherClashes = ["Some Assembly Required", "Batter Up!"];
-
-export function guessWikiLink(
-  link: string | undefined,
-  name: string,
-  type: Props["type"],
-  clashes: string[],
-) {
-  if (link) return he.decode(link);
-  const n = he.decode(name).replaceAll(" ", "_");
-  if (clashes.includes(name) || otherClashes.includes(name))
-    return `${n}_(${type})`;
-  return n;
-}
-
 export default forwardRef<HTMLDivElement, Props>(function Thing(
   {
     type,
@@ -72,9 +57,8 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
   const [bg] = useToken("colors", ["accent"]);
   const [eraserTags, setEraserTags] = useState<number[]>([]);
   const style = styleFromStatus(status, bg);
-  const clashes = useAppSelector((state) => state.wikiClashes);
 
-  const wikiLink = guessWikiLink(link, name, type, clashes);
+  const wikiLink = link || ""; // @todo use context
 
   useEffect(() => {
     const handle = (event: KeyboardEvent) => {

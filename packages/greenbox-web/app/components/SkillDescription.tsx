@@ -6,18 +6,13 @@ import type { SkillType } from "../store/index.js";
 import { useColorModeFilter } from "../theme.js";
 
 import Spinner from "./Spinner.js";
-import { guessWikiLink } from "./Thing.js";
 
 type Props = {
   skill: SkillType;
 };
 
 export default function SkillDescription({ skill }: Props) {
-  const clashes = useAppSelector((state) => state.wikiClashes);
-  const wikiLink = useMemo(
-    () => guessWikiLink(undefined, skill.name, "skill", clashes),
-    [skill, clashes],
-  );
+  const wikiLink = ""; // @todo use context
   const [contents, setContents] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 

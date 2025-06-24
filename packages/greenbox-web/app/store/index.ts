@@ -5,7 +5,7 @@ import {
   createAction,
   createSelector,
 } from "@reduxjs/toolkit";
-import { createClient, everything } from "data-of-loathing";
+import { createClient } from "data-of-loathing";
 import * as api from "greenbox-data";
 import type { TattooDef, TrophyDef, PathDef, IotMDef } from "greenbox-data";
 import {
@@ -21,8 +21,6 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import { processWikiClashes, wikiClashMiddleware } from "./clashes.js";
-
 const client = createClient();
 
 const dataQuery = client.query({
@@ -31,11 +29,6 @@ const dataQuery = client.query({
       id: true,
       name: true,
       image: true,
-    },
-  },
-  allEffects: {
-    nodes: {
-      name: true,
     },
   },
   allFamiliars: {
@@ -67,9 +60,6 @@ const dataQuery = client.query({
 export type ClassType = NonNullable<
   NonNullable<Awaited<typeof dataQuery>["allClasses"]>["nodes"][number]
 >;
-export type EffectType = NonNullable<
-  NonNullable<Awaited<typeof dataQuery>["allEffects"]>["nodes"][number]
->;
 export type FamiliarType = NonNullable<
   NonNullable<Awaited<typeof dataQuery>["allFamiliars"]>["nodes"][number]
 >;
@@ -82,7 +72,6 @@ export type SkillType = NonNullable<
 
 export const entities = [
   "classes",
-  "effects",
   "familiars",
   "iotms",
   "items",
@@ -97,7 +86,6 @@ export interface GreenboxState {
   playerId: number | null;
   favouritePlayerId: number | null;
   classes: ClassType[];
-  effects: EffectType[];
   familiars: FamiliarType[];
   iotms: IotMDef[];
   items: Record<number, ItemType>;
@@ -105,7 +93,6 @@ export interface GreenboxState {
   skills: SkillType[];
   tattoos: TattooDef[];
   trophies: TrophyDef[];
-  wikiClashes: string[];
   sizeAtLastFetch: Partial<{ [K in keyof GreenboxState | "data"]: number }>;
   loading: Partial<{ [K in keyof GreenboxState | "data"]: boolean }>;
   error: Partial<{ [K in keyof GreenboxState]: boolean }>;
@@ -117,7 +104,6 @@ const initialState: GreenboxState = {
   playerData: null,
   favouritePlayerId: null,
   classes: [],
-  effects: [],
   familiars: [],
   iotms: [],
   items: [],
@@ -125,7 +111,6 @@ const initialState: GreenboxState = {
   skills: [],
   tattoos: [],
   trophies: [],
-  wikiClashes: [],
   sizeAtLastFetch: {
     iotms: 0,
     paths: 0,
@@ -204,7 +189,6 @@ export const greenboxSlice = createSlice({
           const data = action.payload;
           state.items = data.allItems?.nodes.filter((i) => i != null) ?? [];
           state.classes = data.allClasses?.nodes.filter((c) => c != null) ?? [];
-          state.effects = data.allEffects?.nodes.filter((e) => e != null) ?? [];
           state.familiars =
             data.allFamiliars?.nodes.filter((f) => f != null) ?? [];
           state.skills = data.allSkills?.nodes.filter((s) => s != null) ?? [];
@@ -255,16 +239,12 @@ export const greenboxSlice = createSlice({
         }
 
         state.loading.trophies = false;
-      })
-      .addCase(processWikiClashes, (state, action) => {
-        state.wikiClashes = action.payload;
       });
   },
 });
 
 const whitelist: (keyof GreenboxState)[] = [
   ...entities,
-  "wikiClashes",
   "sizeAtLastFetch",
 ];
 
@@ -291,7 +271,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).prepend(wikiClashMiddleware.middleware),
+    }),
 });
 
 export const persistor = persistStore(store);

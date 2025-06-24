@@ -19,6 +19,7 @@ enum ThingType {
   TROPHY
   TATTOO
   ITEM
+  EFFECT
 }
 
 model WikiLinks {
