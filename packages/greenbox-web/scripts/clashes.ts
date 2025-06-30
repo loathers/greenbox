@@ -1,8 +1,9 @@
 import type { ThingType } from "@prisma/client";
-import { prisma } from "../app/db";
 import { createClient } from "data-of-loathing";
 import { loadTattoos, loadTrophies } from "greenbox-data";
 import he from "he";
+
+import { prisma } from "../app/db";
 
 const client = createClient();
 
@@ -19,29 +20,40 @@ const findDuplicates = (strings: string[]) => {
   return duplicates;
 };
 
-
 const data = await client.query({
   allSkills: {
     nodes: {
       name: true,
-    }
+      skillModifierBySkill: {
+        modifiers: true,
+      },
+    },
   },
   allEffects: {
     nodes: {
       name: true,
-    }
+      effectModifierByEffect: {
+        modifiers: true,
+      },
+    },
   },
   allItems: {
     nodes: {
       name: true,
-    }
+      itemModifierByItem: {
+        modifiers: true,
+      },
+    },
   },
   allFamiliars: {
     nodes: {
       name: true,
-    }
+      familiarModifierByFamiliar: {
+        modifiers: true,
+      },
+    },
   },
-})
+});
 
 const tattoos = loadTattoos()?.data ?? [];
 const trophies = loadTrophies()?.data ?? [];
@@ -56,17 +68,38 @@ const things = {
 };
 
 function isThingType(type: string): type is ThingType {
-  return [
-    "SKILL",
-    "EFFECT",
-    "ITEM",
-    "FAMILIAR",
-    "TATTOO",
-    "TROPHY",
-  ].includes(type);
+  return ["SKILL", "EFFECT", "ITEM", "FAMILIAR", "TATTOO", "TROPHY"].includes(
+    type,
+  );
 }
 
-const thingNames = Object.values(things).flatMap((t) => t.map((e) => e?.name)).filter((name) => name !== undefined);
+function wikiName(
+  thing: (typeof things)[keyof typeof things][number],
+): string | null {
+  if (!thing) return null;
+  let modifiers;
+  if ("skillModifierBySkill" in thing) {
+    modifiers = thing.skillModifierBySkill?.modifiers;
+  } else if ("effectModifierByEffect" in thing) {
+    modifiers = thing.effectModifierByEffect?.modifiers;
+  } else if ("itemModifierByItem" in thing) {
+    modifiers = thing.itemModifierByItem?.modifiers;
+  } else if ("familiarModifierByFamiliar" in thing) {
+    modifiers = thing.familiarModifierByFamiliar?.modifiers;
+  } else {
+    return null;
+  }
+  if (!modifiers) return null;
+  if ("Wiki Name" in modifiers === false) return null;
+  const wikiName = modifiers["Wiki Name"];
+  if (typeof wikiName !== "string") return null;
+  console.log(wikiName);
+  return wikiName.slice(1, -1);
+}
+
+const thingNames = Object.values(things)
+  .flatMap((t) => t.map((e) => e?.name))
+  .filter((name) => name !== undefined);
 
 const clashes = findDuplicates(thingNames);
 
@@ -78,13 +111,14 @@ for (const [type, thingsOfType] of Object.entries(things)) {
   if (!isThingType(type)) continue;
 
   const wikiLinks = thingsOfType
-    .map((e) => e?.name)
-    .filter((name) => name !== undefined)
-    .filter((name) => clashes.has(name))
-    .map((name) => ({
-      name,
+    .filter((e) => e && e.name !== undefined)
+    .filter((e) => clashes.has(e!.name) || wikiName(e))
+    .map((e) => ({
+      name: e!.name,
       type,
-      url: `${he.decode(name).replaceAll(" ", "_")}_(${type.toLowerCase()})`,
+      url:
+        wikiName(e)?.replaceAll(" ", "_") ??
+        `${he.decode(e!.name).replaceAll(" ", "_")}_(${type.toLowerCase()})`,
       manual: false,
     }));
 
