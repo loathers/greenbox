@@ -22,10 +22,13 @@ type WikiLinkProviderProps = {
   wikiLinks: WikiLink[];
 };
 
-export function WikiLinkProvider({ children, wikiLinks }: WikiLinkProviderProps) {
+export function WikiLinkProvider({
+  children,
+  wikiLinks,
+}: WikiLinkProviderProps) {
   const getWikiLink = (thingType: ThingType, name: string): string | null => {
     const link = wikiLinks.find(
-      (wl) => wl.type === thingType && wl.name === name
+      (wl) => wl.type === thingType && wl.name === name,
     );
     return link ? link.url : null;
   };
@@ -37,11 +40,15 @@ export function WikiLinkProvider({ children, wikiLinks }: WikiLinkProviderProps)
   );
 }
 
-export function useWikiLink(thingType: ThingType, name: string, link?: string): string | null {
+export function useWikiLink(
+  thingType: ThingType,
+  name: string,
+  link?: string,
+): string | null {
   if (link) return link;
   const context = useContext(WikiLinkContext);
   if (!context) {
     throw new Error("useWikiLink must be used within a WikiLinkProvider");
   }
   return context.getWikiLink(thingType, name);
-} 
+}

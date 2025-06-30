@@ -1,4 +1,5 @@
 import { Flex } from "@chakra-ui/react";
+import { useWikiLink } from "app/contexts/WikiLinkProvider.js";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useAppSelector } from "../hooks.js";
@@ -6,7 +7,6 @@ import type { SkillType } from "../store/index.js";
 import { useColorModeFilter } from "../theme.js";
 
 import Spinner from "./Spinner.js";
-import { useWikiLink } from "app/contexts/WikiLinkProvider.js";
 
 type Props = {
   skill: SkillType;

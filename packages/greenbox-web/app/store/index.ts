@@ -243,10 +243,7 @@ export const greenboxSlice = createSlice({
   },
 });
 
-const whitelist: (keyof GreenboxState)[] = [
-  ...entities,
-  "sizeAtLastFetch",
-];
+const whitelist: (keyof GreenboxState)[] = [...entities, "sizeAtLastFetch"];
 
 const fakeStorage: Storage = {
   getItem: async () => "",

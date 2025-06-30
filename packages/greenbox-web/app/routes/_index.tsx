@@ -8,7 +8,9 @@ import General from "../components/General.js";
 import Header from "../components/Header.js";
 import OtherItems from "../components/OtherItems.js";
 import QuestRewards from "../components/QuestRewards.js";
+import { WikiLinkProvider } from "../contexts/WikiLinkProvider.js";
 import { favouritePlayer } from "../cookies.server.js";
+import { prisma } from "../db.js";
 import { useAppDispatch } from "../hooks.js";
 import {
   fetchAll,
@@ -16,8 +18,6 @@ import {
   setFavouritePlayer,
   setPlayerId,
 } from "../store/index.js";
-import { WikiLinkProvider } from "../contexts/WikiLinkProvider.js";
-import { prisma } from "../db.js";
 
 import type { Route } from "./+types/_index.js";
 
