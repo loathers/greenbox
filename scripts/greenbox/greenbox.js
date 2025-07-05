@@ -6767,8 +6767,24 @@ var iotms = [
     year: 2025,
     type: "item",
     item: "Peridot of Peril"
-  }
+  },
   // Unpeeled Peridot of Peril
+  {
+    id: 11918,
+    month: 6,
+    year: 2025,
+    type: "item",
+    item: "prismatic beret"
+  },
+  // packaged prismatic beret
+  {
+    id: 11922,
+    month: 7,
+    year: 2025,
+    type: "familiar",
+    familiar: "Cooler Yeti"
+  }
+  // yeti in a travel cooler
 ], iotms_default = iotms;
 
 // ../greenbox-data/dist/lib/iotms.js
