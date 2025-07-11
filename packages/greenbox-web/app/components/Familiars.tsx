@@ -28,16 +28,28 @@ export default function Familiars() {
         .toSorted(sortByKey(sortBy)),
     [allFamiliars, sortBy],
   );
+  const unownableFamiliars = useMemo(
+    () => allFamiliars.filter((s) => !isFamiliarOwnable(s)).map((s) => s.id),
+    [allFamiliars],
+  );
   const loading = useAppSelector((state) => state.loading.familiars || false);
 
   const totalInTerrarium = useMemo(
     () =>
-      playerFamiliars.filter((f) => f[1] === FamiliarStatus.TERRARIUM).length,
+      playerFamiliars.filter(
+        ([id, status]) =>
+          !unownableFamiliars.includes(id) &&
+          status === FamiliarStatus.TERRARIUM,
+      ).length,
     [playerFamiliars],
   );
   const totalAsHatchlings = useMemo(
     () =>
-      playerFamiliars.filter((f) => f[1] === FamiliarStatus.HATCHLING).length,
+      playerFamiliars.filter(
+        ([id, status]) =>
+          !unownableFamiliars.includes(id) &&
+          status === FamiliarStatus.HATCHLING,
+      ).length,
     [playerFamiliars],
   );
   const idToPlayerFamiliar = useMemo(
