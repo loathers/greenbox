@@ -1,6 +1,6 @@
 import { Container, Tabs } from "@chakra-ui/react";
 import { expand, type RawSnapshotData } from "greenbox-data";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { data, useLoaderData, type LinksFunction } from "react-router";
 
 import ClanDungeons from "../components/ClanDungeons.js";
@@ -80,42 +80,32 @@ export async function loader({ request }: Route.LoaderArgs) {
       { headers },
     );
 
-  try {
-    const response = await fetch(
-      `https://oaf.loathers.net/api/greenbox/${playerId}`,
-    );
-    const json = await response.json();
+  const greenbox = await prisma.greenbox.findFirst({
+    where: { playerId: Number(playerId) },
+    orderBy: { id: "desc" },
+  });
 
-    if (!response.ok) {
-      throw new Error(json.error);
-    }
-
-    return data(
-      {
-        data: json.data as RawSnapshotData,
-        playerId: Number(playerId),
-        favouritePlayer: favouritePlayerId,
-        direct: false,
-        errorMessage: null,
-        wikiLinks,
-      },
-      { headers },
-    );
-  } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : "Unknown error";
-    return data(
-      {
-        playerId: null,
-        data: null,
-        favouritePlayer: favouritePlayerId,
-        direct: false,
-        errorMessage,
-        wikiLinks,
-      },
-      { headers },
-    );
+  if (!greenbox) {
+    return data({
+      data: null, playerId: Number(playerId),
+      favouritePlayer: favouritePlayerId,
+      direct: false,
+      errorMessage: `No data found for player ID ${playerId}. Please check the ID or try again later.`,
+      wikiLinks,
+    });
   }
+
+  return data(
+    {
+      data: greenbox.data as unknown as RawSnapshotData,
+      playerId: Number(playerId),
+      favouritePlayer: favouritePlayerId,
+      direct: false,
+      errorMessage: null,
+      wikiLinks,
+    },
+    { headers },
+  );
 }
 
 export default function MainPage() {

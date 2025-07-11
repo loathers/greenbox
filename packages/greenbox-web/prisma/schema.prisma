@@ -22,11 +22,25 @@ enum ThingType {
   EFFECT
 }
 
+model Greenbox {
+  id        Int      @id @default(autoincrement())
+  playerId  Int
+  player    Player   @relation(fields: [playerId], references: [playerId])
+  data      Json
+  createdAt DateTime @default(now())
+}
+
+model Player {
+  playerId   Int        @id
+  playerName String
+  greenbox   Greenbox[]
+}
+
 model WikiLinks {
-  name      String
-  type      ThingType
-  url       String
-  manual    Boolean
+  name   String
+  type   ThingType
+  url    String
+  manual Boolean
 
   @@unique([name, type])
 }
