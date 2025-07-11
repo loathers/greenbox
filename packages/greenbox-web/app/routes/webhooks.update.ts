@@ -1,9 +1,9 @@
-import { isSnapshotDifferent } from "app/utils.server.js";
 import { expand } from "greenbox-data";
 import { data } from "react-router";
 import * as z from "zod";
 
 import { prisma } from "../db.js";
+import { isSnapshotDifferent } from "../utils.server.js";
 
 import type { Route } from "./+types/webhooks.update.js";
 

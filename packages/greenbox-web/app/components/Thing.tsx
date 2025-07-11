@@ -1,9 +1,8 @@
 import { Box, LinkBox, LinkOverlay, useToken } from "@chakra-ui/react";
-import { useWikiLink } from "app/contexts/WikiLinkProvider.js";
 import he from "he";
 import { forwardRef, useEffect, useState } from "react";
 
-import { useAppSelector } from "../hooks.js";
+import { useWikiLink } from "../contexts/WikiLinkProvider.js";
 
 import AlphaImage from "./AlphaImage.js";
 

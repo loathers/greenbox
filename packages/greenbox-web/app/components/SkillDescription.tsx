@@ -1,8 +1,7 @@
 import { Flex } from "@chakra-ui/react";
-import { useWikiLink } from "app/contexts/WikiLinkProvider.js";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { useAppSelector } from "../hooks.js";
+import { useWikiLink } from "../contexts/WikiLinkProvider.js";
 import type { SkillType } from "../store/index.js";
 import { useColorModeFilter } from "../theme.js";
 
