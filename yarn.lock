@@ -7133,7 +7133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"greenbox-data@npm:*, greenbox-data@workspace:^, greenbox-data@workspace:packages/greenbox-data":
+"greenbox-data@npm:*, greenbox-data@workspace:*, greenbox-data@workspace:packages/greenbox-data":
   version: 0.0.0-use.local
   resolution: "greenbox-data@workspace:packages/greenbox-data"
   dependencies:
@@ -7218,7 +7218,7 @@ __metadata:
     date-fns: "npm:^4.1.0"
     fast-equals: "npm:^5.2.2"
     gql.tada: "npm:^1.8.11"
-    greenbox-data: "workspace:^"
+    greenbox-data: "workspace:*"
     greenbox-prettier-config: "npm:^0.0.0"
     he: "npm:^1.2.0"
     isbot: "npm:^5.1.28"
