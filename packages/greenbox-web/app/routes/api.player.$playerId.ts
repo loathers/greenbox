@@ -33,10 +33,7 @@ export async function action({ request, params }: Route.ActionArgs) {
     }
 
     return data(
-      {
-        success: true,
-        player,
-      },
+      player,
       { status: 200 },
     );
   } catch (error) {
