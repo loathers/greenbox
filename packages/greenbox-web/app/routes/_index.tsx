@@ -87,7 +87,8 @@ export async function loader({ request }: Route.LoaderArgs) {
 
   if (!greenbox) {
     return data({
-      data: null, playerId: Number(playerId),
+      data: null,
+      playerId: Number(playerId),
       favouritePlayer: favouritePlayerId,
       direct: false,
       errorMessage: `No data found for player ID ${playerId}. Please check the ID or try again later.`,

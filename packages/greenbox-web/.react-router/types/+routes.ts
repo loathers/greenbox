@@ -13,12 +13,26 @@ type Pages = {
   "/": {
     params: {};
   };
+  "/webhooks/update": {
+    params: {};
+  };
+  "/webhooks/wipe": {
+    params: {};
+  };
 };
 
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/";
+    page: "/" | "/webhooks/update" | "/webhooks/wipe";
+  };
+  "routes/webhooks.update.ts": {
+    id: "routes/webhooks.update";
+    page: "/webhooks/update";
+  };
+  "routes/webhooks.wipe.ts": {
+    id: "routes/webhooks.wipe";
+    page: "/webhooks/wipe";
   };
   "routes/_index.tsx": {
     id: "routes/_index";
