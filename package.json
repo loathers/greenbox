@@ -15,5 +15,8 @@
     "preview": "yarn workspace greenbox-web run preview",
     "dev": "yarn workspace greenbox-web run dev"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "packageManager": "yarn@4.6.0"
 }
