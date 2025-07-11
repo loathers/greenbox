@@ -4,7 +4,7 @@ import { prisma } from "../db.js";
 
 import type { Route } from "./+types/api.player.$playerId.js";
 
-export async function action({ params }: Route.ActionArgs) {
+export async function action({ request, params }: Route.ActionArgs) {
   // Only allow POST requests
   if (request.method !== "GET") {
     return data({ error: "Method not allowed" }, { status: 405 });
