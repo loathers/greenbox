@@ -48,19 +48,24 @@ export async function action({ request }: Route.ActionArgs) {
 
     const greenboxData = expand(greenboxString);
 
-    let id;
-
-    if (isSnapshotDifferent(player.greenbox.at(0)?.data, greenboxData)) {
-      const created = await prisma.greenbox.create({
-        data: {
-          playerId,
-          data: { ...greenboxData },
+    if (!isSnapshotDifferent(player.greenbox.at(0)?.data, greenboxData)) {
+      const id = player.greenbox.at(0)!.id;
+      return data(
+        {
+          success: true,
+          id,
+          message: "Greenbox data unchanged since last update",
         },
-      });
-      id = created.id;
-    } else {
-      id = player.greenbox.at(0)!.id;
+        { status: 201 },
+      );
     }
+
+    const { id } = await prisma.greenbox.create({
+      data: {
+        playerId,
+        data: { ...greenboxData },
+      },
+    });
 
     return data(
       {
