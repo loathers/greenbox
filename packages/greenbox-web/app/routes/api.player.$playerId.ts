@@ -33,7 +33,7 @@ export async function action({ request, params }: Route.ActionArgs) {
     }
 
     return data(
-      player,
+      { ...player, greenbox: player.greenbox[0] ?? null },
       { status: 200 },
     );
   } catch (error) {
