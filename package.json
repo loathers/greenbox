@@ -6,14 +6,14 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^5.2.1",
-    "prettier": "^3.4.2"
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "prettier": "^3.6.2"
   },
   "scripts": {
     "build": "yarn workspaces foreach --all run build",
     "format": "yarn workspaces foreach --all run format",
     "preview": "yarn workspace greenbox-web run preview",
-    "watch": "yarn workspace greenbox-web run watch"
+    "dev": "yarn workspace greenbox-web run dev"
   },
   "packageManager": "yarn@4.6.0"
 }
