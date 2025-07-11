@@ -13,6 +13,11 @@ type Pages = {
   "/": {
     params: {};
   };
+  "/api/player/:playerId": {
+    params: {
+      "playerId": string;
+    };
+  };
   "/webhooks/update": {
     params: {};
   };
@@ -24,7 +29,11 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/webhooks/update" | "/webhooks/wipe";
+    page: "/" | "/api/player/:playerId" | "/webhooks/update" | "/webhooks/wipe";
+  };
+  "routes/api.player.$playerId.ts": {
+    id: "routes/api.player.$playerId";
+    page: "/api/player/:playerId";
   };
   "routes/webhooks.update.ts": {
     id: "routes/webhooks.update";
