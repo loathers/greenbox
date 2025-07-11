@@ -35,12 +35,20 @@ export async function action({ request }: Route.ActionArgs) {
       {
         success: true,
         playerId,
-        message: `${count} greenbox records deleted successfully`,
+        message: `All greenbox records deleted`,
+        count,
       },
       { status: 200 },
     );
   } catch (error) {
     console.error("Error wiping greenbox data:", error);
+
+    if (error instanceof z.ZodError) {
+      return data(
+        { error: "Invalid request body", reason: z.prettifyError(error) },
+        { status: 400 },
+      );
+    }
 
     // Handle JSON parsing errors
     if (error instanceof SyntaxError) {

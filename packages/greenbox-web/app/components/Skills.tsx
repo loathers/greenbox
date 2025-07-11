@@ -42,24 +42,12 @@ export default function Skills() {
     [playerSkills],
   );
 
-  const idToClass = useMemo(
-    () =>
-      classes.reduce(
-        (acc, c) => ({ ...acc, [c.id]: c }),
-        {} as Record<number, (typeof classes)[number]>,
-      ),
-    [classes],
-  );
-
   const groupedSkills = useMemo(
     () =>
-      skills.reduce(
-        (acc, s) => {
-          const bucket = getSkillBucket(s);
-          return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
-        },
-        {} as Record<number, SkillType[]>,
-      ),
+      skills.reduce<Record<number, SkillType[]>>((acc, s) => {
+        const bucket = getSkillBucket(s);
+        return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
+      }, {}),
     [skills],
   );
 
@@ -142,7 +130,7 @@ export default function Skills() {
           <SkillBucket
             key={bucket}
             bucket={Number(bucket)}
-            cls={idToClass[Number(bucket)]}
+            cls={classes[Number(bucket)]}
             medal={allHardcorePermed}
           >
             <SimpleGrid columns={6} gap={1}>

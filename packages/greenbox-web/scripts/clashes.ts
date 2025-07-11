@@ -93,7 +93,6 @@ function wikiName(
   if ("Wiki Name" in modifiers === false) return null;
   const wikiName = modifiers["Wiki Name"];
   if (typeof wikiName !== "string") return null;
-  console.log(wikiName);
   return wikiName.slice(1, -1);
 }
 

@@ -39,12 +39,8 @@ export default function Path({
     return allFamiliars.filter((f) => pathFamiliars.includes(f.id));
   }, [allFamiliars, path]);
 
-  const idToFamiliar = useMemo(
-    () =>
-      playerFamiliars.reduce(
-        (acc, f) => ({ ...acc, [f[0]]: f }),
-        {} as Record<number, (typeof playerFamiliars)[number]>,
-      ),
+  const idToPlayerFamiliar = useMemo(
+    () => Object.fromEntries(playerFamiliars.map((f) => [f[0], f])),
     [playerFamiliars],
   );
 
@@ -107,7 +103,7 @@ export default function Path({
               <Familiar
                 key={f.id}
                 familiar={f}
-                status={idToFamiliar[f.id]?.[1] ?? 0}
+                status={idToPlayerFamiliar[f.id]?.[1] ?? 0}
               />
             ))}
           </SimpleGrid>

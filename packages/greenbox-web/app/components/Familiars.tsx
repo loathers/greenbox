@@ -40,12 +40,8 @@ export default function Familiars() {
       playerFamiliars.filter((f) => f[1] === FamiliarStatus.HATCHLING).length,
     [playerFamiliars],
   );
-  const idToFamiliar = useMemo(
-    () =>
-      playerFamiliars.reduce(
-        (acc, f) => ({ ...acc, [f[0]]: f }),
-        {} as Record<number, (typeof playerFamiliars)[number]>,
-      ),
+  const idToPlayerFamiliar = useMemo(
+    () => Object.fromEntries(playerFamiliars.map((f) => [f[0], f])),
     [playerFamiliars],
   );
 
@@ -53,7 +49,7 @@ export default function Familiars() {
     () =>
       allFamiliars
         .filter((s) => !isFamiliarOwnable(s))
-        .filter((f) => idToFamiliar[f.id]?.[2] ?? false),
+        .filter((f) => idToPlayerFamiliar[f.id]?.[2] ?? false),
     [allFamiliars],
   );
 
@@ -88,8 +84,8 @@ export default function Familiars() {
           <Familiar
             key={f.id}
             familiar={f}
-            status={idToFamiliar[f.id]?.[1] ?? 0}
-            hundredPercent={idToFamiliar[f.id]?.[2] ?? false}
+            status={idToPlayerFamiliar[f.id]?.[1] ?? 0}
+            hundredPercent={idToPlayerFamiliar[f.id]?.[2] ?? false}
           />
         ))}
       </SimpleGrid>

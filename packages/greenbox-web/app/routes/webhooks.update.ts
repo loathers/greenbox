@@ -66,12 +66,19 @@ export async function action({ request }: Route.ActionArgs) {
       {
         success: true,
         id,
-        message: "Greenbox data saved successfully",
+        message: "Greenbox data saved",
       },
       { status: 201 },
     );
   } catch (error) {
     console.error("Error saving greenbox data:", error);
+
+    if (error instanceof z.ZodError) {
+      return data(
+        { error: "Invalid request body", reason: z.prettifyError(error) },
+        { status: 400 },
+      );
+    }
 
     // Handle JSON parsing errors
     if (error instanceof SyntaxError) {

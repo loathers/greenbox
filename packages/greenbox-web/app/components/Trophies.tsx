@@ -26,12 +26,8 @@ export default function Tattoos() {
     () => playerTrophies.filter((t) => t[1] == TrophyStatus.HAVE).length,
     [playerTrophies],
   );
-  const idToTrophy = useMemo(
-    () =>
-      playerTrophies.reduce(
-        (acc, t) => ({ ...acc, [t[0]]: t }),
-        {} as Record<number, (typeof playerTrophies)[number]>,
-      ),
+  const idToPlayerTrophy = useMemo(
+    () => Object.fromEntries(playerTrophies.map((t) => [t[0], t])),
     [playerTrophies],
   );
 
@@ -57,7 +53,11 @@ export default function Tattoos() {
       />
       <SimpleGrid columns={[3, null, 6]} gap={1}>
         {trophies.map((t) => (
-          <Trophy key={t.id} trophy={t} status={idToTrophy[t.id]?.[1] ?? 0} />
+          <Trophy
+            key={t.id}
+            trophy={t}
+            status={idToPlayerTrophy[t.id]?.[1] ?? 0}
+          />
         ))}
       </SimpleGrid>
     </Section>

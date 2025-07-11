@@ -20,11 +20,7 @@ export default function OutfitTattoos() {
   );
 
   const idToPlayerTattoo = useMemo(
-    () =>
-      playerTattoos.reduce(
-        (acc, t) => ({ ...acc, [t[0]]: t }),
-        {} as Record<number, (typeof playerTattoos)[number]>,
-      ),
+    () => Object.fromEntries(playerTattoos.map((t) => [t[0], t])),
     [playerTattoos],
   );
 

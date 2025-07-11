@@ -85,7 +85,7 @@ export interface GreenboxState {
   playerData: api.RawSnapshotData | null;
   playerId: number | null;
   favouritePlayerId: number | null;
-  classes: ClassType[];
+  classes: Record<number, ClassType>;
   familiars: FamiliarType[];
   iotms: IotMDef[];
   items: Record<number, ItemType>;
@@ -187,8 +187,16 @@ export const greenboxSlice = createSlice({
       .addCase(fetchData.fulfilled, (state, action) => {
         if (action.payload !== null) {
           const data = action.payload;
-          state.items = data.allItems?.nodes.filter((i) => i != null) ?? [];
-          state.classes = data.allClasses?.nodes.filter((c) => c != null) ?? [];
+          state.items = Object.fromEntries(
+            data.allItems?.nodes
+              .filter((i) => i != null)
+              .map((i) => [i.id, i]) ?? [],
+          );
+          state.classes = Object.fromEntries(
+            data.allClasses?.nodes
+              .filter((c) => c != null)
+              .map((c) => [c.id, c]) ?? [],
+          );
           state.familiars =
             data.allFamiliars?.nodes.filter((f) => f != null) ?? [];
           state.skills = data.allSkills?.nodes.filter((s) => s != null) ?? [];
@@ -292,20 +300,12 @@ export const selectPlayerSkills = createPlayerDataSelector("skills");
 
 export const selectIdToPlayerSkills = createSelector(
   selectPlayerSkills,
-  (playerSkills) =>
-    playerSkills.reduce(
-      (acc, s) => ({ ...acc, [s[0]]: s }),
-      {} as Record<number, (typeof playerSkills)[number]>,
-    ),
+  (playerSkills) => Object.fromEntries(playerSkills.map((s) => [s[0], s])),
 );
 
 export const selectIdToSkills = createSelector(
   (state: RootState) => state.skills,
-  (skills) =>
-    skills.reduce(
-      (acc, s) => ({ ...acc, [s.id]: s }),
-      {} as Record<number, (typeof skills)[number]>,
-    ),
+  (skills) => Object.fromEntries(skills.map((s) => [s.id, s])),
 );
 
 export const selectPlayerFamiliars = createPlayerDataSelector("familiars");
@@ -317,9 +317,5 @@ export const selectPlayerMiscTattoos = createPlayerDataSelector("miscTattoos");
 
 export const selectIdToPlayerItems = createSelector(
   selectPlayerItems,
-  (playerItems) =>
-    playerItems.reduce(
-      (acc, s) => ({ ...acc, [s[0]]: s }),
-      {} as Record<number, (typeof playerItems)[number]>,
-    ),
+  (playerItems) => Object.fromEntries(playerItems.map((s) => [s[0], s])),
 );

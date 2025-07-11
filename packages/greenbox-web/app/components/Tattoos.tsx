@@ -30,11 +30,7 @@ export default function Tattoos() {
   const totalPathTattoos = paths.flatMap((p) => p.tattoos).length;
 
   const idToPath = useMemo(
-    () =>
-      paths.reduce(
-        (acc, p) => ({ ...acc, [p.id]: p }),
-        {} as Record<number, PathDef>,
-      ),
+    () => Object.fromEntries(paths.map((p) => [p.id, p])),
     [paths],
   );
 
@@ -42,10 +38,9 @@ export default function Tattoos() {
     () =>
       tattoos
         .filter(isMiscTattoo)
-        .reduce(
-          (acc, t) => ({ ...acc, [t.misc]: getMaxTattooLevel(t) }),
-          {} as Record<number, number>,
-        ),
+        .reduce<
+          Record<number, number>
+        >((acc, t) => ({ ...acc, [t.misc]: getMaxTattooLevel(t) }), {}),
     [tattoos],
   );
 

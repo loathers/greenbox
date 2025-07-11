@@ -22,12 +22,8 @@ export default function Paths() {
   // and the value represents the maximum level for that tattoo
   const maxTattooLevel = useMemo(
     () =>
-      paths.reduce(
-        (acc, p) => ({
-          ...acc,
-          [p.id]: p.tattoos.map(getMaxTattooLevel),
-        }),
-        {} as Record<number, number[]>,
+      Object.fromEntries(
+        paths.map((p) => [p.id, p.tattoos.map(getMaxTattooLevel)]),
       ),
     [paths],
   );
@@ -86,12 +82,8 @@ export default function Paths() {
     [playerPaths, maxTattooLevel],
   );
 
-  const idToPath = useMemo(
-    () =>
-      playerPaths.reduce(
-        (acc, p) => ({ ...acc, [p[0]]: p }),
-        {} as Record<number, (typeof playerPaths)[number]>,
-      ),
+  const idToPlayerPath = useMemo(
+    () => Object.fromEntries(playerPaths.map((p) => [p[0], p])),
     [playerPaths],
   );
 
@@ -125,10 +117,10 @@ export default function Paths() {
         <Path
           key={p.name}
           path={p}
-          points={idToPath[p.id]?.[1] ?? 0}
-          items={idToPath[p.id]?.[2] ?? []}
-          equipment={idToPath[p.id]?.[3] ?? []}
-          tattoos={idToPath[p.id]?.[4] ?? []}
+          points={idToPlayerPath[p.id]?.[1] ?? 0}
+          items={idToPlayerPath[p.id]?.[2] ?? []}
+          equipment={idToPlayerPath[p.id]?.[3] ?? []}
+          tattoos={idToPlayerPath[p.id]?.[4] ?? []}
         />
       ))}
     </Section>

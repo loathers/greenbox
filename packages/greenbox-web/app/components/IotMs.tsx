@@ -37,12 +37,8 @@ export default function IotMs() {
     [playerIotMs],
   );
 
-  const idToStatus = useMemo(
-    () =>
-      playerIotMs.reduce(
-        (acc, i) => ({ ...acc, [i[0]]: i[1] }),
-        {} as Record<number, IotMStatus>,
-      ),
+  const idToPlayerIotM = useMemo(
+    () => Object.fromEntries(playerIotMs.map((i) => [i[0], i[1]])),
     [playerIotMs],
   );
 
@@ -67,7 +63,7 @@ export default function IotMs() {
       max={iotms.length}
     >
       <ThingGrid
-        idToStatus={idToStatus}
+        idToStatus={idToPlayerIotM}
         items={normalizedIotms}
         columns={12}
         getRowLabel={(row) => 2004 + row}
@@ -76,7 +72,7 @@ export default function IotMs() {
             key={iotm.id}
             item={idToItem[iotm.id]}
             iotm={iotm}
-            status={idToStatus[iotm.id] ?? 0}
+            status={idToPlayerIotM[iotm.id] ?? 0}
           />
         )}
       />

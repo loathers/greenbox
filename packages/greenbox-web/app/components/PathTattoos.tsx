@@ -13,11 +13,7 @@ export default function PathTattoos() {
   const playerPaths = useAppSelector(selectPlayerPaths);
 
   const idToPlayerTattoo = useMemo(
-    () =>
-      playerPaths.reduce(
-        (acc, t) => ({ ...acc, [t[0]]: t }),
-        {} as Record<number, (typeof playerPaths)[number]>,
-      ),
+    () => Object.fromEntries(playerPaths.map((t) => [t[0], t])),
     [playerPaths],
   );
 

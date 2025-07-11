@@ -24,10 +24,7 @@ export function loadIotMs(
 export type RawIotM = [id: number, status: IotMStatus];
 
 export const compressIotMs = (iotmList: RawIotM[]): string => {
-  const idToIotM = iotmList.reduce(
-    (acc, i) => ({ ...acc, [i[0]]: i }),
-    {} as Record<number, RawIotM>,
-  );
+  const idToIotM = Object.fromEntries(iotmList.map((i) => [i[0], i]));
 
   return iotms
     .map((iotm) => idToIotM[iotm.id]?.[1] ?? 0)

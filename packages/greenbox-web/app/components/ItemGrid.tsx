@@ -25,11 +25,10 @@ export default function ItemGrid({
 
   const itemObjects = items.map((id) => idToItem[id]);
 
-  const idToStatus = useMemo(
+  const idToPlayerItem = useMemo(
     () =>
-      items.reduce(
-        (acc, item, index) => ({ ...acc, [item]: playerItems[index] }),
-        {} as Record<number, ItemStatus>,
+      Object.fromEntries(
+        items.map((item, index) => [item, playerItems[index]]),
       ),
     [items, playerItems],
   );
@@ -40,14 +39,14 @@ export default function ItemGrid({
       type="item"
       name={item.name}
       image={`itemimages/${item.image}`}
-      state={itemStatusToThingState(idToStatus[item.id] || ItemStatus.NONE)}
+      state={itemStatusToThingState(idToPlayerItem[item.id] || ItemStatus.NONE)}
     />
   );
 
   return (
     <ThingGrid
       items={itemObjects}
-      idToStatus={idToStatus}
+      idToStatus={idToPlayerItem}
       columns={columns}
       getRowLabel={getRowLabel}
       renderItem={renderItem}
