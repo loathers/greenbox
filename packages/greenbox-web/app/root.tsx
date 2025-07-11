@@ -3,7 +3,7 @@ import { ThemeProvider } from "next-themes";
 import { StrictMode } from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
-import { PersistGate } from "redux-persist/integration/react";
+import { PersistGate } from "redux-persist/lib/integration/react";
 
 import { persistor, store } from "./store/index.js";
 import { theme } from "./theme.js";
