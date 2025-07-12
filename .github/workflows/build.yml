@@ -24,4 +24,4 @@ jobs:
         run: |
           corepack enable
           yarn install --immutable
-          yarn workspace run test
+          yarn run test
