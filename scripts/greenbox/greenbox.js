@@ -6793,12 +6793,12 @@ function getIotMs() {
   return iotms_default;
 }
 var compressIotMs = function(iotmList) {
-  var idToIotM = Object.fromEntries(iotmList.map(function(i) {
-    return [i[0], i];
+  var idToIotMStatus = new Map(iotmList.map(function(i) {
+    return [i[0], i[1]];
   }));
   return iotms_default.map(function(iotm) {
-    var _idToIotM$iotm$id$, _idToIotM$iotm$id;
-    return (_idToIotM$iotm$id$ = (_idToIotM$iotm$id = idToIotM[iotm.id]) === null || _idToIotM$iotm$id === void 0 ? void 0 : _idToIotM$iotm$id[1]) !== null && _idToIotM$iotm$id$ !== void 0 ? _idToIotM$iotm$id$ : 0;
+    var _idToIotMStatus$get;
+    return (_idToIotMStatus$get = idToIotMStatus.get(iotm.id)) !== null && _idToIotMStatus$get !== void 0 ? _idToIotMStatus$get : 0;
   }).join("").replace(/0+$/, "");
 };
 
