@@ -6789,12 +6789,8 @@ var iotms = [
 var IotMStatus = /* @__PURE__ */ function(IotMStatus2) {
   return IotMStatus2[IotMStatus2.NONE = 0] = "NONE", IotMStatus2[IotMStatus2.BOXED = 1] = "BOXED", IotMStatus2[IotMStatus2.BOUND = 2] = "BOUND", IotMStatus2;
 }({});
-function loadIotMs() {
-  var lastKnownSize = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0, iotmCount = JSON.stringify(iotms_default).length;
-  return iotmCount === lastKnownSize ? null : {
-    data: iotms_default,
-    size: iotmCount
-  };
+function getIotMs() {
+  return iotms_default;
 }
 var compressIotMs = function(iotmList) {
   var idToIotM = Object.fromEntries(iotmList.map(function(i) {
@@ -8130,12 +8126,8 @@ function _iterableToArrayLimit3(r, l) {
 function _arrayWithHoles3(r) {
   if (Array.isArray(r)) return r;
 }
-function loadPaths() {
-  var lastKnownSize = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0, size = JSON.stringify(paths_default).length;
-  return size === lastKnownSize ? null : {
-    data: paths_default,
-    size: size
-  };
+function getPaths() {
+  return paths_default;
 }
 var pointsRadix = 32, tattooLevelRadix = 16, compressPaths = function(paths2) {
   return paths2.sort(function(a, b) {
@@ -9049,12 +9041,8 @@ var tattoos = [{
 var OutfitTattooStatus = /* @__PURE__ */ function(OutfitTattooStatus2) {
   return OutfitTattooStatus2[OutfitTattooStatus2.NONE = 0] = "NONE", OutfitTattooStatus2[OutfitTattooStatus2.HAVE_OUTFIT = 1] = "HAVE_OUTFIT", OutfitTattooStatus2[OutfitTattooStatus2.HAVE = 2] = "HAVE", OutfitTattooStatus2;
 }({});
-function loadTattoos() {
-  var lastKnownSize = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0, size = JSON.stringify(tattoos_default).length;
-  return size === lastKnownSize ? null : {
-    data: tattoos_default,
-    size: size
-  };
+function getTattoos() {
+  return tattoos_default;
 }
 function isOutfitTattoo(tattoo) {
   return "outfit" in tattoo;
@@ -9747,12 +9735,8 @@ var trophies = [{
 var TrophyStatus = /* @__PURE__ */ function(TrophyStatus2) {
   return TrophyStatus2[TrophyStatus2.NONE = 0] = "NONE", TrophyStatus2[TrophyStatus2.HAVE = 1] = "HAVE", TrophyStatus2;
 }({});
-function loadTrophies() {
-  var lastKnownSize = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0, size = JSON.stringify(trophies_default).length;
-  return size === lastKnownSize ? null : {
-    data: trophies_default,
-    size: size
-  };
+function getTrophies() {
+  return trophies_default;
 }
 var compressTrophies = function(trophies2) {
   return trophies2.sort(function(a, b) {
@@ -11276,8 +11260,8 @@ function _toPrimitive3(t, r) {
 }
 var getBoolean3 = property_exports.getBoolean, getNumber2 = property_exports.getNumber;
 function checkIotMs() {
-  var _loadIotMs$data, _loadIotMs, options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
-  return ((_loadIotMs$data = (_loadIotMs = loadIotMs()) === null || _loadIotMs === void 0 ? void 0 : _loadIotMs.data) !== null && _loadIotMs$data !== void 0 ? _loadIotMs$data : []).map(function(iotm) {
+  var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+  return getIotMs().map(function(iotm) {
     return [iotm.id, getIotMStatus(iotm, options)];
   });
 }
@@ -11328,11 +11312,11 @@ function checkFamiliars() {
   });
 }
 function checkTrophies() {
-  var _loadTrophies$data, _loadTrophies, page = (0, import_kolmafia8.visitUrl)("trophies.php");
+  var page = (0, import_kolmafia8.visitUrl)("trophies.php");
   function getStatus(trophy) {
     return page.includes('"trophy'.concat(trophy.id, '"')) ? TrophyStatus.HAVE : TrophyStatus.NONE;
   }
-  return ((_loadTrophies$data = (_loadTrophies = loadTrophies()) === null || _loadTrophies === void 0 ? void 0 : _loadTrophies.data) !== null && _loadTrophies$data !== void 0 ? _loadTrophies$data : []).map(function(trophy) {
+  return getTrophies().map(function(trophy) {
     return [trophy.id, getStatus(trophy)];
   });
 }
@@ -11348,14 +11332,12 @@ function getTattooStatus(page, tattoo) {
   return outfit && haveOutfitPieces(tattoo.name) ? OutfitTattooStatus.HAVE_OUTFIT : OutfitTattooStatus.NONE;
 }
 function checkOutfitTattoos(page) {
-  var _loadTattoos$data, _loadTattoos;
-  return getOutfitTattoos((_loadTattoos$data = (_loadTattoos = loadTattoos()) === null || _loadTattoos === void 0 ? void 0 : _loadTattoos.data) !== null && _loadTattoos$data !== void 0 ? _loadTattoos$data : []).map(function(tattoo) {
+  return getOutfitTattoos(getTattoos()).map(function(tattoo) {
     return [tattoo.outfit, getTattooStatus(page, tattoo)];
   });
 }
 function checkMiscTattoos(page) {
-  var _loadTattoos$data2, _loadTattoos2;
-  return getMiscTattoos((_loadTattoos$data2 = (_loadTattoos2 = loadTattoos()) === null || _loadTattoos2 === void 0 ? void 0 : _loadTattoos2.data) !== null && _loadTattoos$data2 !== void 0 ? _loadTattoos$data2 : []).map(function(tattoo) {
+  return getMiscTattoos(getTattoos()).map(function(tattoo) {
     return [tattoo.misc, getTattooStatus(page, tattoo)];
   });
 }
@@ -11373,10 +11355,10 @@ function getPathLevel(path) {
   }, 0), path.maxPoints);
 }
 function checkPaths(tattoos2) {
-  var _loadPaths$data, _loadPaths, getTattooLevelForPage = function(t) {
+  var getTattooLevelForPage = function(t) {
     return getTattooStatus(tattoos2, t);
   };
-  return ((_loadPaths$data = (_loadPaths = loadPaths()) === null || _loadPaths === void 0 ? void 0 : _loadPaths.data) !== null && _loadPaths$data !== void 0 ? _loadPaths$data : []).map(function(path) {
+  return getPaths().map(function(path) {
     var level = getPathLevel(path), items = path.items.map(function(i) {
       return haveItem(import_kolmafia8.Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE;
     }), equipment = path.equipment.map(function(i) {
