@@ -23,7 +23,6 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install --immutable
-          yarn workspace greenbox-data run build
 
       - name: Build script
         run: yarn workspace greenbox-script run build
