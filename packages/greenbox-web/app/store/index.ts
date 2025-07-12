@@ -93,7 +93,6 @@ export interface GreenboxState {
   skills: SkillType[];
   tattoos: TattooDef[];
   trophies: TrophyDef[];
-  sizeAtLastFetch: Partial<{ [K in keyof GreenboxState | "data"]: number }>;
   loading: Partial<{ [K in keyof GreenboxState | "data"]: boolean }>;
   error: Partial<{ [K in keyof GreenboxState]: boolean }>;
   errorMessage: Partial<{ [K in keyof GreenboxState]: string }>;
@@ -105,18 +104,12 @@ const initialState: GreenboxState = {
   favouritePlayerId: null,
   classes: [],
   familiars: [],
-  iotms: [],
+  iotms: api.getIotMs(),
   items: [],
-  paths: [],
+  paths: api.getPaths(),
   skills: [],
-  tattoos: [],
-  trophies: [],
-  sizeAtLastFetch: {
-    iotms: 0,
-    paths: 0,
-    tattoos: 0,
-    trophies: 0,
-  },
+  tattoos: api.getTattoos(),
+  trophies: api.getTrophies(),
   loading: {
     iotms: false,
     paths: false,
@@ -137,34 +130,6 @@ export const setFavouritePlayer = createAction<number | null>(
 export const setPlayerId = createAction<number | null>("playerId/set");
 
 export const fetchData = createAsyncThunk("data/fetch", async () => dataQuery);
-export const fetchIotMs = createAsyncThunk(
-  "iotms/fetch",
-  async (size: number) => api.loadIotMs(size),
-);
-export const fetchPaths = createAsyncThunk(
-  "paths/fetch",
-  async (size: number) => api.loadPaths(size),
-);
-export const fetchTattoos = createAsyncThunk(
-  "tattoos/fetch",
-  async (size: number) => api.loadTattoos(size),
-);
-export const fetchTrophies = createAsyncThunk(
-  "trophies/fetch",
-  async (size: number) => api.loadTrophies(size),
-);
-
-export const fetchAll = createAsyncThunk(
-  "all/fetch",
-  async (force: boolean, { getState, dispatch }) => {
-    const state = getState() as RootState;
-    dispatch(fetchData());
-    dispatch(fetchIotMs(force ? 0 : (state.sizeAtLastFetch.iotms ?? 0)));
-    dispatch(fetchPaths(force ? 0 : (state.sizeAtLastFetch.paths ?? 0)));
-    dispatch(fetchTattoos(force ? 0 : (state.sizeAtLastFetch.tattoos ?? 0)));
-    dispatch(fetchTrophies(force ? 0 : (state.sizeAtLastFetch.trophies ?? 0)));
-  },
-);
 
 export const greenboxSlice = createSlice({
   name: "greenbox",
@@ -203,55 +168,9 @@ export const greenboxSlice = createSlice({
         }
 
         state.loading.data = false;
-      })
-      .addCase(fetchIotMs.pending, (state) => {
-        state.loading.iotms = true;
-      })
-      .addCase(fetchIotMs.fulfilled, (state, action) => {
-        if (action.payload !== null) {
-          state.iotms = action.payload.data;
-          state.sizeAtLastFetch.iotms = action.payload.size;
-        }
-
-        state.loading.iotms = false;
-      })
-      .addCase(fetchPaths.pending, (state) => {
-        state.loading.paths = true;
-      })
-      .addCase(fetchPaths.fulfilled, (state, action) => {
-        if (action.payload !== null) {
-          state.paths = action.payload.data;
-          state.sizeAtLastFetch.paths = action.payload.size;
-        }
-
-        state.loading.paths = false;
-      })
-      .addCase(fetchTattoos.pending, (state) => {
-        state.loading.tattoos = true;
-      })
-      .addCase(fetchTattoos.fulfilled, (state, action) => {
-        if (action.payload !== null) {
-          state.tattoos = action.payload.data;
-          state.sizeAtLastFetch.tattoos = action.payload.size;
-        }
-
-        state.loading.tattoos = false;
-      })
-      .addCase(fetchTrophies.pending, (state) => {
-        state.loading.trophies = true;
-      })
-      .addCase(fetchTrophies.fulfilled, (state, action) => {
-        if (action.payload !== null) {
-          state.trophies = action.payload.data;
-          state.sizeAtLastFetch.trophies = action.payload.size;
-        }
-
-        state.loading.trophies = false;
       });
   },
 });
-
-const whitelist: (keyof GreenboxState)[] = [...entities, "sizeAtLastFetch"];
 
 const fakeStorage: Storage = {
   getItem: async () => "",
@@ -261,7 +180,7 @@ const fakeStorage: Storage = {
 
 const persistedReducer = persistReducer(
   {
-    whitelist,
+    whitelist: [...entities],
     key: "greenbox",
     version: 1,
     storage: typeof window === "undefined" ? fakeStorage : storage,

@@ -11,7 +11,7 @@ import { type RawSnapshotData } from "greenbox-data";
 import { useCallback } from "react";
 
 import { useAppDispatch } from "../hooks.js";
-import { fetchAll } from "../store/index.js";
+import { fetchData } from "../store/index.js";
 
 import MetaInfo from "./MetaInfo.js";
 import Spinner from "./Spinner.js";
@@ -32,12 +32,6 @@ export default function Header({
   error,
   errorMessage,
 }: Props) {
-  const dispatch = useAppDispatch();
-
-  const forceUpdate = useCallback(() => {
-    dispatch(fetchAll(true));
-  }, [dispatch]);
-
   return (
     <Stack as="section" alignItems="stretch" py={2} gap={5}>
       <HStack alignItems="center" flex={1} maxWidth="100%" wrap="wrap">

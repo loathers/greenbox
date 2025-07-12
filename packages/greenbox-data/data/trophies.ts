@@ -1,4 +1,4 @@
-import { TrophyDef } from "../lib/types.js";
+import type { TrophyDef } from "../lib/types.js";
 
 const trophies: TrophyDef[] = [
   { id: 1, name: "Little Boat", image: "gonna_need_a_smaller_boat" },

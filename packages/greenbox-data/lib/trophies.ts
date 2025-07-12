@@ -5,17 +5,8 @@ export enum TrophyStatus {
   HAVE = 1,
 }
 
-export function loadTrophies(
-  lastKnownSize = 0,
-): { data: typeof trophies; size: number } | null {
-  const size = JSON.stringify(trophies).length;
-
-  if (size === lastKnownSize) return null;
-
-  return {
-    data: trophies as unknown as typeof trophies,
-    size: size,
-  };
+export function getTrophies() {
+  return trophies;
 }
 
 export type RawTrophy = [id: number, status: TrophyStatus];

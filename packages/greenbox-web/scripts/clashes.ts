@@ -1,6 +1,6 @@
 import type { ThingType } from "@prisma/client";
 import { createClient } from "data-of-loathing";
-import { loadTattoos, loadTrophies } from "greenbox-data";
+import { getTattoos, getTrophies } from "greenbox-data";
 import he from "he";
 
 import { prisma } from "../app/db";
@@ -55,8 +55,8 @@ const data = await client.query({
   },
 });
 
-const tattoos = loadTattoos()?.data ?? [];
-const trophies = loadTrophies()?.data ?? [];
+const tattoos = getTattoos();
+const trophies = getTrophies();
 
 const things = {
   SKILL: data.allSkills?.nodes ?? [],

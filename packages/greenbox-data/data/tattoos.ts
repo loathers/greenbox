@@ -1,4 +1,4 @@
-import { TattooDef } from "../lib/types.js";
+import type { TattooDef } from "../lib/types.js";
 
 const tattoos: TattooDef[] = [
   { name: "8-Bit Finery", image: "swordtat", outfit: 15 },

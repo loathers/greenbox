@@ -13,7 +13,7 @@ import { favouritePlayer } from "../cookies.server.js";
 import { prisma } from "../db.js";
 import { useAppDispatch } from "../hooks.js";
 import {
-  fetchAll,
+  fetchData,
   loadPlayerData,
   setFavouritePlayer,
   setPlayerId,
@@ -129,7 +129,7 @@ export default function MainPage() {
   }, [dispatch, favouritePlayer]);
 
   useEffect(() => {
-    dispatch(fetchAll(false));
+    dispatch(fetchData());
   }, [dispatch]);
 
   return (

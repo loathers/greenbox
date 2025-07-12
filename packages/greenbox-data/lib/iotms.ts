@@ -1,4 +1,4 @@
-import iotms, { IotMDef } from "../data/iotms.js";
+import iotms, { type IotMDef } from "../data/iotms.js";
 
 export enum IotMStatus {
   NONE = 0,
@@ -8,17 +8,8 @@ export enum IotMStatus {
 
 export type { IotMDef };
 
-export function loadIotMs(
-  lastKnownSize = 0,
-): { data: typeof iotms; size: number } | null {
-  const iotmCount = JSON.stringify(iotms).length;
-
-  if (iotmCount === lastKnownSize) return null;
-
-  return {
-    data: iotms,
-    size: iotmCount,
-  };
+export function getIotMs() {
+  return iotms;
 }
 
 export type RawIotM = [id: number, status: IotMStatus];

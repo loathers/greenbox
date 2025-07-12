@@ -24,20 +24,7 @@ There are two core folders within **greenbox-data** -- the `data` folder and the
   { id: 1242, month: 6, year: 2005, type: "familiar", familiar: "inflatable dodecapede" }, // deflated inflatable dodecapede
 ```
 
-These files are ingested by functions within the `lib` folder, which take the data as written and stage it in formats where it can be used by **greenbox-script** and **greenbox-web**. `lib` contains a few more files than you have in the `data` folder; this is on purpose, as many of the files within `lib` actually generate _their own_ data files by accessing base mafia data and using that to generate the greenbox data needed. For example, there is a snippet within the `lib/familiars.ts` file as follows:
-
-```js
-export const loadFamiliars = async (lastKnownSize: number) => {
-  const raw = await loadMafiaData("familiars", lastKnownSize);
-
-  if (raw === null) return null;
-
-  return {
-    ...raw,
-    data: raw.data.filter((p) => p.length > 2).map(parseFamiliar),
-  };
-};
-```
+These files are ingested by functions within the `lib` folder, which take the data as written and stage it in formats where it can be used by **greenbox-script** and **greenbox-web**. `lib` contains a few more files than you have in the `data` folder; this is on purpose, as many of the files within `lib` actually generate _their own_ data files by accessing base mafia data via [Data of Loathing](https://github.com/loathers/data-of-loathing).
 
 As you might expect, this loads up the mafia data for familiars; this means that when new familiars are added, this script actually doesn't need any changes -- simply changing the core mafia data will update the familiars that Greenbox has access to!
 

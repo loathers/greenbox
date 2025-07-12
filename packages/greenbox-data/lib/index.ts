@@ -3,15 +3,19 @@ import jsoncrush from "jsoncrush";
 import {
   compressFamiliars,
   expandFamiliars,
-  RawFamiliar,
+  type RawFamiliar,
 } from "./familiars.js";
-import { compressIotMs, expandIotMs, RawIotM } from "./iotms.js";
-import { compressItems, expandItems, RawItem } from "./items.js";
-import { compressMeta, expandMeta, Meta } from "./meta.js";
-import { compressPaths, expandPaths, RawPath } from "./paths.js";
-import { compressSkills, expandSkills, RawSkill } from "./skills.js";
-import { compressTattoos, expandTattoos, RawTattoo } from "./tattoos.js";
-import { compressTrophies, expandTrophies, RawTrophy } from "./trophies.js";
+import { compressIotMs, expandIotMs, type RawIotM } from "./iotms.js";
+import { compressItems, expandItems, type RawItem } from "./items.js";
+import { compressMeta, expandMeta, type Meta } from "./meta.js";
+import { compressPaths, expandPaths, type RawPath } from "./paths.js";
+import { compressSkills, expandSkills, type RawSkill } from "./skills.js";
+import { compressTattoos, expandTattoos, type RawTattoo } from "./tattoos.js";
+import {
+  compressTrophies,
+  expandTrophies,
+  type RawTrophy,
+} from "./trophies.js";
 
 export * from "./familiars.js";
 export * from "./items.js";
@@ -19,7 +23,7 @@ export * from "./paths.js";
 export * from "./skills.js";
 export type { RawTattoo } from "./tattoos.js";
 export {
-  loadTattoos,
+  getTattoos,
   getMiscTattoos,
   getOutfitTattoos,
   getMaxTattooLevel,

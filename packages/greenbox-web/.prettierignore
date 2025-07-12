@@ -1,2 +1,3 @@
-.react-router
+.react-router/
+build/
 data.loathers.d.ts

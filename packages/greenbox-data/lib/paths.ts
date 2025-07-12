@@ -5,17 +5,8 @@ import { tuple } from "./utils.js";
 
 export { SOFTCORE, HARDCORE };
 
-export function loadPaths(
-  lastKnownSize = 0,
-): { data: typeof paths; size: number } | null {
-  const size = JSON.stringify(paths).length;
-
-  if (size === lastKnownSize) return null;
-
-  return {
-    data: paths as unknown as typeof paths,
-    size: size,
-  };
+export function getPaths() {
+  return paths;
 }
 
 export type RawPath = [
