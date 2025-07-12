@@ -1,5 +1,5 @@
 import * as fs from "fs/promises";
-import { loadTattoos, OutfitTattooStatus } from "greenbox-data";
+import { getTattoos, OutfitTattooStatus } from "greenbox-data";
 import { describe, expect, it, vi } from "vitest";
 
 import { getTattooStatus } from "./greenbox.js";
@@ -10,7 +10,7 @@ vi.mock("libram", () => ({
   },
 }));
 
-const tattoos = loadTattoos()?.data ?? [];
+const tattoos = getTattoos();
 
 describe("Tattoo parsing", () => {
   it("can detect lack of Gattoo when player has other substring tattoos", async () => {

@@ -6,10 +6,10 @@ import {
   getOutfitTattoos,
   isOutfitTattoo,
   ItemStatus,
-  loadIotMs,
-  loadPaths,
-  loadTattoos,
-  loadTrophies,
+  getIotMs,
+  getPaths,
+  getTattoos,
+  getTrophies,
   OutfitTattooStatus,
   PathDef,
   RawFamiliar,
@@ -55,10 +55,7 @@ const { getBoolean, getNumber } = property;
  * @returns array of 2-tuples of item id (of the packaged item) and status
  */
 function checkIotMs(options: IotMOptions = {}): RawIotM[] {
-  return (loadIotMs()?.data ?? []).map((iotm) => [
-    iotm.id,
-    getIotMStatus(iotm, options),
-  ]);
+  return getIotMs().map((iotm) => [iotm.id, getIotMStatus(iotm, options)]);
 }
 
 /**
@@ -159,10 +156,7 @@ function checkTrophies(): RawTrophy[] {
       : TrophyStatus.NONE;
   }
 
-  return (loadTrophies()?.data ?? []).map((trophy) => [
-    trophy.id,
-    getStatus(trophy),
-  ]);
+  return getTrophies().map((trophy) => [trophy.id, getStatus(trophy)]);
 }
 
 /**
@@ -196,14 +190,14 @@ export function getTattooStatus(page: string, tattoo: TattooDef) {
 }
 
 function checkOutfitTattoos(page: string): RawTattoo[] {
-  return getOutfitTattoos(loadTattoos()?.data ?? []).map((tattoo) => [
+  return getOutfitTattoos(getTattoos()).map((tattoo) => [
     tattoo.outfit,
     getTattooStatus(page, tattoo),
   ]);
 }
 
 function checkMiscTattoos(page: string): RawTattoo[] {
-  return getMiscTattoos(loadTattoos()?.data ?? []).map((tattoo) => [
+  return getMiscTattoos(getTattoos()).map((tattoo) => [
     tattoo.misc,
     getTattooStatus(page, tattoo),
   ]);
@@ -228,7 +222,7 @@ function getPathLevel(path: PathDef) {
 
 function checkPaths(tattoos: string): RawPath[] {
   const getTattooLevelForPage = (t: TattooDef) => getTattooStatus(tattoos, t);
-  return (loadPaths()?.data ?? []).map((path) => {
+  return getPaths().map((path) => {
     const level = getPathLevel(path);
     const items = path.items.map((i) =>
       haveItem(Item.get(i)) ? ItemStatus.HAVE : ItemStatus.NONE,
