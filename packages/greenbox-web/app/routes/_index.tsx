@@ -1,8 +1,14 @@
 import { Container, Tabs } from "@chakra-ui/react";
 import { expand, type RawSnapshotData } from "greenbox-data";
 import { useEffect } from "react";
-import { data, useLoaderData, type LinksFunction } from "react-router";
+import {
+  data,
+  useLoaderData,
+  type LinksFunction,
+  type MetaFunction,
+} from "react-router";
 
+import type { Meta } from "../../../greenbox-data/lib/meta.js";
 import ClanDungeons from "../components/ClanDungeons.js";
 import General from "../components/General.js";
 import Header from "../components/Header.js";
@@ -26,6 +32,15 @@ export const links: LinksFunction = () => [
     rel: "icon",
     href: "/greenbox.png",
     type: "image/png",
+  },
+];
+
+export const meta: MetaFunction = () => [
+  {
+    title: "Greenbox",
+    description:
+      "A web app for examining and sharing a player's loadout of skills and items in the Kingdom of Loathing 🟩",
+    keywords: "greenbox, kingdom of loathing, kol",
   },
 ];
 
