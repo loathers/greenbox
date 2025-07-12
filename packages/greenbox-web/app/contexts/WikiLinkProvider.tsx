@@ -1,4 +1,5 @@
 import { type ThingType as TT } from "@prisma/client";
+import he from "he";
 import { createContext, useContext, type ReactNode } from "react";
 
 type ThingType = TT | Lowercase<TT>;
@@ -28,9 +29,15 @@ export function WikiLinkProvider({
 }: WikiLinkProviderProps) {
   const getWikiLink = (thingType: ThingType, name: string): string | null => {
     const link = wikiLinks.find(
-      (wl) => wl.type === thingType && wl.name === name,
+      (wl) =>
+        wl.type.toLowerCase() === thingType.toLowerCase() && wl.name === name,
     );
-    return link ? link.url : null;
+    return link
+      ? link.url
+      : he
+          .decode(name)
+          .replaceAll(" ", "_")
+          .replace(/^[A-Za-z]/, (first) => first.toUpperCase());
   };
 
   return (
