@@ -15,10 +15,10 @@ export function getIotMs() {
 export type RawIotM = [id: number, status: IotMStatus];
 
 export const compressIotMs = (iotmList: RawIotM[]): string => {
-  const idToIotM = Object.fromEntries(iotmList.map((i) => [i[0], i]));
+  const idToIotMStatus = new Map(iotmList.map((i) => [i[0], i[1]]));
 
   return iotms
-    .map((iotm) => idToIotM[iotm.id]?.[1] ?? 0)
+    .map((iotm) => idToIotMStatus.get(iotm.id) ?? 0)
     .join("")
     .replace(/0+$/, "");
 };
