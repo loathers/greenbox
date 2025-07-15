@@ -90,8 +90,7 @@ enum Month {
   December,
 }
 
-const iotms: IotMDef[] = [
-  //// IotYs
+const iotyList: IotMDef[] = [
   {
     id: 898,
     month: Month.ItemOfTheYear,
@@ -323,8 +322,9 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "server room key",
   }, // CyberRealm keycode
+];
 
-  //// IotMs
+const iotmList: IotMDef[] = [
   {
     id: 894,
     month: Month.October,
@@ -1989,5 +1989,7 @@ const iotms: IotMDef[] = [
     item: "Monodent of the Sea",
   }, // packaged Monodent of the Sea
 ];
+
+const iotms = [...iotmList, ...iotyList];
 
 export default iotms;
