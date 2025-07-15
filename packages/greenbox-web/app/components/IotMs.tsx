@@ -12,7 +12,9 @@ const selectPlayerIotMs = createPlayerDataSelector("iotms");
 
 export default function IotMs() {
   const playerIotMs = useAppSelector(selectPlayerIotMs);
-  const iotms = useAppSelector((state) => state.iotms);
+  const iotms = useAppSelector((state) => state.iotms).filter(
+    (i) => i.month > 0,
+  );
   const loading = useAppSelector((state) => state.loading.iotms || false);
   const idToItem = useAppSelector((state) => state.items);
 
