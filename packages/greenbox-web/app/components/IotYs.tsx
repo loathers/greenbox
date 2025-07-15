@@ -1,41 +1,27 @@
-import { IotMStatus } from "greenbox-data";
+import { IotYStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks.js";
 import { createPlayerDataSelector } from "../store/index.js";
 
-import IotM from "./IotM.js";
+import IotY from "./IotY.js";
 import Section from "./Section.js";
 import ThingGrid from "./ThingGrid.js";
 
-const selectPlayerIotMs = createPlayerDataSelector("iotms");
+const selectPlayerIotYs = createPlayerDataSelector("iotys");
 
 export default function IotYs() {
-  const playerIotMs = useAppSelector(selectPlayerIotMs);
-  const iotys = useAppSelector((state) => state.iotms).filter(
-    (i) => i.month <= 0,
-  );
-  const loading = useAppSelector((state) => state.loading.iotms || false);
+  const playerIotMs = useAppSelector(selectPlayerIotYs);
+  const iotys = useAppSelector((state) => state.iotys);
+  const loading = useAppSelector((state) => state.loading.iotys || false);
   const idToItem = useAppSelector((state) => state.items);
 
-  const vipIotYs = useMemo(
-    () => iotys.filter((i) => i.type === "vip").map((i) => i.id),
-    [iotys],
-  );
-  const ownsVipKey = useMemo(
-    () => playerIotMs.findIndex((i) => vipIotYs.includes(i[0])) > -1,
-    [playerIotMs, vipIotYs],
-  );
-
-  const numberOfIoyms = useMemo(
-    () => iotys.length - (vipIotYs.length - 1),
-    [iotys],
-  );
+  const numberOfIoyms = useMemo(() => iotys.length, [iotys]);
 
   const numberofIotYsBound = useMemo(
     () =>
-      playerIotMs.filter((i) => i[1] == IotMStatus.BOUND).map((i) => i[0])
-        .length - (ownsVipKey ? vipIotYs.length - 1 : 0),
+      playerIotMs.filter((i) => i[1] == IotYStatus.BOUND).map((i) => i[0])
+        .length,
     [playerIotMs],
   );
 
@@ -81,10 +67,10 @@ export default function IotYs() {
         columns={2}
         getRowLabel={(row) => 2005 + row}
         renderItem={(ioty) => (
-          <IotM
+          <IotY
             key={ioty.id}
             item={idToItem[ioty.id]}
-            iotm={ioty}
+            ioty={ioty}
             status={idToPlayerIotY[ioty.id] ?? 0}
           />
         )}
@@ -95,10 +81,10 @@ export default function IotYs() {
         columns={1}
         getRowLabel={(row) => 2017 + row}
         renderItem={(ioty) => (
-          <IotM
+          <IotY
             key={ioty.id}
             item={idToItem[ioty.id]}
-            iotm={ioty}
+            ioty={ioty}
             status={idToPlayerIotY[ioty.id] ?? 0}
           />
         )}
