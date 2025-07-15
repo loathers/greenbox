@@ -254,6 +254,13 @@ const iotms: IotMDef[] = [
     familiar: "Rockin' Robin",
   }, // basking robin
   {
+    id: 8795,
+    month: Month.ItemOfTheYear,
+    year: 2016,
+    type: "item",
+    item: "replica bat-oomerang",
+  }, // Batfellow comic
+  {
     id: 9303,
     month: Month.ItemOfTheYear,
     year: 2017,
@@ -316,11 +323,6 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "server room key",
   }, // CyberRealm keycode
-
-  //// TODO
-  // Batfellow comic
-  // Horsery contract
-  // deed to Oliver's Place
 
   //// IotMs
   {
