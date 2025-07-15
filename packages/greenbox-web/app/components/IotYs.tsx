@@ -45,14 +45,14 @@ export default function IotYs() {
   );
 
   const normalizedIotysDual = useMemo(
-    () => [...Array(9).map((_) => null), ...iotys.filter((i) => i.year < 2016)],
+    () => [...Array(9).map((_) => null), ...iotys.filter((i) => i.year <= 2016)],
     [iotys],
   );
 
   const normalizedIotys = useMemo(
     () => [
       ...Array(9).map((_) => null),
-      ...iotys.filter((i) => i.year >= 2016),
+      ...iotys.filter((i) => i.year >= 2017),
     ],
     [iotys],
   );
@@ -90,7 +90,7 @@ export default function IotYs() {
         idToStatus={idToPlayerIotY}
         items={normalizedIotys.filter((i) => i)}
         columns={1}
-        getRowLabel={(row) => 2016 + row}
+        getRowLabel={(row) => 2017 + row}
         renderItem={(ioty) => (
           <IotM
             key={ioty.id}
