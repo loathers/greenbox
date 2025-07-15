@@ -2,18 +2,20 @@ import {
   arrayOf,
   compress,
   FamiliarStatus,
+  getIotMs,
+  getIotYs,
   getMiscTattoos,
   getOutfitTattoos,
-  isOutfitTattoo,
-  ItemStatus,
-  getIotMs,
   getPaths,
   getTattoos,
   getTrophies,
+  isOutfitTattoo,
+  ItemStatus,
   OutfitTattooStatus,
   PathDef,
   RawFamiliar,
   RawIotM,
+  RawIotY,
   RawItem,
   RawPath,
   RawSkill,
@@ -46,6 +48,7 @@ import {
 import { Kmail, property } from "libram";
 
 import { getIotMStatus, IotMOptions } from "./iotms.js";
+import { getIotYStatus, IotYOptions } from "./iotys.js";
 import { haveItem } from "./utils.js";
 
 const { getBoolean, getNumber } = property;
@@ -56,6 +59,14 @@ const { getBoolean, getNumber } = property;
  */
 function checkIotMs(options: IotMOptions = {}): RawIotM[] {
   return getIotMs().map((iotm) => [iotm.id, getIotMStatus(iotm, options)]);
+}
+
+/**
+ * Generates a list of IotYs and status.
+ * @returns array of 2-tuples of item id (of the packaged item) and status
+ */
+function checkIotYs(options: IotYOptions = {}): RawIotY[] {
+  return getIotYs().map((ioty) => [ioty.id, getIotYStatus(ioty, options)]);
 }
 
 /**
@@ -301,6 +312,7 @@ export function main(args = ""): void {
     ...checkTattoos(tattoos),
     paths: checkPaths(tattoos),
     iotms: checkIotMs(),
+    iotys: checkIotYs(),
     items: checkItems(),
   });
 
