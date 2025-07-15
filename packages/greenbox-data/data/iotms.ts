@@ -74,7 +74,255 @@ export type IotMDef =
   | SkillIotM
   | VIPIotM;
 
+enum Month {
+  ItemOfTheYear,
+  January,
+  February,
+  March,
+  April,
+  May,
+  June,
+  July,
+  August,
+  September,
+  October,
+  November,
+  December,
+}
+
 const iotms: IotMDef[] = [
+  //// IotYs
+  {
+    id: 898,
+    month: Month.ItemOfTheYear,
+    year: 2005,
+    type: "familiar",
+    familiar: "Cheshire Bat",
+  }, // Cheshire Bitten
+  {
+    id: 897,
+    month: Month.ItemOfTheYear,
+    year: 2005,
+    type: "familiar",
+    familiar: "Coffee Pixie",
+  }, // coffee sprite
+  {
+    id: 1308,
+    month: Month.ItemOfTheYear,
+    year: 2006,
+    type: "familiar",
+    familiar: "Cymbal-Playing Monkey",
+  }, // unwound cymbal-playing monkey
+  {
+    id: 1307,
+    month: Month.ItemOfTheYear,
+    year: 2006,
+    type: "familiar",
+    familiar: "Attention-Deficit Demon",
+  }, // calm attention-deficit demon
+  {
+    id: 1970,
+    month: Month.ItemOfTheYear,
+    year: 2007,
+    type: "familiar",
+    familiar: "Nervous Tick",
+  }, // nervous tick egg
+  {
+    id: 1967,
+    month: Month.ItemOfTheYear,
+    year: 2007,
+    type: "familiar",
+    familiar: "Jitterbug",
+  }, // jitterbug larva
+  {
+    id: 2939,
+    month: Month.ItemOfTheYear,
+    year: 2008,
+    type: "familiar",
+    familiar: "Hunchbacked Minion",
+  }, // unemployed hunchbacked minion
+  {
+    id: 2937,
+    month: Month.ItemOfTheYear,
+    year: 2008,
+    type: "familiar",
+    familiar: "Casagnova Gnome",
+  }, // siesta-ing Casagnova gnome
+  {
+    id: 3481,
+    month: Month.ItemOfTheYear,
+    year: 2009,
+    type: "familiar",
+    familiar: "Uniclops",
+  }, // uniclops egg
+  {
+    id: 3482,
+    month: Month.ItemOfTheYear,
+    year: 2009,
+    type: "familiar",
+    familiar: "Psychedelic Bear",
+  }, // passed-out psychedelic bear
+  {
+    id: 4227,
+    month: Month.ItemOfTheYear,
+    year: 2010,
+    type: "familiar",
+    familiar: "Chauvinist Pig",
+  }, // hungover chauvinist pig
+  {
+    id: 4228,
+    month: Month.ItemOfTheYear,
+    year: 2010,
+    type: "familiar",
+    familiar: "Dancing Frog",
+  }, // perfectly ordinary frog
+  {
+    id: 4734,
+    month: Month.ItemOfTheYear,
+    year: 2011,
+    type: "familiar",
+    familiar: "Dramatic Hedgehog",
+  }, // rehearsing dramatic hedgehog
+  {
+    id: 4732,
+    month: Month.ItemOfTheYear,
+    year: 2011,
+    type: "familiar",
+    familiar: "Piano Cat",
+  }, // sleeping piano cat
+  {
+    id: 5377,
+    month: Month.ItemOfTheYear,
+    year: 2012,
+    type: "familiar",
+    familiar: "Bloovian Groose",
+  }, // The Groose in the Hoose
+  {
+    id: 5442,
+    month: Month.ItemOfTheYear,
+    year: 2012,
+    type: "familiar",
+    familiar: "Blavious Kloop",
+  }, // The Kloop in the Coop
+  {
+    id: 5895,
+    month: Month.ItemOfTheYear,
+    year: 2013,
+    type: "familiar",
+    familiar: "Unconscious Collective",
+  }, // avatar of the Unconscious Collective
+  {
+    id: 5893,
+    month: Month.ItemOfTheYear,
+    year: 2013,
+    type: "familiar",
+    familiar: "Angry Jung Man",
+  }, // dreaming Jung man
+  {
+    id: 7062,
+    month: Month.ItemOfTheYear,
+    year: 2014,
+    type: "familiar",
+    familiar: "Grim Brother",
+  }, // praying Grim Brother
+  {
+    id: 7064,
+    month: Month.ItemOfTheYear,
+    year: 2014,
+    type: "familiar",
+    familiar: "Grimstone Golem",
+  }, // hibernating Grimstone Golem
+  {
+    id: 8064,
+    month: Month.ItemOfTheYear,
+    year: 2015,
+    type: "familiar",
+    familiar: "Golden Monkey",
+  }, // golden monkey statuette
+  {
+    id: 8068,
+    month: Month.ItemOfTheYear,
+    year: 2015,
+    type: "familiar",
+    familiar: "Adventurous Spelunker",
+  }, // Professor of Spelunkology
+  {
+    id: 8831,
+    month: Month.ItemOfTheYear,
+    year: 2016,
+    type: "familiar",
+    familiar: "Rockin' Robin",
+  }, // basking robin
+  {
+    id: 9303,
+    month: Month.ItemOfTheYear,
+    year: 2017,
+    type: "familiar",
+    familiar: "Optimistic Candle",
+  }, // hopeful candle
+  {
+    id: 9679,
+    month: Month.ItemOfTheYear,
+    year: 2018,
+    type: "familiar",
+    familiar: "Garbage Fire",
+  }, // kerosene-soaked skip
+  {
+    id: 10146,
+    month: Month.ItemOfTheYear,
+    year: 2019,
+    type: "familiar",
+    familiar: "Elf Operative",
+  }, // elf sleeper agent
+  {
+    id: 10431,
+    month: Month.ItemOfTheYear,
+    year: 2020,
+    type: "item",
+    item: "Retrospecs",
+  }, // Retrospecs try-at-home kit
+  {
+    id: 10731,
+    month: Month.ItemOfTheYear,
+    year: 2021,
+    type: "item",
+    item: "fresh coat of paint",
+  }, // fresh can of paint
+  {
+    id: 10884,
+    month: Month.ItemOfTheYear,
+    year: 2022,
+    type: "item",
+    item: "cursed magnifying glass",
+  }, // mint condition magnifying glass
+  {
+    id: 11089,
+    month: Month.ItemOfTheYear,
+    year: 2023,
+    type: "familiar",
+    familiar: "Hobo in Sheep's Clothing",
+  }, // mint condition magnifying glass
+  {
+    id: 11471,
+    month: Month.ItemOfTheYear,
+    year: 2024,
+    type: "eudora",
+    eudoraId: 6,
+  }, // Black and White Apron Enrollment Form
+  {
+    id: 11807,
+    month: Month.ItemOfTheYear,
+    year: 2025,
+    type: "item",
+    item: "server room key",
+  }, // CyberRealm keycode
+
+  //// TODO
+  // Batfellow comic
+  // Horsery contract
+  // deed to Oliver's Place
+
+  //// IotMs
   {
     id: 894,
     month: 10,
