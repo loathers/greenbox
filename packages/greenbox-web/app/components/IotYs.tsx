@@ -45,7 +45,10 @@ export default function IotYs() {
   );
 
   const normalizedIotysDual = useMemo(
-    () => [...Array(9).map((_) => null), ...iotys.filter((i) => i.year <= 2016)],
+    () => [
+      ...Array(9).map((_) => null),
+      ...iotys.filter((i) => i.year <= 2016),
+    ],
     [iotys],
   );
 
