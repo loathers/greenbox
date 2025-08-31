@@ -1352,6 +1352,13 @@ const iotms: IotMDef[] = [
     type: "familiar",
     familiar: "Cooler Yeti",
   }, // yeti in a travel cooler
+  {
+    id: 11941,
+    month: 8,
+    year: 2025,
+    type: "item",
+    item: "Möbius ring",
+  }, // Möbius ring box
 ];
 
 export default iotms;
