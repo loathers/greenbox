@@ -6781,8 +6781,16 @@ var iotms = [
     year: 2025,
     type: "familiar",
     familiar: "Cooler Yeti"
-  }
+  },
   // yeti in a travel cooler
+  {
+    id: 11941,
+    month: 8,
+    year: 2025,
+    type: "item",
+    item: "M\xF6bius ring"
+  }
+  // Möbius ring box
 ], iotms_default = iotms;
 
 // ../greenbox-data/lib/iotms.ts
