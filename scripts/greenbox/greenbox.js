@@ -6789,8 +6789,16 @@ var iotms = [
     year: 2025,
     type: "item",
     item: "M\xF6bius ring"
-  }
+  },
   // Möbius ring box
+  {
+    id: 11974,
+    month: 9,
+    year: 2025,
+    type: "item",
+    item: "Monodent of the Sea"
+  }
+  // packaged Monodent of the Sea
 ], iotms_default = iotms;
 
 // ../greenbox-data/lib/iotms.ts
