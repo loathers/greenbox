@@ -1359,6 +1359,13 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "Möbius ring",
   }, // Möbius ring box
+  {
+    id: 11974,
+    month: 9,
+    year: 2025,
+    type: "item",
+    item: "Monodent of the Sea",
+  }, // packaged Monodent of the Sea
 ];
 
 export default iotms;
