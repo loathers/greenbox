@@ -19,7 +19,7 @@ export default function SkillDescription({ skill }: Props) {
   useEffect(() => {
     async function load() {
       const response = await fetch(
-        `https://corsproxy.io/?https://kol.coldfront.net/thekolwiki/api.php?action=parse&page=${wikiLink}&prop=text&format=json`,
+        `https://corsproxy.io/?https://wiki.kingdomofloathing.com/api.php?action=parse&page=${wikiLink}&prop=text&format=json`,
       );
       const result = await response.json();
       const match = /<table width="100%"><tr><td>(.*?)<\/td>/s.exec(
@@ -30,7 +30,7 @@ export default function SkillDescription({ skill }: Props) {
       } else {
         setContents(
           match[0]
-            .replaceAll('href="/', 'href="https://kol.coldfront.net/')
+            .replaceAll('href="/', 'href="https://wiki.kingdomofloathing.com/')
             .replaceAll(
               'p style="color:',
               'p class="colortext" style="color:',

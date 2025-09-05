@@ -10,7 +10,7 @@ export default function WikiSearchLink({ page, text, fontSize }: Props) {
   return (
     <Link
       fontSize={fontSize}
-      href={`https://kol.coldfront.net/thekolwiki/index.php?search=${page}&title=Special%3ASearch`}
+      href={`https://wiki.kingdomofloathing.com/Special:Search?search=${page}`}
     >
       {text}
     </Link>

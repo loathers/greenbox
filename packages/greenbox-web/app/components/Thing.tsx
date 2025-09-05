@@ -131,7 +131,7 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
       <LinkOverlay
         textAlign="center"
         fontSize="10px"
-        href={`https://kol.coldfront.net/thekolwiki/index.php/${wikiLink}`}
+        href={`https://wiki.kingdomofloathing.com/${wikiLink}`}
       >
         {he.decode(name)}
       </LinkOverlay>
