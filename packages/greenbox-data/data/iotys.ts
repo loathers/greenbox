@@ -1,44 +1,15 @@
-import type { KnownProperty } from "libram";
+import type {
+  BindableEudora,
+  BindableFamiliar,
+  BindableItem,
+  BindablePreference,
+} from "./bindable.js";
 
-interface BaseIotY {
-  id: number;
-  year: number;
-}
-
-interface EudoraIotY extends BaseIotY {
-  type: "eudora";
-  /**
-   * The id of the correspondent
-   */
-  eudoraId: number;
-}
-
-interface FamiliarIotY extends BaseIotY {
-  type: "familiar";
-  /**
-   * Familiar name to check. If an array is provided, checks for any of those familiars
-   */
-  familiar: string | string[];
-}
-
-interface ItemIotY extends BaseIotY {
-  type: "item";
-  /**
-   * Item name to check. If an array is provided, checks for any of those items.
-   * If the item provided is part of a fold group, any of those items will match.
-   */
-  item: string | string[];
-}
-
-interface PreferenceIotY extends BaseIotY {
-  type: "preference";
-  /**
-   * Preference to check. If it contains "true" the IotY will be considered owned.
-   */
-  preference: KnownProperty;
-}
-
-export type IotYDef = EudoraIotY | FamiliarIotY | ItemIotY | PreferenceIotY;
+export type IotYDef =
+  | BindableEudora
+  | BindableFamiliar
+  | BindableItem
+  | BindablePreference;
 
 const iotys: IotYDef[] = [
   {

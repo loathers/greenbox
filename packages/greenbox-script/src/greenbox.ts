@@ -14,8 +14,7 @@ import {
   OutfitTattooStatus,
   PathDef,
   RawFamiliar,
-  RawIotM,
-  RawIotY,
+  RawBindable,
   RawItem,
   RawPath,
   RawSkill,
@@ -47,8 +46,7 @@ import {
 } from "kolmafia";
 import { Kmail, property } from "libram";
 
-import { getIotMStatus, IotMOptions } from "./iotms.js";
-import { getIotYStatus, IotYOptions } from "./iotys.js";
+import { getBindableStatus, BindableOptions } from "./iotms.js";
 import { haveItem } from "./utils.js";
 
 const { getBoolean, getNumber } = property;
@@ -57,16 +55,16 @@ const { getBoolean, getNumber } = property;
  * Generates a list of IotMs and status.
  * @returns array of 2-tuples of item id (of the packaged item) and status
  */
-function checkIotMs(options: IotMOptions = {}): RawIotM[] {
-  return getIotMs().map((iotm) => [iotm.id, getIotMStatus(iotm, options)]);
+function checkIotMs(options: BindableOptions = {}): RawBindable[] {
+  return getIotMs().map((iotm) => [iotm.id, getBindableStatus(iotm, options)]);
 }
 
 /**
  * Generates a list of IotYs and status.
  * @returns array of 2-tuples of item id (of the packaged item) and status
  */
-function checkIotYs(options: IotYOptions = {}): RawIotY[] {
-  return getIotYs().map((ioty) => [ioty.id, getIotYStatus(ioty, options)]);
+function checkIotYs(options: BindableOptions = {}): RawBindable[] {
+  return getIotYs().map((ioty) => [ioty.id, getBindableStatus(ioty, options)]);
 }
 
 /**

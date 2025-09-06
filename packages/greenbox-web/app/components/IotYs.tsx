@@ -1,10 +1,10 @@
-import { IotYStatus } from "greenbox-data";
+import { BindableStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks.js";
 import { createPlayerDataSelector } from "../store/index.js";
 
-import IotY from "./IotY.js";
+import Bindable from "./Bindable.js";
 import Section from "./Section.js";
 import ThingGrid from "./ThingGrid.js";
 
@@ -20,7 +20,7 @@ export default function IotYs() {
 
   const numberofIotYsBound = useMemo(
     () =>
-      playerIotMs.filter((i) => i[1] == IotYStatus.BOUND).map((i) => i[0])
+      playerIotMs.filter((i) => i[1] == BindableStatus.BOUND).map((i) => i[0])
         .length,
     [playerIotMs],
   );
@@ -66,12 +66,12 @@ export default function IotYs() {
         items={normalizedIotysDual.filter((i) => i)}
         columns={2}
         getRowLabel={(row) => 2005 + row}
-        renderItem={(ioty) => (
-          <IotY
-            key={ioty.id}
-            item={idToItem[ioty.id]}
-            ioty={ioty}
-            status={idToPlayerIotY[ioty.id] ?? 0}
+        renderItem={(bindable) => (
+          <Bindable
+            key={bindable.id}
+            item={idToItem[bindable.id]}
+            bindable={bindable}
+            status={idToPlayerIotY[bindable.id] ?? 0}
           />
         )}
       />
@@ -80,12 +80,12 @@ export default function IotYs() {
         items={normalizedIotys.filter((i) => i)}
         columns={1}
         getRowLabel={(row) => 2017 + row}
-        renderItem={(ioty) => (
-          <IotY
-            key={ioty.id}
-            item={idToItem[ioty.id]}
-            ioty={ioty}
-            status={idToPlayerIotY[ioty.id] ?? 0}
+        renderItem={(bindable) => (
+          <Bindable
+            key={bindable.id}
+            item={idToItem[bindable.id]}
+            bindable={bindable}
+            status={idToPlayerIotY[bindable.id] ?? 0}
           />
         )}
       />
