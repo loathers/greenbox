@@ -26,6 +26,7 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write .",
+    "lint": "yarn run eslint && yarn run prettier --check .",
     "test": "vitest"
   },
   "bugs": {
