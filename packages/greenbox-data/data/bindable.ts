@@ -47,7 +47,7 @@ export interface BindableItem extends Bindable {
 export interface BindablePreference extends Bindable {
   type: "preference";
   /**
-   * Preference to check. If it contains "true" the IotY will be considered owned.
+   * Preference to check. If it contains "true" the Bindable will be considered owned.
    */
   preference: KnownProperty;
 }

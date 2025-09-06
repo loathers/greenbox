@@ -11,7 +11,7 @@ import ThingGrid from "./ThingGrid.js";
 const selectPlayerIotYs = createPlayerDataSelector("iotys");
 
 export default function IotYs() {
-  const playerIotMs = useAppSelector(selectPlayerIotYs);
+  const playerIotYs = useAppSelector(selectPlayerIotYs);
   const iotys = useAppSelector((state) => state.iotys);
   const loading = useAppSelector((state) => state.loading.iotys || false);
   const idToItem = useAppSelector((state) => state.items);
@@ -20,14 +20,14 @@ export default function IotYs() {
 
   const numberofIotYsBound = useMemo(
     () =>
-      playerIotMs.filter((i) => i[1] == BindableStatus.BOUND).map((i) => i[0])
+      playerIotYs.filter((i) => i[1] == BindableStatus.BOUND).map((i) => i[0])
         .length,
-    [playerIotMs],
+    [playerIotYs],
   );
 
   const idToPlayerIotY = useMemo(
-    () => Object.fromEntries(playerIotMs.map((i) => [i[0], i[1]])),
-    [playerIotMs],
+    () => Object.fromEntries(playerIotYs.map((i) => [i[0], i[1]])),
+    [playerIotYs],
   );
 
   const normalizedIotysDual = useMemo(
