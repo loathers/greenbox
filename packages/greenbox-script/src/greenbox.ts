@@ -46,7 +46,7 @@ import {
 } from "kolmafia";
 import { Kmail, property } from "libram";
 
-import { getBindableStatus, BindableOptions } from "./iotms.js";
+import { getBindableStatus, BindableOptions } from "./bindable.js";
 import { haveItem } from "./utils.js";
 
 const { getBoolean, getNumber } = property;
