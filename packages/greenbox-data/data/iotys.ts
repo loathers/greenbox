@@ -1,17 +1,6 @@
-import type {
-  BindableEudora,
-  BindableFamiliar,
-  BindableItem,
-  BindablePreference,
-} from "./bindable.js";
+import type { BindableDef } from "./bindable.js";
 
-type IotYDef =
-  | BindableEudora
-  | BindableFamiliar
-  | BindableItem
-  | BindablePreference;
-
-const iotys: IotYDef[] = [
+const iotys: BindableDef[] = [
   {
     id: 898,
     year: 2005,
