@@ -22,7 +22,7 @@ interface PreferenceIotM extends BindablePreference, BaseIotM {}
 interface SkillIotM extends BindableSkill, BaseIotM {}
 interface VIPIotM extends BindableVIP, BaseIotM {}
 
-export type IotMDef =
+type IotMDef =
   | CampgroundIotM
   | CustomIotM
   | EudoraIotM

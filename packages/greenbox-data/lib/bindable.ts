@@ -10,11 +10,11 @@ export enum BindableStatus {
 
 export type { Bindable, BindableDef };
 
-export function getIotMs() {
+export function getIotMs(): BindableDef[] {
   return iotms;
 }
 
-export function getIotYs() {
+export function getIotYs(): BindableDef[] {
   return iotys;
 }
 

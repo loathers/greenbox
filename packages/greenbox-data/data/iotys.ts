@@ -5,7 +5,7 @@ import type {
   BindablePreference,
 } from "./bindable.js";
 
-export type IotYDef =
+type IotYDef =
   | BindableEudora
   | BindableFamiliar
   | BindableItem
