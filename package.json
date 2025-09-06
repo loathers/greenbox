@@ -12,6 +12,7 @@
   "scripts": {
     "build": "yarn workspaces foreach --all run build",
     "format": "yarn workspaces foreach --all run format",
+    "lint": "yarn workspaces foreach --all run lint",
     "preview": "yarn workspace greenbox-web run preview",
     "dev": "yarn workspace greenbox-web run dev",
     "test": "yarn workspaces foreach --all run test run"

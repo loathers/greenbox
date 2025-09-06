@@ -1,4 +1,4 @@
-import { type IotMDef, IotMStatus } from "greenbox-data";
+import { type Bindable, BindableStatus } from "greenbox-data";
 
 import type { ItemType } from "../store/index.js";
 
@@ -6,41 +6,41 @@ import Thing from "./Thing.js";
 
 type Props = {
   item: ItemType;
-  iotm: IotMDef;
-  status: IotMStatus;
+  bindable: Bindable;
+  status: BindableStatus;
 };
 
-function iotmStatusToThingStatus(status: IotMStatus) {
+function bindableStatusToThingStatus(status: BindableStatus) {
   switch (status) {
-    case IotMStatus.BOUND:
+    case BindableStatus.BOUND:
       return "complete";
-    case IotMStatus.BOXED:
+    case BindableStatus.BOXED:
       return "partial";
     default:
       return null;
   }
 }
 
-function iotmStatusToTitle(iotm: IotMDef, status: IotMStatus) {
+function bindableStatusToTitle(iotm: Bindable, status: BindableStatus) {
   switch (status) {
-    case IotMStatus.BOUND:
+    case BindableStatus.BOUND:
       return iotm.type !== "vip" ? "Have" : "Have access if your clan owns one";
-    case IotMStatus.BOXED:
+    case BindableStatus.BOXED:
       return "Have store item";
     default:
       return "Do not have";
   }
 }
 
-export default function IotM({ item, status, iotm }: Props) {
+export default function Bindable({ item, status, bindable }: Props) {
   if (!item) return null;
   return (
     <Thing
       type="item"
       name={item.name}
       image={`itemimages/${item.image}`}
-      state={iotmStatusToThingStatus(status)}
-      title={iotmStatusToTitle(iotm, status)}
+      state={bindableStatusToThingStatus(status)}
+      title={bindableStatusToTitle(bindable, status)}
     />
   );
 }
