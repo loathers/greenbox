@@ -2,7 +2,8 @@ import jsoncrush from "jsoncrush";
 
 import {
   compressBindables,
-  expandBindables,
+  expandIotMBindables,
+  expandIotYBindables,
   type RawBindable,
 } from "./bindable.js";
 import {
@@ -97,8 +98,8 @@ export function expand(encoded: string): RawSnapshotData {
     outfitTattoos: expandTattoos(compressed.outfitTattoos),
     miscTattoos: expandTattoos(compressed.miscTattoos),
     paths: expandPaths(compressed.paths),
-    iotms: expandBindables(compressed.iotms),
-    iotys: expandBindables(compressed.iotys),
+    iotms: expandIotMBindables(compressed.iotms),
+    iotys: expandIotYBindables(compressed.iotys),
     items: expandItems(compressed.items),
   };
 }

@@ -9,16 +9,10 @@ export enum BindableStatus {
 }
 
 export type { Bindable, BindableDef };
-
-export function getIotMs(): BindableDef[] {
-  return iotms;
-}
-
-export function getIotYs(): BindableDef[] {
-  return iotys;
-}
-
 export type RawBindable = [id: number, status: BindableStatus];
+
+export const getIotMs = (): BindableDef[] => iotms;
+export const getIotYs = (): BindableDef[] => iotys;
 
 export const compressBindables = (bindableList: RawBindable[]): string => {
   const idToBindableStatus = new Map(bindableList.map((i) => [i[0], i[1]]));
@@ -29,5 +23,8 @@ export const compressBindables = (bindableList: RawBindable[]): string => {
     .replace(/0+$/, "");
 };
 
-export const expandBindables = (s = ""): RawBindable[] =>
-  s.split("").map((c, i) => [iotms[i]?.id ?? iotys[i]?.id ?? null, Number(c)]);
+export const expandIotMBindables = (s = ""): RawBindable[] =>
+  s.split("").map((c, i) => [iotms[i]?.id ?? null, Number(c)]);
+
+export const expandIotYBindables = (s = ""): RawBindable[] =>
+  s.split("").map((c, i) => [iotys[i]?.id ?? null, Number(c)]);
