@@ -1,10 +1,14 @@
 import { describe, expect, it } from "vitest";
 
-import { compressBindables, BindableStatus } from "./bindable.js";
+import {
+  compressIotMBindables,
+  BindableStatus,
+  compressIotYBindables,
+} from "./bindable.js";
 import { tuple } from "./utils.js";
 
-describe("Compress Bindable", () => {
-  it("should compress a list of Bindables", () => {
+describe("Compress IotMs", () => {
+  it("should compress a list of IotMs", () => {
     const rawIotMs = [
       tuple([894, BindableStatus.NONE]),
       tuple([914, BindableStatus.NONE]),
@@ -16,7 +20,7 @@ describe("Compress Bindable", () => {
       tuple([1152, BindableStatus.BOUND]),
       tuple([1242, BindableStatus.BOXED]),
     ];
-    const compressed = compressBindables(rawIotMs);
+    const compressed = compressIotMBindables(rawIotMs);
     expect(compressed).toBe("000000021");
   });
 
@@ -32,7 +36,41 @@ describe("Compress Bindable", () => {
       tuple([1152, BindableStatus.BOUND]),
       tuple([1242, BindableStatus.NONE]),
     ];
-    const compressed = compressBindables(rawIotMs);
+    const compressed = compressIotMBindables(rawIotMs);
+    expect(compressed).toBe("00000022");
+  });
+});
+
+describe("Compress IotYs", () => {
+  it("should compress a list of IotYs", () => {
+    const rawIotYs = [
+      tuple([898, BindableStatus.NONE]),
+      tuple([897, BindableStatus.NONE]),
+      tuple([1308, BindableStatus.NONE]),
+      tuple([1307, BindableStatus.NONE]),
+      tuple([1970, BindableStatus.NONE]),
+      tuple([1967, BindableStatus.NONE]),
+      tuple([2939, BindableStatus.NONE]),
+      tuple([2937, BindableStatus.BOUND]),
+      tuple([3481, BindableStatus.BOXED]),
+    ];
+    const compressed = compressIotYBindables(rawIotYs);
+    expect(compressed).toBe("000000021");
+  });
+
+  it("should trim trailing zeroes", () => {
+    const rawIotYs = [
+      tuple([898, BindableStatus.NONE]),
+      tuple([897, BindableStatus.NONE]),
+      tuple([1308, BindableStatus.NONE]),
+      tuple([1307, BindableStatus.NONE]),
+      tuple([1970, BindableStatus.NONE]),
+      tuple([1967, BindableStatus.NONE]),
+      tuple([2939, BindableStatus.BOUND]),
+      tuple([2937, BindableStatus.BOUND]),
+      tuple([3481, BindableStatus.NONE]),
+    ];
+    const compressed = compressIotYBindables(rawIotYs);
     expect(compressed).toBe("00000022");
   });
 });

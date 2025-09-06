@@ -1,7 +1,7 @@
 import jsoncrush from "jsoncrush";
 
 import {
-  compressBindables,
+  compressIotMBindables,
   expandIotMBindables,
   expandIotYBindables,
   type RawBindable,
@@ -75,8 +75,8 @@ export function compress(raw: RawSnapshotData): string {
     miscTattoos: compressTattoos(raw.miscTattoos),
     outfitTattoos: compressTattoos(raw.outfitTattoos),
     paths: compressPaths(raw.paths),
-    iotms: compressBindables(raw.iotms),
-    iotys: compressBindables(raw.iotys),
+    iotms: compressIotMBindables(raw.iotms),
+    iotys: compressIotMBindables(raw.iotys),
     items: compressItems(raw.items),
   };
 

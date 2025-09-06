@@ -14,17 +14,27 @@ export type RawBindable = [id: number, status: BindableStatus];
 export const getIotMs = (): BindableDef[] => iotms;
 export const getIotYs = (): BindableDef[] => iotys;
 
-export const compressBindables = (bindableList: RawBindable[]): string => {
-  const idToBindableStatus = new Map(bindableList.map((i) => [i[0], i[1]]));
+export const compressIotMBindables = (raws: RawBindable[]): string =>
+  compressBindables(iotms, raws);
+export const compressIotYBindables = (raws: RawBindable[]): string =>
+  compressBindables(iotys, raws);
 
-  return iotms
+export const expandIotMBindables = (s = ""): RawBindable[] =>
+  expandBindables(iotms, s);
+export const expandIotYBindables = (s = ""): RawBindable[] =>
+  expandBindables(iotys, s);
+
+const compressBindables = (
+  defs: BindableDef[],
+  raws: RawBindable[],
+): string => {
+  const idToBindableStatus = new Map(raws.map((i) => [i[0], i[1]]));
+
+  return defs
     .map((bindable) => idToBindableStatus.get(bindable.id) ?? 0)
     .join("")
     .replace(/0+$/, "");
 };
 
-export const expandIotMBindables = (s = ""): RawBindable[] =>
-  s.split("").map((c, i) => [iotms[i]?.id ?? null, Number(c)]);
-
-export const expandIotYBindables = (s = ""): RawBindable[] =>
-  s.split("").map((c, i) => [iotys[i]?.id ?? null, Number(c)]);
+const expandBindables = (defs: BindableDef[], s = ""): RawBindable[] =>
+  s.split("").map((c, i) => [defs[i]?.id ?? null, Number(c)]);
