@@ -1,11 +1,17 @@
 import jsoncrush from "jsoncrush";
 
 import {
+  compressIotMBindables,
+  compressIotYBindables,
+  expandIotMBindables,
+  expandIotYBindables,
+  type RawBindable,
+} from "./bindable.js";
+import {
   compressFamiliars,
   expandFamiliars,
   type RawFamiliar,
 } from "./familiars.js";
-import { compressIotMs, expandIotMs, type RawIotM } from "./iotms.js";
 import { compressItems, expandItems, type RawItem } from "./items.js";
 import { compressMeta, expandMeta, type Meta } from "./meta.js";
 import { compressPaths, expandPaths, type RawPath } from "./paths.js";
@@ -32,7 +38,7 @@ export {
   OutfitTattooStatus,
 } from "./tattoos.js";
 export * from "./trophies.js";
-export * from "./iotms.js";
+export * from "./bindable.js";
 
 export * from "./types.js";
 
@@ -54,7 +60,8 @@ export interface RawSnapshotData {
   outfitTattoos: RawTattoo[];
   miscTattoos: RawTattoo[];
   paths: RawPath[];
-  iotms: RawIotM[];
+  iotms: RawBindable[];
+  iotys: RawBindable[];
   items: RawItem[];
 }
 
@@ -69,7 +76,8 @@ export function compress(raw: RawSnapshotData): string {
     miscTattoos: compressTattoos(raw.miscTattoos),
     outfitTattoos: compressTattoos(raw.outfitTattoos),
     paths: compressPaths(raw.paths),
-    iotms: compressIotMs(raw.iotms),
+    iotms: compressIotMBindables(raw.iotms),
+    iotys: compressIotYBindables(raw.iotys),
     items: compressItems(raw.items),
   };
 
@@ -91,7 +99,8 @@ export function expand(encoded: string): RawSnapshotData {
     outfitTattoos: expandTattoos(compressed.outfitTattoos),
     miscTattoos: expandTattoos(compressed.miscTattoos),
     paths: expandPaths(compressed.paths),
-    iotms: expandIotMs(compressed.iotms),
+    iotms: expandIotMBindables(compressed.iotms),
+    iotys: expandIotYBindables(compressed.iotys),
     items: expandItems(compressed.items),
   };
 }

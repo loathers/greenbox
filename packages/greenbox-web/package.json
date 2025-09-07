@@ -9,6 +9,7 @@
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "format": "prettier --write .",
+    "lint": "yarn run typecheck && yarn run prettier --check .",
     "clashes": "node --import tsx scripts/clashes.ts"
   },
   "dependencies": {

@@ -7,7 +7,7 @@ import {
 } from "@reduxjs/toolkit";
 import { createClient } from "data-of-loathing";
 import * as api from "greenbox-data";
-import type { TattooDef, TrophyDef, PathDef, IotMDef } from "greenbox-data";
+import type { TattooDef, TrophyDef, PathDef, BindableDef } from "greenbox-data";
 import {
   persistStore,
   persistReducer,
@@ -87,7 +87,8 @@ export interface GreenboxState {
   favouritePlayerId: number | null;
   classes: Record<number, ClassType>;
   familiars: FamiliarType[];
-  iotms: IotMDef[];
+  iotms: BindableDef[];
+  iotys: BindableDef[];
   items: Record<number, ItemType>;
   paths: PathDef[];
   skills: SkillType[];
@@ -105,6 +106,7 @@ const initialState: GreenboxState = {
   classes: [],
   familiars: [],
   iotms: api.getIotMs(),
+  iotys: api.getIotYs(),
   items: [],
   paths: api.getPaths(),
   skills: [],

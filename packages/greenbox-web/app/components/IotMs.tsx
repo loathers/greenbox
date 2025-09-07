@@ -1,10 +1,10 @@
-import { IotMStatus } from "greenbox-data";
+import { BindableStatus } from "greenbox-data";
 import { useMemo } from "react";
 
 import { useAppSelector } from "../hooks.js";
 import { createPlayerDataSelector } from "../store/index.js";
 
-import IotM from "./IotM.js";
+import Bindable from "./Bindable.js";
 import Section from "./Section.js";
 import ThingGrid from "./ThingGrid.js";
 
@@ -32,7 +32,7 @@ export default function IotMs() {
 
   const numberofIotMsBound = useMemo(
     () =>
-      playerIotMs.filter((i) => i[1] == IotMStatus.BOUND).map((i) => i[0])
+      playerIotMs.filter((i) => i[1] == BindableStatus.BOUND).map((i) => i[0])
         .length - (ownsVipKey ? vipIotMs.length - 1 : 0),
     [playerIotMs],
   );
@@ -67,12 +67,12 @@ export default function IotMs() {
         items={normalizedIotms}
         columns={12}
         getRowLabel={(row) => 2004 + row}
-        renderItem={(iotm) => (
-          <IotM
-            key={iotm.id}
-            item={idToItem[iotm.id]}
-            iotm={iotm}
-            status={idToPlayerIotM[iotm.id] ?? 0}
+        renderItem={(bindable) => (
+          <Bindable
+            key={bindable.id}
+            item={idToItem[bindable.id]}
+            bindable={bindable}
+            status={idToPlayerIotM[bindable.id] ?? 0}
           />
         )}
       />
