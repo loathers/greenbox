@@ -4769,29 +4769,7 @@ var JSONCrush_default = {
   return string;
 };
 
-// ../greenbox-data/lib/familiars.ts
-init_kolmafia_polyfill();
-
-// ../greenbox-data/lib/utils.ts
-init_kolmafia_polyfill();
-var tuple = function(args) {
-  return args;
-}, arrayOf = function(items) {
-  return Array.isArray(items) ? items : [items];
-};
-
-// ../greenbox-data/lib/familiars.ts
-var FamiliarStatus = /* @__PURE__ */ function(FamiliarStatus2) {
-  return FamiliarStatus2[FamiliarStatus2.NONE = 0] = "NONE", FamiliarStatus2[FamiliarStatus2.HATCHLING = 1] = "HATCHLING", FamiliarStatus2[FamiliarStatus2.TERRARIUM = 2] = "TERRARIUM", FamiliarStatus2;
-}({}), compressFamiliars = function(familiars) {
-  return familiars.sort(function(a, b) {
-    return a[0] - b[0];
-  }).reduce(function(r, familiar) {
-    return "".concat(r).concat("0".repeat(familiar[0] - r.replace(/\*/g, "").length - 1)).concat(familiar[1]).concat(familiar[2] ? "*" : "");
-  }, "").replace(/0+$/, "");
-};
-
-// ../greenbox-data/lib/iotms.ts
+// ../greenbox-data/lib/bindable.ts
 init_kolmafia_polyfill();
 
 // ../greenbox-data/data/iotms.ts
@@ -6801,21 +6779,284 @@ var iotms = [
   // packaged Monodent of the Sea
 ], iotms_default = iotms;
 
-// ../greenbox-data/lib/iotms.ts
-var IotMStatus = /* @__PURE__ */ function(IotMStatus2) {
-  return IotMStatus2[IotMStatus2.NONE = 0] = "NONE", IotMStatus2[IotMStatus2.BOXED = 1] = "BOXED", IotMStatus2[IotMStatus2.BOUND = 2] = "BOUND", IotMStatus2;
-}({});
-function getIotMs() {
+// ../greenbox-data/data/iotys.ts
+init_kolmafia_polyfill();
+var iotys = [
+  {
+    id: 898,
+    year: 2005,
+    type: "familiar",
+    familiar: "Cheshire Bat"
+  },
+  // Cheshire Bitten
+  {
+    id: 897,
+    year: 2005,
+    type: "familiar",
+    familiar: "Coffee Pixie"
+  },
+  // coffee sprite
+  {
+    id: 1308,
+    year: 2006,
+    type: "familiar",
+    familiar: "Cymbal-Playing Monkey"
+  },
+  // unwound cymbal-playing monkey
+  {
+    id: 1307,
+    year: 2006,
+    type: "familiar",
+    familiar: "Attention-Deficit Demon"
+  },
+  // calm attention-deficit demon
+  {
+    id: 1970,
+    year: 2007,
+    type: "familiar",
+    familiar: "Nervous Tick"
+  },
+  // nervous tick egg
+  {
+    id: 1967,
+    year: 2007,
+    type: "familiar",
+    familiar: "Jitterbug"
+  },
+  // jitterbug larva
+  {
+    id: 2939,
+    year: 2008,
+    type: "familiar",
+    familiar: "Hunchbacked Minion"
+  },
+  // unemployed hunchbacked minion
+  {
+    id: 2937,
+    year: 2008,
+    type: "familiar",
+    familiar: "Casagnova Gnome"
+  },
+  // siesta-ing Casagnova gnome
+  {
+    id: 3481,
+    year: 2009,
+    type: "familiar",
+    familiar: "Uniclops"
+  },
+  // uniclops egg
+  {
+    id: 3482,
+    year: 2009,
+    type: "familiar",
+    familiar: "Psychedelic Bear"
+  },
+  // passed-out psychedelic bear
+  {
+    id: 4227,
+    year: 2010,
+    type: "familiar",
+    familiar: "Chauvinist Pig"
+  },
+  // hungover chauvinist pig
+  {
+    id: 4228,
+    year: 2010,
+    type: "familiar",
+    familiar: "Dancing Frog"
+  },
+  // perfectly ordinary frog
+  {
+    id: 4734,
+    year: 2011,
+    type: "familiar",
+    familiar: "Dramatic Hedgehog"
+  },
+  // rehearsing dramatic hedgehog
+  {
+    id: 4732,
+    year: 2011,
+    type: "familiar",
+    familiar: "Piano Cat"
+  },
+  // sleeping piano cat
+  {
+    id: 5377,
+    year: 2012,
+    type: "familiar",
+    familiar: "Bloovian Groose"
+  },
+  // The Groose in the Hoose
+  {
+    id: 5442,
+    year: 2012,
+    type: "familiar",
+    familiar: "Blavious Kloop"
+  },
+  // The Kloop in the Coop
+  {
+    id: 5895,
+    year: 2013,
+    type: "familiar",
+    familiar: "Unconscious Collective"
+  },
+  // avatar of the Unconscious Collective
+  {
+    id: 5893,
+    year: 2013,
+    type: "familiar",
+    familiar: "Angry Jung Man"
+  },
+  // dreaming Jung man
+  {
+    id: 7062,
+    year: 2014,
+    type: "familiar",
+    familiar: "Grim Brother"
+  },
+  // praying Grim Brother
+  {
+    id: 7064,
+    year: 2014,
+    type: "familiar",
+    familiar: "Grimstone Golem"
+  },
+  // hibernating Grimstone Golem
+  {
+    id: 8064,
+    year: 2015,
+    type: "familiar",
+    familiar: "Golden Monkey"
+  },
+  // golden monkey statuette
+  {
+    id: 8068,
+    year: 2015,
+    type: "familiar",
+    familiar: "Adventurous Spelunker"
+  },
+  // Professor of Spelunkology
+  {
+    id: 8831,
+    year: 2016,
+    type: "familiar",
+    familiar: "Rockin' Robin"
+  },
+  // basking robin
+  {
+    id: 8795,
+    year: 2016,
+    type: "item",
+    item: "replica bat-oomerang"
+  },
+  // Batfellow comic
+  {
+    id: 9303,
+    year: 2017,
+    type: "familiar",
+    familiar: "Optimistic Candle"
+  },
+  // hopeful candle
+  {
+    id: 9679,
+    year: 2018,
+    type: "familiar",
+    familiar: "Garbage Fire"
+  },
+  // kerosene-soaked skip
+  {
+    id: 10146,
+    year: 2019,
+    type: "familiar",
+    familiar: "Elf Operative"
+  },
+  // elf sleeper agent
+  {
+    id: 10431,
+    year: 2020,
+    type: "item",
+    item: "Retrospecs"
+  },
+  // Retrospecs try-at-home kit
+  {
+    id: 10731,
+    year: 2021,
+    type: "item",
+    item: "fresh coat of paint"
+  },
+  // fresh can of paint
+  {
+    id: 10884,
+    year: 2022,
+    type: "item",
+    item: "cursed magnifying glass"
+  },
+  // mint condition magnifying glass
+  {
+    id: 11089,
+    year: 2023,
+    type: "familiar",
+    familiar: "Hobo in Sheep's Clothing"
+  },
+  // mint condition magnifying glass
+  {
+    id: 11471,
+    year: 2024,
+    type: "eudora",
+    eudoraId: 6
+  },
+  // Black and White Apron Enrollment Form
+  {
+    id: 11807,
+    year: 2025,
+    type: "item",
+    item: "server room key"
+  }
+  // CyberRealm keycode
+], iotys_default = iotys;
+
+// ../greenbox-data/lib/bindable.ts
+var BindableStatus = /* @__PURE__ */ function(BindableStatus2) {
+  return BindableStatus2[BindableStatus2.NONE = 0] = "NONE", BindableStatus2[BindableStatus2.BOXED = 1] = "BOXED", BindableStatus2[BindableStatus2.BOUND = 2] = "BOUND", BindableStatus2;
+}({}), getIotMs = function() {
   return iotms_default;
-}
-var compressIotMs = function(iotmList) {
-  var idToIotMStatus = new Map(iotmList.map(function(i) {
+}, getIotYs = function() {
+  return iotys_default;
+}, compressIotMBindables = function(raws) {
+  return compressBindables(iotms_default, raws);
+}, compressIotYBindables = function(raws) {
+  return compressBindables(iotys_default, raws);
+};
+var compressBindables = function(defs, raws) {
+  var idToBindableStatus = new Map(raws.map(function(i) {
     return [i[0], i[1]];
   }));
-  return iotms_default.map(function(iotm) {
-    var _idToIotMStatus$get;
-    return (_idToIotMStatus$get = idToIotMStatus.get(iotm.id)) !== null && _idToIotMStatus$get !== void 0 ? _idToIotMStatus$get : 0;
+  return defs.map(function(bindable) {
+    var _idToBindableStatus$g;
+    return (_idToBindableStatus$g = idToBindableStatus.get(bindable.id)) !== null && _idToBindableStatus$g !== void 0 ? _idToBindableStatus$g : 0;
   }).join("").replace(/0+$/, "");
+};
+
+// ../greenbox-data/lib/familiars.ts
+init_kolmafia_polyfill();
+
+// ../greenbox-data/lib/utils.ts
+init_kolmafia_polyfill();
+var tuple = function(args) {
+  return args;
+}, arrayOf = function(items) {
+  return Array.isArray(items) ? items : [items];
+};
+
+// ../greenbox-data/lib/familiars.ts
+var FamiliarStatus = /* @__PURE__ */ function(FamiliarStatus2) {
+  return FamiliarStatus2[FamiliarStatus2.NONE = 0] = "NONE", FamiliarStatus2[FamiliarStatus2.HATCHLING = 1] = "HATCHLING", FamiliarStatus2[FamiliarStatus2.TERRARIUM = 2] = "TERRARIUM", FamiliarStatus2;
+}({}), compressFamiliars = function(familiars) {
+  return familiars.sort(function(a, b) {
+    return a[0] - b[0];
+  }).reduce(function(r, familiar) {
+    return "".concat(r).concat("0".repeat(familiar[0] - r.replace(/\*/g, "").length - 1)).concat(familiar[1]).concat(familiar[2] ? "*" : "");
+  }, "").replace(/0+$/, "");
 };
 
 // ../greenbox-data/lib/items.ts
@@ -9776,7 +10017,8 @@ function compress(raw) {
     miscTattoos: compressTattoos(raw.miscTattoos),
     outfitTattoos: compressTattoos(raw.outfitTattoos),
     paths: compressPaths(raw.paths),
-    iotms: compressIotMs(raw.iotms),
+    iotms: compressIotMBindables(raw.iotms),
+    iotys: compressIotYBindables(raw.iotys),
     items: compressItems(raw.items)
   }, compressedString = JSON.stringify(compressed);
   return encodeURIComponent(JSONCrush_default.crush(compressedString));
@@ -11160,7 +11402,7 @@ var Kmail = /* @__PURE__ */ function() {
   }]);
 }();
 
-// src/iotms.ts
+// src/bindable.ts
 init_kolmafia_polyfill();
 var import_kolmafia7 = require("kolmafia");
 
@@ -11175,34 +11417,34 @@ function haveItem(item) {
   });
 }
 
-// src/iotms.ts
+// src/bindable.ts
 var getBoolean2 = property_exports.getBoolean;
-function haveBound(iotm, options) {
+function haveBound(bindable, options) {
   var _options$force;
-  if ((_options$force = options.force) !== null && _options$force !== void 0 && _options$force.includes(iotm.id)) return !0;
-  var boxed = import_kolmafia7.Item.get(iotm.id);
-  switch (iotm.type) {
+  if ((_options$force = options.force) !== null && _options$force !== void 0 && _options$force.includes(bindable.id)) return !0;
+  var boxed = import_kolmafia7.Item.get(bindable.id);
+  switch (bindable.type) {
     case "campground": {
-      var bound = iotm.item ? import_kolmafia7.Item.get(iotm.item) : null;
+      var bound = bindable.item ? import_kolmafia7.Item.get(bindable.item) : null;
       return bound && (haveItem(bound) || haveInCampground(bound)) || haveInCampground(boxed);
     }
     case "custom": {
-      switch (iotm.id) {
+      switch (bindable.id) {
         case 5790:
           return haveItem(boxed) || haveItem(import_kolmafia7.Item.get("right bear arm")) && haveItem(import_kolmafia7.Item.get("left bear arm"));
       }
       return !1;
     }
     case "eudora":
-      return (0, import_kolmafia7.xpath)((0, import_kolmafia7.visitUrl)("account.php?tab=correspondence"), '//select[@name="whichpenpal"]/option/@value').includes(iotm.eudoraId.toString());
+      return (0, import_kolmafia7.xpath)((0, import_kolmafia7.visitUrl)("account.php?tab=correspondence"), '//select[@name="whichpenpal"]/option/@value').includes(bindable.eudoraId.toString());
     case "familiar":
-      return arrayOf(iotm.familiar).map(function(f) {
+      return arrayOf(bindable.familiar).map(function(f) {
         return import_kolmafia7.Familiar.get(f);
       }).some(function(f) {
         return (0, import_kolmafia7.haveFamiliar)(f);
       });
     case "item":
-      return flat(arrayOf(iotm.item).map(function(i) {
+      return flat(arrayOf(bindable.item).map(function(i) {
         return import_kolmafia7.Item.get(i);
       }).map(function(i) {
         var group = getFoldGroup(i);
@@ -11211,20 +11453,20 @@ function haveBound(iotm, options) {
         return haveItem(i);
       });
     case "preference":
-      return getBoolean2(iotm.preference);
+      return getBoolean2(bindable.preference);
     case "skill": {
-      var skill = import_kolmafia7.Skill.get(iotm.skill);
+      var skill = import_kolmafia7.Skill.get(bindable.skill);
       return (0, import_kolmafia7.haveSkill)(skill);
     }
     case "vip":
       return haveItem(import_kolmafia7.Item.get("Clan VIP Lounge Key"));
   }
 }
-function getIotMStatus(iotm) {
+function getBindableStatus(bindable) {
   var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-  if (haveBound(iotm, options)) return IotMStatus.BOUND;
-  var boxed = import_kolmafia7.Item.get(iotm.id);
-  return haveItem(boxed) ? IotMStatus.BOXED : IotMStatus.NONE;
+  if (haveBound(bindable, options)) return BindableStatus.BOUND;
+  var boxed = import_kolmafia7.Item.get(bindable.id);
+  return haveItem(boxed) ? BindableStatus.BOXED : BindableStatus.NONE;
 }
 
 // src/greenbox.ts
@@ -11278,7 +11520,13 @@ var getBoolean3 = property_exports.getBoolean, getNumber2 = property_exports.get
 function checkIotMs() {
   var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
   return getIotMs().map(function(iotm) {
-    return [iotm.id, getIotMStatus(iotm, options)];
+    return [iotm.id, getBindableStatus(iotm, options)];
+  });
+}
+function checkIotYs() {
+  var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+  return getIotYs().map(function(ioty) {
+    return [ioty.id, getBindableStatus(ioty, options)];
   });
 }
 function checkItems() {
@@ -11423,6 +11671,7 @@ function main() {
   }, checkTattoos(tattoos2)), {}, {
     paths: checkPaths(tattoos2),
     iotms: checkIotMs(),
+    iotys: checkIotYs(),
     items: checkItems()
   })), link = "https://greenbox.loathers.net/?".concat(keepPrivate ? "d=".concat(code) : "u=".concat((0, import_kolmafia8.myId)()));
   keepPrivate || Kmail.send(3501234, "GREENBOX:".concat(code)), (0, import_kolmafia8.printHtml)('All done! To see your greenboxes, visit: <a href="'.concat(link, '">').concat(link, "</a>"));
