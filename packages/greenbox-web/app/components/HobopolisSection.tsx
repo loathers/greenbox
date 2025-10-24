@@ -150,7 +150,7 @@ export default function HobopolisSection() {
           ))}
         </SimpleGrid>
       </Subsection>
-      <Subsection title="Hobo Nickles" image="itemimages/nickel.gif">
+      <Subsection title="Hobo Nickels" image="itemimages/nickel.gif">
         <ItemGrid
           items={NICKLE_EQUIPMENT}
           playerItems={NICKLE_EQUIPMENT.map((id) => playerItems[id]?.[1] ?? 0)}
