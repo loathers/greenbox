@@ -1324,6 +1324,13 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "Monodent of the Sea",
   }, // packaged Monodent of the Sea
+  {
+    id: 11986,
+    month: 10,
+    year: 2025,
+    type: "item",
+    item: "blood cubic zirconia",
+  }, // lab-grown blood cubic zirconia
 ];
 
 export default iotms;
