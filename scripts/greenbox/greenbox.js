@@ -6775,8 +6775,16 @@ var iotms = [
     year: 2025,
     type: "item",
     item: "Monodent of the Sea"
-  }
+  },
   // packaged Monodent of the Sea
+  {
+    id: 11986,
+    month: 10,
+    year: 2025,
+    type: "item",
+    item: "blood cubic zirconia"
+  }
+  // lab-grown blood cubic zirconia
 ], iotms_default = iotms;
 
 // ../greenbox-data/data/iotys.ts
