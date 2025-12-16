@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "greenbox-data": "*",
-    "kolmafia": "^5.28573.0",
-    "libram": "^0.11.6"
+    "kolmafia": "^5.28801.0",
+    "libram": "^0.11.14"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
@@ -36,7 +36,7 @@
     "esbuild-plugin-babel": "^0.2.3",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-libram": "^0.4.28",
+    "eslint-plugin-libram": "^0.4.34",
     "greenbox-prettier-config": "^0.0.0",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",

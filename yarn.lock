@@ -5957,10 +5957,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"data-of-loathing@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "data-of-loathing@npm:2.2.0"
-  checksum: 10c0/1870a05dcd02625c744175aa7ab3b415a812d7e8f9144e8b64531f929e3eeebfecea3a4aa494495db4c4f08ebd79dfd4faeca2acef52cf0d83f8ce71eb0d6b60
+"data-of-loathing@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "data-of-loathing@npm:2.6.0"
+  checksum: 10c0/de440bda79eb71a973c06ab290305fc584cd09b01716f5cd24a218ea1ab316e0edfd990a843c1181a5ef7698e91193901ce4212abb758c487d10015c235f8782
   languageName: node
   linkType: hard
 
@@ -6466,13 +6466,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-libram@npm:^0.4.28":
-  version: 0.4.28
-  resolution: "eslint-plugin-libram@npm:0.4.28"
+"eslint-plugin-libram@npm:^0.4.34":
+  version: 0.4.34
+  resolution: "eslint-plugin-libram@npm:0.4.34"
   dependencies:
     html-entities: "npm:^2.5.2"
     requireindex: "npm:~1.2.0"
-  checksum: 10c0/5eb52d9043b71e78b1ea6be2a23eb503e8946be810c986a5f2c9260e643eed26dee00c71bbcb298e66c2be762374af0a0e140dfa5f378cb6ef87a7279d4c642d
+  checksum: 10c0/628d0cd85364ae55659b2dd8031fbe91326c1449c1ce048d3e1ea75638546f468b8c420c04e4d528bb8061f658bf715bed0ac9ec6b367595156ef417785615db
   languageName: node
   linkType: hard
 
@@ -7129,8 +7129,8 @@ __metadata:
     eslint-config-prettier: "npm:^10.1.5"
     greenbox-prettier-config: "npm:^0.0.0"
     jsoncrush: "npm:^1.1.8"
-    kolmafia: "npm:^5.28573.0"
-    libram: "npm:^0.11.6"
+    kolmafia: "npm:^5.28801.0"
+    libram: "npm:^0.11.14"
     prettier: "npm:^3.6.2"
     typescript: "npm:^5.8.3"
     typescript-eslint: "npm:^8.36.0"
@@ -7170,11 +7170,11 @@ __metadata:
     esbuild-plugin-babel: "npm:^0.2.3"
     eslint: "npm:^9.31.0"
     eslint-config-prettier: "npm:^10.1.5"
-    eslint-plugin-libram: "npm:^0.4.28"
+    eslint-plugin-libram: "npm:^0.4.34"
     greenbox-data: "npm:*"
     greenbox-prettier-config: "npm:^0.0.0"
-    kolmafia: "npm:^5.28573.0"
-    libram: "npm:^0.11.6"
+    kolmafia: "npm:^5.28801.0"
+    libram: "npm:^0.11.14"
     prettier: "npm:^3.6.2"
     typescript: "npm:^5.8.3"
     typescript-eslint: "npm:^8.36.0"
@@ -7201,7 +7201,7 @@ __metadata:
     "@types/react": "npm:^19.1.8"
     "@types/react-dom": "npm:^19.1.6"
     color: "npm:^5.0.0"
-    data-of-loathing: "npm:^2.2.0"
+    data-of-loathing: "npm:^2.6.0"
     date-fns: "npm:^4.1.0"
     fast-equals: "npm:^5.2.2"
     gql.tada: "npm:^1.8.11"
@@ -7734,10 +7734,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kolmafia@npm:^5.28573.0":
-  version: 5.28573.0
-  resolution: "kolmafia@npm:5.28573.0"
-  checksum: 10c0/713dc489c3769baecc25958d8863c2188126ba9fad92d7672016e37525f6f6bc16ce8f822e1fa4b6d630025e79844265d42b22b07bc29b1dd7d2f1898787b97f
+"kolmafia@npm:^5.28801.0":
+  version: 5.28801.0
+  resolution: "kolmafia@npm:5.28801.0"
+  checksum: 10c0/7fdd606ba3f4905e095eedf507fa2eae06b2befe561f74a69ce821e3667ac3cafb27fdec04c09daadfd527d18051755d14020d4d73aa9b0a1e061590f4010403
   languageName: node
   linkType: hard
 
@@ -7751,14 +7751,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libram@npm:^0.11.6":
-  version: 0.11.6
-  resolution: "libram@npm:0.11.6"
+"libram@npm:^0.11.14":
+  version: 0.11.14
+  resolution: "libram@npm:0.11.14"
   dependencies:
     html-entities: "npm:^2.5.2"
   peerDependencies:
     kolmafia: ^5.28100.0
-  checksum: 10c0/6e77a0771f45e3f74148db97ab3a616818970f756bf01a596a85a979d7a4f3e081ab0f7363eb6d3b1d8ee59f7ead96d8b57ed70c06a2f7b348826c42fb0f098f
+  checksum: 10c0/99215bdc423c08a4908bc103ba5c547a0515a32d9a9422e3930db6002a2e56d73bfccc6c74a6002fffb89266f28fbcaef6eaa40f353baf84779c37f5389e5269
   languageName: node
   linkType: hard
 
