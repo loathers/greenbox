@@ -1331,6 +1331,20 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "blood cubic zirconia",
   }, // lab-grown blood cubic zirconia
+  {
+    id: 12047,
+    month: 11,
+    year: 2025,
+    type: "preference",
+    preference: "hasShrunkenHead",
+  }, // shrunken head in a duffel bag
+  {
+    id: 12049,
+    month: 12,
+    year: 2025,
+    type: "familiar",
+    familiar: "Skeleton of Crimbo Past",
+  }, // stocking full of bones
 ];
 
 export default iotms;

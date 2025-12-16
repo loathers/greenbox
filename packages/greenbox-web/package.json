@@ -20,7 +20,7 @@
     "@react-router/serve": "^7.6.3",
     "@reduxjs/toolkit": "^2.8.2",
     "color": "^5.0.0",
-    "data-of-loathing": "^2.2.0",
+    "data-of-loathing": "^2.6.0",
     "date-fns": "^4.1.0",
     "fast-equals": "^5.2.2",
     "gql.tada": "^1.8.11",
