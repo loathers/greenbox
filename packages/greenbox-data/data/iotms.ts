@@ -1351,7 +1351,7 @@ const iotms: IotMDef[] = [
     year: 2026,
     type: "item",
     item: "legendary seal-clubbing club",
-  }, // seal-clubbing club loot box}
+  }, // seal-clubbing club loot box
 ];
 
 export default iotms;
