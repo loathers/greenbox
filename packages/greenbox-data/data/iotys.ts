@@ -199,6 +199,12 @@ const iotys: BindableDef[] = [
     type: "item",
     item: "server room key",
   }, // CyberRealm keycode
+  {
+    id: 12067,
+    year: 2026,
+    type: "item",
+    item: "The Eternity Codpiece",
+  }, // discreetly-wrapped Eternity Codpiece
 ];
 
 export default iotys;

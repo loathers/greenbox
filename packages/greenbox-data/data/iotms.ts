@@ -1345,6 +1345,13 @@ const iotms: IotMDef[] = [
     type: "familiar",
     familiar: "Skeleton of Crimbo Past",
   }, // stocking full of bones
+  {
+    id: 12133,
+    month: 1,
+    year: 2026,
+    type: "item",
+    item: "legendary seal-clubbing club",
+  }, // seal-clubbing club loot box
 ];
 
 export default iotms;
