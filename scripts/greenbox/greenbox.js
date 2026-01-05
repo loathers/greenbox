@@ -6799,8 +6799,16 @@ var iotms = [
     year: 2025,
     type: "familiar",
     familiar: "Skeleton of Crimbo Past"
-  }
+  },
   // stocking full of bones
+  {
+    id: 12133,
+    month: 1,
+    year: 2026,
+    type: "item",
+    item: "legendary seal-clubbing club"
+  }
+  // seal-clubbing club loot box
 ], iotms_default = iotms;
 
 // ../greenbox-data/data/iotys.ts
@@ -7035,8 +7043,15 @@ var iotys = [
     year: 2025,
     type: "item",
     item: "server room key"
-  }
+  },
   // CyberRealm keycode
+  {
+    id: 12067,
+    year: 2026,
+    type: "item",
+    item: "The Eternity Codpiece"
+  }
+  // discreetly-wrapped Eternity Codpiece
 ], iotys_default = iotys;
 
 // ../greenbox-data/lib/bindable.ts
