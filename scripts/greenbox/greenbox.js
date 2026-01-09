@@ -9381,7 +9381,7 @@ var tattoos = [{
   misc: 55
 }, {
   name: "Crymbocurrency",
-  image: "cryptotattoo",
+  image: "cryptotat",
   misc: 56
 }], tattoos_default = tattoos;
 
