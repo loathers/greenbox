@@ -10,8 +10,9 @@
   "scripts": {
     "build": "node build.mjs",
     "format": "prettier --write .",
-    "watch": "node build.mjs --watch",
-    "test": "vitest"
+    "lint": "yarn run eslint && yarn run prettier --check .",
+    "test": "vitest",
+    "watch": "node build.mjs --watch"
   },
   "dependencies": {
     "greenbox-data": "*",

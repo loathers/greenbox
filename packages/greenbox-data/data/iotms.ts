@@ -1,70 +1,28 @@
-import type { KnownProperty } from "libram";
+import {
+  type BindableCampground,
+  type BindableCustom,
+  type BindableEudora,
+  type BindableFamiliar,
+  type BindableItem,
+  type BindablePreference,
+  type BindableSkill,
+  type BindableVIP,
+} from "./bindable.js";
 
 interface BaseIotM {
-  id: number;
   month: number;
-  year: number;
 }
 
-interface CampgroundIotM extends BaseIotM {
-  type: "campground";
-  /**
-   * This can cover gardens, worksheds and items that install directly to the campground.
-   * If no item is supplied, the Mr Store item is checked directly.
-   */
-  item?: string;
-}
+interface CampgroundIotM extends BindableCampground, BaseIotM {}
+interface CustomIotM extends BindableCustom, BaseIotM {}
+interface EudoraIotM extends BindableEudora, BaseIotM {}
+interface FamiliarIotM extends BindableFamiliar, BaseIotM {}
+interface ItemIotM extends BindableItem, BaseIotM {}
+interface PreferenceIotM extends BindablePreference, BaseIotM {}
+interface SkillIotM extends BindableSkill, BaseIotM {}
+interface VIPIotM extends BindableVIP, BaseIotM {}
 
-interface CustomIotM extends BaseIotM {
-  type: "custom";
-}
-
-interface EudoraIotM extends BaseIotM {
-  type: "eudora";
-  /**
-   * The id of the correspondent
-   */
-  eudoraId: number;
-}
-
-interface FamiliarIotM extends BaseIotM {
-  type: "familiar";
-  /**
-   * Familiar name to check. If an array is provided, checks for any of those familiars
-   */
-  familiar: string | string[];
-}
-
-interface ItemIotM extends BaseIotM {
-  type: "item";
-  /**
-   * Item name to check. If an array is provided, checks for any of those items.
-   * If the item provided is part of a fold group, any of those items will match.
-   */
-  item: string | string[];
-}
-
-interface PreferenceIotM extends BaseIotM {
-  type: "preference";
-  /**
-   * Preference to check. If it contains "true" the IotM will be considered owned.
-   */
-  preference: KnownProperty;
-}
-
-interface SkillIotM extends BaseIotM {
-  type: "skill";
-  /**
-   * Skill name to check.
-   */
-  skill: string;
-}
-
-interface VIPIotM extends BaseIotM {
-  type: "vip";
-}
-
-export type IotMDef =
+type IotMDef =
   | CampgroundIotM
   | CustomIotM
   | EudoraIotM
@@ -1366,6 +1324,34 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "Monodent of the Sea",
   }, // packaged Monodent of the Sea
+  {
+    id: 11986,
+    month: 10,
+    year: 2025,
+    type: "item",
+    item: "blood cubic zirconia",
+  }, // lab-grown blood cubic zirconia
+  {
+    id: 12047,
+    month: 11,
+    year: 2025,
+    type: "preference",
+    preference: "hasShrunkenHead",
+  }, // shrunken head in a duffel bag
+  {
+    id: 12049,
+    month: 12,
+    year: 2025,
+    type: "familiar",
+    familiar: "Skeleton of Crimbo Past",
+  }, // stocking full of bones
+  {
+    id: 12133,
+    month: 1,
+    year: 2026,
+    type: "item",
+    item: "legendary seal-clubbing club",
+  }, // seal-clubbing club loot box
 ];
 
 export default iotms;

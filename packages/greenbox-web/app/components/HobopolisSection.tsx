@@ -31,7 +31,7 @@ const STRONG_ELEMENTAL = [
   42, // Raise Backup Dancer
 ] as const;
 
-const NICKLE_EQUIPMENT = [
+const NICKEL_EQUIPMENT = [
   3220, // hobo code binder
   3328, // crumpled felt fedora
   3329, // battered old top-hat
@@ -150,10 +150,10 @@ export default function HobopolisSection() {
           ))}
         </SimpleGrid>
       </Subsection>
-      <Subsection title="Hobo Nickles" image="itemimages/nickel.gif">
+      <Subsection title="Hobo Nickels" image="itemimages/nickel.gif">
         <ItemGrid
-          items={NICKLE_EQUIPMENT}
-          playerItems={NICKLE_EQUIPMENT.map((id) => playerItems[id]?.[1] ?? 0)}
+          items={NICKEL_EQUIPMENT}
+          playerItems={NICKEL_EQUIPMENT.map((id) => playerItems[id]?.[1] ?? 0)}
         />
       </Subsection>
       <Subsection title="Hobo Instruments" image="itemimages/triangle.gif">

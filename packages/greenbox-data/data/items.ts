@@ -119,7 +119,7 @@ export const specialItems = [
   3841, // anniversary pewter cape
 
   //// Hobopolis
-  // Hobo Nickles
+  // Hobo Nickels
   3220, // hobo code binder
   3328, // crumpled felt fedora
   3329, // battered old top-hat

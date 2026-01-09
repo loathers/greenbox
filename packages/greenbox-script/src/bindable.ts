@@ -1,4 +1,4 @@
-import { arrayOf, IotMDef, IotMStatus } from "greenbox-data";
+import { arrayOf, BindableDef, BindableStatus } from "greenbox-data";
 import {
   Familiar,
   haveFamiliar,
@@ -12,27 +12,27 @@ import { flat, getFoldGroup, haveInCampground, property } from "libram";
 
 import { haveItem } from "./utils.js";
 
-export type IotMOptions = Partial<{
+export type BindableOptions = Partial<{
   force: number[];
 }>;
 
 const { getBoolean } = property;
 
-function haveBound(iotm: IotMDef, options: IotMOptions): boolean {
-  if (options.force?.includes(iotm.id)) return true;
+function haveBound(bindable: BindableDef, options: BindableOptions): boolean {
+  if (options.force?.includes(bindable.id)) return true;
 
-  const boxed = Item.get(iotm.id);
+  const boxed = Item.get(bindable.id);
 
-  switch (iotm.type) {
+  switch (bindable.type) {
     case "campground": {
-      const bound = iotm.item ? Item.get(iotm.item) : null;
+      const bound = bindable.item ? Item.get(bindable.item) : null;
       return (
         (bound && (haveItem(bound) || haveInCampground(bound))) ||
         haveInCampground(boxed)
       );
     }
     case "custom": {
-      switch (iotm.id) {
+      switch (bindable.id) {
         case 5790: {
           return (
             haveItem(boxed) ||
@@ -47,14 +47,14 @@ function haveBound(iotm: IotMDef, options: IotMOptions): boolean {
       return xpath(
         visitUrl("account.php?tab=correspondence"),
         `//select[@name="whichpenpal"]/option/@value`,
-      ).includes(iotm.eudoraId.toString());
+      ).includes(bindable.eudoraId.toString());
     case "familiar":
-      return arrayOf(iotm.familiar)
+      return arrayOf(bindable.familiar)
         .map((f) => Familiar.get(f))
         .some((f) => haveFamiliar(f));
     case "item":
       return flat(
-        arrayOf(iotm.item)
+        arrayOf(bindable.item)
           .map((i) => Item.get(i))
           .map((i) => {
             const group = getFoldGroup(i);
@@ -62,9 +62,9 @@ function haveBound(iotm: IotMDef, options: IotMOptions): boolean {
           }),
       ).some((i) => haveItem(i));
     case "preference":
-      return getBoolean(iotm.preference);
+      return getBoolean(bindable.preference);
     case "skill": {
-      const skill = Skill.get(iotm.skill);
+      const skill = Skill.get(bindable.skill);
       return haveSkill(skill);
     }
     case "vip":
@@ -72,12 +72,12 @@ function haveBound(iotm: IotMDef, options: IotMOptions): boolean {
   }
 }
 
-export function getIotMStatus(
-  iotm: IotMDef,
-  options: IotMOptions = {},
-): IotMStatus {
-  if (haveBound(iotm, options)) return IotMStatus.BOUND;
-  const boxed = Item.get(iotm.id);
-  if (haveItem(boxed)) return IotMStatus.BOXED;
-  return IotMStatus.NONE;
+export function getBindableStatus(
+  bindable: BindableDef,
+  options: BindableOptions = {},
+): BindableStatus {
+  if (haveBound(bindable, options)) return BindableStatus.BOUND;
+  const boxed = Item.get(bindable.id);
+  if (haveItem(boxed)) return BindableStatus.BOXED;
+  return BindableStatus.NONE;
 }

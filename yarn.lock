@@ -3910,7 +3910,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^19.2.7":
+"@types/react-is@npm:^19":
+  version: 19.2.0
+  resolution: "@types/react-is@npm:19.2.0"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/ff49ac8b8d439c3377e11d2f9f491ed4f8c8ee800225a40093c7941715ca8ccbde1b3833c5435354a8e39305fd0a163019d97f033c9402bc4b46f515851d2290
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:*, @types/react@npm:^19.2.7":
   version: 19.2.7
   resolution: "@types/react@npm:19.2.7"
   dependencies:
@@ -7077,7 +7086,7 @@ __metadata:
     "@trivago/prettier-plugin-sort-imports": "npm:^6.0.2"
     prettier: "npm:^3.7.4"
   peerDependencies:
-    "@trivago/prettier-plugin-sort-imports": ^5.2.0
+    "@trivago/prettier-plugin-sort-imports": ^6.0.2
     prettier: ^3.4.2
   languageName: unknown
   linkType: soft
@@ -7132,6 +7141,7 @@ __metadata:
     "@types/node": "npm:^25.0.3"
     "@types/react": "npm:^19.2.7"
     "@types/react-dom": "npm:^19.2.3"
+    "@types/react-is": "npm:^19"
     color: "npm:^5.0.3"
     data-of-loathing: "npm:^2.6.2"
     date-fns: "npm:^4.1.0"
@@ -7145,6 +7155,7 @@ __metadata:
     prisma: "npm:^6.19.1"
     react: "npm:^19.2.3"
     react-dom: "npm:^19.2.3"
+    react-is: "npm:^19.2.3"
     react-redux: "npm:^9.2.0"
     react-router: "npm:^7.12.0"
     react-router-devtools: "npm:^6.1.0"
@@ -8516,6 +8527,13 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
+  languageName: node
+  linkType: hard
+
+"react-is@npm:^19.2.3":
+  version: 19.2.3
+  resolution: "react-is@npm:19.2.3"
+  checksum: 10c0/2b54c422c21b8dbd68a435a1cce21ecd5b6f06f48659531f7d53dd7368365da5a67e946f352fb2010d11ca40658aa67bec90995f0f1ec5556c0f71dbffe54994
   languageName: node
   linkType: hard
 
