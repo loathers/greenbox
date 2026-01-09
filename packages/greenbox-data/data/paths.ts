@@ -1,6 +1,13 @@
 import type { PathDef } from "../lib/types.js";
 
 enum ItemId {
+  // Softcore Standard 2026
+  AngelboneSC = 12068,
+  AngelboneTT = 12069,
+  AngelbonePM = 12070,
+  AngelboneSA = 12071,
+  AngelboneDB = 12072,
+  AngelboneAT = 12073,
   // Softcore Standard 2025
   CrepePaperSC = 11520,
   CrepePaperTT = 11521,
@@ -78,6 +85,13 @@ enum ItemId {
   PolyesterSA = 7988,
   PolyesterDB = 7989,
   PolyesterAT = 7990,
+  // Hardcore Standard 2026
+  DevilboneSC = 12076,
+  DevilboneTT = 12077,
+  DevilbonePM = 12078,
+  DevilboneSA = 12079,
+  DevilboneDB = 12080,
+  DevilboneAT = 12081,
   // Hardcore Standard 2025
   PetrifiedWoodSC = 11528,
   PetrifiedWoodTT = 11529,
@@ -338,6 +352,12 @@ const paths: PathDef[] = [
       ItemId.CrepePaperSA,
       ItemId.CrepePaperDB,
       ItemId.CrepePaperAT,
+      ItemId.AngelboneSC,
+      ItemId.AngelboneTT,
+      ItemId.AngelbonePM,
+      ItemId.AngelboneSA,
+      ItemId.AngelboneDB,
+      ItemId.AngelboneAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1" },
@@ -445,6 +465,12 @@ const paths: PathDef[] = [
       ItemId.PetrifiedWoodSA,
       ItemId.PetrifiedWoodDB,
       ItemId.PetrifiedWoodAT,
+      ItemId.DevilboneSC,
+      ItemId.DevilboneTT,
+      ItemId.DevilbonePM,
+      ItemId.DevilboneSA,
+      ItemId.DevilboneDB,
+      ItemId.DevilboneAT,
     ],
     tattoos: [
       { name: "Seal Clubber", image: "class1hc" },
