@@ -8470,6 +8470,10 @@ var tattoos = [{
   image: "adobetat",
   outfit: 169
 }, {
+  name: "Angelbone Vestements",
+  image: "abonetat",
+  outfit: 181
+}, {
   name: "Animelf Apparel",
   image: "animelftat",
   outfit: 89
@@ -8489,6 +8493,10 @@ var tattoos = [{
   name: "Arrrbor Day Apparrrrrel",
   image: "arbortat",
   outfit: 48
+}, {
+  name: "Axis Uniform",
+  image: "axistat",
+  outfit: 174
 }, {
   name: "Bakelite Brigandine",
   image: "baketat",
@@ -8613,6 +8621,10 @@ var tattoos = [{
   name: "Dental Drip",
   image: "dentaltat",
   outfit: 165
+}, {
+  name: "Devilbone Prison",
+  image: "dbonetat",
+  outfit: 182
 }, {
   name: "Dinsey's Exoskeleton",
   image: "wdbraintat",
@@ -8950,6 +8962,10 @@ var tattoos = [{
   image: "orbisontat",
   outfit: 38
 }, {
+  name: "Scorched Skeleton Suit",
+  image: "sskeltat",
+  outfit: 187
+}, {
   name: "Seafaring Suit",
   image: "sailortat",
   outfit: 90
@@ -9109,6 +9125,10 @@ var tattoos = [{
   name: "Wax Wardrobe",
   image: "crayontat",
   outfit: 85
+}, {
+  name: "Wet Wear",
+  image: "wetoutfittat",
+  outfit: 173
 }, {
   name: "Whittled Wearables",
   image: "whittletat",
@@ -9328,9 +9348,41 @@ var tattoos = [{
   image: "al_tat",
   misc: 47
 }, {
+  name: "Crimbuccaneer",
+  image: "crimbopirate",
+  misc: 48
+}, {
+  name: "Elf Guard",
+  image: "elfguardtat",
+  misc: 49
+}, {
+  name: "Jolly Roger",
+  image: "tstat",
+  misc: 50
+}, {
   name: "Tattoo Gun",
   image: "2024raffle",
-  misc: 48
+  misc: 51
+}, {
+  name: "Two Turkeys",
+  image: "twoturkeys",
+  misc: 52
+}, {
+  name: "Virtual cybertattoo",
+  image: "cybertat",
+  misc: 53
+}, {
+  name: "Allied Tattoo",
+  image: "allytat",
+  misc: 54
+}, {
+  name: "Wet Shower",
+  image: "wetpapertat",
+  misc: 55
+}, {
+  name: "Crymbocurrency",
+  image: "cryptotattoo",
+  misc: 56
 }], tattoos_default = tattoos;
 
 // ../greenbox-data/lib/tattoos.ts
