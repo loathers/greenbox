@@ -265,7 +265,15 @@ const tattoos: TattooDef[] = [
   { name: "Crimbo Commerce", image: "c20commerce", misc: 45 },
   { name: "Shadow", image: "shadowtat", misc: 46 },
   { name: "Super-Heated Leaf", image: "al_tat", misc: 47 },
-  { name: "Tattoo Gun", image: "2024raffle", misc: 48 },
+  { name: "Crimbuccaneer", image: "crimbopirate", misc: 48 },
+  { name: "Elf Guard", image: "elfguardtat", misc: 49 },
+  { name: "Jolly Roger", image: "tstat", misc: 50 },
+  { name: "Tattoo Gun", image: "2024raffle", misc: 51 },
+  { name: "Two Turkeys", image: "twoturkeys", misc: 52 },
+  { name: "Virtual cybertattoo", image: "cybertat", misc: 53 },
+  { name: "Allied Tattoo", image: "allytat", misc: 54 },
+  { name: "Wet Shower", image: "wetpapertat", misc: 55 },
+  {name: "Crymbocurrency", image: "cryptotattoo", misc: 56 },
 ];
 
 export default tattoos;
