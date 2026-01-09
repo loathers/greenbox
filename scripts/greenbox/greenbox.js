@@ -7055,9 +7055,9 @@ var iotys = [
 ], iotys_default = iotys;
 
 // ../greenbox-data/lib/bindable.ts
-var BindableStatus = /* @__PURE__ */ function(BindableStatus2) {
+var BindableStatus = /* @__PURE__ */ (function(BindableStatus2) {
   return BindableStatus2[BindableStatus2.NONE = 0] = "NONE", BindableStatus2[BindableStatus2.BOXED = 1] = "BOXED", BindableStatus2[BindableStatus2.BOUND = 2] = "BOUND", BindableStatus2;
-}({}), getIotMs = function() {
+})({}), getIotMs = function() {
   return iotms_default;
 }, getIotYs = function() {
   return iotys_default;
@@ -7088,9 +7088,9 @@ var tuple = function(args) {
 };
 
 // ../greenbox-data/lib/familiars.ts
-var FamiliarStatus = /* @__PURE__ */ function(FamiliarStatus2) {
+var FamiliarStatus = /* @__PURE__ */ (function(FamiliarStatus2) {
   return FamiliarStatus2[FamiliarStatus2.NONE = 0] = "NONE", FamiliarStatus2[FamiliarStatus2.HATCHLING = 1] = "HATCHLING", FamiliarStatus2[FamiliarStatus2.TERRARIUM = 2] = "TERRARIUM", FamiliarStatus2;
-}({}), compressFamiliars = function(familiars) {
+})({}), compressFamiliars = function(familiars) {
   return familiars.sort(function(a, b) {
     return a[0] - b[0];
   }).reduce(function(r, familiar) {
@@ -7657,9 +7657,9 @@ function _iterableToArrayLimit(r, l) {
 function _arrayWithHoles(r) {
   if (Array.isArray(r)) return r;
 }
-var ItemStatus = /* @__PURE__ */ function(ItemStatus2) {
+var ItemStatus = /* @__PURE__ */ (function(ItemStatus2) {
   return ItemStatus2[ItemStatus2.NONE = 0] = "NONE", ItemStatus2[ItemStatus2.HAVE = 1] = "HAVE", ItemStatus2;
-}({}), compressItems = function(items) {
+})({}), compressItems = function(items) {
   return items.filter(function(_ref) {
     var _ref2 = _slicedToArray(_ref, 2), q = _ref2[1];
     return q > 0;
@@ -7725,13 +7725,13 @@ init_kolmafia_polyfill();
 
 // ../greenbox-data/data/paths.ts
 init_kolmafia_polyfill();
-var ItemId = /* @__PURE__ */ function(ItemId2) {
+var ItemId = /* @__PURE__ */ (function(ItemId2) {
   return ItemId2[ItemId2.CrepePaperSC = 11520] = "CrepePaperSC", ItemId2[ItemId2.CrepePaperTT = 11521] = "CrepePaperTT", ItemId2[ItemId2.CrepePaperPM = 11522] = "CrepePaperPM", ItemId2[ItemId2.CrepePaperSA = 11523] = "CrepePaperSA", ItemId2[ItemId2.CrepePaperDB = 11524] = "CrepePaperDB", ItemId2[ItemId2.CrepePaperAT = 11525] = "CrepePaperAT", ItemId2[ItemId2.MossSC = 11504] = "MossSC", ItemId2[ItemId2.MossTT = 11505] = "MossTT", ItemId2[ItemId2.MossPM = 11506] = "MossPM", ItemId2[ItemId2.MossSA = 11507] = "MossSA", ItemId2[ItemId2.MossDB = 11508] = "MossDB", ItemId2[ItemId2.MossAT = 11509] = "MossAT", ItemId2[ItemId2.ChiffonSC = 11028] = "ChiffonSC", ItemId2[ItemId2.ChiffonTT = 11029] = "ChiffonTT", ItemId2[ItemId2.ChiffonPM = 11030] = "ChiffonPM", ItemId2[ItemId2.ChiffonSA = 11031] = "ChiffonSA", ItemId2[ItemId2.ChiffonDB = 11032] = "ChiffonDB", ItemId2[ItemId2.ChiffonAT = 11033] = "ChiffonAT", ItemId2[ItemId2.LoofahSC = 10130] = "LoofahSC", ItemId2[ItemId2.LoofahTT = 10131] = "LoofahTT", ItemId2[ItemId2.LoofahPM = 10132] = "LoofahPM", ItemId2[ItemId2.LoofahSA = 10133] = "LoofahSA", ItemId2[ItemId2.LoofahDB = 10134] = "LoofahDB", ItemId2[ItemId2.LoofahAT = 10135] = "LoofahAT", ItemId2[ItemId2.VelourSC = 10114] = "VelourSC", ItemId2[ItemId2.VelourTT = 10115] = "VelourTT", ItemId2[ItemId2.VelourPM = 10116] = "VelourPM", ItemId2[ItemId2.VelourSA = 10117] = "VelourSA", ItemId2[ItemId2.VelourDB = 10118] = "VelourDB", ItemId2[ItemId2.VelourAT = 10119] = "VelourAT", ItemId2[ItemId2.ParaffinSC = 10098] = "ParaffinSC", ItemId2[ItemId2.ParaffinTT = 10099] = "ParaffinTT", ItemId2[ItemId2.ParaffinPM = 10100] = "ParaffinPM", ItemId2[ItemId2.ParaffinSA = 10101] = "ParaffinSA", ItemId2[ItemId2.ParaffinDB = 10102] = "ParaffinDB", ItemId2[ItemId2.ParaffinAT = 10103] = "ParaffinAT", ItemId2[ItemId2.ChalkSC = 10082] = "ChalkSC", ItemId2[ItemId2.ChalkTT = 10083] = "ChalkTT", ItemId2[ItemId2.ChalkPM = 10084] = "ChalkPM", ItemId2[ItemId2.ChalkSA = 10085] = "ChalkSA", ItemId2[ItemId2.ChalkDB = 10086] = "ChalkDB", ItemId2[ItemId2.ChalkAT = 10087] = "ChalkAT", ItemId2[ItemId2.GabardineSC = 8120] = "GabardineSC", ItemId2[ItemId2.GabardineTT = 8121] = "GabardineTT", ItemId2[ItemId2.GabardinePM = 8122] = "GabardinePM", ItemId2[ItemId2.GabardineSA = 8123] = "GabardineSA", ItemId2[ItemId2.GabardineDB = 8124] = "GabardineDB", ItemId2[ItemId2.GabardineAT = 8125] = "GabardineAT", ItemId2[ItemId2.AerogelSC = 8106] = "AerogelSC", ItemId2[ItemId2.AerogelTT = 8107] = "AerogelTT", ItemId2[ItemId2.AerogelPM = 8108] = "AerogelPM", ItemId2[ItemId2.AerogelSA = 8109] = "AerogelSA", ItemId2[ItemId2.AerogelDB = 8110] = "AerogelDB", ItemId2[ItemId2.AerogelAT = 8111] = "AerogelAT", ItemId2[ItemId2.WickerSC = 8092] = "WickerSC", ItemId2[ItemId2.WickerTT = 8093] = "WickerTT", ItemId2[ItemId2.WickerPM = 8094] = "WickerPM", ItemId2[ItemId2.WickerSA = 8095] = "WickerSA", ItemId2[ItemId2.WickerDB = 8096] = "WickerDB", ItemId2[ItemId2.WickerAT = 8097] = "WickerAT", ItemId2[ItemId2.PolyesterSC = 7985] = "PolyesterSC", ItemId2[ItemId2.PolyesterTT = 7986] = "PolyesterTT", ItemId2[ItemId2.PolyesterPM = 7987] = "PolyesterPM", ItemId2[ItemId2.PolyesterSA = 7988] = "PolyesterSA", ItemId2[ItemId2.PolyesterDB = 7989] = "PolyesterDB", ItemId2[ItemId2.PolyesterAT = 7990] = "PolyesterAT", ItemId2[ItemId2.PetrifiedWoodSC = 11528] = "PetrifiedWoodSC", ItemId2[ItemId2.PetrifiedWoodTT = 11529] = "PetrifiedWoodTT", ItemId2[ItemId2.PetrifiedWoodPM = 11530] = "PetrifiedWoodPM", ItemId2[ItemId2.PetrifiedWoodSA = 11531] = "PetrifiedWoodSA", ItemId2[ItemId2.PetrifiedWoodDB = 11532] = "PetrifiedWoodDB", ItemId2[ItemId2.PetrifiedWoodAT = 11533] = "PetrifiedWoodAT", ItemId2[ItemId2.AdobeSC = 11512] = "AdobeSC", ItemId2[ItemId2.AdobeTT = 11513] = "AdobeTT", ItemId2[ItemId2.AdobePM = 11514] = "AdobePM", ItemId2[ItemId2.AdobeSA = 11515] = "AdobeSA", ItemId2[ItemId2.AdobeDB = 11516] = "AdobeDB", ItemId2[ItemId2.AdobeAT = 11517] = "AdobeAT", ItemId2[ItemId2.CeramicSC = 11020] = "CeramicSC", ItemId2[ItemId2.CeramicTT = 11021] = "CeramicTT", ItemId2[ItemId2.CeramicPM = 11022] = "CeramicPM", ItemId2[ItemId2.CeramicSA = 11023] = "CeramicSA", ItemId2[ItemId2.CeramicDB = 11024] = "CeramicDB", ItemId2[ItemId2.CeramicAT = 11025] = "CeramicAT", ItemId2[ItemId2.FlagstoneSC = 10138] = "FlagstoneSC", ItemId2[ItemId2.FlagstoneTT = 10139] = "FlagstoneTT", ItemId2[ItemId2.FlagstonePM = 10140] = "FlagstonePM", ItemId2[ItemId2.FlagstoneSA = 10141] = "FlagstoneSA", ItemId2[ItemId2.FlagstoneDB = 10142] = "FlagstoneDB", ItemId2[ItemId2.FlagstoneAT = 10143] = "FlagstoneAT", ItemId2[ItemId2.StainedGlassSC = 10122] = "StainedGlassSC", ItemId2[ItemId2.StainedGlassTT = 10123] = "StainedGlassTT", ItemId2[ItemId2.StainedGlassPM = 10124] = "StainedGlassPM", ItemId2[ItemId2.StainedGlassSA = 10125] = "StainedGlassSA", ItemId2[ItemId2.StainedGlassDB = 10126] = "StainedGlassDB", ItemId2[ItemId2.StainedGlassAT = 10127] = "StainedGlassAT", ItemId2[ItemId2.TerraCottaSC = 10106] = "TerraCottaSC", ItemId2[ItemId2.TerraCottaTT = 10107] = "TerraCottaTT", ItemId2[ItemId2.TerraCottaPM = 10108] = "TerraCottaPM", ItemId2[ItemId2.TerraCottaSA = 10109] = "TerraCottaSA", ItemId2[ItemId2.TerraCottaDB = 10110] = "TerraCottaDB", ItemId2[ItemId2.TerraCottaAT = 10111] = "TerraCottaAT", ItemId2[ItemId2.MarbleSC = 10090] = "MarbleSC", ItemId2[ItemId2.MarbleTT = 10091] = "MarbleTT", ItemId2[ItemId2.MarblePM = 10092] = "MarblePM", ItemId2[ItemId2.MarbleSA = 10093] = "MarbleSA", ItemId2[ItemId2.MarbleDB = 10094] = "MarbleDB", ItemId2[ItemId2.MarbleAT = 10095] = "MarbleAT", ItemId2[ItemId2.FiberglassSC = 8127] = "FiberglassSC", ItemId2[ItemId2.FiberglassTT = 8128] = "FiberglassTT", ItemId2[ItemId2.FiberglassPM = 8129] = "FiberglassPM", ItemId2[ItemId2.FiberglassSA = 8130] = "FiberglassSA", ItemId2[ItemId2.FiberglassDB = 8131] = "FiberglassDB", ItemId2[ItemId2.FiberglassAT = 8132] = "FiberglassAT", ItemId2[ItemId2.WroughtIronSC = 8113] = "WroughtIronSC", ItemId2[ItemId2.WroughtIronTT = 8114] = "WroughtIronTT", ItemId2[ItemId2.WroughtIronPM = 8115] = "WroughtIronPM", ItemId2[ItemId2.WroughtIronSA = 8116] = "WroughtIronSA", ItemId2[ItemId2.WroughtIronDB = 8117] = "WroughtIronDB", ItemId2[ItemId2.WroughtIronAT = 8118] = "WroughtIronAT", ItemId2[ItemId2.BakeliteSC = 8099] = "BakeliteSC", ItemId2[ItemId2.BakeliteTT = 8100] = "BakeliteTT", ItemId2[ItemId2.BakelitePM = 8101] = "BakelitePM", ItemId2[ItemId2.BakeliteSA = 8102] = "BakeliteSA", ItemId2[ItemId2.BakeliteDB = 8103] = "BakeliteDB", ItemId2[ItemId2.BakeliteAT = 8104] = "BakeliteAT", ItemId2[ItemId2.PorcelainSC = 7991] = "PorcelainSC", ItemId2[ItemId2.PorcelainTT = 7992] = "PorcelainTT", ItemId2[ItemId2.PorcelainPM = 7993] = "PorcelainPM", ItemId2[ItemId2.PorcelainSA = 7994] = "PorcelainSA", ItemId2[ItemId2.PorcelainDB = 7995] = "PorcelainDB", ItemId2[ItemId2.PorcelainAT = 7996] = "PorcelainAT", ItemId2[ItemId2.StainlessSC = 1224] = "StainlessSC", ItemId2[ItemId2.StainlessTT = 1225] = "StainlessTT", ItemId2[ItemId2.StainlessPM = 1226] = "StainlessPM", ItemId2[ItemId2.StainlessSA = 1227] = "StainlessSA", ItemId2[ItemId2.StainlessDB = 1228] = "StainlessDB", ItemId2[ItemId2.StainlessAT = 1229] = "StainlessAT", ItemId2[ItemId2.PlexiSC = 1230] = "PlexiSC", ItemId2[ItemId2.PlexiTT = 1231] = "PlexiTT", ItemId2[ItemId2.PlexiPM = 1232] = "PlexiPM", ItemId2[ItemId2.PlexiSA = 1233] = "PlexiSA", ItemId2[ItemId2.PlexiDB = 1234] = "PlexiDB", ItemId2[ItemId2.PlexiAT = 1235] = "PlexiAT", ItemId2[ItemId2.BrimstoneSC = 2814] = "BrimstoneSC", ItemId2[ItemId2.BrimstoneTT = 2815] = "BrimstoneTT", ItemId2[ItemId2.BrimstonePM = 2817] = "BrimstonePM", ItemId2[ItemId2.BrimstoneSA = 2818] = "BrimstoneSA", ItemId2[ItemId2.BrimstoneDB = 2816] = "BrimstoneDB", ItemId2[ItemId2.BrimstoneAT = 2813] = "BrimstoneAT", ItemId2[ItemId2.DiceRing = 8290] = "DiceRing", ItemId2[ItemId2.DiceBeltBuckle = 8291] = "DiceBeltBuckle", ItemId2[ItemId2.DicePrintPajamaPants = 8292] = "DicePrintPajamaPants", ItemId2[ItemId2.DiceShapedBackpack = 8293] = "DiceShapedBackpack", ItemId2[ItemId2.DicePrintDoRag = 8294] = "DicePrintDoRag", ItemId2[ItemId2.DiceSunglasses = 8295] = "DiceSunglasses", ItemId2[ItemId2.PickyTweezers = 7936] = "PickyTweezers", ItemId2[ItemId2.AdventurerBobblehead = 9084] = "AdventurerBobblehead", ItemId2[ItemId2.PerfectlyFairCoin = 9526] = "PerfectlyFairCoin", ItemId2[ItemId2.GarlandOfGreatness = 9910] = "GarlandOfGreatness", ItemId2[ItemId2.Ring = 10252] = "Ring", ItemId2[ItemId2.RedPlumbersBoots = 10501] = "RedPlumbersBoots", ItemId2[ItemId2.QuantumOfFamiliar = 10758] = "QuantumOfFamiliar", ItemId2[ItemId2.TheBigBookOfEverySkill = 10917] = "TheBigBookOfEverySkill", ItemId2[ItemId2.StuffedDinosaur = 10949] = "StuffedDinosaur", ItemId2;
-}(ItemId || {}), Thwaitgold = /* @__PURE__ */ function(Thwaitgold2) {
+})(ItemId || {}), Thwaitgold = /* @__PURE__ */ (function(Thwaitgold2) {
   return Thwaitgold2[Thwaitgold2.Bee = 5141] = "Bee", Thwaitgold2[Thwaitgold2.Grasshopper = 5222] = "Grasshopper", Thwaitgold2[Thwaitgold2.Butterfly = 5392] = "Butterfly", Thwaitgold2[Thwaitgold2.StagBeetle = 5572] = "StagBeetle", Thwaitgold2[Thwaitgold2.WoollyBear = 5694] = "WoollyBear", Thwaitgold2[Thwaitgold2.Maggot = 5773] = "Maggot", Thwaitgold2[Thwaitgold2.PrayingMantis = 6045] = "PrayingMantis", Thwaitgold2[Thwaitgold2.Firefly = 6298] = "Firefly", Thwaitgold2[Thwaitgold2.GoliathBeetle = 6547] = "GoliathBeetle", Thwaitgold2[Thwaitgold2.Bookworm = 6676] = "Bookworm", Thwaitgold2[Thwaitgold2.Ant = 6899] = "Ant", Thwaitgold2[Thwaitgold2.Dragonfly = 7249] = "Dragonfly", Thwaitgold2[Thwaitgold2.WheelBug = 7498] = "WheelBug", Thwaitgold2[Thwaitgold2.Spider = 7668] = "Spider", Thwaitgold2[Thwaitgold2.Nit = 7935] = "Nit", Thwaitgold2[Thwaitgold2.ScarabBeetle = 8087] = "ScarabBeetle", Thwaitgold2[Thwaitgold2.Caterpillar = 8296] = "Caterpillar", Thwaitgold2[Thwaitgold2.Termite = 8556] = "Termite", Thwaitgold2[Thwaitgold2.Scorpion = 8984] = "Scorpion", Thwaitgold2[Thwaitgold2.Moth = 9031] = "Moth", Thwaitgold2[Thwaitgold2.Cockroach = 9099] = "Cockroach", Thwaitgold2[Thwaitgold2.Amoeba = 9346] = "Amoeba", Thwaitgold2[Thwaitgold2.Bug = 9488] = "Bug", Thwaitgold2[Thwaitgold2.TimeFly = 9525] = "TimeFly", Thwaitgold2[Thwaitgold2.Metabug = 9758] = "Metabug", Thwaitgold2[Thwaitgold2.Chigger = 9917] = "Chigger", Thwaitgold2[Thwaitgold2.MaskedHunter = 9941] = "MaskedHunter", Thwaitgold2[Thwaitgold2.Mosquito = 10184] = "Mosquito", Thwaitgold2[Thwaitgold2.Nymph = 10253] = "Nymph", Thwaitgold2[Thwaitgold2.BombardierBeetle = 10319] = "BombardierBeetle", Thwaitgold2[Thwaitgold2.BuzzyBeetle = 10470] = "BuzzyBeetle", Thwaitgold2[Thwaitgold2.KeyholeSpider = 10570] = "KeyholeSpider", Thwaitgold2[Thwaitgold2.Slug = 10601] = "Slug", Thwaitgold2[Thwaitgold2.ListeningBug = 10736] = "ListeningBug", Thwaitgold2[Thwaitgold2.QuantumBug = 10757] = "QuantumBug", Thwaitgold2[Thwaitgold2.FireBeetle = 10791] = "FireBeetle", Thwaitgold2[Thwaitgold2.Protozoa = 10894] = "Protozoa", Thwaitgold2[Thwaitgold2.Harvestman = 10918] = "Harvestman", Thwaitgold2[Thwaitgold2.MosquitoInAmber = 10950] = "MosquitoInAmber", Thwaitgold2[Thwaitgold2.AntiMoth = 11166] = "AntiMoth", Thwaitgold2[Thwaitgold2.SplendorBeetle = 11255] = "SplendorBeetle", Thwaitgold2[Thwaitgold2.Fairyfly = 11326] = "Fairyfly", Thwaitgold2[Thwaitgold2.WolfSpider = 11563] = "WolfSpider", Thwaitgold2[Thwaitgold2.IlliniginaIllinoiensis = 11593] = "IlliniginaIllinoiensis", Thwaitgold2[Thwaitgold2.ShieldBug = 11637] = "ShieldBug", Thwaitgold2[Thwaitgold2.CordycepsAnt = 11848] = "CordycepsAnt", Thwaitgold2[Thwaitgold2.MadHatterpillar = 11917] = "MadHatterpillar", Thwaitgold2;
-}(Thwaitgold || {}), FamiliarId = /* @__PURE__ */ function(FamiliarId2) {
+})(Thwaitgold || {}), FamiliarId = /* @__PURE__ */ (function(FamiliarId2) {
   return FamiliarId2[FamiliarId2.ReconstitutedCrow = 147] = "ReconstitutedCrow", FamiliarId2[FamiliarId2.HoveringSkull = 163] = "HoveringSkull", FamiliarId2[FamiliarId2.QuantumEntangler = 307] = "QuantumEntangler", FamiliarId2[FamiliarId2.HeatWave = 312] = "HeatWave", FamiliarId2[FamiliarId2.ColdCut = 313] = "ColdCut", FamiliarId2[FamiliarId2.ShameSpiral = 314] = "ShameSpiral", FamiliarId2[FamiliarId2.PhantomLimb = 315] = "PhantomLimb", FamiliarId2[FamiliarId2.FoulBall = 316] = "FoulBall", FamiliarId2[FamiliarId2.DireCassava = 317] = "DireCassava", FamiliarId2[FamiliarId2.Observer = 318] = "Observer", FamiliarId2[FamiliarId2.CoolCucumber = 319] = "CoolCucumber", FamiliarId2[FamiliarId2.DefectiveChildrensStapler = 320] = "DefectiveChildrensStapler", FamiliarId2[FamiliarId2.Glover = 321] = "Glover", FamiliarId2[FamiliarId2.ZapperBug = 322] = "ZapperBug", FamiliarId2;
-}(FamiliarId || {}), SOFTCORE = -3, HARDCORE = -2, paths = [{
+})(FamiliarId || {}), SOFTCORE = -3, HARDCORE = -2, paths = [{
   id: SOFTCORE,
   name: "Softcore",
   image: "itemimages/karma.gif",
@@ -8438,9 +8438,9 @@ var pointsRadix = 32, tattooLevelRadix = 16, compressPaths = function(paths2) {
 
 // ../greenbox-data/lib/skills.ts
 init_kolmafia_polyfill();
-var SkillStatus = /* @__PURE__ */ function(SkillStatus2) {
+var SkillStatus = /* @__PURE__ */ (function(SkillStatus2) {
   return SkillStatus2[SkillStatus2.NONE = 0] = "NONE", SkillStatus2[SkillStatus2.SOFTCORE = 1] = "SOFTCORE", SkillStatus2[SkillStatus2.HARDCORE = 2] = "HARDCORE", SkillStatus2;
-}({});
+})({});
 var compressSkills = function(skills) {
   return skills.sort(function(a, b) {
     return a[0] - b[0];
@@ -9334,9 +9334,9 @@ var tattoos = [{
 }], tattoos_default = tattoos;
 
 // ../greenbox-data/lib/tattoos.ts
-var OutfitTattooStatus = /* @__PURE__ */ function(OutfitTattooStatus2) {
+var OutfitTattooStatus = /* @__PURE__ */ (function(OutfitTattooStatus2) {
   return OutfitTattooStatus2[OutfitTattooStatus2.NONE = 0] = "NONE", OutfitTattooStatus2[OutfitTattooStatus2.HAVE_OUTFIT = 1] = "HAVE_OUTFIT", OutfitTattooStatus2[OutfitTattooStatus2.HAVE = 2] = "HAVE", OutfitTattooStatus2;
-}({});
+})({});
 function getTattoos() {
   return tattoos_default;
 }
@@ -10028,9 +10028,9 @@ var trophies = [{
 }], trophies_default = trophies;
 
 // ../greenbox-data/lib/trophies.ts
-var TrophyStatus = /* @__PURE__ */ function(TrophyStatus2) {
+var TrophyStatus = /* @__PURE__ */ (function(TrophyStatus2) {
   return TrophyStatus2[TrophyStatus2.NONE = 0] = "NONE", TrophyStatus2[TrophyStatus2.HAVE = 1] = "HAVE", TrophyStatus2;
-}({});
+})({});
 function getTrophies() {
   return trophies_default;
 }
@@ -10416,7 +10416,7 @@ function withChoices(choices, callback) {
 function withChoice(choice, value, callback) {
   return withChoices(_defineProperty({}, choice, value), callback);
 }
-var PropertiesManager = /* @__PURE__ */ function() {
+var PropertiesManager = /* @__PURE__ */ (function() {
   function PropertiesManager2() {
     _classCallCheck(this, PropertiesManager2), _defineProperty(this, "properties", {});
   }
@@ -10606,8 +10606,8 @@ var PropertiesManager = /* @__PURE__ */ function() {
       });
     }
   }]);
-}();
-_defineProperty(PropertiesManager, "EMPTY_PREFERENCE", Symbol("empty preference"));
+})();
+_defineProperty(PropertiesManager, "EMPTY_PREFERENCE", /* @__PURE__ */ Symbol("empty preference"));
 
 // ../../node_modules/libram/dist/template-string.js
 init_kolmafia_polyfill();
@@ -11010,7 +11010,7 @@ function _arrayLikeToArray8(r, a) {
   for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
   return n;
 }
-var EMPTY_VALUE = Symbol("empty");
+var EMPTY_VALUE = /* @__PURE__ */ Symbol("empty");
 function fetchUrl(path) {
   var query = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : [], options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {}, _options$method = options.method, method = _options$method === void 0 ? "POST" : _options$method, url = buildUrl(path, query);
   return (0, import_kolmafia4.visitUrl)(url, method === "POST", !0);
@@ -11170,7 +11170,7 @@ function _toPrimitive2(t, r) {
   }
   return (r === "string" ? String : Number)(t);
 }
-var Kmail = /* @__PURE__ */ function() {
+var Kmail = /* @__PURE__ */ (function() {
   function Kmail2(rawKmail) {
     _classCallCheck2(this, Kmail2), _defineProperty2(this, "id", void 0), _defineProperty2(this, "date", void 0), _defineProperty2(this, "type", void 0), _defineProperty2(this, "senderId", void 0), _defineProperty2(this, "senderName", void 0), _defineProperty2(this, "rawMessage", void 0), _defineProperty2(this, "_parsedMessageParts", void 0), this.id = Number(rawKmail.id), this.date = new Date(Number(rawKmail.azunixtime) * 1e3), this.type = rawKmail.type, this.senderId = Number(rawKmail.fromid), this.senderName = rawKmail.fromname, this.rawMessage = rawKmail.message;
   }
@@ -11439,7 +11439,7 @@ var Kmail = /* @__PURE__ */ function() {
       }, ">Package sent.</");
     }
   }]);
-}();
+})();
 
 // src/bindable.ts
 init_kolmafia_polyfill();
@@ -11467,13 +11467,8 @@ function haveBound(bindable, options) {
       var bound = bindable.item ? import_kolmafia7.Item.get(bindable.item) : null;
       return bound && (haveItem(bound) || haveInCampground(bound)) || haveInCampground(boxed);
     }
-    case "custom": {
-      switch (bindable.id) {
-        case 5790:
-          return haveItem(boxed) || haveItem(import_kolmafia7.Item.get("right bear arm")) && haveItem(import_kolmafia7.Item.get("left bear arm"));
-      }
-      return !1;
-    }
+    case "custom":
+      return bindable.id === 5790 ? haveItem(boxed) || haveItem(import_kolmafia7.Item.get("right bear arm")) && haveItem(import_kolmafia7.Item.get("left bear arm")) : !1;
     case "eudora":
       return (0, import_kolmafia7.xpath)((0, import_kolmafia7.visitUrl)("account.php?tab=correspondence"), '//select[@name="whichpenpal"]/option/@value').includes(bindable.eudoraId.toString());
     case "familiar":
