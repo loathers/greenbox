@@ -22,7 +22,6 @@
     "data-of-loathing": "^2.2.0",
     "date-fns": "^4.1.0",
     "fast-equals": "^5.2.2",
-    "gql.tada": "^1.8.11",
     "greenbox-data": "workspace:*",
     "he": "^1.2.0",
     "isbot": "^5.1.28",
