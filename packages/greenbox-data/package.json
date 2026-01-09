@@ -32,21 +32,21 @@
     "url": "https://github.com/loathers/greenbox/issues"
   },
   "devDependencies": {
-    "@eslint/js": "^9.31.0",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "eslint": "^9.31.0",
-    "eslint-config-prettier": "^10.1.5",
+    "@eslint/js": "^9.39.2",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
     "greenbox-prettier-config": "^0.0.0",
-    "kolmafia": "^5.28573.0",
-    "prettier": "^3.6.2",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.36.0",
-    "vitest": "^3.2.4"
+    "kolmafia": "^5.28871.0",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.52.0",
+    "vitest": "^4.0.16"
   },
   "prettier": "greenbox-prettier-config",
   "dependencies": {
     "jsoncrush": "^1.1.8",
-    "libram": "^0.11.6"
+    "libram": "^0.11.14"
   },
   "keywords": [
     "kolmafia",

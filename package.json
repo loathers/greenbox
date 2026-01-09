@@ -6,8 +6,8 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "prettier": "^3.6.2"
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "prettier": "^3.7.4"
   },
   "scripts": {
     "build": "yarn workspaces foreach --all run build",
