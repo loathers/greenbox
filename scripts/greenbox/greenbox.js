@@ -8470,7 +8470,7 @@ var tattoos = [{
   image: "adobetat",
   outfit: 169
 }, {
-  name: "Angelbone Vestements",
+  name: "Angelbone Vestments",
   image: "abonetat",
   outfit: 181
 }, {
