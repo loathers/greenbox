@@ -273,7 +273,7 @@ const tattoos: TattooDef[] = [
   { name: "Virtual cybertattoo", image: "cybertat", misc: 53 },
   { name: "Allied Tattoo", image: "allytat", misc: 54 },
   { name: "Wet Shower", image: "wetpapertat", misc: 55 },
-  {name: "Crymbocurrency", image: "cryptotattoo", misc: 56 },
+  { name: "Crymbocurrency", image: "cryptotat", misc: 56 },
 ];
 
 export default tattoos;
