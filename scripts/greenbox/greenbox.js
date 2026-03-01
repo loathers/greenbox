@@ -6807,8 +6807,24 @@ var iotms = [
     year: 2026,
     type: "item",
     item: "legendary seal-clubbing club"
-  }
+  },
   // seal-clubbing club loot box
+  {
+    id: 12180,
+    month: 2,
+    year: 2026,
+    type: "item",
+    item: "Heartstone"
+  },
+  // boxed Heartstone
+  {
+    id: 12185,
+    month: 3,
+    year: 2026,
+    type: "item",
+    item: "Archaeologist's Spade"
+  }
+  // boxed Archaeologist's Spade
 ], iotms_default = iotms;
 
 // ../greenbox-data/data/iotys.ts
@@ -8625,6 +8641,10 @@ var tattoos = [{
   name: "Devilbone Prison",
   image: "dbonetat",
   outfit: 182
+}, {
+  name: "Dino Drip",
+  image: "dinotat",
+  outfit: 189
 }, {
   name: "Dinsey's Exoskeleton",
   image: "wdbraintat",
