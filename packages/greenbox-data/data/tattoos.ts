@@ -47,6 +47,7 @@ const tattoos: TattooDef[] = [
   { name: "Dark Bro's Vestments", image: "necbrotat", outfit: 83 },
   { name: "Dental Drip", image: "dentaltat", outfit: 165 },
   { name: "Devilbone Prison", image: "dbonetat", outfit: 182 },
+  { name: "Dino Drip", image: "dinotat", outfit: 189 },
   { name: "Dinsey's Exoskeleton", image: "wdbraintat", outfit: 123 },
   { name: "Dire Drifter Duds", image: "spohobotat", outfit: 45 },
   { name: "Dreadful Bugbear Suit", image: "dvotat2", outfit: 96 },
