@@ -19,6 +19,28 @@ const SPOOKYRAVEN = [
   7321, // Stephen's lab coat
 ];
 
+const THESEA = [
+  4297, // Ass Stompers of Violence
+  4298, // Brand of Violence
+  4299, // Novelty Belt Buckle of Violence
+  4300, // Lens of Violence
+  4301, // Pigsticker of Violence
+  4302, // Jodhpurs of Violence
+  4303, // Cold Stone of Hatred
+  4304, // Girdle of Hatred
+  4305, // Staff of Simmering Hatred
+  4306, // Pantaloons of Hatred
+  4307, // Fuzzy Slippers of Hatred
+  4308, // Lens of Hatred
+  4309, // Treads of Loathing
+  4310, // Scepter of Loathing
+  4311, // Belt of Loathing
+  4312, // Goggles of Loathing
+  4313, // Stick-Knife of Loathing
+  4314, // Jeans of Loathing
+  6407, // Pocket Square of Loathing
+  ];
+
 //// IOTM quest rewards
 const HYBORIA = [
   4041, // pig-iron helm
@@ -80,6 +102,11 @@ export default function QuestRewards() {
         title="Spookyraven Manor"
         icon="itemimages/dollhouse.gif"
         items={SPOOKYRAVEN}
+      />
+      <ItemGridSection
+        title="The Sea"
+        icon="itemimages/Fisherfish.gif"
+        items={THESEA}
       />
       <ItemGridSection
         title="Hyboria? I don't even..."
