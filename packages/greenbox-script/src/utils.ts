@@ -7,16 +7,19 @@ import {
   itemAmount,
   storageAmount,
 } from "kolmafia";
+import { EternityCodpiece } from "libram";
 
 export function haveItem(item: Item) {
-  return [
-    availableAmount,
-    closetAmount,
-    displayAmount,
-    equippedAmount,
-    itemAmount,
-    storageAmount,
-  ]
-    .map((f) => f(item))
-    .some((q) => q > 0);
+  return (
+    [
+      availableAmount,
+      closetAmount,
+      displayAmount,
+      equippedAmount,
+      itemAmount,
+      storageAmount,
+    ]
+      .map((f) => f(item))
+      .some((q) => q > 0) || EternityCodpiece.currentGems().includes(item)
+  );
 }
