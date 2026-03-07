@@ -5708,6 +5708,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js@npm:^3.47.0":
+  version: 3.48.0
+  resolution: "core-js@npm:3.48.0"
+  checksum: 10c0/6c3115900dd7cce9fab74c07cb262b3517fc250d02e8fd2ff34f80bda5f43a28482a909dbc4491dc6e1ddd9807f57a7df4c3eeecd1f202b7d9c8bfe25f9d680c
+  languageName: node
+  linkType: hard
+
 "cosmiconfig@npm:^7.0.0":
   version: 7.1.0
   resolution: "cosmiconfig@npm:7.1.0"
@@ -7071,7 +7078,7 @@ __metadata:
     greenbox-prettier-config: "npm:^0.0.0"
     jsoncrush: "npm:^1.1.8"
     kolmafia: "npm:^5.28871.0"
-    libram: "npm:^0.11.14"
+    libram: "npm:^0.11.19"
     prettier: "npm:^3.7.4"
     typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.52.0"
@@ -7115,7 +7122,7 @@ __metadata:
     greenbox-data: "npm:*"
     greenbox-prettier-config: "npm:^0.0.0"
     kolmafia: "npm:^5.28871.0"
-    libram: "npm:^0.11.14"
+    libram: "npm:^0.11.19"
     prettier: "npm:^3.7.4"
     typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.52.0"
@@ -7223,13 +7230,6 @@ __metadata:
   dependencies:
     react-is: "npm:^16.7.0"
   checksum: 10c0/fe0889169e845d738b59b64badf5e55fa3cf20454f9203d1eb088df322d49d4318df774828e789898dcb280e8a5521bb59b3203385662ca5e9218a6ca5820e74
-  languageName: node
-  linkType: hard
-
-"html-entities@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "html-entities@npm:2.5.2"
-  checksum: 10c0/f20ffb4326606245c439c231de40a7c560607f639bf40ffbfb36b4c70729fd95d7964209045f1a4e62fe17f2364cef3d6e49b02ea09016f207fde51c2211e481
   languageName: node
   linkType: hard
 
@@ -7618,14 +7618,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libram@npm:^0.11.14":
-  version: 0.11.14
-  resolution: "libram@npm:0.11.14"
+"libram@npm:^0.11.19":
+  version: 0.11.19
+  resolution: "libram@npm:0.11.19"
   dependencies:
-    html-entities: "npm:^2.5.2"
+    core-js: "npm:^3.47.0"
+    entities: "npm:^7.0.0"
   peerDependencies:
     kolmafia: ^5.28100.0
-  checksum: 10c0/99215bdc423c08a4908bc103ba5c547a0515a32d9a9422e3930db6002a2e56d73bfccc6c74a6002fffb89266f28fbcaef6eaa40f353baf84779c37f5389e5269
+  checksum: 10c0/543f49e12a21d5e93a9e869c465720449a237093113ccfae9c753ff631a1b009fb3b5dc12cffd0180cff14db5e59e4f07948bb623f93109997a7260c6e9b0c4b
   languageName: node
   linkType: hard
 

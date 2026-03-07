@@ -7,6 +7,11 @@ import {
   itemAmount,
   storageAmount,
 } from "kolmafia";
+import { EternityCodpiece } from "libram";
+
+function codpieceAmount(item: Item): number {
+  return EternityCodpiece.currentGems().includes(item) ? 1 : 0;
+}
 
 export function haveItem(item: Item) {
   return [
@@ -16,7 +21,6 @@ export function haveItem(item: Item) {
     equippedAmount,
     itemAmount,
     storageAmount,
-  ]
-    .map((f) => f(item))
-    .some((q) => q > 0);
+    codpieceAmount,
+  ].some((f) => f(item) > 0);
 }

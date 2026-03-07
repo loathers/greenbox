@@ -39,7 +39,7 @@ const THESEA = [
   4313, // Stick-Knife of Loathing
   4314, // Jeans of Loathing
   6407, // Pocket Square of Loathing
-  ];
+];
 
 //// IOTM quest rewards
 const HYBORIA = [
