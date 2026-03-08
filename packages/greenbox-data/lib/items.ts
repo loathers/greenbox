@@ -1,4 +1,4 @@
-import { specialItems } from "../data/items.js";
+import { housingItems, specialItems } from "../data/items.js";
 
 export enum ItemStatus {
   NONE = 0,
@@ -21,4 +21,4 @@ export const expandItems = (s = ""): RawItem[] =>
     return [Number(parts[0]), parts[1] ? Number(parts[1]) : 1];
   });
 
-export { specialItems };
+export { housingItems, specialItems };
