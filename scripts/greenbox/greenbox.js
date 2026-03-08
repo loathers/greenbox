@@ -11563,11 +11563,18 @@ var import_kolmafia7 = require("kolmafia");
 // src/utils.ts
 init_kolmafia_polyfill();
 var import_kolmafia6 = require("kolmafia");
+var _templateObject;
+function _taggedTemplateLiteral2(e, t) {
+  return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } }));
+}
+function codpieceAmount(item) {
+  return $slots(_templateObject || (_templateObject = _taggedTemplateLiteral2(["codpiece1, codpiece2, codpiece3, codpiece4, codpiece5"]))).some(function(slot) {
+    return (0, import_kolmafia6.equippedItem)(slot) === item;
+  }) ? 1 : 0;
+}
 function haveItem(item) {
-  return [import_kolmafia6.availableAmount, import_kolmafia6.closetAmount, import_kolmafia6.displayAmount, import_kolmafia6.equippedAmount, import_kolmafia6.itemAmount, import_kolmafia6.storageAmount].map(function(f) {
-    return f(item);
-  }).some(function(q) {
-    return q > 0;
+  return [import_kolmafia6.availableAmount, import_kolmafia6.closetAmount, import_kolmafia6.displayAmount, import_kolmafia6.equippedAmount, import_kolmafia6.itemAmount, import_kolmafia6.storageAmount, codpieceAmount].some(function(f) {
+    return f(item) > 0;
   });
 }
 
