@@ -1,3 +1,58 @@
+// https://wiki.kingdomofloathing.com/Resting
+// Only add items that persist on ascension and won't be destroyed when resting
+// These will be added only if they are installed
+export const housingItems = [
+  // Housing
+  69, // Newbiesport™ tent
+  73, // barskin tent
+  143, // cottage
+  526, // Frobozz Real-Estate Company Instant House (TM)
+  3127, // sandcastle
+  3374, // house of twigs and spit
+  3416, // hobo fortress blueprints
+  4347, // gingerbread house
+  4485, // BRICKO pyramid
+  4771, // ginormous pumpkin
+  6668, // giant Faraday cage
+  7089, // snow fort
+  7295, // elevent
+  7758, // Xiblaxian residence-cube
+  9185, // giant pilgrim hat
+  10497, // house-sized mushroom
+  11600, // mini kiwi tipi
+
+  // Beds
+  429, // beanbag chair
+  2638, // gauze hammock
+  3344, // bed of coals
+  3345, // frigid air mattress
+  3346, // filth-encrusted futon
+  3347, // comfy coffin
+  3348, // stained mattress
+  4842, // sleeping stocking
+  5888, // Lazybones™ recliner
+  6338, // saltwaterbed
+  6890, // spirit bed
+  11345, // forest canopy bed
+
+  // Furnishings
+  133, // Certificate of Participation
+  210, // Feng Shui for Big Dumb Idiots
+  636, // meat globe
+  4344, // Crimbo wreath
+  4345, // string of Crimbo lights
+  4346, // plastic Crimbo reindeer
+  6120, // bonsai tree
+  6122, // lucky cat statue
+  6614, // cuckoo clock
+  6773, // tin roof (rusted)
+  10072, // Crimbo candle
+  11891, // wet blanket
+  12206, // Pork Elf medicine cabinet
+  12207, // Pork Elf sink
+  12208, // Pork Elf toilet
+] as const;
+
 export const specialItems = [
   //// Quest Rewards
   // Marty's Quest
