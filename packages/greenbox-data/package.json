@@ -47,7 +47,7 @@
   "prettier": "greenbox-prettier-config",
   "dependencies": {
     "jsoncrush": "^1.1.8",
-    "libram": "^0.11.19"
+    "libram": "^0.11.14"
   },
   "keywords": [
     "kolmafia",
