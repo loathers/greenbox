@@ -105,7 +105,7 @@ export default function QuestRewards() {
       />
       <ItemGridSection
         title="The Sea"
-        icon="itemimages/Fisherfish.gif"
+        icon="itemimages/fish.gif"
         items={THESEA}
       />
       <ItemGridSection
