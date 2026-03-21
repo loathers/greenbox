@@ -7119,7 +7119,99 @@ init_kolmafia_polyfill();
 
 // ../greenbox-data/data/items.ts
 init_kolmafia_polyfill();
-var specialItems = [
+var housingItems = [
+  // Housing
+  69,
+  // Newbiesport™ tent
+  73,
+  // barskin tent
+  143,
+  // cottage
+  526,
+  // Frobozz Real-Estate Company Instant House (TM)
+  3127,
+  // sandcastle
+  3374,
+  // house of twigs and spit
+  3416,
+  // hobo fortress blueprints
+  4347,
+  // gingerbread house
+  4485,
+  // BRICKO pyramid
+  4771,
+  // ginormous pumpkin
+  6668,
+  // giant Faraday cage
+  7089,
+  // snow fort
+  7295,
+  // elevent
+  7758,
+  // Xiblaxian residence-cube
+  9185,
+  // giant pilgrim hat
+  10497,
+  // house-sized mushroom
+  11600,
+  // mini kiwi tipi
+  // Beds
+  429,
+  // beanbag chair
+  2638,
+  // gauze hammock
+  3344,
+  // bed of coals
+  3345,
+  // frigid air mattress
+  3346,
+  // filth-encrusted futon
+  3347,
+  // comfy coffin
+  3348,
+  // stained mattress
+  4842,
+  // sleeping stocking
+  5888,
+  // Lazybones™ recliner
+  6338,
+  // saltwaterbed
+  6890,
+  // spirit bed
+  11345,
+  // forest canopy bed
+  // Furnishings
+  133,
+  // Certificate of Participation
+  210,
+  // Feng Shui for Big Dumb Idiots
+  636,
+  // meat globe
+  4344,
+  // Crimbo wreath
+  4345,
+  // string of Crimbo lights
+  4346,
+  // plastic Crimbo reindeer
+  6120,
+  // bonsai tree
+  6122,
+  // lucky cat statue
+  6614,
+  // cuckoo clock
+  6773,
+  // tin roof (rusted)
+  10072,
+  // Crimbo candle
+  11891,
+  // wet blanket
+  12206,
+  // Pork Elf medicine cabinet
+  12207,
+  // Pork Elf sink
+  12208
+  // Pork Elf toilet
+], specialItems = [
   //// Quest Rewards
   // Marty's Quest
   2719,
@@ -11672,6 +11764,30 @@ function _toPrimitive3(t, r) {
   }
   return (r === "string" ? String : Number)(t);
 }
+function _toConsumableArray4(r) {
+  return _arrayWithoutHoles4(r) || _iterableToArray4(r) || _unsupportedIterableToArray10(r) || _nonIterableSpread4();
+}
+function _nonIterableSpread4() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray10(r, a) {
+  if (r) {
+    if (typeof r == "string") return _arrayLikeToArray10(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return t === "Object" && r.constructor && (t = r.constructor.name), t === "Map" || t === "Set" ? Array.from(r) : t === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray10(r, a) : void 0;
+  }
+}
+function _iterableToArray4(r) {
+  if (typeof Symbol < "u" && r[Symbol.iterator] != null || r["@@iterator"] != null) return Array.from(r);
+}
+function _arrayWithoutHoles4(r) {
+  if (Array.isArray(r)) return _arrayLikeToArray10(r);
+}
+function _arrayLikeToArray10(r, a) {
+  (a == null || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
 var getBoolean3 = property_exports.getBoolean, getNumber2 = property_exports.getNumber;
 function checkIotMs() {
   var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
@@ -11687,10 +11803,13 @@ function checkIotYs() {
 }
 function checkItems() {
   var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
-  return specialItems.map(function(id) {
+  return [].concat(_toConsumableArray4(specialItems.map(function(id) {
     var _options$force;
     return [id, (_options$force = options.force) !== null && _options$force !== void 0 && _options$force.includes(id) || haveItem(import_kolmafia8.Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE];
-  });
+  })), _toConsumableArray4(housingItems.map(function(id) {
+    var _options$force2;
+    return [id, (_options$force2 = options.force) !== null && _options$force2 !== void 0 && _options$force2.includes(id) || haveInCampground(import_kolmafia8.Item.get(id)) ? ItemStatus.HAVE : ItemStatus.NONE];
+  })));
 }
 function checkSkills() {
   var permedSkills = (0, import_kolmafia8.getPermedSkills)();
