@@ -26,6 +26,7 @@ import {
   TrophyDef,
   TrophyStatus,
   VERSION,
+  housingItems,
 } from "greenbox-data";
 import {
   currentRound,
@@ -44,7 +45,7 @@ import {
   toInt,
   visitUrl,
 } from "kolmafia";
-import { Kmail, property } from "libram";
+import { haveInCampground, Kmail, property } from "libram";
 
 import { getBindableStatus, BindableOptions } from "./bindable.js";
 import { haveItem } from "./utils.js";
@@ -72,12 +73,20 @@ function checkIotYs(options: BindableOptions = {}): RawBindable[] {
  * @returns array of 2-tuples of item id and status
  */
 function checkItems(options: Partial<{ force: number[] }> = {}): RawItem[] {
-  return specialItems.map((id) => [
-    id,
-    options.force?.includes(id) || haveItem(Item.get(id))
-      ? ItemStatus.HAVE
-      : ItemStatus.NONE,
-  ]);
+  return [
+    ...specialItems.map((id): RawItem => [
+      id,
+      options.force?.includes(id) || haveItem(Item.get(id))
+        ? ItemStatus.HAVE
+        : ItemStatus.NONE,
+    ]),
+    ...housingItems.map((id): RawItem => [
+      id,
+      options.force?.includes(id) || haveInCampground(Item.get(id))
+        ? ItemStatus.HAVE
+        : ItemStatus.NONE,
+    ]),
+  ];
 }
 
 /**
