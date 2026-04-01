@@ -1366,6 +1366,13 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "Archaeologist's Spade",
   }, // boxed Archaeologist's Spade
+  {
+    id: 12215,
+    month: 4,
+    year: 2026,
+    type: "item",
+    item: "Baseball Diamond",
+  }, // wrapped Baseball Diamond
 ];
 
 export default iotms;
