@@ -1,11 +1,12 @@
 import type { ThingType } from "@prisma/client";
-import { createClient } from "data-of-loathing";
+import { createClient, Effect, Familiar, Item, Skill } from "data-of-loathing";
 import { getTattoos, getTrophies } from "greenbox-data";
 import he from "he";
 
 import { prisma } from "../app/db";
 
 const client = createClient();
+await client.load();
 
 const findDuplicates = (strings: string[]) => {
   const seen = new Set<string>();
@@ -20,49 +21,21 @@ const findDuplicates = (strings: string[]) => {
   return duplicates;
 };
 
-const data = await client.query({
-  allSkills: {
-    nodes: {
-      name: true,
-      skillModifierBySkill: {
-        modifiers: true,
-      },
-    },
-  },
-  allEffects: {
-    nodes: {
-      name: true,
-      effectModifierByEffect: {
-        modifiers: true,
-      },
-    },
-  },
-  allItems: {
-    nodes: {
-      name: true,
-      itemModifierByItem: {
-        modifiers: true,
-      },
-    },
-  },
-  allFamiliars: {
-    nodes: {
-      name: true,
-      familiarModifierByFamiliar: {
-        modifiers: true,
-      },
-    },
-  },
-});
+const [skills, effects, items, familiars] = await Promise.all([
+  client.query.findAll(Skill, { populate: ["modifiers"] }),
+  client.query.findAll(Effect, { populate: ["modifiers"] }),
+  client.query.findAll(Item, { populate: ["modifiers"] }),
+  client.query.findAll(Familiar, { populate: ["modifiers"] }),
+]);
 
 const tattoos = getTattoos();
 const trophies = getTrophies();
 
 const things = {
-  SKILL: data.allSkills?.nodes ?? [],
-  EFFECT: data.allEffects?.nodes ?? [],
-  ITEM: data.allItems?.nodes ?? [],
-  FAMILIAR: data.allFamiliars?.nodes ?? [],
+  SKILL: skills,
+  EFFECT: effects,
+  ITEM: items,
+  FAMILIAR: familiars,
   TATTOO: tattoos,
   TROPHY: trophies,
 };
@@ -77,15 +50,9 @@ function wikiName(
   thing: (typeof things)[keyof typeof things][number],
 ): string | null {
   if (!thing) return null;
-  let modifiers;
-  if ("skillModifierBySkill" in thing) {
-    modifiers = thing.skillModifierBySkill?.modifiers;
-  } else if ("effectModifierByEffect" in thing) {
-    modifiers = thing.effectModifierByEffect?.modifiers;
-  } else if ("itemModifierByItem" in thing) {
-    modifiers = thing.itemModifierByItem?.modifiers;
-  } else if ("familiarModifierByFamiliar" in thing) {
-    modifiers = thing.familiarModifierByFamiliar?.modifiers;
+  let modifiers: Record<string, string> | undefined;
+  if (thing instanceof Skill || thing instanceof Effect || thing instanceof Item || thing instanceof Familiar) {
+    modifiers = thing.modifiers?.modifiers;
   } else {
     return null;
   }

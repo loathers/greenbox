@@ -1,4 +1,5 @@
 import { SimpleGrid } from "@chakra-ui/react";
+import { FamiliarCategory } from "data-of-loathing";
 import { FamiliarStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
@@ -11,7 +12,7 @@ import Section from "./Section.js";
 import { SortOrderSelect, sortByKey } from "./SortOrderSelect.js";
 
 function isFamiliarOwnable(familiar: FamiliarType) {
-  if (familiar.categories.includes("POKEFAM")) return false;
+  if (familiar.categories.includes(FamiliarCategory.Pokefam)) return false;
   if (familiar.id >= 125 && familiar.id < 134) return false;
   return true;
 }

@@ -5,7 +5,13 @@ import {
   createAction,
   createSelector,
 } from "@reduxjs/toolkit";
-import { createClient } from "data-of-loathing";
+import {
+  AscensionClass,
+  createClient,
+  Familiar,
+  Item,
+  Skill,
+} from "data-of-loathing";
 import * as api from "greenbox-data";
 import type { TattooDef, TrophyDef, PathDef, BindableDef } from "greenbox-data";
 import {
@@ -23,52 +29,10 @@ import storage from "redux-persist/lib/storage";
 
 const client = createClient();
 
-const dataQuery = client.query({
-  allClasses: {
-    nodes: {
-      id: true,
-      name: true,
-      image: true,
-    },
-  },
-  allFamiliars: {
-    nodes: {
-      id: true,
-      name: true,
-      image: true,
-      categories: true,
-    },
-  },
-  allItems: {
-    nodes: {
-      id: true,
-      name: true,
-      image: true,
-    },
-  },
-  allSkills: {
-    nodes: {
-      id: true,
-      name: true,
-      image: true,
-      permable: true,
-      maxLevel: true,
-    },
-  },
-});
-
-export type ClassType = NonNullable<
-  NonNullable<Awaited<typeof dataQuery>["allClasses"]>["nodes"][number]
->;
-export type FamiliarType = NonNullable<
-  NonNullable<Awaited<typeof dataQuery>["allFamiliars"]>["nodes"][number]
->;
-export type ItemType = NonNullable<
-  NonNullable<Awaited<typeof dataQuery>["allItems"]>["nodes"][number]
->;
-export type SkillType = NonNullable<
-  NonNullable<Awaited<typeof dataQuery>["allSkills"]>["nodes"][number]
->;
+export type ClassType = AscensionClass;
+export type FamiliarType = Familiar;
+export type ItemType = Item;
+export type SkillType = Skill;
 
 export const entities = [
   "classes",
@@ -131,7 +95,16 @@ export const setFavouritePlayer = createAction<number | null>(
 );
 export const setPlayerId = createAction<number | null>("playerId/set");
 
-export const fetchData = createAsyncThunk("data/fetch", async () => dataQuery);
+export const fetchData = createAsyncThunk("data/fetch", async () => {
+  await client.load();
+  const [classes, familiars, items, skills] = await Promise.all([
+    client.query.findAll(AscensionClass, { orderBy: { id: "ASC" } }),
+    client.query.findAll(Familiar, { orderBy: { id: "ASC" } }),
+    client.query.findAll(Item, { orderBy: { id: "ASC" } }),
+    client.query.findAll(Skill, { orderBy: { id: "ASC" } }),
+  ]);
+  return { classes, familiars, items, skills };
+});
 
 export const greenboxSlice = createSlice({
   name: "greenbox",
@@ -152,23 +125,11 @@ export const greenboxSlice = createSlice({
         state.loading.data = true;
       })
       .addCase(fetchData.fulfilled, (state, action) => {
-        if (action.payload !== null) {
-          const data = action.payload;
-          state.items = Object.fromEntries(
-            data.allItems?.nodes
-              .filter((i) => i != null)
-              .map((i) => [i.id, i]) ?? [],
-          );
-          state.classes = Object.fromEntries(
-            data.allClasses?.nodes
-              .filter((c) => c != null)
-              .map((c) => [c.id, c]) ?? [],
-          );
-          state.familiars =
-            data.allFamiliars?.nodes.filter((f) => f != null) ?? [];
-          state.skills = data.allSkills?.nodes.filter((s) => s != null) ?? [];
-        }
-
+        const { classes, familiars, items, skills } = action.payload;
+        state.items = Object.fromEntries(items.map((i) => [i.id, i]));
+        state.classes = Object.fromEntries(classes.map((c) => [c.id, c]));
+        state.familiars = familiars;
+        state.skills = skills;
         state.loading.data = false;
       });
   },
