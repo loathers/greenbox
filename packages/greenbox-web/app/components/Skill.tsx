@@ -20,6 +20,8 @@ export default function Skill({ id }: Props) {
 
   const [, status, level] = playerSkills[id] || [id, SkillStatus.NONE, 0];
 
+  if (!skill) return null;
+
   const maxLevel = skill.maxLevel ?? level;
 
   return (
