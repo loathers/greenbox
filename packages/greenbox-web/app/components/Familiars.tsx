@@ -3,15 +3,16 @@ import { FamiliarCategory } from "data-of-loathing";
 import { FamiliarStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
-import { useAppSelector } from "../hooks.js";
-import { selectPlayerFamiliars, type FamiliarType } from "../store/index.js";
+import type { Familiar as FamiliarEntity } from "data-of-loathing";
+import { useAppSelector, useFamiliars } from "../hooks.js";
+import { selectPlayerFamiliars } from "../store/index.js";
 
 import Familiar from "./Familiar.js";
 import HundredPercentedUnownableFamiliars from "./HundredPercentedUnownableFamiliars.js";
 import Section from "./Section.js";
 import { SortOrderSelect, sortByKey } from "./SortOrderSelect.js";
 
-function isFamiliarOwnable(familiar: FamiliarType) {
+function isFamiliarOwnable(familiar: FamiliarEntity) {
   if (familiar.categories.includes(FamiliarCategory.Pokefam)) return false;
   if (familiar.id >= 125 && familiar.id < 134) return false;
   return true;
@@ -21,7 +22,7 @@ export default function Familiars() {
   const [sortBy, setSortBy] = useState<"name" | "id">("id");
 
   const playerFamiliars = useAppSelector(selectPlayerFamiliars);
-  const allFamiliars = useAppSelector((state) => state.familiars);
+  const allFamiliars = useFamiliars();
   const familiars = useMemo(
     () =>
       allFamiliars
@@ -33,7 +34,6 @@ export default function Familiars() {
     () => allFamiliars.filter((s) => !isFamiliarOwnable(s)).map((s) => s.id),
     [allFamiliars],
   );
-  const loading = useAppSelector((state) => state.loading.familiars || false);
 
   const totalInTerrarium = useMemo(
     () =>
@@ -71,7 +71,7 @@ export default function Familiars() {
       title="Familiars"
       wiki="Category:Familiars"
       icon="itemimages/terrarium.gif"
-      loading={loading}
+      loading={allFamiliars.length === 0}
       values={[
         {
           color: "partial",

@@ -1,6 +1,6 @@
 import { ItemStatus, SkillStatus, tuple } from "greenbox-data";
 
-import type { ClassType, SkillType } from "./store";
+import type { AscensionClass, Skill } from "data-of-loathing";
 
 export function itemStatusToThingState(status: ItemStatus) {
   if (status > 0) return "complete";
@@ -46,7 +46,7 @@ export enum SkillBuckets {
   SlimeTube = 0.32,
 }
 
-export function getSkillBucket(s: SkillType) {
+export function getSkillBucket(s: Skill) {
   if (s.id >= 10 && s.id <= 14) {
     return SkillBuckets.Gnome;
   }
@@ -72,7 +72,7 @@ export function getSkillBucket(s: SkillType) {
   return Math.floor(s.id / 1000);
 }
 
-export function getSkillHeader(bucket: number, cls: ClassType) {
+export function getSkillHeader(bucket: number, cls: AscensionClass) {
   if (cls) return [cls.name, `itemimages/${cls.image}.gif`];
 
   switch (bucket) {
@@ -94,12 +94,8 @@ export function getSkillHeader(bucket: number, cls: ClassType) {
 }
 
 export function unzip<X, Y>(array: [X, Y][]) {
-  return array.reduce(
-    ([x, y], [a, b]) =>
-      tuple([
-        [...x, a],
-        [...y, b],
-      ]),
-    tuple([[] as X[], [] as Y[]]),
+  return array.reduce<[X[], Y[]]>(
+    ([x, y], [a, b]) => [[...x, a], [...y, b]],
+    [[], []],
   );
 }

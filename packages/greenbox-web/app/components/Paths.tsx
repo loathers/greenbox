@@ -16,8 +16,6 @@ export default function Paths() {
     () => allPaths.toSorted(sortByKey(sortBy)),
     [allPaths, sortBy],
   );
-  const loading = useAppSelector((state) => state.loading.paths || false);
-
   // A map of path id to array, where the index represents a tattoo for that path
   // and the value represents the maximum level for that tattoo
   const maxTattooLevel = useMemo(
@@ -92,7 +90,6 @@ export default function Paths() {
       title="Paths"
       wiki="Special Challenge Path"
       icon="itemimages/map.gif"
-      loading={loading}
       values={[
         {
           color: "partial",

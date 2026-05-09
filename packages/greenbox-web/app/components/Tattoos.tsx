@@ -25,8 +25,6 @@ export default function Tattoos() {
   const playerPaths = useAppSelector(selectPlayerPaths);
   const tattoos = useAppSelector((state) => state.tattoos);
   const paths = useAppSelector((state) => state.paths);
-  const loading = useAppSelector((state) => state.loading.tattoos ?? false);
-
   const totalPathTattoos = paths.flatMap((p) => p.tattoos).length;
 
   const idToPath = useMemo(
@@ -81,7 +79,6 @@ export default function Tattoos() {
     <Section
       title="Tattoos"
       icon="otherimages/sigils/margaraxe.gif"
-      loading={loading}
       values={[
         {
           color: "partial",

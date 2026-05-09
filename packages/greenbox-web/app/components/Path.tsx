@@ -2,7 +2,7 @@ import { Badge, Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { HARDCORE, ItemStatus, type PathDef, SOFTCORE } from "greenbox-data";
 import { useMemo } from "react";
 
-import { useAppSelector } from "../hooks.js";
+import { useAppSelector, useFamiliars } from "../hooks.js";
 import { selectPlayerFamiliars } from "../store/index.js";
 
 import Familiar from "./Familiar.js";
@@ -30,7 +30,7 @@ export default function Path({
   equipment,
   tattoos,
 }: Props) {
-  const allFamiliars = useAppSelector((state) => state.familiars);
+  const allFamiliars = useFamiliars();
   const playerFamiliars = useAppSelector(selectPlayerFamiliars);
 
   const familiars = useMemo(() => {

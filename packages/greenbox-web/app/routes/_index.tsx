@@ -14,12 +14,10 @@ import General from "../components/General.js";
 import Header from "../components/Header.js";
 import OtherItems from "../components/OtherItems.js";
 import QuestRewards from "../components/QuestRewards.js";
-import { WikiLinkProvider } from "../contexts/WikiLinkProvider.js";
 import { favouritePlayer } from "../cookies.server.js";
 import { prisma } from "../db.js";
 import { useAppDispatch } from "../hooks.js";
 import {
-  fetchData,
   loadPlayerData,
   setFavouritePlayer,
   setPlayerId,
@@ -53,9 +51,6 @@ export async function loader({ request }: Route.LoaderArgs) {
       (await favouritePlayer.parse(request.headers.get("Cookie")))?.id ?? 0,
     ) || null;
 
-  // Load wiki links from database
-  const wikiLinks = await prisma.wikiLinks.findMany();
-
   if (directData) {
     return {
       data: expand(directData),
@@ -63,7 +58,6 @@ export async function loader({ request }: Route.LoaderArgs) {
       direct: true,
       favouritePlayer: favouritePlayerId,
       errorMessage: null,
-      wikiLinks,
     };
   }
 
@@ -90,8 +84,7 @@ export async function loader({ request }: Route.LoaderArgs) {
         favouritePlayer: favouritePlayerId,
         direct: false,
         errorMessage: null,
-        wikiLinks,
-      },
+              },
       { headers },
     );
 
@@ -107,8 +100,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       favouritePlayer: favouritePlayerId,
       direct: false,
       errorMessage: `No data found for player ID ${playerId}. Please check the ID or try again later.`,
-      wikiLinks,
-    });
+          });
   }
 
   return data(
@@ -118,14 +110,13 @@ export async function loader({ request }: Route.LoaderArgs) {
       favouritePlayer: favouritePlayerId,
       direct: false,
       errorMessage: null,
-      wikiLinks,
-    },
+          },
     { headers },
   );
 }
 
 export default function MainPage() {
-  const { data, direct, favouritePlayer, playerId, errorMessage, wikiLinks } =
+  const { data, direct, favouritePlayer, playerId, errorMessage } =
     useLoaderData<typeof loader>();
 
   const dispatch = useAppDispatch();
@@ -143,13 +134,8 @@ export default function MainPage() {
       dispatch(setFavouritePlayer(favouritePlayer));
   }, [dispatch, favouritePlayer]);
 
-  useEffect(() => {
-    dispatch(fetchData());
-  }, [dispatch]);
-
   return (
-    <WikiLinkProvider wikiLinks={wikiLinks}>
-      <Container maxWidth="1000px" width="100%">
+    <Container maxWidth="1000px" width="100%">
         <Header
           direct={direct}
           meta={data?.meta}
@@ -176,7 +162,6 @@ export default function MainPage() {
             <OtherItems />
           </Tabs.Content>
         </Tabs.Root>
-      </Container>
-    </WikiLinkProvider>
+    </Container>
   );
 }

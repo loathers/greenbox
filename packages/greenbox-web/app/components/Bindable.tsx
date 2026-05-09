@@ -1,11 +1,11 @@
 import { type Bindable, BindableStatus } from "greenbox-data";
 
-import type { ItemType } from "../store/index.js";
+import type { Item } from "data-of-loathing";
 
 import Thing from "./Thing.js";
 
 type Props = {
-  item: ItemType;
+  item: Item;
   bindable: Bindable;
   status: BindableStatus;
 };
@@ -39,6 +39,7 @@ export default function Bindable({ item, status, bindable }: Props) {
       type="item"
       name={item.name}
       image={`itemimages/${item.image}`}
+      link={`Item:${item.id}`}
       state={bindableStatusToThingStatus(status)}
       title={bindableStatusToTitle(bindable, status)}
     />

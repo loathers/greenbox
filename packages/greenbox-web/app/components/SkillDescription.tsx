@@ -1,18 +1,17 @@
 import { Flex } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
-import { useWikiLink } from "../contexts/WikiLinkProvider.js";
-import type { SkillType } from "../store/index.js";
+import type { Skill } from "data-of-loathing";
 import { useColorModeFilter } from "../theme.js";
 
 import Spinner from "./Spinner.js";
 
 type Props = {
-  skill: SkillType;
+  skill: Skill;
 };
 
 export default function SkillDescription({ skill }: Props) {
-  const wikiLink = useWikiLink("SKILL", skill.name); // @todo use context
+  const wikiLink = `Skill:${skill.id}`;
   const [contents, setContents] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 

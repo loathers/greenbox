@@ -10,9 +10,6 @@ import {
 import { type RawSnapshotData } from "greenbox-data";
 import { useCallback } from "react";
 
-import { useAppDispatch } from "../hooks.js";
-import { fetchData } from "../store/index.js";
-
 import MetaInfo from "./MetaInfo.js";
 import Spinner from "./Spinner.js";
 import SwitchButton from "./SwitchButton.js";

@@ -1,13 +1,13 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import { Fragment } from "react";
 
-import type { FamiliarType } from "../store/index.js";
+import type { Familiar } from "data-of-loathing";
 
 import AlphaImage from "./AlphaImage.js";
 import Medal from "./Medal.js";
 
 type Props = {
-  familiars: FamiliarType[];
+  familiars: Familiar[];
 };
 
 export default function HundredPercentedUnownableFamiliars({

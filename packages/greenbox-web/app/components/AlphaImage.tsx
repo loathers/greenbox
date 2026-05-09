@@ -364,7 +364,7 @@ export default function AlphaImage({
   height = sourceHeight,
   ...props
 }: Props) {
-  const [maskImage, setMaskImage] = useState({} as SystemStyleObject);
+  const [maskImage, setMaskImage] = useState<SystemStyleObject>({});
   const url = useMemo(
     () => `https://s3.amazonaws.com/images.kingdomofloathing.com/${src}`,
     [src],

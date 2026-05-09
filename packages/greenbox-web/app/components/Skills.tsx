@@ -2,11 +2,11 @@ import { SimpleGrid } from "@chakra-ui/react";
 import { SkillStatus, mutexSkillGroups } from "greenbox-data";
 import { useMemo } from "react";
 
-import { useAppSelector } from "../hooks.js";
+import type { Skill as SkillEntity } from "data-of-loathing";
+import { useAppSelector, useClasses, useSkills } from "../hooks.js";
 import {
   selectIdToPlayerSkills,
   selectPlayerSkills,
-  type SkillType,
 } from "../store/index.js";
 import { getSkillBucket } from "../utils.js";
 
@@ -25,13 +25,12 @@ export default function Skills() {
   const playerSkills = useAppSelector(selectPlayerSkills);
   const idToSkill = useAppSelector(selectIdToPlayerSkills);
 
-  const allSkills = useAppSelector((state) => state.skills);
+  const allSkills = useSkills();
   const skills = useMemo(
     () => allSkills.filter((s) => s.permable),
     [allSkills],
   );
-  const classes = useAppSelector((state) => state.classes);
-  const loading = useAppSelector((state) => state.loading.skills || false);
+  const classes = useClasses();
 
   const totalHardcorePermed = useMemo(
     () => playerSkills.filter((s) => s[1] === SkillStatus.HARDCORE).length,
@@ -44,7 +43,7 @@ export default function Skills() {
 
   const groupedSkills = useMemo(
     () =>
-      skills.reduce<Record<number, SkillType[]>>((acc, s) => {
+      skills.reduce<Record<number, SkillEntity[]>>((acc, s) => {
         const bucket = getSkillBucket(s);
         return { ...acc, [bucket]: [...(acc[bucket] || []), s] };
       }, {}),
@@ -67,9 +66,9 @@ export default function Skills() {
   const skillsPermable = skills.length - IMPOSSIBLE_SKILL_COUNT;
 
   // Not ideal but we accumulate mutually exclusive groups of skills in this array as we traverse the skills array (if necessary).
-  const mutexGroup = [] as SkillType[];
+  const mutexGroup: SkillEntity[] = [];
 
-  function handleMutex(s: SkillType) {
+  function handleMutex(s: SkillEntity) {
     const matchingMutexSkillGroup = mutexSkillGroups.find((mutexSkillGroup) =>
       mutexSkillGroup.skillIds.includes(s.id),
     );
@@ -106,7 +105,7 @@ export default function Skills() {
     <Section
       title="Skills"
       icon="itemimages/book3.gif"
-      loading={loading}
+      loading={allSkills.length === 0}
       values={[
         {
           color: "partial",

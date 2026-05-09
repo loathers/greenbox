@@ -2,8 +2,6 @@ import { Box, LinkBox, LinkOverlay, useToken } from "@chakra-ui/react";
 import he from "he";
 import { forwardRef, useEffect, useState } from "react";
 
-import { useWikiLink } from "../contexts/WikiLinkProvider.js";
-
 import AlphaImage from "./AlphaImage.js";
 
 export type StateType = "complete" | "partial" | null | undefined;
@@ -58,7 +56,12 @@ export default forwardRef<HTMLDivElement, Props>(function Thing(
   const [eraserTags, setEraserTags] = useState<number[]>([]);
   const style = styleFromStatus(status, bg);
 
-  const wikiLink = useWikiLink(type, name, link);
+  const wikiLink =
+    link ??
+    he
+      .decode(name)
+      .replaceAll(" ", "_")
+      .replace(/^[A-Za-z]/, (first) => first.toUpperCase());
 
   useEffect(() => {
     const handle = (event: KeyboardEvent) => {

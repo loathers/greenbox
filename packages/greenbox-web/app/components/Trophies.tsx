@@ -20,8 +20,6 @@ export default function Tattoos() {
     () => allTrophies.toSorted(sortByKey(sortBy)),
     [allTrophies, sortBy],
   );
-  const loading = useAppSelector((state) => state.loading.trophies || false);
-
   const numberOfTrophies = useMemo(
     () => playerTrophies.filter((t) => t[1] == TrophyStatus.HAVE).length,
     [playerTrophies],
@@ -35,7 +33,6 @@ export default function Tattoos() {
     <Section
       title="Trophies"
       icon="itemimages/trophy.gif"
-      loading={loading}
       values={[
         {
           color: "complete",

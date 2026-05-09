@@ -1,4 +1,4 @@
-import type { ClassType } from "../store/index.js";
+import type { AscensionClass } from "data-of-loathing";
 import { getSkillHeader } from "../utils.js";
 
 import Medal from "./Medal.js";
@@ -6,7 +6,7 @@ import Subsection from "./Subsection.js";
 
 type Props = React.PropsWithChildren<{
   bucket: number;
-  cls: ClassType;
+  cls: AscensionClass;
   medal: boolean;
 }>;
 

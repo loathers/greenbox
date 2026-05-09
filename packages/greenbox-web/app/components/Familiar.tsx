@@ -1,6 +1,6 @@
 import { FamiliarStatus } from "greenbox-data";
 
-import type { FamiliarType } from "../store/index.js";
+import type { Familiar as FamiliarType } from "data-of-loathing";
 
 import Medal from "./Medal.js";
 import Thing from "./Thing.js";
@@ -39,6 +39,7 @@ export default function Familiar({ familiar, status, hundredPercent }: Props) {
       type="familiar"
       name={familiar.name}
       image={`itemimages/${familiar.image}`}
+      link={`Familiar:${familiar.id}`}
       state={familiarStatusToThingState(status)}
       title={familiarStatusToTitle(status)}
       badges={hundredPercent ? <Medal title="100% run" /> : null}

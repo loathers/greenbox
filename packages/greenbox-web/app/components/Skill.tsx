@@ -1,8 +1,8 @@
 import { Badge, HoverCard, Portal } from "@chakra-ui/react";
 import { SkillStatus } from "greenbox-data";
 
-import { useAppSelector } from "../hooks.js";
-import { selectIdToPlayerSkills, selectIdToSkills } from "../store/index.js";
+import { useAppSelector, useSkillsById } from "../hooks.js";
+import { selectIdToPlayerSkills } from "../store/index.js";
 import { skillStatusToThingState, skillStatusToTitle } from "../utils.js";
 
 import SkillDescription from "./SkillDescription.js";
@@ -14,7 +14,7 @@ type Props = {
 
 export default function Skill({ id }: Props) {
   const playerSkills = useAppSelector(selectIdToPlayerSkills);
-  const skills = useAppSelector(selectIdToSkills);
+  const skills = useSkillsById();
 
   const skill = skills[id];
 
@@ -29,6 +29,7 @@ export default function Skill({ id }: Props) {
           type="skill"
           name={skill.name}
           image={`itemimages/${skill.image}`}
+          link={`Skill:${skill.id}`}
           state={skillStatusToThingState(status)}
           title={skillStatusToTitle(status)}
           badges={

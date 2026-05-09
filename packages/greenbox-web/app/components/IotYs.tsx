@@ -1,7 +1,7 @@
 import { BindableStatus } from "greenbox-data";
 import { useMemo } from "react";
 
-import { useAppSelector } from "../hooks.js";
+import { useAppSelector, useItems } from "../hooks.js";
 import { createPlayerDataSelector } from "../store/index.js";
 
 import Bindable from "./Bindable.js";
@@ -13,8 +13,7 @@ const selectPlayerIotYs = createPlayerDataSelector("iotys");
 export default function IotYs() {
   const playerIotYs = useAppSelector(selectPlayerIotYs);
   const iotys = useAppSelector((state) => state.iotys);
-  const loading = useAppSelector((state) => state.loading.iotys || false);
-  const idToItem = useAppSelector((state) => state.items);
+  const idToItem = useItems();
 
   const numberOfIoyms = useMemo(() => iotys.length, [iotys]);
 
@@ -51,7 +50,6 @@ export default function IotYs() {
       title="IotYs"
       wiki="Mr. Store"
       icon="itemimages/mrsacc.gif"
-      loading={loading}
       values={[
         {
           color: "complete",

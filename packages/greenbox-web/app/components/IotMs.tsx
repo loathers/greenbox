@@ -1,7 +1,7 @@
 import { BindableStatus } from "greenbox-data";
 import { useMemo } from "react";
 
-import { useAppSelector } from "../hooks.js";
+import { useAppSelector, useItems } from "../hooks.js";
 import { createPlayerDataSelector } from "../store/index.js";
 
 import Bindable from "./Bindable.js";
@@ -13,8 +13,7 @@ const selectPlayerIotMs = createPlayerDataSelector("iotms");
 export default function IotMs() {
   const playerIotMs = useAppSelector(selectPlayerIotMs);
   const iotms = useAppSelector((state) => state.iotms);
-  const loading = useAppSelector((state) => state.loading.iotms || false);
-  const idToItem = useAppSelector((state) => state.items);
+  const idToItem = useItems();
 
   const vipIotMs = useMemo(
     () => iotms.filter((i) => i.type === "vip").map((i) => i.id),
@@ -52,7 +51,6 @@ export default function IotMs() {
       title="IotMs"
       wiki="Mr. Store"
       icon="itemimages/mracc.gif"
-      loading={loading}
       values={[
         {
           color: "complete",
