@@ -20,6 +20,7 @@ export async function action({ request }: Route.ActionArgs) {
   }
 
   const auth = request.headers.get("Authorization");
+  console.log("webhook auth received:", JSON.stringify(auth));
   if (auth !== "Bearer " + process.env.WEBHOOK_SECRET) {
     return data({ error: "Unauthorized" }, { status: 401 });
   }
