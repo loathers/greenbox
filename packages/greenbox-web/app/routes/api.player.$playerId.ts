@@ -1,6 +1,6 @@
 import { data } from "react-router";
 
-import { prisma } from "../db.js";
+import { db } from "../db.js";
 
 import type { Route } from "./+types/api.player.$playerId.js";
 
@@ -12,25 +12,25 @@ export async function loader({ params }: Route.ActionArgs) {
   }
 
   try {
-    // Fetch the player data
-    const player = await prisma.player.findUnique({
-      where: { playerId: Number(playerId) },
-      include: {
-        greenbox: {
-          orderBy: { createdAt: "desc" },
-          take: 1,
-        },
-      },
-    });
+    const player = await db
+      .selectFrom("Player")
+      .where("playerId", "=", Number(playerId))
+      .selectAll()
+      .executeTakeFirst();
 
     if (!player) {
       return data({ error: "Player not found" }, { status: 404 });
     }
 
-    return data(
-      { ...player, greenbox: player.greenbox[0] ?? null },
-      { status: 200 },
-    );
+    const greenbox =
+      (await db
+        .selectFrom("Greenbox")
+        .where("playerId", "=", Number(playerId))
+        .orderBy("createdAt", "desc")
+        .selectAll()
+        .executeTakeFirst()) ?? null;
+
+    return data({ ...player, greenbox }, { status: 200 });
   } catch (error) {
     console.error("Error fetching player data:", error);
     return data({ error: "Internal server error" }, { status: 500 });

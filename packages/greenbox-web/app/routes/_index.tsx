@@ -15,7 +15,7 @@ import Header from "../components/Header.js";
 import OtherItems from "../components/OtherItems.js";
 import QuestRewards from "../components/QuestRewards.js";
 import { favouritePlayer } from "../cookies.server.js";
-import { prisma } from "../db.js";
+import { db } from "../db.js";
 import { useAppDispatch } from "../hooks.js";
 import {
   loadPlayerData,
@@ -88,10 +88,12 @@ export async function loader({ request }: Route.LoaderArgs) {
       { headers },
     );
 
-  const greenbox = await prisma.greenbox.findFirst({
-    where: { playerId: Number(playerId) },
-    orderBy: { id: "desc" },
-  });
+  const greenbox = await db
+    .selectFrom("Greenbox")
+    .where("playerId", "=", Number(playerId))
+    .orderBy("id", "desc")
+    .selectAll()
+    .executeTakeFirst();
 
   if (!greenbox) {
     return data({
