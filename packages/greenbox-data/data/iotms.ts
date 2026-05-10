@@ -1366,6 +1366,20 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "Archaeologist's Spade",
   }, // boxed Archaeologist's Spade
+  {
+    id: 12215,
+    month: 4,
+    year: 2026,
+    type: "item",
+    item: "Baseball Diamond",
+  }, // wrapped Baseball Diamond
+  {
+    id: 12222,
+    month: 5,
+    year: 2026,
+    type: "item",
+    item: "legendary pasta wand",
+  }, // pasta wand loot box
 ];
 
 export default iotms;
