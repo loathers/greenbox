@@ -22,9 +22,6 @@ export async function action({ request }: Route.ActionArgs) {
   }
 
   const auth = request.headers.get("Authorization");
-  console.log("webhook auth received:", JSON.stringify(auth));
-  console.log("expected auth:", EXPECTED_AUTH);
-  console.log("auth matches expected:", auth === EXPECTED_AUTH);
   if (auth !== EXPECTED_AUTH) {
     return data({ error: "Unauthorized" }, { status: 401 });
   }
