@@ -1,7 +1,7 @@
 import { data } from "react-router";
 import * as z from "zod";
 
-import { prisma } from "../db.js";
+import { db } from "../db.js";
 
 import type { Route } from "./+types/webhooks.update.js";
 
@@ -27,9 +27,12 @@ export async function action({ request }: Route.ActionArgs) {
 
     const { playerId } = payload;
 
-    const { count } = await prisma.greenbox.deleteMany({
-      where: { playerId },
-    });
+    const result = await db
+      .deleteFrom("Greenbox")
+      .where("playerId", "=", playerId)
+      .executeTakeFirst();
+
+    const count = Number(result.numDeletedRows);
 
     return data(
       {

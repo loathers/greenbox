@@ -2,7 +2,7 @@ import { expand } from "greenbox-data";
 import { data } from "react-router";
 import * as z from "zod";
 
-import { prisma } from "../db.js";
+import { db } from "../db.js";
 import { isSnapshotDifferent } from "../utils.server.js";
 
 import type { Route } from "./+types/webhooks.update.js";
@@ -33,25 +33,25 @@ export async function action({ request }: Route.ActionArgs) {
 
     const { playerId, greenboxString, playerName } = payload;
 
-    const player = await prisma.player.upsert({
-      where: { playerId },
-      update: {},
-      create: {
-        playerId,
-        playerName,
-      },
-      include: {
-        greenbox: {
-          orderBy: { createdAt: "desc" },
-          take: 1,
-        },
-      },
-    });
+    const latestGreenbox = await db
+      .with("upsert", (db) =>
+        db
+          .insertInto("Player")
+          .values({ playerId, playerName })
+          .onConflict((oc) => oc.column("playerId").doNothing())
+          .returning("playerId"),
+      )
+      .selectFrom("Greenbox")
+      .where("playerId", "=", playerId)
+      .orderBy("createdAt", "desc")
+      .limit(1)
+      .selectAll()
+      .executeTakeFirst();
 
     const greenboxData = expand(greenboxString);
 
-    if (!isSnapshotDifferent(player.greenbox.at(0)?.data, greenboxData)) {
-      const id = player.greenbox.at(0)!.id;
+    if (!isSnapshotDifferent(latestGreenbox?.data, greenboxData)) {
+      const id = latestGreenbox!.id;
       return data(
         {
           success: true,
@@ -62,12 +62,11 @@ export async function action({ request }: Route.ActionArgs) {
       );
     }
 
-    const { id } = await prisma.greenbox.create({
-      data: {
-        playerId,
-        data: { ...greenboxData },
-      },
-    });
+    const { id } = await db
+      .insertInto("Greenbox")
+      .values({ playerId, data: JSON.stringify(greenboxData) })
+      .returning("id")
+      .executeTakeFirstOrThrow();
 
     return data(
       {
