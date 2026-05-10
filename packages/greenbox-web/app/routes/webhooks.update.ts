@@ -13,6 +13,8 @@ const Payload = z.object({
   greenboxString: z.string(),
 });
 
+const EXPECTED_AUTH = `Bearer ${process.env.WEBHOOK_SECRET}`;
+
 export async function action({ request }: Route.ActionArgs) {
   // Only allow POST requests
   if (request.method !== "POST") {
@@ -21,7 +23,9 @@ export async function action({ request }: Route.ActionArgs) {
 
   const auth = request.headers.get("Authorization");
   console.log("webhook auth received:", JSON.stringify(auth));
-  if (auth !== "Bearer " + process.env.WEBHOOK_SECRET) {
+  console.log("expected auth:", EXPECTED_AUTH);
+  console.log("auth matches expected:", auth === EXPECTED_AUTH);
+  if (auth !== EXPECTED_AUTH) {
     return data({ error: "Unauthorized" }, { status: 401 });
   }
 
