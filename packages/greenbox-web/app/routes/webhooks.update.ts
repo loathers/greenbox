@@ -36,16 +36,18 @@ export async function action({ request }: Route.ActionArgs) {
 
     const { playerId, greenboxString, playerName } = payload;
 
-    await db
-      .insertInto("Player")
-      .values({ playerId, playerName })
-      .onConflict((oc) => oc.column("playerId").doNothing())
-      .execute();
-
     const latestGreenbox = await db
+      .with("upsert", (db) =>
+        db
+          .insertInto("Player")
+          .values({ playerId, playerName })
+          .onConflict((oc) => oc.column("playerId").doNothing())
+          .returning("playerId"),
+      )
       .selectFrom("Greenbox")
       .where("playerId", "=", playerId)
       .orderBy("createdAt", "desc")
+      .limit(1)
       .selectAll()
       .executeTakeFirst();
 

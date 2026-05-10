@@ -1,5 +1,5 @@
 import { Container, Tabs } from "@chakra-ui/react";
-import { expand, type RawSnapshotData } from "greenbox-data";
+import { expand } from "greenbox-data";
 import { useEffect } from "react";
 import {
   data,
@@ -107,7 +107,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 
   return data(
     {
-      data: greenbox.data as unknown as RawSnapshotData,
+      data: greenbox.data,
       playerId: Number(playerId),
       favouritePlayer: favouritePlayerId,
       direct: false,

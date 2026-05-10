@@ -1,11 +1,13 @@
-import { Kysely, PostgresDialect, type Generated } from "kysely";
+import { type ColumnType, Kysely, PostgresDialect, type Generated } from "kysely";
 import pg from "pg";
+
+import type { RawSnapshotData } from "greenbox-data";
 
 export interface Database {
   Greenbox: {
     id: Generated<number>;
     playerId: number;
-    data: unknown;
+    data: ColumnType<RawSnapshotData, string, string>;
     createdAt: Generated<Date>;
   };
   Player: {
