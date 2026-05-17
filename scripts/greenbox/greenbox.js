@@ -8559,7 +8559,13 @@ var ItemId = /* @__PURE__ */ (function(ItemId2) {
   image: "itemimages/meat.gif",
   items: [Thwaitgold.MeatBee],
   equipment: [],
-  tattoos: [],
+  tattoos: [{
+    name: "Meat Golem",
+    image: "class33"
+  }, {
+    name: "Hardcore Meat Golem",
+    image: "class33hc"
+  }],
   points: "adventurerMeatsWorldPoints",
   maxPoints: 10
 }], paths_default = paths;
