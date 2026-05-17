@@ -207,6 +207,7 @@ enum ItemId {
   QuantumOfFamiliar = 10758,
   TheBigBookOfEverySkill = 10917,
   StuffedDinosaur = 10949,
+  DurableDolphinWhistle = 11972,
 }
 
 enum Thwaitgold {
@@ -257,6 +258,8 @@ enum Thwaitgold {
   ShieldBug = 11637,
   CordycepsAnt = 11848,
   MadHatterpillar = 11917,
+  Lobster = 11973,
+  MeatBee = 12182,
 }
 
 enum FamiliarId {
@@ -1115,6 +1118,26 @@ const paths: PathDef[] = [
     tattoos: [],
     points: null,
     maxPoints: 0,
+  },
+  {
+    id: 55,
+    name: "11,037 Leagues Under the Sea",
+    image: "itemimages/fishy.gif",
+    items: [Thwaitgold.Lobster, ItemId.DurableDolphinWhistle],
+    equipment: [],
+    tattoos: [],
+    points: "seaPoints",
+    maxPoints: 11,
+  },
+  {
+    id: 56,
+    name: "Adventurer Meats World",
+    image: "itemimages/meat.gif",
+    items: [Thwaitgold.MeatBee],
+    equipment: [],
+    tattoos: [],
+    points: "adventurerMeatsWorldPoints",
+    maxPoints: 10,
   },
 ];
 
