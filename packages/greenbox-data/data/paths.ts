@@ -1135,7 +1135,10 @@ const paths: PathDef[] = [
     image: "itemimages/meat.gif",
     items: [Thwaitgold.MeatBee],
     equipment: [],
-    tattoos: [],
+    tattoos: [
+      { name: "Meat Golem", image: "class33" },
+      { name: "Hardcore Meat Golem", image: "class33hc" },
+    ],
     points: "adventurerMeatsWorldPoints",
     maxPoints: 10,
   },
