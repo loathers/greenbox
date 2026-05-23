@@ -1122,7 +1122,7 @@ const paths: PathDef[] = [
   {
     id: 55,
     name: "11,037 Leagues Under the Sea",
-    image: "itemimages/fishy.gif",
+    image: "itemimages/fishy5.gif",
     items: [Thwaitgold.Lobster, ItemId.DurableDolphinWhistle],
     equipment: [],
     tattoos: [],
