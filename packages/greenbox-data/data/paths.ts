@@ -260,6 +260,7 @@ enum Thwaitgold {
   MadHatterpillar = 11917,
   Lobster = 11973,
   MeatBee = 12182,
+  WalletMoth = 12244,
 }
 
 enum FamiliarId {
@@ -1141,6 +1142,16 @@ const paths: PathDef[] = [
     ],
     points: "adventurerMeatsWorldPoints",
     maxPoints: 10,
+  },
+  {
+    id: 57,
+    name: "Thrifty",
+    image: "itemimages/0dollars.gif",
+    items: [Thwaitgold.WalletMoth],
+    equipment: [],
+    tattoos: [],
+    points: null,
+    maxPoints: 0,
   },
 ];
 
