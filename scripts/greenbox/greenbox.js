@@ -6839,8 +6839,16 @@ var iotms = [
     year: 2026,
     type: "item",
     item: "legendary pasta wand"
-  }
+  },
   // pasta wand loot box
+  {
+    id: 12245,
+    month: 6,
+    year: 2026,
+    type: "familiar",
+    familiar: "Sword of S Words"
+  }
+  // scabbarded Sword of S Words
 ], iotms_default = iotms;
 
 // ../greenbox-data/data/iotys.ts
