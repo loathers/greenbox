@@ -1387,6 +1387,13 @@ const iotms: IotMDef[] = [
     type: "familiar",
     familiar: "Sword of S Words",
   }, // scabbarded Sword of S Words
+  {
+    id: 12258,
+    month: 7,
+    year: 2026,
+    type: "item",
+    item: "Cup of 13s",
+  }, // shrink-wrapped Cup of 13s
 ];
 
 export default iotms;
