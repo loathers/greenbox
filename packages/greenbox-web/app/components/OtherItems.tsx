@@ -132,11 +132,7 @@ export default function OtherItems() {
         icon="itemimages/bigtinyhouse.gif"
         items={HOUSING}
       />
-      <ItemGridSection
-        title="Beds"
-        icon="itemimages/pillow.gif"
-        items={BEDS}
-      />
+      <ItemGridSection title="Beds" icon="itemimages/pillow.gif" items={BEDS} />
       <ItemGridSection
         title="Furnishings"
         icon="itemimages/blacklight.gif"

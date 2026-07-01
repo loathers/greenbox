@@ -1,4 +1,5 @@
 import type { AscensionClass } from "data-of-loathing";
+
 import { getSkillHeader } from "../utils.js";
 
 import Medal from "./Medal.js";

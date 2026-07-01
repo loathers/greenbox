@@ -38,7 +38,10 @@ export function useItems(): Record<number, Item> {
   useEffect(() => {
     itemsPromise().then(setItems);
   }, []);
-  return useMemo(() => Object.fromEntries(items.map((i) => [i.id, i])), [items]);
+  return useMemo(
+    () => Object.fromEntries(items.map((i) => [i.id, i])),
+    [items],
+  );
 }
 
 export function useSkills(): Skill[] {

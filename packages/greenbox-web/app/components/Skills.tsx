@@ -1,13 +1,10 @@
 import { SimpleGrid } from "@chakra-ui/react";
+import type { Skill as SkillEntity } from "data-of-loathing";
 import { SkillStatus, mutexSkillGroups } from "greenbox-data";
 import { useMemo } from "react";
 
-import type { Skill as SkillEntity } from "data-of-loathing";
 import { useAppSelector, useClasses, useSkills } from "../hooks.js";
-import {
-  selectIdToPlayerSkills,
-  selectPlayerSkills,
-} from "../store/index.js";
+import { selectIdToPlayerSkills, selectPlayerSkills } from "../store/index.js";
 import { getSkillBucket } from "../utils.js";
 
 import MutexSkills from "./MutexSkills.js";

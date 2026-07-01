@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
+import type { Skill } from "data-of-loathing";
 import { useEffect, useRef, useState } from "react";
 
-import type { Skill } from "data-of-loathing";
 import { useColorModeFilter } from "../theme.js";
 
 import Spinner from "./Spinner.js";

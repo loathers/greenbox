@@ -74,18 +74,22 @@ function checkIotYs(options: BindableOptions = {}): RawBindable[] {
  */
 function checkItems(options: Partial<{ force: number[] }> = {}): RawItem[] {
   return [
-    ...specialItems.map((id): RawItem => [
-      id,
-      options.force?.includes(id) || haveItem(Item.get(id))
-        ? ItemStatus.HAVE
-        : ItemStatus.NONE,
-    ]),
-    ...housingItems.map((id): RawItem => [
-      id,
-      options.force?.includes(id) || haveInCampground(Item.get(id))
-        ? ItemStatus.HAVE
-        : ItemStatus.NONE,
-    ]),
+    ...specialItems.map(
+      (id): RawItem => [
+        id,
+        options.force?.includes(id) || haveItem(Item.get(id))
+          ? ItemStatus.HAVE
+          : ItemStatus.NONE,
+      ],
+    ),
+    ...housingItems.map(
+      (id): RawItem => [
+        id,
+        options.force?.includes(id) || haveInCampground(Item.get(id))
+          ? ItemStatus.HAVE
+          : ItemStatus.NONE,
+      ],
+    ),
   ];
 }
 

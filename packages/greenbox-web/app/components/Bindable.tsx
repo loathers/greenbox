@@ -1,6 +1,5 @@
-import { type Bindable, BindableStatus } from "greenbox-data";
-
 import type { Item } from "data-of-loathing";
+import { type Bindable, BindableStatus } from "greenbox-data";
 
 import Thing from "./Thing.js";
 

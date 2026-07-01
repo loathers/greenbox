@@ -1,6 +1,5 @@
-import { ItemStatus, SkillStatus, tuple } from "greenbox-data";
-
 import type { AscensionClass, Skill } from "data-of-loathing";
+import { ItemStatus, SkillStatus, tuple } from "greenbox-data";
 
 export function itemStatusToThingState(status: ItemStatus) {
   if (status > 0) return "complete";
@@ -95,7 +94,10 @@ export function getSkillHeader(bucket: number, cls: AscensionClass) {
 
 export function unzip<X, Y>(array: [X, Y][]) {
   return array.reduce<[X[], Y[]]>(
-    ([x, y], [a, b]) => [[...x, a], [...y, b]],
+    ([x, y], [a, b]) => [
+      [...x, a],
+      [...y, b],
+    ],
     [[], []],
   );
 }

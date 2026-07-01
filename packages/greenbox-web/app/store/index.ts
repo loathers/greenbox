@@ -19,12 +19,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-export const entities = [
-  "iotms",
-  "paths",
-  "tattoos",
-  "trophies",
-] as const;
+export const entities = ["iotms", "paths", "tattoos", "trophies"] as const;
 
 export interface GreenboxState {
   playerData: api.RawSnapshotData | null;

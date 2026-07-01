@@ -1,7 +1,7 @@
+import type { Item } from "data-of-loathing";
 import { ItemStatus } from "greenbox-data";
 import { useMemo } from "react";
 
-import type { Item } from "data-of-loathing";
 import { useItems } from "../hooks.js";
 import { itemStatusToThingState } from "../utils.js";
 

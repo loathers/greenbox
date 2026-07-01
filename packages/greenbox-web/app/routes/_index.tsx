@@ -84,7 +84,7 @@ export async function loader({ request }: Route.LoaderArgs) {
         favouritePlayer: favouritePlayerId,
         direct: false,
         errorMessage: null,
-              },
+      },
       { headers },
     );
 
@@ -102,7 +102,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       favouritePlayer: favouritePlayerId,
       direct: false,
       errorMessage: `No data found for player ID ${playerId}. Please check the ID or try again later.`,
-          });
+    });
   }
 
   return data(
@@ -112,7 +112,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       favouritePlayer: favouritePlayerId,
       direct: false,
       errorMessage: null,
-          },
+    },
     { headers },
   );
 }
@@ -138,32 +138,32 @@ export default function MainPage() {
 
   return (
     <Container maxWidth="1000px" width="100%">
-        <Header
-          direct={direct}
-          meta={data?.meta}
-          error={!!errorMessage}
-          errorMessage={errorMessage ?? undefined}
-        />
-        <Tabs.Root defaultValue="general" lazyMount variant="outline">
-          <Tabs.List>
-            <Tabs.Trigger value="general">General</Tabs.Trigger>
-            <Tabs.Trigger value="clan">Clan Dungeons</Tabs.Trigger>
-            <Tabs.Trigger value="quest">Quest Rewards</Tabs.Trigger>
-            <Tabs.Trigger value="misc">Miscellaneous</Tabs.Trigger>
-          </Tabs.List>
-          <Tabs.Content value="general">
-            <General />
-          </Tabs.Content>
-          <Tabs.Content value="clan" p={0}>
-            <ClanDungeons />
-          </Tabs.Content>
-          <Tabs.Content value="quest" p={0}>
-            <QuestRewards />
-          </Tabs.Content>
-          <Tabs.Content value="misc" p={0}>
-            <OtherItems />
-          </Tabs.Content>
-        </Tabs.Root>
+      <Header
+        direct={direct}
+        meta={data?.meta}
+        error={!!errorMessage}
+        errorMessage={errorMessage ?? undefined}
+      />
+      <Tabs.Root defaultValue="general" lazyMount variant="outline">
+        <Tabs.List>
+          <Tabs.Trigger value="general">General</Tabs.Trigger>
+          <Tabs.Trigger value="clan">Clan Dungeons</Tabs.Trigger>
+          <Tabs.Trigger value="quest">Quest Rewards</Tabs.Trigger>
+          <Tabs.Trigger value="misc">Miscellaneous</Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="general">
+          <General />
+        </Tabs.Content>
+        <Tabs.Content value="clan" p={0}>
+          <ClanDungeons />
+        </Tabs.Content>
+        <Tabs.Content value="quest" p={0}>
+          <QuestRewards />
+        </Tabs.Content>
+        <Tabs.Content value="misc" p={0}>
+          <OtherItems />
+        </Tabs.Content>
+      </Tabs.Root>
     </Container>
   );
 }

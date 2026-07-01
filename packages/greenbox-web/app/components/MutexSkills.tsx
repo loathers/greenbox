@@ -1,6 +1,6 @@
+import type { Skill } from "data-of-loathing";
 import { SkillStatus } from "greenbox-data";
 
-import type { Skill } from "data-of-loathing";
 import { skillStatusToThingState, skillStatusToTitle } from "../utils.js";
 
 import ImageParty from "./ImageParty.js";

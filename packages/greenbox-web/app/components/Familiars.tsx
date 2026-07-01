@@ -1,9 +1,9 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import { FamiliarCategory } from "data-of-loathing";
+import type { Familiar as FamiliarEntity } from "data-of-loathing";
 import { FamiliarStatus } from "greenbox-data";
 import { useMemo, useState } from "react";
 
-import type { Familiar as FamiliarEntity } from "data-of-loathing";
 import { useAppSelector, useFamiliars } from "../hooks.js";
 import { selectPlayerFamiliars } from "../store/index.js";
 
