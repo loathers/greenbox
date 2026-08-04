@@ -7465,6 +7465,8 @@ var housingItems = [
   // The Nuge's favorite crossbow
   9117,
   // repaid diaper
+  12252,
+  // Space Soldier Helmet
   // Anniversary gift box
   2074,
   // anniversary chutney sculpture
