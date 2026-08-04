@@ -185,6 +185,7 @@ export const specialItems = [
   6592, // optimal spreadsheet
   7201, // The Nuge's favorite crossbow
   9117, // repaid diaper
+  12252, // Space Soldier Helmet
 
   // Anniversary gift box
   2074, // anniversary chutney sculpture

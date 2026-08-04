@@ -109,6 +109,7 @@ const ULTRA_RARE = [
   6592, // optimal spreadsheet
   7201, // The Nuge's favorite crossbow
   9117, // repaid diaper
+  12252, // Space Soldier Helmet
 ];
 
 const ANNIVERSARY = [
