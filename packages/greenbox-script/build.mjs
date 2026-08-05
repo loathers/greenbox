@@ -24,17 +24,19 @@ const watchPlugin = {
 
 const context = await esbuild.context({
   entryPoints: {
-    greenbox: "src/greenbox.ts",
+    "scripts/greenbox/greenbox": "src/greenbox.ts",
+    "relay/relay_greenbox": "src/relay.ts",
     // This is where you generate the data for iotms.ts from MrStoreMonthly; does not need to exist in distribution
     // generateIotmList: "src/generateIotms.ts",
   },
+  entryNames: "[dir]/[name]",
   bundle: true,
   minifySyntax: true,
   platform: "node",
   target: "rhino1.7.14",
   external: ["kolmafia"],
   plugins: [babel(), watchPlugin],
-  outdir: "dist/scripts/greenbox",
+  outdir: "dist",
   loader: { ".json": "text" },
   inject: ["./kolmafia-polyfill.js"],
   define: {
