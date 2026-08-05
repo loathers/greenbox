@@ -37,8 +37,9 @@
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-libram": "^0.6.0",
     "greenbox-prettier-config": "^0.0.0",
-    "kolmafia": "^5.28871.0",
+    "kolmafia": "^5.29135.0",
     "prettier": "^3.7.4",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.52.0",
@@ -47,7 +48,7 @@
   "prettier": "greenbox-prettier-config",
   "dependencies": {
     "jsoncrush": "^1.1.8",
-    "libram": "^0.11.14"
+    "libram": "^0.11.23"
   },
   "keywords": [
     "kolmafia",
