@@ -11,7 +11,8 @@ export let global = {
 // Polyfill Buffer for Kolmafia/Rhino environment
 // Required by 'entities' package which uses Buffer.from for base64 decoding
 // Rhino doesn't have atob, so we implement base64 decoding manually
-const BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const BASE64_CHARS =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const BASE64_MAP = {};
 for (let i = 0; i < BASE64_CHARS.length; i++) {
   BASE64_MAP[BASE64_CHARS[i]] = i;
@@ -22,7 +23,7 @@ function base64ToBinary(input) {
   if (input.endsWith("==")) padding = 2;
   else if (input.endsWith("=")) padding = 1;
   const len = input.length - padding;
-  const result = new Array(len / 4 * 3 - padding);
+  const result = new Array((len / 4) * 3 - padding);
   let idx = 0;
   for (let i = 0; i < len; i += 4) {
     const a = BASE64_MAP[input[i]];
