@@ -1,3 +1,5 @@
+import { type KnownProperty } from "libram";
+
 import {
   type BindableCampground,
   type BindableCustom,
@@ -1394,6 +1396,13 @@ const iotms: IotMDef[] = [
     type: "item",
     item: "Cup of 13s",
   }, // shrink-wrapped Cup of 13s
+  {
+    id: 12276,
+    month: 8,
+    year: 2026,
+    type: "preference",
+    preference: "hasInterestingCoin" as KnownProperty,
+  }, // Interesting Coin Inheritance Letter
 ];
 
 export default iotms;
