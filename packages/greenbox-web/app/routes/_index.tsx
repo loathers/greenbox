@@ -1,6 +1,6 @@
 import { Container, Tabs } from "@chakra-ui/react";
 import { expand } from "greenbox-data";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import {
   data,
   useLoaderData,
@@ -9,11 +9,8 @@ import {
 } from "react-router";
 
 import type { Meta } from "../../../greenbox-data/lib/meta.js";
-import ClanDungeons from "../components/ClanDungeons.js";
-import General from "../components/General.js";
 import Header from "../components/Header.js";
-import OtherItems from "../components/OtherItems.js";
-import QuestRewards from "../components/QuestRewards.js";
+import Spinner from "../components/Spinner.js";
 import { favouritePlayer } from "../cookies.server.js";
 import { db } from "../db.js";
 import { useAppDispatch } from "../hooks.js";
@@ -24,6 +21,11 @@ import {
 } from "../store/index.js";
 
 import type { Route } from "./+types/_index.js";
+
+const General = lazy(() => import("../components/General.js"));
+const ClanDungeons = lazy(() => import("../components/ClanDungeons.js"));
+const QuestRewards = lazy(() => import("../components/QuestRewards.js"));
+const OtherItems = lazy(() => import("../components/OtherItems.js"));
 
 export const links: LinksFunction = () => [
   {
@@ -152,16 +154,24 @@ export default function MainPage() {
           <Tabs.Trigger value="misc">Miscellaneous</Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value="general">
-          <General />
+          <Suspense fallback={<Spinner />}>
+            <General />
+          </Suspense>
         </Tabs.Content>
         <Tabs.Content value="clan" p={0}>
-          <ClanDungeons />
+          <Suspense fallback={<Spinner />}>
+            <ClanDungeons />
+          </Suspense>
         </Tabs.Content>
         <Tabs.Content value="quest" p={0}>
-          <QuestRewards />
+          <Suspense fallback={<Spinner />}>
+            <QuestRewards />
+          </Suspense>
         </Tabs.Content>
         <Tabs.Content value="misc" p={0}>
-          <OtherItems />
+          <Suspense fallback={<Spinner />}>
+            <OtherItems />
+          </Suspense>
         </Tabs.Content>
       </Tabs.Root>
     </Container>
