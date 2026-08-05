@@ -17,12 +17,12 @@ var __commonJS = function(cb, mod) {
 var __export = function(target, all) {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: !0 });
-}, __copyProps = function(to, from, except, desc) {
-  if (from && typeof from == "object" || typeof from == "function")
-    for (var keys = __getOwnPropNames(from), i = 0, n = keys.length, key; i < n; i++)
+}, __copyProps = function(to, from2, except, desc) {
+  if (from2 && typeof from2 == "object" || typeof from2 == "function")
+    for (var keys = __getOwnPropNames(from2), i = 0, n = keys.length, key; i < n; i++)
       key = keys[i], !__hasOwnProp.call(to, key) && key !== except && __defProp(to, key, { get: function(k) {
-        return from[k];
-      }.bind(null, key), enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+        return from2[k];
+      }.bind(null, key), enumerable: !(desc = __getOwnPropDesc(from2, key)) || desc.enumerable });
   return to;
 };
 var __toESM = function(mod, isNodeMode, target) {
@@ -39,7 +39,18 @@ var __toESM = function(mod, isNodeMode, target) {
 };
 
 // kolmafia-polyfill.js
-var kolmafia, console, global, init_kolmafia_polyfill = __esm({
+function base64ToBinary(input) {
+  var padding = 0;
+  input.endsWith("==") ? padding = 2 : input.endsWith("=") && (padding = 1);
+  for (var len = input.length - padding, result = new Array(len / 4 * 3 - padding), idx = 0, _i = 0; _i < len; _i += 4) {
+    var a = BASE64_MAP[input[_i]], b = BASE64_MAP[input[_i + 1]], c = BASE64_MAP[input[_i + 2]], d = BASE64_MAP[input[_i + 3]], d1 = a << 18 | b << 12, d2 = c << 6 | d;
+    result[idx++] = d1 >> 16 & 255, result[idx++] = d1 >> 8 & 255, result[idx++] = d2 & 255;
+  }
+  return result.map(function(c2) {
+    return String.fromCharCode(c2);
+  }).join("");
+}
+var kolmafia, console, global, BASE64_CHARS, BASE64_MAP, i, Buffer2, init_kolmafia_polyfill = __esm({
   "kolmafia-polyfill.js": function() {
     "use strict";
     kolmafia = require("kolmafia"), console = {
@@ -49,6 +60,21 @@ var kolmafia, console, global, init_kolmafia_polyfill = __esm({
       decodeURI: decodeURI,
       encodeURIComponent: encodeURIComponent,
       decodeURIComponent: decodeURIComponent
+    }, BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", BASE64_MAP = {};
+    for (i = 0; i < BASE64_CHARS.length; i++)
+      BASE64_MAP[BASE64_CHARS[i]] = i;
+    Buffer2 = {
+      from: function(input, encoding) {
+        if (encoding === "base64") {
+          var binary = base64ToBinary(input);
+          return {
+            toString: function() {
+              return binary;
+            }
+          };
+        }
+        throw new Error("Buffer.from not fully implemented");
+      }
     };
   }
 });
@@ -8400,12 +8426,12 @@ function decodeBase64(input) {
     ) : (
       // Older Node versions (<16)
       // eslint-disable-next-line n/no-unsupported-features/node-builtins
-      typeof Buffer.from == "function" ? (
+      typeof Buffer2.from == "function" ? (
         // eslint-disable-next-line n/no-unsupported-features/node-builtins
-        Buffer.from(input, "base64").toString("binary")
+        Buffer2.from(input, "base64").toString("binary")
       ) : (
         // eslint-disable-next-line unicorn/no-new-buffer, n/no-deprecated-api
-        new Buffer(input, "base64").toString("binary")
+        new Buffer2(input, "base64").toString("binary")
       )
     )
   ), evenLength = binary.length & -2, out = new Uint16Array(evenLength / 2), index = 0, outIndex = 0; index < evenLength; index += 2) {
