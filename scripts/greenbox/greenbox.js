@@ -4410,8 +4410,10 @@ var housingItems = [
   // Pork Elf medicine cabinet
   12207,
   // Pork Elf sink
-  12208
+  12208,
   // Pork Elf toilet
+  12304
+  // balance sheet
 ], specialItems = [
   //// Quest Rewards
   // Marty's Quest
