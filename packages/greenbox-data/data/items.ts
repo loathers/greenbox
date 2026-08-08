@@ -133,6 +133,13 @@ export const specialItems = [
   4313, // Stick-Knife of Loathing
   4314, // Jeans of Loathing
 
+  // Antiques
+  4455, // The Landscaper's leafblower
+  4573, // The Legendary Beat
+  4590, // pixel chain whip
+  4591, // pixel morning star
+  4664, // Ellsbury's skull
+
   // The Drip Institute
   10441, // Drip harness
   10442, // drippy truncheon

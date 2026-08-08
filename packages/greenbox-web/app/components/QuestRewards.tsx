@@ -41,6 +41,14 @@ const THESEA = [
   6407, // Pocket Square of Loathing
 ];
 
+const ANTIQUES = [
+  4455, // The Landscaper's leafblower
+  4573, // The Legendary Beat
+  4590, // pixel chain whip
+  4591, // pixel morning star
+  4664, // Ellsbury's skull
+];
+
 const THE_DRIP_INSTITUTE = [
   10441, // Drip harness
   10442, // drippy truncheon
@@ -120,6 +128,11 @@ export default function QuestRewards() {
         title="The Sea"
         icon="itemimages/fish.gif"
         items={THESEA}
+      />
+      <ItemGridSection
+        title="Antiques"
+        icon="itemimages/lspainting.gif"
+        items={ANTIQUES}
       />
       <ItemGridSection
         title="The Drip Institute"
