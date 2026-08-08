@@ -107,6 +107,18 @@ export const specialItems = [
   7140, // spinning wheel
   7143, // hare pin
 
+  // The Drip Institute
+  10441, // Drip harness
+  10442, // drippy truncheon
+  10449, // drippy stake
+  10451, // drippy khakis
+  10452, // drippy shield
+  10526, // drippy staff
+  10529, // lustrous drippy orb
+  10530, // gory drippy orb
+  10531, // annealed drippy orb
+  10600, // drippy diadem
+
   // The Sea
   //Shub-Jigguwatt
   4297, // Ass Stompers of Violence
