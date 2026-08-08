@@ -51,6 +51,7 @@ export const housingItems = [
   12206, // Pork Elf medicine cabinet
   12207, // Pork Elf sink
   12208, // Pork Elf toilet
+  12304, // balance sheet
 ] as const;
 
 export const specialItems = [
