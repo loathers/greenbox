@@ -41,6 +41,19 @@ const THESEA = [
   6407, // Pocket Square of Loathing
 ];
 
+const THE_DRIP_INSTITUTE = [
+  10441, // Drip harness
+  10442, // drippy truncheon
+  10449, // drippy stake
+  10451, // drippy khakis
+  10452, // drippy shield
+  10526, // drippy staff
+  10529, // lustrous drippy orb
+  10530, // gory drippy orb
+  10531, // annealed drippy orb
+  10600, // drippy diadem
+];
+
 //// IOTM quest rewards
 const HYBORIA = [
   4041, // pig-iron helm
@@ -85,19 +98,6 @@ const GRIMSTONE = [
   7143, // hare pin
 ];
 
-const THE_DRIP_INSTITUTE = [
-  10441, // Drip harness
-  10442, // drippy truncheon
-  10449, // drippy stake
-  10451, // drippy khakis
-  10452, // drippy shield
-  10526, // drippy staff
-  10529, // lustrous drippy orb
-  10530, // gory drippy orb
-  10531, // annealed drippy orb
-  10600, // drippy diadem
-];
-
 export default function QuestRewards() {
   return (
     <Accordion.Root>
@@ -120,6 +120,11 @@ export default function QuestRewards() {
         title="The Sea"
         icon="itemimages/fish.gif"
         items={THESEA}
+      />
+      <ItemGridSection
+        title="The Drip Institute"
+        icon="itemimages/driplet.gif"
+        items={THE_DRIP_INSTITUTE}
       />
       <ItemGridSection
         title="Hyboria? I don't even..."
@@ -145,11 +150,6 @@ export default function QuestRewards() {
         title="We All Wear Masks"
         icon="itemimages/grimstonemask.gif"
         items={GRIMSTONE}
-      />
-      <ItemGridSection
-        title="The Drip Institute"
-        icon="itemimages/driplet.gif"
-        items={THE_DRIP_INSTITUTE}
       />
     </Accordion.Root>
   );
