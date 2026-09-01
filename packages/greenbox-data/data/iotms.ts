@@ -1403,6 +1403,13 @@ const iotms: IotMDef[] = [
     type: "preference",
     preference: "hasInterestingCoin" as KnownProperty,
   }, // Interesting Coin Inheritance Letter
+  {
+    id: 12321,
+    month: 9,
+    year: 2026,
+    type: "familiar",
+    familiar: "Meat Shield Maiden",
+  }, // meat shield toddler
 ];
 
 export default iotms;
