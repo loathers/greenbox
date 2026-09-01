@@ -275,6 +275,8 @@ const tattoos: TattooDef[] = [
   { name: "Allied Tattoo", image: "allytat", misc: 54 },
   { name: "Wet Shower", image: "wetpapertat", misc: 55 },
   { name: "Crymbocurrency", image: "cryptotat", misc: 56 },
+  { name: "Bear Tattoo", image: "beartat", misc: 57 },
+  { name: "Bull Tattoo", image: "bulltat", misc: 58 },
 ];
 
 export default tattoos;
