@@ -4024,8 +4024,16 @@ var iotms = [
     year: 2026,
     type: "preference",
     preference: "hasInterestingCoin"
-  }
+  },
   // Interesting Coin Inheritance Letter
+  {
+    id: 12321,
+    month: 9,
+    year: 2026,
+    type: "familiar",
+    familiar: "Meat Shield Maiden"
+  }
+  // meat shield toddler
 ], iotms_default = iotms;
 
 // ../greenbox-data/data/iotys.ts
