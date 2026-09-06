@@ -6816,6 +6816,14 @@ var tattoos = [{
   name: "Crymbocurrency",
   image: "cryptotat",
   misc: 56
+}, {
+  name: "Bear Tattoo",
+  image: "beartat",
+  misc: 57
+}, {
+  name: "Bull Tattoo",
+  image: "bulltat",
+  misc: 58
 }], tattoos_default = tattoos;
 
 // ../greenbox-data/lib/tattoos.ts
