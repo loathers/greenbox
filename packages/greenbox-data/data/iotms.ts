@@ -1410,6 +1410,13 @@ const iotms: IotMDef[] = [
     type: "familiar",
     familiar: "Meat Shield Maiden",
   }, // meat shield toddler
+  {
+    id: 12325,
+    month: 10,
+    year: 2026,
+    type: "campground",
+    item: "black garden rose",
+  }, // black rosebud
 ];
 
 export default iotms;
