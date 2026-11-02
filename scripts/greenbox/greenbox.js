@@ -4040,8 +4040,16 @@ var iotms = [
     year: 2026,
     type: "campground",
     item: "black garden rose"
-  }
+  },
   // black rosebud
+  {
+    id: 12391,
+    month: 11,
+    year: 2026,
+    type: "item",
+    item: "legendary acorndion"
+  }
+  // unopened legendary acorndion
 ], iotms_default = iotms;
 
 // ../greenbox-data/data/iotys.ts
