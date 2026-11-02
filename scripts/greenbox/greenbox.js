@@ -4628,6 +4628,8 @@ var housingItems = [
   // Staff of Frozen Lard
   10424,
   // Staff of the Peppermint Twist
+  12271,
+  // Staff of Anachronistic Churning
   // Jack's Swagger Shack
   5656,
   // Huggler Radio
