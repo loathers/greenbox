@@ -77,6 +77,7 @@ const RODORIC = [
   9894, // Staff of Kitchen Royalty
   10035, // Staff of Frozen Lard
   10424, // Staff of the Peppermint Twist
+  12271, // Staff of Anachronistic Churning
 ];
 
 const SWAGGER = [
